@@ -1,0 +1,16 @@
+const Discord = require('discord.js');
+module.exports = function(p) {
+
+  let invasion_embed = new Discord.RichEmbed()
+  .setColor(p.color)
+  .setThumbnail(p.sprite)
+  .setAuthor(p.name, p.url)
+  .addField('**'+p.grunt_type+'** Invasion '+p.type+p.gender,'**Invasion Expires**: '+p.time+' ('+p.mins+' Mins)')
+  .addField('**Possible Encounter**:',p.encounters)
+  .addField('Weakness(es): ',p.weaknesses,true)
+  .addField('Resistance(s): ',p.resistances,true)
+  .addField(p.area+': ',p.google+' | '+p.apple+' | '+p.pmsf, false)
+  .setImage(p.map_img);
+
+  return invasion_embed;
+}

@@ -1,0 +1,15 @@
+; EXAMPLE:
+; [CHANNEL ID]
+; geofences = geofence name,geofence name,geofence name
+; filter = filtername.json
+
+; "geofences" can either be an area name set in your geofences.json
+; OR the name of a discord in discords.ini or a mix of both.
+; Separate geofence names with a comma.
+; "filter" must be the file name of the filter you with to use for that channel.
+
+[511303614032248843]
+geofences = Tallahassee
+filter = Invasion.json
+embed = invasion.js
+; roleid = 530525516290326529

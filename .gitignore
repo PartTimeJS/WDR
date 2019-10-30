@@ -1,0 +1,49 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+config/config.ini.ex
+config/*ini
+config/*.json
+filters/*.json
+feeds/*.txt
+node_modules
+*.DS_Store
+filters/*.DS_Store
+ingress_scraper/*.ini
+embeds/*.js
+geofences/*.DS_Store
+static/images/pokemon_tiles/*.png
+static/images/pokemon_tiles/*.jpg
+static/images/raid_tiles/*.png
+static/images/raid_tiles/*.jpg
+static/images/quest_tiles/*.png
+static/images/quest_tiles/*.jpg
+geofences/*.json
+static/*.DS_Store
+modules/*.DS_Store
+oauth2-stripe/*.js
+oauth2-stripe/templates
+config/*.js
+Pokebot.js
+*.conf

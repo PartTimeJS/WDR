@@ -1,0 +1,16 @@
+const Discord = require('discord.js');
+module.exports = function(g) {
+
+  // CREATE THE EGG EMBED
+  let raid_embed = new Discord.RichEmbed()
+  .setColor(g.color)
+  .setThumbnail(g.sprite)
+  .setAuthor(g.name, g.url)
+  .setDescription(g.exraid+g.notes)
+  .addField('**Level '+g.level+'** Raid', g.team+g.sponsor, false)
+  .addField('Hatches: '+g.hatch_time+' (*'+g.hatch_mins+' Mins*)',g.area, false)
+  .addField('Directions:',g.google+' | '+g.apple+' | '+g.pmsf, false)
+  .setImage(g.map_img);
+
+  return raid_embed;
+}
