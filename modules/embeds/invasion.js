@@ -64,7 +64,7 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
   if(!pokestop.weaknesses || pokestop.weaknesses.trim() == 'undefined'){ pokestop.weaknesses = 'None'; }
 
   // Generate A Sprite Image for Embed
-  switch (pokestop.grunt_gender) {
+  switch (MAIN.grunts[invasion.grunt_type].grunt) {
     case 'Male':
       pokestop.sprite = 'https://cdn.discordapp.com/attachments/487387866394263552/605492063768936451/male_grunt_face_pink.png';
       pokestop.gender = ' '+MAIN.emotes.male; break;

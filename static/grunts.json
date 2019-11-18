@@ -251,58 +251,92 @@
         "third":["129_00","130_00"]
     }
   },
+  "39": {
+    "type": "Water",
+    "grunt": "Male",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["129_00"],
+        "second":["129_00"],
+        "third":["129_00","130_00"]
+    }
+  },
   "40": {
-    "type": "",
-    "grunt": "Player Team Leader"
+    "type": "Player Team Leader",
+    "grunt": ""
   },
   "41": {
-    "type": "",
-    "name": "Executive Cliff",
-    "gender": ""
+    "type": "Executive Cliff",
+    "grunt": "",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["052_00"],
+        "second":["028_00","143_00","330_00"],
+        "third":["248_00","392_00","389_00"]
+    }
   },
   "42": {
-    "type": "",
-    "name": "Executive Arlo",
-    "gender": ""
+    "type": "Executive Arlo",
+    "grunt": "",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["123_00"],
+        "second":["130_00","169_00","462_00"],
+        "third":["006_00","149_00","212_00"]
+    }
   },
   "43": {
-    "type": "",
-    "name": "Executive Sierra",
-    "gender": ""
+    "type": "Executive Sierra",
+    "grunt": "",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["215_00"],
+        "second":["097_00","131_00","302_00"],
+        "third":["065_00","229_00","282_00"]
+    }
   },
   "44": {
-    "type": "",
-    "name": "Giovanni",
-    "gender": ""
+    "type": "Giovanni or Decoy",
+    "grunt": "",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["144_00"]
+    }
   },
-  "40": {
-    "type": "",
-    "name": "Decoy - Male Grunt",
-    "gender": "Male"
+  "45": {
+    "type": "Decoy",
+    "grunt": "Male"
   },
   "46": {
-    "type": "",
-    "name": "Decoy - Female Grunt",
-    "gender": "Female"
+    "type": "Decoy",
+    "grunt": "Female"
   },
   "47": {
-    "type": "",
-    "name": "Ghost - Male Grunt",
-    "gender": "Male"
+    "type": "Ghost",
+    "grunt": "Female"
   },
   "48": {
-    "type": "",
-    "name": "Ghost - Female Grunt",
-    "gender": "Female"
+    "type": "Ghost",
+    "grunt": "Male",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["302_00","353_00","355_00"],
+        "second":["302_00","354_00","356_00"],
+        "third":["302_00","354_00","477_00"]
+  }
   },
   "49": {
-    "type": "",
-    "name": "Electric - Male Grunt",
-    "gender": "Male"
+    "type": "Electric",
+    "grunt": "Female",
+    "second_reward": "false",
+    "encounters":{
+        "first": ["081_00","125_00","179_00"],
+        "second":["082_00","125_00","180_00"],
+        "third":["125_00","181_00"]
+  }
   },
   "50": {
-    "type": "",
-    "name": "Electric - Female Grunt",
-    "gender": "Female"
+    "type": "Electric",
+    "grunt": "Male"
   }
 }
