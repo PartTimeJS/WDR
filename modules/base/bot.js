@@ -43,7 +43,6 @@ MAIN.config = ini.parse(fs.readFileSync('./config/config.ini', 'utf-8'));
 MAIN.Discords = require('../../config/discords.json');
 MAIN.Discord = require('discord.js');
 MAIN.jsonEncode = require('form-urlencoded').default;
-MAIN.Active = false;
 //------------------------------------------------------------------------------
 //  TIME FUNCTION
 //------------------------------------------------------------------------------
@@ -63,7 +62,7 @@ MAIN.Bot_Time = (time,type,timezone) => {
 //------------------------------------------------------------------------------
 MAIN.BOTS = []; MAIN.debug = MAIN.config.DEBUG;
 MAIN.logging = MAIN.config.CONSOLE_LOGS;
-var Reactions, Emojis, Commands;
+var Emojis, Commands;
 //------------------------------------------------------------------------------
 //  INITIATE COMMAND LISTENER ONLY ONCE FOR MAIN PROCESS
 //------------------------------------------------------------------------------
@@ -268,8 +267,6 @@ MAIN.pdb = MySQL.createConnection({
 //  LOAD BASE SCRIPTS
 //------------------------------------------------------------------------------
 function load_data(){
-  delete require.cache[require.resolve(__dirname+'/reactions')];
-  Reactions = require(__dirname+'/reactions');
   delete require.cache[require.resolve(__dirname+'/emojis.js')];
   Emojis = require(__dirname+'/emojis.js');
 //------------------------------------------------------------------------------
@@ -393,9 +390,12 @@ MAIN.Color = {
 //------------------------------------------------------------------------------
 //  WEBHOOK PARSER
 //------------------------------------------------------------------------------
+setTimeout(function(){
+  MAIN.Active = true;
+},30000);
 MAIN.webhookParse = async (PAYLOAD) => {
   // IGNORE IF BOT HAS NOT BEEN FINISHED STARTUP
-  if(!MAIN.Active){ return; }
+  if(MAIN.Active == undefined){ return; }
   // SEPARATE EACH PAYLOAD AND SORT
   await PAYLOAD.forEach( async (data,index) => {
     // IGNORE IF NOT A SPECIFIED OBJECT
@@ -592,7 +592,6 @@ MAIN.Initialize = async (type) => {
     await update_database();
   }
   await load_arrays();
-  Reactions.startInterval(MAIN);
   switch(type){
     case 'startup': return bot_login();
     case 'reload': return console.log('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] [bot.js] '+MAIN.config.BOT_NAME+' has re-loaded.');
@@ -634,7 +633,7 @@ async function bots_ready(){
 //------------------------------------------------------------------------------
 async function startup_notification(){
   // SET ACTIVE BOOLEAN TO TRUE AND BOT POOL TO ZERO
-  MAIN.Active = true; MAIN.Next_Bot = 0;
+  MAIN.Next_Bot = 0;
   // LOG INSTANCE INITIATION
   if(process.env.fork == 0){
     // MAIN.pdb.query('SELECT * FROM users', function (error, rows, fields) {
