@@ -74,8 +74,9 @@ module.exports.run = async (MAIN, BOT, message) => {
     if(!guild){ return; }
 
     // GET MEMBER
-    let member = MAIN.guilds.get(server.id).members.get(message.author.id);
-    if(!member){ return; }
+    let member = guild.members.get(message.author.id);
+    if(!member){ return guild.fetchMembers(); }
+    else{ member = guild.fetchMember(member.id); }
 
     let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;
     let isMod = member.hasPermission('MANAGE_ROLES') ? true : false;
