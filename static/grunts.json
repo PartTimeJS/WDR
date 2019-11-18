@@ -252,57 +252,47 @@
     }
   },
   "40": {
-    "type": "",
+    "type": "Player Team Leader",
     "grunt": "Player Team Leader"
   },
   "41": {
-    "type": "",
-    "name": "Executive Cliff",
-    "gender": ""
+    "type": "Executive Cliff",
+    "grunt": "Executive Cliff"
   },
   "42": {
-    "type": "",
-    "name": "Executive Arlo",
-    "gender": ""
+    "type": "Executive Arlo",
+    "grunt": "Executive Arlo"
   },
   "43": {
-    "type": "",
-    "name": "Executive Sierra",
-    "gender": ""
+    "type": "Executive Sierra",
+    "grunt": "Executive Sierra"
   },
   "44": {
-    "type": "",
-    "name": "Giovanni",
-    "gender": ""
+    "type": "Giovanni",
+    "grunt": "Giovanni",
   },
-  "40": {
-    "type": "",
-    "name": "Decoy - Male Grunt",
-    "gender": "Male"
+  "45": {
+    "type": "Decoy",
+    "grunt": "Male"
   },
   "46": {
-    "type": "",
-    "name": "Decoy - Female Grunt",
-    "gender": "Female"
+    "type": "Decoy",
+    "grunt": "Female",
   },
   "47": {
-    "type": "",
-    "name": "Ghost - Male Grunt",
-    "gender": "Male"
+    "type": "Ghost",
+    "grunt": "Male"
   },
   "48": {
-    "type": "",
-    "name": "Ghost - Female Grunt",
-    "gender": "Female"
+    "type": "Ghost",
+    "grunt": "Female"
   },
   "49": {
-    "type": "",
-    "name": "Electric - Male Grunt",
-    "gender": "Male"
+    "type": "Electric",
+    "grunt": "Male"
   },
   "50": {
-    "type": "",
-    "name": "Electric - Female Grunt",
-    "gender": "Female"
+    "type": "Electric",
+    "grunt": "Female",
   }
 }
