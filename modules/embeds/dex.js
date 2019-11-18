@@ -6,7 +6,7 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
       let member = MAIN.guilds.get(server.id).members.get(message.author.id);
 
       // DETERMINE POKEMON NAME
-      let locale = await MAIN.Get_Names(MAIN, pokemon);
+      let locale = await MAIN.Get_Data(MAIN, pokemon);
       let typing = await MAIN.Get_Typing(MAIN, pokemon);
 
       let pokemon_name = locale.pokemon_name, pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
@@ -45,14 +45,14 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
       for (key in MAIN.masterfile.pokemon) { //Find Previous Evolutions
         for(var i = 0; i < MAIN.masterfile.pokemon[key].evolutions.length; i++) {
           if (MAIN.masterfile.pokemon[key].evolutions[i] == pokemon_id) {
-            let base_evolve = await MAIN.Get_Names(MAIN, {pokemon_id: key})
+            let base_evolve = await MAIN.Get_Data(MAIN, {pokemon_id: key})
             evolutions = base_evolve.pokemon_name+' -> '+evolutions;
             evolve = key;
 
             for (key in MAIN.masterfile.pokemon) {
               for(var x = 0; x < MAIN.masterfile.pokemon[evolve].evolutions.length; x++) {
                 if (MAIN.masterfile.pokemon[key].evolutions[x] == evolve) {
-                  let first_evolve = await MAIN.Get_Names(MAIN, {pokemon_id: key});
+                  let first_evolve = await MAIN.Get_Data(MAIN, {pokemon_id: key});
                   evolutions = first_evolve.pokemon_name+' -> '+evolutions;
                   break;
                 }
@@ -65,14 +65,14 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
       if (MAIN.masterfile.pokemon[pokemon_id].evolutions[0]){ //Find Next Evolution
         evolutions += ' -> ';
         for(var i = 0; i < MAIN.masterfile.pokemon[pokemon_id].evolutions.length; i++) {
-          let second_evolve = await MAIN.Get_Names(MAIN, {pokemon_id: MAIN.masterfile.pokemon[pokemon_id].evolutions[i]});
+          let second_evolve = await MAIN.Get_Data(MAIN, {pokemon_id: MAIN.masterfile.pokemon[pokemon_id].evolutions[i]});
           evolutions += second_evolve.pokemon_name+', ';
           evolve = parseInt(MAIN.masterfile.pokemon[pokemon_id].evolutions[i]);
           if (evolve != 'NaN' && MAIN.masterfile.pokemon[evolve]) {
             evolutions = evolutions.slice(0,-2);
             evolutions += ' -> ';
             for(var x = 0; x < MAIN.masterfile.pokemon[evolve].evolutions.length; x++) {
-              let third_evolve = await MAIN.Get_Names(MAIN, {pokemon_id: MAIN.masterfile.pokemon[evolve].evolutions[x]});
+              let third_evolve = await MAIN.Get_Data(MAIN, {pokemon_id: MAIN.masterfile.pokemon[evolve].evolutions[x]});
               evolutions += third_evolve.pokemon_name+', ';
             }
           }

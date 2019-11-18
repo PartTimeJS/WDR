@@ -149,7 +149,7 @@ async function subscription_view(MAIN, message, member, prefix, available_gyms, 
           // GET BOSS INFO
           let id = MAIN.Pokemon_ID_Search(MAIN, sub.boss), locale = {};
           if(id){
-            locale = MAIN.Get_Names(MAIN, {pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form});
+            locale = MAIN.Get_Data(MAIN, {pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form});
           } locale = locale ? locale : { pokemon_name: sub.boss, form: '' };
           if(id && !sub.form && MAIN.masterfile.pokemon[id.pokemon_id].default_form){ locale.form = '[All] '; }
           else if(!locale.form){ locale.form = ''; }
@@ -452,7 +452,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
         let form = '', areas = sub.areas;
         if(sub.pokemon == 'All' || sub.pokemon == 'Egg'){ form = ''; }
         else{
-          let confirm_locale = await MAIN.Get_Names(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form});
+          let confirm_locale = await MAIN.Get_Data(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form});
           if(!sub.form && MAIN.masterfile.pokemon[sub.pokemon.pokemon_id].default_form){
             form = '[All] ';
           } else{ form = confirm_locale.form; }
@@ -492,7 +492,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
           let areas = sub.areas;
           if(!sub.pokemon){ sub.pokemon = id; }
           if(id && sub.pokemon){
-            remove_locale = await MAIN.Get_Names(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form ? sub.form : id.form});
+            remove_locale = await MAIN.Get_Data(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form ? sub.form : id.form});
           }  remove_locale = remove_locale ? remove_locale : { pokemon_name: sub.boss, form: '' };
           if(sub.boss == 'All' || sub.boss == 'Egg') { remove_locale.form = ''; }
           else{

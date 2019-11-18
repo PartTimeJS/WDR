@@ -429,7 +429,7 @@ MAIN.webhookParse = async (PAYLOAD) => {
             // SEND TO POKEMON MODULES
             case 'pokemon':
               let encounter = MAIN.Detect_Ditto(MAIN, data.message);
-              encounter.locale = await MAIN.Get_Names(MAIN, encounter);
+              encounter.locale = await MAIN.Get_Data(MAIN, encounter);
               encounter.size = MAIN.Get_Size(MAIN, encounter.pokemon_id, encounter.form, encounter.height, encounter.weight);
               Pokemon_Feed.run(MAIN, encounter, area, server, timezone);
               Pokemon_Subscription.run(MAIN, encounter, area, server, timezone);
@@ -448,14 +448,14 @@ MAIN.webhookParse = async (PAYLOAD) => {
               if(raid.is_exclusive == true && raid.pokemon_id == 0){
                 raid.pokemon_id = 150;
                 raid.form = 135;
-              } raid.locale = await MAIN.Get_Names(MAIN, raid);
+              } raid.locale = await MAIN.Get_Data(MAIN, raid);
               Raid_Feed.run(MAIN, raid, area, server, timezone);
               Raid_Subscription.run(MAIN, raid, area, server, timezone);
               return;
             // SEND TO QUESTS MODULES
             case 'quest':
               let quest = data.message;
-              quest.locale = await MAIN.Get_Names(MAIN, {pokemon_id: quest.rewards[0].info.pokemon_id, form: quest.rewards[0].info.form_id});
+              quest.locale = await MAIN.Get_Data(MAIN, {pokemon_id: quest.rewards[0].info.pokemon_id, form: quest.rewards[0].info.form_id});
               Quest_Feed.run(MAIN, quest, area, server, timezone);
               Quest_Subscription.run(MAIN, quest, area, server, timezone);
               return;

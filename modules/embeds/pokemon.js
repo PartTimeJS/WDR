@@ -54,7 +54,7 @@ module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time
 
   // IDENTIFY DITTO AND ALTER DISPLAY NAME
   if(sighting.pokemon_id == 132){
-    let old = await MAIN.Get_Names(MAIN, {pokemon_id: sighting.display_pokemon_id});
+    let old = await MAIN.Get_Data(MAIN, {pokemon_id: sighting.display_pokemon_id});
     pokemon.name += ' ('+old.pokemon_name+')';
   }
 

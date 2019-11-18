@@ -218,7 +218,7 @@ function Get_Quest_Task(MAIN, quest, server){
     // SNAPSHOTS
     case quest.template.indexOf('snapshot_easy') >= 0:
       if(quest.conditions[0].info && quest.conditions[0].info.pokemon_ids){
-        let condition = MAIN.Get_Names(MAIN, {pokemon_id: quest.conditions[0].info.pokemon_ids[0], form: 0});
+        let condition = MAIN.Get_Data(MAIN, {pokemon_id: quest.conditions[0].info.pokemon_ids[0], form: 0});
         return 'Take '+quest.target+' Snapshots of '+condition.pokemon_name;
       }
 
