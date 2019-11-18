@@ -263,6 +263,7 @@
   },
   "40": {
     "type": "Player Team Leader",
+<<<<<<< HEAD
     "grunt": ""
   },
   "41": {
@@ -302,6 +303,25 @@
     "encounters":{
         "first": ["144_00"]
     }
+=======
+    "grunt": "Player Team Leader"
+  },
+  "41": {
+    "type": "Executive Cliff",
+    "grunt": "Executive Cliff"
+  },
+  "42": {
+    "type": "Executive Arlo",
+    "grunt": "Executive Arlo"
+  },
+  "43": {
+    "type": "Executive Sierra",
+    "grunt": "Executive Sierra"
+  },
+  "44": {
+    "type": "Giovanni",
+    "grunt": "Giovanni",
+>>>>>>> 55258a33631b1611952a84ef073bbb45de6de787
   },
   "45": {
     "type": "Decoy",
@@ -309,6 +329,7 @@
   },
   "46": {
     "type": "Decoy",
+<<<<<<< HEAD
     "grunt": "Female"
   },
   "47": {
@@ -338,5 +359,24 @@
   "50": {
     "type": "Electric",
     "grunt": "Male"
+=======
+    "grunt": "Female",
+  },
+  "47": {
+    "type": "Ghost",
+    "grunt": "Male"
+  },
+  "48": {
+    "type": "Ghost",
+    "grunt": "Female"
+  },
+  "49": {
+    "type": "Electric",
+    "grunt": "Male"
+  },
+  "50": {
+    "type": "Electric",
+    "grunt": "Female",
+>>>>>>> 55258a33631b1611952a84ef073bbb45de6de787
   }
 }
