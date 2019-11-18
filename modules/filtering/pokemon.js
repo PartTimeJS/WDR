@@ -71,7 +71,6 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
             case target == 'False': break;
             default:
               embed = pokemon_channel[1].embed ? pokemon_channel[1].embed : 'pokemon.js';
-              if (pokemon_channel[1].url) { MAIN.Send_Hook(MAIN, pokemon_channel[1].url,JSON.stringify(sighting),'pokemon'); }
               return Send_Pokemon.run(MAIN, false, channel, sighting, internal_value, time_now, area, server, timezone, role_id, embed);
           } break;
 
@@ -121,7 +120,6 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
                     case max_iv[2] < sighting.individual_stamina: break;
                     default:
                       if(criteria.gender == 'all' || criteria.gender == gender){
-                        if (pokemon_channel[1].url) { MAIN.Send_Hook(MAIN, pokemon_channel[1].url,JSON.stringify(sighting),'pokemon'); }
                         return Send_Pokemon.run(MAIN, true, channel, sighting, internal_value, time_now, area, server, timezone, role_id, embed);
                       } else { return; }
                   } break;
@@ -134,7 +132,6 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
                     default:
                       if(criteria.gender == 'all' || criteria.gender == gender){
                         embed = pokemon_channel[1].embed ? pokemon_channel[1].embed : 'pokemon_iv.js';
-                        if (pokemon_channel[1].url) { MAIN.Send_Hook(MAIN, pokemon_channel[1].url,JSON.stringify(sighting),'pokemon'); }
                         return Send_Pokemon.run(MAIN, true, channel, sighting, internal_value, time_now, area, server, timezone, role_id, embed);
                       } else { return; }
                   }
@@ -172,7 +169,6 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
                     case max_iv[2] < sighting.individual_stamina: break;
                     default:
                       if(criteria.gender == 'all' || criteria.gender == gender){
-                        if (pokemon_channel[1].url) { MAIN.Send_Hook(MAIN, pokemon_channel[1].url,JSON.stringify(sighting),'pokemon'); }
                         return Send_Pokemon.run(MAIN, true, channel, sighting, internal_value, time_now, area, server, timezone, role_id, embed);
                       } else { return; }
                   } break;
@@ -185,7 +181,6 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
                     default:
                       if(criteria.gender == 'all' || criteria.gender == gender){
                         embed = pokemon_channel[1].embed ? pokemon_channel[1].embed : 'pokemon_iv.js';
-                        if (pokemon_channel[1].url) { MAIN.Send_Hook(MAIN, pokemon_channel[1].url,JSON.stringify(sighting),'pokemon'); }
                         return Send_Pokemon.run(MAIN, true, channel, sighting, internal_value, time_now, area, server, timezone, role_id, embed);
                       } else { return; }
                   }

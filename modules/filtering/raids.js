@@ -59,7 +59,6 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
         // CHECK FOR EX ELIGIBLE REQUIREMENT
         if(filter.Ex_Eligible_Only == undefined || filter.Ex_Eligible_Only != true){
           if(MAIN.debug.Raids == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Raid Passed Filters for '+raid_channel[0]+'.'); }
-          if (raid_channel[1].url) { MAIN.Send_Hook(MAIN, raid_channel[1].url,JSON.stringify(raid),'raid'); }
 
           // INSERT RAID LOBBY AND SEND RAID
           await raid_lobbies(MAIN, raid, boss_name, channel, area.embed, timezone, server);
@@ -67,7 +66,6 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
         }
         else if(filter.Ex_Eligible_Only == raid.ex_raid_eligible || filter.Ex_Eligible_Only == raid.sponsor_id){
           if(MAIN.debug.Raids == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Raid Passed Filters for '+raid_channel[0]+'.'); }
-          if (raid_channel[1].url) { MAIN.Send_Hook(MAIN, raid_channel[1].url,JSON.stringify(raid),'raid'); }
 
           // INSERT RAID LOBBY AND SEND RAID
           await raid_lobbies(MAIN, raid, boss_name, channel, area.embed, timezone, server);
