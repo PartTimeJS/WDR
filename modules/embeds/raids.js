@@ -141,7 +141,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
 
       // STATIC MAP TILE
       gym.static_marker = [{
-        "url" : MAIN.Get_Sprite(MAIN, { raid.pokemon_id }, 'STATIC_ASSETS'),
+        "url" : MAIN.Get_Sprite(MAIN, { pokemon_id: gym.pokemon_id, form: gym.form }, 'STATIC_ASSETS'),
         "height" : 50,
         "width" : 50,
         "x_offset" : 0,
