@@ -126,9 +126,9 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
     case 'Boss':
       // DETERMINE MOVE NAMES AND TYPES
       gym.move_name_1 = raid.locale.move_1;
-      gym.move_type_1 = embed.webhook ? MAIN.unicode[MAIN.masterfile.moves[sighting.move_1].type] : MAIN.emotes[MAIN.masterfile.moves[raid.move_1].type.toLowerCase()];
+      gym.move_type_1 = MAIN.emotes[MAIN.masterfile.moves[raid.move_1].type.toLowerCase()];
       gym.move_name_2 = raid.locale.move_2;
-      gym.move_type_2 = embed.webhook ? MAIN.unicode[MAIN.masterfile.moves[sighting.move_2].type] : MAIN.emotes[MAIN.masterfile.moves[raid.move_2].type.toLowerCase()];
+      gym.move_type_2 = MAIN.emotes[MAIN.masterfile.moves[raid.move_2].type.toLowerCase()];
 
       // Run Min-Max CP Calculations for Boss
       gym.minCP = pvp.CalculateCP(MAIN,raid.pokemon_id,raid.form,10,10,10,20);

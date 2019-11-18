@@ -91,7 +91,7 @@ async function subscription_create(MAIN, message, nickname, prefix, league, disc
 
   // DEFINE VARIABLES
   let sprite = MAIN.Get_Sprite(MAIN, rank.pokemon);
-  let locale = await MAIN.Get_Locale(MAIN, rank.pokemon, discord);
+  let locale = await MAIN.Get_Names(MAIN, rank.pokemon);
   let typing = await MAIN.Get_Typing(MAIN, rank.pokemon);
 
   // BUILD EMBED

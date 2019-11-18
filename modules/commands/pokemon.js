@@ -155,7 +155,7 @@ async function subscription_view(MAIN, message, member, prefix, discord){
             if(!id){
               locale = { pokemon_name: sub.name, form: '' };
             } else{
-              locale = await MAIN.Get_Locale(MAIN, {pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form}, discord);
+              locale = await MAIN.Get_Names(MAIN, {pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form});
             } if(id && !sub.form && MAIN.masterfile.pokemon[id.pokemon_id].default_form){ locale.form = '[All] '; }
 
             embed_name = '**'+sub.name+'** '+locale.form;
@@ -397,7 +397,7 @@ async function subscription_remove(MAIN, message, member, prefix, discord){
       remove.form = remove.pokemon.form ? remove.pokemon.form : 0;
       if(remove.name == 'cancel'){ return subscription_cancel(MAIN, member, message, prefix, discord); }
       else if(remove.name == 'time'){ return subscription_timedout(MAIN, member, message, prefix, discord); }
-      let remove_locale = await MAIN.Get_Locale(MAIN, {pokemon_id: remove.pokemon.pokemon_id, form: remove.form}, discord);
+      let remove_locale = await MAIN.Get_Names(MAIN, {pokemon_id: remove.pokemon.pokemon_id, form: remove.form});
       if(remove.name.indexOf('All') >= 0 || remove.name.indexOf('Gen') >= 0){ remove_locale.form = ''; }
       else{
         if(!remove.form && MAIN.masterfile.pokemon[remove.pokemon.pokemon_id].default_form){ remove_locale.form = '[All] '; }
@@ -489,7 +489,7 @@ async function subscription_modify(MAIN, message, member, prefix, discord){
       modify.form = modify.form ? modify.form : 0;
       if(modify.name == 'cancel'){ return subscription_cancel(MAIN, member, message, prefix, discord); }
       else if(modify.name == 'time'){ return subscription_timedout(MAIN, member, message, prefix, discord); }
-      let modify_locale = await MAIN.Get_Locale(MAIN, {pokemon_id: modify.pokemon_id, form: modify.form}, discord)
+      let modify_locale = await MAIN.Get_Names(MAIN, {pokemon_id: modify.pokemon_id, form: modify.form})
       if(modify.name.indexOf('All') >= 0 || modify.name.indexOf('Gen') >= 0){ modify_locale.form = ''; }
       else{
           if(!modify.form && MAIN.masterfile.pokemon[modify.pokemon.pokemon_id].default_form){ modify_locale.form = '[All] '; }
@@ -630,7 +630,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
 
       // CONFIRMATION EMBED
       case 'Confirm-Add':
-        let confirm_locale = await MAIN.Get_Locale(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form}, discord);
+        let confirm_locale = await MAIN.Get_Names(MAIN, {pokemon_id: sub.pokemon.pokemon_id, form: sub.form});
         if(sub.name.indexOf('All') >= 0 || sub.name.indexOf('Gen') >= 0){ confirm_locale.form = '' }
         else{
             if(!sub.form && MAIN.masterfile.pokemon[sub.pokemon.pokemon_id].default_form){

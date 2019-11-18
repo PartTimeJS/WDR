@@ -1,12 +1,10 @@
-module.exports = async (MAIN, object, server) => {
+module.exports = async (MAIN, object) => {
   return new Promise(async function(resolve, reject) {
     let locale = {
       pokemon_name: '',
       form: '',
-
       move_1: '',
       move_2: '',
-
     }
 
     // GET DEFAULT FORM NUMBER IF A PROPER FORM ISN'T PASSED
@@ -15,6 +13,7 @@ module.exports = async (MAIN, object, server) => {
         object.form = MAIN.masterfile.pokemon[object.pokemon_id].default_form;
       }
     }
+
     // POKEMON NAME AND FORM
     if(object.pokemon_id){ locale.pokemon_name = MAIN.masterfile.pokemon[object.pokemon_id].name; }
     if(object.form && object.form > 0){
@@ -24,6 +23,7 @@ module.exports = async (MAIN, object, server) => {
       }
       else{ locale.form = '['+MAIN.masterfile.pokemon[object.pokemon_id].forms[object.form].name+'] '; }
     }
+
     // MOVE NAMES
     if(object.move_1){
       if(MAIN.masterfile.moves[object.move_1]){
@@ -41,6 +41,7 @@ module.exports = async (MAIN, object, server) => {
         locale.move_2 = object.move_2;
       }
     }
+
     // IF LURE NAME
     if(object.lure_id){ locale.lure_type = MAIN.Get_Lure(MAIN, object.lure_id); }
 

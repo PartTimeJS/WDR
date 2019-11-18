@@ -2,7 +2,7 @@
 
 module.exports.run = async (MAIN, target, lure, type, area, server, timezone, role_id, embed) => {
   let Embed_Config = require('../../embeds/'+embed);
-  let locale = await MAIN.Get_Locale(MAIN, lure, server);
+  let locale = await MAIN.Get_Names(MAIN, lure);
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.get(server.id).members.get(target.user_id);

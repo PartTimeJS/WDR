@@ -4,7 +4,7 @@ module.exports.run = async (MAIN, message, nest, server, area, timezone, embed) 
   let Embed_Config = require('../../embeds/'+embed);
 
   let form = MAIN.masterfile.pokemon[nest.pokemon_id].default_form ? MAIN.masterfile.pokemon[nest.pokemon_id].default_form : 0;
-  let locale = await MAIN.Get_Locale(MAIN, nest, server);
+  let locale = await MAIN.Get_Names(MAIN, nest);
   let typing = await MAIN.Get_Typing(MAIN, nest);
 
   // CHECK IF THE TARGET IS A USER
