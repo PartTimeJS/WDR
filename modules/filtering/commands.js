@@ -78,6 +78,7 @@ module.exports.run = async (MAIN, BOT, message) => {
     if(!member){ return; }
 
     let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;
+    let isMod = member.hasPermission('MANAGE_ROLES') ? true : false;
 
     // CHECK FOR SERVER COMMAND CHANNEL, ONLY RESPOND TO COMMANDS IN THAT CHANNEL
     if(server.command_channels.indexOf(message.channel.id) >= 0){
@@ -86,7 +87,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       if(MAIN.config.Tidy_Channel == 'ENABLED'){ message.delete(); }
 
       // FETCH THE GUILD MEMBER AND CHECK IF A DONOR
-      if(isAdmin){ /* DO NOTHING */ }
+      if(isAdmin || isMod){ /* DO NOTHING */ }
       else if(server.donor_role && !member.roles.has(server.donor_role)){
         if(MAIN.config.log_channel){
           let donor_info = '';

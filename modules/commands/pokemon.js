@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     member.nickname = message.author.username;
   }
 
-  if(message.content.split(' ')[1] && message_user.hasPermission('ADMINISTRATOR')){
+  if(message.content.split(' ')[1] && message_user.hasPermission('MANAGE_ROLES')){
     // DECLARE VARIABLES FOR ADMIN
     let id = message.content.split(' ')[1].slice(2,-1);
     if(id.split('!')[1]){
