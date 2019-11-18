@@ -10,8 +10,6 @@
       "ignored_channels": [],
       "purge_channels": "ENABLED",
       "channels_to_purge": ["537460180451983371","537460213956214785","522251205334794260"],
-      "min_raid_lobbies": "3",
-      "raid_lobbies_category_id": "",
       "raid_role": "551467095293165591",
       "geofence": [
         [
@@ -32,8 +30,6 @@
       "command_channels": "520604206206287883",
       "purge_channels": "ENABLED",
       "channels_to_purge": ["536673792529924106","536673820182839296"],
-      "min_raid_lobbies": "3",
-      "raid_lobbies_category_id": "",
       "raid_role": "551467095293165591",
       "geofence": [
         [
@@ -53,8 +49,6 @@
       "command_channels": "540354517166718977",
       "purge_channels": "ENABLED",
       "channels_to_purge": ["540354431712100373","540354458165444608"],
-      "min_raid_lobbies": "3",
-      "raid_lobbies_category_id": "",
       "raid_role": "551467095293165591",
       "geofence": [
         [
@@ -74,8 +68,6 @@
       "command_channels": "535192018754732053",
       "purge_channels": "ENABLED",
       "channels_to_purge": ["535192085272461322","535192088841814036"],
-      "min_raid_lobbies": "5",
-      "raid_lobbies_category_id": "",
       "raid_role": "551467095293165591",
       "geofence": [
         [
@@ -94,8 +86,6 @@
       "donor_role": "",
       "purge_channels": "DISABLED",
       "channels_to_purge": [],
-      "min_raid_lobbies": "",
-      "raid_lobbies_category_id": "",
       "raid_role": "",
       "geofence": [
         [
@@ -114,8 +104,6 @@
       "donor_role": "",
       "purge_channels": "DISABLED",
       "channels_to_purge": [],
-      "min_raid_lobbies": "0",
-      "raid_lobbies_category_id": "",
       "raid_role": "",
       "geofence": [
         [

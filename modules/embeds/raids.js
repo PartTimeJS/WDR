@@ -119,9 +119,6 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       // CREATE THE EGG EMBED
       raid_embed = await Embed_Config(gym);
 
-      // ADD FOOTER IF RAID LOBBIES ARE ENABLED
-      if(raid.level >= server.min_raid_lobbies){ raid_embed.setFooter(gym.id); }
-
       type = 'Level '+raid.level+' Raid Egg';
       break;
 
@@ -156,9 +153,6 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
 
       // CREATE THE RAID EMBED
       raid_embed = await Embed_Config(gym)
-
-      // ADD FOOTER IF RAID LOBBIES ARE ENABLED
-      if(raid.level >= server.min_raid_lobbies){ raid_embed.setFooter(gym.id); }
 
       type = 'Raid Boss';
       break;

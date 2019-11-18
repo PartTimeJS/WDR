@@ -61,14 +61,12 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
           if(MAIN.debug.Raids == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Raid Passed Filters for '+raid_channel[0]+'.'); }
 
           // INSERT RAID LOBBY AND SEND RAID
-          await raid_lobbies(MAIN, raid, boss_name, channel, area.embed, timezone, server);
           Send_Raid.run(MAIN, channel, raid, type, area, server, timezone, role_id, embed);
         }
         else if(filter.Ex_Eligible_Only == raid.ex_raid_eligible || filter.Ex_Eligible_Only == raid.sponsor_id){
           if(MAIN.debug.Raids == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Raid Passed Filters for '+raid_channel[0]+'.'); }
 
           // INSERT RAID LOBBY AND SEND RAID
-          await raid_lobbies(MAIN, raid, boss_name, channel, area.embed, timezone, server);
           Send_Raid.run(MAIN, channel, raid, type, area, server, timezone, role_id, embed);
         }
       } else{
@@ -76,22 +74,6 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
       }
     } else{
       if(MAIN.debug.Raids == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Raid Did Not Meet Type or Level Filter for '+raid_channel[0]+'. Expected: '+filter.Boss_Levels+', Saw: '+type.toLowerCase()); }
-    }
-  });
-}
-
-function raid_lobbies(MAIN, raid, boss_name, channel, area, timezone, server){
-  return new Promise(resolve => {
-    // UPDATE/INSERT ACTIVE RAIDS
-    if(raid.level >= server.min_raid_lobbies){
-      let end_time = MAIN.Bot_Time(raid.end, '1', timezone);
-      MAIN.pdb.query(`INSERT INTO active_raids (gym_id, gym_name, raid, guild_id, channel_id, area, boss_name, end_time, expire_time) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE raid = ?`,
-      [raid.gym_id, raid.gym_name, JSON.stringify(raid), server.id, channel.id, area.embed, boss_name, end_time, raid.end, JSON.stringify(raid)], function (error, record, fields) {
-        if(error){ console.error(error); }
-        return resolve();
-      });
-    } else {
-      return resolve();
     }
   });
 }

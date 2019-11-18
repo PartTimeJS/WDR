@@ -127,27 +127,6 @@ module.exports.run = async (MAIN, BOT, message) => {
       let cmd = MAIN.Commands.get(command);
       if(cmd){ return cmd.run(MAIN, message, prefix, server); }
     }
-
-    // CHECK FOR ACTIVE RAID CHANNELS FOR RAID COMMANDS
-    if (MAIN.config.Raid_Lobbies == 'ENABLED') {
-      MAIN.pdb.query(`SELECT * FROM active_raids WHERE active = ?`, [true], function (error, raids, fields) {
-        if(error){ console.error(error);}
-        if(!raids){ return; }
-
-        // FIND RAID CHANNEL BASED ON ACTIVE RAIDS
-        let raid_channel = raids.find(channels => channels.raid_channel == message.channel.id);
-        if(!raid_channel){ return; }
-
-        // GET RAID LOBBY COMMAND
-        command = Get_Raid_Commands(MAIN, member, message.content.toLowerCase());
-
-        // SEND TO THE COMMAND FUNCTION
-        let cmd = MAIN.Commands.get(command);
-        if(cmd){ return cmd.run(MAIN, message, raid_channel); }
-        else{ return; }
-      });
-    }
-
     return;
   }
 }

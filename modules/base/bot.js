@@ -83,19 +83,6 @@ if(process.env.fork == 0){
   MAIN.on('message', message => {
     return Commands.run(MAIN, MAIN, message);
   });
-  //CHECK FOR MESSAGE REACTION ADDS
-  if(MAIN.config.Raid_Lobbies == 'ENABLED'){
-    MAIN.on('raw', event => {
-      switch(true){
-        case !MAIN.Active: return;
-        case event.t == null: return;
-        case MAIN.user == null: return;
-        case event.d.user_id == MAIN.user.id: return;
-        case event.t == 'MESSAGE_REACTION_ADD': return Reactions.run(MAIN, event);
-        default: return;
-      }
-    });
-  }
 
   // SET ONTIME FUNCTIONS
   var ontime_servers = [], ontime_times = [];
