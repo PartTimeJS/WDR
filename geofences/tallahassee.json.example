@@ -340,7 +340,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "FSU Campus",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -366,7 +366,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Cascades",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -388,7 +388,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Lake Ella",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -406,7 +406,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Tom Brown Park",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -426,7 +426,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Midtown",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -444,7 +444,7 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Market Square",
-				"sub_area": true
+				"area.sub": true
 			},
 			"geometry": {
 				"type": "Polygon",

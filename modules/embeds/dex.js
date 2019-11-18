@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+
 const pvp = require('../base/pvp.js');
 
 module.exports.run = async (MAIN, message, pokemon, server) => {
@@ -7,7 +7,7 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
 
       // DETERMINE POKEMON NAME
       let locale = await MAIN.Get_Locale(MAIN, pokemon, server);
-      let typing = await MAIN.Get_Typing(MAIN, pokemon, server);
+      let typing = await MAIN.Get_Typing(MAIN, pokemon);
 
       let pokemon_name = locale.pokemon_name, pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
       let evolutions = pokemon_name;
@@ -81,9 +81,9 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
       }
 
       // GET SPRITE IMAGE
-      let sprite = await MAIN.Get_Sprite(MAIN, pokemon);
+      let sprite = MAIN.Get_Sprite(MAIN, pokemon);
 
-      let dex_embed = new Discord.RichEmbed()
+      let dex_embed = new MAIN.Discord.RichEmbed()
       .setColor(pokemon_color)
       .setThumbnail(sprite)
       .setTitle('**'+pokemon_name+'** '+form_name+'(#'+pokemon_id+') '+pokemon_type)

@@ -1,43 +1,56 @@
-const Discord = require('discord.js');
+
 const moment = require('moment');
 
-module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, main_area, sub_area, embed_area, server, timezone, role_id, embed) => {
-  let Embed_Config = require('../../embeds/'+embed), quest_embed = {};
+module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, area, server, timezone, role_id, embed) => {
+  let Embed_Config = require('../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.get(server.id).members.get(target.user_id);
 
   // VARIABLES
-  let pokestop = {
-    name: quest.pokestop_name, reward: quest_reward,
-    // GET AND DETERMINE THE QUEST TASK
-    task: await Get_Quest_Task(MAIN, quest, server),
+  let pokestop = {};
+  pokestop.name = quest.pokestop_name;
+  pokestop.reward = quest_reward;
+  // GET AND DETERMINE THE QUEST TASK
+  pokestop.task = await Get_Quest_Task(MAIN, quest, server);
 
-    // GET LOCATION INFO
-    lat: quest.latitude,
-    lon: quest.longitude,
-    area: embed_area,
-    url: quest.url ? quest.url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Quests_SILVER_01.png',
-    map_url: MAIN.config.FRONTEND_URL,
+  // GET LOCATION INFO
+  pokestop.lat = quest.latitude;
+  pokestop.lon = quest.longitude;
+  pokestop.area = area.embed;
+  pokestop.url = quest.url;
+  pokestop.map_url = MAIN.config.FRONTEND_URL;
 
-    // MAP LINK PROVIDERS
-    google: '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+quest.latitude+','+quest.longitude)+')',
-    apple: '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+quest.latitude+','+quest.longitude+'&z=10&t=s&dirflg=d')+')',
-    waze: '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+quest.latitude+','+quest.longitude+'&navigate=yes')+')',
-    pmsf: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+quest.latitude+'&lon='+quest.longitude+'&zoom=15')+')',
-    rdm: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+quest.latitude+'/'+quest.longitude+'/15')+')',
+  // MAP LINK PROVIDERS
+  pokestop.google = '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+quest.latitude+','+quest.longitude)+')';
+  pokestop.apple = '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+quest.latitude+','+quest.longitude+'&z=10&t=s&dirflg=d')+')';
+  pokestop.waze = '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+quest.latitude+','+quest.longitude+'&navigate=yes')+')',
+  pokestop.pmsf = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+quest.latitude+'&lon='+quest.longitude+'&zoom=15')+')';
+  pokestop.rdm = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+quest.latitude+'/'+quest.longitude+'/15')+')';
 
-    // GET STATIC MAP TILE
-    map_img: await MAIN.Static_Map_Tile(MAIN, quest.latitude, quest.longitude, 'quest')
-  };
+  // GET REWARD ICON
+  if(quest_reward.indexOf('Encounter') >= 0){
+    pokestop.sprite = MAIN.Get_Sprite(MAIN, quest_reward);
+  } else{
+    pokestop.sprite = MAIN.Get_Sprite(MAIN, quest_reward, 'QUEST_REWARD');
+  }
+
+  // GET STATIC MAP TILE
+  pokestop.static_marker = [{
+    "url" : pokestop.sprite,
+    "height" : 50,
+    "width" : 50,
+    "x_offset" : 0,
+    "y_offset" : 0,
+    "latitude" : quest.latitude,
+    "longitude" : quest.longitude
+  }];
+  pokestop.static_map = MAIN.config.STATIC_MAP_URL+quest.latitude+"/"+quest.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokestop.static_marker));
 
   // DECLARE VARIABLES
   pokestop.time = MAIN.Bot_Time(null, 'quest', timezone);
 
-  // GET REWARD ICON
-  if(quest_reward.indexOf('Encounter') >= 0){
-    pokestop.sprite = await MAIN.Get_Sprite(MAIN, quest.rewards[0].info);
-  } else{ pokestop.sprite = await MAIN.Get_Sprite(MAIN, quest_reward, true); }
+
 
   // GET EMBED COLOR BASED ON QUEST DIFFICULTY
   switch(true){
@@ -49,7 +62,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ma
 
   // CREATE QUEST EMBED
   if(!pokestop.sprite){ pokestop.sprite = quest.url; }
-  quest_embed = Embed_Config(pokestop);
+  let quest_embed = Embed_Config(pokestop);
 
   // IF MEMBER SEND INSERT INTO DB
   if(member){
@@ -63,8 +76,8 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ma
 
     // SAVE THE ALERT TO THE ALERT TABLE FOR FUTURE DELIVERY
     return MAIN.pdb.query(`INSERT INTO quest_alerts (user_id, user_name, quest, embed, area, bot, alert_time, discord_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    [target.user_id, target.user_name, quest_object, quest_embed, embed_area, target.bot, db_date, server.id], function (error, alert, fields) {
-      if(error){ console.error('['+MAIN.config.BOT_NAME+'] UNABLE TO ADD ALERT TO quest_alerts',error); }
+    [target.user_id, target.user_name, quest_object, quest_embed, area.embed, target.bot, db_date, server.id], function (error, alert, fields) {
+      if(error){ console.error('['+MAIN.Bot_Time(null,'stamp')+'] UNABLE TO ADD ALERT TO quest_alerts',error); }
       else if(MAIN.debug.Quests == 'ENABLED' && MAIN.debug.Subscriptions == 'ENABLED'){
         console.info(MAIN.Color.pink+'[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] [SUBSCRIPTIONS] Stored a '+quest_reward+' Quest Alert for '+target.user_name+'.'+MAIN.Color.reset);
       }

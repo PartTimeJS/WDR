@@ -1,7 +1,7 @@
 delete require.cache[require.resolve('../embeds/invasion.js')];
 const Send_Invasion = require('../embeds/invasion.js');
-const Discord = require('discord.js');
-module.exports.run = async (MAIN, invasion, main_area, sub_area, embed_area, server, timezone) => {
+
+module.exports.run = async (MAIN, invasion, area, server, timezone) => {
   //if(!invasion.pokemon_id){ return; }
 
   if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Invasion == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] Received '+MAIN.grunts[invasion.grunt_type].name+' invasion for '+server.name+'.'); }
@@ -27,9 +27,17 @@ module.exports.run = async (MAIN, invasion, main_area, sub_area, embed_area, ser
         // CHECK IF THE USER HAS SUBS
         if(user.invasion && user.invasion_status == 'ACTIVE'){
 
+          // CHECK FOR GRUNT TYPE
+          if(!MAIN.grunts[invasion.grunt_type]){
+              return //console.error("[subs/invasion.js] ["+MAIN.Bot_Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
+          }
+
           // CONVERT INVASION LIST TO AN ARRAY
           let invasion_subs = JSON.parse(user.invasion);
-          let type = MAIN.grunts[invasion.grunt_type].name;
+          let type = MAIN.grunts[invasion.grunt_type].type;
+          if(!type){
+            return //console.error("[subs/invasion.js] ["+MAIN.Bot_Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
+          }
           let gender = MAIN.grunts[invasion.grunt_type].gender;
 
           // CHECK EACH USER SUBSCRIPTION
@@ -48,9 +56,9 @@ module.exports.run = async (MAIN, invasion, main_area, sub_area, embed_area, ser
 
                   // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
                   if(sub.areas == 'No' || sub.areas == 'Stop Specified'){
-                    Send_Invasion.run(MAIN, user, invasion, type, main_area, sub_area, embed_area, server, timezone, '', embed);
-                  } else if(user.geofence == server.name || user_areas.indexOf(main_area) >= 0 || user_areas.indexOf(sub_area) >= 0){
-                    Send_Invasion.run(MAIN, user, invasion, type, main_area, sub_area, embed_area, server, timezone, '', embed);
+                    Send_Invasion.run(MAIN, user, invasion, type, area, server, timezone, '', embed);
+                  } else if(user.geofence == server.name || user_areas.indexOf(area.main) >= 0 || user_areas.indexOf(area.sub) >= 0){
+                    Send_Invasion.run(MAIN, user, invasion, type, area, server, timezone, '', embed);
                   } else{
                     if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Invasion == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] Did Not Pass '+user.user_name+'\'s Area Filter.'); }
                   }

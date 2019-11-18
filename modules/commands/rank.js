@@ -1,5 +1,5 @@
 const Fuzzy = require('fuzzy');
-const Discord = require('discord.js');
+
 const InsideGeojson = require('point-in-geopolygon');
 const pvp = require('../base/pvp.js');
 
@@ -15,7 +15,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let request_action = new Discord.RichEmbed()
+  let request_action = new MAIN.Discord.RichEmbed()
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('What rank do you want to search for?')
     .setDescription('`Great`  »  Great League.\n'
@@ -90,12 +90,12 @@ async function subscription_create(MAIN, message, nickname, prefix, league, disc
   let best_stamina = Math.floor((base_stamina+ranks.topRank.sta)*best_CPMultiplier);
 
   // DEFINE VARIABLES
-  let sprite = await MAIN.Get_Sprite(MAIN, rank.pokemon);
+  let sprite = MAIN.Get_Sprite(MAIN, rank.pokemon);
   let locale = await MAIN.Get_Locale(MAIN, rank.pokemon, discord);
-  let typing = await MAIN.Get_Typing(MAIN, rank.pokemon, discord);
+  let typing = await MAIN.Get_Typing(MAIN, rank.pokemon);
 
   // BUILD EMBED
-  let rank_embed = new Discord.RichEmbed()
+  let rank_embed = new MAIN.Discord.RichEmbed()
   .setColor(typing.color)
   .setThumbnail(sprite)
   .addField('**'+locale.pokemon_name+'** '+locale.form+typing.type,league+' League Ranks')
@@ -141,21 +141,21 @@ function sub_collector(MAIN, type, nickname, message, league, requirements, rank
 
       // RANK POKEMON EMBED
       case 'Pokemon':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Pokémon would you like to evaluate for '+league+' League?')
           .setFooter(requirements); break;
 
       // RANK STATS EMBED
       case 'Stats':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What are the stats of '+rank.pokemon.pokemon_name+'?')
           .setFooter(requirements); break;
 
       // DEFAULT EMBED
       default:
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What **'+type+'** would like you like to set for **'+object+'** Invasion Notifications?')
           .setFooter(requirements);
@@ -227,7 +227,7 @@ function sub_collector(MAIN, type, nickname, message, league, requirements, rank
 }
 
 function subscription_cancel(MAIN, nickname, message, prefix, discord){
-  let subscription_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('Subscription Cancelled.')
     .setDescription('Nothing has been Saved.')
@@ -238,7 +238,7 @@ function subscription_cancel(MAIN, nickname, message, prefix, discord){
 }
 
 function subscription_timedout(MAIN, nickname, message, prefix, discord){
-  let subscription_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('Subscription Timed Out.')
     .setDescription('Nothing has been Saved.')

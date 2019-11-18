@@ -14,9 +14,6 @@ VERBOSE_LOGS = ENABLED
 TIME_REMAIN = 5
 TIME_REMAIN_SUBS = 1
 
-#CONTROL WHAT YOUR USERS SUBSCRIBE TO LEAVE EMPTY IF NO
-BLACKLISTED = 50,263
-
 # CHECK FOR DONORS
 Donor_Check = ENABLED
 donor_info = Please visit, http://url for more info
@@ -27,38 +24,30 @@ log_ping = optional role etc. remove if you don't want to use.
 # You will need to add http://bot_host_ip:3333/ in RDM. You will need to port forward on your router if RDM does not reside in your local network.
 LISTENING_PORT = 3333
 
-# MAP TILES
-# ENABLED or DISABLED. Includes Map Tile images in the embeds for feeds and subscriptions.
-Map_Tiles = ENABLED
-Tile_Width = 400
-Tile_Height = 220
+# STATIC MAP (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
+STATIC_MAP_URL = https://static.pokemap.org/static/osm-bright/
+# THIS REPO MUST BE ONE THAT ACCEPTS pokemon_icon_<ID>_<FORM> FORMAT ONLY.
+STATIC_SPRITE = https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/NOVA_Sprites/
+STATIC_WIDTH = 400
+STATIC_HEIGHT = 220
+STATIC_ZOOM = 16
+# Style Options:
+# https://yourmap.com/styles/klokantech-basic/
+# https://yourmap.com/styles/dark-matter/
+# https://yourmap.com/styles/osm-bright/
 
-## IMAGE HOST
-# This is required for your map tiles to work.
-# This must be URL. You must include http:// or https:// and the / at the end.
-HOST = http://www.yourimages.com/
+# Optional URL for your front end for [Scan Map] embed link
+FRONTEND_URL =
 
-## IMAGE DIRECTORY
-# pokemon_tiles, raid_tiles, and quest_tiles folders must be created in this location.
-# This is where your map tiles are saved/cached for bot to reference from IMAGE HOST URL
-# You will need to edit the .conf files based on your setup. Example conf is located in /files/nginx of what is needed.
-# You will need to know and implement correct permissions for nginx.
-IMAGE_DIR = ./static/images/
-
-## Self Hosted or Other Tile Server Options. These are optional, remove lines or ## out.
-Tile_Server = https://optional.url/{z}/{x}/{y}.png
-Tile_Marker = https://optional.url
-Spawn_Marker = https://optionspawn.png
-Gym_Marker = https://optiongym.png
-Stop_Marker = https://optionstop.png
-
-#Optional URL for your front end for [Scan Map] embed link
-FRONTEND_URL = https://yourmap.com/
-
-# SPRITES TYPE DEFAULT / SHUFFLE comment or un-comment the base url
-SPRITE_TYPE = DEFAULT
-SPRITE_URL = https://www.serebii.net/sunmoon/pokemon/
-#SPRITE_URL = https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/PMSF_icons_large/
+# SPRITES
+# TYPE CAN EITHER BE SEREBII OR ASSETS (pokemon_icon_<ID>_<FORM>)
+SPRITE_TYPE = ASSETS
+# SPRITE_TYPE = SEREBII
+# SPRITE_URL = https://raw.githubusercontent.com/tallypokemap/derpysprites/master/
+# SPRITE_URL = https://raw.githubusercontent.com/tallypokemap/Spooky/resized/no_border/
+# SPRITE_URL = https://raw.githubusercontent.com/mizu-github/PogoAssets/sugimori/no_edge_256/
+# SPRITE_URL = https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/PMSF_icons_large/
+SPRITE_URL = https://raw.githubusercontent.com/geekygreek7/pokedave_shuffle_icons_-PMSF-/master/
 
 # YOUR TIMEZONE
 TIMEZONE = America/New_York
@@ -188,8 +177,6 @@ Discord_Feeds = ENABLED
 # It is best to only have one enabled at at time if you are having a problem.
 # Debug Target is the discord server you are debugging
 Area = DISABLED
-Tiles = DISABLED
-
 Quests = DISABLED
 Pokemon = DISABLED
 Ditto = DISABLED
@@ -198,7 +185,6 @@ Pokemon_Timers = DISABLED
 Raids = DISABLED
 Lure = DISABLED
 Invasion = DISABLED
-
 Subscriptions = DISABLED
 Feed = DISABLED
 

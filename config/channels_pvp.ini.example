@@ -8,8 +8,7 @@
 ; Separate geofence names with a comma.
 ; "filter" must be the file name of the filter you with to use for that channel.
 
-; [511303614032248843]
-; geofences = Tallahassee
-; filter = Lure.json
-; embed = lure.js
-; roleid = 530525516290326529
+;[606148889480790036]
+;geofences = Tallahassee
+;embed = pvp.js
+;filter = PvP_Perfect_Great.json

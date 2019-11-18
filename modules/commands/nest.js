@@ -1,6 +1,6 @@
 const Fuzzy = require('fuzzy');
 const GeoTz = require('geo-tz');
-const Discord = require('discord.js');
+
 const Send_Nest = require('../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
 
@@ -9,7 +9,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   let nickname = '', park = '', embed = '';
 
   // LOAD ALL NESTS WITHIN DISCORD GEOFENCE TO AN ARRAY FOR FUZZY
-  let available_nests = [], nest_collection = new Discord.Collection();
+  let available_nests = [], nest_collection = new MAIN.Discord.Collection();
   await MAIN.park_array.forEach((nest,index) => {
     if(InsideGeojson.polygon(discord.geofence, [nest.lon,nest.lat])){
       available_nests.push(nest.name); nest_collection.set(nest.name, nest);
@@ -24,7 +24,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   }
   let avatar = message.author.displayAvatarURL;
 
-  let requestAction = new Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.RichEmbed()
     .setAuthor(nickname, avatar)
     .setTitle('What Pokémon or Park do you want to find a nest for?')
     .setFooter('Type the name of desired Poké or Park, no command prefix required.');
@@ -49,8 +49,8 @@ function pokemon_view(MAIN, message, nickname, pokemon_id, search_area, prefix, 
         let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0]; discord_match = true;
         area = await MAIN.Get_Area(MAIN, nest.lat,nest.lon, discord).catch(console.log);
         if (area){
-          if (search_area == area.embed_area || search_area == 'ALL') {
-            Send_Nest.run(MAIN, message, nest, discord, area.embed_area, timezone, embed);
+          if (search_area == area.area.embed || search_area == 'ALL') {
+            Send_Nest.run(MAIN, message, nest, discord, area.area.embed, timezone, embed);
             message.channel.send('Nest sent, check your inbox if not in the channel.')
             .then(m => m.delete(5000)).catch(console.error);
             nest_found = true;
@@ -77,8 +77,8 @@ function park_view(MAIN, message, nickname, name, search_area, prefix, discord, 
         let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0]; discord_match = true;
         area = await MAIN.Get_Area(MAIN, nest.lat,nest.lon, discord).catch(console.log);
         if (area){
-          if (search_area == area.embed_area || search_area == 'ALL') {
-            Send_Nest.run(MAIN, message, nest, discord, area.embed_area, timezone, embed);
+          if (search_area == area.area.embed || search_area == 'ALL') {
+            Send_Nest.run(MAIN, message, nest, discord, area.area.embed, timezone, embed);
             message.channel.send('Nest sent, check your inbox if not in the channel.')
             .then(m => m.delete(5000)).catch(console.error);
             nest_found = true;
@@ -118,7 +118,7 @@ async function initiate_collector(MAIN, source, message, msg, avatar, nickname, 
       } else { collector.stop(pokemon); }
     }
 
-    let searched = MAIN.Pokemon_ID_Search(pokemon);
+    let searched = MAIN.Pokemon_ID_Search(MAIN, pokemon);
     if (searched && searched.pokemon_id && non_nesting.indexOf(parseInt(searched.pokemon_id)) >= 0) {
       collector.stop('non_nesting');
     } else if (searched && searched.pokemon_id) {

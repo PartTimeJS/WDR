@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+
 const { exec } = require('child_process');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
@@ -18,7 +18,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     let restart = botRestart ? ', and restarting in 8sec.' : '.';
 
     if(MAIN.config.log_channel){
-      let pull_embed = new Discord.RichEmbed()
+      let pull_embed = new MAIN.Discord.RichEmbed()
       .setColor('00ff00')
       .setAuthor('Pulling update'+restart)
       .setDescription(log);

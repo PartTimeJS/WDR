@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const insideGeofence = require('point-in-polygon');
 const insideGeojson = require('point-in-geopolygon');
 
@@ -24,7 +23,7 @@ module.exports.run = async (MAIN, message, prefix, server) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.RichEmbed()
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('What would you like to do with your Area Subscriptions?')
     .setDescription('`view`  »  View your Areas.\n'
@@ -75,7 +74,7 @@ async function subscription_view(MAIN, message, nickname, prefix, area_array, se
     else{ area_list = user[0].geofence.replace(/,/g,'\n'); }
 
     // CREATE THE EMBED
-    let area_subs = new Discord.RichEmbed()
+    let area_subs = new MAIN.Discord.RichEmbed()
       .setAuthor(nickname, message.author.displayAvatarURL)
       .setTitle('Area Subscriptions')
       .setDescription('Overall Status: `'+user[0].status+'`')
@@ -150,7 +149,7 @@ async function subscription_create(MAIN, message, nickname, prefix, area_array, 
     MAIN.pdb.query(`UPDATE users SET geofence = ? WHERE user_id = ? AND discord_id = ?`, [areas, message.author.id, server.id], function (error, user, fields) {
       if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(5000)).catch(console.error); }
       else{
-        let subscription_success = new Discord.RichEmbed().setColor('00ff00')
+        let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle(sub+' Area Added!')
           .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -217,7 +216,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, area_array, 
     MAIN.pdb.query(`UPDATE users SET geofence = ? WHERE user_id = ? AND discord_id = ?`, [areas, message.author.id, server.id], function (error, user, fields) {
       if(error){ console.error(error); return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
       else{
-        let subscription_success = new Discord.RichEmbed().setColor('00ff00')
+        let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle(sub+' Area Removed!')
           .setFooter('Saved to the '+MAIN.config.BOT_NAME+' Database.');
@@ -282,7 +281,7 @@ function sub_collector(MAIN, type, nickname, message, requirements, sub, area_ar
 
       // AREA NAME EMBED
       case 'Name':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Area would you like to Subscribe to?')
           .setDescription('**'+area_list+'**', false)
@@ -290,7 +289,7 @@ function sub_collector(MAIN, type, nickname, message, requirements, sub, area_ar
 
       // REMOVAL EMBED
       case 'Remove':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Area do you want to remove?')
           .addField('Your Areas:', '**'+area_list+'**', false)

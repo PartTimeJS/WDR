@@ -63,7 +63,7 @@ function get_interest(){
   nickname = message.author.username;
 }
 
-  let addAction = new Discord.RichEmbed()
+  let addAction = new MAIN.Discord.RichEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('How many accounts are you coming with?')
   .setFooter('Reply with a numeral, no command prefix required.');

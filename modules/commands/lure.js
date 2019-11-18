@@ -1,15 +1,15 @@
 const Fuzzy = require('fuzzy');
-const Discord = require('discord.js');
+
 const InsideGeojson = require('point-in-geopolygon');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
 
   // LOAD ALL STOPS WITHIN DISCORD GEOFENCE TO AN ARRAY FOR FUZZY
-  let available_stops = [], stop_collection = new Discord.Collection();
+  let available_stops = [], stop_collection = new MAIN.Discord.Collection();
   await MAIN.stop_array.forEach(async(stop,index) => {
     if(InsideGeojson.polygon(discord.geofence, [stop.lon,stop.lat])){
       let stop_area = await MAIN.Get_Area(MAIN, stop.lat, stop.lon, discord);
-      let stop_name = stop.name+' ['+stop_area.embed_area+']';
+      let stop_name = stop.name+' ['+stop_area.area.embed+']';
       available_stops.push(stop_name); stop_collection.set(stop_name, stop);
     }
   });
@@ -22,7 +22,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let request_action = new Discord.RichEmbed()
+  let request_action = new MAIN.Discord.RichEmbed()
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('What would you like to do with your Lure Subscriptions?')
     .setDescription('`view`  »  View your Subscritions.\n'
@@ -40,7 +40,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 function subscription_status(MAIN, message, nickname, reason, prefix, available_stops, discord, stop_collection){
   MAIN.pdb.query(`SELECT * FROM users WHERE user_id = ? AND discord_id = ?`, [message.author.id, discord.id], function (error, user, fields) {
     if(user[0].lure_status == 'ACTIVE' && reason == 'resume'){
-      let already_active = new Discord.RichEmbed().setColor('ff0000')
+      let already_active = new MAIN.Discord.RichEmbed().setColor('ff0000')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('Your lure subscriptions are already **Active**!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -51,7 +51,7 @@ function subscription_status(MAIN, message, nickname, reason, prefix, available_
       });
     }
     else if(user[0].lure_status == 'PAUSED' && reason == 'pause'){
-      let already_paused = new Discord.RichEmbed().setColor('ff0000')
+      let already_paused = new MAIN.Discord.RichEmbed().setColor('ff0000')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('Your lure subscriptions are already **Paused**!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -67,7 +67,7 @@ function subscription_status(MAIN, message, nickname, reason, prefix, available_
       MAIN.pdb.query('UPDATE users SET lure_status = ? WHERE user_id = ? AND discord_id = ?', [change, message.author.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle('Your lure subscriptions have been set to `'+change+'`!')
             .setFooter('Saved to the '+MAIN.config.BOT_NAME+' Database.');
@@ -84,7 +84,7 @@ async function subscription_view(MAIN, message, nickname, prefix, available_stop
 
     // CHECK IF THE USER ALREADY HAS SUBSCRIPTIONS AND ADD
     if(!user[0].lure){
-      let no_subscriptions = new Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('You do not have any Lure Subscriptions!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -100,7 +100,7 @@ async function subscription_view(MAIN, message, nickname, prefix, available_stop
       if(!lure.subscriptions[0]){
 
         // CREATE THE EMBED AND SEND
-        let no_subscriptions = new Discord.RichEmbed().setColor('00ff00')
+        let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('You do not have any Subscriptions!')
           .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -111,7 +111,7 @@ async function subscription_view(MAIN, message, nickname, prefix, available_stop
       else{
 
         // CREATE THE EMBED
-        let lure_subs = new Discord.RichEmbed()
+        let lure_subs = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Lure Subscriptions')
           .setDescription('Overall Status: `'+user[0].status+'`\nlures Status: `'+user[0].lure_status+'`')
@@ -241,7 +241,7 @@ async function subscription_create(MAIN, message, nickname, prefix, advanced, av
     MAIN.pdb.query(`UPDATE users SET lure = ? WHERE user_id = ? AND discord_id = ?`, [new_subs, message.author.id, discord.id], function (error, user, fields) {
       if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
       else{
-        let subscription_success = new Discord.RichEmbed().setColor('00ff00')
+        let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle(sub.type+' Lure Subscription Complete!')
           .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -264,7 +264,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, available_st
     if(!user[0].lure){
 
       // CREATE THE RESPONSE EMBED
-      let no_subscriptions = new Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('You do not have any Lure Subscriptions!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -309,7 +309,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, available_st
       MAIN.pdb.query(`UPDATE users SET lure = ? WHERE user_id = ? AND discord_id = ?`, [new_subs, message.author.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle(embed_title)
             .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -338,34 +338,34 @@ function sub_collector(MAIN, type, nickname, message, object, requirements, sub,
 
       // POKEMON NAME EMBED
       case 'Type':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Lure Type would you like to Subscribe to?')
           .setFooter(requirements); break;
 
       // Stop NAME EMBED
       case 'Stop':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Stop would you like to Subscribe to?')
           .setFooter(requirements); break;
 
       // CONFIRMATION EMBED
       case 'Confirm-Add':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Does all of this look correct?\nStop: `'+sub.stop+'`\nLure Type: `'+sub.type+'`\nFilter By Areas: `'+sub.areas+'`')
           .setFooter(requirements); break;
 
       case 'Confirm-Remove':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Are you sure you want to Remove ALL of your subscriptions?')
           .setFooter(requirements); break;
 
       // REMOVAL EMBED
       case 'Remove':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Which lure Subscription do you want to remove?')
           .setFooter(requirements);
@@ -377,7 +377,7 @@ function sub_collector(MAIN, type, nickname, message, object, requirements, sub,
 
       // AREA EMBED
       case 'Area Filter':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Do you want to get notifications for '+object+' lures filtered by your subscribed Areas?')
           .setDescription('If you choose **Yes**, your notifications for this Lure Type will be filtered based on your areas. If you choose **No**, you will get notifications for this lure in ALL areas for the city.')
@@ -385,7 +385,7 @@ function sub_collector(MAIN, type, nickname, message, object, requirements, sub,
 
       // DEFAULT EMBED
       default:
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What **'+type+'** would like you like to set for **'+object+'** lure Notifications?')
           .setFooter(requirements);
@@ -474,7 +474,7 @@ function sub_collector(MAIN, type, nickname, message, object, requirements, sub,
 }
 
 function subscription_cancel(MAIN, nickname, message, prefix, available_stops, discord, stop_collection){
-  let subscription_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('Subscription Cancelled.')
     .setDescription('Nothing has been Saved.')
@@ -485,7 +485,7 @@ function subscription_cancel(MAIN, nickname, message, prefix, available_stops, d
 }
 
 function subscription_timedout(MAIN, nickname, message, prefix, available_stops, discord, stop_collection){
-  let subscription_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('Subscription Timed Out.')
     .setDescription('Nothing has been Saved.')
@@ -548,7 +548,7 @@ async function match_collector(MAIN, type, nickname, message, object, requiremen
         if(match_desc.length > 2048){
           match_desc = match_desc.slice(0,1973)+'**\nThere are too many to display. Try to narrow your search terms.**';
         }
-        options = new Discord.RichEmbed()
+        options = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Possible matches for \''+sub.stop.split(',')[1]+'\' were found.')
           .setDescription(match_desc)
@@ -559,10 +559,10 @@ async function match_collector(MAIN, type, nickname, message, object, requiremen
         let description = '';
         await MAIN.asyncForEach(object, async (match,index) => {
           let match_area = await MAIN.Get_Area(MAIN, match.lat, match.lon, discord);
-          let match_name = match.name+' ['+match_area.embed_area+']';
+          let match_name = match.name+' ['+match_area.area.embed+']';
           description += (index+1)+'. '+match_name+'\n';
         })
-        options = new Discord.RichEmbed()
+        options = new MAIN.Discord.RichEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Multiple Matches were found.').setDescription(description)
           .setFooter('Type the number of the stop you wish to select or type \'cancel\'.'); break;

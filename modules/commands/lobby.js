@@ -1,17 +1,17 @@
 const Fuzzy = require('fuzzy');
 const GeoTz = require('geo-tz');
-const Discord = require('discord.js');
+
 const moment = require('moment-timezone');
 const InsideGeojson = require('point-in-geopolygon');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
 
   // LOAD ALL GYMS WITHIN DISCORD GEOFENCE TO AN ARRAY FOR FUZZY
-  let available_gyms = [], gym_collection = new Discord.Collection();
+  let available_gyms = [], gym_collection = new MAIN.Discord.Collection();
   await MAIN.gym_array.forEach(async(gym,index) => {
     if(InsideGeojson.polygon(discord.geofence, [gym.lon,gym.lat])){
       let gym_area = await MAIN.Get_Area(MAIN, gym.lat, gym.lon, discord);
-      let gym_name = gym.name+' ['+gym_area.embed_area+']';
+      let gym_name = gym.name+' ['+gym_area.area.embed+']';
       available_gyms.push(gym_name); gym_collection.set(gym_name, gym);
     }
   });
@@ -165,26 +165,26 @@ function lobby_collector(MAIN, type, member, message, object, requirements, gym,
 
       // POKEMON NAME EMBED
       case 'Name':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Raid Boss is currently there?')
           .setFooter(requirements); break;
 
       case 'Gym':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Gym do you want to create a lobby for?')
           .setFooter(requirements); break;
 
       // LEVEL EMBED
       case 'Level':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Level is the Raid?')
           .setFooter(requirements); break;
 
       case 'Time':
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What is the Time for the Raid?')
           .setFooter(requirements); break;
@@ -200,7 +200,7 @@ function lobby_collector(MAIN, type, member, message, object, requirements, gym,
           } else{ form = confirm_locale.form; }
         }
 
-        instruction = new Discord.RichEmbed()
+        instruction = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Does all of this look correct?')
           .setDescription('**Gym**: `'+gym.gym_name
@@ -303,7 +303,7 @@ function gym_search(MAIN, search, discord){
 }
 
 function lobby_cancel(MAIN, member, message, prefix, available_gyms, discord, gym_collection){
-  let lobby_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let lobby_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Lobby Cancelled.')
     .setDescription('Nothing has been created.');
@@ -311,7 +311,7 @@ function lobby_cancel(MAIN, member, message, prefix, available_gyms, discord, gy
 }
 
 function lobby_timedout(MAIN, member, message, prefix, available_gyms, discord, gym_collection){
-  let lobby_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let lobby_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Lobby Timed Out.')
     .setDescription('Nothing has been created.');
@@ -332,7 +332,7 @@ async function match_collector(MAIN, type, member, message, object, requirements
         if(match_desc.length > 2048){
           match_desc = match_desc.slice(0,1973)+'**\nThere are too many to display. Try to narrow your search terms.**';
         }
-        options = new Discord.RichEmbed()
+        options = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Possible matches for \''+gym.gym_name.split(',')[1]+'\' were found.')
           .setDescription(match_desc)
@@ -343,13 +343,13 @@ async function match_collector(MAIN, type, member, message, object, requirements
         let description = '';
         await MAIN.asyncForEach(object, async (match,index) => {
           let match_area = await MAIN.Get_Area(MAIN, match.lat, match.lon, discord);
-          let match_name = match.name+' ['+match_area.embed_area+']';
+          let match_name = match.name+' ['+match_area.area.embed+']';
           description += (index+1)+'. '+match_name+'\n';
         })
         if(description.length > 2048){
           description = description.slice(0,1973)+'**\nThere are too many to display. Try to narrow your search terms.**';
         }
-        options = new Discord.RichEmbed()
+        options = new MAIN.Discord.RichEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Multiple Matches were found.').setDescription(description)
           .setFooter('Type the number of the gym you wish to select or type \'cancel\'.'); break;

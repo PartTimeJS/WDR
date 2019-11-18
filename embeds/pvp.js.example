@@ -17,7 +17,7 @@ module.exports = function(p) {
   .addField(p.verified+'| '+p.time+' (*'+p.mins+'m '+p.secs+'s*) ', p.type+p.weather_boost, false)
   .addField("**Potential PvP CPs**", pvpString, false)
   .addField(p.area+' | Directions:',p.google+' | '+p.apple+' | '+p.pmsf, false)
-  .setImage(p.map_img);
+  .setImage(p.static_map);
 
   return pokemon_embed;
 }

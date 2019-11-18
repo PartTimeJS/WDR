@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+
 const Embed_Config = require('../../embeds/raids.js');
 const Embed_EggConfig = require('../../embeds/raid_eggs.js');
 const moment = require('moment-timezone');
@@ -27,7 +27,7 @@ reactions.run = (MAIN, event) => {
     channel.fetchMessage(event.d.message_id).then( async raid => {
       let gym_id = raid.embeds[0].footer.text;
 
-      await MAIN.Discord.Servers.forEach( async (server,index) => {
+      await MAIN.Discords.Servers.forEach( async (server,index) => {
         if(server.id == guild.id){ discord = server; }
       });
 

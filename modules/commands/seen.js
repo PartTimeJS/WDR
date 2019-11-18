@@ -1,5 +1,5 @@
 const GeoTz = require('geo-tz');
-const Discord = require('discord.js');
+
 const Send_Nest = require('../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
 
@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.RichEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want stats for?\nAnd How many days back do you want to search? (7 Max)')
   .setFooter('Type the name of desired Poké, followed by the number of days in the past you want to search, no command prefix required. If you do not specify the number of days, it will search all sightings in the last hour.');
@@ -105,7 +105,7 @@ async function initiate_collector(MAIN, source, message, msg, nickname, prefix, 
         collector.stop(target);
       }
 
-      let searched = MAIN.Pokemon_ID_Search(pokemon);
+      let searched = MAIN.Pokemon_ID_Search(MAIN,pokemon);
       if (searched) {
         searched.duration = args[1];
         collector.stop(searched);
@@ -130,9 +130,9 @@ async function initiate_collector(MAIN, source, message, msg, nickname, prefix, 
         message.reply('Your subscription has timed out.').then(m => m.delete(5000)).catch(console.error);
       } break;
       case 'retry':
-      message.reply('Please check your spelling, and retry.').then(m => m.delete(5000)).catch(console.error); break;
+        message.reply('Please check your spelling, and retry.').then(m => m.delete(5000)).catch(console.error); break;
       default:
-      pokemon_view(MAIN, message, nickname, reason, prefix, discord);
+        pokemon_view(MAIN, message, nickname, reason, prefix, discord);
     } return;
   });
 }

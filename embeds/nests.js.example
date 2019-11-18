@@ -6,7 +6,7 @@ module.exports = function(p) {
   .setThumbnail(p.sprite)
   .addField('**'+p.name+'** '+p.form+' Nest\n'+p.type,'Avg Spawns: '+p.avg)
   .addField(p.area+' | '+p.nest_name+':',p.google+' | '+p.apple+' | '+p.pmsf, false)
-  .setImage(p.map_img)
+  .setImage(p.static_map)
   .setFooter('Nest location updated on: '+p.time+' By: '+p.submitter);
 
   return nest_embed;

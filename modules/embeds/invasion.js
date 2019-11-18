@@ -1,49 +1,50 @@
-const Discord = require('discord.js');
 
-module.exports.run = async (MAIN, target, invasion, type, main_area, sub_area, embed_area, server, timezone, role_id, embed) => {
+
+module.exports.run = async (MAIN, target, invasion, type, area, server, timezone, role_id, embed) => {
   let Embed_Config = require('../../embeds/'+embed);
-  let invasion_embed = {};
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.get(server.id).members.get(target.user_id);
 
   // VARIABLES
   let time_now = new Date().getTime();
-  let pokestop = {
-    name: invasion.name,
-    url: invasion.url ? invasion.url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png',
+  let pokestop = {};
+  pokestop.name = invasion.name;
+  pokestop.url = invasion.url ? invasion.url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png';
 
-    // DETERMIND INVASION TYPES AND WEAKNESSES
-    grunt_type: type, weaknesses: '', resistances: '',
-    type: MAIN.emotes[type.toLowerCase()] ? MAIN.emotes[type.toLowerCase()] : '',
-    color: MAIN.Type_Color(MAIN, type),
+  // DETERMIND INVASION TYPES AND WEAKNESSES
+  pokestop.grunt_type = type;
+  pokestop.weaknesses = '';
+  pokestop.resistances = '';
+  pokestop.type = MAIN.emotes[type.toLowerCase()] ? MAIN.emotes[type.toLowerCase()] : '';
+  pokestop.color = MAIN.Type_Color(MAIN, type);
 
-    // MALE OR FEMALE GRUNT?
-    grunt_gender: MAIN.grunts[invasion.grunt_type].grunt,
+  // MALE OR FEMALE GRUNT?
+  pokestop.grunt_gender = MAIN.grunts[invasion.grunt_type].grunt;
 
-    //INCIDENT EXPIRATION TIMES
-    time: await MAIN.Bot_Time(invasion.incident_expire_timestamp, '1', timezone),
-    mins: Math.floor((invasion.incident_expire_timestamp-(time_now/1000))/60),
-    secs: Math.floor((invasion.incident_expire_timestamp-(time_now/1000)) - ((Math.floor((invasion.incident_expire_timestamp-(time_now/1000))/60))*60)),
+  //INCIDENT EXPIRATION TIMES
+  pokestop.time = MAIN.Bot_Time(invasion.incident_expire_timestamp, '1', timezone),
+  pokestop.mins = Math.floor((invasion.incident_expire_timestamp-(time_now/1000))/60);
+  pokestop.secs = Math.floor((invasion.incident_expire_timestamp-(time_now/1000)) - ((Math.floor((invasion.incident_expire_timestamp-(time_now/1000))/60))*60));
 
-    lat: invasion.latitude, lon: invasion.longitude,
-    area: embed_area,
-    map_url: MAIN.config.FRONTEND_URL,
+  pokestop.lat = invasion.latitude;
+  pokestop.lon = invasion.longitude;
+  pokestop.area = area.embed;
+  pokestop.map_url = MAIN.config.FRONTEND_URL;
 
-    // MAP LINK PROVIDERS
-    google: '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+invasion.latitude+','+invasion.longitude)+')',
-    apple: '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+invasion.latitude+','+invasion.longitude+'&z=10&t=s&dirflg=d')+')',
-    waze: '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+invasion.latitude+','+invasion.longitude+'&navigate=yes')+')',
-    pmsf: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+invasion.latitude+'&lon='+invasion.longitude+'&zoom=15')+')',
-    rdm: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+invasion.latitude+'/'+invasion.longitude+'/15')+')',
+  // MAP LINK PROVIDERS
+  pokestop.google = '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+invasion.latitude+','+invasion.longitude)+')';
+  pokestop.apple = '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+invasion.latitude+','+invasion.longitude+'&z=10&t=s&dirflg=d')+')';
+  pokestop.waze = '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+invasion.latitude+','+invasion.longitude+'&navigate=yes')+')';
+  pokestop.pmsf = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+invasion.latitude+'&lon='+invasion.longitude+'&zoom=15')+')';
+  pokestop.rdm = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+invasion.latitude+'/'+invasion.longitude+'/15')+')';
 
-    // GET STATIC MAP TILE
-    map_img: await MAIN.Static_Map_Tile(MAIN, invasion.latitude, invasion.longitude, 'quest'),
-
-    // OTHER VARIABLES
-    encounters: 'Unknown', battles: 'Unknown',
-    first: '', second: '', third: ''
-  };
+  // OTHER VARIABLES
+  pokestop.encounters = 'Unknown';
+  pokestop.battles = 'Unknown';
+  pokestop.first = '';
+  pokestop.second = '';
+  pokestop.third = '';
 
   // WEAKNESSES FOR INVASION TYPES
   if(type == 'Tier II' && MAIN.grunts[invasion.grunt_type].encounters){type = MAIN.masterfile.pokemon[parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0])].types[0]}
@@ -74,6 +75,19 @@ module.exports.run = async (MAIN, target, invasion, type, main_area, sub_area, e
       pokestop.sprite = 'https://i.imgur.com/aAS6VUM.png';
       pokestop.gender = '';
   }
+
+  // STATIC MAP TILE
+  pokestop.static_marker = [{
+    "url" : pokestop.sprite,
+    "height" : 50,
+    "width" : 50,
+    "x_offset" : 0,
+    "y_offset" : 0,
+    "latitude" : invasion.latitude,
+    "longitude" : invasion.longitude
+  }];
+  pokestop.static_map = MAIN.config.STATIC_MAP_URL+invasion.latitude+"/"+invasion.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokestop.static_marker));
+
 
   // POSSIBLE ENCOUNTERS
   if(MAIN.grunts[invasion.grunt_type].encounters){
@@ -113,11 +127,11 @@ module.exports.run = async (MAIN, target, invasion, type, main_area, sub_area, e
     pokestop.encounters = '';
     pokestop.encounters += '**100% Chance to Encounter**:\n '+pokestop.first+'\n';
     if(pokestop.first.length <= 25){
-      pokestop.sprite = await MAIN.Get_Sprite(MAIN, { pokemon_id: parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0]), form: parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[1]) });
+      pokestop.sprite = MAIN.Get_Sprite(MAIN, { pokemon_id: parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0]), form: parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[1]) });
     }
   } //if(!MAIN.grunts[invasion.grunt_type].encounters){ console.info('[Embeds] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] No encounter info for: '+invasion.grunt_type);}
 
-  invasion_embed = await Embed_Config(pokestop);
+  let invasion_embed = await Embed_Config(pokestop);
   if(member){
     if(MAIN.debug.Invasion == 'ENABLED' && MAIN.debug.Subscriptions == 'ENABLED'){ console.info('[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] Sent a '+pokestop.name+' to '+member.user.tag+' ('+member.id+').'); }
     return MAIN.Send_DM(MAIN, server.id, member.id, invasion_embed, target.bot);

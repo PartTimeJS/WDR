@@ -8,61 +8,8 @@
 ; Separate geofence names with a comma.
 ; "filter" must be the file name of the filter you with to use for that channel.
 
-[507626057277505552]
-geofences = Tallahassee
-filter = Pokemon_100.json
-embed = pokemon_iv.js
-roleid = 530525516290326529
-
-[520598637009436672]
-geofences = Gainesville
-embed = pokemon.js
-filter = Pokemon_Candy.json
-
-[523329993988898816]
-geofences = Tallahassee
-filter = Pokemon_90-99.json
-
-[507626170380976130]
-geofences = Tallahassee
-filter = Pokemon_80-89.json
-
-[507626243378905108]
-geofences = Tallahassee
-filter = Pokemon_0.json
-
-[515519653204721665]
-geofences = Tallahassee
-filter = Pokemon_Max_Level.json
-
-[482619507530268683]
-geofences = Tallahassee
-filter = Pokemon_Uber.json
-
-[507600060708683777]
-geofences = Tallahassee
-filter = Pokemon_Candy.json
-
-[520598528515506219]
-geofences = Gainesville
-filter = Pokemon_100.json
-
-[523343972282794006]
-geofences = Gainesville
-filter = Pokemon_90-99.json
-
-[520598556990504970]
-geofences = Gainesville
-filter = Pokemon_80-89.json
-
-[520598581493760001]
-geofences = Gainesville
-filter = Pokemon_0.json
-
-[520625838417379348]
-geofences = Gainesville
-filter = Pokemon_Max_Level.json
-
-[520598612024098860]
-geofences = Gainesville
-filter = Pokemon_Uber.json
+; [507626057277505552]
+; geofences = Tallahassee
+; filter = Pokemon_100.json
+; embed = pokemon_iv.js
+; roleid = 530525516290326529

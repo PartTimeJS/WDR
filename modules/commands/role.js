@@ -9,7 +9,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     setTimeout(function() {
       if(!members[m].roles.has(role.id)){
         members[m].addRole(role).catch(console.error);
-        console.log('['+MAIN.config.BOT_NAME+'] [ROLE] Added '+role.name+' to '+members[m].user.tag);
+        console.log('[ROLE] Added '+role.name+' to '+members[m].user.tag);
       }
     }, 2000*m);
   } return;

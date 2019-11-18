@@ -1,43 +1,5 @@
-const Discord = require('discord.js');
-
 module.exports =  {
-  CalculatePossibleCPs: function (MAIN, pokemonID, formID, attack, defense, stamina, level, gender, minCP, maxCP) {
-
-    let possibleCPs = [];
-
-    // Check for required gender on evolution
-    if(MAIN.masterfile.pokemon[pokemonID].gender_requirement && MAIN.masterfile.pokemon[pokemonID].gender_requirement != gender) {
-      return possibleCPs;
-    }
-
-    for(var i = level; i <= 40; i += .5) {
-      let currentCP = this.CalculateCP(MAIN, pokemonID, formID, attack, defense, stamina, i);
-      if(currentCP >= minCP && currentCP <= maxCP) {
-        possibleCPs.push({pokemonID:pokemonID, formID: formID, attack:attack, defense:defense, stamina:stamina, level:i, cp:currentCP});
-      }
-      if(currentCP > maxCP) { i = 41; }
-    }
-
-    // IF no data about possible evolutions just return now rather than moving on
-    if(!MAIN.masterfile.pokemon[pokemonID].evolutions){ return possibleCPs; }
-
-    for(var i = 0; i < MAIN.masterfile.pokemon[pokemonID].evolutions.length; i++) {
-      //Check for Evolution Form
-      if (formID > 0){
-        if(!MAIN.masterfile.pokemon[pokemonID].forms[formID]){
-            evolvedForm = MAIN.masterfile.pokemon[MAIN.masterfile.pokemon[pokemonID].evolutions[i]].default_form;
-        } else{
-            evolvedForm = MAIN.masterfile.pokemon[pokemonID].forms[formID].evolved_form;
-        }
-      } else if (MAIN.masterfile.pokemon[pokemonID].evolved_form){
-        evolvedForm = MAIN.masterfile.pokemon[pokemonID].evolved_form;
-      } else { evolvedForm = formID; }
-
-      possibleCPs = possibleCPs.concat(this.CalculatePossibleCPs(MAIN,MAIN.masterfile.pokemon[pokemonID].evolutions[i], evolvedForm, attack, defense, stamina, level, gender, minCP, maxCP));
-    }
-
-    return possibleCPs;
-  },
+  CalculatePossibleCPs,
 
   CalculateCP: function (MAIN, pokemonID, formID, attack , defense, stamina, level) {
   	let CP = 0;
@@ -224,4 +186,66 @@ module.exports =  {
     }
     return ranks;
   }
+}
+
+async function CalculatePossibleCPs(MAIN, pokemonID, formID, attack, defense, stamina, level, gender, league) {
+
+  return new Promise(async function(resolve) {
+    let possibleCPs = [];
+
+    if(isNaN(attack) || isNaN(defense) || isNaN(stamina) || isNaN(level))
+    {
+      return resolve(possibleCPs);
+    }
+
+    // Check for required gender on evolution
+    if(MAIN.masterfile.pokemon[pokemonID].gender_requirement && MAIN.masterfile.pokemon[pokemonID].gender_requirement != gender) {
+      return resolve(possibleCPs);
+    }
+
+    let pokemonPvPValue = await QueryPvPRank(MAIN,pokemonID,formID, attack, defense, stamina, level, league);
+    if(pokemonPvPValue) { possibleCPs.push(pokemonPvPValue); }
+    
+
+    // IF no data about possible evolutions just return now rather than moving on
+    if(!MAIN.masterfile.pokemon[pokemonID].evolutions){ return possibleCPs; }
+
+    for(var i = 0; i < MAIN.masterfile.pokemon[pokemonID].evolutions.length; i++) {
+      //Check for Evolution Form
+      if (formID > 0){
+        if(!MAIN.masterfile.pokemon[pokemonID].forms[formID]){
+            evolvedForm = MAIN.masterfile.pokemon[MAIN.masterfile.pokemon[pokemonID].evolutions[i]].default_form;
+        } else{
+            evolvedForm = MAIN.masterfile.pokemon[pokemonID].forms[formID].evolved_form;
+        }
+      } else if (MAIN.masterfile.pokemon[pokemonID].evolved_form){
+        evolvedForm = MAIN.masterfile.pokemon[pokemonID].evolved_form;
+      } else { evolvedForm = formID; }
+
+      let evolvedCPs =  await CalculatePossibleCPs(MAIN,MAIN.masterfile.pokemon[pokemonID].evolutions[i], evolvedForm, attack, defense, stamina, level, gender, league);
+      possibleCPs = possibleCPs.concat(evolvedCPs);
+    }
+    
+    return resolve(possibleCPs);
+  });
+}
+
+
+async function QueryPvPRank(MAIN, pokemonID, formID, attack, defense, stamina, level, league)
+{
+  return await new Promise(async function(resolve) {
+
+    let form = formID;
+
+    if(!MAIN.masterfile.pokemon[pokemonID].forms[formID] || !MAIN.masterfile.pokemon[pokemonID].forms[formID].attack)
+    {
+      form = 0;
+    }    
+    let pvpLeague = league + "_league";
+    let sqlQuery = 'SELECT * FROM '+pvpLeague+' WHERE pokemon_id = '+pokemonID+' AND form = '+form+' AND attack = '+attack+' AND defense = '+defense+' AND stamina = '+stamina+' AND level >='+level;
+    MAIN.pdb.query(sqlQuery, async function(error, results) {
+      if(error || results.length == 0) { return resolve(null); }
+      return resolve({pokemon_id:pokemonID, form_id: formID, attack:attack, defense:defense, stamina:stamina, level:results[0].level, cp:results[0].CP, percent:results[0].percent, rank:results[0].rank, pvp_value:results[0].value});
+    });
+  });
 }

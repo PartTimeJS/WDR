@@ -8,8 +8,8 @@
 ; Separate geofence names with a comma.
 ; "filter" must be the file name of the filter you with to use for that channel.
 
-[511303614032248843]
-geofences = Tallahassee
-filter = Invasion.json
-embed = invasion.js
+; [511303614032248843]
+; geofences = Tallahassee
+; filter = Invasion.json
+; embed = invasion.js
 ; roleid = 530525516290326529

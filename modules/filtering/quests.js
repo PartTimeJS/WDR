@@ -1,8 +1,7 @@
-delete require.cache[require.resolve('../embeds/quests.js')];
 const Send_Quest = require('../embeds/quests.js');
-const Discord = require('discord.js');
 
-module.exports.run = async (MAIN, quest, main_area, sub_area, embed_area, server, timezone, role_id) => {
+
+module.exports.run = async (MAIN, quest, area, server, timezone, role_id) => {
 
   // DETERMINE THE QUEST REWARD
   let reward = MAIN.Get_Quest_Reward(MAIN, quest);
@@ -26,9 +25,9 @@ module.exports.run = async (MAIN, quest, main_area, sub_area, embed_area, server
     let role_id = '';
 
     // THROW ERRORS FOR INVALID DATA
-    if(!filter){ return console.error('['+MAIN.config.BOT_NAME+'] ['+MAIN.Bot_Time(null,'stamp')+'] The filter defined for'+quest_channel[0]+' does not appear to exist.'); }
+    if(!filter){ return console.error('['+MAIN.config.BOT_NAME+'] ['+MAIN.Bot_Time(null,'stamp')+'] The filter defined for '+quest_channel[0]+' does not appear to exist.'); }
     if(!channel){ return console.error('['+MAIN.config.BOT_NAME+'] ['+MAIN.Bot_Time(null,'stamp')+'] The channel '+quest_channel[0]+' does not appear to exist.'); }
-    if(filter.Type != 'quest'){ return console.error('['+MAIN.config.BOT_NAME+'] ['+MAIN.Bot_Time(null,'stamp')+'] The filter defined for'+quest_channel[0]+' does not appear to be a quest filter.'); }
+    if(filter.Type != 'quest'){ return console.error('['+MAIN.config.BOT_NAME+'] ['+MAIN.Bot_Time(null,'stamp')+'] The filter defined for '+quest_channel[0]+' does not appear to be a quest filter.'); }
 
     if (quest_channel[1].roleid) {
       if (quest_channel[1].roleid == 'here' || quest_channel[1].roleid == 'everyone'){
@@ -39,20 +38,20 @@ module.exports.run = async (MAIN, quest, main_area, sub_area, embed_area, server
     }
 
     // AREA FILTER
-    if(geofences.indexOf(server.name)>=0 || geofences.indexOf(main_area)>=0 || geofences.indexOf(sub_area)>=0){
+    if(geofences.indexOf(server.name)>=0 || geofences.indexOf(area.main)>=0 || geofences.indexOf(area.sub)>=0){
 
       // REWARD FILTER
       if(filter.Rewards.indexOf(quest_reward) >= 0 || filter.Rewards.indexOf(simple_reward) >= 0 || filter.Rewards.indexOf('ALL') >= 0){
 
         // PREPARE AND SEND TO DISCORDS
-        return Send_Quest.run(MAIN, channel, quest, quest_reward, simple_reward, main_area, sub_area, embed_area, server, timezone, role_id, embed);
+        return Send_Quest.run(MAIN, channel, quest, quest_reward, simple_reward, area, server, timezone, role_id, embed);
       } else{ questFailed(MAIN, quest_reward, channel.name, 'Reward Filter'); }
     } else{ questFailed(MAIN, quest_reward, channel.name, 'Area Filter'); }
   });
+}
 
-  function questFailed(MAIN, quest_reward, destination, reason){
-    if(MAIN.debug.Feed == 'ENABLED' && MAIN.debug.Quests == 'ENABLED'){
-      console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] '+quest_reward+' failed '+destination+' '+reason+'.');
-    }
+function questFailed(MAIN, quest_reward, destination, reason){
+  if(MAIN.debug.Feed == 'ENABLED' && MAIN.debug.Quests == 'ENABLED'){
+    console.info('[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] '+quest_reward+' failed '+destination+' '+reason+'.');
   }
 }

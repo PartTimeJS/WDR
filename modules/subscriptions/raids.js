@@ -1,23 +1,27 @@
 delete require.cache[require.resolve('../embeds/raids.js')];
 const Send_Raid = require('../embeds/raids.js');
-const Discord = require('discord.js');
 
-module.exports.run = async (MAIN, raid, main_area, sub_area, embed_area, server, timezone) => {
+
+module.exports.run = async (MAIN, raid, area, server, timezone) => {
 
   // DEFINE VARIABLES
   let type = '', boss_name = '';
-  let embed = {};
+  let embed = '';
 
   if(raid.cp > 0 || raid.is_exclusive == true){
     type = 'Boss';
-    if (raid.pokemon_id == 0) {
+    if (raid.pokemon_id == 0){
       boss_name = 'exRaid';
     } else {
       boss_name = raid.locale.pokemon_name;
     }
-    embed.embed = 'raids.js'
+    embed = 'raids.js'
   }
-  else{ type = 'Egg'; boss_name = 'Lvl'+raid.level; embed.embed = 'raid_eggs.js';}
+  else{
+    type = 'Egg';
+    boss_name = 'Lvl'+raid.level;
+    embed = 'raid_eggs.js';
+  }
 
   if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Raids == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [raids.js] Received '+boss_name+' Raid for '+server.name+'.'); }
 
@@ -73,22 +77,19 @@ module.exports.run = async (MAIN, raid, main_area, sub_area, embed_area, server,
                     let area_pass = false;
                     switch(true){
                       case !sub.areas:
-                      case sub.areas == 'No': area_pass = true; break;
+                      case (sub.areas.toLowerCase() == 'no' || sub.areas.toLowerCase() == 'all'): area_pass = true; break;
                       case sub.areas == 'Gym Specified':
                         area_pass = true; break;
-                      case sub.areas !== 'Yes':
-                        if(sub.areas.split(',').indexOf(main_area) >= 0){ area_pass = true; }
-                        if(sub.areas.split(',').indexOf(sub_area) >= 0){ area_pass = true; } break;
                       case user.geofence == server.name:
                         area_pass = true; break;
-                      case user_areas.indexOf(main_area) >= 0:
+                      case user_areas.indexOf(area.main) >= 0:
                         area_pass = true; break;
-                      case user_areas.indexOf(sub_area) >= 0:
+                      case user_areas.indexOf(area.sub) >= 0:
                         area_pass = true; break;
                     }
 
                     if(area_pass == true){
-                      Send_Raid.run(MAIN, user, raid, type, main_area, sub_area, embed_area, server, timezone, '', embed);
+                      Send_Raid.run(MAIN, user, raid, type, area, server, timezone, '', embed);
                     } else{ return raidFailed(MAIN, user, boss_name, 'Area Filter') }
                   } else{ return raidFailed(MAIN, user, boss_name, 'Max Raid Level Filter') }
                 } else{ return raidFailed(MAIN, user, boss_name, 'Min Raid Level Filter') }

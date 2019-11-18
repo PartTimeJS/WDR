@@ -1,5 +1,5 @@
 const GeoTz = require('geo-tz');
-const Discord = require('discord.js');
+
 const Send_Nest = require('../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
 const pvp = require('../base/pvp.js');
@@ -14,7 +14,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.RichEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want a CP search string for?')
   .setFooter('Type the name of desired Poké, no command prefix required.');
@@ -57,8 +57,8 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
     stamina = MAIN.masterfile.pokemon[pokemon_id].stamina;
   }
 
-  let sprite = await MAIN.Get_Sprite(MAIN, pokemon);
-  let chart_embed = new Discord.RichEmbed()
+  let sprite = MAIN.Get_Sprite(MAIN, pokemon);
+  let chart_embed = new MAIN.Discord.RichEmbed()
   .setColor(pokemon_color)
   .setThumbnail(sprite)
   .setTitle('**'+pokemon_name+'** Raid CP Chart')
@@ -88,7 +88,7 @@ async function initiate_collector(MAIN, source, message, msg, nickname, prefix, 
       collector.stop({pokemon_id: pokemon.split(' ')[0], form_id: pokemon.split(' ')[1]});
     }
 
-    let searched = MAIN.Pokemon_ID_Search(pokemon);
+    let searched = MAIN.Pokemon_ID_Search(MAIN, pokemon);
     if (searched) {
       collector.stop(searched);
     }

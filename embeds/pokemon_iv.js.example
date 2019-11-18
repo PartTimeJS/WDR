@@ -9,7 +9,7 @@ module.exports = function(p) {
            +p.move_name_1+' '+p.move_type_1+' / '+p.move_name_2+' '+p.move_type_2, false)
   .addField(p.verified+'| '+p.time+' (*'+p.mins+'m '+p.secs+'s*) ', p.type+p.weather_boost, false)
   .addField(p.area+' | Directions:',p.google+' | '+p.apple+' | '+p.pmsf, false)
-  .setImage(p.map_img);
+  .setImage(p.static_map);
 
   return pokemon_embed;
 }

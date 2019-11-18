@@ -1,61 +1,62 @@
-const Discord = require('discord.js');
 
-module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time_now, main_area, sub_area, embed_area, server, timezone, content, embed) => {
-  let Embed_Config = require('../../embeds/'+embed.embed), pokemon_embed = {};
+
+module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time_now, area, server, timezone, content, embed) => {
+  let Embed_Config = require('../../embeds/'+embed);
+  let pokemon_embed = '';
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.get(server.id).members.get(target.user_id);
 
   // VARIABLES POKEMON NAME, FORM AND TYPE EMOTES
-  let typing = await MAIN.Get_Typing(MAIN, sighting, server);
-  let pokemon = {
-    name: sighting.locale.pokemon_name,
-    form: sighting.locale.form,
-    gender: ' ',
+  let typing = await MAIN.Get_Typing(MAIN, sighting);
 
-    // GET SPRITE IMAGE
-    sprite: await MAIN.Get_Sprite(MAIN, sighting),
+  // POKEMON OBJECT
+  let pokemon = {};
+  pokemon.name = sighting.locale.pokemon_name;
+  pokemon.pokemon_id = sighting.pokemon_id;
+  pokemon.form = sighting.locale.form;
+  pokemon.gender = ' ';
+  pokemon.sprite = MAIN.Get_Sprite(MAIN, sighting);
+  pokemon.iv = Math.round(internal_value);
+  pokemon.type = typing.type;
+  pokemon.type_noemoji = typing.type_noemoji;
+  pokemon.color = typing.color;
+  pokemon.weather_boost = ' | ';
+  pokemon.lat = sighting.latitude;
+  pokemon.lon = sighting.longitude;
+  pokemon.area = area.embed;
+  pokemon.map_url = MAIN.config.FRONTEND_URL;
 
-    // Round IV
-    iv: Math.round(internal_value),
+  // LINK VARIABLES
+  pokemon.google = '[Google](https://www.google.com/maps?q='+sighting.latitude+','+sighting.longitude+')';
+  pokemon.apple = '[Apple](http://maps.apple.com/maps?daddr='+sighting.latitude+','+sighting.longitude+'&z=10&t=s&dirflg=d)';
+  pokemon.waze = '[Waze](https://www.waze.com/ul?ll='+sighting.latitude+','+sighting.longitude+'&navigate=yes)';
+  pokemon.pmsf = '[Scan Map]('+MAIN.config.FRONTEND_URL+'?lat='+sighting.latitude+'&lon='+sighting.longitude+'&zoom=15)';
+  pokemon.rdm = '[Scan Map]('+MAIN.config.FRONTEND_URL+'@/'+sighting.latitude+'/'+sighting.longitude+'/15)';
 
-    // DETERMIND POKEMON TYPES AND WEAKNESSES
-    type: typing.type,
-    type_noemoji: typing.type_noemoji,
-    color: typing.color,
-    weather_boost: ' | ',
+  // STATIC MAP TILE
+  pokemon.static_marker = [{
+    "url" : MAIN.Get_Sprite(MAIN, sighting, 'STATIC_ASSETS'),
+    "height" : 50,
+    "width" : 50,
+    "x_offset" : 0,
+    "y_offset" : 0,
+    "latitude" : sighting.latitude,
+    "longitude" : sighting.longitude
+  }];
+  pokemon.static_map = MAIN.config.STATIC_MAP_URL+sighting.latitude+"/"+sighting.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokemon.static_marker));
 
-    // GET LOCATION INFO
-    lat: sighting.latitude,
-    lon: sighting.longitude,
-    area: embed_area,
-    map_url: MAIN.config.FRONTEND_URL,
-
-    // MAP LINK PROVIDERS
-    google: '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+sighting.latitude+','+sighting.longitude)+')',
-    apple: '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+sighting.latitude+','+sighting.longitude+'&z=10&t=s&dirflg=d')+')',
-    waze: '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+sighting.latitude+','+sighting.longitude+'&navigate=yes')+')',
-    pmsf: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+sighting.latitude+'&lon='+sighting.longitude+'&zoom=15')+')',
-    rdm: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+sighting.latitude+'/'+sighting.longitude+'/15')+')',
-
-    // GET STATIC MAP TILE
-    map_img: await MAIN.Static_Map_Tile(MAIN, sighting.latitude, sighting.longitude, 'pokemon'),
-    tile: 'https://static-maps.yandex.ru/1.x/?lang=en-US&ll='+sighting.longitude+','+sighting.latitude+'&z=15&l=map&size=400,220&pt='+sighting.longitude+','+sighting.latitude+',pm2rdl'
-  };
+  // TIME VARIABLES
+  pokemon.verified = sighting.disappear_time_verified ? MAIN.emotes.checkYes : MAIN.emotes.yellowQuestion;
+  pokemon.time = MAIN.Bot_Time(sighting.disappear_time, '1', timezone);
+  pokemon.mins = Math.floor((sighting.disappear_time-(time_now/1000))/60);
+  pokemon.secs = Math.floor((sighting.disappear_time-(time_now/1000)) - (pokemon.mins*60));
 
   // IDENTIFY DITTO AND ALTER DISPLAY NAME
   if(sighting.pokemon_id == 132){
-    let old = await MAIN.Get_Locale(MAIN, {pokemon_id: sighting.disguise}, server);
+    let old = await MAIN.Get_Locale(MAIN, {pokemon_id: sighting.display_pokemon_id}, server);
     pokemon.name += ' ('+old.pokemon_name+')';
   }
-
-  // DESPAWN VERIFICATION
-  pokemon.verified = sighting.disappear_time_verified ? MAIN.emotes.checkYes : MAIN.emotes.yellowQuestion;
-
-  // DETERMINE DESPAWN TIME
-  pokemon.time = await MAIN.Bot_Time(sighting.disappear_time, '1', timezone);
-  pokemon.mins = Math.floor((sighting.disappear_time-(time_now/1000))/60);
-  pokemon.secs = Math.floor((sighting.disappear_time-(time_now/1000)) - (pokemon.mins*60));
 
   // GET GENDER
   switch(sighting.gender){
@@ -86,7 +87,7 @@ module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time
       if(MAIN.config.VERBOSE_LOGS == 'ENABLED'){ console.info('[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [pokemon.js] Sent a '+pokemon.name+' to '+member.user.tag+' ('+member.id+').'); }
       return MAIN.Send_DM(MAIN, server.id, member.id, pokemon_embed, target.bot);
     } else{
-      if(content){ content += ' '+pokemon.name+' in '+embed_area+', '+pokestop.mins+'min'}
+      if(content){ content += ' '+pokemon.name+' in '+area.embed+', '+pokemon.mins+'min'}
       if(MAIN.config.TIME_REMAIN && pokemon.mins < MAIN.config.TIME_REMAIN){ return; }
       if(MAIN.config.VERBOSE_LOGS == 'ENABLED'){ console.info('[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [pokemon.js] Sent a '+pokemon.name+' to '+target.guild.name+' ('+target.id+').'); }
       return MAIN.Send_Embed(MAIN, 'pokemon', 0, server, content, pokemon_embed, target.id);
@@ -128,7 +129,7 @@ module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time
       if(MAIN.config.VERBOSE_LOGS == 'ENABLED'){ console.info('[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [pokemon.js] Sent a '+pokemon.name+' to '+member.user.tag+' ('+member.id+').'); }
       return MAIN.Send_DM(MAIN, server.id, member.id, pokemon_embed, target.bot);
     } else{
-      if(content){ content += ' '+pokemon.name+' in '+embed_area+', '+pokestop.mins+'min'}
+      if(content){ content += ' '+pokemon.name+' in '+area.embed+', '+pokemon.mins+'min'}
       if(MAIN.config.TIME_REMAIN && pokemon.mins < MAIN.config.TIME_REMAIN){ return; }
       if(MAIN.config.VERBOSE_LOGS == 'ENABLED'){ console.info('[EMBEDS] ['+MAIN.Bot_Time(null,'stamp')+'] [pokemon.js] Sent a '+pokemon.name+' to '+target.guild.name+' ('+target.id+').'); }
       return MAIN.Send_Embed(MAIN, 'pokemon', 0, server, content, pokemon_embed, target.id);

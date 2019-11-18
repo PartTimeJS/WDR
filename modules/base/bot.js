@@ -10,6 +10,7 @@ const Ontime = require('ontime');
 const GeoTz = require('geo-tz');
 const ini = require('ini');
 const fs = require('fs');
+const pvp = require('./pvp.js');
 //------------------------------------------------------------------------------
 //  INITIATE BOTS AND DISABLE UNNECESSARY EVENTS
 //------------------------------------------------------------------------------
@@ -39,7 +40,10 @@ const OSCAR = new Discord.Client(botOptions);
 //  INITIAL LOAD OF CONFIG AND DISCORDS
 //------------------------------------------------------------------------------
 MAIN.config = ini.parse(fs.readFileSync('./config/config.ini', 'utf-8'));
-MAIN.Discord = require('../../config/discords.json');
+MAIN.Discords = require('../../config/discords.json');
+MAIN.Discord = require('discord.js');
+MAIN.jsonEncode = require('form-urlencoded').default;
+MAIN.Active = false;
 //------------------------------------------------------------------------------
 //  TIME FUNCTION
 //------------------------------------------------------------------------------
@@ -93,25 +97,9 @@ if(process.env.fork == 0){
     });
   }
 
-  //CHECK FOR MEMBER LEAVE
-  MAIN.on('guildMemberRemove', member => {
-    MAIN.pdb.query('DELETE FROM users WHERE user_id = ? AND discord_id = ?',[member.user.id, member.guild.id], async function (error, row, fields) {
-      if(error){ console.error(error);}
-      if(MAIN.config.log_channel){
-        let leave_embed = new Discord.RichEmbed()
-        .setColor('ffff00')
-        .addField('Member left',member.user.username)
-        .setFooter('Removed from '+MAIN.config.BOT_NAME+' database.');
-        if(row.affectedRows){return MAIN.Send_Embed(MAIN, 'member', 0, member.user.guild, '', leave_embed, MAIN.config.log_channel);}
-        else { /*MEMBER NOT IN DB DO NOTHING */ return; }
-      } else if(row.affectedRows) { return console.log('Member left and removed from db '+member.user.username)}
-      else { /*MEMBER NOT IN DB DO NOTHING */ return; }
-    });
-  });
-
   // SET ONTIME FUNCTIONS
   var ontime_servers = [], ontime_times = [];
-  MAIN.Discord.Servers.forEach(function(server){
+  MAIN.Discords.Servers.forEach( function(server){
     let server_purge = moment(), timezone = GeoTz(server.geofence[0][0][1], server.geofence[0][0][0]);
     server_purge = moment.tz(server_purge, timezone[0]).set({hour:23,minute:50,second:0,millisecond:0});
     server_purge = moment.tz(server_purge, MAIN.config.TIMEZONE).format('HH:mm:ss');
@@ -268,6 +256,7 @@ fs.readdir(__dirname+'/../functions', (err,functions) => {
 //------------------------------------------------------------------------------
 const raid_channels = ini.parse(fs.readFileSync('./config/channels_raids.ini', 'utf-8'));
 const pokemon_channels = ini.parse(fs.readFileSync('./config/channels_pokemon.ini', 'utf-8'));
+const pvp_channels = ini.parse(fs.readFileSync('./config/channels_pvp.ini', 'utf-8'));
 const quest_channels = ini.parse(fs.readFileSync('./config/channels_quests.ini', 'utf-8'));
 const lure_channels = ini.parse(fs.readFileSync('./config/channels_lure.ini', 'utf-8'));
 const invasion_channels = ini.parse(fs.readFileSync('./config/channels_invasion.ini', 'utf-8'));
@@ -287,13 +276,6 @@ MAIN.pdb = MySQL.createConnection({
   password: MAIN.config.DB.password,
   port: MAIN.config.DB.port,
   database : MAIN.config.DB.db_name
-});
-MAIN.pmsf = MySQL.createConnection({
-  host: MAIN.config.pmsfDB.host,
-  user: MAIN.config.pmsfDB.username,
-  password: MAIN.config.pmsfDB.password,
-  port: MAIN.config.pmsfDB.port,
-  database : MAIN.config.pmsfDB.db_name
 });
 //------------------------------------------------------------------------------
 //  LOAD BASE SCRIPTS
@@ -318,6 +300,10 @@ function load_data(){
   Pokemon_Feed = require('../filtering/pokemon.js');
   delete require.cache[require.resolve('../subscriptions/pokemon.js')];
   Pokemon_Subscription = require('../subscriptions/pokemon.js');
+  delete require.cache[require.resolve('../filtering/pvp.js')];
+  PVP_Feed = require('../filtering/pvp.js');
+  delete require.cache[require.resolve('../subscriptions/pvp.js')];
+  PVP_Subscription = require('../subscriptions/pvp.js');
   delete require.cache[require.resolve('../filtering/lure.js')];
   Lure_Feed = require('../filtering/lure.js');
   delete require.cache[require.resolve('../subscriptions/lure.js')];
@@ -351,7 +337,7 @@ function load_data(){
   delete require.cache[require.resolve('../../static/rewards.json')];
   MAIN.rewards = require('../../static/rewards.json');
   delete require.cache[require.resolve('../../config/discords.json')];
-  MAIN.Discord = require('../../config/discords.json');
+  MAIN.Discords = require('../../config/discords.json');
   MAIN.config = ini.parse(fs.readFileSync('./config/config.ini', 'utf-8'));
 //------------------------------------------------------------------------------
 //  LOAD ALL FEEDS
@@ -362,6 +348,9 @@ function load_data(){
   MAIN.Pokemon_Channels = [];
   for (var key in pokemon_channels){ MAIN.Pokemon_Channels.push([key, pokemon_channels[key]]); }
   if(process.env.fork == 0){ console.log('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] [Start-Up] Loaded '+MAIN.Pokemon_Channels.length+' Pokemon Feeds'); }
+  MAIN.PVP_Channels = [];
+  for (var key in pvp_channels){ MAIN.PVP_Channels.push([key, pvp_channels[key]]); }
+  if(process.env.fork == 0){ console.log('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] [Start-Up] Loaded '+MAIN.PVP_Channels.length+' PVP Feeds'); }
   MAIN.Quest_Channels = [];
   for (var key in quest_channels){ MAIN.Quest_Channels.push([key, quest_channels[key]]); }
   if(process.env.fork == 0){ console.log('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] [Start-Up] Loaded '+MAIN.Quest_Channels.length+' Quest Feeds'); }
@@ -418,9 +407,6 @@ MAIN.Color = {
 //  WEBHOOK PARSER
 //------------------------------------------------------------------------------
 MAIN.webhookParse = async (PAYLOAD) => {
-  // SET VARIABLES
-  let discord_match = false;
-  let proper_data = false;
   // IGNORE IF BOT HAS NOT BEEN FINISHED STARTUP
   if(!MAIN.Active){ return; }
   // SEPARATE EACH PAYLOAD AND SORT
@@ -432,34 +418,31 @@ MAIN.webhookParse = async (PAYLOAD) => {
         data.message.wdrReceived = new Date().getTime();
       }
 
-      proper_data = true;
-
-      MAIN.Discord.Servers.forEach( async (server,index) => {
+      MAIN.Discords.Servers.forEach( async (server,index) => {
 
         if(InsideGeojson.polygon(server.geofence, [data.message.longitude,data.message.latitude])){
           // DEFINE AND DETERMINE TIMEZONE
-          let timezone = GeoTz(server.geofence[0][1][1], server.geofence[0][1][0])[0]; discord_match = true;
+          let timezone = GeoTz(server.geofence[0][1][1], server.geofence[0][1][0])[0];
           if (MAIN.config.coordinate_timezone = 'ENABLED'){
             timezone = GeoTz(data.message.latitude,data.message.longitude)[0];
           }
           // DEFINE AREAS FROM GEOFENCE FILE
-          let main_area = '', sub_area = '', embed_area = '';
+          let area = {};
           if(server.geojson_file){
             let geofence = await MAIN.Geofences.get(server.geojson_file);
             await geofence.features.forEach((geo,index) => {
               if(InsideGeojson.feature({features:[geo]}, [data.message.longitude,data.message.latitude]) != -1){
                 switch(geo.properties.sub_area){
-                  case 'true': sub_area = geo.properties.name;
-                  break;
-                  default: main_area = geo.properties.name;
+                  case 'true': area.sub = geo.properties.name; break;
+                  default: area.main = geo.properties.name;
                 }
               }
             });
           }
           // ASSIGN AREA TO VARIABLES
-          if(sub_area){ embed_area = sub_area; }
-          if(main_area && !sub_area){ embed_area = main_area; }
-          if(!sub_area && !main_area){ embed_area = server.name; }
+          if(area.sub){ area.embed = area.sub; }
+          if(area.main && !area.sub){ area.embed = area.main; }
+          if(!area.sub && !area.main){ area.embed = server.name; }
           // SEND TO OBJECT MODULES
           switch(data.type){
             // SEND TO POKEMON MODULES
@@ -467,8 +450,16 @@ MAIN.webhookParse = async (PAYLOAD) => {
               let encounter = MAIN.Detect_Ditto(MAIN, data.message);
               encounter.locale = await MAIN.Get_Locale(MAIN, encounter, server);
               encounter.size = MAIN.Get_Size(MAIN, encounter.pokemon_id, encounter.form, encounter.height, encounter.weight);
-              Pokemon_Feed.run(MAIN, encounter, main_area, sub_area, embed_area, server, timezone);
-              Pokemon_Subscription.run(MAIN, encounter, main_area, sub_area, embed_area, server, timezone); break;
+              Pokemon_Feed.run(MAIN, encounter, area, server, timezone);
+              Pokemon_Subscription.run(MAIN, encounter, area, server, timezone);
+              // ONLY RUN PVP WHEN POKEMON HAS IV CHECK
+              if(encounter.individual_attack != null) {
+                encounter.great_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, encounter.gender, "great");
+                encounter.ultra_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, encounter.gender, "ultra");
+                PVP_Feed.run(MAIN, encounter, area, server, timezone);
+                PVP_Subscription.run(MAIN, encounter, area, server, timezone);
+              }
+              return;
             // SEND TO RAIDS MODULES
             case 'raid':
               let raid = data.message;
@@ -477,31 +468,32 @@ MAIN.webhookParse = async (PAYLOAD) => {
                 raid.pokemon_id = 150;
                 raid.form = 135;
               } raid.locale = await MAIN.Get_Locale(MAIN, raid, server);
-              Raid_Feed.run(MAIN, raid, main_area, sub_area, embed_area, server, timezone);
-              Raid_Subscription.run(MAIN, raid, main_area, sub_area, embed_area, server, timezone); break;
+              Raid_Feed.run(MAIN, raid, area, server, timezone);
+              Raid_Subscription.run(MAIN, raid, area, server, timezone);
+              return;
             // SEND TO QUESTS MODULES
             case 'quest':
               let quest = data.message;
               quest.locale = await MAIN.Get_Locale(MAIN, {pokemon_id: quest.rewards[0].info.pokemon_id, form: quest.rewards[0].info.form_id}, server);
-              Quest_Feed.run(MAIN, quest, main_area, sub_area, embed_area, server, timezone);
-              Quest_Subscription.run(MAIN, quest, main_area, sub_area, embed_area, server, timezone); break;
+              Quest_Feed.run(MAIN, quest, area, server, timezone);
+              Quest_Subscription.run(MAIN, quest, area, server, timezone);
+              return;
             // SEND TO LURE MODULES
             case 'pokestop':
-              Lure_Feed.run(MAIN, data.message, main_area, sub_area, embed_area, server, timezone);
-              Lure_Subscription.run(MAIN, data.message, main_area, sub_area, embed_area, server, timezone); break;
+              Lure_Feed.run(MAIN, data.message, area, server, timezone);
+              Lure_Subscription.run(MAIN, data.message, area, server, timezone);
+              return;
             // SEND TO INVASION MODULES
             case 'invasion':
-              Invasion_Feed.run(MAIN, data.message, main_area, sub_area, embed_area, server, timezone);
-              Invasion_Subscription.run(MAIN, data.message, main_area, sub_area, embed_area, server, timezone); break;
+              Invasion_Feed.run(MAIN, data.message, area, server, timezone);
+              Invasion_Subscription.run(MAIN, data.message, area, server, timezone);
+              return;
+            default: return;
           }
-        }
+        } else { return; }
       }); return;
     }
   });
-  // DEBUG
-  if(discord_match == false && proper_data == true && MAIN.debug.PAYLOADS == 'ENABLED'){
-    return console.error('[webhookParse] ['+MAIN.Bot_Time(null,'stamp')+'] [bot.js] None of the items contained in the RDM payload matched your discords.json geofences. This error is thrown for multiple reasons. You could be scanning an area outside of your discords.json geofences, your geofences within discords.json are in not in geojson format, or not big enough for your area.',PAYLOAD);
-  } else{ return; }
 }
 
 // SQL QUERY FUNCTION
@@ -552,7 +544,7 @@ function load_arrays(){
     } else{ return; }
   });
   // NEST NAMES ARRAY
-  MAIN.pmsf.query(`SELECT * FROM nests WHERE name != 'Unknown Areaname'`, function (error, parks, fields){
+  MAIN.rdmdb.query(`SELECT * FROM nests WHERE name != 'Unknown Areaname'`, function (error, parks, fields){
     if(parks){
       parks.forEach((park,index) => {
         let record = {};

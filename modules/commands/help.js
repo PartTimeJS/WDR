@@ -1,7 +1,7 @@
 const Discord=require('discord.js');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
-  let help = new Discord.RichEmbed();
+  let help = new MAIN.Discord.RichEmbed();
 
   // COMMAND CHANNEL HELP
   if((discord.command_channels.indexOf(message.channel.id) >= 0 && discord.spam_channels.indexOf(message.channel.id) < 0) || message.channel.type == 'dm'){

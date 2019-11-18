@@ -1,7 +1,7 @@
 delete require.cache[require.resolve('../embeds/lure.js')];
 const Send_Lure = require('../embeds/lure.js');
-const Discord = require('discord.js');
-module.exports.run = async (MAIN, lure, main_area, sub_area, embed_area, server, timezone) => {
+
+module.exports.run = async (MAIN, lure, area, server, timezone) => {
   //if(!lure.pokemon_id){ return; }
 
   if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Lure == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [lure.js] Received '+MAIN.Get_Lure(lure.lure_id)+' lure for '+server.name+'.'); }
@@ -43,9 +43,9 @@ module.exports.run = async (MAIN, lure, main_area, sub_area, embed_area, server,
 
                 // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
                 if(sub.areas == 'No' || sub.areas == 'Stop Specified'){
-                  Send_Lure.run(MAIN, user, lure, type, main_area, sub_area, embed_area, server, timezone, '', embed);
-                } else if(user.geofence == server.name || user_areas.indexOf(main_area) >= 0 || user_areas.indexOf(sub_area) >= 0){
-                  Send_Lure.run(MAIN, user, lure, type, main_area, sub_area, embed_area, server, timezone, '', embed);
+                  Send_Lure.run(MAIN, user, lure, type, area, server, timezone, '', embed);
+                } else if(user.geofence == server.name || user_areas.indexOf(area.main) >= 0 || user_areas.indexOf(area.sub) >= 0){
+                  Send_Lure.run(MAIN, user, lure, type, area, server, timezone, '', embed);
                 } else{ if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Lure == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [lure.js] Did Not Pass '+user.user_name+'\'s Area Filter.'); } }
               } else{ if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Lure == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [lure.js] Did Not Pass '+user.user_name+'\'s Lure Type Filter.'); } }
             } else{ if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Lure == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [lure.js] Did Not Pass '+user.user_name+'\'s Stop Name Filter.'); } }

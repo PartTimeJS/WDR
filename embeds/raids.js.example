@@ -12,7 +12,7 @@ module.exports = function(g) {
   .addField('Min-Max Catch CP:',g.minCP+' - '+g.maxCP,true)
   .addField('Min-Max Boosted CP:',g.minCP_boosted+' - '+g.maxCP_boosted,true)
   .addField(g.area+' | Directions:',g.google+' | '+g.apple+' | '+g.pmsf,false)
-  .setImage(g.map_img);
+  .setImage(g.static_map);
 
   return raid_embed;
 }

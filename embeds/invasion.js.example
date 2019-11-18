@@ -10,7 +10,7 @@ module.exports = function(p) {
   .addField('Weakness(es): ',p.weaknesses,true)
   .addField('Resistance(s): ',p.resistances,true)
   .addField(p.area+': ',p.google+' | '+p.apple+' | '+p.pmsf, false)
-  .setImage(p.map_img);
+  .setImage(p.static_map);
 
   return invasion_embed;
 }

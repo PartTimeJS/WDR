@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+
 
 module.exports.run = async (MAIN, BOT, message) => {
 
@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, BOT, message) => {
 
   if(message.channel.type == 'dm'){
 
-    MAIN.Discord.Servers.forEach( async (server,index) => {
+    MAIN.Discords.Servers.forEach( async (server,index) => {
 
       // GET GUILD
       let guild = MAIN.guilds.get(server.id);
@@ -30,7 +30,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       else if(server.donor_role && !member.roles.has(server.donor_role)){
         let donor_info = '';
         if(MAIN.config.log_channel){
-          let nondonor_embed = new Discord.RichEmbed()
+          let nondonor_embed = new MAIN.Discord.RichEmbed()
           .setColor('ff0000')
           .addField('User attempted to use DM command, not a donor. ',member.user.username);
           if(MAIN.config.donor_info){ donor_info = MAIN.config.donor_info}
@@ -63,7 +63,7 @@ module.exports.run = async (MAIN, BOT, message) => {
   } else if(BOT == MAIN){
 
     // DISCORD SERVER FOR THE SUB CHANNEL
-    let server = MAIN.Discord.Servers.find(server => server.id == message.guild.id);
+    let server = MAIN.Discords.Servers.find(server => server.id == message.guild.id);
     if(!server){ return; }
 
     // IGNORED CHANNELS
@@ -90,7 +90,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       else if(server.donor_role && !member.roles.has(server.donor_role)){
         if(MAIN.config.log_channel){
           let donor_info = '';
-          let nondonor_embed = new Discord.RichEmbed()
+          let nondonor_embed = new MAIN.Discord.RichEmbed()
           .setColor('ff0000')
           .addField('User attempted to use a subsciption command, not a donor. ',member.user.username);
           if(MAIN.config.donor_info){ donor_info = MAIN.config.donor_info}
@@ -150,97 +150,97 @@ module.exports.run = async (MAIN, BOT, message) => {
 
     return;
   }
+}
 
-  function notAdmin(){
-    message.reply('You do not have the ability to do this command, contact an admin.').then(m => m.delete(5000)).catch(console.error);
+function notAdmin(){
+  message.reply('You do not have the ability to do this command, contact an admin.').then(m => m.delete(5000)).catch(console.error);
+}
+
+function Get_Raid_Commands(MAIN, member, input){
+  switch (input) {
+    // USER HAS ARRIVED AT THE RAID
+    case 'i\’m here':
+    case 'i\'m here':
+    case 'here': return 'here';
+    // USER IS INTERESTED
+    case 'interested': return 'interested';
+    // USER HAS INDICATED THEY'RE ON THE WAY
+    case 'coming':
+    case 'on the way':
+    case 'on my way!':
+    case 'omw': return 'coming';
+    // USER IS NO LONGER INTERESTED AND LEFT THE RAID
+    case 'leave':
+    case 'not coming':
+    case 'not interested': return 'leave';
+    default: return;
   }
+}
 
-  function Get_Raid_Commands(MAIN, member, input){
-    switch (input) {
-      // USER HAS ARRIVED AT THE RAID
-      case 'i\’m here':
-      case 'i\'m here':
-      case 'here': return 'here';
-      // USER IS INTERESTED
-      case 'interested': return 'interested';
-      // USER HAS INDICATED THEY'RE ON THE WAY
-      case 'coming':
-      case 'on the way':
-      case 'on my way!':
-      case 'omw': return 'coming';
-      // USER IS NO LONGER INTERESTED AND LEFT THE RAID
-      case 'leave':
-      case 'not coming':
-      case 'not interested': return 'leave';
-      default: return;
-    }
+function Get_Commands(MAIN, member, input, isAdmin){
+  switch(input){
+    case 'reload': if(isAdmin){ return MAIN.Initialize('reload'); } else {  return notAdmin(); }
+    case 'purge': if(isAdmin){ return MAIN.Purge_Channels(); } else { return notAdmin(); }
+    case 'restart': if(isAdmin){ return MAIN.restart('due to admin restart command.', 0); } else { return notAdmin(); }
+    case 'pull': if(isAdmin){ return 'pull' } else { return notAdmin(); }
+    case 'pause': return 'pause';
+    case 'resume': return 'resume';
+    case 'help': return 'help';
+    case 'p':
+    case 'pokemon': return 'pokemon';
+    case 'pvp': return 'pvp';
+    case 'r':
+    case 'raid': return 'raid';
+    case 'lobby': return 'lobby';
+    case 'q':
+    case 'quest': return 'quest';
+    case 'l':
+    case 'lure': return 'lure';
+    case 'i':
+    case 'invasion': return 'invasion';
+    case 'a':
+    case 'area': return 'area';
+    default: return Get_Spam_Commands(MAIN, member, input, isAdmin);
   }
+}
 
-  function Get_Commands(MAIN, member, input, isAdmin){
-    switch(input){
-      case 'reload': if(isAdmin){ return MAIN.Initialize('reload'); } else {  return notAdmin(); }
-      case 'purge': if(isAdmin){ return MAIN.Purge_Channels(); } else { return notAdmin(); }
-      case 'restart': if(isAdmin){ return MAIN.restart('due to admin restart command.', 0); } else { return notAdmin(); }
-      case 'pull': if(isAdmin){ return 'pull' } else { return notAdmin(); }
-      case 'pause': return 'pause';
-      case 'resume': return 'resume';
-      case 'help': return 'help';
-      case 'p':
-      case 'pokemon': return 'pokemon';
-      case 'pvp': return 'pvp';
-      case 'r':
-      case 'raid': return 'raid';
-      case 'lobby': return 'lobby';
-      case 'q':
-      case 'quest': return 'quest';
-      case 'l':
-      case 'lure': return 'lure';
-      case 'i':
-      case 'invasion': return 'invasion';
-      case 'a':
-      case 'area': return 'area';
-      default: return Get_Spam_Commands(MAIN, member, input, isAdmin);
-    }
+function Get_Spam_Commands(MAIN, member, input, isAdmin){
+  switch (input) {
+    case 'r':
+    case 'raid': return 'lobby';
+    case 'n':
+    case 'nest': return 'nest';
+    case 's':
+    case 'seen':
+    case 'pokemonstats':
+    case 'pokemon stats': return 'seen';
+    case 'communityday': return 'communityday';
+    case 'dex': return 'dex';
+    case 'cp': return 'cp';
+    case 'raidcp':
+    case 'catchcp': return 'raidcp';
+    case 'weathercp':
+    case 'boostedcp': return 'weathercp';
+    case 'questcp': return 'questcp';
+    case 'rank': return 'rank';
+    case 'events': return 'events';
+    case 'help': return 'help';
+    default: return;
   }
+}
 
-  function Get_Spam_Commands(MAIN, member, input, isAdmin){
-    switch (input) {
-      case 'r':
-      case 'raid': return 'lobby';
-      case 'n':
-      case 'nest': return 'nest';
-      case 's':
-      case 'seen':
-      case 'pokemonstats':
-      case 'pokemon stats': return 'seen';
-      case 'communityday': return 'communityday';
-      case 'dex': return 'dex';
-      case 'cp': return 'cp';
-      case 'raidcp':
-      case 'catchcp': return 'raidcp';
-      case 'weathercp':
-      case 'boostedcp': return 'weathercp';
-      case 'questcp': return 'questcp';
-      case 'rank': return 'rank';
-      case 'events': return 'events';
-      case 'help': return 'help';
-      default: return;
-    }
-  }
-
-  function Get_Wrong_Channel(MAIN, member, input, server){
-    switch (input) {
-      case prefix+'pokemon':
-      case prefix+'pvp':
-      case prefix+'quest':
-      case prefix+'invasion':
-      case prefix+'area':
-      case prefix+'pause':
-      case prefix+'resume':
-        if(MAIN.config.Tidy_Channel == 'ENABLED'){ message.delete(); }
-        let command_channels = server.command_channels.map(channel => '<#'+channel+'>' ).join(' ');
-        return message.reply('Use of this subsciption command will only work in: '+command_channels).then(m => m.delete(8000)).catch(console.error);
-      default: return;
-    }
+function Get_Wrong_Channel(MAIN, member, input, server){
+  switch (input) {
+    case MAIN.config.PREFIX+'pokemon':
+    case MAIN.config.PREFIX+'pvp':
+    case MAIN.config.PREFIX+'quest':
+    case MAIN.config.PREFIX+'invasion':
+    case MAIN.config.PREFIX+'area':
+    case MAIN.config.PREFIX+'pause':
+    case MAIN.config.PREFIX+'resume':
+      if(MAIN.config.Tidy_Channel == 'ENABLED'){ message.delete(); }
+      let command_channels = server.command_channels.map(channel => '<#'+channel+'>' ).join(' ');
+      return message.reply('Use of this subsciption command will only work in: '+command_channels).then(m => m.delete(8000)).catch(console.error);
+    default: return;
   }
 }

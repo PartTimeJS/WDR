@@ -10,7 +10,7 @@ module.exports = function(g) {
   .addField('**Level '+g.level+'** Raid', g.team+g.sponsor, false)
   .addField('Hatches: '+g.hatch_time+' (*'+g.hatch_mins+' Mins*)',g.area, false)
   .addField('Directions:',g.google+' | '+g.apple+' | '+g.pmsf, false)
-  .setImage(g.map_img);
+  .setImage(g.static_map);
 
   return raid_embed;
 }

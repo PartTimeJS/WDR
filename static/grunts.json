@@ -254,5 +254,55 @@
   "40": {
     "type": "",
     "grunt": "Player Team Leader"
+  },
+  "41": {
+    "type": "",
+    "name": "Executive Cliff",
+    "gender": ""
+  },
+  "42": {
+    "type": "",
+    "name": "Executive Arlo",
+    "gender": ""
+  },
+  "43": {
+    "type": "",
+    "name": "Executive Sierra",
+    "gender": ""
+  },
+  "44": {
+    "type": "",
+    "name": "Giovanni",
+    "gender": ""
+  },
+  "40": {
+    "type": "",
+    "name": "Decoy - Male Grunt",
+    "gender": "Male"
+  },
+  "46": {
+    "type": "",
+    "name": "Decoy - Female Grunt",
+    "gender": "Female"
+  },
+  "47": {
+    "type": "",
+    "name": "Ghost - Male Grunt",
+    "gender": "Male"
+  },
+  "48": {
+    "type": "",
+    "name": "Ghost - Female Grunt",
+    "gender": "Female"
+  },
+  "49": {
+    "type": "",
+    "name": "Electric - Male Grunt",
+    "gender": "Male"
+  },
+  "50": {
+    "type": "",
+    "name": "Electric - Female Grunt",
+    "gender": "Female"
   }
 }

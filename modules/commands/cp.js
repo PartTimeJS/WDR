@@ -1,5 +1,5 @@
 const GeoTz = require('geo-tz');
-const Discord = require('discord.js');
+
 const Send_Nest = require('../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
 const pvp = require('../base/pvp.js');
@@ -14,7 +14,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.RichEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want a CP search string for?')
   .setFooter('Type the name of desired Poké, no command prefix required.');
@@ -30,7 +30,7 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
   let guild = MAIN.guilds.get(discord.id);
   let pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
   let locale = await MAIN.Get_Locale(MAIN, pokemon, discord);
-  let sprite = await MAIN.Get_Sprite(MAIN, pokemon);
+  let sprite = MAIN.Get_Sprite(MAIN, pokemon);
   let pokemon_name = locale.pokemon_name;
   let pokemon_color = locale.color;
 
@@ -67,7 +67,7 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
   }
   search_string += '```';
 
-  let chart_embed = new Discord.RichEmbed()
+  let chart_embed = new MAIN.Discord.RichEmbed()
   .setColor(pokemon_color)
   .setThumbnail(sprite)
   .setTitle(pokemon_name+' CP Chart')
@@ -81,17 +81,17 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
       return TARGET.send(chart_embed).catch(console.error);
     });
   }
+}
 
-  function padded(num) {
-    let n = num.toString();
-    if(num < 999){ n = ' '+n; }
-    if(num < 99){ n = ' '+n; }
-    return n;
-  }
+function padded(num) {
+  let n = num.toString();
+  if(num < 999){ n = ' '+n; }
+  if(num < 99){ n = ' '+n; }
+  return n;
 }
 
 function subscription_timedout(MAIN, nickname, message, prefix){
-  let subscription_cancel = new Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('Your Subscription Has Timed Out.')
   .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -115,7 +115,7 @@ async function initiate_collector(MAIN, source, message, msg, nickname, prefix, 
       collector.stop({pokemon_id: pokemon.split(' ')[0], form: pokemon.split(' ')[1]});
     }
 
-    let searched = MAIN.Pokemon_ID_Search(pokemon);
+    let searched = MAIN.Pokemon_ID_Search(MAIN, pokemon);
     if (searched) {
       collector.stop(searched);
     }

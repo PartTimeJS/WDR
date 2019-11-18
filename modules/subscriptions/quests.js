@@ -1,8 +1,8 @@
 delete require.cache[require.resolve('../embeds/quests.js')];
-const Discord = require('discord.js');
+
 const Send_Quest = require('../embeds/quests.js');
 
-module.exports.run = async (MAIN, quest, main_area, sub_area, embed_area, server, timezone) => {
+module.exports.run = async (MAIN, quest, area, server, timezone) => {
 
   // DEFINE VARIABLES
   let reward = MAIN.Get_Quest_Reward(MAIN, quest);
@@ -45,22 +45,22 @@ module.exports.run = async (MAIN, quest, main_area, sub_area, embed_area, server
           if(subs.indexOf(quest_reward) >= 0 || subs.indexOf(simple_reward) >= 0 || subs.indexOf('ALL') >= 0){
 
             // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
-            if(user.geofence == server.name || user_areas.indexOf(main_area) >= 0 || user_areas.indexOf(sub_area) >= 0){
+            if(user.geofence == server.name || user_areas.indexOf(area.main) >= 0 || user_areas.indexOf(area.sub) >= 0){
 
               // PREPARE ALERT TO SEND TO USER
               if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Quests == 'ENABLED'){ console.info(MAIN.Color.pink+'[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] Preparing '+quest_reward+' Quest DM for '+user.user_name+MAIN.Color.reset); }
-              Send_Quest.run(MAIN, user, quest, quest_reward, simple_reward, main_area, sub_area, embed_area, server, timezone, content, embed);
+              Send_Quest.run(MAIN, user, quest, quest_reward, simple_reward, area, server, timezone, content, embed);
               return;
-            } else{ return questFailed(MAIN, quest_reward, user.user_name, 'Area Filters. '+user.geofence+' | '+server.name+','+main_area+','+sub_area); }
+            } else{ return questFailed(MAIN, quest_reward, user.user_name, 'Area Filters. '+user.geofence+' | '+server.name+','+area.main+','+area.sub); }
           } else{ return questFailed(MAIN, quest_reward, user.user_name, 'Reward Filters'); }
         } else { return; }
       });
     } return;
   });
+}
 
-  function questFailed(MAIN, quest_reward, user_name, reason){
-    if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Quests == 'ENABLED'){
-      console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] '+quest_reward+' failed '+user_name+'\'s '+reason+'.');
-    }
+function questFailed(MAIN, quest_reward, user_name, reason){
+  if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Quests == 'ENABLED'){
+    console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] '+quest_reward+' failed '+user_name+'\'s '+reason+'.');
   }
 }

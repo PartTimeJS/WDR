@@ -1,77 +1,79 @@
-const Discord = require('discord.js');
+
 const pvp = require('../base/pvp.js');
 
-module.exports.run = async (MAIN, target, raid, raid_type, main_area, sub_area, embed_area, server, timezone, content, embed) => {
-  let Embed_Config = require('../../embeds/'+embed.embed), raid_embed = {};
+module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezone, content, embed) => {
+  let Embed_Config = require('../../embeds/'+embed);
+  let raid_embed = '';
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.get(server.id).members.get(target.user_id);
 
   // VARIABLES
-  let typing = await MAIN.Get_Typing(MAIN, raid, server);
-  let gym = {
-    id: raid.gym_id,
-    level: raid.level,
-    sprite: '',
+  let typing = await MAIN.Get_Typing(MAIN, raid);
+  let gym = {};
+  gym.id = raid.gym_id;
+  gym.pokemon_id = raid.pokemon_id;
+  gym.level = raid.level;
+  gym.sprite = '';
 
-    // CHECK FOR GYM NAME AND NOTES
-    name: raid.gym_name ? raid.gym_name : 'No Name',
-    notes: MAIN.gym_notes[raid.gym_id] ? MAIN.gym_notes[raid.gym_id].description : '',
+  // CHECK FOR GYM NAME AND NOTES
+  gym.name = raid.gym_name ? raid.gym_name : 'No Name';
+  gym.notes = MAIN.gym_notes[raid.gym_id] ? MAIN.gym_notes[raid.gym_id].description : '';
 
-    // DETERMINE POKEMON NAME AND FORM OR EGG
-    boss: raid.locale.pokemon_name ? raid.locale.pokemon_name : 'Egg',
-    form: raid.locale.form ? raid.locale.form : '',
+  // DETERMINE POKEMON NAME AND FORM OR EGG
+  gym.boss = raid.locale.pokemon_name ? raid.locale.pokemon_name : 'Egg';
+  gym.form = raid.locale.form ? raid.locale.form : '';
 
-    // CHECK IF EXCLUSIVE RAID
-    sponsor: '',
-    exraid: raid.is_exclusive ? '**EXRaid Invite Only**\n' : '',
+  // CHECK IF EXCLUSIVE RAID
+  gym.sponsor = '';
+  gym.exraid = raid.is_exclusive ? '**EXRaid Invite Only**\n' : '';
 
-    // DETERMIND RAID TYPES AND WEAKNESSES
-    type: typing.type,
-    type_noemoji: typing.type_noemoji,
-    weaknesses: typing.weaknesses,
-    resistances: typing.resistances,
-    reduced: typing.reduced,
+  // DETERMIND RAID TYPES AND WEAKNESSES
+  gym.type = typing.type;
+  gym.type_noemoji = typing.type_noemoji;
+  gym.weaknesses = typing.weaknesses;
+  gym.resistances = typing.resistances;
+  gym.reduced = typing.reduced;
 
-    // GET LOCATION INFO
-    lat: raid.latitude, lon: raid.longitude,
-    map_img: '',
-    area: embed_area,
-    map_url: MAIN.config.FRONTEND_URL,
+  // GET LOCATION INFO
+  gym.lat = raid.latitude;
+  gym.lon = raid.longitude;
+  gym.map_img = '';
+  gym.area = area.embed;
+  gym.map_url = MAIN.config.FRONTEND_URL;
 
-    // MAP LINK PROVIDERS
-    google: '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+raid.latitude+','+raid.longitude)+')',
-    apple: '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+raid.latitude+','+raid.longitude+'&z=10&t=s&dirflg=d')+')',
-    waze: '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+raid.latitude+','+raid.longitude+'&navigate=yes')+')',
-    pmsf: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+raid.latitude+'&lon='+raid.longitude+'&zoom=15')+')',
-    rdm: '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+raid.latitude+'/'+raid.longitude+'/15')+')',
-
-    // GET STATIC MAP TILE
-    map_img: await MAIN.Static_Map_Tile(MAIN, raid.latitude, raid.longitude, 'raid'),
-    tile: 'https://static-maps.yandex.ru/1.x/?lang=en-US&ll='+raid.longitude+','+raid.latitude+'&z=15&l=map&size=400,220&pt='+raid.longitude+','+raid.latitude+',pm2rdl'
-  };
-
-  // CHECK IF SPONSORED GYM
-  if(raid.sponsor_id || raid.ex_raid_eligible){ gym.sponsor = ' | '+MAIN.emotes.exPass+' Eligible'; }
+  // MAP LINK PROVIDERS
+  gym.google = '[Google]('+await MAIN.Short_URL(MAIN, 'https://www.google.com/maps?q='+raid.latitude+','+raid.longitude)+')';
+  gym.apple = '[Apple]('+await MAIN.Short_URL(MAIN, 'http://maps.apple.com/maps?daddr='+raid.latitude+','+raid.longitude+'&z=10&t=s&dirflg=d')+')';
+  gym.waze = '[Waze]('+await MAIN.Short_URL(MAIN, 'https://www.waze.com/ul?ll='+raid.latitude+','+raid.longitude+'&navigate=yes')+')';
+  gym.pmsf = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'?lat='+raid.latitude+'&lon='+raid.longitude+'&zoom=15')+')';
+  gym.rdm = '[Scan Map]('+await MAIN.Short_URL(MAIN, MAIN.config.FRONTEND_URL+'@/'+raid.latitude+'/'+raid.longitude+'/15')+')';
 
   // DETERMINE GYM CONTROL
   switch(raid.team_id){
     case 1:
       gym.team = MAIN.emotes.mystic+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_blue.png';
+      gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_blue.png';
       break;
     case 2:
       gym.team = MAIN.emotes.valor+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_red.png';
+      gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_red.png';
       break;
     case 3:
       gym.team = MAIN.emotes.instinct+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
+      gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
       break;
     default:
       gym.team = 'Uncontested Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/TeamLess.png';
+      gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/TeamLess.png';
   }
+
+  // CHECK IF SPONSORED GYM
+  if(raid.sponsor_id || raid.ex_raid_eligible){ sponsor = ' | '+MAIN.emotes.exPass+' Eligible'; }
 
   // GET RAID COLOR
   switch(raid.level){
@@ -102,6 +104,18 @@ module.exports.run = async (MAIN, target, raid, raid_type, main_area, sub_area, 
         case 5: gym.sprite = 'https://i.imgur.com/jaTCRXJ.png'; break;
       }
 
+      // STATIC MAP TILE
+      gym.static_marker = [{
+        "url" : gym.sprite,
+        "height" : 40,
+        "width" : 40,
+        "x_offset" : 0,
+        "y_offset" : 0,
+        "latitude" : raid.latitude,
+        "longitude" : raid.longitude
+      }];
+      gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
+
       // CREATE THE EGG EMBED
       raid_embed = await Embed_Config(gym);
 
@@ -126,7 +140,19 @@ module.exports.run = async (MAIN, target, raid, raid_type, main_area, sub_area, 
       gym.maxCP_boosted = pvp.CalculateCP(MAIN,raid.pokemon_id,raid.form,15,15,15,25);
 
       // GET THE RAID BOSS SPRITE
-      gym.sprite = await MAIN.Get_Sprite(MAIN, raid);
+      gym.sprite = MAIN.Get_Sprite(MAIN, raid);
+
+      // STATIC MAP TILE
+      gym.static_marker = [{
+        "url" : MAIN.config.STATIC_SPRITE+raid.pokemon_id+".png",
+        "height" : 50,
+        "width" : 50,
+        "x_offset" : 0,
+        "y_offset" : 0,
+        "latitude" : raid.latitude,
+        "longitude" : raid.longitude
+      }];
+      gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
 
       // CREATE THE RAID EMBED
       raid_embed = await Embed_Config(gym)

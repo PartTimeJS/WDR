@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+
 const moment = require('moment-timezone');
 const Send_Raid = require('../embeds/raids.js');
 
@@ -59,7 +59,7 @@ module.exports = async (MAIN, raid, message, discord, timezone) => {
                 [true, channel.id, member.id, new_channel.id, moment().unix(), boss_name, new_role.id, raid.gym_id], function (error, raids, fields) {
                   if(error){ return console.error('[REACTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] Problem updating active_raids',error); }
 
-                  let created_success = new Discord.RichEmbed().setColor('00ff00')
+                  let created_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
                     .setAuthor(member.nickname, member.displayAvatarURL)
                     .setTitle(boss_name+' Raid Lobby Created!')
                     .setDescription(new_channel)

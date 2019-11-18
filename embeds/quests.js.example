@@ -8,7 +8,7 @@ module.exports = function(p) {
   .addField( p.reward+'  |  '+p.area, p.task, false)
   .addField('Pokéstop:', p.name, false)
   .addField('Directions:',p.google+' | '+p.apple+' | '+p.pmsf,false)
-  .setImage(p.map_img)
+  .setImage(p.static_map)
   .setFooter('Expires: '+p.time);
 
   return quest_embed;

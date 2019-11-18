@@ -12,9 +12,9 @@
 	"min_cp": 0,
 	"max_cp": 10000,
 
-	"gender": "All",
+	"gender": "all",
 
-	"size": "All",
+	"size": "all",
 
 	"Bulbasaur": "False",
 	"Ivysaur": "False",
