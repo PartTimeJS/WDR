@@ -44,7 +44,7 @@ async function pokemon_view(MAIN, message, member, pokemon, prefix, discord){
   let guild = MAIN.guilds.get(discord.id);
   let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0];
   let pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
-  let locale = await MAIN.Get_Locale(pokemon, discord);
+  let locale = await MAIN.Get_Locale(MAIN, pokemon);
 
   let sprite = MAIN.Get_Sprite(MAIN, pokemon);
   let role_id = '';
