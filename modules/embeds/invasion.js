@@ -46,20 +46,20 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
   pokestop.second = '';
   pokestop.third = '';
 
-  // WEAKNESSES FOR INVASION TYPES
-  if(type == 'Tier II' && MAIN.grunts[invasion.grunt_type].encounters){type = MAIN.masterfile.pokemon[parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0])].types[0]}
-  if(type != 'Tier II' && MAIN.types[type]){
-    MAIN.types[type].resistances.forEach((resistance,index) => {
-      MAIN.types[type].weaknesses.forEach((weakness,index) => {
-        if(pokestop.weaknesses.indexOf(MAIN.emotes[weakness.toLowerCase()]) < 0){
-          pokestop.weaknesses += MAIN.emotes[weakness.toLowerCase()]+' ';
-        }
-        if(pokestop.resistances.indexOf(MAIN.emotes[resistance.toLowerCase()]) < 0){
-          pokestop.resistances += MAIN.emotes[resistance.toLowerCase()]+' ';
-        }
-      });
-    });
-  }
+  // // WEAKNESSES FOR INVASION TYPES
+  // if(type == 'Tier II' && MAIN.grunts[invasion.grunt_type].encounters){ type = MAIN.masterfile.pokemon[parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0])].types[0] }
+  // if(type != 'Tier II' && MAIN.types[type]){
+  //   MAIN.types[type].resistances.forEach((resistance,index) => {
+  //     MAIN.types[type].weaknesses.forEach((weakness,index) => {
+  //       if(pokestop.weaknesses.indexOf(MAIN.emotes[weakness.toLowerCase()]) < 0){
+  //         pokestop.weaknesses += MAIN.emotes[weakness.toLowerCase()]+' ';
+  //       }
+  //       if(pokestop.resistances.indexOf(MAIN.emotes[resistance.toLowerCase()]) < 0){
+  //         pokestop.resistances += MAIN.emotes[resistance.toLowerCase()]+' ';
+  //       }
+  //     });
+  //   });
+  // }
   if(!pokestop.resistances || pokestop.resistances.trim() == 'undefined'){ pokestop.resistances = 'None'; }
   if(!pokestop.weaknesses || pokestop.weaknesses.trim() == 'undefined'){ pokestop.weaknesses = 'None'; }
 
@@ -124,6 +124,7 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
       });
     }
   }
+  
   if(MAIN.grunts[invasion.grunt_type].second_reward && MAIN.grunts[invasion.grunt_type].second_reward == 'true'){
     pokestop.encounters = '';
     pokestop.encounters += '**85% Chance to Encounter**:\n '+pokestop.first+'\n';
