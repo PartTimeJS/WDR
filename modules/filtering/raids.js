@@ -29,7 +29,6 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
       switch(true){
         case !raid_channel[1].embed: embed = 'raid_eggs.js'; break;
         case !raid_channel[1].embed_egg: embed = 'raid_eggs.js'; break;
-        case raid_channel[1].embed_egg: embed = raid_channel[1].embed_egg; break;
         default: embed = raid_channel[1].embed_egg;
       }
     } else {
