@@ -7,7 +7,7 @@ module.exports = function(p) {
   .setAuthor(p.name, p.url)
   .setDescription('**'+p.type+'** Lure')
   .addField(p.area+': ',p.google+' | '+p.apple+' | '+p.pmsf, false)
-  .setImage(.static_map)
+  .setImage(p.static_map)
   .setFooter('Lure Expires at: '+p.time+' ('+p.mins+' Mins) ');
 
   return lure_embed;
