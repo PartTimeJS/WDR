@@ -48,7 +48,7 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
 
   // WEAKNESSES FOR INVASION TYPES
   if(type == 'Tier II' && MAIN.grunts[invasion.grunt_type].encounters){type = MAIN.masterfile.pokemon[parseInt(MAIN.grunts[invasion.grunt_type].encounters.first[0].split('_')[0])].types[0]}
-  if(type != 'Tier II'){
+  if(type != 'Tier II' && MAIN.types[type]){
     MAIN.types[type].resistances.forEach((resistance,index) => {
       MAIN.types[type].weaknesses.forEach((weakness,index) => {
         if(pokestop.weaknesses.indexOf(MAIN.emotes[weakness.toLowerCase()]) < 0){

@@ -152,7 +152,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
 
       // CREATE THE RAID EMBED
-      raid_embed = await Embed_Config(gym)
+      raid_embed = await Embed_Config(gym);
 
       type = 'Raid Boss';
       break;
