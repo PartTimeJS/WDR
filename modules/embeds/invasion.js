@@ -92,32 +92,37 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
   // POSSIBLE ENCOUNTERS
   if(MAIN.grunts[invasion.grunt_type].encounters){
     let name = '', pokemon_id = '';
-    MAIN.grunts[invasion.grunt_type].encounters.first.forEach((id) => {
-      pokemon_id = parseInt(id.split('_')[0]);
-      if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
-        name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
-      } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
-      pokestop.first += name+' ';
-    });
-    MAIN.grunts[invasion.grunt_type].encounters.second.forEach((id) => {
-      pokemon_id = parseInt(id.split('_')[0]);
-      if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
-        name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
-      } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
-      if(pokestop.first.indexOf(name) < 0 && pokestop.first.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0){
-        pokestop.second += name+' ';
-      }
-    });
-    MAIN.grunts[invasion.grunt_type].encounters.third.forEach((id) => {
-      pokemon_id = parseInt(id.split('_')[0]);
-      if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
-        name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
-      } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
-      if(pokestop.first.indexOf(name) < 0 && pokestop.second.indexOf(name) < 0 && pokestop.first.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0 && pokestop.second.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0){
-        pokestop.third += name+' ';
-      }
-
-    });
+    if(MAIN.grunts[invasion.grunt_type].encounters.first){
+      MAIN.grunts[invasion.grunt_type].encounters.first.forEach((id) => {
+        pokemon_id = parseInt(id.split('_')[0]);
+        if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
+          name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
+        } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
+        pokestop.first += name+' ';
+      });
+    }
+    if(MAIN.grunts[invasion.grunt_type].encounters.second){
+      MAIN.grunts[invasion.grunt_type].encounters.second.forEach((id) => {
+        pokemon_id = parseInt(id.split('_')[0]);
+        if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
+          name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
+        } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
+        if(pokestop.first.indexOf(name) < 0 && pokestop.first.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0){
+          pokestop.second += name+' ';
+        }
+      });
+    }
+    if(MAIN.grunts[invasion.grunt_type].encounters.third){
+      MAIN.grunts[invasion.grunt_type].encounters.third.forEach((id) => {
+        pokemon_id = parseInt(id.split('_')[0]);
+        if(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name] != undefined){
+          name = MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]
+        } else { name = MAIN.masterfile.pokemon[pokemon_id].name }
+        if(pokestop.first.indexOf(name) < 0 && pokestop.second.indexOf(name) < 0 && pokestop.first.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0 && pokestop.second.indexOf(MAIN.emotes[MAIN.masterfile.pokemon[pokemon_id].name]) < 0){
+          pokestop.third += name+' ';
+        }
+      });
+    }
   }
   if(MAIN.grunts[invasion.grunt_type].second_reward && MAIN.grunts[invasion.grunt_type].second_reward == 'true'){
     pokestop.encounters = '';
