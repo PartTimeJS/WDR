@@ -31,21 +31,4 @@ module.exports = (MAIN, pokemon) => {
       return {pokemon_id: pokemon_id, form: form_id, pokemon_name: MAIN.masterfile.pokemon[key].name};
     }
   }
-
-  // DE NAMES LOOKUP
-  for (key in MAIN.de.values) {
-    if (MAIN.de.values[key].toLowerCase() === pokemon_name) {
-      pokemon_id = key.split('_')[1];
-      if (pokemon_form){
-        Object.keys(MAIN.masterfile.pokemon[key].forms).forEach(function(id){
-          if(MAIN.de.values['form_'+id].toLowerCase() === pokemon_form){
-            form_id = id;
-          }
-        });
-      } else if(MAIN.masterfile.pokemon[pokemon_id].default_form){
-        form_id = MAIN.masterfile.pokemon[pokemon_id].default_form;
-      } else { form_id = 0; }
-      return {pokemon_id: pokemon_id, form: form_id, pokemon_name: MAIN.de.values[key]};
-    }
-  }
 }
