@@ -11,8 +11,8 @@ module.exports = (MAIN, quest) => {
 
     // ITEM REWARDS (EXCEPT STARDUST)
     case 2:
-      simple_reward = MAIN.proto.values['item_'+quest.rewards[0].info.item_id];
-      quest_reward = quest.rewards[0].info.amount+' '+MAIN.proto.values['item_'+quest.rewards[0].info.item_id];
+      simple_reward = MAIN.masterfile.item[quest.rewards[0].info.item_id];
+      quest_reward = quest.rewards[0].info.amount+' '+MAIN.masterfile.item[quest.rewards[0].info.item_id];
       if(quest.rewards[0].info.amount > 1){
         if(quest_reward.indexOf('Berry') >= 0){ quest_reward = quest_reward.toString().slice(0,-1)+'ies'; }
         else{ quest_reward = quest_reward+'s'; }

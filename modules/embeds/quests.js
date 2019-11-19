@@ -102,7 +102,7 @@ function Get_Quest_Task(MAIN, quest, server){
       if(quest.conditions[0].info && quest.conditions[0].info.pokemon_type_ids){
         let catch_types = '';
         quest.conditions[0].info.pokemon_type_ids.forEach((type,index) => {
-          catch_types += MAIN.proto.values['poke_type_'+type]+', ';
+          catch_types += MAIN.masterfile.quest_condition[type]+', ';
         });
         catch_types = catch_types.slice(0,-2);
         return 'Catch '+quest.target+' '+catch_types+' Type Pokémon.';
@@ -116,17 +116,17 @@ function Get_Quest_Task(MAIN, quest, server){
     case quest.template.indexOf('catch')>=0:
       if(quest.conditions && quest.conditions[0]){
         if(quest.conditions[0].info && quest.conditions[0].info.pokemon_type_ids){
-          return 'Catch '+quest.target+' '+MAIN.proto.values['poke_type_'+quest.conditions[0].info.pokemon_type_ids[0]]+' Type Pokémon.';
+          return 'Catch '+quest.target+' '+MAIN.masterfile.quest_condition[quest.conditions[0].info.pokemon_type_ids[0]]+' Type Pokémon.';
         } else{
-          return 'Catch '+quest.target+' '+MAIN.proto.values['quest_condition_'+quest.conditions[0].type]+' Pokémon.';
+          return 'Catch '+quest.target+' '+MAIN.masterfile.quest_condition[quest.conditions[0].type]+' Pokémon.';
         }
       } else{ return 'Catch '+quest.target+' Pokémon.'; }
 
     // LANDING SPECIFIC THROWS
     case quest.template.indexOf('land') >= 0:
       let curveball = '', throw_type = '';
-      if(MAIN.proto.values['throw_type_'+quest.conditions[0].info.throw_type_id]){
-        throw_type = MAIN.proto.values['throw_type_'+quest.conditions[0].info.throw_type_id];
+      if(MAIN.masterfile.throw_type[quest.conditions[0].info.throw_type_id]){
+        throw_type = MAIN.masterfile.throw_type[quest.conditions[0].info.throw_type_id];
       }
       if(quest.template.indexOf('curve') >= 0){ curveball = ' Curveball'; }
       if(quest.template.indexOf('inarow') >= 0){
