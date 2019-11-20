@@ -1,5 +1,3 @@
-const request = require('request');
-
 module.exports = (MAIN, pokemon) => {
   if(!pokemon){ return undefined; }
   pokemon = pokemon.split(' ');

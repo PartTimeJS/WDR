@@ -1,8 +1,8 @@
 [DB]
-HOST = 127.0.0.1
-NAME = rdmdb
+HOST = 0.0.0.0
+NAME = db
 USER = user
-PASSWORD = pass
+PASSWORD = pwd
 PORT = 3306
 CHARSET = utf8mb4
 TABLE_GYM = gym
@@ -13,15 +13,15 @@ TABLE_POKESTOP = pokestop
 TABLE_POKESTOP_ID = id
 TABLE_POKESTOP_NAME = name
 TABLE_POKESTOP_IMAGE = url
+DB_INGRESS = PMSF_MANUAL_DB
 
 [Ingress]
+COOKIES = long_string_copied_from_browser
+USERNAME = gmail_username_without_@gmail.com
+PASSWORD = gmail_pwd
 
-# PUT ENTIRE COOKIE. LOOKS LIKE THE BELOW
-COOKIES = SACSID=~AJKiYcHvcrYrr_qMHnOC2eYC3J9S1aIucookieFRosNs5KPdVtFqe1FgIgQ7IdL1zX4Xn_2795LgB-eFRHZZM8hrILTw38ZiTrNUtCkoqUtNFFSKnheh4kUgLTL_TjDxUITRG6MtD7YvkV1-_-R1T2a2Dij9AJsQ25J7erkZlxumkDgpcWEpMM17dKgKxDtFJqQU62UhR9QrkdsnCqQDAHpx_Vv3lQfxaJnRysLgru1JEX4F2eeQw-YS94ebIvdh2tn-uBzxeCEflHgjKDGkwgXveOpxxh9Tiiq_0NKUgmUJdj0PuhM0bH8wZ; csrftoken=o9lWzopQMmv2LiHw3ZTWgDHhfHckaNYn; sessionid="gAJ9cQEoVQl1c2VyRW1haWxxAlgXAAAAUi5HLkxlVmFzc2V1ckBnbWFpbC5jb21yNzYyOTJVCHByb3ZpZGVycQRVBkdPT0dMRXEFdS4:1iIjUr:Zv223gM5deyKKTobJwaJ48V_7bY"; ingress.intelmap.shflt=viz; ingress.intelmap.lat=25; ingress.intelmap.lng=0; ingress.intelmap.zoom=3
-
-# YOUR GMAIL LOGIN. INCLUDE @GMAIL.COM
-USERNAME = this@gmail.com
-PASSWORD = password
+[Area]
+BBOX = 0.00,0.00,0.00,0.00
 
 [Other]
 ENCODING = utf-8

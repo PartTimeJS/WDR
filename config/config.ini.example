@@ -25,8 +25,9 @@ log_ping = optional role etc. remove if you don't want to use.
 LISTENING_PORT = 3333
 
 # STATIC MAP (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
-STATIC_MAP_URL = https://static.pokemap.org/static/osm-bright/
+STATIC_MAP_URL = https://yourpokemap.com/static/osm-bright/
 # THIS REPO MUST BE ONE THAT ACCEPTS pokemon_icon_<ID>_<FORM> FORMAT ONLY.
+# SPRITE_SPRITE = https://raw.githubusercontent.com/geekygreek7/pokedave_shuffle_icons_-PMSF-/master/
 STATIC_SPRITE = https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/NOVA_Sprites/
 STATIC_WIDTH = 400
 STATIC_HEIGHT = 220
