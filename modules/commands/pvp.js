@@ -519,7 +519,7 @@ async function subscription_modify(MAIN, message, nickname, prefix, discord){
           }
 
           // RETRIEVE MIN RANK FROM USER
-          sub.min_rank = await sub_collector(MAIN,'Minimum Rank',nickname,message,sub.name,'Please respond with a IV number between 0 and 100, specify minimum Atk/Def/Sta (15/14/13) Values -OR- type \'All\'. Type \'Cancel\' to Stop.',sub,discord);
+          sub.min_rank = await sub_collector(MAIN,'Minimum Rank',nickname,message,sub.name,'Please respond with a minimum rank value netweem 1 and 4096. Type \'Cancel\' to Stop.',sub,discord);
           if(sub.min_rank.toLowerCase() == 'cancel'){ return subscription_cancel(MAIN, nickname, message, prefix, discord); }
           else if(sub.min_rank == 'time'){ return subscription_timedout(MAIN, nickname, message, prefix, discord); }
 
@@ -529,7 +529,7 @@ async function subscription_modify(MAIN, message, nickname, prefix, discord){
           // else if(sub.max_rank == 'time'){ return subscription_timedout(MAIN, nickname, message, prefix, discord); }
 
           // RETRIEVE MIN PERCENT FROM USER
-          sub.min_percent = await sub_collector(MAIN,'Minimum Percent',nickname,message,sub.name,'Please respond with a value between 0 and 35 or type \'All\'. Type \'Cancel\' to Stop.',sub,discord);
+          sub.min_percent = await sub_collector(MAIN,'Minimum Percent',nickname,message,sub.name,'Please respond with a value between 0 and 100. Type \'Cancel\' to Stop.',sub,discord);
           if(sub.min_percent.toLowerCase() == 'cancel'){ return subscription_cancel(MAIN, nickname, message, prefix, discord); }
           else if(sub.min_percent == 'time'){ return subscription_timedout(MAIN, nickname, message, prefix, discord); }
 
@@ -539,7 +539,7 @@ async function subscription_modify(MAIN, message, nickname, prefix, discord){
           // else if(sub.max_percent == 'time'){ return subscription_timedout(MAIN, nickname, message, prefix, discord); }
 
           // CONFIRM AREAS
-          sub.areas = await sub_collector(MAIN,'Area Filter',nickname,message,sub.name,'Please respond with \'Yes\', \'No\' or \'Area Names Separated by ,\'',undefined,discord);
+          sub.areas = await sub_collector(MAIN,'Area Filter',nickname,message,sub.name,'Please respond with \'Yes\' or \'No\'.',undefined,discord);
           if(sub.areas.toLowerCase() == 'cancel'){ return subscription_cancel(MAIN, nickname, message, prefix, discord); }
           else if(sub.areas == 'time'){ return subscription_timedout(MAIN, nickname, message, prefix, discord) }
 
@@ -630,8 +630,7 @@ function sub_collector(MAIN,type,nickname,message,pokemon,requirements,sub,disco
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Do you want to get notifications for '+pokemon+' filtered by your subscribed Areas?')
           .setDescription('If you choose **Yes**, your notifications for this Pokémon will be filtered based on your areas.\n'+
-                          'If you choose **No**, you will get notifications for this pokemon in ALL areas for the city.\n'+
-                          'If you type an Area, you will be able to get notifications outside of your normal area geofence.')
+                          'If you choose **No**, you will get notifications for this pokemon in ALL areas for the city.')
           .setFooter(requirements); break;
 
 
