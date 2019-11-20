@@ -23,7 +23,7 @@ module.exports.run = async (MAIN, sighting, area, server, timezone) => {
           case !member:
           case member == undefined: return;
           case MAIN.config.Donor_Check == 'DISABLED': break;
-          case !member.roles.has(server.donor_role): return;
+          case !member.roles.has(server.donor_role) && !member.roles.some(r=>server.donor_role.includes(r.id)): return;
         }
 
         // DEFINE VARIABLES
