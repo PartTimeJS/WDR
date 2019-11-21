@@ -717,7 +717,7 @@ async function match_collector(MAIN, type, member, message, object, requirements
         let description = '';
         await MAIN.asyncForEach(object, async (match,index) => {
           let match_area = await MAIN.Get_Area(MAIN, match.lat, match.lon, discord);
-          let match_name = match.name+' ['+match_area.area.embed+']';
+          let match_name = match.name+' ['+match_area.embed+']';
           description += (index+1)+'. '+match_name+'\n';
         })
         if(description.length > 2048){

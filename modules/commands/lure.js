@@ -9,7 +9,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   await MAIN.stop_array.forEach(async(stop,index) => {
     if(InsideGeojson.polygon(discord.geofence, [stop.lon,stop.lat])){
       let stop_area = await MAIN.Get_Area(MAIN, stop.lat, stop.lon, discord);
-      let stop_name = stop.name+' ['+stop_area.area.embed+']';
+      let stop_name = stop.name+' ['+stop_area.embed+']';
       available_stops.push(stop_name); stop_collection.set(stop_name, stop);
     }
   });
@@ -559,7 +559,7 @@ async function match_collector(MAIN, type, nickname, message, object, requiremen
         let description = '';
         await MAIN.asyncForEach(object, async (match,index) => {
           let match_area = await MAIN.Get_Area(MAIN, match.lat, match.lon, discord);
-          let match_name = match.name+' ['+match_area.area.embed+']';
+          let match_name = match.name+' ['+match_area.embed+']';
           description += (index+1)+'. '+match_name+'\n';
         })
         options = new MAIN.Discord.RichEmbed()
