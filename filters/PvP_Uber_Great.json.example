@@ -1,9 +1,20 @@
 {
 	"Type": "pvp",
-	
+	"Post_Without_IV": false,
+
+	"league": "great",
+
+	"min_iv": 0,
+	"max_iv": 100,
+
+	"min_level": 0,
+	"max_level": 35,
+
+	"min_cp": 0,
+	"max_cp": 10000,
 
 	"min_cp_range": 1490,
-	"league": "great",
+	"max_cp_range": 1500,
 
 	"min_pvp_percent": 99,
 	"min_pvp_rank": 10,
@@ -679,7 +690,7 @@
 	"Vivillon": "True",
 	"Litleo": "True",
 	"Pyroar": "True",
-	"Flab\u00e9b\u00e9": "True",
+	"Flabébé": "True",
 	"Floette": "True",
 	"Florges": "True",
 	"Skiddo": "True",
