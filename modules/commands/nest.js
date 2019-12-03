@@ -49,8 +49,8 @@ function pokemon_view(MAIN, message, nickname, pokemon_id, search_area, prefix, 
         let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0]; discord_match = true;
         area = await MAIN.Get_Area(MAIN, nest.lat,nest.lon, discord).catch(console.log);
         if (area){
-          if (search_area == area.area.embed || search_area == 'ALL') {
-            Send_Nest.run(MAIN, message, nest, discord, area.area.embed, timezone, embed);
+          if (search_area == area.embed || search_area == 'ALL') {
+            Send_Nest.run(MAIN, message, nest, discord, area, timezone, embed);
             message.channel.send('Nest sent, check your inbox if not in the channel.')
             .then(m => m.delete(5000)).catch(console.error);
             nest_found = true;
@@ -77,8 +77,8 @@ function park_view(MAIN, message, nickname, name, search_area, prefix, discord, 
         let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0]; discord_match = true;
         area = await MAIN.Get_Area(MAIN, nest.lat,nest.lon, discord).catch(console.log);
         if (area){
-          if (search_area == area.area.embed || search_area == 'ALL') {
-            Send_Nest.run(MAIN, message, nest, discord, area.area.embed, timezone, embed);
+          if (search_area == area.embed || search_area == 'ALL') {
+            Send_Nest.run(MAIN, message, nest, discord, area, timezone, embed);
             message.channel.send('Nest sent, check your inbox if not in the channel.')
             .then(m => m.delete(5000)).catch(console.error);
             nest_found = true;

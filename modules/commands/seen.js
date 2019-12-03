@@ -27,7 +27,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 
 async function pokemon_view(MAIN, message, nickname, target, prefix, discord){
   let guild = MAIN.guilds.get(discord.id);
-  let locale = await MAIN.Get_Names(MAIN, target);
+  let locale = await MAIN.Get_Data(MAIN, target);
   let pokemon_name = locale.pokemon_name;
 
   message.reply('Searching... this may take a minute. Check your inbox if not in the channel.').then(m => m.delete(5000)).catch(console.error);

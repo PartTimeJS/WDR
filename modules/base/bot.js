@@ -263,6 +263,13 @@ MAIN.pdb = MySQL.createConnection({
   port: MAIN.config.DB.port,
   database : MAIN.config.DB.db_name
 });
+MAIN.pmsf = MySQL.createConnection({
+  host: MAIN.config.pmsfDB.host,
+  user: MAIN.config.pmsfDB.username,
+  password: MAIN.config.pmsfDB.password,
+  port: MAIN.config.pmsfDB.port,
+  database : MAIN.config.pmsfDB.db_name
+});
 //------------------------------------------------------------------------------
 //  LOAD BASE SCRIPTS
 //------------------------------------------------------------------------------
