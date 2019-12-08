@@ -191,6 +191,7 @@ module.exports =  {
 async function CalculatePossibleCPs(MAIN, pokemonID, formID, attack, defense, stamina, level, gender, league) {
 
   return new Promise(async function(resolve) {
+    
     let possibleCPs = [];
 
     if(isNaN(attack) || isNaN(defense) || isNaN(stamina) || isNaN(level))

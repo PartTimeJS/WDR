@@ -441,9 +441,16 @@ MAIN.webhookParse = async (PAYLOAD) => {
               Pokemon_Feed.run(MAIN, encounter, area, server, timezone);
               Pokemon_Subscription.run(MAIN, encounter, area, server, timezone);
               // ONLY RUN PVP WHEN POKEMON HAS IV CHECK
-              if(encounter.individual_attack != null) {
-                encounter.great_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, encounter.gender, "great");
-                encounter.ultra_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, encounter.gender, "ultra");
+              if(encounter.individual_attack != null) {     
+                // Change gender from proto number to word
+                let gender = encounter.gender;  
+                switch(gender){
+                  case 1: gender = 'male'; break;
+                  case 2: gender = 'female'; break;
+                  default: gender = 'all';
+                }         
+                encounter.great_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, gender, "great");
+                encounter.ultra_league = await pvp.CalculatePossibleCPs(MAIN,encounter.pokemon_id, encounter.form, encounter.individual_attack, encounter.individual_defense, encounter.individual_stamina, encounter.pokemon_level, gender, "ultra");
                 PVP_Feed.run(MAIN, encounter, area, server, timezone);
                 PVP_Subscription.run(MAIN, encounter, area, server, timezone);
               }
