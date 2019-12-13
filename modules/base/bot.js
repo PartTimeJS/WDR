@@ -273,6 +273,9 @@ MAIN.pmsf = MySQL.createConnection({
 //------------------------------------------------------------------------------
 //  LOAD BASE SCRIPTS
 //------------------------------------------------------------------------------
+var Emojis, Raid_Feed, Raid_Subscription, Quest_Feed, Quest_Subscription, Pokemon_Feed, 
+Pokemon_Subscription, PVP_Feed, PVP_Subscription, Lure_Feed, Lure_Subscription,
+Invasion_Feed, Invasion_Subscription;
 function load_data(){
   delete require.cache[require.resolve(__dirname+'/emojis.js')];
   Emojis = require(__dirname+'/emojis.js');
