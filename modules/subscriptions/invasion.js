@@ -4,7 +4,7 @@ const Send_Invasion = require('../embeds/invasion.js');
 module.exports.run = async (MAIN, invasion, area, server, timezone) => {
   //if(!invasion.pokemon_id){ return; }
 
-  if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Invasion == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] Received '+MAIN.grunts[invasion.grunt_type].name+' invasion for '+server.name+'.'); }
+  if(MAIN.debug.Subscriptions == 'ENABLED' && MAIN.debug.Invasion == 'ENABLED'){ console.info('[SUBSCRIPTIONS] ['+MAIN.Bot_Time(null,'stamp')+'] [invasion.js] Received '+MAIN.grunts[invasion.grunt_type].type+' invasion for '+server.name+'.'); }
 
   // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
   MAIN.pdb.query(`SELECT * FROM users WHERE discord_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users, fields){
