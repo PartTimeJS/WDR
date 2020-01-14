@@ -542,7 +542,7 @@ function load_arrays(){
     } else{ return; }
   });
   // NEST NAMES ARRAY
-  MAIN.rdmdb.query(`SELECT * FROM nests WHERE name != 'Unknown Areaname'`, function (error, parks, fields){
+  MAIN.pmsf.query(`SELECT * FROM nests WHERE name != 'Unknown Areaname'`, function (error, parks, fields){
     if(parks){
       parks.forEach((park,index) => {
         let record = {};
