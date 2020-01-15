@@ -102,7 +102,7 @@ function subscription_status(MAIN, message, member, reason, prefix, available_gy
 
 // SUBSCRIPTION REMOVE FUNCTION
 async function subscription_view(MAIN, message, member, prefix, available_gyms, discord, gym_collection){
-  MAIN.pdb.query(`SELECT * FROM users WHERE user_id = ? AND discord_id = ?`, [member.id, discord.id], function (error, user, fields) {
+  MAIN.pdb.query(`SELECT * FROM users WHERE user_id = ? AND discord_id = ?`, [member.id, discord.id], async function (error, user, fields) {
     if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
     if(!user || !user[0]){
       console.error('[COMMANDS] ['+MAIN.Bot_Time(null,'stamp')+'] [raid.js/(subscription_view)] Could not retrieve user: '+member.nickname+' entry from dB.');
@@ -145,14 +145,16 @@ async function subscription_view(MAIN, message, member, prefix, available_gyms, 
           .setFooter('You can type \'view\', \'add\', or \'remove\'.');
 
         // TURN EACH SUBSCRIPTION INTO A FIELD
-        raid.subscriptions.forEach((sub,index) => {
+        await raid.subscriptions.forEach(async (sub,index) => {
           // GET BOSS INFO
           let id = MAIN.Pokemon_ID_Search(MAIN, sub.boss), locale = {};
-          if(id){
-            locale = MAIN.Get_Data(MAIN, {pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form});
-          } locale = locale ? locale : { pokemon_name: sub.boss, form: '' };
-          if(id && !sub.form && MAIN.masterfile.pokemon[id.pokemon_id].default_form){ locale.form = '[All] '; }
-          else if(!locale.form){ locale.form = ''; }
+          if(id){ locale = await MAIN.Get_Data(MAIN, { pokemon_id: id.pokemon_id, form: sub.form ? sub.form : id.form}); }
+
+          if(id && !sub.form && MAIN.masterfile.pokemon[id.pokemon_id].default_form){
+            locale.form = '[All] ';
+          } else if(!locale.form){
+            locale.form = '';
+          }
 
           let fields = field_view(MAIN, index, sub, locale);
 
