@@ -1,11 +1,57 @@
 const Send_Quest = require('../embeds/quests.js');
 
-
 module.exports.run = async (MAIN, quest, area, server, timezone, role_id) => {
 
-  // DETERMINE THE QUEST REWARD
-  let reward = MAIN.Get_Quest_Reward(MAIN, quest);
-  let quest_reward = reward.reward, simple_reward = reward.simple, form_name = reward.form;
+  let quest_reward = 'NO REWARD SET', simple_reward = 'NO REWARD SET';
+
+  let pokemon_name = quest.locale.pokemon_name, form_name = quest.locale.form;
+
+  let reward_type = MAIN.quest_rewards[quest.rewards[0].type].text;
+
+  switch(reward_type){
+    case "Unset":
+      return console.error("UNSET QUEST", quest);
+    case "Experience points":
+      return console.error("EXPERIENCE QUEST", quest);
+
+    // ITEM REWARDS (EXCEPT STARDUST)
+    case "Items":
+      let item_reward = MAIN.items[quest.rewards[0].info.item_id].name;
+      let amount = quest.rewards[0].info.amount;
+
+      if(quest.rewards[0].info.amount > 1){
+        if(quest_reward.indexOf('Berry') >= 0){ quest_reward = quest_reward.toString().slice(0,-1)+'ies'; }
+        else{ quest_reward = quest_reward+'s'; }
+      }
+
+      simple_reward = MAIN.masterfile.item[quest.rewards[0].info.item_id];
+      quest_reward = quest.rewards[0].info.amount+' '+MAIN.masterfile.item[quest.rewards[0].info.item_id];
+      if(quest.rewards[0].info.amount > 1){
+        if(quest_reward.indexOf('Berry') >= 0){ quest_reward = quest_reward.toString().slice(0,-1)+'ies'; }
+        else{ quest_reward = quest_reward+'s'; }
+      } break;
+
+    // STARDUST REWARD
+    case "Stardust":
+      quest_reward = quest.rewards[0].info.amount+' Stardust'; break;
+
+    case "Candy":
+      return console.error("CANDY QUEST", quest);
+
+    case "Avatar clothing":
+      return console.error("AVATAR CLOTHING QUEST", quest);
+
+    case "Quest": console.error('NO REWARD SET. REPORT THIS TO THE DISCORD ALONG WITH THE FOLLOWING:',quest); break;
+
+    // ENCOUNTER REWARDS
+    case "Pokémon encounter":
+      simple_reward = pokemon_name;
+      quest_reward = pokemon_name+' '+form_name+'Encounter'; break;
+      if(quest.rewards[0].info.shiny == true){
+        simple_reward = 'Shiny '+simple_reward;
+        quest_reward = 'Shiny '+quest_reward;
+      } break;
+  }
 
   if(MAIN.config.QUEST.Discord_Feeds == 'ENABLED'){
     if(MAIN.debug.Quests == 'ENABLED' && MAIN.debug.Feed == 'ENABLED'){ console.info(MAIN.Color.green+'[FILTERING] ['+MAIN.Bot_Time(null,'stamp')+'] [quests.js] Received '+quest_reward+' Quest for '+server.name+'.'+MAIN.Color.reset); }
