@@ -8,11 +8,7 @@ module.exports = (MAIN, type, raid_level, server, content, embed, channel_id) =>
   let channel = MAIN.BOTS[MAIN.Next_Bot].channels.get(channel_id);
   if(!channel) { return console.error('Problem finding channel: '+channel_id+' using Bot: '+MAIN.Next_Bot); }
 	return channel.send(content, embed).catch( error => {
-    if(error.code == 'ECONNRESET'){
-      return console.error('[Send_Embed] ['+MAIN.Bot_Time(null,'stamp')+'] ['+channel_id+'] Error Code '+error.code);
-    } else {
-      return console.error('[Send_Embed] ['+MAIN.Bot_Time(null,'stamp')+'] ['+channel_id+'] ['+MAIN.BOTS[MAIN.Next_Bot]+'] '+error);
-    }
+    return console.error('[Send_Embed] ['+MAIN.Bot_Time(null,'stamp')+'] ['+channel_id+']', error);
   });
   return;
 }
