@@ -304,7 +304,6 @@ MAIN.Color = {
 //------------------------------------------------------------------------------
 //  WEBHOOK PARSER
 //------------------------------------------------------------------------------
-setTimeout(function(){ MAIN.Active = true; },30000);
 MAIN.webhookParse = async (PAYLOAD) => {
   // IGNORE IF BOT HAS NOT BEEN FINISHED STARTUP
   if(MAIN.Active == undefined){ return; }
@@ -537,6 +536,7 @@ async function bots_ready(){
   let bots_available = [ALPHA,BRAVO,CHARLIE,DELTA,ECHO,FOXTROT,GULF,HOTEL,INDIA,JULIET,KILO,LIMA,MIKE,NOVEMBER,OSCAR]
   MAIN.BOTS.forEach((this_bot,index) => {
     this_bot.on('ready', () => {
+      if(index == MAIN.BOTS.length-1){ MAIN.Active = true; }
       if(MAIN.config.TOKENS.Hide_Bot_Tokens == 'ENABLED'){ this_bot.user.setPresence({ status: 'invisible' }); }
       if(index == (MAIN.BOTS.length-1)){ return startup_notification(); }
     });
