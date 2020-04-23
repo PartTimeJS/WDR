@@ -36,7 +36,7 @@ module.exports.run = async (MAIN, message, raids, count) => {
   // IF USER HAS NOT PREVIOUSLY SHOWN INTEREST, IGNORE
   user_search().then(function(results){
   if (results === undefined) {
-    return MAIN.channels.get(channel).send('<@'+member+'> You have not expressed interest in this raid, no need to leave.').catch(console.error);
+    return MAIN.channels.find(ch => ch.id === channel).send('<@'+member+'> You have not expressed interest in this raid, no need to leave.').catch(console.error);
   } else {
     // REMOVE ROLE AND DELETE FROM lobby_members
     guild.members.get(member).removeRole(guild.roles.get(raids.role_id));
@@ -52,7 +52,7 @@ module.exports.run = async (MAIN, message, raids, count) => {
         if (lobby.arrived == 'coming') { transit_users += lobby.count; }
         lobby_count += lobby.count;
       });
-    return MAIN.channels.get(channel).send('<@'+member+'>'+interest+'There are:\n```\n'+transit_users+' accounts on the way.\n'+present_users+' accounts at the raid\n'+lobby_count+' total accounts interested```'+lobby_users).catch(console.error);
+    return MAIN.channels.find(ch => ch.id === channel).send('<@'+member+'>'+interest+'There are:\n```\n'+transit_users+' accounts on the way.\n'+present_users+' accounts at the raid\n'+lobby_count+' total accounts interested```'+lobby_users).catch(console.error);
     });
   }
 }).catch(function(err){

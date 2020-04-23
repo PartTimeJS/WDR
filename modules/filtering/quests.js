@@ -66,7 +66,7 @@ module.exports.run = async (MAIN, quest, area, server, timezone, role_id) => {
     // DEFINE MORE VARIABLES
     let embed = quest_channel[1].embed ? quest_channel[1].embed : 'quests.js';
     let geofences = quest_channel[1].geofences.split(',');
-    let channel = MAIN.channels.get(quest_channel[0]);
+    let channel = MAIN.channels.find(ch => ch.id === quest_channel[0]);
     let filter = MAIN.Filters.get(quest_channel[1].filter);
     let role_id = '';
 

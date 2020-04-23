@@ -21,7 +21,7 @@ module.exports.run = async (MAIN, raid, area, server, timezone, role_id) => {
 
     // DEFINE MORE VARIABLES
     let geofences = raid_channel[1].geofences.split(',');
-    let channel = MAIN.channels.get(raid_channel[0]);
+    let channel = MAIN.channels.find(ch => ch.id === raid_channel[0]);
     let filter = MAIN.Filters.get(raid_channel[1].filter);
 
     let embed = '';

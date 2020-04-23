@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, lure, area, server, timezone, role_id) => {
 
     // DEFINE MORE VARIABLES
     let geofences = lure_channel[1].geofences.split(',');
-    let channel = MAIN.channels.get(lure_channel[0]);
+    let channel = MAIN.channels.find(ch => ch.id === lure_channel[0]);
     let filter = MAIN.Filters.get(lure_channel[1].filter);
     let role_id = '';
     let embed = 'lure.js';
