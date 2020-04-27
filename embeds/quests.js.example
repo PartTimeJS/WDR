@@ -1,15 +1,19 @@
 const Discord = require('discord.js');
 module.exports = function(p) {
+  try{
+    // CREATE QUEST EMBED
+    let quest_embed = new Discord.RichEmbed()
+      .setColor(p.color)
+      .setThumbnail(p.sprite)
+      .addField( p.reward+'  |  '+p.area, p.task, false)
+      .addField('Pokéstop:', p.name, false)
+      .addField('Directions:',p.google+' | '+p.apple+' | '+p.waze,false)
+      .setImage(p.static_map)
+      .setFooter('Expires: '+p.time);
 
-  // CREATE QUEST EMBED
-  let quest_embed = new Discord.RichEmbed()
-  .setColor(p.color)
-  .setThumbnail(p.sprite)
-  .addField( p.reward+'  |  '+p.area, p.task, false)
-  .addField('Pokéstop:', p.name, false)
-  .addField('Directions:',p.google+' | '+p.apple+' | '+p.pmsf,false)
-  .setImage(p.static_map)
-  .setFooter('Expires: '+p.time);
+    return quest_embed;
 
-  return quest_embed;
+  } catch{
+    console.error("ERROR CREATING EMBED. MISSING VARIABLE.",p);
+  }
 }

@@ -126,8 +126,25 @@ if(process.env.fork == 0){
   Ontime({ cycle: ontime_times }, function(ot) { MAIN.Purge_Channels(); return ot.done(); });
   // CHECK DATABASE FOR UPGRADED OR REMOVED POKESTOPS
   let check_time = moment();
-  check_time = moment.tz(check_time, 'America/Los_Angeles').set({hour:23,minute:40,second:0,millisecond:0});
-  check_time = moment.tz(check_time, MAIN.config.TIMEZONE).format('HH:mm:ss');
+
+  // QUERY TO CLEAR QUESTS
+  Ontime({ cycle: "00:00:00" }, async function(ot) {
+    // FORCE CLEAR QUESTS
+    if(MAIN.config.rdmDB.Clear_Quests == 'ENABLED'){
+      MAIN.rdmdb.query('UPDATE pokestop SET quest_type = NULL, quest_target = NULL, quest_rewards = NULL, quest_template = NULL, quest_timestamp = NULL, quest_conditions = NULL;', function (error, record, fields) {
+        if(error){ console.error(error); }
+      }); console.log('[Ontime] ['+MAIN.Bot_Time(null,'stamp')+'] Ran Query to Clear Quests.');
+    }
+
+    // TRIM POKEMON SIGHTINGS TABLE
+    if(MAIN.config.rdmDB.Trim_Pokemon_Table == 'ENABLED'){
+      let prune_time = parseInt(MAIN.config.rdmDB.Trim_Days)*86400;
+      MAIN.rdmdb.query('DELETE FROM pokemon WHERE updated < UNIX_TIMESTAMP()-'+prune_time, function (error, record, fields) {
+        if(error){ console.error(error); }
+      }); console.log('[Ontime] ['+MAIN.Bot_Time(null,'stamp')+'] Ran Query to trim Pokemon table.');
+    }
+  });
+  check_time = moment.tz(check_time, 'America/Los_Angeles').set({hour:23,minute:40,second:0,millisecond:0}).format('HH:mm:ss');
   Ontime({ cycle: check_time }, async function(ot) {
     if(MAIN.config.rdmDB.Remove_Upgraded_Pokestops == 'ENABLED'){
       // UPDATE NAMES FOR ANY POSSIBLE NEW GYMS
@@ -144,13 +161,6 @@ if(process.env.fork == 0){
       MAIN.rdmdb.query('DELETE FROM pokestop WHERE updated < UNIX_TIMESTAMP()-90000', function (error, record, fields) {
         if(error){ console.error(error); }
       }); console.log('[Ontime] ['+MAIN.Bot_Time(null,'stamp')+'] Ran Query to remove Stale Pokestops.');
-    }
-    // TRIM POKEMON SIGHTINGS TABLE
-    if(MAIN.config.rdmDB.Trim_Pokemon_Table == 'ENABLED'){
-      let prune_time = parseInt(MAIN.config.rdmDB.Trim_Days)*86400;
-      MAIN.rdmdb.query('DELETE FROM pokemon WHERE updated < UNIX_TIMESTAMP()-'+prune_time, function (error, record, fields) {
-        if(error){ console.error(error); }
-      }); console.log('[Ontime] ['+MAIN.Bot_Time(null,'stamp')+'] Ran Query to trim Pokemon table.');
     }
     if(MAIN.config.rdmDB.Update_Gyms && MAIN.config.rdmDB.Update_Gyms == 'ENABLED'){
       exec('python ingress_scraper/scrape_portal.py -g -c ingress_scraper/default.ini', (err, stdout, stderr) => {
