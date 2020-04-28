@@ -46,6 +46,11 @@ module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time
   }];
   pokemon.static_map = MAIN.config.STATIC_MAP_URL+sighting.latitude+"/"+sighting.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokemon.static_marker));
 
+  //LOG TILE IF enabled
+  if(MAIN.debug.Map_Tiles == "ENABLED"){
+    console.info(pokemon.static_map);
+  }
+
   // TIME VARIABLES
   pokemon.verified = sighting.disappear_time_verified ? MAIN.emotes.checkYes : MAIN.emotes.yellowQuestion;
   pokemon.time = MAIN.Bot_Time(sighting.disappear_time, '1', timezone);
