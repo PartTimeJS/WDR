@@ -7,7 +7,7 @@ module.exports = (MAIN, lat, lon, type) => {
     if(MAIN.config.Map_Tiles == 'ENABLED'){
       let path = MAIN.config.IMAGE_DIR+type+'_tiles/'+lat+','+lon+'.png';
       let url = await MAIN.Short_URL(MAIN, MAIN.config.HOST+type+'_tiles/'+lat+','+lon+'.png');
-      if(MAIN.debug.Map_Tiles == 'ENABLED'){
+      if(MAIN.debug.Tiles == 'ENABLED'){
         console.info('[DEBUG] ['+MAIN.Bot_Time(null,'stamp')+'] [Map Tiles] '+path);
         console.info('[DEBUG] ['+MAIN.Bot_Time(null,'stamp')+'] [Map Tiles] '+url);
       }
