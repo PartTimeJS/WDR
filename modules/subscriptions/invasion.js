@@ -12,7 +12,7 @@ module.exports.run = async (MAIN, invasion, area, server, timezone) => {
       users.forEach((user,index) => {
 
         //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
-        let member = MAIN.guilds.get(server.id).members.get(user.user_id);
+        let member = MAIN.guilds.cache.get(server.id).members.get(user.user_id);
         switch(true){
           case !member:
           case member == undefined: return;

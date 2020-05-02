@@ -16,11 +16,11 @@ module.exports.run = async (MAIN, BOT, message) => {
     MAIN.Discords.Servers.forEach( async (server,index) => {
 
       // GET GUILD
-      let guild = MAIN.guilds.get(server.id);
+      let guild = MAIN.guilds.cache.get(server.id);
       if(!guild){ return; }
 
       // GET MEMBER
-      let member = MAIN.guilds.get(server.id).members.get(message.author.id);
+      let member = MAIN.guilds.cache.get(server.id).members.get(message.author.id);
       if(!member){ return; }
 
       let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;
@@ -70,7 +70,7 @@ module.exports.run = async (MAIN, BOT, message) => {
     if(server.ignored_channels.indexOf(message.channel.id) >= 0) { return; }
 
     // GET GUILD
-    let guild = MAIN.guilds.get(server.id);
+    let guild = MAIN.guilds.cache.get(server.id);
     if(!guild){ return; }
 
     // GET MEMBER

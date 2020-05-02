@@ -18,7 +18,7 @@ module.exports.run = async (MAIN, sighting, area, server, timezone) => {
 
         //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
         if(user.discord_id != server.id){ return; }
-        let member = MAIN.guilds.get(server.id).members.get(user.user_id);
+        let member = MAIN.guilds.cache.get(server.id).members.get(user.user_id);
         switch(true){
           case !member:
           case member == undefined: return;

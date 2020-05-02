@@ -120,7 +120,7 @@ async function subscription_create(MAIN, message, nickname, prefix, league, disc
   }
   else {
     // CHECK IF THE TARGET IS A USER
-    let member = MAIN.guilds.get(discord.id).members.get(message.author.id);
+    let member = MAIN.guilds.cache.get(discord.id).members.get(message.author.id);
     if(!member){ return; }
     return member.send(rank_embed).catch(console.error);
   }

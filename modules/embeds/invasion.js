@@ -4,7 +4,7 @@ module.exports.run = async (MAIN, target, invasion, type, area, server, timezone
   let Embed_Config = require('../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
 
   // VARIABLES
   let time_now = new Date().getTime();
