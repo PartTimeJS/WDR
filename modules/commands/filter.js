@@ -61,7 +61,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 
   if(!filterType || !filterCommand)
   {
-    return MAIN.channels.find(ch => ch.id === channelID).send("Proper use of filter is:\n```"+prefix+"filter <pokemon|raid|quest|lure|invasion> <list|add|delete|edit(only pokemon)> <pokemon|raid|lure|reward|stat> <value(only with pokemon stat edit)>```").catch(console.error);
+    return MAIN.channels.cache.get(channelID).send("Proper use of filter is:\n```"+prefix+"filter <pokemon|raid|quest|lure|invasion> <list|add|delete|edit(only pokemon)> <pokemon|raid|lure|reward|stat> <value(only with pokemon stat edit)>```").catch(console.error);
   }
 
   filterType = filterType.toLowerCase();
@@ -69,17 +69,17 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 
   if(!functions[filterType])
   {
-    return MAIN.channels.find(ch => ch.id === channelID).send("I don't have a filter type of: "+filterType).catch(console.error);
+    return MAIN.channels.cache.get(channelID).send("I don't have a filter type of: "+filterType).catch(console.error);
   }
 
   if(!functions[filterType][filterCommand])
   {
-    return MAIN.channels.find(ch => ch.id === channelID).send("I don't know what to do with a filter of type: "+filterType+" using command: "+filterCommand).catch(console.error);
+    return MAIN.channels.cache.get(channelID).send("I don't know what to do with a filter of type: "+filterType+" using command: "+filterCommand).catch(console.error);
   }
   
   let result = functions[filterType][filterCommand](MAIN,args,channelID);
 
-  return MAIN.channels.find(ch => ch.id === channelID).send(result).catch(console.error);
+  return MAIN.channels.cache.get(channelID).send(result).catch(console.error);
 }
 
 function ListRaid(MAIN,pokemon,channelID)

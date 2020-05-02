@@ -19,7 +19,7 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
 
     // DEFINE FILTER VARIABLES   
     let geofences = pvp_channel[1].geofences.split(',');
-    let channel = MAIN.channels.find(ch => ch.id === pvp_channel[0]);
+    let channel = MAIN.channels.cache.get(pvp_channel[0]);
     let filter = MAIN.Filters.get(pvp_channel[1].filter);
     let embed = pvp_channel[1].embed ? pvp_channel[1].embed : 'pvp.js';
     let role_id = '';

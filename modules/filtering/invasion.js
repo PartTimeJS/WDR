@@ -28,7 +28,7 @@ module.exports.run = async (MAIN, invasion, area, server, timezone, role_id) => 
 
     // DEFINE MORE VARIABLES
     let geofences = invasion_channel[1].geofences.split(',');
-    let channel = MAIN.channels.find(ch => ch.id === invasion_channel[0]);
+    let channel = MAIN.channels.cache.get(invasion_channel[0]);
     let filter = MAIN.Filters.get(invasion_channel[1].filter);
     let role_id = '';
     let embed = 'invasion.js';

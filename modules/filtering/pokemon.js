@@ -19,7 +19,7 @@ module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => 
 
     // DEFINE FILTER VARIABLES
     let geofences = pokemon_channel[1].geofences.split(',');
-    let channel = MAIN.channels.find(ch => ch.id === pokemon_channel[0]);
+    let channel = MAIN.channels.cache.get(pokemon_channel[0]);
     let filter = MAIN.Filters.get(pokemon_channel[1].filter);
     let target = filter[MAIN.masterfile.pokemon[sighting.pokemon_id].name];
     let role_id = '', embed = '';

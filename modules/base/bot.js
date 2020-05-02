@@ -109,7 +109,7 @@ if(process.env.fork == 0){
   // PURGE CHANNEL
   function clear_channel(channel_id){
     return new Promise( async function(resolve) {
-      let channel = await MAIN.channels.find(ch => ch.id === channel_id);
+      let channel = await MAIN.channels.cache.get(channel_id);
       if(!channel) { resolve(false); return console.error('['+MAIN.Bot_Time(null,'stamp')+'] [Ontime] Could not find a channel with ID: '+channel_id); }
       channel.fetchMessages({limit:99}).then(messages => {
         channel.bulkDelete(messages).then(deleted => {
@@ -197,7 +197,7 @@ if(process.env.fork == 0){
     MAIN.pdb.query(`SELECT * FROM active_raids WHERE expire_time < UNIX_TIMESTAMP() AND boss_name != "expired" AND active = ?`, [true], function (error, active_raids, fields) {
       if(active_raids && active_raids[0]){
         active_raids.forEach( async (raid,index) => {
-          let raid_channel = MAIN.channels.find(ch => ch.id === raid.raid_channel);
+          let raid_channel = MAIN.channels.cache.get(raid.raid_channel);
           if(raid_channel){
             raid_channel.setName('expired').catch(console.error)
             raid_channel.send('Raid has ended, channel will delete in 15 minutes. Wrap up converation or join another raid lobby.').catch(console.error);
@@ -210,7 +210,7 @@ if(process.env.fork == 0){
     MAIN.pdb.query(`SELECT * FROM active_raids WHERE expire_time < UNIX_TIMESTAMP()-900`, function (error, active_raids, fields) {
       if(active_raids && active_raids[0]){
         active_raids.forEach( async (raid,index) => {
-          let raid_channel = MAIN.channels.find(ch => ch.id === raid.raid_channel);
+          let raid_channel = MAIN.channels.cache.get(raid.raid_channel);
           let raid_role = '';
           if(raid_channel) {
             raid_role = raid_channel.guild.roles.get(raid.role_id);
