@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
 
-  let guild = MAIN.guilds.get(discord.id);
+  let guild = MAIN.guilds.cache.get(discord.id);
   let convert_message = '';
 
   exec('git pull', (err, stdout, stderr) => {

@@ -176,7 +176,7 @@ function LoadEmojis(bot, serverIDs)
 
     for(var i = 0; i < guildArray.length; i++)
     {
-        let guild = bot.guilds.get(guildArray[i][0]);
+        let guild = bot.guilds.cache.get(guildArray[i][0]);
 
         if(!guild)
         {

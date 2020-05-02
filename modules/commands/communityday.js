@@ -41,7 +41,7 @@ async function pokemon_view(MAIN, message, member, pokemon, prefix, discord){
   if(date.end == 'cancel'){ return subscription_cancel(MAIN,member, message, prefix, discord); }
   else if(date.end == 'time'){ return subscription_timedout(MAIN,member, message, prefix, discord) }
 
-  let guild = MAIN.guilds.get(discord.id);
+  let guild = MAIN.guilds.cache.get(discord.id);
   let timezone = GeoTz(discord.geofence[0][1][1], discord.geofence[0][1][0])[0];
   let pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
   let locale = await MAIN.Get_Data(MAIN, pokemon);

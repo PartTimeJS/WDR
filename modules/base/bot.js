@@ -179,9 +179,9 @@ if(process.env.fork == 0){
       if(alerts && alerts[0]){
         alerts.forEach( async (alert,index) => {
           setTimeout(async function() {
-            let guild = MAIN.BOTS[alert.bot].guilds.get(alert.discord_id);
+            let guild = MAIN.BOTS[alert.bot].guilds.cache.get(alert.discord_id);
             let user = guild.fetchMember(alert.user_id).catch(error => { console.error('[BAD USER ID] '+alert.user_id, error); });
-            MAIN.BOTS[alert.bot].guilds.get(alert.discord_id).fetchMember(alert.user_id).then( TARGET => {
+            MAIN.BOTS[alert.bot].guilds.cache.get(alert.discord_id).fetchMember(alert.user_id).then( TARGET => {
               let quest_embed = JSON.parse(alert.embed);
               TARGET.send({ embed: quest_embed }).catch( error => {
                 return console.error('['+MAIN.Bot_Time(null,'stamp')+'] '+TARGET.user.tag+' ('+alert.user_id+') , CANNOT SEND THIS USER A MESSAGE.',error);

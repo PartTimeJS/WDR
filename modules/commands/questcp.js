@@ -27,7 +27,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 }
 
 async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
-  let guild = MAIN.guilds.get(discord.id);
+  let guild = MAIN.guilds.cache.get(discord.id);
   let pokemon_id = pokemon.pokemon_id, form_id = pokemon.form;
   let locale = await MAIN.Get_Data(MAIN, pokemon);
 

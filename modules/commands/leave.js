@@ -3,12 +3,12 @@ const Discord=require('discord.js');
 module.exports.run = async (MAIN, message, raids, count) => {
   // HANDLE CHANNEL COMMANDS
   try {
-    guild = MAIN.guilds.get(message.guild.id);
+    guild = MAIN.guilds.cache.get(message.guild.id);
     member = message.author.id;
   }
   // HANDLE EMOJI REACTIONS
   catch(e) {
-    guild = MAIN.guilds.get(message.d.guild_id);
+    guild = MAIN.guilds.cache.get(message.d.guild_id);
     member = message.d.user_id
   }
   channel = raids.raid_channel;
