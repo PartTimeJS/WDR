@@ -3,7 +3,7 @@ const pvp = require('../base/pvp.js');
 
 module.exports.run = async (MAIN, message, pokemon, server) => {
       // CHECK IF THE TARGET IS A USER
-      let member = MAIN.guilds.cache.get(server.id).members.get(message.author.id);
+      let member = MAIN.guilds.cache.get(server.id).members.cache.get(message.author.id);
 
       // DETERMINE POKEMON NAME
       let locale = await MAIN.Get_Data(MAIN, pokemon);

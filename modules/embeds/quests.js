@@ -5,7 +5,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
   let Embed_Config = require('../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
 
   // VARIABLES
   let pokestop = {};

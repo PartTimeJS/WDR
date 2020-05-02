@@ -8,7 +8,7 @@ module.exports.run = async (MAIN, message, nest, server, area, timezone, embed) 
   let typing = await MAIN.Get_Typing(MAIN, nest);
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(message.author.id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(message.author.id);
 
   // VARIABLES
   let pokemon = {

@@ -6,7 +6,7 @@ module.exports.run = async (MAIN, target, sighting, internal_value, time_now, ar
   let Embed_Config = require('../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
 
   // VARIABLES
   let typing = await MAIN.Get_Typing(MAIN, sighting);

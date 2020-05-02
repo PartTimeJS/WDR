@@ -5,7 +5,7 @@ module.exports.run = async (MAIN, target, lure, type, area, server, timezone, ro
   let locale = await MAIN.Get_Data(MAIN, lure);
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
 
   // VARIABLES
   let time_now = new Date().getTime();

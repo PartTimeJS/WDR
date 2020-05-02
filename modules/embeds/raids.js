@@ -6,7 +6,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
   let raid_embed = '';
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
 
   // VARIABLES
   let typing = await MAIN.Get_Typing(MAIN, raid);

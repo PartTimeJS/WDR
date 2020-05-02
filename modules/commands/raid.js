@@ -15,7 +15,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   });
 
   // DECLARE VARIABLES FOR USER
-  let message_user =  await MAIN.guilds.cache.get(discord.id).members.get(message.author.id);
+  let message_user =  await MAIN.guilds.cache.get(discord.id).members.cache.get(message.author.id);
   let member = {id: message.author.id, displayAvatarURL: message.author.displayAvatarURL};
   if(message.member){
     if(message.member.nickname){ member.nickname = message.member.nickname; } else{ member.nickname = message.author.username; }
@@ -29,7 +29,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     if(id.split('!')[1]){
       id = id.split('!');
       id = id[1].toString();
-    } let adminMember = await MAIN.guilds.cache.get(discord.id).members.get(id);
+    } let adminMember = await MAIN.guilds.cache.get(discord.id).members.cache.get(id);
 
     if(adminMember){
       member.id = adminMember.id;

@@ -20,7 +20,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       if(!guild){ return; }
 
       // GET MEMBER
-      let member = MAIN.guilds.cache.get(server.id).members.get(message.author.id);
+      let member = MAIN.guilds.cache.get(server.id).members.cache.get(message.author.id);
       if(!member){ return; }
 
       let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;
@@ -74,7 +74,7 @@ module.exports.run = async (MAIN, BOT, message) => {
     if(!guild){ return; }
 
     // GET MEMBER
-    let member = guild.members.get(message.author.id);
+    let member = guild.members.cache.get(message.author.id);
     if(!member){ member = await guild.fetchMember(message.author.id); }
 
     let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;

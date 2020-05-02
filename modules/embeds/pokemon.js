@@ -5,7 +5,7 @@ module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time
   let pokemon_embed = '';
 
   // CHECK IF THE TARGET IS A USER
-  let member = MAIN.guilds.cache.get(server.id).members.get(target.user_id);
+  let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
 
   // VARIABLES POKEMON NAME, FORM AND TYPE EMOTES
   let typing = await MAIN.Get_Typing(MAIN, sighting);
