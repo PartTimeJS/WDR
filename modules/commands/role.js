@@ -7,7 +7,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   let role = message.guild.roles.find('name', 'Trainers');
   for(let m=0; m<members.length; m++){
     setTimeout(function() {
-      if(!members[m].roles.has(role.id)){
+      if(!members[m].roles.cache.has(role.id)){
         members[m].addRole(role).catch(console.error);
         console.log('[ROLE] Added '+role.name+' to '+members[m].user.tag);
       }

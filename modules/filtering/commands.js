@@ -27,7 +27,7 @@ module.exports.run = async (MAIN, BOT, message) => {
 
       // FETCH THE GUILD MEMBER AND CHECK IF A DONOR
       if(isAdmin){ /* DO NOTHING */ }
-      else if(server.donor_role && !member.roles.has(server.donor_role)){
+      else if(server.donor_role && !member.roles.cache.has(server.donor_role)){
         let donor_info = '';
         if(MAIN.config.log_channel){
           let nondonor_embed = new MAIN.Discord.RichEmbed()
@@ -88,7 +88,7 @@ module.exports.run = async (MAIN, BOT, message) => {
 
       // FETCH THE GUILD MEMBER AND CHECK IF A DONOR
       if(isAdmin || isMod){ /* DO NOTHING */ }
-      else if(server.donor_role && !member.roles.has(server.donor_role)){
+      else if(server.donor_role && !member.roles.cache.has(server.donor_role)){
         if(MAIN.config.log_channel){
           let donor_info = '';
           let nondonor_embed = new MAIN.Discord.RichEmbed()

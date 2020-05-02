@@ -29,7 +29,7 @@ module.exports.run = async (MAIN, quest, area, server, timezone) => {
           case !member:
           case member == undefined: return;
           case MAIN.config.Donor_Check == 'DISABLED': break;
-          case !member.roles.has(server.donor_role): return;
+          case !member.roles.cache.has(server.donor_role): return;
         }
 
         // DEFINE VARIABLES
