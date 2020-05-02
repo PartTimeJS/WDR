@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports = function(p) {
 
-  let nest_embed = new Discord.RichEmbed()
+  let nest_embed = new Discord.MessageEmbed()
   .setColor(p.color)
   .setThumbnail(p.sprite)
   .addField('**'+p.name+'** '+p.form+' Nest\n'+p.type,'Avg Spawns: '+p.avg)

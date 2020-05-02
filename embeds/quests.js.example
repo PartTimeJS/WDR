@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 module.exports = function(p) {
   try{
     // CREATE QUEST EMBED
-    let quest_embed = new Discord.RichEmbed()
+    let quest_embed = new Discord.MessageEmbed()
       .setColor(p.color)
       .setThumbnail(p.sprite)
       .addField( p.reward+'  |  '+p.area, p.task, false)

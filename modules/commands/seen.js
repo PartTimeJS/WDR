@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want stats for?\nAnd How many days back do you want to search? (7 Max)')
   .setFooter('Type the name of desired Poké, followed by the number of days in the past you want to search, no command prefix required. If you do not specify the number of days, it will search all sightings in the last hour.');

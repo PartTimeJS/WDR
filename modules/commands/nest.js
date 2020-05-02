@@ -24,7 +24,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   }
   let avatar = message.author.displayAvatarURL;
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
     .setAuthor(nickname, avatar)
     .setTitle('What Pokémon or Park do you want to find a nest for?')
     .setFooter('Type the name of desired Poké or Park, no command prefix required.');

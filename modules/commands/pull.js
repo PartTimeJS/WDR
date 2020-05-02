@@ -18,7 +18,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     let restart = botRestart ? ', and restarting in 8sec.' : '.';
 
     if(MAIN.config.log_channel){
-      let pull_embed = new MAIN.Discord.RichEmbed()
+      let pull_embed = new MAIN.Discord.MessageEmbed()
       .setColor('00ff00')
       .setAuthor('Pulling update'+restart)
       .setDescription(log);

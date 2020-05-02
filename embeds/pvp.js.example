@@ -8,7 +8,7 @@ module.exports = function(p) {
                 +" \n Rank: "+p.possible_cps[pokemon].rank+"("+p.possible_cps[pokemon].percent+"%)\n";
   }
 
-  let pokemon_embed = new Discord.RichEmbed()
+  let pokemon_embed = new Discord.MessageEmbed()
   .setColor(p.color)
   .setThumbnail(p.sprite)
   .addField('**'+p.name+'** '+p.form+p.attack+'/'+p.defense+'/'+p.stamina+' ('+p.iv+'%)\n'

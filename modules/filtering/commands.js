@@ -30,7 +30,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       else if(server.donor_role && !member.roles.cache.has(server.donor_role)){
         let donor_info = '';
         if(MAIN.config.log_channel){
-          let nondonor_embed = new MAIN.Discord.RichEmbed()
+          let nondonor_embed = new MAIN.Discord.MessageEmbed()
           .setColor('ff0000')
           .addField('User attempted to use DM command, not a donor. ',member.user.username);
           if(MAIN.config.donor_info){ donor_info = MAIN.config.donor_info}
@@ -91,7 +91,7 @@ module.exports.run = async (MAIN, BOT, message) => {
       else if(server.donor_role && !member.roles.cache.has(server.donor_role)){
         if(MAIN.config.log_channel){
           let donor_info = '';
-          let nondonor_embed = new MAIN.Discord.RichEmbed()
+          let nondonor_embed = new MAIN.Discord.MessageEmbed()
           .setColor('ff0000')
           .addField('User attempted to use a subsciption command, not a donor. ',member.user.username);
           if(MAIN.config.donor_info){ donor_info = MAIN.config.donor_info}

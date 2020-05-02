@@ -28,7 +28,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     }
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('What would you like to do with your Pokémon Subscriptions?')
     .setDescription('`view`  »  View your Subscriptions.\n'
@@ -48,7 +48,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 function subscription_status(MAIN, message,member, reason, prefix, discord){
   MAIN.pdb.query(`SELECT * FROM users WHERE user_id = ? AND discord_id = ?`, [member.id, discord.id], function (error, user, fields) {
     if(user[0].pokemon_status == 'ACTIVE' && reason == 'resume'){
-      let already_active = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_active = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('Your Pokemon subscriptions are already **Active**!')
         .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -59,7 +59,7 @@ function subscription_status(MAIN, message,member, reason, prefix, discord){
       });
     }
     else if(user[0].pokemon_status == 'PAUSED' && reason == 'pause'){
-      let already_paused = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_paused = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('Your Pokemon subscriptions are already **Paused**!')
         .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -75,7 +75,7 @@ function subscription_status(MAIN, message,member, reason, prefix, discord){
       MAIN.pdb.query(`UPDATE users SET pokemon_status = ? WHERE user_id = ? AND discord_id = ?`, [change, member.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(member.nickname, member.displayAvatarURL)
             .setTitle('Your Pokémon Subscriptions have been set to `'+change+'`!')
             .setFooter('Saved to the '+MAIN.config.BOT_NAME+' Database.');
@@ -93,7 +93,7 @@ async function subscription_view(MAIN, message, member, prefix, discord){
     if(!user){ return; }
     // CHECK IF THE USER ALREADY HAS SUBSCRIPTIONS AND ADD
     if(!user[0].pokemon){
-      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('You do not have any Pokémon Subscriptions!')
         .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -109,7 +109,7 @@ async function subscription_view(MAIN, message, member, prefix, discord){
       if(!pokemon || !pokemon.subscriptions[0]){
 
         // CREATE THE EMBED AND SEND
-        let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('You do not have any Subscriptions!')
           .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -120,7 +120,7 @@ async function subscription_view(MAIN, message, member, prefix, discord){
       else{
 
         // CREATE THE EMBED
-        let pokemonSubs = new MAIN.Discord.RichEmbed()
+        let pokemonSubs = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Pokémon Subscriptions')
           .setDescription('Overall Status: `'+user[0].status+'`\nPokemon Status: `'+user[0].pokemon_status+'`')
@@ -352,7 +352,7 @@ async function subscription_create(MAIN, message, member, prefix, advanced, disc
     MAIN.pdb.query(`UPDATE users SET pokemon = ? WHERE user_id = ? AND discord_id = ?`, [newSubs, member.id, discord.id], function (error, user, fields) {
       if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
       else{
-        let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle(sub.name+' Subscription Complete!')
           .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -376,7 +376,7 @@ async function subscription_remove(MAIN, message, member, prefix, discord){
     if(!user[0].pokemon){
 
       // CREATE THE RESPONSE EMBED
-      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('You do not have any Pokémon Subscriptions!')
         .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -441,7 +441,7 @@ async function subscription_remove(MAIN, message, member, prefix, discord){
 
       // RETURN NOT FOUND
       if(found == false){
-        let not_subscribed = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let not_subscribed = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('You are not Subscribed to '+remove.name+' '+remove_locale.form+'.')
           .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -457,7 +457,7 @@ async function subscription_remove(MAIN, message, member, prefix, discord){
       MAIN.pdb.query(`UPDATE users SET pokemon = ? WHERE user_id = ? AND discord_id = ?`, [newSubs, member.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(member.nickname, member.displayAvatarURL)
             .setTitle(remove.name+' '+remove_locale.form+'Subscription Removed!')
             .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -506,7 +506,7 @@ async function subscription_modify(MAIN, message, member, prefix, discord){
 
       // RETURN NOT FOUND
       if(found == false){
-        let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('You are not Subscribed to '+modify.name+' '+modify_locale.form+'.')
           .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
@@ -591,7 +591,7 @@ async function subscription_modify(MAIN, message, member, prefix, discord){
       MAIN.pdb.query(`UPDATE users SET pokemon = ? WHERE user_id = ? AND discord_id = ?`, [newSubs, member.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let modification_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let modification_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(member.nickname, member.displayAvatarURL)
             .setTitle(sub.name+' Subscription Modified!')
             .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -623,7 +623,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
 
       // POKEMON NAME EMBED
       case 'Name':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Pokémon would you like to Subscribe to?')
           .setFooter(requirements); break;
@@ -642,7 +642,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
           case 'Yes': areas = object.geofence; break;
           default: areas = sub.areas;
         }
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Does all of this look correct?')
           .setDescription('Name: `'+sub.name+' '+confirm_locale.form
@@ -658,7 +658,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
           .setFooter(requirements); break;
 
       case 'Confirm-Remove':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Are you sure you want to Remove ALL of your subscriptions?')
           .setDescription('If you wanted to remove an `ALL` pokemon filter, you need to specify the number associated with it. \`ALL-1\`, \`ALL-2\`, etc')
@@ -666,21 +666,21 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
 
       // REMOVAL EMBED
       case 'Remove':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Pokémon do you want to remove?')
           .setFooter(requirements); break;
 
       // MODIFY EMBED
       case 'Modify':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Pokémon do you want to modify?')
           .setFooter(requirements); break;
 
       // AREA EMBED
       case 'Area Filter':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Do you want to get notifications for '+sub.name+' filtered by your subscribed Areas?')
           .setDescription('**Yes**, your notifications for this Pokémon will be filtered based on your areas.\n'+
@@ -691,7 +691,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
 
       // DEFAULT EMBED
       default:
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What **'+type+'** would like you like to set for **'+sub.name+'** Notifications?')
           .setFooter(requirements);
@@ -835,7 +835,7 @@ function sub_collector(MAIN,type,member,message,object,requirements,sub,discord)
 
 // SUBSCRIPTION CANCEL FUNCTION
 function subscription_cancel(MAIN, member, message, prefix, discord){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Subscription Cancelled.')
     .setDescription('Nothing has been Saved.')
@@ -848,7 +848,7 @@ function subscription_cancel(MAIN, member, message, prefix, discord){
 
 // SUBSCRIPTION TIMEOUT FUNCTION
 function subscription_timedout(MAIN, member, message, prefix, discord){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Your Subscription Has Timed Out.')
     .setDescription('Nothing has been Saved.')

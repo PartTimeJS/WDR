@@ -38,7 +38,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     }
   }
 
-  let request_action = new MAIN.Discord.RichEmbed()
+  let request_action = new MAIN.Discord.MessageEmbed()
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('What would you like to do with your Raid Subscriptions?')
     .setDescription('`view`  »  View your Subscritions.\n'
@@ -62,7 +62,7 @@ function subscription_status(MAIN, message, member, reason, prefix, available_gy
     }
 
     if(user[0].raids_status == 'ACTIVE' && reason == 'resume'){
-      let already_active = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_active = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('Your Raid subscriptions are already **Active**!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -73,7 +73,7 @@ function subscription_status(MAIN, message, member, reason, prefix, available_gy
       });
     }
     else if(user[0].raids_status == 'PAUSED' && reason == 'pause'){
-      let already_paused = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_paused = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('Your Raid subscriptions are already **Paused**!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -89,7 +89,7 @@ function subscription_status(MAIN, message, member, reason, prefix, available_gy
       MAIN.pdb.query('UPDATE users SET raids_status = ? WHERE user_id = ? AND discord_id = ?', [change, message.author.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(member.nickname, member.displayAvatarURL)
             .setTitle('Your Raid subscriptions have been set to `'+change+'`!')
             .setFooter('Saved to the '+MAIN.config.BOT_NAME+' Database.');
@@ -111,7 +111,7 @@ async function subscription_view(MAIN, message, member, prefix, available_gyms, 
 
     // CHECK IF THE USER ALREADY HAS SUBSCRIPTIONS AND ADD
     if(!user[0].raids){
-      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('You do not have any Raid Subscriptions!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -127,7 +127,7 @@ async function subscription_view(MAIN, message, member, prefix, available_gyms, 
       if(!raid.subscriptions[0]){
 
         // CREATE THE EMBED AND SEND
-        let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('You do not have any Subscriptions!')
           .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -138,7 +138,7 @@ async function subscription_view(MAIN, message, member, prefix, available_gyms, 
       else{
 
         // CREATE THE EMBED
-        let raid_subs = new MAIN.Discord.RichEmbed()
+        let raid_subs = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Raid Boss Subscriptions')
           .setDescription('Overall Status: `'+user[0].status+'`\nRaids Status: `'+user[0].raids_status+'`')
@@ -336,7 +336,7 @@ async function subscription_create(MAIN, message, member, prefix, advanced, avai
     MAIN.pdb.query(`UPDATE users SET raids = ? WHERE user_id = ? AND discord_id = ?`, [new_subs, member.id, discord.id], function (error, user, fields) {
       if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
       else{
-        let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+        let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle(sub.boss+' Raid Subscription Complete!')
           .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -364,7 +364,7 @@ async function subscription_remove(MAIN, message, member, prefix, available_gyms
     if(!user[0].raids){
 
       // CREATE THE RESPONSE EMBED
-      let no_subscriptions = new MAIN.Discord.RichEmbed().setColor('00ff00')
+      let no_subscriptions = new MAIN.Discord.MessageEmbed().setColor('00ff00')
         .setAuthor(member.nickname, member.displayAvatarURL)
         .setTitle('You do not have any Raid Subscriptions!')
         .setFooter('You can type \'view\', \'add\', or \'remove\'.');
@@ -409,7 +409,7 @@ async function subscription_remove(MAIN, message, member, prefix, available_gyms
       MAIN.pdb.query(`UPDATE users SET raids = ? WHERE user_id = ? AND discord_id = ?`, [new_subs, member.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(member.nickname, member.displayAvatarURL)
             .setTitle(embed_title)
             .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -437,14 +437,14 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
 
       // POKEMON NAME EMBED
       case 'Name':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Raid Boss would you like to Subscribe to?')
           .setFooter(requirements); break;
 
       // GYM NAME EMBED
       case 'Gym':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What Gym would you like to Subscribe to?')
           .setFooter(requirements); break;
@@ -469,13 +469,13 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
         if(sub.min_lvl == 'Boss Specified'){ raid_levels = 'Boss Specified'; }
         else if(sub.min_lvl == 'ALL'){ raid_levels = 'ALL'; }
         else{ raid_levels = sub.min_lvl+'/'+sub.max_lvl; }
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Does all of this look correct?\nGym: `'+sub.gym+'`\nRaid Boss: `'+sub.boss+' '+form+'`\nMin/Max Lvl: `'+raid_levels+'`\nFilter By Areas: `'+areas+'`')
           .setFooter(requirements); break;
 
       case 'Confirm-Remove':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Are you sure you want to Remove ALL of your subscriptions?')
           .setFooter(requirements); break;
@@ -483,7 +483,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
 
       // REMOVAL EMBED
       case 'Remove':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Which Raid Subscription do you want to remove?')
           .setFooter(requirements);
@@ -514,7 +514,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
 
       // AREA EMBED
       case 'Area Filter':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Do you want to get notifications for '+object.boss+' Raids filtered by your subscribed Areas?')
           .setDescription('**Yes**, your notifications for this Pokémon will be filtered based on your areas.\n'+
@@ -524,7 +524,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
 
       // DEFAULT EMBED
       default:
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What **'+type+'** would you like to set for **'+object.boss+'** Raid Notifications?')
           .setFooter(requirements);
@@ -635,7 +635,7 @@ function sub_collector(MAIN, type, member, message, object, requirements, sub, a
 }
 
 function subscription_cancel(MAIN, member, message, prefix, available_gyms, discord, gym_collection){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Subscription Cancelled.')
     .setDescription('Nothing has been Saved.')
@@ -646,7 +646,7 @@ function subscription_cancel(MAIN, member, message, prefix, available_gyms, disc
 }
 
 function subscription_timedout(MAIN, member, message, prefix, available_gyms, discord, gym_collection){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Subscription Timed Out.')
     .setDescription('Nothing has been Saved.')
@@ -708,7 +708,7 @@ async function match_collector(MAIN, type, member, message, object, requirements
         if(match_desc.length > 2048){
           match_desc = match_desc.slice(0,1973)+'**\nThere are too many to display. Try to narrow your search terms.**';
         }
-        options = new MAIN.Discord.RichEmbed()
+        options = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Possible matches for \''+sub.gym.split(',')[1]+'\' were found.')
           .setDescription(match_desc)
@@ -725,7 +725,7 @@ async function match_collector(MAIN, type, member, message, object, requirements
         if(description.length > 2048){
           description = description.slice(0,1973)+'**\nThere are too many to display. Try to narrow your search terms.**';
         }
-        options = new MAIN.Discord.RichEmbed()
+        options = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('Multiple Matches were found.').setDescription(description)
           .setFooter('Type the number of the gym you wish to select or type \'cancel\'.'); break;

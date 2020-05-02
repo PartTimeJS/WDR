@@ -14,7 +14,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let request_action = new MAIN.Discord.RichEmbed()
+  let request_action = new MAIN.Discord.MessageEmbed()
     .setAuthor(nickname, message.author.displayAvatarURL)
     .setTitle('What would you like to do with your Quest Subscriptions?')
     .setDescription('`view`  »  View your Subscritions.\n'
@@ -33,7 +33,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
 function subscription_status(MAIN, message, nickname, reason, prefix, discord){
   MAIN.pdb.query(`SELECT * FROM users WHERE user_id = ? AND discord_id = ?`, [message.author.id, discord.id], function (error, user, fields) {
     if(user[0].quest_paused == 'ACTIVE' && reason == 'resume'){
-      let already_active = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_active = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('Your Quest Subscriptions are already ACTIVE!')
         .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');;
@@ -42,7 +42,7 @@ function subscription_status(MAIN, message, nickname, reason, prefix, discord){
       });
     }
     else if(user[0].quest_paused == 'PAUSED' && reason == 'pause'){
-      let already_paused = new MAIN.Discord.RichEmbed().setColor('ff0000')
+      let already_paused = new MAIN.Discord.MessageEmbed().setColor('ff0000')
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('Your Quest Subscriptions are already PAUSED!')
         .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');;
@@ -56,7 +56,7 @@ function subscription_status(MAIN, message, nickname, reason, prefix, discord){
       MAIN.pdb.query(`UPDATE users SET quests_status = ? WHERE user_id = ? AND discord_id = ?`, [change, message.author.id, discord.id], function (error, user, fields) {
         if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
         else{
-          let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+          let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle('Your Quest Subscriptions have been set to `'+change+'`!')
             .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -83,7 +83,7 @@ async function subscription_view(MAIN, message, nickname, prefix, discord){
       if(!user_quests[0]){
 
         // CREATE THE EMBED
-        let no_subscriptions = new MAIN.Discord.RichEmbed()
+        let no_subscriptions = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('You do not have any Quest Subscriptions!')
           .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -96,7 +96,7 @@ async function subscription_view(MAIN, message, nickname, prefix, discord){
       else{
 
         // CREATE THE EMBED
-        let quest_subs = new MAIN.Discord.RichEmbed()
+        let quest_subs = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Quest Subscriptions')
           .setDescription('Overall Status: `'+user[0].status+'`\n'
@@ -125,7 +125,7 @@ async function subscription_time(MAIN, message, nickname, prefix, discord){
     switch (sub) {
       case 'cancel':
         // CREATE THE EMBED
-        let cancelled = new MAIN.Discord.RichEmbed()
+        let cancelled = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Quest Subscription Cancelled')
           .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -136,7 +136,7 @@ async function subscription_time(MAIN, message, nickname, prefix, discord){
         }); break;
       case 'time':
         // CREATE THE EMBED
-        let timed_out = new MAIN.Discord.RichEmbed()
+        let timed_out = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Quest Subscription Timed Out')
           .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -154,7 +154,7 @@ async function subscription_time(MAIN, message, nickname, prefix, discord){
         MAIN.pdb.query(`UPDATE users SET alert_time = ? WHERE user_id = ? AND discord_id = ?`, [quest_time, message.author.id, discord.id], function (error, user, fields) {
           if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(5000)).catch(console.error); }
           else{
-            let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+            let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
               .setAuthor(nickname, message.author.displayAvatarURL)
               .setTitle('Time Changed!')
               .setDescription('`'+sub+'` Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -179,7 +179,7 @@ async function subscription_create(MAIN, message, nickname, prefix, discord){
     switch (sub) {
       case 'cancel':
         // CREATE THE EMBED
-        let cancelled = new MAIN.Discord.RichEmbed()
+        let cancelled = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Quest Subscription Cancelled')
           .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -190,7 +190,7 @@ async function subscription_create(MAIN, message, nickname, prefix, discord){
         }); break;
       case 'time':
         // CREATE THE EMBED
-        let timed_out = new MAIN.Discord.RichEmbed()
+        let timed_out = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Quest Subscription Timed Out')
           .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -222,7 +222,7 @@ async function subscription_create(MAIN, message, nickname, prefix, discord){
         MAIN.pdb.query(`UPDATE users SET quests = ? WHERE user_id = ? AND discord_id = ?`, [quests, message.author.id, discord.id], function (error, user, fields) {
           if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
           else{
-            let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+            let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
               .setAuthor(nickname, message.author.displayAvatarURL)
               .setTitle(sub+' Subscription Complete!')
               .setDescription('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -246,7 +246,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
     if(!user[0].quests){
 
       // CREATE THE EMBED
-      let no_subscriptions = new MAIN.Discord.RichEmbed()
+      let no_subscriptions = new MAIN.Discord.MessageEmbed()
         .setAuthor(nickname, message.author.displayAvatarURL)
         .setTitle('You do not have any Quest Subscriptions!')
         .setFooter('You can type \'view\', \'time\', or \'add\'.');
@@ -263,7 +263,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
         // CANCEL REMOVAL
         case 'cancel':
           // CREATE THE EMBED
-          let cancelled = new MAIN.Discord.RichEmbed()
+          let cancelled = new MAIN.Discord.MessageEmbed()
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle('Quest Subscription Cancelled')
             .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -276,7 +276,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
         // REMOVAL TIMED OUT
         case 'time':
           // CREATE THE EMBED
-          let timed_out = new MAIN.Discord.RichEmbed()
+          let timed_out = new MAIN.Discord.MessageEmbed()
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle('Quest Subscription Timed Out')
             .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -292,7 +292,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
           switch (sub_all) {
             case 'cancel':
               // CREATE THE EMBED
-              let cancelled = new MAIN.Discord.RichEmbed()
+              let cancelled = new MAIN.Discord.MessageEmbed()
                 .setAuthor(nickname, message.author.displayAvatarURL)
                 .setTitle('Quest Subscription Cancelled')
                 .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -303,7 +303,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
               }); break;
             case 'time':
               // CREATE THE EMBED
-              let timed_out = new MAIN.Discord.RichEmbed()
+              let timed_out = new MAIN.Discord.MessageEmbed()
                 .setAuthor(nickname, message.author.displayAvatarURL)
                 .setTitle('Quest Subscription Timed Out')
                 .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -325,7 +325,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
         if(index < 0 && !remove_all){
 
           // CREATE THE EMBED
-          let no_quest = new MAIN.Discord.RichEmbed()
+          let no_quest = new MAIN.Discord.MessageEmbed()
             .setAuthor(nickname, message.author.displayAvatarURL)
             .setTitle('You are not Subscribed to that Quest!')
             .setFooter('You can type \'view\', \'time\' \'add\', or \'remove\'.');
@@ -345,7 +345,7 @@ async function subscription_remove(MAIN, message, nickname, prefix, discord){
         MAIN.pdb.query(`UPDATE users SET quests = ? WHERE user_id = ? AND discord_id = ?`, [quests, message.author.id, discord.id], function (error, user, fields) {
           if(error){ return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete(10000)).catch(console.error); }
           else{
-            let subscription_success = new MAIN.Discord.RichEmbed().setColor('00ff00')
+            let subscription_success = new MAIN.Discord.MessageEmbed().setColor('00ff00')
               .setAuthor(nickname, message.author.displayAvatarURL)
               .setTitle(sub+' Subscription Removed!')
               .setFooter('Saved to the '+MAIN.config.BOT_NAME+' Database.')
@@ -387,7 +387,7 @@ async function sub_collector(MAIN,type,nickname,message,user_quests,requirements
           if(reward_list.indexOf(reward) < 0){ reward_list += reward+' '+MAIN.emotes.checkYes+'\n'; }
         });
         if(!reward_list){ reward_list = user_rewards; }
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Quest would you like to Subscribe to?')
           .addField('Available Quest Rewards:', reward_list, false)
@@ -395,7 +395,7 @@ async function sub_collector(MAIN,type,nickname,message,user_quests,requirements
 
       // CONFIRM REMOVAL OF ALL REWARDS
       case 'Confirm-Remove':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('Are you sure you want to Remove ALL of your subscriptions?')
           .setFooter(requirements); break;
@@ -403,7 +403,7 @@ async function sub_collector(MAIN,type,nickname,message,user_quests,requirements
       // REMOVAL EMBED
       case 'Remove':
         let sub_list = user_quests.split(',').toString().replace(/,/g,'\n');
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What Quest do you want to remove?')
           .addField('Your Subscriptions:', '**'+sub_list+'**', false)
@@ -411,7 +411,7 @@ async function sub_collector(MAIN,type,nickname,message,user_quests,requirements
 
       // REMOVAL EMBED
       case 'Time':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(nickname, message.author.displayAvatarURL)
           .setTitle('What time do you want to set for Quest DM Alerts?')
           .setDescription('Current Time: `'+user_quests+'`')

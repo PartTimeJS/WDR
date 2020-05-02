@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want to find out more about?')
   .setFooter('Type the name of desired Pokémon, no command prefix required.');

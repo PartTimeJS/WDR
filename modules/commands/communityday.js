@@ -13,7 +13,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     member.nickname = message.author.username;
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
   .setAuthor(member.nickname, )
   .setTitle('What Pokémon was the Community Day for?')
   .setFooter('Type the name of desired Poké, no command prefix required.');
@@ -89,7 +89,7 @@ async function pokemon_view(MAIN, message, member, pokemon, prefix, discord){
       let scanned = stats[0].with_iv
       let shinies = stats[0].shiny
       let probability = ( scanned / shinies ).toFixed()
-      let chart_embed = new MAIN.Discord.RichEmbed()
+      let chart_embed = new MAIN.Discord.MessageEmbed()
       .setColor(pokemon_color)
       .setThumbnail(sprite)
       .setTitle('**'+pokemon_name+'** '+pokemon_type)
@@ -140,7 +140,7 @@ function sub_collector(MAIN,type,member,message,requirements,date,discord){
       // Start
       case 'start':
       case 'end':
-        instruction = new MAIN.Discord.RichEmbed()
+        instruction = new MAIN.Discord.MessageEmbed()
           .setAuthor(member.nickname, member.displayAvatarURL)
           .setTitle('What was the '+type+' day and time?')
           .setFooter(requirements); break;
@@ -178,7 +178,7 @@ function sub_collector(MAIN,type,member,message,requirements,date,discord){
 }
 
 function subscription_cancel(MAIN,member, message, prefix, discord){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Subscription Cancelled.')
     .setDescription('Nothing has been Saved.')
@@ -189,7 +189,7 @@ function subscription_cancel(MAIN,member, message, prefix, discord){
 }
 
 function subscription_timedout(MAIN,member, message, prefix, discord){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
     .setAuthor(member.nickname, member.displayAvatarURL)
     .setTitle('Your Subscription Has Timed Out.')
     .setDescription('Nothing has been Saved.')

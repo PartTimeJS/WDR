@@ -14,7 +14,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want a CP search string for?')
   .setFooter('Type the name of desired Poké, no command prefix required.');
@@ -58,7 +58,7 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
   }
 
   let sprite = MAIN.Get_Sprite(MAIN, pokemon);
-  let chart_embed = new MAIN.Discord.RichEmbed()
+  let chart_embed = new MAIN.Discord.MessageEmbed()
   .setColor(pokemon_color)
   .setThumbnail(sprite)
   .setTitle('**'+pokemon_name+'** Weatherboosted CP Chart')

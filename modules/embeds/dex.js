@@ -83,7 +83,7 @@ module.exports.run = async (MAIN, message, pokemon, server) => {
       // GET SPRITE IMAGE
       let sprite = MAIN.Get_Sprite(MAIN, pokemon);
 
-      let dex_embed = new MAIN.Discord.RichEmbed()
+      let dex_embed = new MAIN.Discord.MessageEmbed()
       .setColor(pokemon_color)
       .setThumbnail(sprite)
       .setTitle('**'+pokemon_name+'** '+form_name+'(#'+pokemon_id+') '+pokemon_type)

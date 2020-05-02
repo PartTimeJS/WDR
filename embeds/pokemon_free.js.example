@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports = function(p) {
 
-  let pokemon_embed = new Discord.RichEmbed()
+  let pokemon_embed = new Discord.MessageEmbed()
     .setColor(p.color)
     .setThumbnail(p.sprite)
     .setDescription('Subscribe at '+p.url)

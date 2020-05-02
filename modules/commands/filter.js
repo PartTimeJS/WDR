@@ -91,7 +91,7 @@ function ListRaid(MAIN,pokemon,channelID)
     return "This channel doesn't have a raid filter configured for it";
   }
 
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   let eggLevels = 'None';
   let bossLevels = 'None';
@@ -269,7 +269,7 @@ function ListPokemon(MAIN,pokemon,channelID)
     return "This channel doesn't have a pokemon filter configured for it";
   }
 
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   if(filter.min_cp_range)
   {
@@ -402,7 +402,7 @@ function ListLure(MAIN,lure,channelID)
     return "This channel doesn't have a lure filter configured for it";
   }
 
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   let lures = 'None';
   
@@ -493,7 +493,7 @@ function ListQuest(MAIN,quest,channelID)
     return "This channel doesn't have a quest filter configured for it";
   }
 
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   let quests = 'None';
   
@@ -582,7 +582,7 @@ function ListInvasion(MAIN,invasion,channelID)
     return "This channel doesn't have a invasion filter configured for it";
   }
 
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   let invasions = '';
   
@@ -684,7 +684,7 @@ function DeleteInvasion(MAIN,invasion,channelID)
 
 function GeneratePvPFilterEmbed(MAIN, filter)
 {
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   filterEmbed.setDescription("Pokemon filter");
   filterEmbed.addField('Name',filter.name,true);  
@@ -727,7 +727,7 @@ function GeneratePvPFilterEmbed(MAIN, filter)
 
 function GeneratePokemonFilterEmbed(MAIN, filter)
 {
-  let filterEmbed = new MAIN.Discord.RichEmbed();
+  let filterEmbed = new MAIN.Discord.MessageEmbed();
 
   filterEmbed.setDescription("Pokemon filter");
   filterEmbed.addField('Name',filter.name,true);

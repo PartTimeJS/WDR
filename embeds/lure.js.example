@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports = function(p) {
 
-  let lure_embed = new Discord.RichEmbed()
+  let lure_embed = new Discord.MessageEmbed()
   .setColor(p.color)
   .setThumbnail(p.sprite)
   .setAuthor(p.name, p.url)

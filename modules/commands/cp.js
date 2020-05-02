@@ -14,7 +14,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
     nickname = message.author.username;
   }
 
-  let requestAction = new MAIN.Discord.RichEmbed()
+  let requestAction = new MAIN.Discord.MessageEmbed()
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('What Pokémon do you want a CP search string for?')
   .setFooter('Type the name of desired Poké, no command prefix required.');
@@ -67,7 +67,7 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
   }
   search_string += '```';
 
-  let chart_embed = new MAIN.Discord.RichEmbed()
+  let chart_embed = new MAIN.Discord.MessageEmbed()
   .setColor(pokemon_color)
   .setThumbnail(sprite)
   .setTitle(pokemon_name+' CP Chart')
@@ -91,7 +91,7 @@ function padded(num) {
 }
 
 function subscription_timedout(MAIN, nickname, message, prefix){
-  let subscription_cancel = new MAIN.Discord.RichEmbed().setColor('00ff00')
+  let subscription_cancel = new MAIN.Discord.MessageEmbed().setColor('00ff00')
   .setAuthor(nickname, message.author.displayAvatarURL)
   .setTitle('Your Subscription Has Timed Out.')
   .setFooter('You can type \'view\', \'add\', \'add adv\', \'remove\', or \'edit\'.');

@@ -579,7 +579,7 @@ async function startup_notification(){
   // SEND STARTUP EMBED
   if(MAIN.config.log_channel && process.env.fork == 0){
     let log_ping = MAIN.config.log_ping ? MAIN.config.log_ping : '';
-    let ready_embed = new Discord.RichEmbed()
+    let ready_embed = new Discord.MessageEmbed()
       .setColor('00ff00')
       .setTitle('**'+MAIN.config.BOT_NAME+' is Ready.**')
       .setDescription(MAIN.Raid_Channels.length+' Raid Feeds\n'+
