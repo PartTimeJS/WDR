@@ -6,7 +6,6 @@ const os = require("os");
 const ini = require("ini");
 const express = require("express");
 const cluster = require("cluster");
-const bodyParser = require("body-parser");
 const config = ini.parse(fs.readFileSync("./config/config.ini", "utf-8"));
 
 var avg_objs, objs = [], requests = 0;
