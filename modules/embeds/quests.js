@@ -48,22 +48,31 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
 
   // GET REWARD ICON
   if(quest_reward.indexOf('Encounter') >= 0){
-    pokestop.sprite = MAIN.Get_Sprite(MAIN, { form: reward_form , pokemon_id: reward_pokemon, costume: reward_costume}, 'STATIC_ASSETS');
+    pokestop.reward_sprite = MAIN.Get_Sprite(MAIN, { form: reward_form , pokemon_id: reward_pokemon, costume: reward_costume}, 'STATIC_ASSETS');
   } else{
-    pokestop.sprite = MAIN.Get_Sprite(MAIN, quest_reward, 'QUEST_REWARD');
+    pokestop.reward_sprite = MAIN.Get_Sprite(MAIN, quest_reward, 'QUEST_REWARD');
   }
-  console.log(pokestop.sprite)
 
   // GET STATIC MAP TILE
   pokestop.static_marker = [{
-    "url" : pokestop.sprite,
+    "url" : pokestop.pokestop_sprite,
     "height" : 50,
     "width" : 50,
     "x_offset" : 0,
     "y_offset" : 0,
     "latitude" : quest.latitude,
     "longitude" : quest.longitude
-  }];
+  },
+  {
+    "url" : pokestop.reward_sprite,
+    "height" : 50,
+    "width" : 50,
+    "x_offset" : 0,
+    "y_offset" : 50,
+    "latitude" : quest.latitude,
+    "longitude" : quest.longitude
+  },
+];
   pokestop.static_map = MAIN.config.STATIC_MAP_URL+quest.latitude+"/"+quest.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokestop.static_marker));
 
   // DECLARE VARIABLES

@@ -39,7 +39,7 @@ module.exports.run = async (MAIN, message, raids, count) => {
     return MAIN.channels.cache.get(channel).send('<@'+member+'> You have not expressed interest in this raid, no need to leave.').catch(console.error);
   } else {
     // REMOVE ROLE AND DELETE FROM lobby_members
-    guild.members.cache.get(member).removeRole(guild.roles.get(raids.role_id));
+    guild.members.cache.get(member).roles.remove(guild.roles.get(raids.role_id));
     MAIN.pdb.query(`DELETE FROM lobby_members WHERE user_id = ?`, [member], function (error, lobby, fields) {
       if(error){ console.error(error); }
     });

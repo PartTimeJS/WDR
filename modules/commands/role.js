@@ -4,7 +4,7 @@ module.exports.run = async (MAIN, message, prefix, discord) => {
   console.log('[ROLE_COMMAND] Starting...')
   let members = message.guild.members.map(m => m);
   let role_name = message.content.slice(6,0);
-  let role = message.guild.roles.find('name', 'Trainers');
+  let role = message.guild.roles.cache.find('name', 'Trainers');
   for(let m=0; m<members.length; m++){
     setTimeout(function() {
       if(!members[m].roles.cache.has(role.id)){
