@@ -191,7 +191,7 @@ function LoadEmojis(bot, serverIDs)
                 {
                     let emojiName = emojiNameList[emoji];
 
-                    this[emoji] = guild.emojis.find(emoji => emoji.name === emojiName)
+                    this[emoji] = guild.cache.emojis.find(emoji => emoji.name === emojiName)
 
                     if(this[emoji])
                     {
