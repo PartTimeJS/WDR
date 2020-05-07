@@ -75,7 +75,7 @@ module.exports.run = async (MAIN, BOT, message) => {
 
     // GET MEMBER
     let member = guild.members.cache.get(message.author.id);
-    if(!member){ member = await guild.fetchMember(message.author.id); }
+    if(!member){ member = await guild.members.fetch(message.author.id); }
 
     let isAdmin = member.hasPermission('ADMINISTRATOR') ? true : false;
     let isMod = member.hasPermission('MANAGE_ROLES') ? true : false;
@@ -95,7 +95,7 @@ module.exports.run = async (MAIN, BOT, message) => {
           .setColor('ff0000')
           .addField('User attempted to use a subsciption command, not a donor. ',member.user.username);
           if(MAIN.config.donor_info){ donor_info = MAIN.config.donor_info}
-          guild.fetchMember(message.author.id).then( TARGET => {
+          guild.members.fetch(message.author.id).then( TARGET => {
             TARGET.send('This feature is only for donors. '+donor_info).catch(console.error);
           });
           return MAIN.Send_Embed(MAIN, 'member', 0, server.id, '', nondonor_embed, MAIN.config.log_channel);

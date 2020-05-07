@@ -71,7 +71,7 @@ async function pokemon_view(MAIN, message, nickname, target, prefix, discord){
     if(discord.spam_channels && discord.spam_channels.indexOf(message.channel.id) >= 0){
       return message.reply(stat_message);
     } else {
-      guild.fetchMember(message.author.id).then( TARGET => {
+      guild.members.fetch(message.author.id).then( TARGET => {
         return TARGET.send(stat_message).catch(console.error);
       });
     }

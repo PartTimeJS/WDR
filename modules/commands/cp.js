@@ -77,7 +77,7 @@ async function pokemon_view(MAIN, message, nickname, pokemon, prefix, discord){
   if(discord.spam_channels.indexOf(message.channel.id) >= 0){
     return MAIN.Send_Embed(MAIN, 'cp', 0, discord, '', chart_embed, message.channel.id);
   } else {
-    guild.fetchMember(message.author.id).then( TARGET => {
+    guild.members.fetch(message.author.id).then( TARGET => {
       return TARGET.send(chart_embed).catch(console.error);
     });
   }
