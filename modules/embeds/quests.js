@@ -68,7 +68,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
     "height" : 50,
     "width" : 50,
     "x_offset" : 0,
-    "y_offset" : 50,
+    "y_offset" : -50,
     "latitude" : quest.latitude,
     "longitude" : quest.longitude
   },
