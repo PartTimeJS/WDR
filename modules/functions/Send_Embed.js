@@ -1,4 +1,6 @@
 // CHOOSE NEXT BOT AND SEND EMBED
+var errors = 0;
+
 module.exports = (MAIN, type, raid_level, server, content, embed, channel_id) => {
 
   if(!MAIN.BOTS){ return console.error('BOTS aren\'t active or problem finding any BOTS.'); }
