@@ -482,7 +482,6 @@ MAIN.webhookParse = async (PAYLOAD) => {
               return;
             // SEND TO QUESTS MODULES
             case 'quest':
-              console.log(data.message)
               let quest = data.message;
               quest.locale = await MAIN.Get_Data(MAIN, {pokemon_id: quest.rewards[0].info.pokemon_id, form: quest.rewards[0].info.form_id});
               Quest_Feed.run(MAIN, quest, area, server, timezone);
