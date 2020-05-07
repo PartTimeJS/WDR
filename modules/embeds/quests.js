@@ -55,7 +55,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
 
   // GET STATIC MAP TILE
   pokestop.static_marker = [{
-    "url" : pokestop.pokestop_sprite,
+    "url" : "https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/pokestop_near.png",
     "height" : 50,
     "width" : 50,
     "x_offset" : 0,
@@ -75,7 +75,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
 ];
   pokestop.static_map = MAIN.config.STATIC_MAP_URL+quest.latitude+"/"+quest.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(pokestop.static_marker));
   console.log(pokestop.static_map);
-  
+
   // DECLARE VARIABLES
   pokestop.time = MAIN.Bot_Time(null, 'quest', timezone);
 
