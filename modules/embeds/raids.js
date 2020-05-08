@@ -55,21 +55,25 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       gym.team = MAIN.emotes.mystic+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_blue.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_blue.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Mystic_Raid.png';
       break;
     case 2:
       gym.team = MAIN.emotes.valor+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_red.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_red.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Valor_Raid.png';
       break;
     case 3:
       gym.team = MAIN.emotes.instinct+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Instint_Raid.png';
       break;
     default:
       gym.team = 'Uncontested Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/TeamLess.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/TeamLess.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Uncontested_Raid.png';
   }
 
   // CHECK IF SPONSORED GYM
@@ -98,21 +102,30 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       // GET EGG IMAGE
       switch(raid.level){
         case 1:
-        case 2: gym.sprite = 'https://i.imgur.com/ABNC8aP.png'; break;
+        case 2: gym.sprite = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/ic_raid_egg_normal.png'; break;
         case 3:
-        case 4: gym.sprite = 'https://i.imgur.com/zTvNq7j.png'; break;
-        case 5: gym.sprite = 'https://i.imgur.com/jaTCRXJ.png'; break;
+        case 4: gym.sprite = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/ic_raid_egg_rare.png'; break;
+        case 5: gym.sprite = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/ic_raid_egg_legendary.png'; break;
       }
 
       // STATIC MAP TILE
       gym.static_marker = [{
-        "url" : gym.sprite,
+        "url" : gym.embed_image,
         "height" : 40,
         "width" : 40,
         "x_offset" : 0,
         "y_offset" : 0,
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
+      },
+      {
+        "url" : pokestop.reward_sprite,
+        "height" : 50,
+        "width" : 50,
+        "x_offset" : 0,
+        "y_offset" : -30,
+        "latitude" : raid.latitude,
+        "longitude" : quest.longitude
       }];
       gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
 
