@@ -225,14 +225,6 @@ if(process.env.fork == 0){
   }, 1000 * 60);
 }
 //------------------------------------------------------------------------------
-//  UNKNOWN ERROR HANDLING
-//------------------------------------------------------------------------------
-// LOG FOR UNCAUGHTEXCEPTION
-process.on('uncaughtException', (err) => {
-    console.error('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] There was an uncaught error', err)
-    MAIN.restart('due to an uncaught error'+err, process.env.fork)
-})
-//------------------------------------------------------------------------------
 //  INTERVAL UPDATES
 //------------------------------------------------------------------------------
 setInterval(function() { load_arrays(); }, 60000 * 360); // 6 HOURS
