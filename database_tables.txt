@@ -39,14 +39,13 @@ CREATE TABLE `pokebot_subscriptions` (
   `gym_id` varchar(35)
 );
 
-CREATE TABLE `pokebot_queued-alerts` (
+CREATE TABLE `pokebot_queued` (
   `user_id` int(25) NOT NULL,
   `user_name` varchar(40) NOT NULL,
   `guild_id` int(25) NOT NULL,
   `bot` smallint(2) NOT NULL,
   `area` varchar(20),
-  `quest` varchar(10),
+  `alert` varchar(10),
   `alert_time` int(40),
-  `embed` LONGTEXT NOT NULL,
-  `gym_id` varchar(35)
+  `embed` LONGTEXT NOT NULL
 )

@@ -227,11 +227,6 @@ if(process.env.fork == 0){
 //------------------------------------------------------------------------------
 //  UNKNOWN ERROR HANDLING
 //------------------------------------------------------------------------------
-// LOG FOR DISCORD CONNECTION ERROR
-MAIN.on('error', (error) => {
-    console.error('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] Discord client encountered an error: '+ error);
-    MAIN.restart('due to an error. '+error.code, process.env.fork);
-});
 // LOG FOR UNCAUGHTEXCEPTION
 process.on('uncaughtException', (err) => {
     console.error('[bot.js] ['+MAIN.Bot_Time(null,'stamp')+'] There was an uncaught error', err)
