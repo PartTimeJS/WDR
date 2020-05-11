@@ -114,7 +114,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "height" : 40,
         "width" : 40,
         "x_offset" : 0,
-        "y_offset" : 10,
+        "y_offset" : 0,
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
       },
