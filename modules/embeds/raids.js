@@ -67,7 +67,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       gym.team = MAIN.emotes.instinct+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
-      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Instint_Raid.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Instinct_Raid.png';
       break;
     default:
       gym.team = 'Uncontested Gym';
