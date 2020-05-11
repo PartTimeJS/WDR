@@ -67,7 +67,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
       gym.team = MAIN.emotes.instinct+' Gym';
       gym.url = raid.gym_url ? raid.gym_url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
       gym.sprite = 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png';
-      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Instinct_Raid.png';
+      gym.embed_image = 'https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/Images/gyms/Gym_Instint_Raid.png';
       break;
     default:
       gym.team = 'Uncontested Gym';
@@ -123,7 +123,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "height" : 40,
         "width" : 40,
         "x_offset" : 0,
-        "y_offset" : -30,
+        "y_offset" : -35,
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
       }];
@@ -154,16 +154,24 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
 
       // STATIC MAP TILE
       gym.static_marker = [{
-        "url" : MAIN.Get_Sprite(MAIN, { pokemon_id: gym.pokemon_id, form: gym.form }, 'STATIC_ASSETS'),
-        "height" : 50,
-        "width" : 50,
+        "url" : gym.embed_image,
+        "height" : 40,
+        "width" : 40,
         "x_offset" : 0,
         "y_offset" : 0,
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
+      },
+        "url" : MAIN.Get_Sprite(MAIN, { pokemon_id: gym.pokemon_id, form: gym.form }, 'STATIC_ASSETS'),
+        "height" : 40,
+        "width" : 40,
+        "x_offset" : 0,
+        "y_offset" : -35,
+        "latitude" : raid.latitude,
+        "longitude" : raid.longitude
       }];
       gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
-
+      console.log(gym.static_map);
       // CREATE THE RAID EMBED
       raid_embed = await Embed_Config(gym);
 
