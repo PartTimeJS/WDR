@@ -128,7 +128,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "longitude" : raid.longitude
       }];
       gym.static_map = MAIN.config.STATIC_MAP_URL+raid.latitude+"/"+raid.longitude+"/"+MAIN.config.STATIC_ZOOM+"/"+MAIN.config.STATIC_WIDTH+"/"+MAIN.config.STATIC_HEIGHT+"/2/png?markers="+encodeURIComponent(JSON.stringify(gym.static_marker));
-      consoel.log(gym.static_map);
+      console.log(gym.static_map);
       // CREATE THE EGG EMBED
       raid_embed = await Embed_Config(gym);
 
