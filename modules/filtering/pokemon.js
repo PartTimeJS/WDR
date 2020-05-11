@@ -1,4 +1,4 @@
-const Send_Pokemon = require('../embeds/pokemon.js');
+const Send_Pokemon = require(__dirname + '/../embeds/pokemon.js');
 
 
 module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => {

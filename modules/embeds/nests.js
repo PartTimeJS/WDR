@@ -1,7 +1,7 @@
 
 
 module.exports.run = async (MAIN, message, nest, server, area, timezone, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
 
   let form = MAIN.masterfile.pokemon[nest.pokemon_id].default_form ? MAIN.masterfile.pokemon[nest.pokemon_id].default_form : 0;
   let locale = await MAIN.Get_Data(MAIN, nest);

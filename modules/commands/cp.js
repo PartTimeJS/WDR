@@ -1,8 +1,8 @@
 const GeoTz = require('geo-tz');
 
-const Send_Nest = require('../embeds/nests.js');
+const Send_Nest = require(__dirname + '/../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
-const pvp = require('../base/pvp.js');
+const pvp = require(__dirname + '/../pvp.js');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
 

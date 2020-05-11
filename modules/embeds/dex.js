@@ -1,5 +1,5 @@
 
-const pvp = require('../base/pvp.js');
+const pvp = require(__dirname + '/../pvp.js');
 
 module.exports.run = async (MAIN, message, pokemon, server) => {
       // CHECK IF THE TARGET IS A USER

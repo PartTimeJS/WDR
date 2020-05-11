@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const master_file = require('../static/masterfile.json');
+const master_file = require(__dirname + '/../static/masterfile.json');
 module.exports = function(p) {
 
   let pvpString = "";

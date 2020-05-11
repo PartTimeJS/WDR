@@ -1,5 +1,5 @@
-const Send_PvP = require('../embeds/pvp.js');
-const pvp = require('../base/pvp.js');
+const Send_PvP = require(__dirname + '/../embeds/pvp.js');
+const pvp = require(__dirname + '/../pvp.js');
 
 module.exports.run = async (MAIN, sighting, area, server, timezone, role_id) => {
 

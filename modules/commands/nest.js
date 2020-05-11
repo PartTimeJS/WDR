@@ -1,7 +1,7 @@
 const Fuzzy = require('fuzzy');
 const GeoTz = require('geo-tz');
 
-const Send_Nest = require('../embeds/nests.js');
+const Send_Nest = require(__dirname + '/../embeds/nests.js');
 const InsideGeojson = require('point-in-geopolygon');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {

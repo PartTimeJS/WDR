@@ -1,4 +1,4 @@
-const Send_Quest = require('../embeds/quests.js');
+const Send_Quest = require(__dirname + '/../embeds/quests.js');
 
 module.exports.run = async (MAIN, quest, area, server, timezone, role_id) => {
 

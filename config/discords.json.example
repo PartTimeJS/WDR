@@ -3,7 +3,7 @@
       "name": "Tallahassee",
       "id": "266738315380785152",
       "geojson_file": "tallahassee.json",
-      "language": "en",
+      "subscribe_url": "https://xxx.com/subscribe",
       "donor_role": "277658037982986240",
       "command_channels": ["492517376177471488"],
       "spam_channels": [],
@@ -25,7 +25,7 @@
       "name": "Gainesville",
       "id": "520254085148966912",
       "geojson_file": "",
-      "language": "de",
+      "subscribe_url": "https://xxx.com/subscribe",
       "donor_role": "520607689001271299",
       "command_channels": "520604206206287883",
       "purge_channels": "ENABLED",
@@ -38,80 +38,6 @@
           [-82.159416,29.467345],
           [-82.73336,29.467067],
           [-82.673078,29.923063]
-        ]
-      ]
-    },
-    {
-      "name": "Alabama",
-      "id": "313858836580532225",
-      "geojson_file": "alabama.json",
-      "donor_role": "540354558103126033",
-      "command_channels": "540354517166718977",
-      "purge_channels": "ENABLED",
-      "channels_to_purge": ["540354431712100373","540354458165444608"],
-      "raid_role": "551467095293165591",
-      "geofence": [
-        [
-          [-86.580546,32.61903],
-          [-86.018315,32.626685],
-          [-86.016844,32.206632],
-          [-86.574583,32.194268],
-          [-86.580546,32.61903]
-        ]
-      ]
-    },
-    {
-      "name": "Columbus",
-      "id": "535185283046703105",
-      "geojson_file": "columbus.json",
-      "donor_role": "",
-      "command_channels": "535192018754732053",
-      "purge_channels": "ENABLED",
-      "channels_to_purge": ["535192085272461322","535192088841814036"],
-      "raid_role": "551467095293165591",
-      "geofence": [
-        [
-          [-85.167072,32.690785],
-          [-84.082303,32.709784],
-          [-84.054067,32.352024],
-          [-85.156148,32.333116],
-          [-85.167072,32.690785]
-        ]
-      ]
-    },
-    {
-      "name": "New York Leveling",
-      "id": "",
-      "command_channels": "",
-      "donor_role": "",
-      "purge_channels": "DISABLED",
-      "channels_to_purge": [],
-      "raid_role": "",
-      "geofence": [
-        [
-          [ -74.117117, 40.662502 ],
-          [ -74.122533, 40.86488 ],
-          [ -73.879015, 40.862352 ],
-          [ -73.880396, 40.663548 ],
-          [ -74.117117, 40.662502 ]
-        ]
-      ]
-    },
-    {
-      "name": "Test",
-      "id": "420902528641662976",
-      "command_channels": "527865177144819732",
-      "donor_role": "",
-      "purge_channels": "DISABLED",
-      "channels_to_purge": [],
-      "raid_role": "",
-      "geofence": [
-        [
-          [ -37.366390228271484, 31.271948634919863 ],
-          [ -37.25996017456055, 31.271948634919863 ],
-          [ -37.25996017456055, 31.352610777701113 ],
-          [ -37.366390228271484, 31.352610777701113 ],
-          [ -37.366390228271484, 31.271948634919863 ]
         ]
       ]
     }

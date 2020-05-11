@@ -2,7 +2,7 @@
 const moment = require('moment');
 
 module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, area, server, timezone, role_id, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);
@@ -102,7 +102,7 @@ module.exports.run = async (MAIN, target, quest, quest_reward, simple_reward, ar
     quest_embed = JSON.stringify(quest_embed);
 
     // SAVE THE ALERT TO THE ALERT TABLE FOR FUTURE DELIVERY
-    return MAIN.pdb.query(`INSERT INTO quest_alerts (user_id, user_name, quest, embed, area, bot, alert_time, discord_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    return MAIN.pdb.query(`INSERT INTO quest_alerts (user_id, user_name, guild_id, bot, area, alert, alert_time, embed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [target.user_id, target.user_name, quest_object, quest_embed, area.embed, target.bot, db_date, server.id], function (error, alert, fields) {
       if(error){ console.error('['+MAIN.Bot_Time(null,'stamp')+'] UNABLE TO ADD ALERT TO quest_alerts',error); }
       else if(MAIN.debug.Quests == 'ENABLED' && MAIN.debug.Subscriptions == 'ENABLED'){

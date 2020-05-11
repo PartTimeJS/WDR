@@ -3,7 +3,7 @@
 module.exports.run = async (MAIN, target, sighting, internal_value, time_now, area, server, timezone, role_id, embed, possible_cps) => {
   // RETURN IF NO CP PROVIDED
   if(sighting.cp == null){ return; }
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);

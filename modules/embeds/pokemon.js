@@ -1,7 +1,7 @@
 
 
 module.exports.run = async (MAIN, has_iv, target, sighting, internal_value, time_now, area, server, timezone, content, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
   let pokemon_embed = '';
 
   // CHECK IF THE TARGET IS A USER

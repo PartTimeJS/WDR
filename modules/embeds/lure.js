@@ -1,7 +1,7 @@
 
 
 module.exports.run = async (MAIN, target, lure, type, area, server, timezone, role_id, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
   let locale = await MAIN.Get_Data(MAIN, lure);
 
   // CHECK IF THE TARGET IS A USER

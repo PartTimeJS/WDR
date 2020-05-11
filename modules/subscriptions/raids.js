@@ -1,5 +1,5 @@
-delete require.cache[require.resolve('../embeds/raids.js')];
-const Send_Raid = require('../embeds/raids.js');
+delete require.cache[require.resolve(__dirname + '/../embeds/raids.js')];
+const Send_Raid = require(__dirname + '/../embeds/raids.js');
 
 
 module.exports.run = async (MAIN, raid, area, server, timezone) => {

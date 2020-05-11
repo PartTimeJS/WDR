@@ -1,6 +1,6 @@
-delete require.cache[require.resolve('../embeds/quests.js')];
+delete require.cache[require.resolve(__dirname + '/../embeds/quests.js')];
 
-const Send_Quest = require('../embeds/quests.js');
+const Send_Quest = require(__dirname + '/../embeds/quests.js');
 
 module.exports.run = async (MAIN, quest, area, server, timezone) => {
 

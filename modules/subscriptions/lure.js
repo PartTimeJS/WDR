@@ -1,5 +1,5 @@
-delete require.cache[require.resolve('../embeds/lure.js')];
-const Send_Lure = require('../embeds/lure.js');
+delete require.cache[require.resolve(__dirname + '/../embeds/lure.js')];
+const Send_Lure = require(__dirname + '/../embeds/lure.js');
 
 module.exports.run = async (MAIN, lure, area, server, timezone) => {
   //if(!lure.pokemon_id){ return; }

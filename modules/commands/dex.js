@@ -1,6 +1,6 @@
 const GeoTz = require('geo-tz');
 
-const Send_Dex = require('../embeds/dex.js');
+const Send_Dex = require(__dirname + '/../embeds/dex.js');
 
 module.exports.run = async (MAIN, message, prefix, discord) => {
   // DECLARE VARIABLES

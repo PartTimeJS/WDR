@@ -1,4 +1,4 @@
-const Send_Lure = require('../embeds/lure.js');
+const Send_Lure = require(__dirname + '/../embeds/lure.js');
 
 
 module.exports.run = async (MAIN, lure, area, server, timezone, role_id) => {

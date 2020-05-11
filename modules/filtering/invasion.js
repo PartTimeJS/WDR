@@ -1,4 +1,4 @@
-const Send_Invasion = require('../embeds/invasion.js');
+const Send_Invasion = require(__dirname + '/../embeds/invasion.js');
 
 
 module.exports.run = async (MAIN, invasion, area, server, timezone, role_id) => {

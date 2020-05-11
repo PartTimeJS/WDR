@@ -1,7 +1,7 @@
 
 
 module.exports.run = async (MAIN, target, invasion, type, area, server, timezone, role_id, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
 
   // CHECK IF THE TARGET IS A USER
   let member = MAIN.guilds.cache.get(server.id).members.cache.get(target.user_id);

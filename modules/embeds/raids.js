@@ -1,8 +1,8 @@
 
-const pvp = require('../base/pvp.js');
+const pvp = require(__dirname + '/../pvp.js');
 
 module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezone, content, embed) => {
-  let Embed_Config = require('../../embeds/'+embed);
+  let Embed_Config = require(__dirname + '/../../embeds/'+embed);
   let raid_embed = '';
 
   // CHECK IF THE TARGET IS A USER

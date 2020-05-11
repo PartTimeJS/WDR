@@ -1,8 +1,8 @@
-delete require.cache[require.resolve('../embeds/pokemon.js')];
-delete require.cache[require.resolve('../embeds/pvp.js')];
-const Send_Pokemon = require('../embeds/pokemon.js');
-const Send_PvP = require('../embeds/pvp.js');
-const pvp = require('../base/pvp.js');
+delete require.cache[require.resolve(__dirname + '/../embeds/pokemon.js')];
+delete require.cache[require.resolve(__dirname + '/../embeds/pvp.js')];
+const Send_Pokemon = require(__dirname + '/../embeds/pokemon.js');
+const Send_PvP = require(__dirname + '/../embeds/pvp.js');
+const pvp = require(__dirname + '/../pvp.js');
 
 
 module.exports.run = async (MAIN, sighting, area, server, timezone) => {
