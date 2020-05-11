@@ -162,6 +162,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
       },
+      {
         "url" : MAIN.Get_Sprite(MAIN, { pokemon_id: gym.pokemon_id, form: gym.form }, 'STATIC_ASSETS'),
         "height" : 40,
         "width" : 40,
