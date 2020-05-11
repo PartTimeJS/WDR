@@ -119,7 +119,7 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "longitude" : raid.longitude
       },
       {
-        "url" : pokestop.reward_sprite,
+        "url" : gym.sprite,
         "height" : 50,
         "width" : 50,
         "x_offset" : 0,
