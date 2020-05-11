@@ -114,14 +114,14 @@ module.exports.run = async (MAIN, target, raid, raid_type, area, server, timezon
         "height" : 40,
         "width" : 40,
         "x_offset" : 0,
-        "y_offset" : 0,
+        "y_offset" : 10,
         "latitude" : raid.latitude,
         "longitude" : raid.longitude
       },
       {
         "url" : gym.sprite,
-        "height" : 50,
-        "width" : 50,
+        "height" : 40,
+        "width" : 40,
         "x_offset" : 0,
         "y_offset" : -30,
         "latitude" : raid.latitude,
