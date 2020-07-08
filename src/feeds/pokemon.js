@@ -42,10 +42,6 @@ module.exports = (WDR, Sighting) => {
       }
     }
 
-    if (S.pokemon_id == 129) {
-      console.log("FEED TEST1 | " + S.pokemon_name + " | " + S.internal_value + " | " + S.size);
-    }
-
     // CHECK FILTER GEOFENCES
     switch (true) {
       case (Ch.Geofences.indexOf(S.Area.Default) >= 0):
@@ -60,10 +56,6 @@ module.exports = (WDR, Sighting) => {
         criteria.max_iv = Ch.Filter.max_iv == undefined ? 100 : Ch.Filter.max_iv;
         criteria.min_level = Ch.Filter.min_level == undefined ? 0 : Ch.Filter.min_level;
         criteria.max_level = Ch.Filter.max_level == undefined ? 35 : Ch.Filter.max_level;
-
-        if (S.pokemon_id == 129) {
-          console.log("FEED TEST2 | " + S.pokemon_name + " | " + S.internal_value + " | " + S.size);
-        }
 
         switch (true) {
 
@@ -102,10 +94,6 @@ module.exports = (WDR, Sighting) => {
 
             S.Embed = feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js";
 
-            if (S.pokemon_id == 129) {
-              console.log("FEED TEST3 | " + S.pokemon_name + " | " + S.internal_value + " | " + S.size);
-            }
-
             switch (true) {
 
               // CP FILTERS
@@ -135,9 +123,6 @@ module.exports = (WDR, Sighting) => {
                   default:
 
                     if (criteria.gender == "all" || criteria.gender == S.gender) {
-                      if (S.pokemon_id == 129) {
-                        console.log("FEED TEST4 | " + S.pokemon_name + " | " + S.internal_value + " | " + S.size);
-                      }
                       Feed_Embed(WDR, null, Ch, S);
                     }
                 }
