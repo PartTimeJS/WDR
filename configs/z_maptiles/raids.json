@@ -1,0 +1,58 @@
+{
+  "style": "klokantech-basic",
+  "latitude": #(lat),
+  "longitude": #(lon),
+  "zoom": 15,
+  "width": 400,
+  "height": 220,
+  "scale": 2,
+  "markers": [
+  	#if(stops != nil):
+    	#for(ps in stops):
+        {
+          "url": "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/other/tile_pokestop.png",
+          "latitude": #index(ps,0),
+          "longitude": #index(ps,1),
+          "width": 17,
+          "height": 17,
+    	    "y_offset": -7
+        },
+    	#endfor
+  	#endif
+    #if(gyms != nil):
+      #for(pg in gyms):
+        {
+          "url": "#index(pg, 2)",
+          "latitude": #index(pg, 0),
+          "longitude": #index(pg, 1),
+          "height": 20,
+          "width": 20,
+          "y_offset": -8
+        },
+        {
+          "url": "#index(pg, 3)",
+          "latitude": #index(pg, 0),
+          "longitude": #index(pg, 1),
+          "height": 18,
+          "width": 18,
+          "y_offset": -24
+        },
+      #endfor
+    #endif
+  	{
+  	   "url": "#(url)",
+  	   "latitude": #(lat),
+  	   "longitude": #(lon),
+  	   "width": 50,
+  	   "height": 50
+  	},
+    {
+       "url": "#(url2)",
+       "latitude": #(lat),
+       "longitude": #(lon),
+       "width": 50,
+       "height": 50,
+       "y_offset": -40
+    }
+  ]
+}

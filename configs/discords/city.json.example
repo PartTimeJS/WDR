@@ -1,0 +1,27 @@
+{
+  "name": "Tallahassee",
+
+  "id": "266738315380785152",
+
+  "geojson_file": "tallahassee.json",
+
+  "subscribe_url": "https://tally.pokemap.org/subscribe",
+
+  "donor_role": "277658037982986240",
+
+  "command_channels": "492517376177471488,586558029332217856",
+
+  "purge_channels": "ENABLED",
+
+  "channels_to_purge": ["537460180451983371","537460213956214785"],
+
+  "geofence": [
+    [
+      [-84.726558,30.7823],
+      [-84.060242,30.771741],
+      [-84.03284,30.078181],
+      [-84.690204,30.061413],
+      [-84.726558,30.7823]
+    ]
+  ]
+}
