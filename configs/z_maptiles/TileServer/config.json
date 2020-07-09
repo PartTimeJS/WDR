@@ -1,0 +1,29 @@
+{
+  "options": {
+    "paths": {
+      "root": "/usr/src/app/node_modules/tileserver-gl-styles",
+      "fonts": "/data/fonts",
+      "styles": "/data/styles",
+      "mbtiles": "/data/mbtiles"
+    }
+  },
+  "styles": {
+    "klokantech-basic": {
+      "style": "klokantech-basic/style.json"
+    },
+	"dark-matter": {
+      "style": "dark-matter/style.json"
+    },
+	"osm-bright": {
+      "style": "osm-bright/style.json"
+    },
+	"positron": {
+      "style": "positron/style.json"
+    }
+  },
+  "data": {
+    "v3": {
+      "mbtiles": "north-america.mbtiles"
+    }
+  }
+}
