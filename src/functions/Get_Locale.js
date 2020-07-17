@@ -30,7 +30,7 @@ module.exports = {
           // ENGLISH FORM
           if (P_Locale.form_id) {
             if (!WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id]) {
-              console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] No form found for Pokemon: " + WDR.Master.Pokemon[P_Locale.pokemon_id].name + " Form#: " + P_Locale.form_id);
+              WDR.Console.error(WDR, "[Get_P_Locale.js] No form found for Pokemon: " + WDR.Master.Pokemon[P_Locale.pokemon_id].name + " Form#: " + P_Locale.form_id);
               return resolve(P_Locale);
             }
             P_Locale.form_name = WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].form ? "[" + WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].form + "]" : "";
@@ -46,7 +46,7 @@ module.exports = {
           // ENGLISH MOVE 1 NAME
           if (P_Locale.move_1) {
             if (!WDR.Master.Moves[P_Locale.move_1]) {
-              return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] No Move found for " + P_Locale.move_1);
+              return WDR.Console.error(WDR, "[Get_P_Locale.js] No Move found for " + P_Locale.move_1);
             }
             P_Locale.move_1_name = WDR.Master.Moves[P_Locale.move_1].name;
           }
@@ -54,7 +54,7 @@ module.exports = {
           // ENGLISH MOVE 2 NAME
           if (P_Locale.move_2) {
             if (!WDR.Master.Moves[P_Locale.move_2]) {
-              return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] No Move found for " + P_Locale.move_2);
+              return WDR.Console.error(WDR, "[Get_P_Locale.js] No Move found for " + P_Locale.move_2);
             }
             P_Locale.move_2_name = WDR.Master.Moves[P_Locale.move_2].name;
           }
@@ -65,7 +65,7 @@ module.exports = {
 
           if (P_Locale.weather_boost != "") {
             if (!WDR.Locales[P_Locale.Discord.locale]["Boosted"]) {
-              console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] No " + P_Locale.Discord.locale + " Translation found for `Boosted`.");
+              WDR.Console.error(WDR, "[Get_P_Locale.js] No " + P_Locale.Discord.locale + " Translation found for `Boosted`.");
             }
             P_Locale.weather_boost += WDR.Locales[P_Locale.Discord.locale]["Boosted"] ? " ***" + WDR.Locales[P_Locale.Discord.locale]["Boosted"] + "***" : " ***Boosted***";
           }
@@ -78,7 +78,7 @@ module.exports = {
           if (P_Locale.move_1) {
             let local_move_1_name = WDR.Locales[P_Locale.Discord.locale][WDR.Master.Moves[P_Locale.move_1].name];
             if (!WDR.Locales[P_Locale.Discord.locale][WDR.Master.Moves[P_Locale.move_1]]) {
-              console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for Move # " + P_Locale.move_1);
+              WDR.Console.error(WDR, "[Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for Move # " + P_Locale.move_1);
             }
             P_Locale.move_1_name = local_move_1_name ? local_move_1_name : WDR.Master.Moves[P_Locale.move_1].name;
           }
@@ -87,7 +87,7 @@ module.exports = {
           if (P_Locale.move_2) {
             let locale_move_2_name = WDR.Locales[P_Locale.Discord.locale][WDR.Master.Moves[P_Locale.move_2].name];
             if (!WDR.Locales[P_Locale.Discord.locale][WDR.Master.Moves[P_Locale.move_2]]) {
-              console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for Move # " + P_Locale.move_2);
+              WDR.Console.error(WDR, "[Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for Move # " + P_Locale.move_2);
             }
             P_Locale.move_2_name = locale_move_2_name ? locale_move_2_name : WDR.Master.Moves[P_Locale.move_2].name;
           }
@@ -95,7 +95,7 @@ module.exports = {
           if (P_Locale.form_id) {
             let locale_form = "[" + WDR.Locales[P_Locale.Discord.locale][WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].name] + "] ";
             if (!WDR.Locales[P_Locale.Discord.locale][WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].name]) {
-              console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for form: " + WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].name);
+              WDR.Console.error(WDR, "[Get_P_Locale.js] " + P_Locale.Discord.locale + " Translation does not exist for form: " + WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].name);
             }
             P_Locale.form_name = locale_form ? "[" + locale_form + "]" : "";
           } else {
@@ -118,7 +118,7 @@ module.exports = {
 
   async Quest(Quest) {
     return new Promise(async resolve => {
-      console.log("[LOCALE]", Quest);
+      WDR.Console.log(WDR,"[LOCALE]", Quest);
       return resolve(Quest);
     });
   },

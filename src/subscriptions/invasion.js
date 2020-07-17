@@ -29,14 +29,14 @@ module.exports = async (WDR, invasion, area, server, timezone) => {
   //
   //          // CHECK FOR GRUNT TYPE
   //          if(!WDR.Master.grunt_types[invasion.grunt_type]){
-  //              return //console.error("[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
+  //              return //WDR.Console.error(WDR, "[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
   //          }
   //
   //          // CONVERT INVASION LIST TO AN ARRAY
   //          let invasion_subs = JSON.parse(user.invasion);
   //          let type = WDR.Master.grunt_types[invasion.grunt_type].type;
   //          if(!type){
-  //            return //console.error("[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
+  //            return //WDR.Console.error(WDR, "[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
   //          }
   //          let gender = WDR.Master.grunt_types[invasion.grunt_type].gender;
   //

@@ -1,7 +1,7 @@
 exports.Load = function(WDR) {
   return new Promise(async resolve => {
 
-    WDR.Master = require(WDR.dir + "/src/static/master.json");
+    WDR.Master = require(WDR.Dir + "/src/static/master.json");
 
     // LOAD LANGUAGE LOCALES
     WDR.Locales = {};
@@ -18,11 +18,11 @@ exports.Load = function(WDR) {
     WDR.Locales.zh_cn = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/zh_cn.json");
     WDR.Locales.zh_hk = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/zh_hk.json");
     WDR.Locales.zh_tw = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/zh_tw.json");
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [load_data.js] Loaded Language files.");
+    WDR.Console.info(WDR, "[load_data.js] Loaded Language files.");
 
     // LOAD CP MULTIPLIER
-    delete require.cache[require.resolve(WDR.dir + "/src/static/cp_multiplier.json")];
-    WDR.cp_multiplier = require(WDR.dir + "/src/static/cp_multiplier.json");
+    delete require.cache[require.resolve(WDR.Dir + "/src/static/cp_multiplier.json")];
+    WDR.cp_multiplier = require(WDR.Dir + "/src/static/cp_multiplier.json");
 
     // END
     return resolve(WDR);

@@ -4,7 +4,7 @@ exports.Load = function(WDR) {
 
     let Discords = [];
 
-    await WDR.Fs.readdir(WDR.dir + "/configs/discords", (err, discords) => {
+    await WDR.Fs.readdir(WDR.Dir + "/configs/discords", (err, discords) => {
 
       let discord_files = discords.filter(f => f.split(".").pop() === "json");
 
@@ -12,15 +12,15 @@ exports.Load = function(WDR) {
 
         discord_count++;
 
-        delete require.cache[require.resolve(WDR.dir + "/configs/discords/" + f)];
+        delete require.cache[require.resolve(WDR.Dir + "/configs/discords/" + f)];
 
-        let discord = require(WDR.dir + "/configs/discords/" + f);
+        let discord = require(WDR.Dir + "/configs/discords/" + f);
 
         Discords.push(discord);
 
       });
       // LOG SUCCESS AND COUNTS
-      console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [load_discords.js] Loaded " + discord_count + " Discord files.");
+      WDR.Console.info(WDR, "[load_discords.js] Loaded " + discord_count + " Discord files.");
       // END
       return resolve(Discords);
     });

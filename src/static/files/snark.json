@@ -1,17 +1,55 @@
 {
   "startup":[
+
+    "Starting Up...",
+    "Let's Do this...",
+    "Putting on my Corona Mask...",
+
+    "Starting Up...",
+    "Hit Me with Your Best Shot...",
+    "Snorting a Pile of Cocaine...",
+
+    "Starting Up...",
+    "Slamming down my Coffee...",
+    "Gonna need a Bigger Boat...",
+
+    "Starting Up...",
+    "Turning Me on Again, Eh?",
+    "I really don't feel like dealing with your errors right now...",
+
+    "Starting Up...",
+    "Round and round we go...",
+    "Looks like a nice day outside.",
+
+    "Starting Up...",
+    "When I'm not with you I lose my mind. Give me a sign...",
+    "Again, Seriously?..."
+
+  ],
+  "initialized":[
+
     "WDR has Fully Initialized.",
     "Woo Hoo, WDR has Fully Initialized. You must feel like a genius now.",
     "Congrats! You were competent enough to get this running, for now.",
+
     "WDR has Fully Initialized.",
-    "Feel good about yourself. WDR has Fully Initialized.",
-    "Looks like you're not as bad as drf after all. WDR has Fully Initialized.",
+    "Fire Away.",
+    "SAY HELLO TO MY LITTLE FRIEND!",
+
     "WDR has Fully Initialized.",
     "Roses are Red, Violets are Blue, you got WDR Running, so now go take a poo.",
     "WDR has Fully Initialized. Now to see what else you screwed up...",
+
     "WDR has Fully Initialized.",
     "Looks like you did something right for once. WDR has Fully Initialized.",
-    "Time to grab a beer. WDR has Fully Initialized.",
-    "WDR has Fully Initialized."
+    "Time to grab a beer (or 6). WDR has Fully Initialized.",
+
+    "WDR has Fully Initialized.",
+    "When you'll stop restarting me, nobody knows.",
+    "Feel good about yourself. WDR has Fully Initialized.",
+
+    "WDR has Fully Initialized.",
+    "HIT ME BABY ONE MORE TIME!",
+    "Looks like you're not as bad as drf after all. WDR has Fully Initialized."
   ]
 }

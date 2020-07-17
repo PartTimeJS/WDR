@@ -1,5 +1,5 @@
 module.exports = async (WDR, Target, Invasion) => {
-  let Embed_Config = require(WDR.dir + "/configs/embeds/" + Invasion.Embed);
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Invasion.Embed);
 
   // CHECK IF THE TARGET IS A USER
   Invasion.Member = WDR.Bot.guilds.cache.get(Invasion.Discord.id).members.cache.get(Target.user_id);
@@ -12,13 +12,13 @@ module.exports = async (WDR, Target, Invasion) => {
   Invasion.weaknesses = "";
   Invasion.resistances = "";
   //Invasion.type = WDR.Emotes[Invasion.grunt_type.toLowerCase()] ? WDR.Emotes[Invasion.grunt_type.toLowerCase()] : "";
-  Invasion.color = await WDR.Get_Type_Color(WDR.Master.Grunt_Types[Invasion.grunt_type].type);
+  Invasion.color = WDR.Get_Type_Color(WDR.Master.Grunt_Types[Invasion.grunt_type].type);
   Invasion.time = WDR.Time(Invasion.incident_expire_timestamp, "1", Invasion.Timezone);
   Invasion.mins = Math.floor((Invasion.incident_expire_timestamp - (Invasion.Time_Now / 1000)) / 60);
   Invasion.secs = Math.floor((Invasion.incident_expire_timestamp - (Invasion.Time_Now / 1000)) - ((Math.floor((Invasion.incident_expire_timestamp - (Invasion.Time_Now / 1000)) / 60)) * 60));
   Invasion.lat = Invasion.latitude;
   Invasion.lon = Invasion.longitude;
-  Invasion.area = Invasion.Area.Embed;
+  Invasion.area = Invasion.area.embed;
   Invasion.map_url = WDR.Config.FRONTEND_URL;
 
   // MAP LINK PROVIDERS

@@ -5,7 +5,7 @@ exports.Load = function(WDR, type) {
     // DEFINE CHANNEL FILE COUNT
     let file_count = 0;
     // READ FILTER DIRECTORY FOR FILTER TYPE
-    await WDR.Fs.readdir(WDR.dir + "/configs/" + type.toLowerCase(), async (err, functions) => {
+    await WDR.Fs.readdir(WDR.Dir + "/configs/" + type.toLowerCase(), async (err, functions) => {
       // IDENTIFY EACH INI CHANNEL FILE
       let feed_files = functions.filter(f => f.split(".").pop() === "ini");
       // GET FEEDS
@@ -13,7 +13,7 @@ exports.Load = function(WDR, type) {
         // INCREMENT COUNT FOR EACH FILE
         file_count++;
         // READ THE DATA FROM EACH FILE
-        let Channels = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.dir + "/configs/" + type.toLowerCase() + "/" + file, "utf-8"));
+        let Channels = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + "/configs/" + type.toLowerCase() + "/" + file, "utf-8"));
         // LOOP FOR EACH CHANNEL IN THE FILE
         for (var key in Channels) {
           // LOAD THE CHANNEL WITH PARAMETERS TO THE ARRAY
@@ -21,7 +21,7 @@ exports.Load = function(WDR, type) {
         }
       });
       // LOG SUCCESS AND COUNTS
-      console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [load_feeds.js] Loaded " + FEEDS.length + " " + type.replace("_", " ") + " in " + file_count + " files.");
+      WDR.Console.info(WDR, "[load_feeds.js] Loaded " + FEEDS.length + " " + type.replace("_", " ") + " in " + file_count + " files.");
       // END
       return resolve(FEEDS);
     });

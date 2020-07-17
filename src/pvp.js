@@ -9,11 +9,11 @@ module.exports = {
     let CPMultiplier = WDR.cp_multiplier[level];
 
     if (!WDR.Master.Pokemon[pokemonID]) {
-      return console.error('[WDR] [pvp.js] Can\'t find Pokemon ID: ' + pokemonID + ' Form:' + formID);
+      return WDR.Console.error('[src/pvp.js] Can\'t find Pokemon ID: ' + pokemonID + ' Form:' + formID);
     }
     if (!WDR.Master.Pokemon[pokemonID].attack) {
       if (!WDR.Master.Pokemon[pokemonID].forms[formID] || !WDR.Master.Pokemon[pokemonID].forms[formID].attack) {
-        return console.error('[WDR] [pvp.js] Can\'t find attack of Pokemon ID: ' + pokemonID + ' Form:' + formID);
+        return WDR.Console.error('[src/pvp.js] Can\'t find attack of Pokemon ID: ' + pokemonID + ' Form:' + formID);
       }
       pokemonAttack = WDR.Master.Pokemon[pokemonID].forms[formID].attack;
       pokemonDefense = WDR.Master.Pokemon[pokemonID].forms[formID].defense;
@@ -186,7 +186,7 @@ module.exports = {
 
   SearchTopRank: function(WDR, search, filter) {
     // RUN CALCULATIONS
-    let possible_cps = this.CalculatePossibleCPs(WDR, search.pokemon.pokemon_id, search.pokemon.form, search.stats.atk, search.stats.def, search.stats.sta, 1, 'Male', filter.min_cp_range, filter.max_cp_range);
+    let possible_cps = this.CalculatePossibleCPs(WDR, search.pokemon.pokemon_id, search.pokemon.form, search.stats.atk, search.stats.def, search.stats.sta, 1, 'Male', filter.min_cp_range, filter.max_cp_range, "SearchTopRank");
     let unique_cps = {},
       ranks = {};
 
@@ -214,7 +214,7 @@ module.exports = {
   }
 }
 
-async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, stamina, level, gender, league) {
+async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, stamina, level, gender, league, received) {
   return new Promise(async resolve => {
 
     let possibleCPs = [];
@@ -226,9 +226,10 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
 
     // Check for required gender on evolution
     if (!WDR.Master.Pokemon[pokemonID]) {
-      return console.error("[WDR] [pvp.js] No Pokemon for ID " + pokemonID)
+      return WDR.Console.error(WDR,"[src/pvp.js] No Pokemon for ID " + pokemonID)
     }
-    if (WDR.Master.Pokemon[pokemonID].gender_requirement && WDR.Master.Pokemon[pokemonID].gender_requirement != gender) {
+
+    if (pokemonID && WDR.Master.Pokemon[pokemonID].gender_requirement && WDR.Master.Pokemon[pokemonID].gender_requirement != gender) {
       return resolve(possibleCPs);
     }
 
@@ -247,17 +248,24 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
       //Check for Evolution Form
       if (formID > 0) {
         if (!WDR.Master.Pokemon[pokemonID].forms[formID]) {
-          evolvedForm = WDR.Master.Pokemon[WDR.Master.Pokemon[pokemonID].evolutions[i]].default_form_id;
+          try {
+            evolvedForm = WDR.Master.Pokemon[WDR.Master.Pokemon[pokemonID].evolutions[i]].default_form_id;
+          } catch (e) {
+            WDR.Console.error(WDR,"[src/pvp.js] No `default_form_id` found for Pokemon: " + pokemonID + " Evolution: " + evolutions[i], e);
+          }
         } else {
-          evolvedForm = WDR.Master.Pokemon[pokemonID].forms[formID].evolution_form;
+          try {
+            evolvedForm = WDR.Master.Pokemon[pokemonID].forms[formID].evolution_form;
+          } catch (e) {
+            WDR.Console.error(WDR,"[src/pvp.js] No `evolved_form` found for Pokemon: " + pokemonID + " Form: " + formID, e);
+          }
         }
       } else if (WDR.Master.Pokemon[pokemonID].evolution_form) {
         evolvedForm = WDR.Master.Pokemon[pokemonID].evolution_form;
       } else {
         evolvedForm = formID;
       }
-
-      let evolvedCPs = await CalculatePossibleCPs(WDR, WDR.Master.Pokemon[pokemonID].evolutions[i].evolution_id, evolvedForm, attack, defense, stamina, level, gender, league);
+      let evolvedCPs = await CalculatePossibleCPs(WDR, WDR.Master.Pokemon[pokemonID].evolutions[i].evolution_id, evolvedForm, attack, defense, stamina, level, gender, league, "evolvedCPs");
       possibleCPs = possibleCPs.concat(evolvedCPs);
     }
 
@@ -289,7 +297,7 @@ async function QueryPvPRank(WDR, pokemonID, formID, attack, defense, stamina, le
           AND level >= ${level};`,
       function(error, results) {
         if (error) {
-          console.error("[WDR] [pvp.js] Cannot Select from " + pvpLeague + " table.", error);
+          WDR.Console.error(WDR,"[src/pvp.js] Cannot Select from " + pvpLeague + " table.", error);
           return resolve(null);
         } else if (results.length == 0) {
           return resolve(null);

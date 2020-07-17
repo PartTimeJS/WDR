@@ -9,32 +9,32 @@ module.exports = async (WDR, Quest) => {
     // LOOK UP CHANNEL
     let Channel = WDR.Bot.channels.cache.get(feed_channel[0]);
     if (!Channel) {
-      return console.error("[WDR " + WDR.Version + "]  [" + WDR.Time(null, "log") + "] [feeds/raids.js] The channel " + feed_channel[0] + " does not appear to exist.");
+      return WDR.Console.error(WDR, "[feeds/raids.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
 
     // FETCH CHANNEL GEOFENCE
     Channel.Geofences = feed_channel[1].geofences.split(",");
     if (!Channel.Geofences) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] You do not have a Geofences set for " + feed_channel[1] + ".");
+      return WDR.Console.error(WDR, "[feeds/raids.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
     // FETCH CHANNEL FILTER
     Channel.Filter = WDR.Filters.get(feed_channel[1].filter);
     if (!Channel.Filter) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
+      return WDR.Console.error(WDR, "[feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
     // CHECK CHANNEL FILTER TYPE
     if (Channel.Filter.Type != "quest") {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to be a quest filter.");
+      return WDR.Console.error(WDR, "[feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to be a quest filter.");
     }
 
     // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
-        Raid.Role_ID = "@" + feed_channel[1].roleid;
+        Raid.role_id = "@" + feed_channel[1].roleid;
       } else {
-        Raid.Role_ID = "<@&" + feed_channel[1].roleid + ">";
+        Raid.role_id = "<@&" + feed_channel[1].roleid + ">";
       }
     }
 
@@ -43,9 +43,9 @@ module.exports = async (WDR, Quest) => {
 
     switch (true) {
       case (Channel.Geofences.indexOf("ALL") >= 0):
-      case (Channel.Geofences.indexOf(Quest.Area.Default) >= 0):
-      case (Channel.Geofences.indexOf(Quest.Area.Main) >= 0):
-      case (Channel.Geofences.indexOf(Quest.Area.Sub) >= 0):
+      case (Channel.Geofences.indexOf(Quest.area.default) >= 0):
+      case (Channel.Geofences.indexOf(Quest.area.main) >= 0):
+      case (Channel.Geofences.indexOf(Quest.area.sub) >= 0):
 
         // REWARD FILTER
         switch (true) {

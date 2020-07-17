@@ -1,36 +1,30 @@
-let Status = require(__dirname + "/status.js");
-let View = require(__dirname + "/view.js");
-let Create = require(__dirname + "/create.js");
-let Remove = require(__dirname + "/remove.js");
-let Modify = require(__dirname + "/modify.js");
-let Option_Collector = require(__dirname + "/option_collector.js");
+var Functions = {
+  Cancel: require(__dirname + "/../cancel.js"),
+  Create: require(__dirname + "/create.js"),
+  DetailCollect: require(__dirname + "/collect_detail.js"),
+  Modify: require(__dirname + "/modify.js"),
+  OptionCollect: require(__dirname + "/collect_option.js"),
+  Preset: require(__dirname + "/preset.js"),
+  Remove: require(__dirname + "/remove.js"),
+  Status: require(__dirname + "/status.js"),
+  TimedOut: require(__dirname + "/../timedout.js"),
+  View: require(__dirname + "/view.js"),
+  Dir: __filename.split("/").slice(__dirname.split("/").length - 4).join("/")
+}
 
-module.exports = async (WDR, Message, Discord) => {
+module.exports = async (WDR, Message) => {
 
-  let Member = "";
-  if (Message.member) {
-    Member = Message.member;
+  var Member = Message.member ? Message.member : Message.author;
+
+  if (Message.member.db.length > 1) {
+    let choice = await Functions.DetailCollect(WDR, Functions, "Guild", Member, Message, Message.member.user_guilds, "Respond with the # of a Discord.", null);
+    Member.db = Message.member.db[choice];
   } else {
-    Member = Message.author;
+    Member.db = Message.member.db;
   }
 
-  switch (true) {
-    case Member.nickname:
-      break;
-    case Message.author.username:
-      break;
-  }
-
-  Member.db = Message.member.db;
-
-  if (!Member.nickname) {
-    Member.nickname = Message.author.username;
-  } else {
-    Member.nickname = Message.author.username;
-  }
-
-  let requestAction = new WDR.DiscordJS.MessageEmbed()
-    .setAuthor(Member.nickname, Member.user.displayAvatarURL())
+  let request_action = new WDR.DiscordJS.MessageEmbed()
+    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
     .setTitle("What would you like to do with your Pokémon Subscriptions?")
     .setDescription("`presets`  »  View quick preset subscriptions." + "\n" +
       "`view`  »  View your Subscriptions." + "\n" +
@@ -41,7 +35,7 @@ module.exports = async (WDR, Message, Discord) => {
       "`pause` or `resume`  »  Pause/Resume Pokémon Subscriptions Only.")
     .setFooter("Type the action, no command prefix required.");
 
-  Message.channel.send(requestAction).catch(console.error).then(BotMsg => {
-    return Option_Collector(WDR, "start", Message, BotMsg, Member);
+  Message.channel.send(request_action).catch(console.error).then(BotMsg => {
+    return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member);
   });
 }

@@ -9,10 +9,10 @@ function CalculateAllRanks(WDR) {
 
     let total_calculations = Object.keys(WDR.Master.Pokemon).map(i => WDR.Master.Pokemon[i].name).length;
 
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] Beginning Ultra League Table Data Generation...");
+    WDR.Console.log(WDR,"[PvP_Ranks.js] Beginning Ultra League Table Data Generation...");
 
     const ultrabar = new WDR.cliProgress.SingleBar({
-      format: "[WDR " + WDR.Version + "] [PvP_Ranks.js] Calculating... " + WDR.Colors.cyan("{bar}") + " {percentage}% {value}/{total} | ETA: {eta_formatted}",
+      format: "[PvP_Ranks.js] Calculating... " + WDR.Colors.cyan("{bar}") + " {percentage}% {value}/{total} | ETA: {eta_formatted}",
       barCompleteChar: "\u2588",
       barIncompleteChar: "\u2591",
       hideCursor: true
@@ -40,10 +40,10 @@ function CalculateAllRanks(WDR) {
 
     //fs.writeFileSync("./ultra_pvp_ranks.json",JSON.stringify(pokemon));
 
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] Beginning Great League Table Data Generation...");
+    WDR.Console.log(WDR,"[PvP_Ranks.js] Beginning Great League Table Data Generation...");
 
     const greatbar = new WDR.cliProgress.SingleBar({
-      format: "[WDR " + WDR.Version + "] [PvP_Ranks.js] Calculating... " + WDR.Colors.cyan("{bar}") + " {percentage}% | {value}/{total} | ETA: {eta_formatted}",
+      format: "[PvP_Ranks.js] Calculating... " + WDR.Colors.cyan("{bar}") + " {percentage}% | {value}/{total} | ETA: {eta_formatted}",
       barCompleteChar: "\u2588",
       barIncompleteChar: "\u2591",
       hideCursor: true
@@ -68,7 +68,7 @@ function CalculateAllRanks(WDR) {
 
     await WritePvPData(WDR, pokemon, "wdr_pvp_great_league", total_calculations);
 
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] All PvP Table data generation is Complete.");
+    WDR.Console.log(WDR,"[PvP_Ranks.js] All PvP Table data generation is Complete.");
 
     return resolve();
   });
@@ -77,7 +77,7 @@ function CalculateAllRanks(WDR) {
 
 
 function CalculateTopRanks(WDR, pokemonID, formID, cap) {
-  //console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] Calculating Top Ranks for: " + baseStats.Pokemon[pokemonID].name + " which is number: " + pokemonID + " and Form ID: " + formID);
+  //WDR.Console.log(WDR,"[PvP_Ranks.js] Calculating Top Ranks for: " + baseStats.Pokemon[pokemonID].name + " which is number: " + pokemonID + " and Form ID: " + formID);
 
   let currentPokemon = InitializeBlankPokemon();
   let bestStat = {
@@ -250,7 +250,7 @@ async function WritePvPData(WDR, data, tableName, number) {
     await CreateTable(WDR, tableName);
 
     let progressbar = new WDR.cliProgress.SingleBar({
-      format: "[WDR " + WDR.Version + "] [PvP_Ranks.js]　 Now Saving... " + WDR.Colors.cyan("{bar}") + " {percentage}% {value}/{total} | ETA: {eta_formatted}",
+      format: "[PvP_Ranks.js]　 Now Saving... " + WDR.Colors.cyan("{bar}") + " {percentage}% {value}/{total} | ETA: {eta_formatted}",
       barCompleteChar: "\u2588",
       barIncompleteChar: "\u2591",
       hideCursor: true
@@ -261,12 +261,12 @@ async function WritePvPData(WDR, data, tableName, number) {
     for (let pokemon in data) {
       if (data[pokemon].forms) {
         for (let form in data[pokemon].forms) {
-          //console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] Inserting pokemonID: " + pokemon + " and formID: " + form);
+          //WDR.Console.log(WDR,"[PvP_Ranks.js] Inserting pokemonID: " + pokemon + " and formID: " + form);
           let currentPokemon = data[pokemon].forms[form];
           await InsertCurrentPokemon(WDR, tableName, parseInt(pokemon), parseInt(form), currentPokemon);
         }
       } else {
-        //console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [PvP_Ranks.js] Inserting pokemonID: " + pokemon + " which has no form");
+        //WDR.Console.log(WDR,"[PvP_Ranks.js] Inserting pokemonID: " + pokemon + " which has no form");
         let currentPokemon = data[pokemon];
         if (pokemon == "59") {
           let pause = true;

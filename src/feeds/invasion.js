@@ -9,14 +9,10 @@ module.exports = async (WDR, Invasion) => {
 
   // CHECK FOR GRUNT TYPE
   if (!WDR.Master.Grunt_Types[Invasion.grunt_type]) {
-    return console.error("[subs/Invasion.js] [" + WDR.Time(null, 'stamp') + "] No Grunt found for " + Invasion.grunt_type + " in Grunts.json.");
+    console.log(WDR.Master.Grunt_Types);
+    return WDR.Console.error(WDR, "[feeds/invasion.js] No Grunt found for " + Invasion.grunt_type + " in Grunts.json.");
   }
 
-  // GET TYPE OF GRUNT
-  Invasion.type = WDR.Master.Grunt_Types[Invasion.grunt_type].type;
-  if (!Invasion.type) {
-    return console.error("[subs/Invasion.js] [" + WDR.Time(null, 'stamp') + "] No Grunt type found for " + Invasion.grunt_type + " in Grunts.json.");
-  }
   Invasion.gender = WDR.Master.Grunt_Types[Invasion.grunt_type].grunt;
 
   // CHECK ALL FILTERS
@@ -28,32 +24,32 @@ module.exports = async (WDR, Invasion) => {
     // LOOK UP CHANNEL
     let Channel = WDR.Bot.channels.cache.get(feed_channel[0]);
     if (!Channel) {
-      return console.error("[WDR " + WDR.Version + "]  [" + WDR.Time(null, "log") + "] [feeds/raids.js] The channel " + feed_channel[0] + " does not appear to exist.");
+      return WDR.Console.error(WDR, "[feeds/invasion.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
 
     // FETCH CHANNEL GEOFENCE
     Channel.Geofences = feed_channel[1].geofences.split(",");
     if (!Channel.Geofences) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] You do not have a Geofences set for " + feed_channel[1] + ".");
+      return WDR.Console.error(WDR, "[feeds/invasion.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
     // FETCH CHANNEL FILTER
     Channel.Filter = WDR.Filters.get(feed_channel[1].filter);
     if (!Channel.Filter) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
+      return WDR.Console.error(WDR, "[feeds/invasion.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
     // CHECK CHANNEL FILTER TYPE
     if (Channel.Filter.Type != "invasion") {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/raids.js] The filter defined for " + feed_channel[0] + " does not appear to be a invasion filter.");
+      return WDR.Console.error(WDR, "[feeds/invasion.js] The filter defined for " + feed_channel[0] + " does not appear to be a invasion filter.");
     }
 
     // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
-        Invasion.Role_ID = "@" + feed_channel[1].roleid;
+        Invasion.role_id = "@" + feed_channel[1].roleid;
       } else {
-        Invasion.Role_ID = "<@&" + feed_channel[1].roleid + ">";
+        Invasion.role_id = "<@&" + feed_channel[1].roleid + ">";
       }
     }
 
@@ -61,9 +57,9 @@ module.exports = async (WDR, Invasion) => {
 
     switch (true) {
       case (Channel.Geofences.indexOf("ALL") >= 0):
-      case (Channel.Geofences.indexOf(Invasion.Area.Default) >= 0):
-      case (Channel.Geofences.indexOf(Invasion.Area.Main) >= 0):
-      case (Channel.Geofences.indexOf(Invasion.Area.Sub) >= 0):
+      case (Channel.Geofences.indexOf(Invasion.area.default) >= 0):
+      case (Channel.Geofences.indexOf(Invasion.area.main) >= 0):
+      case (Channel.Geofences.indexOf(Invasion.area.sub) >= 0):
 
         // AREA FILTER
         switch (true) {

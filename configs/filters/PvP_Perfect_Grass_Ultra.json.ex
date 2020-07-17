@@ -3,11 +3,13 @@
 
 	"league": "ultra",
 
+	"type": "grass",
+
 	"min_level": 1,
 
 	"min_pvp_rank": 1,
 
-	"min_cp_range": 1800,
+	"min_cp_range": 2200,
 	"max_cp_range": 2500,
 
 	"Bulbasaur": "True",

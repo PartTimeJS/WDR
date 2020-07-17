@@ -2,7 +2,7 @@ const pvp = require(__dirname + "/../pvp.js");
 
 module.exports = async (WDR, Target, Raid) => {
   let R = Raid;
-  let Embed_Config = require(WDR.dir + "/configs/embeds/" + R.Embed);
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + R.Embed);
 
   // CHECK IF THE TARGET IS A USER
   R.Member = WDR.Bot.guilds.cache.get(R.Discord.id).members.cache.get(Target.user_id);
@@ -29,7 +29,7 @@ module.exports = async (WDR, Target, Raid) => {
   R.lat = R.latitude;
   R.lon = R.longitude;
   R.map_img = "";
-  R.area = R.Area.Embed;
+  R.area = R.area.embed;
   R.map_url = WDR.Config.FRONTEND_URL;
 
   // MAP LINK PROVIDERS
@@ -141,10 +141,10 @@ module.exports = async (WDR, Target, Raid) => {
       R.move_2_type = WDR.Emotes[WDR.Master.Moves[R.move_2].type.toLowerCase()];
 
       // Run Min-Max CP Calculations for Boss
-      R.minCP = pvp.CalculateCP(WDR, R.pokemon_id, R.form, 10, 10, 10, 20);
-      R.maxCP = pvp.CalculateCP(WDR, R.pokemon_id, R.form, 15, 15, 15, 20);
-      R.minCP_boosted = pvp.CalculateCP(WDR, R.pokemon_id, R.form, 10, 10, 10, 25);
-      R.maxCP_boosted = pvp.CalculateCP(WDR, R.pokemon_id, R.form, 15, 15, 15, 25);
+      R.minCP = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 10, 10, 10, 20);
+      R.maxCP = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 15, 15, 15, 20);
+      R.minCP_boosted = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 10, 10, 10, 25);
+      R.maxCP_boosted = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 15, 15, 15, 25);
 
       R.body = await WDR.Generate_Tile(WDR, "raids", R.marker_latitude, R.lon, R.embed_image, R.sprite);
       R.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + R.body;

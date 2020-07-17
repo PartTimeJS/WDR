@@ -1,14 +1,16 @@
 {
 	"Type": "pvp",
 
-	"league": "great",
+	"league": "ultra",
+
+	"type": "all",
 
 	"min_level": 1,
 
 	"min_pvp_rank": 1,
 
-	"min_cp_range": 1000,
-	"max_cp_range": 1500,
+	"min_cp_range": 1800,
+	"max_cp_range": 2500,
 
 	"Bulbasaur": "True",
 	"Ivysaur": "True",
@@ -678,7 +680,7 @@
 	"Vivillon": "True",
 	"Litleo": "True",
 	"Pyroar": "True",
-	"Flabébé": "True",
+	"Flab\u00e9b\u00e9": "True",
 	"Floette": "True",
 	"Florges": "True",
 	"Skiddo": "True",

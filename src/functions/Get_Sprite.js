@@ -26,7 +26,7 @@ module.exports = (WDR, Object, type) => {
       break;
 
     case (Object.rewards && Object.rewards[0] && Object.rewards[0].type):
-      console.error("GETTING A REWARD SPRITE");
+      WDR.Console.error(WDR, "GETTING A REWARD SPRITE");
       switch (Object.rewards[0].type) {
         case 1:
           return null;

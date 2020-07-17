@@ -2,9 +2,9 @@ module.exports = (WDR, Quest) => {
   return new Promise(async resolve => {
     switch (Quest.rewards[0].type) {
       case 0:
-        return console.error("UNSET QUEST", Quest);
+        return WDR.Console.error(WDR, "UNSET QUEST", Quest);
       case 1:
-        return console.error("EXPERIENCE QUEST", Quest);
+        return WDR.Console.error(WDR, "EXPERIENCE QUEST", Quest);
 
         // ITEM REWARDS (EXCEPT STARDUST)
       case 2:
@@ -28,13 +28,13 @@ module.exports = (WDR, Quest) => {
         break;
 
       case 4:
-        return console.error("CANDY QUEST", Quest);
+        return WDR.Console.error(WDR, "CANDY QUEST", Quest);
 
       case 5:
-        return console.error("AVATAR CLOTHING QUEST", Quest);
+        return WDR.Console.error(WDR, "AVATAR CLOTHING QUEST", Quest);
 
       case 6:
-        console.error("NO REWARD SET. REPORT THIS TO THE DISCORD ALONG WITH THE FOLLOWING:", Quest);
+        WDR.Console.error(WDR, "NO REWARD SET. REPORT THIS TO THE DISCORD ALONG WITH THE FOLLOWING:", Quest);
         break;
 
         // ENCOUNTER REWARDS

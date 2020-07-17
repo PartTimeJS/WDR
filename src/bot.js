@@ -53,7 +53,7 @@ function Array_Login(WDR) {
 
         // LOAD ERROR EVENTS FOR EACH TOKEN AVAILABLE
         bots_available[i].on("error", (error) => {
-          console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [bot.js] Discord client encountered an error: " + error);
+          WDR.Console.error(WDR, "[src/bot.js] Discord client encountered an error:", [error]);
         });
 
         // LOGIN A BOT FOR EACH TOKEN
@@ -69,7 +69,7 @@ function Array_Login(WDR) {
 //  RESTART FUNCTION
 //------------------------------------------------------------------------------
 Bot.restart = (reason, code) => {
-  console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [bot.js] Restarting...");
+  WDR.Console.error(WDR, "[src/bot.js] Restarting...");
   process.exit(code).catch(console.error);
   return;
 }
@@ -81,12 +81,12 @@ Bot.restart = (reason, code) => {
 exports.Load = function(WDR) {
   return new Promise(async resolve => {
 
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [bot.js] Logging in Main Bot...");
+    WDR.Console.info(WDR, "[src/bot.js] Logging in Main Bot...");
 
     // LOGIN WDR TOKEN
     await Bot.login(WDR.Config.TOKENS.WDR);
 
-    console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [bot.js] Logging in Worker Bots...");
+    WDR.Console.info(WDR, "[src/bot.js] Logging in Worker Bots...");
 
     // LOGIN IN ALL ACCESSORY BOTS
     await Array_Login(WDR);

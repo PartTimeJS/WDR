@@ -1,5 +1,6 @@
 {
   "requires": true,
+  "version": "2.0.0b2",
   "lockfileVersion": 1,
   "dependencies": {
     "axios": "^0.19.2",
@@ -16,7 +17,6 @@
     "ini": "^1.3.5",
     "moment": "^2.25.3",
     "moment-timezone": "^0.5.28",
-    "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "ontime": "0.0.6",
     "path": "^0.12.7",

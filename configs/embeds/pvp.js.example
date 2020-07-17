@@ -1,8 +1,8 @@
 module.exports = function(WDR, p) {
 
   // ADD YOUR CUSTOM SPACING
-  if (p.form_name) {
-    p.form_name = " " + p.form_name;
+  if (p.form) {
+    p.form = " " + p.form;
   }
 
   if (p.gender_wemoji) {
@@ -11,34 +11,28 @@ module.exports = function(WDR, p) {
     p.gender_wemoji = "";
   }
 
-  //
-  //------------------------------------------------------------------------------
-  //  CUSTOMIZEABLE LIST FOR NAME, RANK, %, AND CP
-  //------------------------------------------------------------------------------
-  for (var pokemon_id in p.possible_cps) {
-
-    let pipe = " | "; // SPACING
-
-    let Name = WDR.Master.Pokemon[pokemon_id].name;
-
-    let Level = "Lvl " + p.possible_cps[pokemon_id].level;
-
-    let Cp = "CP " + p.possible_cps[pokemon_id].cp;
-
-    let Rank = "Rank " + p.possible_cps[pokemon_id].rank;
-
-    let Percent = p.possible_cps[pokemon_id].percent + "%";
-
-    let string = "**" + Name + " (" + Percent + ") " + p.atk + "/" + p.def + "/" + p.sta + "** \n" + Rank + pipe + Level + pipe + Cp;
-
-    p.pvp_data += string + "\n";
+  if (p.gender_noemoji) {
+    p.gender_noemoji = " | " + p.gender_noemoji;
+  } else {
+    p.gender_noemoji = "";
   }
+
+  p.possible_cps.forEach(pvp => {
+    let pipe = " | "; // SPACING
+    let Name = WDR.Master.Pokemon[pvp.pokemon_id].name;
+    let Level = "Lvl " + pvp.level;
+    let Cp = "CP " + pvp.cp;
+    let Rank = "**Rank " + pvp.rank + "**";
+    let Percent = pvp.percent + "%";
+    let string = Rank + " " + Name + " (" + Percent + ")\n" + Level + pipe + Cp + pipe + p.atk + "/" + p.def + "/" + p.sta;
+    p.pvp_data += string + "\n";
+  });
 
   let Pokemon_Embed = new WDR.DiscordJS.MessageEmbed()
     .setColor(p.color)
     .setThumbnail(p.sprite)
     .setTitle(p.pvp_data)
-    .setDescription("**" + p.name + "" + p.form_name + "** " + p.atk + "/" + p.def + "/" + p.sta + " (" + p.iv + "%)" + "\n" +
+    .setDescription("**" + p.name + "" + p.form + "** " + p.atk + "/" + p.def + "/" + p.sta + " (" + p.iv + "%)" + "\n" +
       "Level " + p.lvl + " | CP " + p.cp + p.gender_wemoji + "\n" +
       "Ht: " + p.height + "m | Wt: " + p.weight + "kg | " + p.size + "\n" +
       p.move_1_name + " " + p.move_1_type + " / " + p.move_2_name + " " + p.move_2_type + "\n" +
@@ -46,7 +40,8 @@ module.exports = function(WDR, p) {
       p.weather_boost + " \n" +
       "Directions:" + "\n" +
       p.google + " | " + p.apple + " | " + p.waze)
-    .setImage(p.static_map);
+    .setFooter(p.footer);
+  // STATIC MAP ADDED AUTOMATICALLY IF YOU DO NOT ADD ONE MANUALLY
 
   return Pokemon_Embed;
 }
@@ -55,11 +50,11 @@ module.exports = function(WDR, p) {
 //  AVAILABLE VARIABLES
 //------------------------------------------------------------------------------
 //    p.pvpString       -   String of PVP data
-//    p.ranks       -   String of PVP Ranks
+//    p.ranks           -   String of PVP Ranks
 //    p.pvp_data        -   Lines of PVP Data
 //    p.gen             -   Generation
 //    p.name            -   Locale Name
-//    p.form_name       -   Locale Form Name
+//    p.form            -   Locale Form Name
 //    p.id              -   Pokedex ID
 //    p.sprite          -   Sprite Image
 //    p.iv              -   Internal Value
@@ -68,7 +63,7 @@ module.exports = function(WDR, p) {
 //    p.gender_noemoji  - Gender without Emoji
 //    p.height          -   Take a wild guess
 //    p.weight          -   Probably cant figure this one out
-//    p.type            -   Type(s) Emoji(s)
+//    p.type_wemoji     -   Type(s) w/ Emoji(s)
 //    p.type_noemoji    -   Type(s) Wording
 //    p.color           -   Type Color (Hex)
 //    p.weather_boost   -   If Weather-Boosted
@@ -85,7 +80,6 @@ module.exports = function(WDR, p) {
 //    p.waze            -   Waze Directions URL
 //    p.pmsf            -   PMSF Map Link to the Sighting
 //    p.rdm             -   RDM Map Link to the Sighting
-//    p.static_map      -   Static Map Tile Image
 //    p.verified        -   Spawnpoint Timer Verified Emoji (Yes/No)
 //    p.time            -   Despawn Time
 //    p.mins            -   Despawn Minutes
@@ -94,3 +88,4 @@ module.exports = function(WDR, p) {
 //    p.def             -   Defense IV
 //    p.sta             -   Stamina IV
 //    p.lvl             -   Level
+//    p.footer          -   Includes processing latency

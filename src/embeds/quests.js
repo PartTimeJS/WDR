@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = async (WDR, Target, Quest) => {
   let Q = Quest;
-  let Embed_Config = require(WDR.dir + "/configs/embeds/" + Q.Embed);
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Q.Embed);
 
   // CHECK IF THE TARGET IS A USER
   Q.Member = WDR.Bot.guilds.cache.get(Q.Discord.id).members.cache.get(Target.user_id);
@@ -14,7 +14,7 @@ module.exports = async (WDR, Target, Quest) => {
   // GET LOCATION INFO
   Q.lat = Q.latitude;
   Q.lon = Q.longitude;
-  Q.area = Q.Area.Embed;
+  Q.area = Q.area.embed;
   Q.url = Q.pokestop_url;
   Q.map_url = WDR.Config.FRONTEND_URL;
 
@@ -68,10 +68,10 @@ module.exports = async (WDR, Target, Quest) => {
 
     // SAVE THE ALERT TO THE ALERT TABLE FOR FUTURE DELIVERY
     returnWDR.wdrDBquery(`INSERT INTO quest_alerts (user_id, user_name, guild_id, bot, area, alert, alert_time, embed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [Target.user_id, Target.user_name, quest_object, Q.Embed, Q.Area.Embed, Target.bot, Q.DB_Date, Q.Discord.id],
+      [Target.user_id, Target.user_name, quest_object, Q.Embed, Q.area.embed, Target.bot, Q.DB_Date, Q.Discord.id],
       function(error, alert, fields) {
         if (error) {
-          console.error("[" + WDR.Time(null, "stamp") + "] UNABLE TO ADD ALERT TO quest_alerts", error);
+          WDR.Console.error(WDR, "[" + WDR.Time(null, "stamp") + "] UNABLE TO ADD ALERT TO quest_alerts", error);
         } else if (WDR.Debug.Quests == "ENABLED" && WDR.Debug.Subscriptions == "ENABLED") {
           console.log(WDR.Color.pink + "[EMBEDS] [" + WDR.Time(null, "stamp") + "] [quests.js] [SUBSCRIPTIONS] Stored a " + Q.quest_reward + " Quest Alert for " + Target.user_name + "." + WDR.Color.reset);
         }

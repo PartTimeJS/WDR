@@ -2,14 +2,14 @@ exports.Load = function(WDR, type) {
   return new Promise(resolve => {
     let Preset_Array = [],
       preset_count = 0;
-    WDR.Fs.readdir(WDR.dir + "/configs/sub_presets/" + type.toLowerCase(), async (err, presets) => {
+    WDR.Fs.readdir(WDR.Dir + "/configs/sub_presets/" + type.toLowerCase(), async (err, presets) => {
       let Presets = new WDR.DiscordJS.Collection();
       if (presets) {
         let preset_files = presets.filter(f => f.split(".").pop() === "ini");
         preset_files.forEach((p, i) => {
-          delete require.cache[require.resolve(WDR.dir + "/configs/sub_presets/" + type + "/" + p)];
+          delete require.cache[require.resolve(WDR.Dir + "/configs/sub_presets/" + type + "/" + p)];
           preset_count++;
-          let preset = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.dir + "/configs/sub_presets/" + type + "/" + p, "utf-8"));
+          let preset = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + "/configs/sub_presets/" + type + "/" + p, "utf-8"));
           switch (type.toLowerCase()) {
 
             case "pokemon":
@@ -31,10 +31,11 @@ exports.Load = function(WDR, type) {
               preset.name = p.replace(/_/g, " ").split(".")[0];
               preset.id = preset.pokemon_id ? parseInt(preset.pokemon_id) : 0;
               preset.form = preset.form ? parseInt(preset.form) : 0;
+              preset.type = preset.type ? preset.type : 0;
               preset.league = preset.league ? preset.league.toLowerCase() : 0;
-              preset.min_rank = presetn.min_rank ? parseInt(presetn.min_rank) : 10;
+              preset.min_rank = preset.min_rank ? parseInt(preset.min_rank) : 10;
               preset.min_lvl = preset.min_lvl ? parseInt(preset.min_lvl) : 1;
-              preset.min_cp = preset.min_cp ? parseInt(preset.min_cp) : 0;
+              //preset.min_cp = preset.min_cp ? parseInt(preset.min_cp) : 0;
               preset.gen = preset.gen ? parseInt(preset.gen) : 0;
               break;
 
@@ -64,7 +65,7 @@ exports.Load = function(WDR, type) {
         });
       }
       type = await WDR.Capitalize(type);
-      console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [load_presets.js] Loaded " + preset_count + " " + type + " Subscription Presets.");
+      WDR.Console.info(WDR, "[load_presets.js] Loaded " + preset_count + " " + type + " Subscription Presets.");
       return resolve(Presets);
     });
   });

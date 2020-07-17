@@ -18,8 +18,7 @@ module.exports = async (string) => {
         return resolve("");
       }
     } catch (e) {
-      console.error(e);
-      console.error(string);
+      WDR.Console.error(WDR,"[functions/Capitalize.js] Error Capitalizing string `" + string + "`", e);
     }
   });
 }

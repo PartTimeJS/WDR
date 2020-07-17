@@ -1,6 +1,5 @@
 module.exports = (WDR, Sighting) => {
 
-  let S = Sighting;
   let Feed_Embed = require(__dirname + "/../embeds/pokemon.js");
 
   if (WDR.Pokemon_Channels.length < 1) {
@@ -8,130 +7,163 @@ module.exports = (WDR, Sighting) => {
   }
 
   // CHECK ALL FILTERS
-  WDR.Pokemon_Channels.forEach(feed_channel => {
+  WDR.Pokemon_Channels.forEach(async feed_channel => {
 
     // LOOK UP CHANNEL
-    let Ch = WDR.Bot.channels.cache.get(feed_channel[0]);
-    if (!Ch) {
-      return console.error("[WDR " + WDR.Version + "]  [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] The channel " + feed_channel[0] + " does not appear to exist.");
+    let channel = WDR.Bot.channels.cache.get(feed_channel[0]);
+    if (!channel) {
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
 
     // FETCH CHANNEL GEOFENCE
-    Ch.Geofences = feed_channel[1].geofences.split(",");
-    if (!Ch.Geofences) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] You do not have a Geofences set for " + feed_channel[1] + ".");
+    channel.geofences = feed_channel[1].geofences.split(",");
+    if (!channel.geofences) {
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
     // FETCH CHANNEL FILTER
-    Ch.Filter = WDR.Filters.get(feed_channel[1].filter);
-    if (!Ch.Filter) {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
+    channel.filter = WDR.Filters.get(feed_channel[1].filter);
+    if (!channel.filter) {
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
     // CHECK CHANNEL FILTER TYPE
-    if (Ch.Filter.Type != "pokemon") {
-      return console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to be a pokemon filter.");
+    if (channel.filter.Type != "pokemon") {
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to be a pokemon filter.");
     }
 
     // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
-        S.Role_ID = "@" + feed_channel[1].roleid;
+        channel.role_id = "@" + feed_channel[1].roleid;
       } else {
-        S.Role_ID = "<@&" + feed_channel[1].roleid + ">";
+        channel.role_id = "<@&" + feed_channel[1].roleid + ">";
       }
     }
 
-    // CHECK FILTER GEOFENCES
-    switch (true) {
-      case (Ch.Geofences.indexOf(S.Area.Default) >= 0):
-      case (Ch.Geofences.indexOf(S.Area.Main) >= 0):
-      case (Ch.Geofences.indexOf(S.Area.Sub) >= 0):
+    let pobject = channel.filter[WDR.Master.Pokemon[Sighting.pokemon_id].name];
+    if (!pobject) {
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[Sighting.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
+    }
+
+    if (pobject != "False") {
+      let defGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
+      let mainGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
+      let subGeo = (channel.geofences.indexOf(Sighting.area.sub) >= 0);
+      let geoPass = (defGeo || mainGeo || subGeo);
+
+      // CHECK FILTER GEOFENCES
+      if (geoPass) {
 
         // FRESH FILTER CRITERIA
         let criteria = {};
-        criteria.gender = (Ch.Filter.gender == undefined ? "all" : Ch.Filter.gender).toLowerCase();
-        criteria.size = (Ch.Filter.size == undefined ? "all" : Ch.Filter.size).toLowerCase();
-        criteria.min_iv = Ch.Filter.min_iv == undefined ? 0 : Ch.Filter.min_iv;
-        criteria.max_iv = Ch.Filter.max_iv == undefined ? 100 : Ch.Filter.max_iv;
-        criteria.min_level = Ch.Filter.min_level == undefined ? 0 : Ch.Filter.min_level;
-        criteria.max_level = Ch.Filter.max_level == undefined ? 35 : Ch.Filter.max_level;
 
-        switch (true) {
+        criteria.gender = (channel.filter.gender == undefined ? "all" : channel.filter.gender).toLowerCase();
+        criteria.size = (channel.filter.size == undefined ? "all" : channel.filter.size).toLowerCase();
+        criteria.generation = channel.filter.generation == undefined ? "all" : channel.filter.generation;
+        criteria.min_iv = channel.filter.min_iv == undefined ? 0 : channel.filter.min_iv;
+        criteria.max_iv = channel.filter.max_iv == undefined ? 100 : channel.filter.max_iv;
+        criteria.min_level = channel.filter.min_level == undefined ? 0 : channel.filter.min_level;
+        criteria.max_level = channel.filter.max_level == undefined ? 35 : channel.filter.max_level;
 
-          // // POST WITHOUT IV FILTER
-          // case Ch.Filter.Post_Without_IV:
-          //   switch (true) {
-          //
-          //     // ONLY BREAK IF UIV IS DISABLED
-          //     case (S.cp > 0 && WDR.Config.UIV == "DISABLED"):
-          //       break;
-          //
-          //     case !Ch.Filter[S.pokemon_id]:
-          //       console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[S.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
-          //       break;
-          //
-          //     case Ch.Filter[S.pokemon_id] == "False":
-          //       break;
-          //
-          //     default:
-          //       S.Embed = feed_channel[1].embed ? feed_channel[1].embed : "pokemon.js";
-          //       Feed_Embed(WDR, null, Ch, S);
-          //   }
-          //   break;
-
-          //  BREAK IF POKEMON IS UNDEFINED
-          case !Ch.Filter[WDR.Master.Pokemon[S.pokemon_id].name]:
-            console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[S.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
-            break;
-
-            //  BREAK IF POKEMON IS DISABLED
-          case Ch.Filter[WDR.Master.Pokemon[S.pokemon_id].name] == "False":
-            break;
-
-            // FILTER BY VALUES
-          default:
-
-            S.Embed = feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js";
-
-            switch (true) {
-
-              // CP FILTERS
-              case criteria.min_cp > S.cp:
-                break;
-              case criteria.max_cp < S.cp:
-                break;
-
-                // LEVEL FILTERS
-              case criteria.min_level > S.pokemon_level:
-                break;
-              case criteria.max_level < S.pokemon_level:
-                break;
-
-                // SIZE FILTER
-              case (criteria.size != "all" && criteria.size != S.size):
-                break;
-
-              default:
-                switch (true) {
-
-                  // Interal Value Filter
-                  case criteria.min_iv > S.internal_value:
-                    break;
-                  case criteria.max_iv < S.internal_value:
-                    break;
-                  default:
-
-                    if (criteria.gender == "all" || criteria.gender == S.gender) {
-                      Feed_Embed(WDR, null, Ch, S);
-                    }
-                }
-            }
+        if (pobject != "True") {
+          criteria.gender = (pobject.gender == undefined ? criteria.gender : pobject.gender).toLowerCase();
+          criteria.size = (pobject.size == undefined ? criteria.size : pobject.size).toLowerCase();
+          criteria.generation = pobject.generation == undefined ? criteria.generation : pobject.generation;
+          criteria.min_iv = pobject.min_iv == undefined ? criteria.min_iv : pobject.min_iv;
+          criteria.max_iv = pobject.max_iv == undefined ? criteria.max_iv : pobject.max_iv;
+          criteria.min_level = pobject.min_level == undefined ? criteria.min_level : pobject.min_level;
+          criteria.max_level = pobject.max_level == undefined ? criteria.max_level : pobject.max_level;
         }
-        break;
 
-      default:
-        //console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [feeds/pokemon.js] Pokemon ignored due to area filter. Wanted: " + Ch.Geofences + ", Saw: " + S.Area.Default + ", " + S.Area.Main + ", " + S.Area.Sub + ".");
+        // FILTERS
+        let lvlPass = ((criteria.min_level <= Sighting.pokemon_level) && (criteria.max_level >= Sighting.pokemon_level));
+        let sizePass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
+        let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
+        let genPass = ((criteria.generation == "all") || (criteria.generation == Sighting.gen));
+        let ivPass = ((criteria.min_iv <= Sighting.internal_value) && (criteria.max_iv >= Sighting.internal_value));
+        let allPass = (lvlPass && sizePass && genderPass && genPass && ivPass);
+
+        if (allPass) {
+
+          let match = {};
+
+          match.embed = (feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js");
+
+          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
+
+          match.typing = await WDR.Get_Typing(WDR, {
+            pokemon_id: Sighting.pokemon_id,
+            form: Sighting.form
+          });
+
+          match.sprite = WDR.Get_Sprite(WDR, {
+            pokemon_id: Sighting.pokemon_id,
+            form: Sighting.form_id
+          });
+
+          match.type = match.typing.type;
+          match.type_noemoji = match.typing.type_noemoji;
+
+          match.color = match.typing.color;
+
+          match.name = Sighting.pokemon_name;
+          match.id = Sighting.pokemon_id;
+          match.form = Sighting.form_name ? Sighting.form_name : "";
+          match.form = Sighting.form_name == "[Normal]" ? "" : Sighting.form_name;
+
+          match.iv = Sighting.internal_value;
+          match.cp = Sighting.cp;
+
+          match.lat = Sighting.latitude;
+          match.lon = Sighting.longitude;
+
+          match.weather_boost = Sighting.weather_boost;
+
+          match.area = Sighting.area.embed;
+
+          match.map_url = WDR.Config.FRONTEND_URL;
+
+          match.atk = Sighting.individual_attack;
+          match.def = Sighting.individual_defense;
+          match.sta = Sighting.individual_stamina;
+
+          match.lvl = Sighting.pokemon_level;
+          match.gen = Sighting.gen;
+
+          match.move_1_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_1].type.toLowerCase()];
+          match.move_2_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_2].type.toLowerCase()];
+          match.move_1_name = Sighting.move_1_name;
+          match.move_2_name = Sighting.move_2_name;
+
+          match.height = Math.floor(Sighting.height * 100) / 100;
+          match.weight = Math.floor(Sighting.weight * 100) / 100;
+          match.size = await WDR.Capitalize(Sighting.size);
+
+          match.google = "[Google Maps](https://www.google.com/maps?q=" + Sighting.latitude + "," + Sighting.longitude + ")";
+          match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + Sighting.latitude + "," + Sighting.longitude + "&z=10&t=s&dirflg=d)";
+          match.waze = "[Waze](https://www.waze.com/ul?ll=" + Sighting.latitude + "," + Sighting.longitude + "&navigate=yes)";
+          match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + Sighting.latitude + "&lon=" + Sighting.longitude + "&zoom=15)";
+          match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + Sighting.latitude + "/" + Sighting.longitude + "/15)";
+
+          match.verified = Sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
+          match.time = WDR.Time(Sighting.disappear_time, "1", Sighting.Timezone);
+          match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
+          match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
+
+          match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+          match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+
+          if (WDR.Debug.Processing_Speed == "ENABLED") {
+            let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
+            match.footer = "Latency: " + difference + "s";
+          }
+
+          match.embed = Embed_Config(WDR, match);
+
+          WDR.Send_Embed(WDR, match.embed, channel.id);
+        }
+      }
     }
   });
 

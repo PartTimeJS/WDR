@@ -14,7 +14,7 @@ module.exports = (MAIN, lure_id, Lure) => {
       return 'Magnetic';
       break;
     default:
-      console.error("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [Get_Lure.js] No Lure Type Seen.", Lure);
+      WDR.Console.error(WDR, "[Get_Lure.js] No Lure Type Seen.", Lure);
       return null;
   }
 }

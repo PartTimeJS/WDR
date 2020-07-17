@@ -3,7 +3,7 @@ exports.Load = function(WDR) {
 
     let Geofences = new WDR.DiscordJS.Collection();
 
-    WDR.Fs.readdir(WDR.dir + "/configs/geofences", (err, geofences) => {
+    WDR.Fs.readdir(WDR.Dir + "/configs/geofences", (err, geofences) => {
 
       let geofence_files = geofences.filter(g => g.split(".").pop() === "json"),
         geofence_count = 0;
@@ -13,16 +13,16 @@ exports.Load = function(WDR) {
 
         geofence_count++;
 
-        delete require.cache[require.resolve(WDR.dir + "/configs/geofences/" + g)];
+        delete require.cache[require.resolve(WDR.Dir + "/configs/geofences/" + g)];
 
-        let geofence = require(WDR.dir + "/configs/geofences/" + g);
+        let geofence = require(WDR.Dir + "/configs/geofences/" + g);
 
         geofence.name = g;
 
         Geofences.set(g, geofence);
       });
       // LOG SUCCESS AND COUNTS
-      console.log("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [load_geofences.js] Loaded " + geofence_files.length + " Geofences.");
+      WDR.Console.info(WDR, "[load_geofences.js] Loaded " + geofence_files.length + " Geofences.");
       // END
       return resolve(Geofences);
     });

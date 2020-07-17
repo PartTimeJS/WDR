@@ -5,11 +5,13 @@ module.exports = (WDR, Payload) => {
     // LOOP DISCORDS TO MATCH A GEOFENCE
     WDR.Discords.forEach(async discord => {
 
+      let payload = {};
+
       // ASSIGN DISCORD TO VARIABLE
       data.message.Discord = discord;
 
       // CHECK GEOFENCES TO FIND A MATCH
-      if (WDR.InsideGeojson.polygon(data.message.Discord.geofence, [data.message.longitude, data.message.latitude])) {
+      if (WDR.PointInGeoJSON.polygon(data.message.Discord.geofence, [data.message.longitude, data.message.latitude])) {
 
         // GET TIME
         data.message.Time_Now = new Date().getTime();
@@ -18,47 +20,21 @@ module.exports = (WDR, Payload) => {
         data.message.Timezone = WDR.GeoTz(data.message.Discord.geofence[0][1][1], data.message.Discord.geofence[0][1][0])[0];
 
         // DEFINE AREAS FROM GEOFENCE FILE
-        data.message.Area = {};
-        data.message.Area.Default = data.message.Discord.name;
+        data.message.area = {};
+        data.message.area.default = data.message.Discord.name;
 
         // CHECK IF GEOJSON EXISTS
         if (data.message.Discord.geojson_file && data.message.Discord.geojson_file != "") {
-
-          // FETCH GEOFENCE OF DISCORD
-          let geofences = await WDR.Geofences.get(data.message.Discord.geojson_file);
-
-          if (!geofences) {
-            console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] [wdr.js] Geofence " + data.message.Discord.geojson_file + " does not appear to exist. WTF man.").bold.brightGreen);
-          } else {
-
-            // LOOP GEOFENCES TO FIND MATCH
-            let g_len = geofences.length;
-            for (let g = 0; g < g_len; g++) {
-
-              // ASSIGN TO VARIABLE
-              let geo = geofences[g];
-
-              // GET IF POINT IS INSIDE A GEOFENCE
-              if (WDR.InsideGeojson.feature({
-                  features: [geo]
-                }, [data.message.longitude, data.message.latitude]) != -1) {
-                if (geo.properties.sub_area == "true") {
-                  data.message.Area.Sub = geo.properties.name;
-                } else {
-                  data.message.Area.Main = geo.properties.name;
-                }
-              }
-            }
-          }
+          data.message.area = await WDR.Get_Areas(WDR, data.message);
         }
 
         // ASSIGN AREA TO VARIABLES
-        if (data.message.Area.Sub) {
-          data.message.Area.Embed = data.message.Area.Sub;
-        } else if (data.message.Area.Main && !data.message.Area.Sub) {
-          data.message.Area.Embed = data.message.Area.Main;
-        } else if (!data.message.Area.Sub && !data.message.Area.Main) {
-          data.message.Area.Embed = data.message.Area.Default;
+        if (data.message.area.sub) {
+          data.message.area.embed = data.message.area.sub;
+        } else if (data.message.area.main && !data.message.area.sub) {
+          data.message.area.embed = data.message.area.main;
+        } else if (!data.message.area.sub && !data.message.area.main) {
+          data.message.area.embed = data.message.area.default;
         }
 
         // GET RECEIVE TIME FOR PROCESSING TIME
@@ -73,9 +49,12 @@ module.exports = (WDR, Payload) => {
 
             data.message.gen = await WDR.Get_Gen(data.message.pokemon_id);
 
-            data.message.size = await WDR.Get_Size(WDR, data.message.pokemon_id, data.message.form, data.message.height, data.message.weight);
-
             data.message.weather_boost = await WDR.Get_Weather(WDR, data.message);
+            if (data.message.weather_boost == undefined) {
+              WDR.Console.error(WDR, "[handlers/webhooks.js] Undefined Emoji for Weather ID " + data.message.weather + ". Emoji does not exist in defined emoji server(s).");
+            }
+
+            data.message.size = await WDR.Get_Size(WDR, data.message.pokemon_id, data.message.form, data.message.height, data.message.weight);
 
             data.message = await WDR.Get_Locale.Pokemon(WDR, data.message);
 
@@ -104,13 +83,13 @@ module.exports = (WDR, Payload) => {
             WDR.Feeds.Pokemon(WDR, data.message);
 
             // GET GREAT LEAGUE STATS
-            data.message.great_league = await WDR.PvP.CalculatePossibleCPs(WDR, data.message.pokemon_id, data.message.form_id, data.message.individual_attack, data.message.individual_defense, data.message.individual_stamina, data.message.pokemon_level, data.message.gender_name, "great");
+            data.message.great_league = await WDR.PvP.CalculatePossibleCPs(WDR, data.message.pokemon_id, data.message.form_id, data.message.individual_attack, data.message.individual_defense, data.message.individual_stamina, data.message.pokemon_level, data.message.gender_name, "great", "webhook.js great");
 
             // GET ULTRA LEAGUE STATS
-            data.message.ultra_league = await WDR.PvP.CalculatePossibleCPs(WDR, data.message.pokemon_id, data.message.form_id, data.message.individual_attack, data.message.individual_defense, data.message.individual_stamina, data.message.pokemon_level, data.message.gender_name, "ultra");
+            data.message.ultra_league = await WDR.PvP.CalculatePossibleCPs(WDR, data.message.pokemon_id, data.message.form_id, data.message.individual_attack, data.message.individual_defense, data.message.individual_stamina, data.message.pokemon_level, data.message.gender_name, "ultra", "webhook.js ultra");
 
             // SEND TO POKEMON SUBSCRIPTION FILTERING
-            //WDR.Subscriptions.PvP(WDR, data.message);
+            WDR.Subscriptions.PvP(WDR, data.message);
 
             // SEND TO POKEMON FEED FILTERING
             WDR.Feeds.PvP(WDR, data.message);

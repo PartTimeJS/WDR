@@ -1,5 +1,5 @@
 module.exports = async (WDR, message, nest, server, area, timezone, embed) => {
-  let Embed_Config = require(WDR.dir + '/configs/embeds/' + embed);
+  let Embed_Config = require(WDR.Dir + '/configs/embeds/' + embed);
 
   let form = WDR.Master.Pokemon[nest.pokemon_id].default_form ? WDR.Master.Pokemon[nest.pokemon_id].default_form : 0;
   let locale = await WDR.Get_Data(WDR, nest);

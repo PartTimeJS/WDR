@@ -38,7 +38,7 @@ exports.Load = function(WDR) {
           let channel = await Bot.channels.cache.get(channel_id);
           if (!channel) {
             resolve(false);
-            return console.error("[WDR " + WDR.Version + "] [load_ontime.js] [" + WDR.Time(null, "log") + "] Could not find a channel with ID: " + channel_id);
+            return WDR.Console.error(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Could not find a channel with ID: " + channel_id);
           }
           channel.fetchMessages({
             limit: 99
@@ -49,7 +49,7 @@ exports.Load = function(WDR) {
                   return resolve(true);
                 });
               } else {
-                console.log("[WDR " + WDR.Version + "] [load_ontime.js] [" + WDR.Time(null, "log") + "] Purged all messages in " + channel.name + " (" + channel.id + ")");
+                WDR.Console.info(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Purged all messages in " + channel.name + " (" + channel.id + ")");
                 return resolve(true);
               }
             }).catch(console.error);

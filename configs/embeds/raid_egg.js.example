@@ -24,7 +24,7 @@ module.exports = function(WDR, g) {
       "Hatches: **" + g.hatch_time + " (*" + g.hatch_mins + " Mins*)" + "**\n" +
       g.exraid + g.notes + "\n" +
       "**" + g.area + "** | Directions:" + "\n" +
-      g.google + " | " + g.apple + " | " + g.waze)
+      g.google + " - " + g.apple + " - " + g.waze)
     .setImage(g.static_map);
 
   return raid_embed;

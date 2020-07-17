@@ -1,0 +1,23 @@
+# Use 0 for all or use Pokemon ID #. Split with ',' for multiple.
+pokemon_id = 0
+
+# 0 for All or the pokemon type name. Only one type may be used.
+pokemon_type = 0
+
+# 0 for All or the league name
+league = 0
+
+# Use 0 for All. Must use Form ID number
+form = 0
+
+# Use 0 for All or Use lowercase type name. You can only set one.
+type = 0
+
+# Use 0 for All. Use Gen ID and split with ',' for multiple.
+gen = 0
+
+# 1 - 35. Do not use 0.
+min_lvl = 1
+
+# 1 - 20. This value cannot be higher than 20. Do not use 0.
+min_rank = 1

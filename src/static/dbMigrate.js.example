@@ -64,7 +64,7 @@ setTimeout(function() {
               console.error(error);
               console.error(user);
             } else {
-              console.log("[dbMigrate] User " + user.user_name + " Inserted into User Table.");
+              WDR.Console.log(WDR,"[dbMigrate] User " + user.user_name + " Inserted into User Table.");
             }
           }
         );
@@ -166,9 +166,9 @@ setTimeout(function() {
                 if (error) {
                   console.error(user)
                   console.error(new_poke)
-                  console.error("[dbMigrate] Error Inserting Pokemon Subscription.", error);
+                  WDR.Console.error(WDR, "[dbMigrate] Error Inserting Pokemon Subscription.", error);
                 } else {
-                  console.log("[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
+                  WDR.Console.log(WDR,"[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
                 }
               }
             );
@@ -240,9 +240,9 @@ setTimeout(function() {
                 if (error) {
                   console.error(user)
                   console.error(new_raid)
-                  console.error("[dbMigrate] Error Inserting Raid Subscription.", error);
+                  WDR.Console.error(WDR, "[dbMigrate] Error Inserting Raid Subscription.", error);
                 } else {
-                  console.log("[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
+                  WDR.Console.log(WDR,"[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
                 }
               }
             );
@@ -310,9 +310,9 @@ setTimeout(function() {
                 if (error) {
                   console.error(user)
                   console.error(new_pvp)
-                  console.error("[dbMigrate] Error Inserting PvP Subscription.", error);
+                  WDR.Console.error(WDR, "[dbMigrate] Error Inserting PvP Subscription.", error);
                 } else {
-                  console.log("[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
+                  WDR.Console.log(WDR,"[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
                 }
               }
             );
@@ -367,9 +367,9 @@ setTimeout(function() {
                 if (error) {
                   console.error(user)
                   console.error(new_quest)
-                  console.error("[dbMigrate] Error Inserting Quest Subscription.", error);
+                  WDR.Console.error(WDR, "[dbMigrate] Error Inserting Quest Subscription.", error);
                 } else {
-                  console.log("[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
+                  WDR.Console.log(WDR,"[dbMigrate] Subscription for " + user.user_name + " Inserted into Subscription Table.");
                 }
               }
             );

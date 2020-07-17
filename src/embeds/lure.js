@@ -1,5 +1,5 @@
 module.exports = async (WDR, Target, Lure) => {
-  let Embed_Config = require(WDR.dir + "/configs/embeds/" + Lure.Embed);
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Lure.Embed);
 
   // CHECK IF THE TARGET IS A USER
   Lure.Member = WDR.Bot.guilds.cache.get(Lure.Discord.id).members.cache.get(Target.user_id);
@@ -18,7 +18,7 @@ module.exports = async (WDR, Target, Lure) => {
   // GET LOCATION INFO
   Lure.lat = Lure.latitude;
   Lure.lon = Lure.longitude;
-  Lure.area = Lure.Area.Embed;
+  Lure.area = Lure.area.embed;
   Lure.map_url = WDR.Config.FRONTEND_URL;
 
   // MAP LINK PROVIDERS
@@ -81,7 +81,7 @@ module.exports = async (WDR, Target, Lure) => {
 
   if (Lure.Member) {
     if (WDR.Debug.Lure == "ENABLED" && WDR.Debug.Subscriptions == "ENABLED") {
-      console.log("[EMBEDS] [" + WDR.Time(null, "stamp") + "] [Lure.js] Sent a " + Lure.name + " to " + Lure.Member.user.tag + " (" + Lure.Member.id + ").");
+      WDR.Console.log(WDR,"[EMBEDS] [" + WDR.Time(null, "stamp") + "] [Lure.js] Sent a " + Lure.name + " to " + Lure.Member.user.tag + " (" + Lure.Member.id + ").");
     }
     return WDR.Send_DM(WDR, Lure.Discord.id, Lure.Member.id, Lure.Embed, Target.bot);
   } else {

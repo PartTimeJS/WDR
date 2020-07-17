@@ -25,7 +25,7 @@ module.exports = function(WDR, g) {
       "Level " + g.lvl + " | " + g.team + g.sponsor + "\n" +
       "Counter(s): " + g.weaknesses + "\n" +
       g.exraid + g.notes + "\n" +
-      "**" + g.area + " | Directions:" + "\n" +
+      "**" + g.area + "** | Directions:" + "\n" +
       g.google + " | " + g.apple + " | " + g.waze)
     .setImage(g.static_map);
 
