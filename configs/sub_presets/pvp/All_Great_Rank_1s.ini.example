@@ -14,7 +14,7 @@ form = 0
 type = 0
 
 # Use 0 for All. Use Gen ID and split with ',' for multiple.
-gen = 0
+gen = 5
 
 # 1 - 35. Do not use 0.
 min_lvl = 1
