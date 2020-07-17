@@ -43,7 +43,7 @@ module.exports = async (WDR, Sighting) => {
     let Embed_File = feed_channel[1].embed ? feed_channel[1].embed : "pvp.js";
 
     let defGeo = (channel.Geofences.indexOf(Sighting.area.default) >= 0);
-    let mainGeo = (channel.Geofences.indexOf(Sighting.area.default) >= 0);
+    let mainGeo = (channel.Geofences.indexOf(Sighting.area.main) >= 0);
     let subGeo = (channel.Geofences.indexOf(Sighting.area.sub) >= 0);
 
     // CHECK FILTER GEOFENCES
