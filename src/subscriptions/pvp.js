@@ -17,7 +17,7 @@ module.exports = async (WDR, Sighting) => {
 
     for (let l = 0, llen = Sighting[match.league].length; l < llen; l++) {
       let potential = Sighting[match.league][l];
-      let rankMatch = potential.rank <= 10;
+      let rankMatch = potential.rank <= 20;
       let cpMatch = potential.cp >= CPs[lg];
       if (rankMatch && cpMatch) {
         potential.gen = await WDR.Get_Gen(potential.pokemon_id);
