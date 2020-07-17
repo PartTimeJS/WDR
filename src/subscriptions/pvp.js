@@ -7,7 +7,8 @@ module.exports = async (WDR, Sighting) => {
 
   let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
 
-  Leagues.forEach(async (league, index) => {
+  for (let lg = 0, lglen = Leagues.length; lg < lglen; lg++) {
+    let league = Leagues[lg];
 
     let match = {
       possible_cps: [],
@@ -16,8 +17,8 @@ module.exports = async (WDR, Sighting) => {
 
     for (let l = 0, llen = Sighting[match.league].length; l < llen; l++) {
       let potential = Sighting[match.league][l];
-      let rankMatch = potential.rank <= 20;
-      let cpMatch = potential.cp >= CPs[index];
+      let rankMatch = potential.rank <= 10;
+      let cpMatch = potential.cp >= CPs[lg];
       if (rankMatch && cpMatch) {
         potential.gen = await WDR.Get_Gen(potential.pokemon_id);
         potential.typing = await WDR.Get_Typing(WDR, {
@@ -25,100 +26,100 @@ module.exports = async (WDR, Sighting) => {
           form: potential.form,
           type: "pvp_filter"
         });
+
         match.possible_cps.push(potential);
-      }
-    }
 
-    if (match.possible_cps > 0) {
+        let query = `
+          SELECT
+            *
+          FROM
+            wdr_subscriptions
+          WHERE
+            status = 1
+            AND
+              sub_type = 'pvp'
+            AND
+              (
+                pokemon_id = ${Sighting.pokemon_id}
+                OR pokemon_id = ${potential.pokemon_id}
+                OR pokemon_id  = 0
+              )
+            AND
+              (
+                form = ${Sighting.form_id}
+                OR form = ${potential.form_id}
+                OR form = 0
+              )
+            AND
+              (
+                league = '${league}'
+                OR league = 0
+              )
+            AND
+              min_rank >= ${potential.rank}
+            AND
+              min_lvl <= ${Sighting.pokemon_level}
+            AND
+              (
+                generation = ${Sighting.gen}
+                OR generation = ${potential.gen}
+                OR generation = 0
+              );`;
 
-      let query = `
-        SELECT
-          *
-        FROM
-          wdr_subscriptions
-        WHERE
-          status = 1
-          AND
-            sub_type = 'pvp'
-          AND
-            (
-              pokemon_id = ${Sighting.pokemon_id}
-              OR pokemon_id = ${potential.pokemon_id}
-              OR pokemon_id  = 0
-            )
-          AND
-            (
-              form = ${Sighting.form_id}
-              OR form = ${potential.form_id}
-              OR form = 0
-            )
-          AND
-            (
-              league = '${league}'
-              OR league = 0
-            )
-          AND
-            min_rank >= ${potential.rank}
-          AND
-            min_lvl <= ${Sighting.pokemon_level}
-          AND
-            (
-              generation = ${Sighting.gen}
-              OR generation = ${potential.gen}
-              OR generation = 0
-            );`;
+        WDR.wdrDB.query(
+          query,
+          async function(error, matching, fields) {
+            if (error) {
+              WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+            } else if (matching && matching[0]) {
 
-      WDR.wdrDB.query(
-        query,
-        async function(error, matching, fields) {
-          if (error) {
-            WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-          } else if (matching && matching[0]) {
+              for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
-            for (let m = 0, mlen = matching.length; m < mlen; m++) {
+                let User = matching[m];
 
-              let User = matching[m];
+                let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
+                let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
+                let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
 
-              let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
-              let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
-              let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
+                if (defGeo || mainGeo || subGeo) {
 
-              if (defGeo || mainGeo || subGeo) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
 
-                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                  Send_Subscription(WDR, match, Sighting, User);
 
-                Send_Subscription(WDR, match, Sighting, User);
+                } else {
 
-              } else {
+                  let values = User.geofence.split(";");
 
-                let values = User.geofence.split(";");
+                  if (values.length == 3) {
 
-                if (values.length == 3) {
+                    let distance = await WDR.Get_Distance(WDR, {
+                      lat1: Sighting.latitude,
+                      lon1: Sighting.longitude,
+                      lat2: values[0],
+                      lon2: values[1]
+                    });
 
-                  let distance = await WDR.Get_Distance(WDR, {
-                    lat1: Sighting.latitude,
-                    lon1: Sighting.longitude,
-                    lat2: values[0],
-                    lon2: values[1]
-                  });
-
-                  if (distance <= values[2]) {
-                    Send_Subscription(WDR, match, Sighting, User);
+                    if (distance <= values[2]) {
+                      Send_Subscription(WDR, match, Sighting, User);
+                    }
                   }
                 }
               }
             }
           }
-        }
-      );
+        );
+      }
     }
-  });
+  }
 
   // END
   return;
 }
 
 async function Send_Subscription(WDR, match, Sighting, User, ) {
+
+  console.log(match)
 
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
