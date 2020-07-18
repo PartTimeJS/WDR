@@ -163,7 +163,7 @@ async function wdr_intialization() {
   await mysql_connect("scannerDB");
   WDR.Discords = await load("/src/startup/load_discords.js");
   await load_modules();
-  await load_commands()\;
+  await load_commands();
   WDR.Filters = await load("/src/startup/load_filters.js");
   WDR.Geofences = await load("/src/startup/load_geofences.js");
   WDR = await load("/src/startup/load_ontime.js");
