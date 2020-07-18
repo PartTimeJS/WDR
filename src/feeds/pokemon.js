@@ -1,7 +1,5 @@
 module.exports = (WDR, Sighting) => {
 
-  let Feed_Embed = require(__dirname + "/../embeds/pokemon.js");
-
   if (WDR.Pokemon_Channels.length < 1) {
     return;
   }
