@@ -28,6 +28,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         if (create.pokemon.name) {
           create.name = create.pokemon.name;
           create.pokemon_id = create.pokemon.id;
+          create.forms = create.pokemon.forms;
         } else {
           create.name = "All";
           create.pokemon_id = 0;
@@ -42,7 +43,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
           create.league = create.league.toLowerCase();
           create.pokemon_type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, null, "Please respond with \'All\' or the Pokemon Type.", create);
           if (create.pokemon_type == 0) {
-            create.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, create.name, "Please respond with the Generation number -OR- type \'All\'. Type \'Cancel\' to Stop.", create);
+            create.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, null, "Please respond with the Generation number -OR- type \'All\'. Type \'Cancel\' to Stop.", create);
           } else {
             create.gen = 0;
           }
