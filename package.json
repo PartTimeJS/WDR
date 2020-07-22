@@ -1,6 +1,6 @@
 {
   "requires": true,
-  "version": "2.0.0b2",
+  "version": "2.0.0b3",
   "lockfileVersion": 1,
   "dependencies": {
     "axios": "^0.19.2",
