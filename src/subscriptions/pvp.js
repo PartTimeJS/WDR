@@ -24,7 +24,7 @@ module.exports = async (WDR, Sighting) => {
         potential.typing = await WDR.Get_Typing(WDR, {
           pokemon_id: potential.pokemon_id,
           form: potential.form,
-          type: "pvp_filter"
+          type: "type_array"
         });
 
         match.possible_cps.push(potential);
@@ -41,19 +41,32 @@ module.exports = async (WDR, Sighting) => {
             AND
               (
                 pokemon_id = ${Sighting.pokemon_id}
-                OR pokemon_id = ${potential.pokemon_id}
-                OR pokemon_id  = 0
+                  OR
+                pokemon_id = ${potential.pokemon_id}
+                  OR
+                pokemon_id  = 0
+              )
+            AND
+              (
+                pokemon_type = '${potential.typing[0]}'
+                  OR
+                pokemon_type = '${potential.typing[1]}'
+                  OR
+                pokemon_type  = '0'
               )
             AND
               (
                 form = ${Sighting.form_id}
-                OR form = ${potential.form_id}
-                OR form = 0
+                  OR
+                form = ${potential.form_id}
+                  OR
+                form = 0
               )
             AND
               (
                 league = '${league}'
-                OR league = 0
+                  OR
+                league = '0'
               )
             AND
               min_rank >= ${potential.rank}
@@ -62,8 +75,10 @@ module.exports = async (WDR, Sighting) => {
             AND
               (
                 generation = ${Sighting.gen}
-                OR generation = ${potential.gen}
-                OR generation = 0
+                  OR
+                generation = ${potential.gen}
+                  OR
+                generation = 0
               );`;
 
         WDR.wdrDB.query(
@@ -84,6 +99,8 @@ module.exports = async (WDR, Sighting) => {
                 if (defGeo || mainGeo || subGeo) {
 
                   match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+
+                  console.log(query);
 
                   Send_Subscription(WDR, match, Sighting, User);
 
@@ -118,8 +135,6 @@ module.exports = async (WDR, Sighting) => {
 }
 
 async function Send_Subscription(WDR, match, Sighting, User, ) {
-
-  console.log(match)
 
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
@@ -199,8 +214,10 @@ async function Send_Subscription(WDR, match, Sighting, User, ) {
       match.ranks += "Rank " + rank_cp.rank + " (" + WDR.Master.Pokemon[rank_cp.pokemon_id].name + ")\n";
     });
 
-    match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
-    match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+    if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+      match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
+      match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+    }
 
     if (WDR.Debug.Processing_Speed == "ENABLED") {
       let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;

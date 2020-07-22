@@ -58,13 +58,15 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           instruction = new WDR.DiscordJS.MessageEmbed()
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("What Form of " + sub.name + " would you like to Subscribe to?")
-            .setDescription("Available Forms:" + "\n　" + sub.pokemon.forms.join("\n　"))
+            .setDescription(sub.forms)
             .setFooter(requirements);
           if (object) {
             if (object.form == 0) {
-              instruction.setDescription("Current: `All Pokémon`");
+              instruction.setDescription("Current: `All Pokémon`" + "\n" +
+                "Available Forms:" + "\n　" + sub.forms.join("\n　"));
             } else {
-              instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`");
+              instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`" + "\n" +
+                "Available Forms:" + "\n　" + sub.forms.join("\n　"));
             }
           }
           break;
@@ -92,6 +94,14 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             size = await WDR.Capitalize(size);
           }
 
+          let ptype = "";
+          switch (sub.pokemon_type) {
+            case 0:
+              ptype = "All";
+            default:
+              ptype = await WDR.Capitalize(sub.pokemon_type);
+          }
+
           let form = "";
           switch (sub.form) {
             case 0:
@@ -101,17 +111,28 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               form = WDR.Master.Pokemon[sub.id].forms[sub.form];
           }
 
+          let gen = "";
+          switch (sub.gen) {
+            case 0:
+              gen = "All";
+              break;
+            default:
+              gen = sub.gen;
+          }
+
           instruction = new WDR.DiscordJS.MessageEmbed()
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("Does all of this look correct?")
             .setDescription("`Name:` " + sub.name + "\n" +
               "`Form:` " + form + "\n" +
+              "Type: `" + ptype + "`\n" +
               "`Min IV:` " + sub.min_iv + "\n" +
               "`Max IV:` " + sub.max_iv + "\n" +
               "`Min Lvl:` " + sub.min_lvl + "\n" +
               "`Max Lvl:` " + sub.max_lvl + "\n" +
               "`Gender:` " + gender + "\n" +
               "`Size:` " + size + "\n" +
+              "`Generation:` " + gen + "\n" +
               "`Areas:` " + sub.geofence)
             .setFooter(requirements);
           break;
@@ -338,6 +359,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               break;
 
             case type.indexOf("IV") >= 0:
+              CollectedMsg.content = CollectedMsg.content.replace("%", "");
               switch (true) {
                 case (CollectedMsg.content.toLowerCase() == "same"):
                 case (CollectedMsg.content.toLowerCase() == "keep"):

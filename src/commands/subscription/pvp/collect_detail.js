@@ -11,7 +11,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
     });
 
     switch (type) {
-
       case "Guild":
         let list = "";
         object.forEach((guild, i) => {
@@ -33,12 +32,41 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
-        // POKEMON NAME EMBED
       case "Name":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What Pokémon would you like to Subscribe to?")
           .setFooter(requirements);
+        if (object) {
+          instruction.setDescription("Current: `" + object + "`");
+        }
+        break;
+
+      case "Type":
+        instruction = new WDR.DiscordJS.MessageEmbed()
+          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+          .setTitle("What Pokémon Type would you like to Subscribe to?")
+          .setFooter(requirements);
+        if (object) {
+          instruction.setDescription("Current: `" + await WDR.Capitalize(object) + "`");
+        }
+        break;
+
+      case "Form":
+        instruction = new WDR.DiscordJS.MessageEmbed()
+          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+          .setTitle("What Form of " + sub.name + " would you like to Subscribe to?")
+          .setDescription("Available Forms:" + "\n　" + sub.forms.join("\n　"))
+          .setFooter(requirements);
+        if (object) {
+          if (object.form == 0) {
+            instruction.setDescription("Current: `All Pokémon`" + "\n" +
+              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+          } else {
+            instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`" + "\n" +
+              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+          }
+        }
         break;
 
         // CONFIRMATION EMBED
@@ -53,12 +81,12 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             form = WDR.Master.Pokemon[sub.id].forms[sub.form];
         }
 
-        let type = "";
-        switch (sub.type) {
+        let ptype = "";
+        switch (sub.pokemon_type) {
           case 0:
-            type = "All";
+            ptype = "All";
           default:
-            type = sub.type;
+            ptype = await WDR.Capitalize(sub.pokemon_type);
         }
 
         let league = "";
@@ -66,7 +94,16 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           case 0:
             league = "All";
           default:
-            league = sub.league;
+            league = await WDR.Capitalize(sub.league);
+        }
+
+        let gen = "";
+        switch (sub.gen) {
+          case 0:
+            gen = "All";
+            break;
+          default:
+            gen = sub.gen;
         }
 
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -74,11 +111,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setTitle("Does all of this look correct?")
           .setDescription("Name: `" + sub.name + "`\n" +
             "League: `" + league + "`\n" +
-            "Type: `" + type + "`\n" +
+            "Type: `" + ptype + "`\n" +
             "Form: `" + form + "`\n" +
             "Min Rank: `" + sub.min_rank + "`\n" +
-            "Min Lvl: `" + sub.min_lvl + "`\n" +
-            "Generation: `" + sub.gen + "`\n" +
+            //"Min Lvl: `" + sub.min_lvl + "`\n" +
+            "Generation: `" + gen + "`\n" +
             "Filter By Areas: `" + sub.geofence + "`")
           .setFooter(requirements);
         break;
@@ -95,7 +132,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Remove":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("What Pokémon do you want to remove?")
+          .setTitle("What PvP Sub do you want to remove?")
           .setFooter(requirements);
         break;
 
@@ -103,7 +140,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Modify":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("What Pokémon do you want to modify?")
+          .setTitle("What PvP Sub do you want to modify?")
           .setFooter(requirements);
         break;
 
@@ -122,7 +159,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       default:
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("What **" + type + "** would like you like to set for **" + pokemon + "** Notifications?")
+          .setTitle("What **" + type + "** would like you like to set for **" + sub.name + "** Notifications?")
           .setFooter(requirements);
     }
 
@@ -132,6 +169,10 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
       // FILTER COLLECT EVENT
       collector.on("collect", async CollectedMsg => {
+
+        if (Message.channel.type != "dm") {
+          CollectedMsg.delete();
+        }
 
         switch (true) {
 
@@ -161,6 +202,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
           case type.indexOf("Geofence") >= 0:
             switch (CollectedMsg.content.toLowerCase()) {
+              case (CollectedMsg.content.toLowerCase() == "same"):
+              case (CollectedMsg.content.toLowerCase() == "keep"):
+              case (CollectedMsg.content.toLowerCase() == "next"):
+                collector.stop(object);
+                break;
               case "yes":
                 collector.stop(Member.db.geofence);
                 break;
@@ -290,16 +336,16 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             //   break;
 
           case type.indexOf("Rank") >= 0:
-            if (Message.content.toLowerCase() == "all") {
+            if (CollectedMsg.content.toLowerCase() == "all") {
               collector.stop(20);
-            } else if (parseInt(Message.content) >= 0 && parseInt(Message.content) <= 20) {
-              collector.stop(Message.content);
-            } else if (parseInt(Message.content) > 20) {
-              Message.reply("The Lowest Rank you can sub to is 20." + requirements).then(m => m.delete({
+            } else if (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= 20) {
+              collector.stop(CollectedMsg.content);
+            } else if (parseInt(CollectedMsg.content) > 20) {
+              CollectedMsg.reply("The Lowest Rank you can sub to is 20." + requirements).then(m => m.delete({
                 timeout: 5000
               }));
             } else {
-              Message.reply("`" + Message.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+              CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
                 timeout: 5000
               }));
             }
@@ -350,14 +396,12 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             break;
 
           case type.indexOf("League") >= 0:
-            if (Message.content.toLowerCase() == "great") {
+            if (CollectedMsg.content.toLowerCase() == "great") {
               collector.stop("great");
-            } else if (Message.content.toLowerCase() == "ultra") {
+            } else if (CollectedMsg.content.toLowerCase() == "ultra") {
               collector.stop("ultra");
-            } else if (Message.content.toLowerCase() == "other") {
-              collector.stop("all");
             } else {
-              Message.reply("`" + Message.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+              CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
                 timeout: 5000
               }));
             }

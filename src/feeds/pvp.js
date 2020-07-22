@@ -83,7 +83,7 @@ module.exports = async (WDR, Sighting) => {
           potential.typing = await WDR.Get_Typing(WDR, {
             pokemon_id: potential.pokemon_id,
             form: potential.form,
-            type: "pvp_filter"
+            type: "type_array"
           });
           let rankMatch = potential.rank <= channel.Filter.min_pvp_rank;
           let cpMatch = potential.cp >= channel.Filter.min_cp_range;
@@ -180,8 +180,10 @@ module.exports = async (WDR, Sighting) => {
             match.ranks += "Rank " + rank_cp.rank + " (" + WDR.Master.Pokemon[rank_cp.pokemon_id].name + ")\n";
           });
 
-          match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
-          match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+            match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
+            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          }
 
           if (WDR.Debug.Processing_Speed == "ENABLED") {
             let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;

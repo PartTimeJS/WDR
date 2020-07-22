@@ -52,9 +52,6 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.generation != 0) {
             data += "　Gen: `" + sub_data.generation + "`\n";
           }
-          if (sub_data.geofence == Message.Discord.name) {
-            data += "　Geofence: `" + sub_data.geofence + "`\n";
-          }
           if (!data) {
             data = "　`All" + "`\n";;
           }

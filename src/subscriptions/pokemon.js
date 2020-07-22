@@ -9,30 +9,74 @@ module.exports = async (WDR, Sighting) => {
     case (Sighting.area.main != undefined):
     case (Sighting.area.sub != undefined):
 
+      let typing = await WDR.Get_Typing(WDR, {
+        pokemon_id: Sighting.pokemon_id,
+        form: Sighting.form,
+        type: "type_array"
+      });
+
       let query = `
         SELECT
             *
         FROM
             wdr_subscriptions
         WHERE
-            status = 1
-            AND sub_type = 'pokemon'
-            AND (pokemon_id = ${Sighting.pokemon_id} OR pokemon_id  = 0)
-            AND (form = ${Sighting.form_id} OR form = 0)
-            AND min_iv <= ${Sighting.internal_value}
-            AND max_iv >= ${Sighting.internal_value}
-            AND min_lvl <= ${Sighting.pokemon_level}
-            AND max_lvl >= ${Sighting.pokemon_level}
-            AND (size = '${size}' OR size = 0)
-            AND (gender = ${Sighting.gender_id} OR gender = 0)
-            AND (generation = ${Sighting.gen} OR generation = 0);
+              status = 1
+            AND
+              sub_type = 'pokemon'
+            AND
+              (
+                pokemon_id = ${Sighting.pokemon_id}
+                  OR
+                pokemon_id  = 0
+              )
+            AND
+              (
+                pokemon_type = '${typing[0]}'
+                  OR
+                pokemon_type = '${typing[1]}'
+                  OR
+                pokemon_type  = '0'
+              )
+            AND
+              (
+                form = ${Sighting.form_id}
+                  OR
+                form = 0
+              )
+            AND
+              min_iv <= ${Sighting.internal_value}
+            AND
+              max_iv >= ${Sighting.internal_value}
+            AND
+              min_lvl <= ${Sighting.pokemon_level}
+            AND
+              max_lvl >= ${Sighting.pokemon_level}
+            AND
+              (
+                size = '${size}'
+                  OR
+                size = '0'
+              )
+            AND
+              (
+                gender = ${Sighting.gender_id}
+                  OR
+                gender = 0
+              )
+            AND
+              (
+                generation = ${Sighting.gen}
+                  OR
+                generation = 0
+              );
       `;
 
       WDR.wdrDB.query(
         query,
         async function(error, matching, fields) {
           if (error) {
-            WDR.Console.error("[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+            WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
           } else if (matching && matching[0]) {
 
             for (let m = 0, mlen = matching.length; m < mlen; m++) {
@@ -139,8 +183,10 @@ async function Send_Subscription(WDR, Sighting, User) {
 
   if (match.mins >= 5) {
 
-    match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
-    match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+    if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+      match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+      match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+    }
 
     if (WDR.Debug.Processing_Speed == "ENABLED") {
       let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;

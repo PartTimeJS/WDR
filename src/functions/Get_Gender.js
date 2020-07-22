@@ -3,9 +3,10 @@ module.exports = (num) => {
     switch (num) {
       case 1:
         return resolve("Male");
-        break;
       case 2:
         return resolve("Female");
+      case 4:
+        return resolve("All");
       default:
         return resolve(null);
     }

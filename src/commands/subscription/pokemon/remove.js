@@ -26,8 +26,8 @@ module.exports = (WDR, Functions, Message, Member) => {
           sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.id] ? WDR.Master.Pokemon[sub_data.id].name : "All Pokémon";
           sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
           let data = "";
-          if (sub_data.form != 0) {
-            data += "　Form: `" + sub_data.form == 0 ? "All" : WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + "`\n";
+          if (sub_data.form > 0) {
+            data += "　Form: `" + WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + "`\n";
           }
           if (sub_data.min_iv != 0) {
             data += "　Min IV: `" + sub_data.min_iv + "`\n";
@@ -45,8 +45,11 @@ module.exports = (WDR, Functions, Message, Member) => {
             let gender = await WDR.Get_Gender(sub_data.gender);
             data += "　Gender: `" + gender + "`\n";
           }
-          if (sub_data.size != 0 && sub_data.size != "all") {
+          if (sub_data.size != 0) {
             data += "　Size: `" + sub_data.size + "`\n";
+          }
+          if (sub_data.generation != 0) {
+            data += "　Gen: `" + sub_data.generation + "`\n";
           }
           if (!data) {
             data = "　`All" + "`\n";;

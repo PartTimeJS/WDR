@@ -10,7 +10,7 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
   collector.on("collect", CollectedMsg => {
 
-    if (CollectedMsg) {
+    if (CollectedMsg && CollectedMsg.channel.type != "dm") {
       CollectedMsg.delete();
     }
 

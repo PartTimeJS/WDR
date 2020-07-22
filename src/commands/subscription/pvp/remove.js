@@ -27,22 +27,19 @@ module.exports = (WDR, Functions, Message, Member) => {
           sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.id] ? WDR.Master.Pokemon[sub_data.id].name : "All Pokémon";
           sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
           let data = "";
-          if (sub_data.league != "all") {
-            data += "　League: `" + sub_data.league + "`\n";
-          }
           if (sub_data.form != 0) {
             data += "　Form: `" + sub_data.form == 0 ? "All" : WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + "`\n";
           }
+          if (sub_data.league != "0") {
+            data += "　League: `" + sub_data.league + "`\n";
+          }
+          if (sub_data.pokemon_type != "0") {
+            data += "　Type: `" + sub_data.pokemon_type + "`\n"
+          }
+          if (sub_data.generation != 0) {
+            data += "　Gen: `" + sub_data.generation + "`\n";
+          }
           data += "　Min Rank: `" + sub_data.min_rank + "`\n";
-          if (sub_data.min_lvl != 0 && sub_data.min_lvl != 1) {
-            data += "　Min Lvl: `" + sub_data.min_lvl + "`\n";
-          }
-          if (sub_data.min_cp != 0) {
-            data += "　Min CP: `" + sub_data.min_cp + "`\n";
-          }
-          if (sub_data.max_cp != 10000) {
-            data += "　Max CP: `" + sub_data.max_cp + "`\n";
-          }
           sub_list += data + "\n";
         }
         sub_list = sub_list.slice(0, -1);

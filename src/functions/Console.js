@@ -22,7 +22,7 @@ module.exports = {
   },
 
   info: function(WDR, info, object) {
-    console.info("WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info);
+    console.info("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info);
     if (object) {
       console.info(object);
     }

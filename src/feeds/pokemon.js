@@ -149,8 +149,10 @@ module.exports = (WDR, Sighting) => {
           match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
           match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
 
-          match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
-          match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+            match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          }
 
           if (WDR.Debug.Processing_Speed == "ENABLED") {
             let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;

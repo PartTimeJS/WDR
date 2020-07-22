@@ -23,7 +23,10 @@
 
     "Starting Up...",
     "When I'm not with you I lose my mind. Give me a sign...",
-    "Again, Seriously?..."
+    "Again, Seriously?...",
+
+    "Starting Up...",
+    "Checking files for your fuck-ups..."
 
   ],
   "initialized":[
@@ -38,7 +41,7 @@
 
     "WDR has Fully Initialized.",
     "Roses are Red, Violets are Blue, you got WDR Running, so now go take a poo.",
-    "WDR has Fully Initialized. Now to see what else you screwed up...",
+    "I'm never swimming in the ocean, ever.",
 
     "WDR has Fully Initialized.",
     "Looks like you did something right for once. WDR has Fully Initialized.",
@@ -50,6 +53,9 @@
 
     "WDR has Fully Initialized.",
     "HIT ME BABY ONE MORE TIME!",
-    "Looks like you're not as bad as drf after all. WDR has Fully Initialized."
+    "Looks like you're not as bad as drf after all. WDR has Fully Initialized.",
+
+    "WDR has Fully Initialized.",
+    "So far so good. Now to see what else you screwed up..."
   ]
 }

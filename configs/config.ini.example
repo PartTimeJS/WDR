@@ -51,6 +51,11 @@ LISTENING_PORT = 4444
 # SPRITES & MAP TILES (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
 #-------------------------------------------------------------------------------
 STATIC_MAP_URL = http://yourtilesite.com/
+STATIC_SPRITE = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/monsters/
+STATIC_WIDTH = 400
+STATIC_HEIGHT = 220
+STATIC_ZOOM = 16
+COMPLEX_TILES = ENABLED
 
 #-------------------------------------------------------------------------------
 # Optional URL for your front end for [Scan Map] embed link
