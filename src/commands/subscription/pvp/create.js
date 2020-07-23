@@ -37,6 +37,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
           create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with a Form Name of the specified Pokemon -OR- type \'All\'. Type \'Cancel\' to Stop.", create);
           create.league = 0;
           create.pokemon_type = 0;
+          create.gen = 0;
         } else {
           create.form = 0;
           create.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, null, "Please respond with \'Great\', \'Ultra\'.", create);
