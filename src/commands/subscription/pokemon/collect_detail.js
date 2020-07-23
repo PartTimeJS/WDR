@@ -102,7 +102,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
 
         let gen = "";
-        if (sub.sub.form == 0) {
+        if (sub.form == 0) {
           gen = "All";
         } else {
           gen = sub.gen;
