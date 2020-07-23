@@ -78,7 +78,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             form = "All";
             break;
           default:
-            form = WDR.Master.Pokemon[sub.id].forms[sub.form];
+            form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form];
         }
 
         let ptype = "";
