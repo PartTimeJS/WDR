@@ -11,7 +11,6 @@ module.exports = async (WDR, Sighting) => {
     let league = Leagues[lg];
 
     let match = {
-      possible_cps: [],
       league: league + "_league"
     };
 
@@ -26,12 +25,9 @@ module.exports = async (WDR, Sighting) => {
           form: potential.form,
           type: "type_array"
         });
-        match.possible_cps.push(potential);
-      }
-    }
+        match.possible_cps = [potential];
 
-    if (match.possible_cps.length > 0) {
-      let query = `
+        let query = `
           SELECT
             *
           FROM
@@ -83,51 +79,52 @@ module.exports = async (WDR, Sighting) => {
                 generation = 0
               );`;
 
-      WDR.wdrDB.query(
-        query,
-        async function(error, matching, fields) {
-          if (error) {
-            WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-          } else if (matching && matching[0]) {
+        WDR.wdrDB.query(
+          query,
+          async function(error, matching, fields) {
+            if (error) {
+              WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+            } else if (matching && matching[0]) {
 
-            for (let m = 0, mlen = matching.length; m < mlen; m++) {
+              for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
-              let User = matching[m];
+                let User = matching[m];
 
-              let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
-              let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
-              let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
+                let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
+                let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
+                let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
 
-              if (defGeo || mainGeo || subGeo) {
+                if (defGeo || mainGeo || subGeo) {
 
-                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                  match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
 
-                console.log(query);
+                  console.log(query);
 
-                Send_Subscription(WDR, match, Sighting, User);
+                  Send_Subscription(WDR, match, Sighting, User);
 
-              } else {
+                } else {
 
-                let values = User.geofence.split(";");
+                  let values = User.geofence.split(";");
 
-                if (values.length == 3) {
+                  if (values.length == 3) {
 
-                  let distance = await WDR.Get_Distance(WDR, {
-                    lat1: Sighting.latitude,
-                    lon1: Sighting.longitude,
-                    lat2: values[0],
-                    lon2: values[1]
-                  });
+                    let distance = await WDR.Get_Distance(WDR, {
+                      lat1: Sighting.latitude,
+                      lon1: Sighting.longitude,
+                      lat2: values[0],
+                      lon2: values[1]
+                    });
 
-                  if (distance <= values[2]) {
-                    Send_Subscription(WDR, match, Sighting, User);
+                    if (distance <= values[2]) {
+                      Send_Subscription(WDR, match, Sighting, User);
+                    }
                   }
                 }
               }
             }
           }
-        }
-      );
+        );
+      }
     }
   }
 
