@@ -111,17 +111,17 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Does all of this look correct?")
-          .setDescription("`Name:` " + sub.name + "\n" +
-            "`Form:` " + form + "\n" +
+          .setDescription("Name: `" + sub.name + "`\n" +
+            "Form: " + form + "`\n" +
             "Type: `" + ptype + "`\n" +
-            "`Min IV:` " + sub.min_iv + "\n" +
-            "`Max IV:` " + sub.max_iv + "\n" +
-            "`Min Lvl:` " + sub.min_lvl + "\n" +
-            "`Max Lvl:` " + sub.max_lvl + "\n" +
-            "`Gender:` " + gender + "\n" +
-            "`Size:` " + size + "\n" +
-            "`Generation:` " + gen + "\n" +
-            "`Areas:` " + sub.geofence)
+            "Min IV: `" + sub.min_iv + "`\n" +
+            "Max IV: `" + sub.max_iv + "`\n" +
+            "Min Lvl: `" + sub.min_lvl + "`\n" +
+            "Max Lvl: `" + sub.max_lvl + "`\n" +
+            "Gender: `" + gender + "`\n" +
+            "Size: `" + size + "`\n" +
+            "Generation: `" + gen + "`\n" +
+            "Areas: `" + sub.geofence + "`")
           .setFooter(requirements);
         break;
 
