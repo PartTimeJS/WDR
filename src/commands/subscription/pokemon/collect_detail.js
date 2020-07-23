@@ -90,6 +90,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           let size = "";
           if (sub.size == 0) {
             size = "All";
+            break;
           } else {
             size = await WDR.Capitalize(size);
           }
@@ -98,6 +99,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           switch (sub.pokemon_type) {
             case 0:
               ptype = "All";
+              break;
             default:
               ptype = await WDR.Capitalize(sub.pokemon_type);
           }
@@ -108,7 +110,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               form = "All";
               break;
             default:
-              form = WDR.Master.Pokemon[sub.id].forms[sub.form];
+              form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
           }
 
           let gen = "";
@@ -187,9 +189,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
         collector.on("collect", async CollectedMsg => {
 
-          if (Message.channel.type != "dm") {
-            CollectedMsg.delete();
-          }
+          CollectedMsg.delete();
 
           switch (true) {
 

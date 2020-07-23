@@ -71,20 +71,20 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
         // CONFIRMATION EMBED
       case "Confirm-Add":
-
         let form = "";
         switch (sub.form) {
           case 0:
             form = "All";
             break;
           default:
-            form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form];
+            form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
         }
 
         let ptype = "";
         switch (sub.pokemon_type) {
           case 0:
             ptype = "All";
+            break;
           default:
             ptype = await WDR.Capitalize(sub.pokemon_type);
         }
@@ -93,6 +93,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         switch (sub.league) {
           case 0:
             league = "All";
+            break;
           default:
             league = await WDR.Capitalize(sub.league);
         }
@@ -170,9 +171,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       // FILTER COLLECT EVENT
       collector.on("collect", async CollectedMsg => {
 
-        if (Message.channel.type != "dm") {
-          CollectedMsg.delete();
-        }
+        CollectedMsg.delete();
 
         switch (true) {
 
@@ -314,7 +313,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(0);
                 break;
               case (sub.forms.indexOf(user_form) >= 0):
-                collector.stop(sub.form_ids[sub.forms.indexOf(user_form)]);
+                collector.stop(parseInt(sub.form_ids[sub.forms.indexOf(user_form)]));
                 break;
               default:
                 return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
