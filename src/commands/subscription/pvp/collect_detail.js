@@ -314,7 +314,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(0);
                 break;
               case (sub.forms.indexOf(user_form) >= 0):
-                collector.stop(sub.forms_ids[sub.forms.indexOf(user_form)]);
+                collector.stop(sub.form_ids[sub.forms.indexOf(user_form)]);
                 break;
               default:
                 return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
