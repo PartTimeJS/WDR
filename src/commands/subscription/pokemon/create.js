@@ -29,6 +29,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.name = create.pokemon.name;
           create.pokemon_id = create.pokemon.id;
           create.forms = create.pokemon.forms;
+          create.form_ids = create.pokemon.form_ids;
         } else {
           create.name = "All";
           create.pokemon_id = 0;

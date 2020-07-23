@@ -328,8 +328,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 case (CollectedMsg.content.toLowerCase() == "all"):
                   collector.stop(0);
                   break;
-                case (object.forms.indexOf(user_form) >= 0):
-                  collector.stop(object.form_ids[object.forms.indexOf(user_form)]);
+                case (sub.forms.indexOf(user_form) >= 0):
+                  collector.stop(sub.form_ids[sub.forms.indexOf(user_form)]);
                   break;
                 default:
                   return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
