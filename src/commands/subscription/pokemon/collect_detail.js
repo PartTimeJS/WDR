@@ -72,54 +72,42 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           break;
 
         case "Confirm-Add":
+
           let gender = "";
-          switch (sub.gender) {
-            case 1:
-              gender = "Male";
-              break;
-            case 2:
-              gender = "Female";
-              break;
-            case 0:
-            case 3:
-            case 4:
-              gender = "All";
-              break;
+          if (sub.gender == 1) {
+            gender = "Male";
+          } else if (sub.gender == 2) {
+            gender = "Female";
+          } else {
+            gender = "All";
           }
 
           let size = "";
           if (sub.size == 0) {
             size = "All";
-            break;
           } else {
             size = await WDR.Capitalize(size);
           }
 
           let ptype = "";
-          switch (sub.pokemon_type) {
-            case 0:
-              ptype = "All";
-              break;
-            default:
-              ptype = await WDR.Capitalize(sub.pokemon_type);
+          if (sub.sub.pokemon_type == 0) {
+            ptype = "All";
+          } else {
+            ptype = await WDR.Capitalize(sub.pokemon_type);
           }
 
           let form = "";
-          switch (sub.form) {
-            case 0:
-              form = "All";
-              break;
-            default:
-              form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
+          if (sub.form == 0) {
+            form = "All";
+          } else {
+            form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
           }
 
           let gen = "";
-          switch (sub.gen) {
-            case 0:
-              gen = "All";
-              break;
-            default:
-              gen = sub.gen;
+          if (sub.sub.form == 0) {
+            gen = "All";
+          } else {
+            gen = sub.gen;
           }
 
           instruction = new WDR.DiscordJS.MessageEmbed()
@@ -182,7 +170,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             instruction.setDescription("Current: `" + object + "`");
           }
       }
-
       return Message.channel.send(instruction).then(msg => {
 
         let input = "";
