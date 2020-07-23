@@ -13,11 +13,11 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
-      } else if (subs.length >= 25) {
+      } else if (subs.length >= 50) {
         let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Maximum Subscriptions Reached!")
-          .setDescription("You are at the maximum of 25 subscriptions. Please remove one before adding another.")
+          .setDescription("You are at the maximum of 50 subscriptions. Please remove one before adding another.")
           .setFooter("You can type \'view\', \'presets\', \'remove\', or \'edit\'.");
         Message.channel.send(subscription_success).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
