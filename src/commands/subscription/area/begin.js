@@ -34,6 +34,8 @@ module.exports = async (WDR, Message) => {
     AreaArray.push(geofence.properties.name);
   });
 
+  AreaArray.sort();
+
   let requestAction = new WDR.DiscordJS.MessageEmbed()
     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
     .setTitle("What would you like to do with your Area Subscriptions?")
