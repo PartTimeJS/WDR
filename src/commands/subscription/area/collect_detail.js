@@ -58,7 +58,7 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
       if (AreaArray.length > 50) {
         msg.react("⬅️");
         msg.react("➡️");
-        WDR.on('messageReactionAdd', (reaction, user) => {
+        WDR.Bot.on('messageReactionAdd', (reaction, user) => {
           let new_desc = new WDR.DiscordJS.MessageEmbed();
           if (reaction.emoji.name === "⬅️") {
             reaction.users.remove(user.id);
