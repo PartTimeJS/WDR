@@ -1,7 +1,7 @@
 module.exports = async (WDR, Functions, type, Member, Message, object, requirements, sub, AreaArray) => {
   return new Promise(function(resolve, reject) {
 
-    let timeout = true,
+    let huge_list = false,
       instruction = "";
 
     const filter = cMessage => cMessage.author.id == Message.author.id;
@@ -10,24 +10,35 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
     });
 
     let user_areas = sub.toLowerCase().split(","),
-      area_list = "";
-    // CREATE REWARD LIST AND ADD CHECK FOR SUBSCRIBED REWARDS
+      area_list = "",
+      list_array = [];
+
+    let count = 0;
     AreaArray.forEach((area, index) => {
+      if (count == 50) {
+        count = 0;
+        list_array.push(area_list);
+        area_list = "";
+      }
       if (user_areas.indexOf(area.toLowerCase()) >= 0) {
         area_list += area + " " + WDR.Emotes.checkYes + "\n";
       } else {
         area_list += area + "\n";
       }
+      if (index == (AreaArray.length - 1)) {
+        list_array.push(area_list);
+      }
+      count++;
     });
 
     switch (type) {
-
       // AREA NAME EMBED
       case "Name":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What Area would you like to Subscribe to?")
-          .setDescription("**" + area_list + "**", false)
+          .setDescription("**" + list_array[0] + "**" + "\n" + "\n" +
+            "Page **1** of **" + list_array.length + "**")
           .setFooter(requirements);
         break;
 
@@ -36,12 +47,39 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What Area do you want to remove?")
-          .addField("Your Areas:", "**" + area_list + "**", false)
+          .setDescription("**" + list_array[0] + "**" + "\n" + "\n" +
+            "Page **1** of **" + list_array.length + "**")
           .setFooter(requirements);
         break;
     }
 
     Message.channel.send(instruction).catch(console.error).then(msg => {
+      let page = 1;
+      if (AreaArray.length > 50) {
+        msg.react("⬅️");
+        msg.react("➡️");
+        WDR.on('messageReactionAdd', (reaction, user) => {
+          let new_desc = new WDR.DiscordJS.MessageEmbed();
+          if (reaction.emoji.name === "⬅️") {
+            reaction.users.remove(user.id);
+            if (page > 1) {
+              page = page - 1;
+              new_desc.setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
+                "Page **" + page + "** of **" + list_array.length + "**");
+            }
+          } else if (reaction.emoji.name === "➡️") {
+            reaction.users.remove(user.id);
+            if (page < list_array.length) {
+              page = page + 1;
+              new_desc.setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
+                "Page **" + page + "** of **" + list_array.length + "**");
+              msg.edit(new_desc);
+            }
+          } else {
+            reaction.remove();
+          }
+        });
+      }
 
       // FILTER COLLECT EVENT
       collector.on("collect", CollectedMessage => {
