@@ -159,7 +159,7 @@ async function wdr_intialization() {
   await WDR.Generate_Master(WDR);
   WDR = await load("/src/startup/load_data.js");
   await mysql_connect("wdrDB");
-  await mysql_connect("pmsfDB");
+  //await mysql_connect("pmsfDB");
   await mysql_connect("scannerDB");
   WDR.Discords = await load("/src/startup/load_discords.js");
   await load_modules();
