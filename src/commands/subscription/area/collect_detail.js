@@ -59,24 +59,27 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
         msg.react("⬅️");
         msg.react("➡️");
         WDR.Bot.on('messageReactionAdd', (reaction, user) => {
-          let new_desc = new WDR.DiscordJS.MessageEmbed();
-          if (reaction.emoji.name === "⬅️") {
-            reaction.users.remove(user.id);
-            if (page > 1) {
-              page = page - 1;
-              new_desc.setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
-                "Page **" + page + "** of **" + list_array.length + "**");
+          if (reaction.message.id === msg.id && user.id != WDR.Bot.user.id) {
+            let new_desc = new WDR.DiscordJS.MessageEmbed();
+            if (reaction.emoji.name === "⬅️") {
+              reaction.users.remove(user.id);
+              if (page > 1) {
+                page = page - 1;
+                new_desc.setTitle(msg.embeds[0].title).setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
+                  "Page **" + page + "** of **" + list_array.length + "**").setFooter(msg.embeds[0].footer.text);
+                msg.edit(new_desc)
+              }
+            } else if (reaction.emoji.name === "➡️") {
+              reaction.users.remove(user.id);
+              if (page < list_array.length) {
+                page = page + 1;
+                new_desc.setTitle(msg.embeds[0].title).setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
+                  "Page **" + page + "** of **" + list_array.length + "**").setFooter(msg.embeds[0].footer.text);
+                msg.edit(new_desc);
+              }
+            } else {
+              reaction.remove();
             }
-          } else if (reaction.emoji.name === "➡️") {
-            reaction.users.remove(user.id);
-            if (page < list_array.length) {
-              page = page + 1;
-              new_desc.setDescription("**" + list_array[(page - 1)] + "**" + "\n" + "\n" +
-                "Page **" + page + "** of **" + list_array.length + "**");
-              msg.edit(new_desc);
-            }
-          } else {
-            reaction.remove();
           }
         });
       }
