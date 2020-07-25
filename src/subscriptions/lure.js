@@ -7,7 +7,7 @@ module.exports = async (WDR, lure, area, server, timezone) => {
   //  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Lure == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [lure.js] Received '+WDR.Get_Lure(lure.lure_id)+' lure for '+server.name+'.'); }
   //
   //  // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
-  // WDR.wdrDB.query(`SELECT * FROM users WHERE discord_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users, fields){
+  // WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users, fields){
   //    if(users && users[0]){
   //      users.forEach((user,index) => {
   //

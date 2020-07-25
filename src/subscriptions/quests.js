@@ -19,7 +19,7 @@ module.exports = async (WDR, quest, area, server, timezone) => {
   }
 
   // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
- WDR.wdrDB.query(`SELECT * FROM users WHERE discord_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, quest_subs, fields){
+ WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, quest_subs, fields){
     if(quest_subs && quest_subs[0]){
       quest_subs.forEach((user,index) => {
         //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR

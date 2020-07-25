@@ -26,7 +26,7 @@ module.exports = async (WDR, raid, area, server, timezone) => {
   if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Raids == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [raids.js] Received '+boss_name+' Raid for '+server.name+'.'); }
 
   // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
- WDR.wdrDB.query(`SELECT * FROM users WHERE discord_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, raid_subs, fields){
+ WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, raid_subs, fields){
     if(raid_subs && raid_subs[0]){
       raid_subs.forEach((user,index) => {
 

@@ -7,7 +7,7 @@ module.exports = async (WDR, invasion, area, server, timezone) => {
   //  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Invasion == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [invasion.js] Received '+WDR.Master.grunt_types[invasion.grunt_type].type+' invasion for '+server.name+'.'); }
   //
   //  // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
-  // WDR.wdrDB.query(`SELECT * FROM users WHERE discord_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users, fields){
+  // WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users, fields){
   //    if(users && users[0]){
   //      users.forEach((user,index) => {
   //
