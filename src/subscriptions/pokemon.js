@@ -4,6 +4,11 @@ module.exports = async (WDR, Sighting) => {
 
   let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
 
+
+  if (Sighting.pokemon_id == 443) {
+    console.log("Area " + Sighting.area.default != undefined + " " + Sighting.area.main != undefined + " " + Sighting.area.sub != undefined)
+  }
+
   switch (true) {
     case (Sighting.area.default != undefined):
     case (Sighting.area.main != undefined):
@@ -63,6 +68,10 @@ module.exports = async (WDR, Sighting) => {
                 gender = ${Sighting.gender_id}
                   OR
                 gender = 0
+                  OR
+                gender = 3
+                  OR
+                gender = 4
               )
             AND
               (
@@ -71,6 +80,11 @@ module.exports = async (WDR, Sighting) => {
                 generation = 0
               );
       `;
+
+
+      if (Sighting.pokemon_id == 443) {
+        console.log("IV " + Sighting.internal_value, query)
+      }
 
       WDR.wdrDB.query(
         query,
