@@ -210,8 +210,10 @@ module.exports = async (WDR, Raid) => {
                 break;
             }
 
-            match.body = await WDR.Generate_Tile(WDR, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
-            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+            if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+              match.body = await WDR.Generate_Tile(WDR, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
+              match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+            }
 
             if (WDR.Debug.Processing_Speed == "ENABLED") {
               let difference = Math.round((new Date().getTime() - Raid.WDR_Received) / 10) / 100;
@@ -245,8 +247,11 @@ module.exports = async (WDR, Raid) => {
             match.minCP_boosted = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 10, 10, 10, 25);
             match.maxCP_boosted = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 15, 15, 15, 25);
 
-            match.body = await WDR.Generate_Tile(WDR, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
-            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+            if (WDR.Config.COMPLEX_TILES != "DISABLED") {
+              console.log("enabled")
+              match.body = await WDR.Generate_Tile(WDR, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
+              match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+            }
 
             if (WDR.Debug.Processing_Speed == "ENABLED") {
               let difference = Math.round((new Date().getTime() - Raid.WDR_Received) / 10) / 100;
