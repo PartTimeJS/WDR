@@ -41,11 +41,11 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.max_lvl != WDR.MaxLevel) {
             data += "　Max Lvl: `" + sub_data.max_lvl + "`\n";
           }
-          if (sub_data.gender != 0) {
+          if (sub_data.gender != '0') {
             let gender = await WDR.Get_Gender(sub_data.gender);
             data += "　Gender: `" + gender + "`\n";
           }
-          if (sub_data.size != 0) {
+          if (sub_data.size != '0') {
             data += "　Size: `" + sub_data.size + "`\n";
           }
           if (sub_data.generation != 0) {
