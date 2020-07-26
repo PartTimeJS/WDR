@@ -10,9 +10,7 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
   collector.on("collect", CollectedMsg => {
 
-    if (CollectedMsg && CollectedMsg.channel.type != "dm") {
-      CollectedMsg.delete();
-    }
+    CollectedMsg.delete();
 
     let input = CollectedMsg.content.split(" ")[0].toString().toLowerCase();
 
@@ -52,9 +50,9 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
   });
 
   collector.on("end", (collected, arg) => {
-    if (BotMsg) {
-      BotMsg.delete();
-    }
+
+    BotMsg.delete();
+
     switch (arg) {
       case "cancel":
         return Functions.Cancel(WDR, Functions, OriginalMsg, Member);
