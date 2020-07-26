@@ -219,11 +219,20 @@ module.exports = async (WDR, Message) => {
                   command = "quest";
                   break;
               }
-
-              let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js")
-              if (Cmd) {
-                Cmd(WDR, Message);
+              try {
+                let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js");
+                if (Cmd) {
+                  Cmd(WDR, Message);
+                }
+              } catch (e) {
+                let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
+                if (Cmd) {
+                  Cmd(WDR, Message);
+                } else {
+                  WDR.Console.error("[handlers/commands.js] Error Initializing Command", [command, error])
+                }
               }
+
               WDR.wdrDB.query(`UPDATE wdr_users SET user_name = '${Message.member.user.username}' WHERE user_id = ${Message.member.id};`);
               WDR.wdrDB.query(`UPDATE wdr_subscriptions SET user_name = '${Message.member.user.username}' WHERE user_id = ${Message.member.id};`);
             }
