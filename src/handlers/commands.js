@@ -7,19 +7,14 @@ module.exports = async (WDR, Message) => {
     return;
   }
 
-  // CHECK IF THE MESSAGE IS FROM A BOT
   if (Message.author.bot == true) {
     return;
   }
 
-  Message.member.isAdmin = Message.member.hasPermission("ADMINISTRATOR") ? true : false;
-
-  Message.member.isMod = Message.member.hasPermission("MANAGE_ROLES") ? true : false;
-
-
+  console.log(Message.channel.type);
   if (Message.channel.type == "dm") {
 
-    Message.member.user_guilds = [];
+    Message.author.user_guilds = [];
 
     WDR.Discords.forEach(async (Server, index) => {
       let guild = WDR.Bot.guilds.cache.get(Server.id);
@@ -28,7 +23,7 @@ module.exports = async (WDR, Message) => {
       } else {
         let member = WDR.Bot.guilds.cache.get(Server.id).members.cache.get(Message.author.id);
         if (member && member.roles.cache.has(Server.donor_role)) {
-          Message.member.user_guilds.push({
+          Message.author.user_guilds.push({
             id: guild.id,
             name: Server.name
           });
@@ -36,7 +31,7 @@ module.exports = async (WDR, Message) => {
       }
     });
 
-    if (user_guilds.length == 1) {
+    if (Message.author.user_guilds.length == 1) {
       WDR.wdrDB.query(
         `SELECT
             *
@@ -49,7 +44,7 @@ module.exports = async (WDR, Message) => {
           if (!user || !user[0]) {
             return Message.reply("Before you can create and modify subscriptions via DM, you must first use the subsciption channel in your scanner discord.");
           } else {
-            Message.member.db = user;
+            Message.author.db = user[0];
           }
 
           let command = Message.content.split(" ")[0].slice(1);
@@ -71,32 +66,31 @@ module.exports = async (WDR, Message) => {
           }
         }
       );
-    } else if (user_guilds.length > 1) {
+    } else if (Message.author.user_guilds.length > 1) {
 
       let list = "";
-      user_guilds.forEach((guild, i) => {
+      Message.author.user_guilds.forEach((guild, i) => {
         list += (i + 1) + " - " + guild.name + "\n";
       });
       list = list.slice(0, -1);
 
       let request_action = new WDR.DiscordJS.MessageEmbed()
-        .setAuthor(Member.nickname, Member.user.displayAvatarURL())
+        .setAuthor(Message.author.username, Message.author.displayAvatarURL())
         .setTitle("Which Discord would you like to modify Subscriptions for?")
-        .setDescription()
+        .setDescription(list)
         .setFooter("Type the number of the discord.");
 
       Message.channel.send(request_action).catch(console.error).then(BotMsg => {
 
-        const filter = CollectedMsg => CollectedMsg.author.id == OriginalMsg.author.id;
-        const collector = OriginalMsg.channel.createMessageCollector(filter, {
+        const filter = CollectedMsg => CollectedMsg.author.id == Message.author.id;
+        const collector = Message.channel.createMessageCollector(filter, {
           time: 60000
         });
 
         collector.on("collect", CollectedMsg => {
-          if (CollectedMsg) {
-            CollectedMsg.delete();
-          }
+
           let num = parseInt(CollectedMsg.content);
+
           switch (true) {
             case (isNaN(CollectedMsg.content)):
               return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a Number. Type the number next to the Discord name above.").then(m => m.delete({
@@ -112,23 +106,28 @@ module.exports = async (WDR, Message) => {
         });
 
         collector.on("end", (collected, num) => {
-          if (BotMsg) {
-            BotMsg.delete();
-          }
+
+          console.log(Message.author.user_guilds);
+          console.log("num", Message.author.user_guilds[num])
+
+          BotMsg.delete();
+          let query = `
+            SELECT
+                *
+            FROM
+                wdr_users
+            WHERE
+                user_id = ${Message.author.id}
+                AND guild_id = ${Message.author.user_guilds[num].id};
+          `;
+          console.log(query);
           WDR.wdrDB.query(
-            `SELECT
-                  *
-               FROM
-                  wdr_users
-               WHERE
-                  user_id = ${Message.member.id}
-                  AND guild_id = ${list[num].id}`,
+            query,
             async function(error, user, fields) {
-              if (!user || !user[0]) {
-                Message.member.db = await WDR.Save_User(WDR, Message, Server);
-              } else {
-                Message.member.db = user;
+              if (error) {
+                WDR.Console.error(WDR, "[src/handlers/commands.js] DM: Error Fetching User From DB", [query, error])
               }
+              Message.author.db = user[0];
 
               let command = Message.content.split(" ")[0].slice(1);
               switch (command) {
@@ -156,6 +155,14 @@ module.exports = async (WDR, Message) => {
     }
   } else {
 
+    if (!Message.member) {
+      return;
+    }
+
+    Message.member.isAdmin = Message.member.hasPermission("ADMINISTRATOR") ? true : false;
+
+    Message.member.isMod = Message.member.hasPermission("MANAGE_ROLES") ? true : false;
+
     WDR.Discords.forEach(async (Server, index) => {
 
       if (Message.guild.id == Server.id && Server.command_channels.indexOf(Message.channel.id) >= 0) {
@@ -163,9 +170,9 @@ module.exports = async (WDR, Message) => {
         Message.Discord = Server;
 
         // DELETE THE MESSAGE
-        if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
-          Message.delete();
-        }
+        //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
+        Message.delete();
+        //}
 
         // FETCH THE GUILD MEMBER AND CHECK IF A DONOR
         if (Message.member.isAdmin || Message.member.isMod) {
@@ -224,7 +231,7 @@ module.exports = async (WDR, Message) => {
                 if (Cmd) {
                   Cmd(WDR, Message);
                 }
-              } catch (e) {
+              } catch (error) {
                 let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
                 if (Cmd) {
                   Cmd(WDR, Message);
@@ -244,7 +251,7 @@ module.exports = async (WDR, Message) => {
   }
 
   // GLOBAL COMMANDS
-  if (WDR.Config.Admin_Enabled == "YES" && Message.member.isAdmin) {
+  if (Message.member && WDR.Config.Admin_Enabled == "YES" && Message.member.isAdmin) {
     let command = Message.content.split(" ")[0].slice(1);
     let Cmd = WDR.Commands.Admin.get(command.toLowerCase());
     if (Cmd) {
