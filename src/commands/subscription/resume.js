@@ -5,14 +5,14 @@ module.exports = async (WDR, Message) => {
     INNER JOIN
         wdr_subscriptions b ON(a.user_id = b.user_id)
     SET
-        a.status = 0,
-        a.pokemon_status = 0,
-        a.pvp_status = 0,
-        a.quest_status = 0,
-        a.raid_status = 0,
-        a.lure_status = 0,
-        a.invasion_status = 0,
-        b.status = 0
+        a.status = 1,
+        a.pokemon_status = 1,
+        a.pvp_status = 1,
+        a.quest_status = 1,
+        a.raid_status = 1,
+        a.lure_status = 1,
+        a.invasion_status = 1,
+        b.status = 1
     WHERE
         a.user_id = ${Message.member.id}
           AND
@@ -28,7 +28,7 @@ module.exports = async (WDR, Message) => {
         })).catch(console.error);
       } else {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+          .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
           .setTitle("Your Subscriptions are all now **Active**.");
         return Message.channel.send(already_active).then(m => m.delete({
           timeout: 5000

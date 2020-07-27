@@ -28,7 +28,7 @@ module.exports = async (WDR, Message) => {
         })).catch(console.error);
       } else {
         let now_active = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+          .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
           .setTitle("Your Subscriptions are all now **Paused**.");
         return Message.channel.send(now_active).then(m => m.delete({
           timeout: 5000
