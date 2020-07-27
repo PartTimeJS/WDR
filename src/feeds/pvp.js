@@ -6,32 +6,26 @@ module.exports = async (WDR, Sighting) => {
 
   for (let c = 0, clen = WDR.PvP_Channels.length; c < clen; c++) {
     let feed_channel = WDR.PvP_Channels[c];
-    //WDR.PvP_Channels.forEach(async feed_channel => {
 
-    // LOOK UP CHANNEL
     let channel = WDR.Bot.channels.cache.get(feed_channel[0]);
     if (!channel) {
       return WDR.Console.error(WDR, "[feeds/pvp.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
 
-    // FETCH CHANNEL GEOFENCE
     channel.Geofences = feed_channel[1].geofences.split(",");
     if (!channel.Geofences) {
       return WDR.Console.error(WDR, "[feeds/pvp.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
-    // FETCH CHANNEL FILTER
     channel.Filter = WDR.Filters.get(feed_channel[1].filter);
     if (!channel.Filter) {
       return WDR.Console.error(WDR, "[feeds/pvp.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
-    // CHECK CHANNEL FILTER TYPE
     if (channel.Filter.Type != "pvp") {
       return WDR.Console.error(WDR, "[feeds/pvp.js] The filter defined for " + feed_channel[0] + " does not appear to be a pvp filter.");
     }
 
-    // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
         Sighting.role_id = "@" + feed_channel[1].roleid;
@@ -46,10 +40,8 @@ module.exports = async (WDR, Sighting) => {
     let mainGeo = (channel.Geofences.indexOf(Sighting.area.main) >= 0);
     let subGeo = (channel.Geofences.indexOf(Sighting.area.sub) >= 0);
 
-    // CHECK FILTER GEOFENCES
     if (defGeo || mainGeo || subGeo) {
 
-      // CHECK FILTER VARIABLES
       if (!channel.Filter.min_cp_range && channel.Filter.min_level !== 0) {
         return WDR.Console.error(WDR, "[feeds/pvp.js] Missing `min_cp_range` variable in " + feed_channel[1].filter + ".");
       } else if (!channel.Filter.max_cp_range) {
@@ -180,23 +172,33 @@ module.exports = async (WDR, Sighting) => {
             match.ranks += "Rank " + rank_cp.rank + " (" + WDR.Master.Pokemon[rank_cp.pokemon_id].name + ")\n";
           });
 
-          if (WDR.Config.COMPLEX_TILES != "DISABLED") {
-            match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
-            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          if (match.mins >= 5) {
+
+            if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
+              if (Sighting.static_map) {
+                match.body = Sighting.body;
+                match.static_map = Sighting.static_map;
+              } else {
+                match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+                Sighting.body = match.body;
+                match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+                Sighting.static_map = match.statuc_map;
+              }
+            }
+
+            if (WDR.Debug.Processing_Speed == "ENABLED") {
+              let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
+              match.footer = "Latency: " + difference + "s";
+            }
+
+            match.embed = Embed_Config(WDR, match);
+
+            WDR.Send_Embed(WDR, match.embed, channel.id);
           }
-
-          if (WDR.Debug.Processing_Speed == "ENABLED") {
-            let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
-            match.footer = "Latency: " + difference + "s";
-          }
-
-          match.embed = Embed_Config(WDR, match);
-
-          WDR.Send_Embed(WDR, match.embed, channel.id);
         }
       }
     }
-  } //);
+  }
 
   // END
   return;

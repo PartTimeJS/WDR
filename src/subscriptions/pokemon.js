@@ -4,125 +4,117 @@ module.exports = async (WDR, Sighting) => {
 
   let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
 
+  let typing = await WDR.Get_Typing(WDR, {
+    pokemon_id: Sighting.pokemon_id,
+    form: Sighting.form,
+    type: "type_array"
+  });
 
-  if (Sighting.pokemon_id == 443) {
-    console.log("Area " + Sighting.area.default != undefined + " " + Sighting.area.main != undefined + " " + Sighting.area.sub != undefined)
-  }
+  let query = `
+    SELECT
+        *
+    FROM
+        wdr_subscriptions
+    WHERE
+          status = 1
+        AND
+          sub_type = 'pokemon'
+        AND
+          (
+            pokemon_id  = 0
+              OR
+            pokemon_id = ${Sighting.pokemon_id}
+          )
+        AND
+          (
+            pokemon_type  = '0'
+              OR
+            pokemon_type = '${typing[0]}'
+              OR
+            pokemon_type = '${typing[1]}'
+          )
+        AND
+          (
+            form = 0
+              OR
+            form = ${Sighting.form_id}
+          )
+        AND
+          min_iv <= ${Sighting.internal_value}
+        AND
+          max_iv >= ${Sighting.internal_value}
+        AND
+          min_lvl <= ${Sighting.pokemon_level}
+        AND
+          max_lvl >= ${Sighting.pokemon_level}
+        AND
+          (
+            size = '0'
+              OR
+            size = '${size}'
+          )
+        AND
+          (
+            gender = 0
+              OR
+            gender = ${Sighting.gender_id}
+              OR
+            gender = 3
+          )
+        AND
+          (
+            generation = 0
+              OR
+            generation = ${Sighting.gen}
+          );
+  `;
 
-  switch (true) {
-    case (Sighting.area.default != undefined):
-    case (Sighting.area.main != undefined):
-    case (Sighting.area.sub != undefined):
+  WDR.wdrDB.query(
+    query,
+    async function(error, matching, fields) {
+      if (error) {
+        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+      } else if (matching && matching[0]) {
 
-      let typing = await WDR.Get_Typing(WDR, {
-        pokemon_id: Sighting.pokemon_id,
-        form: Sighting.form,
-        type: "type_array"
-      });
+        Sighting.sprite = WDR.Get_Sprite(WDR, {
+          pokemon_id: Sighting.pokemon_id,
+          form: Sighting.form_id
+        });
 
-      let query = `
-        SELECT
-            *
-        FROM
-            wdr_subscriptions
-        WHERE
-              status = 1
-            AND
-              sub_type = 'pokemon'
-            AND
-              (
-                pokemon_id = ${Sighting.pokemon_id}
-                  OR
-                pokemon_id  = 0
-              )
-            AND
-              (
-                pokemon_type = '${typing[0]}'
-                  OR
-                pokemon_type = '${typing[1]}'
-                  OR
-                pokemon_type  = '0'
-              )
-            AND
-              (
-                form = ${Sighting.form_id}
-                  OR
-                form = 0
-              )
-            AND
-              min_iv <= ${Sighting.internal_value}
-            AND
-              max_iv >= ${Sighting.internal_value}
-            AND
-              min_lvl <= ${Sighting.pokemon_level}
-            AND
-              max_lvl >= ${Sighting.pokemon_level}
-            AND
-              (
-                size = '${size}'
-                  OR
-                size = '0'
-              )
-            AND
-              (
-                gender = ${Sighting.gender_id}
-                  OR
-                gender = 0
-                  OR
-                gender = 3
-                  OR
-                gender = 4
-              )
-            AND
-              (
-                generation = ${Sighting.gen}
-                  OR
-                generation = 0
-              );
-      `;
+        if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
+          Sighting.body = await WDR.Generate_Tile(WDR, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
+          Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
+        }
 
+        for (let m = 0, mlen = matching.length; m < mlen; m++) {
+          let User = matching[m];
 
-      if (Sighting.pokemon_id == 443) {
-        console.log("IV " + Sighting.internal_value, query)
-      }
+          let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
+          let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
+          let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
 
-      WDR.wdrDB.query(
-        query,
-        async function(error, matching, fields) {
-          if (error) {
-            WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-          } else if (matching && matching[0]) {
-
-            for (let m = 0, mlen = matching.length; m < mlen; m++) {
-              let User = matching[m];
-
-              let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
-              let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
-              let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
-
-              // CHECK FILTER GEOFENCES
-              if (defGeo || mainGeo || subGeo) {
+          // CHECK FILTER GEOFENCES
+          if (defGeo || mainGeo || subGeo) {
+            Send_Subscription(WDR, Sighting, User);
+          } else {
+            let values = User.geofence.split(";");
+            if (values.length == 3) {
+              let coords = {
+                lat1: Sighting.latitude,
+                lon1: Sighting.longitude,
+                lat2: values[0],
+                lon2: values[1]
+              };
+              let distance = await WDR.Get_Distance(WDR, coords);
+              if (distance <= values[2]) {
                 Send_Subscription(WDR, Sighting, User);
-              } else {
-                let values = User.geofence.split(";");
-                if (values.length == 3) {
-                  let coords = {
-                    lat1: Sighting.latitude,
-                    lon1: Sighting.longitude,
-                    lat2: values[0],
-                    lon2: values[1]
-                  };
-                  let distance = await WDR.Get_Distance(WDR, coords);
-                  if (distance <= values[2]) {
-                    Send_Subscription(WDR, Sighting, User);
-                  }
-                }
               }
             }
           }
         }
-      );
-  }
+      }
+    }
+  );
 
   // END
   return;
@@ -141,10 +133,10 @@ async function Send_Subscription(WDR, Sighting, User) {
     form: Sighting.form
   });
 
-  match.sprite = WDR.Get_Sprite(WDR, {
-    pokemon_id: Sighting.pokemon_id,
-    form: Sighting.form_id
-  });
+  match.sprite = Sighting.sprite;
+
+  match.body = Sighting.body;
+  match.static_map = Sighting.static_map;
 
   match.type = match.typing.type;
   match.type_noemoji = match.typing.type_noemoji;
@@ -196,11 +188,6 @@ async function Send_Subscription(WDR, Sighting, User) {
   match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
 
   if (match.mins >= 5) {
-
-    if (WDR.Config.COMPLEX_TILES != "DISABLED") {
-      match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
-      match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
-    }
 
     if (WDR.Debug.Processing_Speed == "ENABLED") {
       let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;

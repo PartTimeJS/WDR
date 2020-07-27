@@ -149,19 +149,29 @@ module.exports = (WDR, Sighting) => {
           match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
           match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
 
-          if (WDR.Config.COMPLEX_TILES != "DISABLED") {
-            match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
-            match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+          if (match.mins >= 5) {
+
+            if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
+              if (Sighting.static_map) {
+                match.body = Sighting.body;
+                match.static_map = Sighting.static_map;
+              } else {
+                match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+                Sighting.body = match.body;
+                match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+                Sighting.static_map = match.statuc_map;
+              }
+            }
+
+            if (WDR.Debug.Processing_Speed == "ENABLED") {
+              let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
+              match.footer = "Latency: " + difference + "s";
+            }
+
+            match.embed = Embed_Config(WDR, match);
+
+            WDR.Send_Embed(WDR, match.embed, channel.id);
           }
-
-          if (WDR.Debug.Processing_Speed == "ENABLED") {
-            let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
-            match.footer = "Latency: " + difference + "s";
-          }
-
-          match.embed = Embed_Config(WDR, match);
-
-          WDR.Send_Embed(WDR, match.embed, channel.id);
         }
       }
     }

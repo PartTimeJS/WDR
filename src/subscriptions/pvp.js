@@ -38,33 +38,33 @@ module.exports = async (WDR, Sighting) => {
               sub_type = 'pvp'
             AND
               (
+                pokemon_id  = 0
+                  OR
                 pokemon_id = ${Sighting.pokemon_id}
                   OR
                 pokemon_id = ${potential.pokemon_id}
-                  OR
-                pokemon_id  = 0
               )
             AND
               (
+                pokemon_type  = '0'
+                  OR
                 pokemon_type = '${potential.typing[0]}'
                   OR
                 pokemon_type = '${potential.typing[1]}'
-                  OR
-                pokemon_type  = '0'
               )
             AND
               (
+                form = 0
+                  OR
                 form = ${Sighting.form_id}
                   OR
                 form = ${potential.form_id}
-                  OR
-                form = 0
               )
             AND
               (
-                league = '${league}'
-                  OR
                 league = '0'
+                  OR
+                league = '${league}'
               )
             AND
               min_rank >= ${potential.rank}
@@ -72,12 +72,13 @@ module.exports = async (WDR, Sighting) => {
               min_lvl <= ${Sighting.pokemon_level}
             AND
               (
+                generation = 0
+                  OR
                 generation = ${Sighting.gen}
                   OR
                 generation = ${potential.gen}
-                  OR
-                generation = 0
-              );`;
+              );
+        `;
 
         WDR.wdrDB.query(
           query,
@@ -85,6 +86,16 @@ module.exports = async (WDR, Sighting) => {
             if (error) {
               WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
             } else if (matching && matching[0]) {
+
+              Sighting.sprite = WDR.Get_Sprite(WDR, {
+                pokemon_id: Sighting.pokemon_id,
+                form: Sighting.form_id
+              });
+
+              if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
+                Sighting.body = await WDR.Generate_Tile(WDR, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
+                Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
+              }
 
               for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
@@ -146,10 +157,10 @@ async function Send_Subscription(WDR, match, Sighting, User, ) {
     form: match.possible_cps[0].form_id
   });
 
-  match.tile_sprite = WDR.Get_Sprite(WDR, {
-    pokemon_id: Sighting.pokemon_id,
-    form: Sighting.form_id
-  });
+  match.tile_sprite = Sighting.sprite;
+
+  match.body = Sighting.body;
+  match.static_map = Sighting.static_map;
 
   match.type_wemoji = match.typing.type;
   match.type_noemoji = match.typing.type_noemoji;
