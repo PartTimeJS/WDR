@@ -46,14 +46,11 @@ module.exports = (WDR, Sighting) => {
 
     if (pobject != "False") {
       let defGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
-      let mainGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
+      let mainGeo = (channel.geofences.indexOf(Sighting.area.main) >= 0);
       let subGeo = (channel.geofences.indexOf(Sighting.area.sub) >= 0);
-      let geoPass = (defGeo || mainGeo || subGeo);
 
-      // CHECK FILTER GEOFENCES
-      if (geoPass) {
+      if (defGeo || mainGeo || subGeo) {
 
-        // FRESH FILTER CRITERIA
         let criteria = {};
 
         criteria.gender = (channel.filter.gender == undefined ? "all" : channel.filter.gender).toLowerCase();
@@ -74,15 +71,13 @@ module.exports = (WDR, Sighting) => {
           criteria.max_level = pobject.max_level == undefined ? criteria.max_level : pobject.max_level;
         }
 
-        // FILTERS
         let lvlPass = ((criteria.min_level <= Sighting.pokemon_level) && (criteria.max_level >= Sighting.pokemon_level));
         let sizePass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
         let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
         let genPass = ((criteria.generation == "all") || (criteria.generation == Sighting.gen));
         let ivPass = ((criteria.min_iv <= Sighting.internal_value) && (criteria.max_iv >= Sighting.internal_value));
-        let allPass = (lvlPass && sizePass && genderPass && genPass && ivPass);
 
-        if (allPass) {
+        if (lvlPass && sizePass && genderPass && genPass && ivPass) {
 
           let match = {};
 
@@ -109,6 +104,9 @@ module.exports = (WDR, Sighting) => {
           match.id = Sighting.pokemon_id;
           match.form = Sighting.form_name ? Sighting.form_name : "";
           match.form = Sighting.form_name == "[Normal]" ? "" : Sighting.form_name;
+
+          match.map_url = Sighting.Discord.map_url;
+          match.subscribe_url = Sighting.Discord.subscribe_url;
 
           match.iv = Sighting.internal_value;
           match.cp = Sighting.cp;
