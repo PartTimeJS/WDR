@@ -16,13 +16,6 @@ module.exports = async (WDR, Message) => {
 
   var Member = Message.member ? Message.member : Message.author;
 
-  if (Message.member.db.length > 1) {
-    let choice = await Functions.DetailCollect(WDR, Functions, "Guild", Member, Message, Message.member.user_guilds, "Respond with the # of a Discord.", null);
-    Member.db = Message.member.db[choice];
-  } else {
-    Member.db = Message.member.db;
-  }
-
   let request_action = new WDR.DiscordJS.MessageEmbed()
     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
     .setTitle("What would you like to do with your Pokémon Subscriptions?")
