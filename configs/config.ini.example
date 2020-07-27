@@ -50,6 +50,11 @@ LISTENING_PORT = 4444
 #-------------------------------------------------------------------------------
 # SPRITES & MAP TILES (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
 #-------------------------------------------------------------------------------
+POKEMON_PREGEN_TILES = ENABLED
+PVP_PREGEN_TILES = ENABLED
+RAID_PREGEN_TILES = DISABLED
+QUEST_PREGEN_TILES = DISABLED
+
 STATIC_MAP_URL = http://yourtilesite.com/
 STATIC_SPRITE = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/monsters/
 STATIC_WIDTH = 400
