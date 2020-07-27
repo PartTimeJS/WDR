@@ -80,7 +80,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.form = 0;
           create.max_iv = 100;
           create.max_lvl = WDR.MaxLevel;
-          create.gender = 4;
+          create.gender = 0;
           create.pokemon_type = 0;
           create.gen = 0;
           create.size = 0;
