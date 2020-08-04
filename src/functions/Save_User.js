@@ -52,7 +52,7 @@ module.exports = (WDR, message, server) => {
               return WDR.Console.error(WDR, "[Save_User] [" + WDR.Time(null, "stamp") + "] [bot.js] UNABLE TO ADD USER TO wdr_users TABLE", error);
             } else {
               WDR.wdrDB.query(`UPDATE wdr_info SET next_bot = ${next_bot};`);
-              WDR.Console.info("Save_User.js] Added " + message.member.user.tag + " to the wdr_users Table.");
+              WDR.Console.info(WDR, "[Save_User.js] Added " + message.member.user.tag + " to the wdr_users Table.");
               return;
             }
           }
