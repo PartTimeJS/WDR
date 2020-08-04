@@ -13,7 +13,7 @@ module.exports = async (WDR, Message) => {
 
   var Member = Message.member ? Message.member : Message.author;
 
-  let geofence = await WDr.Geofences.get(Message.Discord.geojson_file);
+  let geofence = await WDR.Geofences.get(Message.Discord.geojson_file);
 
   if (!geofence) {
     return Message.reply("No geofence file has been set for this server. Contact a server admin if you think this is incorrect.").then(m => m.delete({
