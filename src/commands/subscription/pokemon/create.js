@@ -131,7 +131,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pokemon_status},
-                '${create.geotype},
+                '${create.geotype}',
                 '${create.areas}',
                 '${Member.db.location}',
                 'pokemon',
