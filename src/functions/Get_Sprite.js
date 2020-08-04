@@ -2,6 +2,7 @@
 module.exports = (WDR, Object, type) => {
   let sprite_url = WDR.Config.SPRITE_URL;
   let extension = "";
+
   switch (true) {
 
     // ASSET ICONS

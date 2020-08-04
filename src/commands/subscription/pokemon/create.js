@@ -73,7 +73,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
             create.size = 0;
           }
 
-          create.geofence = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\' or \'No\'", create);
+          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\' or \'No\'", create);
 
         } else {
 
@@ -89,8 +89,12 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.MaxLevel + " or type \'All\'. Type \'Cancel\' to Stop.", create);
 
-          create.geofence = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\' or \'No\'", create);
-          create.geofence = create.geofence == "ALL" ? Message.Discord.name : create.geofence;
+          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\' or \'No\'", create);
+          if (create.areas == Message.Discord.name) {
+            create.geotype = "city";
+          } else {
+            create.geotype = Member.db.geotype;
+          }
         }
 
         let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", create);
@@ -104,8 +108,9 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                   guild_name,
                   bot,
                   status,
-                  geofence,
-                  distance,
+                  geotype,
+                  areas,
+                  location,
                   sub_type,
                   pokemon_id,
                   pokemon_type,
@@ -126,8 +131,9 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pokemon_status},
-                '${create.geofence}',
-                '${Member.db.coords};${Member.db.distance}',
+                '${create.geotype},
+                '${create.areas}',
+                '${Member.db.location}',
                 'pokemon',
                 ${create.pokemon_id},
                 '${create.pokemon_type}',

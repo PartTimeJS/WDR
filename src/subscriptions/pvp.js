@@ -87,13 +87,10 @@ module.exports = async (WDR, Sighting) => {
               WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
             } else if (matching && matching[0]) {
 
-              Sighting.sprite = WDR.Get_Sprite(WDR, {
-                pokemon_id: Sighting.pokemon_id,
-                form: Sighting.form_id
-              });
+              Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
 
               if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
-                Sighting.body = await WDR.Generate_Tile(WDR, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
+                Sighting.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
                 Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
               }
 
@@ -101,34 +98,27 @@ module.exports = async (WDR, Sighting) => {
 
                 let User = matching[m];
 
-                let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
-                let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
-                let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
+                if (User.geotype == "areas" || User.geotype == "city") {
+                  let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+                  let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+                  let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+                  if (defGeo || mainGeo || subGeo) {
+                    match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                    Send_Subscription(WDR, match, Sighting, User);
+                  }
 
-                if (defGeo || mainGeo || subGeo) {
-
-                  match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-
-                  console.log(query);
-
-                  Send_Subscription(WDR, match, Sighting, User);
-
-                } else {
-
-                  let values = User.geofence.split(";");
-
-                  if (values.length == 3) {
-
-                    let distance = await WDR.Get_Distance(WDR, {
-                      lat1: Sighting.latitude,
-                      lon1: Sighting.longitude,
-                      lat2: values[0],
-                      lon2: values[1]
-                    });
-
-                    if (distance <= values[2]) {
-                      Send_Subscription(WDR, match, Sighting, User);
-                    }
+                } else if (User.geotype == "location") {
+                  let values = User.location.split(";");
+                  let distance = WDR.Distance.between({
+                    lat: Sighting.latitude,
+                    lon: Sighting.longitude
+                  }, {
+                    lat: values[0].split(",")[0],
+                    lon: values[0].split(",")[1]
+                  });
+                  let loc_dist = WDR.Distance(values[1] + " km");
+                  if (loc_dist > distance) {
+                    Send_Subscription(WDR, match, Sighting, User);
                   }
                 }
               }
@@ -152,12 +142,12 @@ async function Send_Subscription(WDR, match, Sighting, User, ) {
     form: Sighting.form
   });
 
-  match.sprite = WDR.Get_Sprite(WDR, {
+  match.tile_sprite = WDR.Get_Sprite(WDR, {
     pokemon_id: match.possible_cps[0].pokemon_id,
     form: match.possible_cps[0].form_id
   });
 
-  match.tile_sprite = Sighting.sprite;
+  match.sprite = Sighting.sprite;
 
   match.body = Sighting.body;
   match.static_map = Sighting.static_map;
@@ -224,7 +214,7 @@ async function Send_Subscription(WDR, match, Sighting, User, ) {
     });
 
     if (WDR.Config.COMPLEX_TILES != "DISABLED") {
-      match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.tile_sprite);
+      match.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", match.lat, match.lon, match.tile_sprite);
       match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
     }
 

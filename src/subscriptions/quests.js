@@ -33,7 +33,7 @@ module.exports = async (WDR, quest, area, server, timezone) => {
         }
 
         // DEFINE VARIABLES
-        let user_areas = user.geofence.split(',');
+        let user_areas = user.areas.split(',');
 
         // CONVERT SUBSCRIBED LIST TO AN ARRAY
         let subs = user.quests ? user.quests.split(',') : '';
@@ -45,13 +45,13 @@ module.exports = async (WDR, quest, area, server, timezone) => {
           if(subs.indexOf(quest_reward) >= 0 || subs.indexOf(simple_reward) >= 0 || subs.indexOf('ALL') >= 0){
 
             // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
-            if(user.geofence == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
+            if(user.areas == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
 
               // PREPARE ALERT TO SEND TO USER
               if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Quests == 'ENABLED'){ console.log(WDR.Color.pink+'[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [quests.js] Preparing '+quest_reward+' Quest DM for '+user.user_name+WDR.Color.reset); }
               Send_Quest(WDR, user, quest, quest_reward, simple_reward, area, server, timezone, content, embed);
               return;
-            } else{ return questFailed(WDR, quest_reward, user.user_name, 'Area Filters. '+user.geofence+' | '+server.name+','+area.WDR+','+area.sub); }
+            } else{ return questFailed(WDR, quest_reward, user.user_name, 'Area Filters. '+user.areas+' | '+server.name+','+area.WDR+','+area.sub); }
           } else{ return questFailed(WDR, quest_reward, user.user_name, 'Reward Filters'); }
         } else { return; }
       });

@@ -11,21 +11,21 @@ module.exports = (WDR, message, server) => {
           wdr_info`,
       function(error, info, fields) {
         let next_bot = info[0].next_bot,
-          split = WDR.Config.QUEST.Default_Delivery.split(":");
+          split = WDR.Config.QUEST.DEFAULT_DELIVERY.split(":");
         if (next_bot == WDR.Bot.Array.length - 1) {
           next_bot = 0;
         } else {
           next_bot++;
         }
-        let quest_time = moment(),
+        let quest_delivery = moment(),
           timezone = GeoTz(server.geofence[0][0][1], server.geofence[0][0][0]);
-        quest_time = moment.tz(quest_time, timezone[0]).set({
+        quest_delivery = moment.tz(quest_delivery, timezone[0]).set({
           hour: split[0],
           minute: split[1],
           second: 0,
           millisecond: 0
         });
-        quest_time = moment.tz(quest_time, WDR.Config.TIMEZONE).format("HH:mm");
+        quest_delivery = moment.tz(quest_delivery, WDR.Config.TIMEZONE).format("HH:mm");
         user_name = message.member.user.username.replace(/[\W]+/g, "");
         WDR.wdrDB.query(
           `INSERT INTO
@@ -45,7 +45,7 @@ module.exports = (WDR, message, server) => {
               '${server.name}',
               ${next_bot},
               '${server.name}',
-              '${quest_time}'
+              '${quest_delivery}'
             )`,
           async function(error, user, fields) {
             if (error) {

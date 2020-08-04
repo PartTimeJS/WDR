@@ -21,10 +21,10 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         return;
       } else {
         let area_list = "";
-        if (!user[0].geofence) {
+        if (!user[0].areas) {
           area_list = "None";
         } else {
-          area_list = user[0].geofence.replace(/,/g, "\n");
+          area_list = user[0].areas.replace(/,/g, "\n");
         }
 
         // CREATE THE EMBED

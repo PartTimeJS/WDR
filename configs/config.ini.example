@@ -135,7 +135,7 @@ Subscriptions = ENABLED
 Discord_Feeds = ENABLED
 
 # Default quest alert delivery time.
-Default_Delivery = 09:00
+DEFAULT_DELIVERY = 09:00
 
 # These is the Reward List that dictates what users can subscribe to for DMs
 # To add a reward, add "Rewards[] = NEWREWARD" in whichever order you want it to appear in the embed.

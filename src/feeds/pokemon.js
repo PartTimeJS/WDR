@@ -72,8 +72,8 @@ module.exports = (WDR, Sighting) => {
         }
 
         let lvlPass = ((criteria.min_level <= Sighting.pokemon_level) && (criteria.max_level >= Sighting.pokemon_level));
-        let sizePass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
-        let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender));
+        let sizePass = ((criteria.size == "all") || (criteria.size == Sighting.size));
+        let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender_name));
         let genPass = ((criteria.generation == "all") || (criteria.generation == Sighting.gen));
         let ivPass = ((criteria.min_iv <= Sighting.internal_value) && (criteria.max_iv >= Sighting.internal_value));
 
@@ -90,10 +90,7 @@ module.exports = (WDR, Sighting) => {
             form: Sighting.form
           });
 
-          match.sprite = WDR.Get_Sprite(WDR, {
-            pokemon_id: Sighting.pokemon_id,
-            form: Sighting.form_id
-          });
+          match.sprite = WDR.Get_Sprite(WDR, Sighting);
 
           match.type = match.typing.type;
           match.type_noemoji = match.typing.type_noemoji;
@@ -154,10 +151,10 @@ module.exports = (WDR, Sighting) => {
                 match.body = Sighting.body;
                 match.static_map = Sighting.static_map;
               } else {
-                match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+                match.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", match.lat, match.lon, match.sprite);
                 Sighting.body = match.body;
                 match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
-                Sighting.static_map = match.statuc_map;
+                Sighting.static_map = match.static_map;
               }
             }
 

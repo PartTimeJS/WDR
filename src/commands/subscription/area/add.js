@@ -19,7 +19,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }));
       } else {
         // RETRIEVE AREA NAME FROM USER
-        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].geofence, AreaArray);
+        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
         if (sub.toLowerCase() == "cancel") {
           return Message.reply("Subscription cancelled. Type `" + prefix + "area` to restart.").then(m => m.delete({
             timeout: 5000
@@ -31,7 +31,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }
 
         // DEFINED VARIABLES
-        let areas = user[0].geofence.split(",");
+        let areas = user[0].areas.split(",");
         let area_index = areas.indexOf(sub);
 
         // CHECK IF USER IS ALREADY SUBSCRIBED TO THE AREA OR NOT AND ADD
@@ -42,8 +42,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             case sub == "all":
               areas = Member.db.name;
               break;
-            case user[0].geofence == Message.Discord.name:
-            case user[0].geofence == "None":
+            case user[0].areas == Message.Discord.name:
+            case user[0].areas == "None":
               areas = [];
               areas.push(sub);
               break;
@@ -60,8 +60,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           INNER JOIN
               wdr_subscriptions b ON(a.user_id = b.user_id)
           SET
-              a.geofence = '${areas}',
-              b.geofence = '${areas}'
+              a.areas = '${areas}',
+              b.areas = '${areas}'
           WHERE
               a.user_id = ${Member.id}
                 AND

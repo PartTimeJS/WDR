@@ -18,6 +18,15 @@
 syntax = "proto3";
 package POGOProtos.Rpc;
 
+enum ArMappingEntrySource {
+	TITAN_AR_MAPPING_ENTRY_SOURCE_EDIT_MENU = 0;
+	TITAN_AR_MAPPING_ENTRY_SOURCE_EDIT_TITLE = 1;
+	TITAN_AR_MAPPING_ENTRY_SOURCE_EDIT_DESCRIPTION = 2;
+	TITAN_AR_MAPPING_ENTRY_SOURCE_EDIT_PHOTO = 3;
+	TITAN_AR_MAPPING_ENTRY_SOURCE_EDIT_LOCATION = 4;
+	TITAN_AR_MAPPING_ENTRY_SOURCE_POI_SUBMISSION = 5;
+}
+
 enum ArMode {
 	AR_MODE_NONE = 0;
 	AR_MODE_ARSTANDARD = 1;
@@ -26,6 +35,10 @@ enum ArMode {
 
 enum ArToggleContext {
 	AR_TOGGLE_CONTEXT_ENCOUNTER = 0;
+}
+
+enum ArMappingTutorialPage {
+	TITAN_AR_MAPPING_TUTORIAL_PAGE_RECORDING_TIPS = 0;
 }
 
 enum AssetBundleStatus {
@@ -65,6 +78,27 @@ message JournalVersionProto {
 	int32 version = 1;
 }
 
+enum LoadPolicy {
+	LOAD_POLICY_SYNCHRONOUS = 0;
+	LOAD_POLICY_ASYNCHRONOUS = 1;
+}
+
+enum IdentityProvider {
+	PLATFORM_IDENTITY_PROVIDER_UNSET_IDENTITY_PROVIDER = 0;
+	PLATFORM_IDENTITY_PROVIDER_GOOGLE = 1;
+	PLATFORM_IDENTITY_PROVIDER_PTC = 2;
+	PLATFORM_IDENTITY_PROVIDER_FACEBOOK = 3;
+	PLATFORM_IDENTITY_PROVIDER_BACKGROUND = 4;
+	PLATFORM_IDENTITY_PROVIDER_INTERNAL = 5;
+	PLATFORM_IDENTITY_PROVIDER_SFIDA = 6;
+	PLATFORM_IDENTITY_PROVIDER_SUPER_AWESOME = 7;
+	PLATFORM_IDENTITY_PROVIDER_DEVELOPER = 8;
+	PLATFORM_IDENTITY_PROVIDER_SHARED_SECRET = 9;
+	PLATFORM_IDENTITY_PROVIDER_POSEIDON = 10;
+	PLATFORM_IDENTITY_PROVIDER_NINTENDO = 11;
+	PLATFORM_IDENTITY_PROVIDER_APPLE = 12;
+}
+
 message PlatformBackgroundToken {
 	bytes token = 1;
 	int64 expiration_time = 2;
@@ -83,7 +117,8 @@ message PlatformRegisterBackgroundDeviceResponseProto {
 		ERROR = 2;
 	}
 
-	PlatformBackgroundToken token = 1;
+	Status status = 1;
+	BackgroundToken token = 2;
 }
 
 enum AvatarCompletion {
@@ -100,6 +135,27 @@ message BattlePartyProto {
 	int32 team_number = 2;
 	repeated fixed64 ids = 3;
 	string combat_league_id = 4;
+}
+
+enum AnimationTake {
+	ANIMATION_TAKE_SINGLE = 0;
+	ANIMATION_TAKE_BRANCHING = 1;
+	ANIMATION_TAKE_SEQUENCE = 2;
+}
+
+enum PokemonAnim {
+	POKEMON_ANIM_NONE = 0;
+	POKEMON_ANIM_IDLE_01 = 1;
+	POKEMON_ANIM_IDLE_02 = 2;
+	POKEMON_ANIM_LAND = 3;
+	POKEMON_ANIM_ATTACK_01 = 4;
+	POKEMON_ANIM_ATTACK_02 = 5;
+	POKEMON_ANIM_DAMAGED = 6;
+	POKEMON_ANIM_STUNNED = 7;
+	POKEMON_ANIM_LOOP = 8;
+	POKEMON_ANIM_SLEEP_01 = 9;
+	POKEMON_ANIM_SLEEP_02 = 10;
+	POKEMON_ANIM_SLEEP_WAIT = 11;
 }
 
 enum ClientInboxServiceNotificationCategory {
@@ -154,9 +210,21 @@ enum ClientInboxServiceNotificationCategory {
 	CLIENT_INBOX_SERVICE_NOTIFICATION_CATEGORY_TIMED_GROUP_CHALLENGE_GOAL_MET = 52;
 }
 
+enum Speaker {
+	SPEAKER_PROF = 0;
+	SPEAKER_BLUE_LEADER = 1;
+	SPEAKER_RED_LEADER = 2;
+	SPEAKER_YELLOW_LEADER = 3;
+}
+
 message PlatformDeveloperToken {
 	string id_token = 1;
 	string owner_email = 2;
+}
+
+enum Features {
+	FEATURES_MONODEPTH = 0;
+	FEATURES_DBOW = 1;
 }
 
 message PlatformClientGameMasterTemplateProto {
@@ -191,10 +259,20 @@ message PlatformDownloadGmTemplatesResponseProto {
 	repeated int32 experiment_id = 6;
 }
 
+enum GuiTransitionType {
+	PLATFORM_GUI_TRANSITION_TYPE_IN = 0;
+	PLATFORM_GUI_TRANSITION_TYPE_OUT = 1;
+}
+
 enum BattleResultsExit {
 	BATTLE_RESULTS_EXIT_LEAVE_GYM = 0;
 	BATTLE_RESULTS_EXIT_LEAVE_BATTLE = 1;
 	BATTLE_RESULTS_EXIT_CONTINUE_BATTLE = 2;
+}
+
+enum HelpshiftAuthFailureReason {
+	HELPSHIFT_AUTH_FAILURE_REASON_AUTH_TOKEN_NOT_PROVIDED = 0;
+	HELPSHIFT_AUTH_FAILURE_REASON_INVALID_AUTH_TOKEN = 1;
 }
 
 enum CalendarAddResult {
@@ -233,12 +311,19 @@ message SetInGameCurrencyExchangeRateOutProto {
 		FAILURE = 2;
 	}
 
+	Status status = 1;
 }
 
 message SetInGameCurrencyExchangeRateProto {
 	string in_game_currency = 1;
 	string fiat_currency = 2;
 	int64 fiat_currency_cost_e6_per_in_game_unit = 3;
+}
+
+enum InAppMessageType {
+	IN_APP_MESSAGE_TYPE_FULL = 0;
+	IN_APP_MESSAGE_TYPE_MODAL = 1;
+	IN_APP_MESSAGE_TYPE_SLIDEUP = 2;
 }
 
 enum IncidentDynamicStringTypes {
@@ -297,7 +382,7 @@ message PlatformInventoryDeltaProto {
 message PlatformInventoryItemProto {
 	oneof InventoryItem {
 		bytes deleted_item_key = 2;
-		bytes item = 3;
+		HoloInventoryItemProto inventory_item_data = 3;
 	}
 
 	int64 modified_timestamp = 1;
@@ -306,6 +391,129 @@ message PlatformInventoryItemProto {
 enum IncubationResult {
 	INCUBATION_RESULT_SUCCESS = 0;
 	INCUBATION_RESULT_FAILURE = 1;
+}
+
+enum ExitVfxContext {
+	EXIT_VFX_CONTEXT_NORMAL = 0;
+	EXIT_VFX_CONTEXT_VICTORY = 1;
+}
+
+enum FeatureKind {
+	PLATFORM_FEATURE_KIND_UNDEFINED = 0;
+	PLATFORM_FEATURE_KIND_BASIN = 1;
+	PLATFORM_FEATURE_KIND_CANAL = 2;
+	PLATFORM_FEATURE_KIND_CEMETERY = 3;
+	PLATFORM_FEATURE_KIND_CINEMA = 4;
+	PLATFORM_FEATURE_KIND_COLLEGE = 5;
+	PLATFORM_FEATURE_KIND_COMMERCIAL = 6;
+	PLATFORM_FEATURE_KIND_COMMON = 7;
+	PLATFORM_FEATURE_KIND_DAM = 8;
+	PLATFORM_FEATURE_KIND_DITCH = 9;
+	PLATFORM_FEATURE_KIND_DOCK = 10;
+	PLATFORM_FEATURE_KIND_DRAIN = 11;
+	PLATFORM_FEATURE_KIND_FARM = 12;
+	PLATFORM_FEATURE_KIND_FARMLAND = 13;
+	PLATFORM_FEATURE_KIND_FARMYARD = 14;
+	PLATFORM_FEATURE_KIND_FOOTWAY = 15;
+	PLATFORM_FEATURE_KIND_FOREST = 16;
+	PLATFORM_FEATURE_KIND_GARDEN = 17;
+	PLATFORM_FEATURE_KIND_GLACIER = 18;
+	PLATFORM_FEATURE_KIND_GOLF_COURSE = 19;
+	PLATFORM_FEATURE_KIND_GRASS = 20;
+	PLATFORM_FEATURE_KIND_HIGHWAY = 21;
+	PLATFORM_FEATURE_KIND_HOSPITAL = 22;
+	PLATFORM_FEATURE_KIND_HOTEL = 23;
+	PLATFORM_FEATURE_KIND_INDUSTRIAL = 24;
+	PLATFORM_FEATURE_KIND_LAKE = 25;
+	PLATFORM_FEATURE_KIND_LAND = 26;
+	PLATFORM_FEATURE_KIND_LIBRARY = 27;
+	PLATFORM_FEATURE_KIND_MAJOR_ROAD = 28;
+	PLATFORM_FEATURE_KIND_MEADOW = 29;
+	PLATFORM_FEATURE_KIND_MINOR_ROAD = 30;
+	PLATFORM_FEATURE_KIND_NATURE_RESERVE = 31;
+	PLATFORM_FEATURE_KIND_OCEAN = 32;
+	PLATFORM_FEATURE_KIND_PARK = 33;
+	PLATFORM_FEATURE_KIND_PARKING = 34;
+	PLATFORM_FEATURE_KIND_PATH = 35;
+	PLATFORM_FEATURE_KIND_PEDESTRIAN = 36;
+	PLATFORM_FEATURE_KIND_PITCH = 37;
+	PLATFORM_FEATURE_KIND_PLACE_OF_WORSHIP = 38;
+	PLATFORM_FEATURE_KIND_PLAYA = 39;
+	PLATFORM_FEATURE_KIND_PLAYGROUND = 40;
+	PLATFORM_FEATURE_KIND_QUARRY = 41;
+	PLATFORM_FEATURE_KIND_RAILWAY = 42;
+	PLATFORM_FEATURE_KIND_RECREATION_AREA = 43;
+	PLATFORM_FEATURE_KIND_RESERVOIR = 44;
+	PLATFORM_FEATURE_KIND_RESIDENTIAL = 45;
+	PLATFORM_FEATURE_KIND_RETAIL = 46;
+	PLATFORM_FEATURE_KIND_RIVER = 47;
+	PLATFORM_FEATURE_KIND_RIVERBANK = 48;
+	PLATFORM_FEATURE_KIND_RUNWAY = 49;
+	PLATFORM_FEATURE_KIND_SCHOOL = 50;
+	PLATFORM_FEATURE_KIND_SPORTS_CENTER = 51;
+	PLATFORM_FEATURE_KIND_STADIUM = 52;
+	PLATFORM_FEATURE_KIND_STREAM = 53;
+	PLATFORM_FEATURE_KIND_TAXIWAY = 54;
+	PLATFORM_FEATURE_KIND_THEATRE = 55;
+	PLATFORM_FEATURE_KIND_UNIVERSITY = 56;
+	PLATFORM_FEATURE_KIND_URBAN_AREA = 57;
+	PLATFORM_FEATURE_KIND_WATER = 58;
+	PLATFORM_FEATURE_KIND_WETLAND = 59;
+	PLATFORM_FEATURE_KIND_WOOD = 60;
+	PLATFORM_FEATURE_KIND_DEBUG_TILE_OUTLINE = 61;
+	PLATFORM_FEATURE_KIND_DEBUG_TILE_SURFACE = 62;
+	PLATFORM_FEATURE_KIND_OTHER = 63;
+	PLATFORM_FEATURE_KIND_ANY = 2000;
+}
+
+enum MapLayer {
+	PLATFORM_MAP_LAYER_UNDEFINED = 0;
+	PLATFORM_MAP_LAYER_BOUNDARIES = 1;
+	PLATFORM_MAP_LAYER_BUILDINGS = 2;
+	PLATFORM_MAP_LAYER_LANDMASS = 3;
+	PLATFORM_MAP_LAYER_LANDUSE = 4;
+	PLATFORM_MAP_LAYER_PLACES = 5;
+	PLATFORM_MAP_LAYER_POIS = 6;
+	PLATFORM_MAP_LAYER_ROADS = 7;
+	PLATFORM_MAP_LAYER_TRANSIT = 8;
+	PLATFORM_MAP_LAYER_WATER = 9;
+	PLATFORM_MAP_LAYER_DEBUG_TILE_BOUNDARIES = 10;
+}
+
+enum AppboyNotificationSubscriptionType {
+	APPBOY_NOTIFICATION_SUBSCRIPTION_TYPE_OPTED_IN = 0;
+	APPBOY_NOTIFICATION_SUBSCRIPTION_TYPE_SUBSCRIBED = 1;
+	APPBOY_NOTIFICATION_SUBSCRIPTION_TYPE_UNSUBSCRIBED = 2;
+}
+
+enum CardCategory {
+	CARD_CATEGORY_ADVERTISING = 0;
+	CARD_CATEGORY_ANNOUNCEMENTS = 1;
+	CARD_CATEGORY_NEWS = 2;
+	CARD_CATEGORY_SOCIAL = 3;
+	CARD_CATEGORY_NO_CATEGORY = 4;
+}
+
+enum ClickAction {
+	CLICK_ACTION_NEWS_FEED = 0;
+	CLICK_ACTION_URI = 1;
+	CLICK_ACTION_NONE = 2;
+}
+
+enum DismissType {
+	DISMISS_TYPE_AUTO_DISMISS = 0;
+	DISMISS_TYPE_SWIPE = 1;
+}
+
+enum SlideFrom {
+	SLIDE_FROM_TOP = 0;
+	SLIDE_FROM_BOTTOM = 1;
+}
+
+enum OmniNotificationSubscriptionType {
+	PLATFORM_OMNI_NOTIFICATION_SUBSCRIPTION_TYPE_OPTED_IN = 0;
+	PLATFORM_OMNI_NOTIFICATION_SUBSCRIPTION_TYPE_SUBSCRIBED = 1;
+	PLATFORM_OMNI_NOTIFICATION_SUBSCRIPTION_TYPE_UNSUBSCRIBED = 2;
 }
 
 message PlatformProxyRequestProto {
@@ -329,8 +537,9 @@ message PlatformProxyResponseProto {
 		RATE_LIMITED = 10;
 	}
 
-	string assigned_host = 1;
-	bytes payload = 2;
+	Status status = 1;
+	string assigned_host = 2;
+	bytes payload = 3;
 }
 
 enum POIDecorationFollowFlags {
@@ -403,6 +612,53 @@ enum SfidaConnectState {
 	SFIDA_CONNECT_STATE_CONNECTING = 7;
 }
 
+enum TweenAction {
+	TWEEN_ACTION_MOVE_X = 0;
+	TWEEN_ACTION_MOVE_Y = 1;
+	TWEEN_ACTION_MOVE_Z = 2;
+	TWEEN_ACTION_MOVE_LOCAL_X = 3;
+	TWEEN_ACTION_MOVE_LOCAL_Y = 4;
+	TWEEN_ACTION_MOVE_LOCAL_Z = 5;
+	TWEEN_ACTION_MOVE_CURVED = 6;
+	TWEEN_ACTION_MOVE_CURVED_LOCAL = 7;
+	TWEEN_ACTION_MOVE_SPLINE = 8;
+	TWEEN_ACTION_MOVE_SPLINE_LOCAL = 9;
+	TWEEN_ACTION_SCALE_X = 10;
+	TWEEN_ACTION_SCALE_Y = 11;
+	TWEEN_ACTION_SCALE_Z = 12;
+	TWEEN_ACTION_ROTATE_X = 13;
+	TWEEN_ACTION_ROTATE_Y = 14;
+	TWEEN_ACTION_ROTATE_Z = 15;
+	TWEEN_ACTION_ROTATE_AROUND = 16;
+	TWEEN_ACTION_ROTATE_AROUND_LOCAL = 17;
+	TWEEN_ACTION_CANVAS_ROTATEAROUND = 18;
+	TWEEN_ACTION_CANVAS_ROTATEAROUND_LOCAL = 19;
+	TWEEN_ACTION_CANVAS_PLAYSPRITE = 20;
+	TWEEN_ACTION_ALPHA = 21;
+	TWEEN_ACTION_TEXT_ALPHA = 22;
+	TWEEN_ACTION_CANVAS_ALPHA = 23;
+	TWEEN_ACTION_ALPHA_VERTEX = 24;
+	TWEEN_ACTION_COLOR = 25;
+	TWEEN_ACTION_CALLBACK_COLOR = 26;
+	TWEEN_ACTION_TEXT_COLOR = 27;
+	TWEEN_ACTION_CANVAS_COLOR = 28;
+	TWEEN_ACTION_CALLBACK = 29;
+	TWEEN_ACTION_MOVE = 30;
+	TWEEN_ACTION_MOVE_LOCAL = 31;
+	TWEEN_ACTION_ROTATE = 32;
+	TWEEN_ACTION_ROTATE_LOCAL = 33;
+	TWEEN_ACTION_SCALE = 34;
+	TWEEN_ACTION_VALUE3 = 35;
+	TWEEN_ACTION_GUI_MOVE = 36;
+	TWEEN_ACTION_GUI_MOVE_MARGIN = 37;
+	TWEEN_ACTION_GUI_SCALE = 38;
+	TWEEN_ACTION_GUI_ALPHA = 39;
+	TWEEN_ACTION_GUI_ROTATE = 40;
+	TWEEN_ACTION_DELAYED_SOUND = 41;
+	TWEEN_ACTION_CANVAS_MOVE = 42;
+	TWEEN_ACTION_CANVAS_SCALE = 43;
+}
+
 enum UpdateType {
 	UPDATE_TYPE_ADD = 0;
 	UPDATE_TYPE_MODIFY = 1;
@@ -456,7 +712,8 @@ message GetAdventureSyncSettingsResponseProto {
 		ERROR_PLAYER_NOT_FOUND = 3;
 	}
 
-	AdventureSyncSettingsProto adventure_sync_settings = 1;
+	Status status = 1;
+	AdventureSyncSettingsProto adventure_sync_settings = 2;
 }
 
 message GetFitnessReportOutProto {
@@ -469,9 +726,10 @@ message GetFitnessReportOutProto {
 		ERROR_UNKNOWN = 5;
 	}
 
-	repeated FitnessReportProto daily_reports = 1;
-	repeated FitnessReportProto weekly_reports = 2;
-	int64 week_reset_timestamp_since_monday_ms = 3;
+	Status status = 1;
+	repeated FitnessReportProto daily_reports = 2;
+	repeated FitnessReportProto weekly_reports = 3;
+	int64 week_reset_timestamp_since_monday_ms = 4;
 }
 
 message GetFitnessReportProto {
@@ -488,6 +746,7 @@ message OpenSponsoredGiftOutProto {
 		ERROR_GIFT_REDEEMED = 4;
 	}
 
+	Result result = 1;
 	LootProto rewards = 2;
 }
 
@@ -529,9 +788,10 @@ message RedeemPasscodeResponseProto {
 		int64 count = 2;
 	}
 
-	repeated AcquiredItem acquired_item = 1;
-	bytes acquired_items_proto = 2;
-	string passcode = 3;
+	Result result = 1;
+	repeated AcquiredItem acquired_item = 2;
+	bytes acquired_items_proto = 3;
+	string passcode = 4;
 }
 
 message SfidaAuthToken {
@@ -649,10 +909,31 @@ message UpdateAdventureSyncFitnessResponseProto {
 		ERROR_UNKNOWN = 2;
 	}
 
+	Status status = 1;
 }
 
 message UpdateAdventureSyncSettingsRequestProto {
 	AdventureSyncSettingsProto adventure_sync_settings = 1;
+}
+
+enum PlayerSubmissionAction {
+	TITAN_PLAYER_SUBMISSION_ACTION_UNKNOWN_GAME_POI_ACTION = 0;
+	TITAN_PLAYER_SUBMISSION_ACTION_ADD_NEW_POI = 620000;
+	TITAN_PLAYER_SUBMISSION_ACTION_GET_AVAILABLE_SUBMISSIONS = 620001;
+	TITAN_PLAYER_SUBMISSION_ACTION_GET_SIGNED_URL_FOR_PHOTO_UPLOAD = 620002;
+	TITAN_PLAYER_SUBMISSION_ACTION_GET_PLAYER_SUBMISSION_VALIDATION_SETTINGS = 620003;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_POI_IMAGE = 620100;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_POI_TEXT_METADATA_UPDATE = 620101;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_POI_LOCATION_UPDATE = 620102;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_POI_TAKEDOWN_REQUEST = 620103;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_SPONSOR_POI_REPORT = 620104;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_SPONSOR_POI_LOCATION_UPDATE = 620105;
+	TITAN_PLAYER_SUBMISSION_ACTION_ADD_NEW_ROUTE = 620200;
+	TITAN_PLAYER_SUBMISSION_ACTION_GENERATE_GMAP_SIGNED_URL = 620300;
+	TITAN_PLAYER_SUBMISSION_ACTION_GET_GMAP_SETTINGS = 620301;
+	TITAN_PLAYER_SUBMISSION_ACTION_SUBMIT_POI_AR_VIDEO_METADATA = 620400;
+	TITAN_PLAYER_SUBMISSION_ACTION_GET_GRAPESHOT_FILE_UPLOAD_URL = 620401;
+	TITAN_PLAYER_SUBMISSION_ACTION_ASYNC_FILE_UPLOAD_COMPLETE = 620402;
 }
 
 enum TitanPoiImageType {
@@ -998,9 +1279,68 @@ message TitanUploadPoiPhotoByUrlProto {
 	string image_url = 2;
 }
 
+enum InvitationType {
+	PLATFORM_INVITATION_TYPE_INVITATION_TYPE_UNSET = 0;
+	PLATFORM_INVITATION_TYPE_INVITATION_TYPE_CODE = 1;
+	PLATFORM_INVITATION_TYPE_INVITATION_TYPE_FACEBOOK = 2;
+	PLATFORM_INVITATION_TYPE_INVITATION_TYPE_SERVER_REQUEST = 3;
+	PLATFORM_INVITATION_TYPE_INVITATION_TYPE_NIANTIC_SOCIAL_GRAPH = 4;
+}
+
 enum NotificationState {
 	PLATFORM_NOTIFICATION_STATE_UNSET_STATE = 0;
 	PLATFORM_NOTIFICATION_STATE_VIEWED = 1;
+}
+
+enum PlatformClientAction {
+	PLATFORM_CLIENT_ACTION_UNKNOWN_PLATFORM_CLIENT_ACTION = 0;
+	PLATFORM_CLIENT_ACTION_REGISTER_PUSH_NOTIFICATION = 5000;
+	PLATFORM_CLIENT_ACTION_UNREGISTER_PUSH_NOTIFICATION = 5001;
+	PLATFORM_CLIENT_ACTION_UPDATE_NOTIFICATION_STATUS = 5002;
+	PLATFORM_CLIENT_ACTION_OPT_OUT_PUSH_NOTIFICATION_CATEGORY = 5003;
+	PLATFORM_CLIENT_ACTION_DOWNLOAD_GAME_MASTER_TEMPLATES = 5004;
+	PLATFORM_CLIENT_ACTION_GET_INVENTORY = 5005;
+	PLATFORM_CLIENT_ACTION_REDEEM_PASSCODE = 5006;
+	PLATFORM_CLIENT_ACTION_PING = 5007;
+	PLATFORM_CLIENT_ACTION_ADD_LOGIN_ACTION = 5008;
+	PLATFORM_CLIENT_ACTION_REMOVE_LOGIN_ACTION = 5009;
+	PLATFORM_CLIENT_ACTION_LIST_LOGIN_ACTION = 5010;
+	PLATFORM_CLIENT_ACTION_ADD_NEW_POI = 5011;
+	PLATFORM_CLIENT_ACTION_PROXY_SOCIAL_ACTION = 5012;
+	PLATFORM_CLIENT_ACTION_DEPRECATED_CLIENT_TELEMETRY = 5013;
+	PLATFORM_CLIENT_ACTION_GET_AVAILABLE_SUBMISSIONS = 5014;
+	PLATFORM_CLIENT_ACTION_GET_SIGNED_URL_FOR_PHOTO_UPLOAD = 5015;
+	PLATFORM_CLIENT_ACTION_REPLACE_LOGIN_ACTION = 5016;
+	PLATFORM_CLIENT_ACTION_PROXY_SOCIAL_SIDE_CHANNEL_ACTION = 5017;
+	PLATFORM_CLIENT_ACTION_COLLECT_CLIENT_TELEMETRY = 5018;
+	PLATFORM_CLIENT_ACTION_PURCHASE_SKU = 5019;
+	PLATFORM_CLIENT_ACTION_GET_AVAILABLE_SKUS_AND_BALANCES = 5020;
+	PLATFORM_CLIENT_ACTION_REDEEM_GOOGLE_RECEIPT = 5021;
+	PLATFORM_CLIENT_ACTION_REDEEM_APPLE_RECEIPT = 5022;
+	PLATFORM_CLIENT_ACTION_REDEEM_DESKTOP_RECEIPT = 5023;
+	PLATFORM_CLIENT_ACTION_UPDATE_FITNESS_METRICS = 5024;
+	PLATFORM_CLIENT_ACTION_GET_FITNESS_REPORT = 5025;
+	PLATFORM_CLIENT_ACTION_GET_CLIENT_TELEMETRY_SETTINGS = 5026;
+	PLATFORM_CLIENT_ACTION_PING_ASYNC = 5027;
+	PLATFORM_CLIENT_ACTION_REGISTER_BACKGROUND_SERVICE = 5028;
+	PLATFORM_CLIENT_ACTION_GET_CLIENT_BGMODE_SETTINGS = 5029;
+	PLATFORM_CLIENT_ACTION_PING_DOWNSTREAM = 5030;
+	PLATFORM_CLIENT_ACTION_SET_IN_GAME_CURRENCY_EXCHANGE_RATE = 5032;
+	PLATFORM_CLIENT_ACTION_REQUEST_GEOFENCE_UPDATES = 5033;
+	PLATFORM_CLIENT_ACTION_UPDATE_PLAYER_LOCATION = 5034;
+	PLATFORM_CLIENT_ACTION_GENERATE_GMAP_SIGNED_URL = 5035;
+	PLATFORM_CLIENT_ACTION_GET_GMAP_SETTINGS = 5036;
+	PLATFORM_CLIENT_ACTION_REDEEM_SAMSUNG_RECEIPT = 5037;
+	PLATFORM_CLIENT_ACTION_ADD_NEW_ROUTE = 5038;
+	PLATFORM_CLIENT_ACTION_GET_OUTSTANDING_WARNINGS = 5039;
+	PLATFORM_CLIENT_ACTION_ACKNOWLEDGE_WARNINGS = 5040;
+	PLATFORM_CLIENT_ACTION_SUBMIT_POI_IMAGE = 5041;
+	PLATFORM_CLIENT_ACTION_SUBMIT_POI_TEXT_METADATA_UPDATE = 5042;
+	PLATFORM_CLIENT_ACTION_SUBMIT_POI_LOCATION_UPDATE = 5043;
+	PLATFORM_CLIENT_ACTION_SUBMIT_POI_TAKEDOWN_REQUEST = 5044;
+	PLATFORM_CLIENT_ACTION_GET_WEB_TOKEN_ACTION = 5045;
+	PLATFORM_CLIENT_ACTION_GET_ADVENTURE_SYNC_SETTINGS = 5046;
+	PLATFORM_CLIENT_ACTION_UPDATE_ADVENTURE_SYNC_SETTINGS = 5047;
 }
 
 enum PlayerSubmissionTypeProto {
@@ -1047,7 +1387,8 @@ message PlatformAcceptFriendInviteOutProto {
 		ERROR_RECEIVER_HAS_MAX_FRIENDS = 7;
 	}
 
-	PlatformPlayerSummaryProto friend = 1;
+	Result result = 1;
+	PlatformPlayerSummaryProto friend = 2;
 }
 
 message PlatformAcceptFriendInviteProto {
@@ -1073,7 +1414,7 @@ message PlatformAddLoginActionOutProto {
 }
 
 message PlatformAddLoginActionProto {
-	int32 identity_provider = 1;
+	IdentityProvider identity_provider = 1;
 	bytes inner_message = 2;
 	string auth_provider_id = 3;
 }
@@ -1114,6 +1455,7 @@ message PlatformDeclineFriendInviteOutProto {
 		ERROR_INVITE_ALREADY_DECLINED = 4;
 	}
 
+	Result result = 1;
 }
 
 message PlatformDeclineFriendInviteProto {
@@ -1142,6 +1484,7 @@ message PlatformFriendDetailsProto {
 	bytes friend_visible_data = 2;
 	int32 score = 3;
 	bytes data_with_me = 4;
+	OnlineStatus online_status = 5;
 }
 
 message PlatformGcmToken {
@@ -1158,7 +1501,8 @@ message PlatformGenerateGmapSignedUrlOutProto {
 		ERROR_UNKNOWN = 5;
 	}
 
-	string signed_url = 1;
+	Result result = 1;
+	string signed_url = 2;
 }
 
 message PlatformGenerateGmapSignedUrlProto {
@@ -1211,6 +1555,7 @@ message PlatformGetFacebookFriendListOutProto {
 		string full_name = 2;
 	}
 
+	Result result = 1;
 	repeated FacebookFriendProto friend = 2;
 	string next_cursor = 3;
 }
@@ -1227,6 +1572,7 @@ message PlatformGetFriendCodeOutProto {
 		SUCCESS = 1;
 	}
 
+	Result result = 1;
 	string friend_code = 2;
 }
 
@@ -1259,6 +1605,7 @@ message PlatformGetFriendDetailsOutProto {
 		int32 fetched_from_same_server_as_player = 7;
 	}
 
+	Result result = 1;
 	repeated PlatformFriendDetailsProto friend = 2;
 	DebugProto friend_details_debug_info = 3;
 }
@@ -1291,10 +1638,11 @@ message PlatformGetFriendDetailsResponse {
 			ERROR_STALE_DATA = 4;
 		}
 
-		double distance_to_player_km = 1;
-		PlatformPlayerLocaleProto locale = 2;
-		PlatformSocialV2Enum.OnlineStatus online_status = 3;
-		string last_played_app_key = 4;
+		Result result = 1;
+		double distance_to_player_km = 2;
+		PlatformPlayerLocaleProto locale = 3;
+		PlatformSocialV2Enum.OnlineStatus online_status = 4;
+		string last_played_app_key = 5;
 	}
 
 	Result result = 1;
@@ -1302,13 +1650,6 @@ message PlatformGetFriendDetailsResponse {
 }
 
 message PlatformGetFriendsListOutProto {
-	enum OnlineStatus {
-		ONLINE_STATUS_UNSET = 0;
-		STATUS_UNKNOWN = 1;
-		STATUS_ONLINE = 2;
-		STATUS_OFFLINE = 3;
-	}
-
 	enum Result {
 		UNSET = 0;
 		SUCCESS = 1;
@@ -1333,6 +1674,7 @@ message PlatformGetFriendsListOutProto {
 		string fb_user_id = 8;
 		bool is_facebook_friendship = 9;
 		SharedFriendshipProto shared_data = 10;
+		OnlineStatus online_status = 11;
 	}
 
 	message SharedFriendshipProto {
@@ -1342,7 +1684,8 @@ message PlatformGetFriendsListOutProto {
 		bytes data_to_me = 4;
 	}
 
-	repeated FriendProto friend = 1;
+	Result result = 1;
+	repeated FriendProto friend = 2;
 }
 
 message PlatformGetFriendsListProto {
@@ -1361,6 +1704,7 @@ message PlatformGetIncomingFriendInvitesOutProto {
 		ERROR_UNKNOWN = 2;
 	}
 
+	Result result = 1;
 	repeated PlatformIncomingFriendInviteDisplayProto invites = 2;
 }
 
@@ -1374,7 +1718,8 @@ message PlatformGetNotificationInboxOutProto {
 		FAILURE = 2;
 	}
 
-	PlatformClientInbox inbox = 1;
+	Result result = 1;
+	PlatformClientInbox inbox = 2;
 }
 
 message PlatformGetPlayerSettingsOutProto {
@@ -1385,7 +1730,8 @@ message PlatformGetPlayerSettingsOutProto {
 		ERROR_PLAYER_NOT_FOUND = 3;
 	}
 
-	PlatformPlayerSettingsProto settings = 1;
+	Result result = 1;
+	PlatformPlayerSettingsProto settings = 2;
 }
 
 message PlatformGetPlayerSettingsProto {
@@ -1457,6 +1803,7 @@ message PlatformInviteFacebookFriendOutProto {
 		ERROR_INVALID_SENDER_FACEBOOK_ID = 14;
 	}
 
+	Result result = 1;
 }
 
 message PlatformInviteFacebookFriendProto {
@@ -1475,7 +1822,7 @@ message PlatformLocationE6Proto {
 }
 
 message PlatformLoginDetail {
-	int32 identity_provider = 1;
+	IdentityProvider identity_provider = 1;
 	string email = 2;
 	string auth_provider_id = 3;
 }
@@ -1511,6 +1858,7 @@ message PlatformPushNotificationRegistryOutProto {
 		NO_CHANGE = 2;
 	}
 
+	Result result = 1;
 }
 
 message PlatformPushNotificationRegistryProto {
@@ -1545,7 +1893,7 @@ message PlatformRemoveLoginActionOutProto {
 }
 
 message PlatformRemoveLoginActionProto {
-	int32 identity_provider = 1;
+	IdentityProvider identity_provider = 1;
 	string auth_provider_id = 2;
 }
 
@@ -1556,6 +1904,7 @@ message PlatformSavePlayerSettingsOutProto {
 		ERROR_UNKNOWN = 2;
 	}
 
+	Result result = 1;
 }
 
 message PlatformSavePlayerSettingsProto {
@@ -1570,6 +1919,7 @@ message PlatformSearchPlayerOutProto {
 		ERROR_PLAYER_NOT_FOUND = 3;
 	}
 
+	Result result = 1;
 	PlatformPlayerSummaryProto player = 2;
 }
 
@@ -1593,6 +1943,7 @@ message PlatformSendFriendInviteOutProto {
 		ERROR_RECEIVER_HAS_MAX_FRIENDS = 11;
 	}
 
+	Result result = 1;
 }
 
 message PlatformSendFriendInviteProto {
@@ -1704,6 +2055,7 @@ message PlatformUpdateFacebookStatusOutProto {
 		ERROR_ALREADY_EXISTS = 5;
 	}
 
+	Result result = 1;
 }
 
 message PlatformUpdateFacebookStatusProto {
@@ -1772,9 +2124,10 @@ message PlatformGetAvailableSkusAndBalancesOutProto {
 		FAILURE = 2;
 	}
 
-	repeated PlatformAvailableSkuProto available_sku = 1;
-	repeated PlatformCurrencyQuantityProto balance = 2;
-	string player_token = 3;
+	Status status = 1;
+	repeated PlatformAvailableSkuProto available_sku = 2;
+	repeated PlatformCurrencyQuantityProto balance = 3;
+	string player_token = 4;
 }
 
 message PlatformGetAvailableSkusAndBalancesProto {
@@ -1790,6 +2143,7 @@ message PlatformPurchaseSkuOutProto {
 		OVER_INVENTORY_LIMIT = 5;
 	}
 
+	Status status = 1;
 }
 
 message PlatformPurchaseSkuProto {
@@ -1803,7 +2157,8 @@ message PlatformRedeemAppleReceiptOutProto {
 		FAILURE = 2;
 	}
 
-	repeated string provisioned_transaction_tokens = 1;
+	Status status = 1;
+	repeated string provisioned_transaction_tokens = 2;
 }
 
 message PlatformRedeemAppleReceiptProto {
@@ -1816,6 +2171,49 @@ message PlatformRedeemAppleReceiptProto {
 message PlatformSkuPresentationProto {
 	string key = 1;
 	string value = 2;
+}
+
+enum SocialAction {
+	SOCIAL_ACTION_UNKNOWN_SOCIAL_ACTION = 0;
+	SOCIAL_ACTION_SEARCH_PLAYER = 10000;
+	SOCIAL_ACTION_SEND_FRIEND_INVITE = 10002;
+	SOCIAL_ACTION_CANCEL_FRIEND_INVITE = 10003;
+	SOCIAL_ACTION_ACCEPT_FRIEND_INVITE = 10004;
+	SOCIAL_ACTION_DECLINE_FRIEND_INVITE = 10005;
+	SOCIAL_ACTION_LIST_FRIENDS = 10006;
+	SOCIAL_ACTION_LIST_OUTGOING_FRIEND_INVITES = 10007;
+	SOCIAL_ACTION_LIST_INCOMING_FRIEND_INVITES = 10008;
+	SOCIAL_ACTION_REMOVE_FRIEND = 10009;
+	SOCIAL_ACTION_LIST_FRIEND_STATUS = 10010;
+	SOCIAL_ACTION_SEND_FACEBOOK_FRIEND_INVITE = 10011;
+	SOCIAL_ACTION_IS_MY_FRIEND = 10012;
+	SOCIAL_ACTION_CREATE_INVITE_CODE = 10013;
+	SOCIAL_ACTION_GET_FACEBOOK_FRIEND_LIST = 10014;
+	SOCIAL_ACTION_UPDATE_FACEBOOK_STATUS = 10015;
+	SOCIAL_ACTION_SAVE_PLAYER_SETTINGS = 10016;
+	SOCIAL_ACTION_GET_PLAYER_SETTINGS = 10017;
+	SOCIAL_ACTION_GET_NIANTIC_FRIEND_LIST_DELETED = 10018;
+	SOCIAL_ACTION_GET_NIANTIC_FRIEND_DETAILS_DELETED = 10019;
+	SOCIAL_ACTION_SEND_NIANTIC_FRIEND_INVITE_DELETED = 10020;
+	SOCIAL_ACTION_SET_ACCOUNT_SETTINGS = 10021;
+	SOCIAL_ACTION_GET_ACCOUNT_SETTINGS = 10022;
+	SOCIAL_ACTION_REGISTER_PUSH_NOTIFICATION = 10101;
+	SOCIAL_ACTION_UNREGISTER_PUSH_NOTIFICATION = 10102;
+	SOCIAL_ACTION_UPDATE_NOTIFICATION = 10103;
+	SOCIAL_ACTION_OPT_OUT_PUSH_NOTIFICATION_CATEGORY = 10104;
+	SOCIAL_ACTION_GET_INBOX = 10105;
+	SOCIAL_ACTION_GET_SIGNED_URL = 10201;
+	SOCIAL_ACTION_SUBMIT_IMAGE = 10202;
+	SOCIAL_ACTION_GET_PHOTOS = 10203;
+	SOCIAL_ACTION_DELETE_PHOTO = 10204;
+	SOCIAL_ACTION_UPDATE_PROFILE_V2 = 20001;
+	SOCIAL_ACTION_UPDATE_FRIENDSHIP_V2 = 20002;
+	SOCIAL_ACTION_GET_PROFILE_V2 = 20003;
+	SOCIAL_ACTION_INVITE_GAME_V2 = 20004;
+	SOCIAL_ACTION_SEND_FRIEND_INVITE_V2 = 20005;
+	SOCIAL_ACTION_LIST_FRIENDS_V2 = 20006;
+	SOCIAL_ACTION_GET_FRIEND_DETAILS_V2 = 20007;
+	SOCIAL_ACTION_GET_CLIENT_FEATURE_FLAGS_V2 = 20008;
 }
 
 enum PhoneBoothPresentationMode {
@@ -9738,7 +10136,7 @@ message InventoryUpgradesProto {
 }
 
 message ItemProto {
-	Item item = 1;
+	Item item_id = 1;
 	int32 count = 2;
 	bool unseen = 3;
 }
@@ -15646,6 +16044,35 @@ message WeatherAlertProto {
 	bool warn_weather = 2;
 }
 
+enum SchedulerFlags {
+	SCHEDULER_FLAGS_NONE = 0;
+	SCHEDULER_FLAGS_PAUSE_IN_HIGH_PERFORMANCE_MODE = 1;
+	SCHEDULER_FLAGS_DO_NOT_PAUSE_WITH_CONTEXT = 2;
+	SCHEDULER_FLAGS_PAUSE_WHEN_CONTEXT_INACTIVE_IN_HIERARCHY = 4;
+}
+
+enum FeatureType {
+	PLATFORM_FEATURE_TYPE_UNSET = 0;
+	PLATFORM_FEATURE_TYPE_ONLINE_STATUS = 1;
+	PLATFORM_FEATURE_TYPE_NIANTIC_PROFILE = 2;
+	PLATFORM_FEATURE_TYPE_FRIENDS_LIST = 3;
+}
+
+enum OnboardingType {
+	PLATFORM_ONBOARDING_TYPE_UNSET = 0;
+	PLATFORM_ONBOARDING_TYPE_PROFILE = 1;
+	PLATFORM_ONBOARDING_TYPE_FRIEND_LIST_V2 = 2;
+	PLATFORM_ONBOARDING_TYPE_ONLINE_STATUS_OVERVIEW = 3;
+	PLATFORM_ONBOARDING_TYPE_ONLINE_STATUS_TOGGLE = 4;
+}
+
+enum ProviderType {
+	PLATFORM_PROVIDER_TYPE_NONE = 0;
+	PLATFORM_PROVIDER_TYPE_GOOGLE = 1;
+	PLATFORM_PROVIDER_TYPE_FACEBOOK = 2;
+	PLATFORM_PROVIDER_TYPE_APPLE = 3;
+}
+
 message PasscodeRedemptionFlowRequest {
 	enum DevicePlatform {
 		PLATFORM_UNKNOWN = 0;
@@ -15925,6 +16352,23 @@ message PlatformSuperAwesomeTokenProto {
 	string token = 1;
 }
 
+enum BannedPlayerReason {
+	BANNED_PLAYER_REASON_BANNED = 0;
+	BANNED_PLAYER_REASON_UNAUTHORIZED_DEVICE = 1;
+	BANNED_PLAYER_REASON_SUSPENDED = 2;
+	BANNED_PLAYER_REASON_RESTRICTION_VIOLATION = 3;
+}
+
+enum IncubatorSelectionResult {
+	INCUBATOR_SELECTION_RESULT_SELECTED = 0;
+	INCUBATOR_SELECTION_RESULT_EXIT = 1;
+}
+
+enum WarnedPlayerReason {
+	WARNED_PLAYER_REASON_CHEAT_WARNING = 0;
+	WARNED_PLAYER_REASON_POST_SUSPENSION_WARNING = 1;
+}
+
 message AdDetails {
 	ImageTextCreativeProto image_text_creative = 1;
 	bytes encrypted_ad_token = 2;
@@ -15956,6 +16400,7 @@ message CollectAdIdResponseProto {
 		ERROR = 2;
 	}
 
+	Status status = 1;
 }
 
 message ImageTextCreativeProto {

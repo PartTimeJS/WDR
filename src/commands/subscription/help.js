@@ -14,14 +14,21 @@ module.exports = async (WDR, Message) => {
   // } else
   if (Message.Discord.command_channels.indexOf(Message.channel.id) >= 0) {
     help.setColor("000044")
-    help.setAuthor("Available Subscription Commands:");
-    help.setDescription("Type a Command to view category options.");
-    help.addField("`" + WDR.Config.PREFIX + "pokemon`　|　`" + WDR.Config.PREFIX + "p`", "Initializes Pokemon Subscription Options.", false);
-    help.addField("`" + WDR.Config.PREFIX + "pvp`", "Initializes PvP Subscription Options.", false);
-    // help.addField("`" + WDR.Config.PREFIX + "quest` |  `" + WDR.Config.PREFIX + "q` ", "Initializes Quest Subscription Options.", false);
-    // help.addField("`" + WDR.Config.PREFIX + "raid` |  `" + WDR.Config.PREFIX + "r` ", "Initializes Raid Subscription Options.", false);
-    help.addField("`" + WDR.Config.PREFIX + "area`", "Shows Area subscription options.", false);
-    help.addField("`" + WDR.Config.PREFIX + "pause` | `" + WDR.Config.PREFIX + "resume`", "Pause or Resume ALL subscription alerts.", false);
+    help.setTitle("Available Subscription Commands");
+    help.setDescription("**" + WDR.Config.PREFIX + "pokemon**　or　**" + WDR.Config.PREFIX + "p**" + "\n" +
+      "　Initializes Pokemon Subscription Options." + "\n" +
+      "**" + WDR.Config.PREFIX + "pvp**" + "\n" +
+      "　Initializes PvP Subscription Options." + "\n" +
+      // help.addField("" + WDR.Config.PREFIX + "quest |  " + WDR.Config.PREFIX + "q ", "　Initializes Quest Subscription Options.", false);
+      // help.addField("" + WDR.Config.PREFIX + "raid |  " + WDR.Config.PREFIX + "r ", "　Initializes Raid Subscription Options.", false);
+      "**" + WDR.Config.PREFIX + "location**　or　**" + WDR.Config.PREFIX + "l**" + "\n" +
+      "　Set DM Alerts based on custom locations." + "\n" +
+      //"**" + WDR.Config.PREFIX + "lset <location>**" + "\n" +
+      //"　Shortcut command to set one of your saved locations." + "\n" +
+      "**" + WDR.Config.PREFIX + "area**　or　**" + WDR.Config.PREFIX + "a**" + "\n" +
+      "　Set DM Alerts based on Areas." + "\n" +
+      "**" + WDR.Config.PREFIX + "pause**　or　**" + WDR.Config.PREFIX + "resume**" + "\n" +
+      "　Pause or Resume ALL subscription alerts.");
     return Message.channel.send(help).catch(console.error);
 
     // SPAM CHANNEL HELP

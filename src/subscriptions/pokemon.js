@@ -76,39 +76,36 @@ module.exports = async (WDR, Sighting) => {
         WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
       } else if (matching && matching[0]) {
 
-        Sighting.sprite = WDR.Get_Sprite(WDR, {
-          pokemon_id: Sighting.pokemon_id,
-          form: Sighting.form_id
-        });
+        Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
 
         if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
-          Sighting.body = await WDR.Generate_Tile(WDR, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
+          Sighting.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
           Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
         }
 
         for (let m = 0, mlen = matching.length; m < mlen; m++) {
           let User = matching[m];
 
-          let defGeo = (User.geofence.indexOf(Sighting.area.default) >= 0);
-          let mainGeo = (User.geofence.indexOf(Sighting.area.main) >= 0);
-          let subGeo = (User.geofence.indexOf(Sighting.area.sub) >= 0);
+          if (User.geotype == "areas" || matching[0].geotype == "city") {
+            let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+            let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+            let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+            if (defGeo || mainGeo || subGeo) {
+              Send_Subscription(WDR, Sighting, User);
+            }
 
-          // CHECK FILTER GEOFENCES
-          if (defGeo || mainGeo || subGeo) {
-            Send_Subscription(WDR, Sighting, User);
-          } else {
-            let values = User.geofence.split(";");
-            if (values.length == 3) {
-              let coords = {
-                lat1: Sighting.latitude,
-                lon1: Sighting.longitude,
-                lat2: values[0],
-                lon2: values[1]
-              };
-              let distance = await WDR.Get_Distance(WDR, coords);
-              if (distance <= values[2]) {
-                Send_Subscription(WDR, Sighting, User);
-              }
+          } else if (User.geotype == "location") {
+            let values = User.location.split(";");
+            let distance = WDR.Distance.between({
+              lat: Sighting.latitude,
+              lon: Sighting.longitude
+            }, {
+              lat: values[0].split(",")[0],
+              lon: values[0].split(",")[1]
+            });
+            let loc_dist = WDR.Distance(values[1] + " km");
+            if (loc_dist > distance) {
+              Send_Subscription(WDR, Sighting, User);
             }
           }
         }

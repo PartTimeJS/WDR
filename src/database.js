@@ -360,7 +360,7 @@ const DB = {
          FROM
             wdr_quest_queue
          WHERE
-          alert_time < UNIX_TIMESTAMP()*1000`,
+          quest_delivery < UNIX_TIMESTAMP()*1000`,
       function(error, alerts, fields) {
         if (alerts && alerts[0]) {
           alerts.forEach(async (alert, index) => {
@@ -383,7 +383,7 @@ const DB = {
             `DELETE FROM
                   wdr_queued
                WHERE
-                  alert_time < UNIX_TIMESTAMP()*1000`,
+                  quest_delivery < UNIX_TIMESTAMP()*1000`,
             function(error, alerts, fields) {
               if (error) {
                 console.error;
@@ -427,7 +427,7 @@ async function create_tables(WDR) {
         quest_status tinyint NOT NULL DEFAULT '1',
         lure_status tinyint NOT NULL DEFAULT '1',
         invasion_status tinyint NOT NULL DEFAULT '1',
-        alert_time varchar(5) NOT NULL DEFAULT '08:00',
+        quest_delivery varchar(5) NOT NULL DEFAULT '08:00',
         PRIMARY KEY (user_id,guild_id)
       );`;
     WDR.wdrDB.query(wdr_users);
@@ -458,7 +458,7 @@ async function create_tables(WDR) {
         gym_id varchar(50) NOT NULL DEFAULT '0',
         min_rank smallint NOT NULL DEFAULT '0',
         league varchar(10) NOT NULL DEFAULT '0',
-        alert_time varchar(10) DEFAULT '0',
+        quest_delivery varchar(10) DEFAULT '0',
         PRIMARY KEY (user_id,guild_id,sub_type,pokemon_id,form,pokemon_type,min_lvl,max_lvl,min_iv,max_iv,size,generation,reward,gym_id,min_rank,league),
         KEY ix_data (gender,min_cp)
       );`;
@@ -472,7 +472,7 @@ async function create_tables(WDR) {
         bot smallint NOT NULL,
         area varchar(20),
         alert varchar(10),
-        alert_time bigint,
+        quest_delivery bigint,
         embed LONGTEXT NOT NULL
       );`;
     WDR.wdrDB.query(wdr_quest_queue);

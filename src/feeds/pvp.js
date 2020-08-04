@@ -108,10 +108,7 @@ module.exports = async (WDR, Sighting) => {
             form: match.possible_cps[0].form_id
           });
 
-          match.tile_sprite = WDR.Get_Sprite(WDR, {
-            pokemon_id: Sighting.pokemon_id,
-            form: Sighting.form_id
-          });
+          match.tile_sprite = WDR.Get_Sprite(WDR, Sighting);
 
           match.type_wemoji = match.typing.type;
           match.type_noemoji = match.typing.type_noemoji;
@@ -179,10 +176,10 @@ module.exports = async (WDR, Sighting) => {
                 match.body = Sighting.body;
                 match.static_map = Sighting.static_map;
               } else {
-                match.body = await WDR.Generate_Tile(WDR, "pokemon", match.lat, match.lon, match.sprite);
+                match.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", match.lat, match.lon, match.tile_sprite);
                 Sighting.body = match.body;
                 match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
-                Sighting.static_map = match.statuc_map;
+                Sighting.static_map = match.static_map;
               }
             }
 

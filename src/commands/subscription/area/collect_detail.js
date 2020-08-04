@@ -1,5 +1,5 @@
 module.exports = async (WDR, Functions, type, Member, Message, object, requirements, sub, AreaArray) => {
-  return new Promise(function(resolve, reject) {
+  return new Promise(resolve => {
 
     let huge_list = false,
       instruction = "";
@@ -85,38 +85,55 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
       }
 
       // FILTER COLLECT EVENT
-      collector.on("collect", CollectedMessage => {
+      collector.on("collect", CollectedMsg => {
+
+        CollectedMsg.deleted();
+
         switch (true) {
-          case CollectedMessage.content.toLowerCase() == "cancel":
+          case CollectedMsg.content.toLowerCase() == "cancel":
             collector.stop("cancel");
             break;
 
             // AREA NAME
           case type.indexOf("Name") >= 0:
           case type.indexOf("Remove") >= 0:
-            if (CollectedMessage.content.toLowerCase() == "all") {
+            if (CollectedMsg.content.toLowerCase() == "all") {
               collector.stop("all");
               break;
-            }
-            for (let a = 0; a < AreaArray.length + 1; a++) {
-              if (a == AreaArray.length) {
-                CollectedMessage.reply("`" + CollectedMessage.content + "` doesn\'t appear to be a valid Area. Please check the spelling and try again.").then(m => m.delete({
-                  timeout: 5000
-                })).catch(console.error);
-                break;
-              } else if (CollectedMessage.content.toLowerCase() == AreaArray[a].toLowerCase()) {
-                collector.stop(AreaArray[a]);
-                break;
+            } else if (CollectedMsg.content.toLowerCase() == "reset") {
+              collector.stop("reset");
+              break;
+            } else {
+              for (let a = 0; a < AreaArray.length + 1; a++) {
+                if (a == AreaArray.length) {
+                  CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid Area. Please check the spelling and try again.").then(m => m.delete({
+                    timeout: 5000
+                  })).catch(console.error);
+                  break;
+                } else if (CollectedMsg.content.toLowerCase() == AreaArray[a].toLowerCase()) {
+                  collector.stop(AreaArray[a]);
+                  break;
+                }
               }
             }
             break;
+
         }
       });
 
       // COLLECTOR ENDED
       collector.on("end", (collected, reason) => {
+
         msg.delete();
-        resolve(reason);
+
+        switch (reason) {
+          case "cancel":
+            return Functions.Cancel(WDR, Functions, Message, Member, "Area");
+          case "time":
+            return Functions.TimedOut(WDR, Functions, Message, Member, "Area");
+          default:
+            return resolve(reason);
+        }
       });
     });
   });

@@ -41,7 +41,7 @@ module.exports = async (WDR, raid, area, server, timezone) => {
         }
 
         // DEFINE VARIABLES
-        let user_areas = user.geofence.split(',');
+        let user_areas = user.areas.split(',');
 
         // CHECK IF THE USER HAS SUBS
         if(user.raids && user.raids_status == 'ACTIVE'){
@@ -80,7 +80,7 @@ module.exports = async (WDR, raid, area, server, timezone) => {
                       case (sub.areas.toLowerCase() == 'no' || sub.areas.toLowerCase() == 'all'): area_pass = true; break;
                       case sub.areas == 'Gym Specified':
                         area_pass = true; break;
-                      case user.geofence == server.name:
+                      case user.areas == server.name:
                         area_pass = true; break;
                       case user_areas.indexOf(area.WDR) >= 0:
                         area_pass = true; break;

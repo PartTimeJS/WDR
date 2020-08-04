@@ -60,8 +60,8 @@ delete require.cache[require.resolve(WDR.Dir + "/src/static/PvP_Ranks.js")];
 WDR.PvP_Table_Generator = require(WDR.Dir + "/src/static/PvP_Ranks.js");
 
 // LOAD COMMAND HANDLER
-delete require.cache[require.resolve(WDR.Dir + "/src/handlers/commands.js")];
-WDR.Command_Handler = require(WDR.Dir + "/src/handlers/commands.js");
+delete require.cache[require.resolve(WDR.Dir + "/src/handlers/messages.js")];
+WDR.Message_Handler = require(WDR.Dir + "/src/handlers/messages.js");
 
 // LOAD PAYLOAD HANDLER
 delete require.cache[require.resolve(WDR.Dir + "/src/handlers/webhooks.js")];
@@ -181,7 +181,7 @@ async function wdr_intialization() {
 
   // EVENT WHEN WDR BOT SEES A MESSAGE
   WDR.Bot.on("message", message => {
-    WDR.Command_Handler(WDR, message);
+    WDR.Message_Handler(WDR, message);
   });
 
   // EVENT WHEN BOT IS READY

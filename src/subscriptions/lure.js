@@ -22,7 +22,7 @@ module.exports = async (WDR, lure, area, server, timezone) => {
   //        }
   //
   //        // DEFINE VARIABLES
-  //        let user_areas = user.geofence.split(',');
+  //        let user_areas = user.areas.split(',');
   //        let embed = 'lure.js';
   //
   //        // CHECK IF THE USER HAS SUBS
@@ -44,7 +44,7 @@ module.exports = async (WDR, lure, area, server, timezone) => {
   //                // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
   //                if(sub.areas == 'No' || sub.areas == 'Stop Specified'){
   //                  Send_Lure(WDR, user, lure, type, area, server, timezone, '', embed);
-  //                } else if(user.geofence == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
+  //                } else if(user.areas == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
   //                  Send_Lure(WDR, user, lure, type, area, server, timezone, '', embed);
   //                } else{ if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Lure == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [lure.js] Did Not Pass '+user.user_name+'\'s Area Filter.'); } }
   //              } else{ if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Lure == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [lure.js] Did Not Pass '+user.user_name+'\'s Lure Type Filter.'); } }

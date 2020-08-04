@@ -109,7 +109,7 @@ module.exports = async (WDR, Target, Raid) => {
           break;
       }
 
-      R.body = await WDR.Generate_Tile(WDR, "raids", R.marker_latitude, R.lon, R.embed_image, R.sprite);
+      R.body = await WDR.Generate_Tile(WDR, R, "raids", R.marker_latitude, R.lon, R.embed_image, R.sprite);
       R.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + R.body;
 
       // CREATE THE EGG EMBED
@@ -146,7 +146,7 @@ module.exports = async (WDR, Target, Raid) => {
       R.minCP_boosted = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 10, 10, 10, 25);
       R.maxCP_boosted = WDR.PvP.CalculateCP(WDR, R.pokemon_id, R.form, 15, 15, 15, 25);
 
-      R.body = await WDR.Generate_Tile(WDR, "raids", R.marker_latitude, R.lon, R.embed_image, R.sprite);
+      R.body = await WDR.Generate_Tile(WDR, R, "raids", R.marker_latitude, R.lon, R.embed_image, R.sprite);
       R.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + R.body;
 
       // CREATE THE RAID EMBED

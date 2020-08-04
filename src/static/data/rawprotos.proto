@@ -15499,7 +15499,7 @@ message SavePlayerSnapshotOutProto {
 		SUCCESS = 1;
 		TOO_SOON_TO_UPDATE = 2;
 		ERROR_FAILED_TO_UPDATE = 3;
-		ERROR_REQUEST_TIMED_OUT = 4;
+		ERROR_REquest_deliveryD_OUT = 4;
 	}
 
 	Result result = 1;

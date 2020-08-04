@@ -121,7 +121,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             "Gender: `" + gender + "`\n" +
             "Size: `" + size + "`\n" +
             "Generation: `" + gen + "`\n" +
-            "Areas: `" + sub.geofence + "`")
+            "Areas: `" + sub.areas + "`")
           .setFooter(requirements);
         break;
 
@@ -210,23 +210,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case "yes":
-                collector.stop(Member.db.geofence);
+                collector.stop(Member.db.areas);
                 break;
               case "all":
               case "no":
                 collector.stop(Message.Discord.name);
-                break;
-              case "distance":
-                if (!Member.db.coords) {
-                  CollectedMsg.reply("**WARNING:** You have not set Coordinates for Distance-based Notifications. You will not receive Notifications for this Sub until you set distance coordinates with the `area` command.").then(m => m.delete({
-                    timeout: 11000
-                  }));
-                  setTimeout(function() {
-                    collector.stop(Member.db.coords);
-                  }, 11000);
-                } else {
-                  collector.stop(Member.db.coords);
-                }
                 break;
               default:
                 CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
@@ -463,9 +451,9 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
         switch (reason) {
           case "cancel":
-            return Functions.Cancel(WDR, Functions, Message, Member);
+            return Functions.Cancel(WDR, Functions, Message, Member, "Pokemon");
           case "time":
-            return Functions.TimedOut(WDR, Functions, Message, Member);
+            return Functions.TimedOut(WDR, Functions, Message, Member, "Pokemon");
           default:
             return resolve(reason);
         }

@@ -30,15 +30,6 @@ setTimeout(function() {
       for (let u = 0, ulen = users.length; u < ulen; u++) {
         let user = users[u];
 
-        let new_user = {
-          user_id: user.user_id,
-          user_name: user.user_name,
-          guild_id: user.discord_id,
-          geofence: user.geofence,
-          bot: user.bot,
-          alert_time: user.alert_time
-        };
-
         new_database.query(
           `INSERT IGNORE INTO
             wdr_users (
@@ -47,8 +38,8 @@ setTimeout(function() {
               guild_id,
               guild_name,
               bot,
-              geofence,
-              alert_time
+              areas,
+              quest_delivery
             )
             VALUES (
               ${user.user_id},
@@ -151,7 +142,7 @@ setTimeout(function() {
                     ${user.discord_id},
                     'Migrated',
                     ${user.bot},
-                    '${user.geofence}',
+                    '${user.areas}',
                     'pokemon',
                     ${new_poke.pokemon_id},
                     ${new_poke.form},
@@ -228,7 +219,7 @@ setTimeout(function() {
                     ${user.discord_id},
                     'Migrated',
                     ${user.bot},
-                    '${user.geofence}',
+                    '${user.areas}',
                     'raid',
                     ${new_raid.pokemon_id},
                     ${new_raid.form},
@@ -298,7 +289,7 @@ setTimeout(function() {
                     ${user.discord_id},
                     'Migrated',
                     ${user.bot},
-                    '${user.geofence}',
+                    '${user.areas}',
                     'pvp',
                     ${new_pvp.pokemon_id},
                     ${new_pvp.min_rank},
@@ -336,6 +327,7 @@ setTimeout(function() {
             if (new_quest.pokemon_id == 0) {
               new_quest.reward = quest;
             }
+
             new_database.query(
               `INSERT IGNORE INTO
                   wdr_subscriptions (
@@ -348,7 +340,8 @@ setTimeout(function() {
                       sub_type,
                       pokemon_id,
                       form,
-                      reward
+                      reward,
+                      quest_delivery
                   )
                VALUES
                   (
@@ -357,11 +350,12 @@ setTimeout(function() {
                     ${user.discord_id},
                     'Migrated',
                     ${user.bot},
-                    '${user.geofence}',
+                    '${user.areas}',
                     'quest',
                     ${new_quest.pokemon_id},
                     ${new_quest.form},
-                    '${new_quest.reward}'
+                    '${new_quest.reward}',
+                    '${user.alert_time}'
                   )`,
               async function(error, result) {
                 if (error) {

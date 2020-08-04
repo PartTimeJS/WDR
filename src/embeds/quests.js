@@ -29,7 +29,7 @@ module.exports = async (WDR, Target, Quest) => {
 
   Q.marker_latitude = Q.latitude + .0004;
 
-  Q.body = await WDR.Generate_Tile(WDR, "quests", Q.marker_latitude, Q.lon, Q.sprite);
+  Q.body = await WDR.Generate_Tile(WDR, Q, "quests", Q.marker_latitude, Q.lon, Q.sprite);
   Q.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Q.body;
 
   // DECLARE VARIABLES

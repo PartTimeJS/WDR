@@ -21,7 +21,7 @@ module.exports = async (WDR, invasion, area, server, timezone) => {
   //        }
   //
   //        // DEFINE VARIABLES
-  //        let user_areas = user.geofence.split(',');
+  //        let user_areas = user.areas.split(',');
   //        let embed = 'invasion.js';
   //
   //        // CHECK IF THE USER HAS SUBS
@@ -57,7 +57,7 @@ module.exports = async (WDR, invasion, area, server, timezone) => {
   //                  // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
   //                  if(sub.areas == 'No' || sub.areas == 'Stop Specified'){
   //                    Send_Invasion(WDR, user, invasion, type, area, server, timezone, '', embed);
-  //                  } else if(user.geofence == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
+  //                  } else if(user.areas == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
   //                    Send_Invasion(WDR, user, invasion, type, area, server, timezone, '', embed);
   //                  } else{
   //                    if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Invasion == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [invasion.js] Did Not Pass '+user.user_name+'\'s Area Filter.'); }

@@ -117,14 +117,21 @@ module.exports = (WDR, Functions, Message, Member) => {
         modified.size = 0;
       }
 
-      modified.geofence = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.geofence, "Please respond with \'Yes\', \'No\', or \'Distance\'", modified);
+      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with \'Yes\', \'No\', or \'Distance\'", modified);
+      if (modified.areas == Message.Discord.name) {
+        modified.geotype = "city";
+      } else {
+        modified.geotype = Member.db.geotype;
+      }
 
       modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type \'Yes\' or \'No\'. Subscription will be saved.", modified);
 
-      WDR.wdrDB.query(
-        `UPDATE
+      let modify = `
+        UPDATE
             wdr_subscriptions
-         SET
+        SET
+            areas = '${modified.areas}',
+            geotype = '${modified.geotype}',
             pokemon_id = ${modified.id},
             form = ${modified.form},
             min_lvl = ${modified.min_lvl},
@@ -134,10 +141,9 @@ module.exports = (WDR, Functions, Message, Member) => {
             size = ${modified.size},
             gender = ${modified.gender},
             generation = ${modified.gen}
-         WHERE
+        WHERE
             user_id = ${Message.author.id}
             AND guild_id = ${Message.guild.id}
-            AND geofence = ${modified.geofence}
             AND sub_type = 'pokemon'
             AND pokemon_id = ${old.pokemon_id}
             AND form = ${old.form}
@@ -147,7 +153,10 @@ module.exports = (WDR, Functions, Message, Member) => {
             AND max_iv = ${old.max_iv}
             AND size = ${old.size}
             AND gender = ${old.gender}
-            AND generation = ${old.generation}`,
+            AND generation = ${old.generation};
+      `;
+      WDR.wdrDB.query(
+        modify,
         async function(error, existing) {
           if (error) {
             return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({

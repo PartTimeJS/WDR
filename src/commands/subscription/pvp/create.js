@@ -57,9 +57,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         // } else {
         //   create.min_cp = 0;
         // }
-        create.geofence = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", create);
-        create.geofence = create.geofence == "ALL" ? Message.Discord.name : create.geofence;
-        let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", create);
+        create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", create);
+        create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", create);
+
         let query = `
           INSERT INTO
               wdr_subscriptions (
@@ -69,8 +69,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
                   guild_name,
                   bot,
                   status,
-                  geofence,
-                  distance,
+                  geotype,
+                  areas,
+                  location,
                   sub_type,
                   pokemon_id,
                   pokemon_type,
@@ -87,8 +88,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pvp_status},
-                '${create.geofence}',
-                '${Member.db.coords};${Member.db.distance}',
+                '${Member.db.geotype}',
+                '${create.areas}',
+                '${Member.db.location}',
                 'pvp',
                 ${create.pokemon_id},
                 '${create.pokemon_type}',

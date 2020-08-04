@@ -117,7 +117,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             "Min Rank: `" + sub.min_rank + "`\n" +
             //"Min Lvl: `" + sub.min_lvl + "`\n" +
             "Generation: `" + gen + "`\n" +
-            "Filter By Areas: `" + sub.geofence + "`")
+            "Filter By Areas: `" + sub.areas + "`")
           .setFooter(requirements);
         break;
 
@@ -207,23 +207,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case "yes":
-                collector.stop(Member.db.geofence);
+                collector.stop(Member.db.areas);
                 break;
               case "all":
               case "no":
                 collector.stop(Message.Discord.name);
-                break;
-              case "distance":
-                if (!Member.db.coords) {
-                  CollectedMsg.reply("**WARNING:** You have not set Coordinates for Distance-based Notifications. You will not receive Notifications for this Sub until you set distance coordinates with the `area` command.").then(m => m.delete({
-                    timeout: 11000
-                  }));
-                  setTimeout(function() {
-                    collector.stop(Member.db.coords);
-                  }, 11000);
-                } else {
-                  collector.stop(Member.db.coords);
-                }
                 break;
               default:
                 CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({

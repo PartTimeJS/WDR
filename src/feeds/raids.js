@@ -63,7 +63,7 @@ module.exports = async (WDR, Raid) => {
     }
 
     let defGeo = (channel.geofences.indexOf(Raid.area.default) >= 0);
-    let mainGeo = (channel.geofences.indexOf(Raid.area.default) >= 0);
+    let mainGeo = (channel.geofences.indexOf(Raid.area.main) >= 0);
     let subGeo = (channel.geofences.indexOf(Raid.area.sub) >= 0);
     let geoPass = (defGeo || mainGeo || subGeo);
 
@@ -75,9 +75,9 @@ module.exports = async (WDR, Raid) => {
       if (Raid.Matched_Egg || Raid.Matched_Boss) {
 
         // MATCH EX ELIGIBILITY FILTER
-        if (channel.filter.Ex_Eligible_Only == undefined || channel.filter.Ex_Eligible_Only == true) {
+        if (channel.filter.Ex_Eligible_Only == undefined || channel.filter.Ex_Eligible_Only == false) {
           Raid.Matched_Ex_Eligibility = true;
-        } else if (channel.filter.Ex_Eligible_Only == Raid.ex_raid_eligible || channel.filter.Ex_Eligible_Only == Raid.sponsor_id) {
+        } else if (channel.filter.Ex_Eligible_Only == Raid.ex_raid_eligible) {
           Raid.Matched_Ex_Eligibility = true;
         } else {
           Raid.Matched_Ex_Eligibility = false;
@@ -187,10 +187,10 @@ module.exports = async (WDR, Raid) => {
               match.body = Raid.body;
               match.static_map = Raid.static_map;
             } else {
-              match.body = await WDR.Generate_Tile(WDR, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
+              match.body = await WDR.Generate_Tile(WDR, Raid, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
               Raid.body = match.body;
               match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
-              Raid.static_map = match.statuc_map;
+              Raid.static_map = match.static_map;
             }
           }
 

@@ -23,8 +23,6 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
       case "cancel":
         collector.stop("cancel");
         break;
-      default:
-        collector.stop("end");
     }
   });
 

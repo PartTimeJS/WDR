@@ -1,6 +1,5 @@
 module.exports = (WDR, coords) => {
   return new Promise(async resolve => {
-    let coords = User.loc_coords.split(",")[0]
     let spawn_loc = {
       lat: coords.lat1,
       lon: coords.lon1
