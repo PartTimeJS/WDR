@@ -48,7 +48,7 @@ setTimeout(function() {
               'Migrated',
               ${user.bot},
               '${user.geofence}',
-              '${user.alert_time}'
+              '${user.quest_time}'
             )`,
           async function(error, result) {
             if (error) {
@@ -355,7 +355,7 @@ setTimeout(function() {
                     ${new_quest.pokemon_id},
                     ${new_quest.form},
                     '${new_quest.reward}',
-                    '${user.alert_time}'
+                    '${user.quest_time}'
                   )`,
               async function(error, result) {
                 if (error) {

@@ -60,14 +60,14 @@ module.exports = async (WDR, Target, Quest) => {
   if (Q.Member) {
     // CHECK THE TIME VERSUS THE USERS SET SUBSCRIPTION TIME
     Q.Todays_Date = moment(Q.Time_Now).format("MM/DD/YYYY");
-    Q.DB_Date = moment(Q.Todays_Date + " " + Target.alert_time, "MM/DD/YYYY H:mm").valueOf();
+    Q.DB_Date = moment(Q.Todays_Date + " " + Target.quest_time, "MM/DD/YYYY H:mm").valueOf();
 
     // STRINGIFY THE WEBHOOK FOR DB INSTER
     let quest_object = JSON.stringify(Quest);
     Q.Embed = JSON.stringify(Q.Embed);
 
     // SAVE THE ALERT TO THE ALERT TABLE FOR FUTURE DELIVERY
-    returnWDR.wdrDBquery(`INSERT INTO quest_alerts (user_id, user_name, guild_id, bot, area, alert, alert_time, embed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    returnWDR.wdrDBquery(`INSERT INTO quest_alerts (user_id, user_name, guild_id, bot, area, alert, quest_time, embed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [Target.user_id, Target.user_name, quest_object, Q.Embed, Q.area.embed, Target.bot, Q.DB_Date, Q.Discord.id],
       function(error, alert, fields) {
         if (error) {

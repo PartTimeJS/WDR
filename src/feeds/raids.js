@@ -9,6 +9,7 @@ module.exports = async (WDR, Raid) => {
   // FILTER FEED TYPE FOR EGG, BOSS, OR BOTH
   if (Raid.cp > 0 || Raid.is_exclusive == true) {
     Raid.Type = "Boss";
+    Raid.which = "raid";
   } else {
     Raid.Type = "Egg";
   }
