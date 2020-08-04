@@ -87,7 +87,7 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
       // FILTER COLLECT EVENT
       collector.on("collect", CollectedMsg => {
 
-        CollectedMsg.deleted();
+        CollectedMsg.delete();
 
         switch (true) {
           case CollectedMsg.content.toLowerCase() == "cancel":

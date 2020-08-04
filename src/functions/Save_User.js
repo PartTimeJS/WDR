@@ -46,7 +46,7 @@ module.exports = (WDR, message, server) => {
               ${next_bot},
               '${server.name}',
               '${quest_delivery}'
-            )`,
+            );`,
           async function(error, user, fields) {
             if (error) {
               return WDR.Console.error(WDR, "[Save_User] [" + WDR.Time(null, "stamp") + "] [bot.js] UNABLE TO ADD USER TO wdr_users TABLE", error);
