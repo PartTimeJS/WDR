@@ -35,7 +35,7 @@ module.exports = (WDR, message, server) => {
               guild_id,
               guild_name,
               bot,
-              geofence,
+              areas,
               quest_time
             )
           VALUES (
