@@ -58,49 +58,51 @@ module.exports = (WDR, Message) => {
             })).catch(console.error);
           } else {
             Message.member.db = user[0];
-
-            let command = Message.content.split(" ")[0].slice(1);
-            switch (command) {
-              case "p":
-                command = "pokemon";
-                break;
-              case "r":
-                command = "raid";
-                break;
-              case "q":
-                command = "quest";
-                break;
-              case "l":
-                command = "location";
-                break;
-              case "a":
-                command = "area";
-                break;
-            }
-            //try {
-            if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js")) {
-              let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js");
-              if (Cmd) {
-                Cmd(WDR, Message);
-              }
-            } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js")) {
-              let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
-              if (Cmd) {
-                Cmd(WDR, Message);
-              }
-            } else {
-              WDR.Console.error("[handlers/commands.js] " + Message.content + " command does not exist.");
-            }
-            // } catch (error) {
-            //   try {
-
-            //     console.log("2", command.toLowerCase());
-            //   } catch (error) {
-            //     console.log("3", command.toLowerCase());
-            //     //WDR.Console.error("[handlers/commands.js] Error Initializing Command", [command, error]);
-            //   }
-            // }
           }
+
+          let command = Message.content.split(" ")[0].slice(1);
+
+          switch (command) {
+            case "p":
+              command = "pokemon";
+              break;
+            case "r":
+              command = "raid";
+              break;
+            case "q":
+              command = "quest";
+              break;
+            case "l":
+              command = "location";
+              break;
+            case "a":
+              command = "area";
+              break;
+          }
+
+          //try {
+          if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js")) {
+            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js");
+            if (Cmd) {
+              Cmd(WDR, Message);
+            }
+          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js")) {
+            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
+            if (Cmd) {
+              Cmd(WDR, Message);
+            }
+          } else {
+            WDR.Console.error("[handlers/commands.js] " + Message.content + " command does not exist.");
+          }
+          // } catch (error) {
+          //   try {
+
+          //     console.log("2", command.toLowerCase());
+          //   } catch (error) {
+          //     console.log("3", command.toLowerCase());
+          //     //WDR.Console.error("[handlers/commands.js] Error Initializing Command", [command, error]);
+          //   }
+          // }
           if (user.user_name != Message.member.user.username) {
             WDR.wdrDB.query(`
                   UPDATE

@@ -6,8 +6,8 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}
-        AND sub_type = 'pokemon'`,
+          AND
+        sub_type = 'pokemon';`,
     async function(error, subscriptions, fields) {
       if (!subscriptions || !subscriptions[0]) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
@@ -62,12 +62,11 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         let remove = subscriptions[number];
 
-        WDR.wdrDB.query(
-          `DELETE FROM
+        let query = `
+          DELETE FROM
               wdr_subscriptions
-           WHERE
+          WHERE
               user_id = ${Message.author.id}
-              AND guild_id = ${Message.guild.id}
               AND sub_type = 'pokemon'
               AND pokemon_id = ${remove.pokemon_id}
               AND form = ${remove.form}
@@ -75,12 +74,15 @@ module.exports = (WDR, Functions, Message, Member) => {
               AND max_lvl = ${remove.max_lvl}
               AND min_iv = ${remove.min_iv}
               AND max_iv = ${remove.max_iv}
-              AND size = ${remove.size}
+              AND size = '${remove.size}'
               AND gender = ${remove.gender}
-              AND generation = ${remove.generation}`,
+              AND generation = ${remove.generation};
+        `;
+        WDR.wdrDB.query(
+          query,
           async function(error, result) {
             if (error) {
-              WDR.Console.error(WDR, "[commands/pokemon.js] Error Removing Subscription.", [remove, error]);
+              WDR.Console.error(WDR, "[commands/pokemon.js] Error Removing Subscription.", [query, error]);
               console.error(error);
               return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                 timeout: 10000

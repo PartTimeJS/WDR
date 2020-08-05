@@ -6,8 +6,8 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}
-        AND sub_type = 'pokemon'`,
+          AND
+        sub_type = 'pokemon';`,
     async function(error, subscriptions) {
       if (!subscriptions || subscriptions.length < 1) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")

@@ -6,8 +6,8 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         wdr_users
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}
-        AND sub_type = 'pvp'`,
+          AND
+        sub_type = 'pvp'`,
     async function(error, user) {
       if (Member.db.pvp_status == 1 && reason == "resume") {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
@@ -41,7 +41,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
               AND guild_id = ${Message.guild.id}`,
           async function(error, user, fields) {
             if (error) {
-              WDR.Console.error(WDR, "[commands/pokemon.js] Error Inserting Subscription.", [preset, error]);
+              WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Inserting Subscription.", [preset, error]);
               return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                 timeout: 10000
               }));
@@ -57,7 +57,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                     AND sub_type = 'pvp'`,
                 async function(error, user, fields) {
                   if (error) {
-                    WDR.Console.error(WDR, "[commands/pokemon.js] Error Inserting Subscription.", [preset, error]);
+                    WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Inserting Subscription.", [preset, error]);
                     return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                       timeout: 10000
                     }));

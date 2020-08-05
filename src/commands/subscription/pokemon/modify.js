@@ -6,8 +6,8 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}
-        AND sub_type = 'pokemon';`,
+          AND 
+        sub_type = 'pokemon';`,
     async function(error, subscriptions, fields) {
       if (!subscriptions || !subscriptions[0]) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
@@ -138,7 +138,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             max_lvl = ${modified.max_lvl},
             min_iv = ${modified.min_iv},
             max_iv = ${modified.max_iv},
-            size = ${modified.size},
+            size = '${modified.size}',
             gender = ${modified.gender},
             generation = ${modified.gen}
         WHERE
@@ -151,7 +151,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             AND max_lvl = ${old.max_lvl}
             AND min_iv = ${old.min_iv}
             AND max_iv = ${old.max_iv}
-            AND size = ${old.size}
+            AND size = '${old.size}'
             AND gender = ${old.gender}
             AND generation = ${old.generation};
       `;

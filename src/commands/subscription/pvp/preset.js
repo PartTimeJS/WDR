@@ -12,7 +12,11 @@ module.exports = async (WDR, Functions, Message, Member) => {
   preset = WDR.Presets.PvP.get(preset_name);
 
   preset.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, undefined, "Please respond with \'Yes\' or \'No\'.", preset);
-
+  if (preset.areas == Message.Discord.name) {
+    preset.geotype = "city";
+  } else {
+    preset.geotype = Member.db.geotype;
+  }
   preset.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type \'Yes\' or \'No\'. Subscription will be saved.", preset);
 
   let query = `
@@ -68,7 +72,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
             Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
           });
         } else {
-          WDR.Console.error(WDR, "[commands/pokemon.js] Error Inserting Subscription.", [preset, error]);
+          WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Inserting Subscription.", [preset, error]);
           Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
             timeout: 10000
           }));

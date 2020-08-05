@@ -134,6 +134,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What PvP Sub do you want to remove?")
+          .setDescription(sub)
           .setFooter(requirements);
         break;
 

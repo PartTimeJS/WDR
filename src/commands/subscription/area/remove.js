@@ -32,11 +32,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
       // CHECK IF USER IS ALREADY SUBSCRIBED TO THE AREA OR NOT AND ADD
       if (sub == "all") {
-        areas = "None";
-      } else if (area_index < 0) {
-        return Message.reply("You are not subscribed to that Area. Please try again.").then(m => m.delete({
-          timeout: 5000
-        })).catch(console.error);
+        areas = [];
+      } else if (sub == "reset") {
+        areas = Message.Discord.name;
       } else {
         areas.splice(area_index, 1);
       }
@@ -50,19 +48,20 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
       // UPDATE THE USER"S RECORD
       let update = `
         UPDATE
-            wdr_users a
-        INNER JOIN
-            wdr_subscriptions b ON(a.user_id = b.user_id)
+            wdr_users
         SET
-            a.areas = '${areas}',
-            b.areas = '${areas}'
+            areas = '${areas}'
         WHERE
-            a.user_id = ${Member.id}
-              AND
-            a.guild_id = ${Message.guild.id}
-              AND
-            b.user_id = ${Member.id}
+            user_id = ${Member.id};
       `;
+      WDR.wdrDB.query(`
+        UPDATE
+            wdr_subscriptions
+        SET
+            areas = '${areas}'
+        WHERE
+            user_id = ${Member.id};
+      `);
       WDR.wdrDB.query(
         update,
         function(error, user, fields) {
@@ -75,7 +74,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle("**" + sub + "** Area Removed!")
-              .setFooter("Saved to the " + WDR.config.BOT_NAME + " Database.");
+              .setFooter("Saved to the Database.");
             return Message.channel.send(subscription_success).then(BotMsg => {
               return Functions.OptionCollect(WDR, Functions, "remove", Message, BotMsg, Member, AreaArray);
             });

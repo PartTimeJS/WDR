@@ -9,27 +9,28 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
       time: 60000
     });
 
-    let user_areas = sub.toLowerCase().split(","),
-      area_list = "",
-      list_array = [];
+    let area_list = "",
+      list_array = [],
+      count = 0;
 
-    let count = 0;
-    AreaArray.forEach((area, index) => {
-      if (count == 50) {
-        count = 0;
-        list_array.push(area_list);
-        area_list = "";
-      }
-      if (user_areas.indexOf(area.toLowerCase()) >= 0) {
-        area_list += area + " " + WDR.Emotes.checkYes + "\n";
-      } else {
-        area_list += area + "\n";
-      }
-      if (index == (AreaArray.length - 1)) {
-        list_array.push(area_list);
-      }
-      count++;
-    });
+    if (AreaArray) {
+      AreaArray.forEach((area, index) => {
+        if (count == 50) {
+          count = 0;
+          list_array.push(area_list);
+          area_list = "";
+        }
+        if (AreaArray.indexOf(area.toLowerCase()) >= 0) {
+          area_list += area + " " + WDR.Emotes.checkYes + "\n";
+        } else {
+          area_list += area + "\n";
+        }
+        if (index == (AreaArray.length - 1)) {
+          list_array.push(area_list);
+        }
+        count++;
+      });
+    }
 
     switch (type) {
       // AREA NAME EMBED

@@ -6,7 +6,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
        FROM
           wdr_subscriptions
        WHERE
-          user_id = ${Member.id};`,
+          user_id = ${Member.id}
+            AND 
+          sub_type = 'pvp';`,
     async function(error, subs) {
       if (error) {
         WDR.Console.error(WDR, "[database.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);
@@ -58,6 +60,11 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         //   create.min_cp = 0;
         // }
         create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", create);
+        if (create.areas == Message.Discord.name) {
+          create.geotype = "city";
+        } else {
+          create.geotype = Member.db.geotype;
+        }
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", create);
 
         let query = `

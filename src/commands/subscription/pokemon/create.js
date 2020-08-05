@@ -1,12 +1,13 @@
 module.exports = (WDR, Functions, Message, Member, advanced) => {
   WDR.wdrDB.query(
     `SELECT
-          *
-       FROM
-          wdr_subscriptions
-       WHERE
-          user_id = ${Member.id}
-          AND guild_id = ${Message.guild.id};`,
+        *
+     FROM
+        wdr_subscriptions
+     WHERE
+        user_id = ${Member.id}
+          AND
+        guild_id = ${Message.guild.id};`,
     async function(error, subs) {
       if (error) {
         WDR.Console.error(WDR, "[subs/poke/create.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);

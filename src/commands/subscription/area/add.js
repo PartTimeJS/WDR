@@ -18,23 +18,13 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           timeout: 10000
         }));
       } else {
-        // RETRIEVE AREA NAME FROM USER
-        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
-        if (sub.toLowerCase() == "cancel") {
-          return Message.reply("Subscription cancelled. Type `" + prefix + "area` to restart.").then(m => m.delete({
-            timeout: 5000
-          })).catch(console.error);
-        } else if (sub == "time") {
-          return Message.reply("Your subscription has timed out.").then(m => m.delete({
-            timeout: 5000
-          })).catch(console.error);
-        }
 
-        // DEFINED VARIABLES
+        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
+
         let areas = user[0].areas.split(",");
+
         let area_index = areas.indexOf(sub);
 
-        // CHECK IF USER IS ALREADY SUBSCRIBED TO THE AREA OR NOT AND ADD
         if (area_index >= 0) {
           return Message.reply("You are already subscribed to this Area.").then(m => m.delete(10000)).catch(console.error);
         } else {
@@ -52,23 +42,24 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           }
         }
 
-        // CONVERT TO STRING
         areas = areas.toString();
+
         let update = `
           UPDATE
-              wdr_users a
-          INNER JOIN
-              wdr_subscriptions b ON(a.user_id = b.user_id)
+              wdr_users
           SET
-              a.areas = '${areas}',
-              b.areas = '${areas}'
+              areas = '${areas}'
           WHERE
-              a.user_id = ${Member.id}
-                AND
-              a.guild_id = ${Message.guild.id}
-                AND
-              b.user_id = ${Member.id}
+              user_id = ${Member.id};
         `;
+        WDR.wdrDB.query(`
+          UPDATE
+              wdr_subscriptions
+          SET
+              areas = '${areas}'
+          WHERE
+              user_id = ${Member.id};
+        `);
         WDR.wdrDB.query(
           update,
           function(error, user, fields) {

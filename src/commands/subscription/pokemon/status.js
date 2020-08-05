@@ -6,7 +6,8 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         wdr_users
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}`,
+          AND 
+        sub_type = 'pokemon';`,
     async function(error, user) {
       if (Member.db.pokemon_status == 1 && reason == "resume") {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")

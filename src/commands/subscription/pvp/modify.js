@@ -6,8 +6,8 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-        AND guild_id = ${Message.guild.id}
-        AND sub_type = 'pvp'`,
+          AND 
+        sub_type = 'pvp'`,
     async function(error, subscriptions, fields) {
       if (!subscriptions || !subscriptions[0]) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
@@ -60,7 +60,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       // RETRIEVE POKEMON NAME FROM USER
       modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", message, old.name, "Respond with \'All\'  or the Pokémon name. Names are not case-sensitive.", modified);
       modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
-      modified.id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
+      modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
 
       modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", old);
 
@@ -69,13 +69,13 @@ module.exports = (WDR, Functions, Message, Member) => {
 
       modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type \'All\'. Type \'Cancel\' to Stop.", sub);
 
-      modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", message, olc.min_lvl, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
+      //modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", message, olc.min_lvl, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
 
-      if (modified.min_lvl != 0 && modified.min_lvl != 1) {
-        modified.min_cp = await Functions.DetailCollect(WDR, Functions, "CP", message, old.min_cp, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
-      } else {
-        modified.min_cp = 0;
-      }
+      // if (modified.min_lvl != 0 && modified.min_lvl != 1) {
+      //   modified.min_cp = await Functions.DetailCollect(WDR, Functions, "CP", message, old.min_cp, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
+      // } else {
+      //   modified.min_cp = 0;
+      // }
 
       modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", message, old.areas, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", undefined);
       if (modified.areas == Message.Discord.name) {
@@ -86,39 +86,34 @@ module.exports = (WDR, Functions, Message, Member) => {
 
       modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", sub);
 
-      let modify = `
+      let query = `
         UPDATE
             wdr_subscriptions
         SET
             areas = '${modified.areas}',
             geotype = '${modified.geotype}',
-            pokemon_id = ${modified.id},
+            pokemon_id = ${modified.pokemon_id},
             form = ${modified.form},
-            min_lvl = ${modified.min_lvl},
-            max_lvl = ${modified.max_lvl},
-            min_iv = ${modified.min_iv},
-            max_iv = ${modified.max_iv},
-            size = ${modified.size},
-            gender = ${modified.gender},
-            generation = ${modified.gen}
+            areas = '${modified.areas}',
+            geotype = '${modified.geotype}',
+            league = '${modified.league}',
+            min_rank = ${modified.min_rank}
         WHERE
             user_id = ${Message.author.id}
-            AND guild_id = ${Message.guild.id}
-            AND sub_type = 'pokemon'
+            AND areas = '${old.areas}'
+            AND geotype = '${old.geotype}'
             AND pokemon_id = ${old.pokemon_id}
             AND form = ${old.form}
-            AND min_lvl = ${old.min_lvl}
-            AND max_lvl = ${old.max_lvl}
-            AND min_iv = ${old.min_iv}
-            AND max_iv = ${old.max_iv}
-            AND size = ${old.size}
-            AND gender = ${old.gender}
-            AND generation = ${old.generation};
+            AND areas = '${old.areas}'
+            AND geotype = '${old.geotype}'
+            AND league = '${old.league}'
+            AND min_rank = ${old.min_rank};
       `;
       WDR.wdrDB.query(
-        modify,
+        query,
         async function(error, existing) {
           if (error) {
+            WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Modifying Subscription.", [query, error])
             return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
               timeout: 10000
             }));
