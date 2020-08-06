@@ -87,6 +87,22 @@ function load_modules() {
   });
 }
 
+function load_events() {
+  const events = requireAll({
+    dirname: __dirname + "/src/events",
+    filter: /^(?!-)(.+)\.js$/
+  });
+  let event_count = 0;
+  WDR.removeAllListeners();
+  for (const filename in events) {
+    event_count++;
+    const event = events[filename];
+    WDR.Bot.on(filename, event.bind(null, WDR));
+  }
+  WDR.Console.info("[wdr.js] Loaded " + event_count + " Discord Event Listeners.");
+  return;
+};
+
 function load_presets(type) {
   return new Promise(async resolve => {
     let Presets = require(WDR.Dir + "/src/startup/load_presets.js");
