@@ -65,7 +65,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 geotype != 'city'
           ;`;
           WDR.wdrDB.query(
-            set_active,
+            subs_active,
             function(error, user, fields) {
               if (error) {
                 WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating wdr_subscriptions Active Location.", [update, error]);
