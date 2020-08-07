@@ -32,26 +32,43 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         if (locations.length > 0) {
           let set = await Functions.DetailCollect(WDR, Functions, "Set", Member, Message, user.locations, "Please use one word to describe this location without punctuation.", null);
           let active_location = locations[set];
-          console.log(active_location);
-          let set_loc = `
+
+          let sub_loc = `
             UPDATE
-                wdr_users a
-            INNER JOIN
-                wdr_subscriptions b ON(a.user_id = b.user_id)
+                wdr_subscriptions
             SET
-                a.geotype = 'location',
-                a.location = '${(active_location.coords + ";" + active_location.radius)}',
-                b.geotype = 'location',
-                b.location = '${(active_location.coords + ";" + active_location.radius)}'
+                geotype = 'location',
+                location = '${(active_location.coords + ";" + active_location.radius)}'
             WHERE
-                a.user_id = ${Member.id}
+                user_id = ${Member.id}
                   AND
-                b.user_id = ${Member.id}
-                  AND
-                b.geotype != 'city';
-          `;
+                geotype != 'city';
+          ;`;
           WDR.wdrDB.query(
-            set_loc,
+            sub_loc,
+            function(error, user, fields) {
+              if (error) {
+                WDR.Console.error(WDR, "[subs/loc/set.js] Error Updating User Location.", [set_loc, error]);
+                return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+                  timeout: 10000
+                }));
+              }
+            }
+          );
+
+          let user_loc = `
+            UPDATE
+                wdr_subscriptions
+            SET
+                geotype = 'location',
+                location = '${(active_location.coords + ";" + active_location.radius)}'
+            WHERE
+                user_id = ${Member.id}
+                  AND
+                geotype != 'city';
+          ;`;
+          WDR.wdrDB.query(
+            user_loc,
             function(error, user, fields) {
               if (error) {
                 WDR.Console.error(WDR, "[subs/loc/set.js] Error Updating User Location.", [set_loc, error]);

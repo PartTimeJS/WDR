@@ -53,7 +53,6 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                     status = ${change}
                  WHERE
                     user_id = ${Member.id}
-                    AND guild_id = ${Message.guild.id}
                     AND sub_type = 'pvp'`,
                 async function(error, user, fields) {
                   if (error) {

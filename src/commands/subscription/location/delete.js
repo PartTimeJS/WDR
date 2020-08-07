@@ -51,24 +51,38 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         areas = areas.toString();
       }
 
-      // UPDATE THE USER"S RECORD
-      let update = `
+      let subs_update = `
         UPDATE
-            wdr_users a
-        INNER JOIN
-            wdr_subscriptions b ON(a.user_id = b.user_id)
+            wdr_subscriptions
         SET
-            a.areas = '${areas}',
-            b.areas = '${areas}'
+            areas = '${areas}'
         WHERE
-            a.user_id = ${Member.id}
+            user_id = ${Member.id}
               AND
-            a.guild_id = ${Message.guild.id}
-              AND
-            b.user_id = ${Member.id}
-      `;
+            geotype != 'city'
+      ;`;
       WDR.wdrDB.query(
-        update,
+        subs_update,
+        function(error, user, fields) {
+          if (error) {
+            WDR.Console.error(WDR, "[subs/poke/create.js] Error Updating Subscriptions' Geofences.", [update, error]);
+            return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+              timeout: 10000
+            }));
+          }
+        }
+      );
+
+      let user_update = `
+        UPDATE
+            wdr_users
+        SET
+            areas = '${areas}'
+        WHERE
+            user_id = ${Member.id}
+      ;`;
+      WDR.wdrDB.query(
+        user_update,
         function(error, user, fields) {
           if (error) {
             WDR.Console.error(WDR, "[subs/poke/create.js] Error Updating User Geofences.", [update, error]);

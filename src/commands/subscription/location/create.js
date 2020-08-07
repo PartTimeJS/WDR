@@ -53,28 +53,42 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }
 
         if (create.active == true) {
-          let set_active = `
+          let subs_active = `
             UPDATE
-                wdr_users a
-            INNER JOIN
-                wdr_subscriptions b ON(a.user_id = b.user_id)
+                wdr_subsriptions
             SET
-                a.geotype = 'location',
-                a.location = '${(active_location.coords + ";" + active_location.radius)}',
-                b.geotype = 'location',
-                b.location = '${(active_location.coords + ";" + active_location.radius)}'
+                geotype = 'location',
+                location = '${(create.coords + ";" + create.radius)}'
             WHERE
-                a.user_id = ${Member.id}
+                user_id = ${Member.id}
                   AND
-                b.user_id = ${Member.id}
-                  AND
-                b.geotype != 'city';
-          `;
+                geotype != 'city'
+          ;`;
           WDR.wdrDB.query(
             set_active,
             function(error, user, fields) {
               if (error) {
-                WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating User Active Location.", [update, error]);
+                WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating wdr_subscriptions Active Location.", [update, error]);
+                return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+                  timeout: 10000
+                }));
+              }
+            }
+          );
+          let user_active = `
+            UPDATE
+                wdr_users
+            SET
+                geotype = 'location',
+                location = '${(create.coords + ";" + create.radius)}'
+            WHERE
+                user_id = ${Member.id}
+          ;`;
+          WDR.wdrDB.query(
+            user_active,
+            function(error, user, fields) {
+              if (error) {
+                WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating wdr_users Active Location.", [update, error]);
                 return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                   timeout: 10000
                 }));
