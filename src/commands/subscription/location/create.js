@@ -55,7 +55,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         if (create.active == true) {
           let subs_active = `
             UPDATE
-                wdr_subsriptions
+                wdr_subscriptions
             SET
                 geotype = 'location',
                 location = '${(create.coords + ";" + create.radius)}'
