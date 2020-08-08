@@ -36,7 +36,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.pokemon_id = 0;
         }
 
-        if (create.id > 0) {
+        if (create.pokemon_id > 0) {
           create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with a Form Name of the specified Pokemon -OR- type \'All\'. Type \'Cancel\' to Stop.", create);
         }
 
