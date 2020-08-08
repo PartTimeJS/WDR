@@ -13,7 +13,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Pokemon subscriptions are already **Active**!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(already_active).catch(console.error).then(msg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, nMessage, Member);
         });
@@ -21,7 +21,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         let already_paused = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Pokemon subscriptions are already **Paused**!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(already_paused).catch(console.error).then(msg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, nMessage, Member);
         });

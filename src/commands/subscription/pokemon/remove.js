@@ -13,7 +13,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("You do not have any Pokémon Subscriptions!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });
@@ -58,7 +58,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         }
         sub_list = sub_list.slice(0, -1);
 
-        let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'", sub_list);
+        let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type 'all'", sub_list);
 
         let remove = subscriptions[number];
 
@@ -92,7 +92,7 @@ module.exports = (WDR, Functions, Message, Member) => {
                 .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                 .setTitle(WDR.Master.Pokemon[remove.pokemon_id].name + " Subscription Removed!")
                 .setDescription("Saved to the subscription Database.")
-                .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+                .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
               return Message.channel.send(subscription_success).then(BotMsg => {
                 return Functions.OptionCollect(WDR, Functions, "remove", Message, BotMsg, Member);
               });

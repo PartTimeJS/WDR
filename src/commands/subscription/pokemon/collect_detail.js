@@ -155,7 +155,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setTitle("Do you want to get notifications for " + sub.name + " filtered by your subscribed Areas?")
           .setDescription("**Yes**, your notifications for this Pokémon will be filtered based on your areas.\n" +
             "**No**, you will get notifications for this pokemon in ALL areas for the city.\n" +
-            "Type \'Distance\' to be notified based on your Distance Coordinates in Area settings.")
+            "Type 'Distance' to be notified based on your Distance Coordinates in Area settings.")
           .setFooter(requirements);
         break;
 
@@ -257,7 +257,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 if (valid) {
                   return collector.stop(valid);
                 } else {
-                  return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid Pokémon name. Please check the spelling and try again.").then(m => m.delete({
+                  return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid Pokémon name. Please check the spelling and try again.").then(m => m.delete({
                     timeout: 5000
                   }));
                 }
@@ -283,7 +283,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                   }
                 });
                 if (!match) {
-                  return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid type. Please check the spelling and try again.").then(m => m.delete({
+                  return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid type. Please check the spelling and try again.").then(m => m.delete({
                     timeout: 5000
                   }));
                 }
@@ -305,7 +305,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(sub.form_ids[sub.forms.indexOf(user_form)]);
                 break;
               default:
-                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
+                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
                   timeout: 5000
                 }));
             }
@@ -325,7 +325,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(parseInt(CollectedMsg.content));
                 break;
               default:
-                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid Generation number.").then(m => m.delete({
+                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid Generation number.").then(m => m.delete({
                   timeout: 5000
                 }));
             }

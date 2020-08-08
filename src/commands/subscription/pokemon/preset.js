@@ -12,14 +12,14 @@ module.exports = async (WDR, Functions, Message, Member) => {
   preset = WDR.Presets.Pokemon.get(preset_name);
 
   // RETRIEVE AREA CONFIMATION FROM USER
-  preset.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, undefined, "Please respond with \'Yes\' or \'No\'", preset);
+  preset.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, undefined, "Please respond with 'Yes' or 'No'", preset);
   if (preset.areas == Message.Discord.name) {
     preset.geotype = "city";
   } else {
     preset.geotype = Member.db.geotype;
   }
   // RETRIEVE CONFIRMATION FROM USER
-  preset.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type \'Yes\' or \'No\'. Subscription will be saved.", preset);
+  preset.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type 'Yes' or 'No'. Subscription will be saved.", preset);
 
   WDR.wdrDB.query(`
       INSERT INTO
@@ -73,7 +73,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("Existing Subscription Found!")
             .setDescription("Nothing has been saved.")
-            .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+            .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
           Message.channel.send(subscription_success).then(BotMsg => {
             return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
           });
@@ -88,7 +88,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle(preset.name + " Pokemon Subscription Complete!")
           .setDescription("Saved to the subscription Database.")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(subscription_success).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
         });

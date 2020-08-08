@@ -13,7 +13,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("You do not have any Pokémon Subscriptions!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });
@@ -65,7 +65,7 @@ module.exports = (WDR, Functions, Message, Member) => {
           .setTitle("Your Pokémon Subscriptions")
           .setDescription("Overall Status: `" + o_status + "`\n" +
             "Pokemon Status: `" + p_status + "`\n\n" + sub_list)
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(pokemonSubs).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });

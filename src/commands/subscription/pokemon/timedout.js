@@ -3,7 +3,7 @@ module.exports = (WDR, Functions, Message, Member) => {
     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
     .setTitle("Your Subscription Has Timed Out.")
     .setDescription("Nothing has been Saved.")
-    .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+    .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
   return Message.channel.send(timed_out).then(m => m.delete({
     timeout: 5000
   }));

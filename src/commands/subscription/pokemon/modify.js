@@ -6,14 +6,14 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-          AND 
+          AND
         sub_type = 'pokemon';`,
     async function(error, subscriptions, fields) {
       if (!subscriptions || !subscriptions[0]) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("You do not have any Pokémon Subscriptions!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });
@@ -59,7 +59,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
       sub_list = sub_list.slice(0, -1);
 
-      let number = await Functions.DetailCollect(WDR, Functions, "Modify", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'", sub_list);
+      let number = await Functions.DetailCollect(WDR, Functions, "Modify", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type 'all'", sub_list);
 
       let old = subscriptions[number];
 
@@ -72,59 +72,59 @@ module.exports = (WDR, Functions, Message, Member) => {
         old.form_name = "All";
       }
 
-      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with \'Next\', \'All\', or the Pokémon Name and Form if it has one. Names are not case-sensitive.", modified);
+      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with 'Next', 'All', or the Pokémon Name and Form if it has one. Names are not case-sensitive.", modified);
       modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
       modified.id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
 
       old.form_name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form] : "All";
 
       if (modified.id > 0) {
-        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form_name, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", modified);
+        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form_name, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       } else {
-        modified.type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, old.pokemon_type, "Please respond with the Pokemon Type -OR- type \'All\'. Type \'Cancel\' to Stop.", modified);
+        modified.type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, old.pokemon_type, "Please respond with the Pokemon Type -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       }
       if (modifed.form = old.form_name) {
         modified.form = old.form;
       }
 
       if (modified.pokemon == 0) {
-        modified.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, old.gen, "Please respond with \'Next\', a Generation Number, -OR- type \'All\'. Type \'Cancel\' to Stop.", modified);
+        modified.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, old.gen, "Please respond with 'Next', a Generation Number, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       } else {
         modified.gen = old.generation;
       }
 
-      modified.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, old.min_iv, "Please respond with \'Next\', an Number between 1 and 100, -OR- type \'All\'. Type \'Cancel\' to Stop.", modified);
+      modified.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, old.min_iv, "Please respond with 'Next', an Number between 1 and 100, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
 
       if (modified.min_iv == 100) {
         modified.max_iv = 100;
       } else {
-        modified.max_iv = await Functions.DetailCollect(WDR, Functions, "Maximum IV", Member, Message, old.max_iv, "Please respond with \'Next\', an Number between 1 and 100, -OR- type \'All\'. Type \'Cancel\' to Stop.", modified);
+        modified.max_iv = await Functions.DetailCollect(WDR, Functions, "Maximum IV", Member, Message, old.max_iv, "Please respond with 'Next', an Number between 1 and 100, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       }
 
-      modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, old.min_lvl, "Please respond with \'Next\', a Number between 0 and " + WDR.MaxLevel + ", or type \'All\'. Type \'Cancel\' to Stop.", modified);
+      modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, old.min_lvl, "Please respond with 'Next', a Number between 0 and " + WDR.MaxLevel + ", or type 'All'. Type 'Cancel' to Stop.", modified);
 
       if (modified.min_lvl == WDR.MaxLevel) {
         modified.max_lvl = WDR.MaxLevel;
       } else {
-        modified.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, old.max_lvl, "Please respond with \'Next\', a Number between 0 and " + WDR.MaxLevel + ", or type \'All\'. Type \'Cancel\' to Stop.", modified);
+        modified.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, old.max_lvl, "Please respond with 'Next', a Number between 0 and " + WDR.MaxLevel + ", or type 'All'. Type 'Cancel' to Stop.", modified);
       }
 
       if (sub.pokemon > 0) {
-        modified.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, old.gender, "Please respond with \'Next\', \'Male\', \'Female\', or type \'All\'.", modified);
-        modified.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, old.size, "Please respond with \'Next\', \'Big\', \'Large\', \'Normal\', \'Small\', \'Tiny\' or \'All\'.", modified);
+        modified.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, old.gender, "Please respond with 'Next', 'Male', 'Female', or type 'All'.", modified);
+        modified.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, old.size, "Please respond with 'Next', 'Big', 'Large', 'Normal', 'Small', 'Tiny' or 'All'.", modified);
         modified.size = modified.size.toLowerCase();
       } else {
         modified.size = 0;
       }
 
-      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with \'Yes\', \'No\', or \'Distance\'", modified);
+      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No', or 'Distance'", modified);
       if (modified.areas == Message.Discord.name) {
         modified.geotype = "city";
       } else {
         modified.geotype = Member.db.geotype;
       }
 
-      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type \'Yes\' or \'No\'. Subscription will be saved.", modified);
+      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type 'Yes' or 'No'. Subscription will be saved.", modified);
 
       let modify = `
         UPDATE
@@ -167,7 +167,7 @@ module.exports = (WDR, Functions, Message, Member) => {
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle(modified.name + " Subscription Modified!")
               .setDescription("Saved to the subscription Database.")
-              .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+              .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
             return Message.channel.send(modification_success).then(BotMsg => {
               return Functions.OptionCollect(WDR, Functions, "modify", Message, BotMsg, Member);
             });
