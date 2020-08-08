@@ -52,6 +52,18 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
             "Page **1** of **" + list_array.length + "**")
           .setFooter(requirements);
         break;
+
+      case "Area":
+        instruction = new WDR.DiscordJS.MessageEmbed()
+          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+          .setTitle("Do you want to change your DM Alert geofence type to Area-Based?")
+          .setDescription("**Yes** - Your Alert geofence type will be changed to area-based." + "\n" +
+            "\n" +
+            "**No** - Nothing will change and you can continue to set your areas up." + "\n" +
+            "\n" +
+            "You will not lose your set location and can change back using the " + WDR.Config.PREFIX + "location command.")
+          .setFooter(requirements);
+        break;
     }
 
     Message.channel.send(instruction).catch(console.error).then(msg => {
@@ -118,7 +130,15 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
               }
             }
             break;
-
+          case type.indexOf("Area") >= 0:
+            if (CollectedMsg.content.toLowerCase() == "yes") {
+              collector.stop(true);
+            } else if (CollectedMsg.content.toLowerCase() == "no") {
+              collector.stop(false);
+            } else {
+              Message.reply(CollectedMsg.content + " is not a valid entry. " + requirements);
+            }
+            break;
         }
       });
 
