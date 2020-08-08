@@ -12,6 +12,7 @@ bot.on('ready', () => {
 ///////////////////////////////////////////////////////////////*/
 
 const emojiNameList = {
+  loading: "loading",
   bug: "bugtype",
   dark: "dark",
   dragon: "dragontype",
@@ -173,7 +174,6 @@ function LoadEmojis(bot, serverIDs) {
 
     if (!guild) {
       console.log("Can't find guild with ID: " + guildArray[i][0].id + " which is bot username: " + bot.user.username + " using a bot with token: " + bot.token);
-
     }
     if (guild && guild.available) {
       for (let emoji in emojiNameList) {
