@@ -30,7 +30,7 @@ module.exports = async (WDR, Message) => {
 
   if (Member.db.geotype != "areas") {
     let keep_location = await Functions.DetailCollect(WDR, Functions, "Area", Member, Message, Member.db, "Type 'Yes' to override and continue or 'No' to cancel and keep area-based subscriptions.", null, AreaArray);
-    if (keep_location == true) {
+    if (keep_location == false) {
       let kept_location = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
         .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
         .setTitle("You have chose to keep **Location-Based** notifications.")
@@ -39,6 +39,14 @@ module.exports = async (WDR, Message) => {
         timeout: 10000
       })).catch(console.error);
     } else {
+      WDR.wdrDB.query(`
+        UPDATE
+            wdr_users
+        SET
+            geotype = 'areas'
+        WHERE
+            user_id = ${Member.id}
+      ;`);
       let now_area = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
         .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
         .setTitle("You have changed to **Area-Based** notifications.");
