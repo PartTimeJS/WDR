@@ -67,7 +67,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("Existing Subscription Found!")
             .setDescription("Nothing has been saved.")
-            .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+            .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
           Message.channel.send(subscription_success).then(BotMsg => {
             Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
           });
@@ -82,7 +82,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle(preset.name + " PvP Subscription Complete!")
           .setDescription("Saved to the Subscription Database.")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
         Message.channel.send(subscription_success).then(BotMsg => {
           Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
         });

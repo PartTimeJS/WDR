@@ -6,14 +6,14 @@ module.exports = (WDR, Functions, Message, Member) => {
         wdr_subscriptions
      WHERE
         user_id = ${Member.id}
-          AND 
+          AND
         sub_type = 'pvp'`,
     async function(error, subscriptions, fields) {
       if (!subscriptions || !subscriptions[0]) {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("You do not have any PvP Subscriptions!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+          .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });
@@ -122,7 +122,7 @@ module.exports = (WDR, Functions, Message, Member) => {
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle(modified.name + " Subscription Modified!")
               .setDescription("Saved to the subscription Database.")
-              .setFooter("You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.");
+              .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
             return Message.channel.send(modification_success).then(BotMsg => {
               return Functions.OptionCollect(WDR, Functions, "modify", Message, BotMsg, Member);
             });
