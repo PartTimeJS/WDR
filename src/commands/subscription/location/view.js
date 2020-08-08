@@ -32,29 +32,30 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               location_list += "**" + (i + 1) + " - " + location.name + "**\n" +
                 "　Radius: `" + location.radius + "` km(s)\n";
             });
+            let area_subs = new WDR.DiscordJS.MessageEmbed()
+              .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+              .setTitle("Your Locations:")
+              .setDescription(location_list)
+              .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
+            Message.channel.send(area_subs).catch(console.error).then(BotMsg => {
+              Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
+            });
           } else {
-            location_list = false;
+            let length_fail = new WDR.DiscordJS.MessageEmbed()
+              .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+              .setTitle("You do not have any Locations.")
+              .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
+            Message.reply(length_fail).catch(console.error).then(BotMsg => {
+              Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
+            });
           }
-        } else {
-          location_list = false;
-        }
-
-        if (location_list) {
-          let area_subs = new WDR.DiscordJS.MessageEmbed()
-            .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-            .setTitle("Your Locations:")
-            .setDescription(location_list)
-            .setFooter("You can type 'set', 'create', 'view', 'modify', or \'delete\'.");
-          Message.channel.send(area_subs).catch(console.error).then(BotMsg => {
-            return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
-          });
         } else {
           let no_locations = new WDR.DiscordJS.MessageEmbed()
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("You do not have any Locations.")
-            .setFooter("You can type 'set', 'create', 'view', 'modify', or \'delete\'.");
-          Message.channel.send(no_locations).catch(console.error).then(BotMsg => {
-            return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
+            .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
+          Message.reply(no_locations).catch(console.error).then(BotMsg => {
+            Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
           });
         }
       }

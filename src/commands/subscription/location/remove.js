@@ -35,61 +35,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
             let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
 
-            let modify = user.locations[locations[number].name];
-
-            modify.radius = await Functions.DetailCollect(WDR, Functions, "Radius", Member, Message, null, "Please respond with 'Next' or a whole number from 1 to 5.", modify);
-
-            modify.active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", modify);
-
-            let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm", Member, Message, null, "Type 'Yes' to confirm or 'No' to cancel.", modify);
-            if (confirm == false) {
-              return;
-            }
-
-            if (modify.active == true) {
-              let subs_active = `
-                UPDATE
-                    wdr_subscriptions
-                SET
-                    geotype = 'location',
-                    location = '${(modify.coords + ";" + modify.radius)}'
-                WHERE
-                    user_id = ${Member.id}
-                      AND
-                    geotype != 'city'
-              ;`;
-              WDR.wdrDB.query(
-                subs_active,
-                function(error, user, fields) {
-                  if (error) {
-                    WDR.Console.error(WDR, "[cmd/sub/loc/modify.js] Error Updating wdr_subscriptions Active Location.", [update, error]);
-                    return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
-                      timeout: 10000
-                    }));
-                  }
-                }
-              );
-              let user_active = `
-                UPDATE
-                    wdr_users
-                SET
-                    geotype = 'location',
-                    location = '${(modify.coords + ";" + modify.radius)}'
-                WHERE
-                    user_id = ${Member.id}
-              ;`;
-              WDR.wdrDB.query(
-                user_active,
-                function(error, user, fields) {
-                  if (error) {
-                    WDR.Console.error(WDR, "[cmd/sub/loc/modify.js] Error Updating wdr_users Active Location.", [update, error]);
-                    return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
-                      timeout: 10000
-                    }));
-                  }
-                }
-              );
-            }
+            delete user.locations[locations[number].name];
 
             let jsonString = JSON.stringify(user.locations);
 
@@ -106,7 +52,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               update,
               function(error, user, fields) {
                 if (error) {
-                  WDR.Console.error(WDR, "[cmd/sub/loc/modify.js] Error Updating User Locations.", [update, error]);
+                  WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating User Locations.", [update, error]);
                   return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                     timeout: 10000
                   }));
@@ -115,9 +61,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                     .setTitle("**" + locations[number].name + "** Custom Location Removed!")
                     .setDescription("Saved to the Database.")
-                    .setFooter("You can type 'set', 'view', 'edit', 'remove', or 'cancel'.");
+                    .setFooter("You can type 'set', 'view', 'create', 'edit', 'remove', or 'cancel'.");
                   Message.channel.send(subscription_success).then(BotMsg => {
-                    Functions.OptionCollect(WDR, Functions, "modify", Message, BotMsg, Member, AreaArray);
+                    Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member, AreaArray);
                   });
                 }
               }
@@ -127,7 +73,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             let no_locations = new WDR.DiscordJS.MessageEmbed()
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle("You do not have any Locations.")
-              .setFooter("You can type 'set', 'edit', 'view', or 'remove'.");
+              .setFooter("You can type 'set', 'create', 'view', or 'remove'.");
             Message.channel.send(no_locations).catch(console.error).then(BotMsg => {
               Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
             });

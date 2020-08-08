@@ -2,7 +2,7 @@ var Functions = {
   Create: require(__dirname + "/create.js"),
   Cancel: require(__dirname + "/../cancel.js"),
   DetailCollect: require(__dirname + "/collect_detail.js"),
-  Delete: require(__dirname + "/delete.js"),
+  Remove: require(__dirname + "/remove.js"),
   OptionCollect: require(__dirname + "/collect_option.js"),
   Modify: require(__dirname + "/modify.js"),
   TimedOut: require(__dirname + "/../timedout.js"),
@@ -50,9 +50,8 @@ module.exports = async (WDR, Message) => {
     .setDescription("`view`  »  View your Locations." + "\n" +
       "`set`  »  Set your Current Location." + "\n" +
       "`create`  »  Create a Location." + "\n" +
-      //"`modify`  »  Modify a Location." + "\n" +
-      //"`delete`  »  Delete a Location."
-      "")
+      "`edit`  »  Edit a Location." + "\n" +
+      "`remove`  »  Remove a Location.")
     .setFooter("Type the action, no command prefix required.");
 
   Message.channel.send(requestAction).catch(console.error).then(BotMsg => {

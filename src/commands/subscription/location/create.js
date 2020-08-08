@@ -30,8 +30,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           let too_many = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("You have too many Custom Locations! (Maximum: 10)")
-            .setDescription("Please delete one before creating another.")
-            .setFooter("You can type 'set', 'view', 'create', 'modify', 'delete' or 'cancel'.");
+            .setDescription("Please remove one before creating another.")
+            .setFooter("You can type 'set', 'view', 'create', 'edit', 'remove' or 'cancel'.");
           return Message.reply(too_many).then(BotMsg => {
             return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
           });
@@ -108,9 +108,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               locations = '${jsonString}'
           WHERE
               user_id = ${Member.id}
-                AND
-              guild_id = ${Message.guild.id};
-        `;
+        ;`;
         WDR.wdrDB.query(
           update,
           function(error, user, fields) {
@@ -124,7 +122,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                 .setTitle("**" + create.name + "** Custom Location Added!")
                 .setDescription("Saved to the Database.")
-                .setFooter("You can type 'set', 'view', 'create', 'modify', 'delete', or 'cancel'.");
+                .setFooter("You can type 'set', 'view', 'create', 'edit', 'remove', or 'cancel'.");
               return Message.channel.send(subscription_success).then(BotMsg => {
                 return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member, AreaArray);
               });

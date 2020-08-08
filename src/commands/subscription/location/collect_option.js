@@ -17,11 +17,11 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
       case "create":
         collector.stop("create");
         break;
-      case "delete":
-        collector.stop("delete");
+      case "remove":
+        collector.stop("remove");
         break;
-      case "modify":
-        collector.stop("modify");
+      case "edit":
+        collector.stop("edit");
         break;
       case "set":
         collector.stop("set");
@@ -40,9 +40,9 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
     switch (msg) {
       case "create":
         return Functions.Create(WDR, Functions, OriginalMsg, Member, AreaArray);
-      case "delete":
-        return Functions.Delete(WDR, Functions, OriginalMsg, Member, AreaArray);
-      case "modify":
+      case "remove":
+        return Functions.Remove(WDR, Functions, OriginalMsg, Member, AreaArray);
+      case "edit":
         return Functions.Modify(WDR, Functions, OriginalMsg, Member, AreaArray);
       case "set":
         return Functions.Set(WDR, Functions, OriginalMsg, Member, AreaArray);

@@ -79,7 +79,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 let no_locations = new WDR.DiscordJS.MessageEmbed()
                   .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                   .setTitle("Your Location has been set to " + active_location.name + ".")
-                  .setFooter("You can type 'set', 'create', 'view', 'modify', or \'delete\'.");
+                  .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
                 Message.channel.send(no_locations).catch(console.error).then(BotMsg => {
                   return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
                 });
@@ -91,7 +91,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           let no_locations = new WDR.DiscordJS.MessageEmbed()
             .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
             .setTitle("You do not have any Locations.")
-            .setFooter("You can type 'set', 'create', 'view', 'modify', or \'delete\'.");
+            .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
           Message.channel.send(no_locations).catch(console.error).then(BotMsg => {
             return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
           });

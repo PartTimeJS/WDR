@@ -12,7 +12,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
     if (Member.db.locations) {
       let locations = Object.keys(Member.db.locations).map(i => Member.db.locations[i]);
       locations.forEach((location, i) => {
-        location_names += (i + 1) + " - " + location.name + "\n" +
+        location_names += "**" + (i + 1) + " - " + location.name + "**\n" +
           "　Radius: `" + location.radius + " km(s)`" + "\n";
       });
       location_names.split(0, -1);
@@ -73,8 +73,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
       case "Modify":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Which Location do you want to " + type + "?")
-          .setDescription("**" + location_names + "**")
+          .setTitle("Which Location do you want to **" + type + "**?")
+          .setDescription(location_names)
           .setFooter(requirements);
         break;
 
@@ -197,6 +197,10 @@ async function generate_body(WDR, Message, location) {
         zoom = 12;
       } else if (location.radius == 5) {
         zoom = 12;
+      } else if (location.radius == 6) {
+        zoom = 11;
+      } else if (location.radius == 7) {
+        zoom = 11;
       }
 
       let body = await WDR.Generate_Tile(WDR, location, "location", location.coords.split(",")[0], location.coords.split(",")[1], sprite, null, zoom);
