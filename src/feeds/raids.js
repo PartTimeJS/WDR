@@ -107,7 +107,7 @@ module.exports = async (WDR, Raid) => {
           match.map_url = WDR.Config.FRONTEND_URL;
 
           match.google = "[Google Maps](https://www.google.com/maps?q=" + match.lat + "," + match.lon + ")";
-          match.apple = "[Apple Maps](http://mapmatch.apple.com/maps?daddr=" + match.lat + "," + match.lon + "&z=10&t=s&dirflg=d)";
+          match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + match.lat + "," + match.lon + "&z=10&t=s&dirflg=d)";
           match.waze = "[Waze](https://www.waze.com/ul?ll=" + match.lat + "," + match.lon + "&navigate=yes)";
           match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + match.lat + "&lon=" + match.lon + "&zoom=15)";
           match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + match.lat + "/" + match.lon + "/15)";

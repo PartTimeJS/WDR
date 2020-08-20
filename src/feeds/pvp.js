@@ -85,7 +85,7 @@ module.exports = async (WDR, Sighting) => {
             filtered.types = potential.typing;
             filtered.pokemon_id = potential.pokemon_id;
             filtered.rank = potential.rank;
-            filtered.percent = potential.percent;
+            filtered.percent = potential.percentage;
             filtered.level = potential.level;
             filtered.cp = potential.cp;
             filtered.value = potential.pvp_value;
@@ -102,11 +102,9 @@ module.exports = async (WDR, Sighting) => {
             pokemon_id: Sighting.pokemon_id,
             form: Sighting.form
           });
-
-          match.sprite = WDR.Get_Sprite(WDR, {
-            pokemon_id: match.possible_cps[0].pokemon_id,
-            form: match.possible_cps[0].form_id
-          });
+          match.pokemon_id = match.possible_cps[0].pokemon_id;
+          match.form = match.possible_cps[0].form_id;
+          match.sprite = WDR.Get_Sprite(WDR, match);
 
           match.tile_sprite = WDR.Get_Sprite(WDR, Sighting);
 
