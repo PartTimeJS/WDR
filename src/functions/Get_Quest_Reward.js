@@ -28,13 +28,13 @@ module.exports = (WDR, Quest) => {
         break;
 
       case 4:
-        return WDR.Console.error(WDR, "CANDY QUEST", Quest);
+        return WDR.Console.error(WDR, "CANDY QUEST", [Quest, Quest.conditions[0], Quest.rewards[0]]);
 
       case 5:
-        return WDR.Console.error(WDR, "AVATAR CLOTHING QUEST", Quest);
+        return WDR.Console.error(WDR, "AVATAR CLOTHING QUEST", [Quest, Quest.conditions[0], Quest.rewards[0]]);
 
       case 6:
-        WDR.Console.error(WDR, "NO REWARD SET. REPORT THIS TO THE DISCORD ALONG WITH THE FOLLOWING:", Quest);
+        WDR.Console.error(WDR, "NO REWARD SET. REPORT THIS TO THE DISCORD ALONG WITH THE FOLLOWING:", [Quest, Quest.conditions[0], Quest.rewards[0]]);
         break;
 
         // ENCOUNTER REWARDS
@@ -81,6 +81,12 @@ module.exports = (WDR, Quest) => {
           Quest.quest_reward = "Shiny " + Quest.quest_reward;
         } else {
           Quest.simple_reward = Quest.pokemon_name;
+
+          if (Quest.form > 0) {
+            Quest.full_reward = Quest.pokemon_name + " " + Quest.form_name;
+          } else {
+            Quest.full_reward = Quest.pokemon_name;
+          }
 
           if (Quest.form != "") {
             Quest.quest_reward = Quest.pokemon_name + " " + Quest.form + " Encounter";
