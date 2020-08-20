@@ -148,10 +148,9 @@ module.exports = async (WDR, Target, Invasion) => {
     Invasion.encounters = "";
     Invasion.encounters += "**100% Chance to Encounter**:\n " + Invasion.first + "\n";
     if (Invasion.first.length <= 25) {
-      Invasion.sprite = WDR.Get_Sprite(WDR, {
-        pokemon_id: parseInt(WDR.Master.Grunt_Types[Invasion.grunt_type].encounters.first[0].split("_")[0]),
-        form: parseInt(WDR.Master.Grunt_Types[Invasion.grunt_type].encounters.first[0].split("_")[1])
-      });
+      Invasion.pokemon_id = parseInt(WDR.Master.Grunt_Types[Invasion.grunt_type].encounters.first[0].split("_")[0]);
+      Invasion.form = parseInt(WDR.Master.Grunt_Types[Invasion.grunt_type].encounters.first[0].split("_")[1]);
+      Invasion.sprite = WDR.Get_Sprite(WDR, Invasion);
     }
   }
 

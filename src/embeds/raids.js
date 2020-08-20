@@ -34,7 +34,7 @@ module.exports = async (WDR, Target, Raid) => {
 
   // MAP LINK PROVIDERS
   R.google = "[Google Maps](https://www.google.com/maps?q=" + R.latitude + "," + R.longitude + ")";
-  R.apple = "[Apple Maps](http://mapR.apple.com/maps?daddr=" + R.latitude + "," + R.longitude + "&z=10&t=s&dirflg=d)";
+  R.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + R.latitude + "," + R.longitude + "&z=10&t=s&dirflg=d)";
   R.waze = "[Waze](https://www.waze.com/ul?ll=" + R.latitude + "," + R.longitude + "&navigate=yes)";
   R.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + R.latitude + "&lon=" + R.longitude + "&zoom=15)";
   R.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + R.latitude + "/" + R.longitude + "/15)";
