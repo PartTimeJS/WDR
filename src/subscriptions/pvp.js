@@ -19,6 +19,12 @@ module.exports = async (WDR, Sighting) => {
       let rankMatch = potential.rank <= 20;
       let cpMatch = potential.cp >= CPs[lg];
       if (rankMatch && cpMatch) {
+        if (!potential.pokemon_id) {
+          potential.pokemon_id = potential.pokemon
+        }
+        if (!potential.form_id) {
+          potential.form_id = potential.form
+        }
         potential.gen = await WDR.Get_Gen(potential.pokemon_id);
         potential.typing = await WDR.Get_Typing(WDR, {
           pokemon_id: potential.pokemon_id,
@@ -142,10 +148,9 @@ async function Send_Subscription(WDR, match, Sighting, User, ) {
     form: Sighting.form
   });
 
-  match.tile_sprite = WDR.Get_Sprite(WDR, {
-    pokemon_id: match.possible_cps[0].pokemon_id,
-    form: match.possible_cps[0].form_id
-  });
+  match.pokemon_id = match.possible_cps[0].pokemon_id;
+  match.form = match.possible_cps[0].form_id;
+  match.tile_sprite = WDR.Get_Sprite(WDR, match);
 
   match.sprite = Sighting.sprite;
 
