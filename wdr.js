@@ -30,6 +30,8 @@ WDR.Time = (time, type, timezone) => {
       return WDR.Moment().tz(timezone).format("dddd, MMMM Do") + " @ Midnight";
     case "log":
       return WDR.Moment().format("h:mmA");
+    case "full":
+      return WDR.Moment().format("dddd, MMMM Do  h:mmA");
     case "nest":
       return WDR.Moment.unix(time).tz(timezone).format("MMM Do YYYY hA")
     case "unix":
@@ -228,7 +230,9 @@ const Server = Express();
 Server.use(BodyParser.json({
   limit: "10MB"
 }));
+var payload_count = 0;
 Server.post("/", async (req, res) => {
+  payload_count++;
   res.sendStatus(200);
   WDR.Webhook_Handler(WDR, req.body);
 });
@@ -244,6 +248,20 @@ function start_intervals() {
   setInterval(function() {
     WDR.DB_Interval(WDR);
   }, 1000 * 60);
+  let down_mins = parseInt(WDR.Config.DOWN_MINS);
+  if (WDR.Config.DOWN_ALERT == "ENABLED" && payload_count == 0) {
+    setInterval(function() {
+      if (payload_count < 1) {
+        let Outage_Embed = new WDR.DiscordJS.MessageEmbed()
+          .setColor("FF0000")
+          .setAuthor("WDR " + WDR.Version, WDR.Bot.user.displayAvatarURL())
+          .setTitle("WARNING:  No Data Received in the Last " + WDR.Config.DOWN_MINS + " Minutes.")
+          .setFooter(WDR.Time(null, "full"));
+        WDR.Send_DM(WDR, null, WDR.Config.DOWN_USER_ID, Outage_Embed);
+      }
+      payload_count = 0;
+    }, 60000 * down_mins);
+  }
 }
 
 // START THIS BABY UP
