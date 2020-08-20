@@ -53,7 +53,7 @@
 				"Ivysaur"
 			],
 			"evolutions_ids": [
-				null
+				2
 			],
 			"evolutions": [
 				{
@@ -120,7 +120,7 @@
 				"Venusaur"
 			],
 			"evolutions_ids": [
-				null
+				3
 			],
 			"evolutions": [
 				{
@@ -249,7 +249,7 @@
 				"Charmeleon"
 			],
 			"evolutions_ids": [
-				null
+				5
 			],
 			"evolutions": [
 				{
@@ -315,7 +315,7 @@
 				"Charizard"
 			],
 			"evolutions_ids": [
-				null
+				6
 			],
 			"evolutions": [
 				{
@@ -444,7 +444,7 @@
 				"Wartortle"
 			],
 			"evolutions_ids": [
-				null
+				8
 			],
 			"evolutions": [
 				{
@@ -510,7 +510,7 @@
 				"Blastoise"
 			],
 			"evolutions_ids": [
-				null
+				9
 			],
 			"evolutions": [
 				{
@@ -629,7 +629,7 @@
 				"Metapod"
 			],
 			"evolutions_ids": [
-				null
+				11
 			],
 			"evolutions": [
 				{
@@ -690,7 +690,7 @@
 				"Butterfree"
 			],
 			"evolutions_ids": [
-				null
+				12
 			],
 			"evolutions": [
 				{
@@ -808,7 +808,7 @@
 				"Kakuna"
 			],
 			"evolutions_ids": [
-				null
+				14
 			],
 			"evolutions": [
 				{
@@ -873,7 +873,7 @@
 				"Beedrill"
 			],
 			"evolutions_ids": [
-				null
+				15
 			],
 			"evolutions": [
 				{
@@ -991,7 +991,7 @@
 				"Pidgeotto"
 			],
 			"evolutions_ids": [
-				null
+				17
 			],
 			"evolutions": [
 				{
@@ -1055,7 +1055,7 @@
 				"Pidgeot"
 			],
 			"evolutions_ids": [
-				null
+				18
 			],
 			"evolutions": [
 				{
@@ -1141,6 +1141,7 @@
 					"form": "Alola",
 					"form_id": 46,
 					"proto": "RATTATA_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 48,
 					"height": 0.3,
 					"weight": 3.8,
@@ -1191,7 +1192,7 @@
 				"Raticate"
 			],
 			"evolutions_ids": [
-				null
+				20
 			],
 			"evolutions": [
 				{
@@ -1223,6 +1224,7 @@
 					"form": "Alola",
 					"form_id": 48,
 					"proto": "RATICATE_ALOLA",
+					"asset_form": 61,
 					"attack": 135,
 					"defense": 154,
 					"stamina": 181,
@@ -1331,7 +1333,7 @@
 				"Fearow"
 			],
 			"evolutions_ids": [
-				null
+				22
 			],
 			"evolutions": [
 				{
@@ -1450,7 +1452,7 @@
 				"Arbok"
 			],
 			"evolutions_ids": [
-				null
+				24
 			],
 			"evolutions": [
 				{
@@ -1541,7 +1543,8 @@
 				"901": {
 					"form": "Vs 2019",
 					"form_id": 901,
-					"proto": "PIKACHU_VS_2019"
+					"proto": "PIKACHU_VS_2019",
+					"asset_form": 16
 				},
 				"949": {
 					"form": "Copy 2019",
@@ -1588,7 +1591,7 @@
 				"Raichu"
 			],
 			"evolutions_ids": [
-				null
+				26
 			],
 			"evolutions": [
 				{
@@ -1620,6 +1623,7 @@
 					"form": "Alola",
 					"form_id": 50,
 					"proto": "RAICHU_ALOLA",
+					"asset_form": 61,
 					"attack": 201,
 					"defense": 154,
 					"stamina": 155,
@@ -1701,6 +1705,7 @@
 					"form": "Alola",
 					"form_id": 52,
 					"proto": "SANDSHREW_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 54,
 					"attack": 125,
 					"defense": 129,
@@ -1758,7 +1763,7 @@
 				"Sandslash"
 			],
 			"evolutions_ids": [
-				null
+				28
 			],
 			"evolutions": [
 				{
@@ -1790,6 +1795,7 @@
 					"form": "Alola",
 					"form_id": 54,
 					"proto": "SANDSLASH_ALOLA",
+					"asset_form": 61,
 					"attack": 177,
 					"defense": 195,
 					"stamina": 181,
@@ -1900,7 +1906,7 @@
 				"Nidorina"
 			],
 			"evolutions_ids": [
-				null
+				30
 			],
 			"evolutions": [
 				{
@@ -1966,7 +1972,7 @@
 				"Nidoqueen"
 			],
 			"evolutions_ids": [
-				null
+				31
 			],
 			"evolutions": [
 				{
@@ -2086,7 +2092,7 @@
 				"Nidorino"
 			],
 			"evolutions_ids": [
-				null
+				33
 			],
 			"evolutions": [
 				{
@@ -2152,7 +2158,7 @@
 				"Nidoking"
 			],
 			"evolutions_ids": [
-				null
+				34
 			],
 			"evolutions": [
 				{
@@ -2269,7 +2275,7 @@
 				"Clefable"
 			],
 			"evolutions_ids": [
-				null
+				36
 			],
 			"evolutions": [
 				{
@@ -2356,6 +2362,7 @@
 					"form": "Alola",
 					"form_id": 56,
 					"proto": "VULPIX_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 58,
 					"quick_moves": [
 						"Zen Headbutt",
@@ -2407,7 +2414,7 @@
 				"Ninetales"
 			],
 			"evolutions_ids": [
-				null
+				38
 			],
 			"evolutions": [
 				{
@@ -2439,6 +2446,7 @@
 					"form": "Alola",
 					"form_id": 58,
 					"proto": "NINETALES_ALOLA",
+					"asset_form": 61,
 					"attack": 170,
 					"defense": 193,
 					"stamina": 177,
@@ -2547,7 +2555,7 @@
 				"Wigglytuff"
 			],
 			"evolutions_ids": [
-				null
+				40
 			],
 			"evolutions": [
 				{
@@ -2669,7 +2677,7 @@
 				"Golbat"
 			],
 			"evolutions_ids": [
-				null
+				42
 			],
 			"evolutions": [
 				{
@@ -2795,7 +2803,7 @@
 				"Gloom"
 			],
 			"evolutions_ids": [
-				null
+				44
 			],
 			"evolutions": [
 				{
@@ -2862,7 +2870,7 @@
 				"Vileplume"
 			],
 			"evolutions_ids": [
-				null
+				45
 			],
 			"evolutions": [
 				{
@@ -2986,7 +2994,7 @@
 				"Parasect"
 			],
 			"evolutions_ids": [
-				null
+				47
 			],
 			"evolutions": [
 				{
@@ -3106,7 +3114,7 @@
 				"Venomoth"
 			],
 			"evolutions_ids": [
-				null
+				49
 			],
 			"evolutions": [
 				{
@@ -3193,6 +3201,7 @@
 					"form": "Alola",
 					"form_id": 60,
 					"proto": "DIGLETT_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 62,
 					"attack": 108,
 					"defense": 81,
@@ -3245,7 +3254,7 @@
 				"Dugtrio"
 			],
 			"evolutions_ids": [
-				null
+				51
 			],
 			"evolutions": [
 				{
@@ -3280,6 +3289,7 @@
 					"form": "Alola",
 					"form_id": 62,
 					"proto": "DUGTRIO_ALOLA",
+					"asset_form": 61,
 					"attack": 201,
 					"defense": 142,
 					"stamina": 111,
@@ -3356,6 +3366,7 @@
 					"form": "Alola",
 					"form_id": 64,
 					"proto": "MEOWTH_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 66,
 					"attack": 99,
 					"defense": 78,
@@ -3380,6 +3391,7 @@
 					"form": "Galarian",
 					"form_id": 2335,
 					"proto": "MEOWTH_GALARIAN",
+					"asset_form": 31,
 					"attack": 115,
 					"defense": 92,
 					"stamina": 137,
@@ -3423,7 +3435,7 @@
 				"Persian"
 			],
 			"evolutions_ids": [
-				null
+				53
 			],
 			"evolutions": [
 				{
@@ -3455,6 +3467,7 @@
 					"form": "Alola",
 					"form_id": 66,
 					"proto": "PERSIAN_ALOLA",
+					"asset_form": 61,
 					"attack": 158,
 					"defense": 136,
 					"stamina": 163,
@@ -3559,7 +3572,7 @@
 				"Golduck"
 			],
 			"evolutions_ids": [
-				null
+				55
 			],
 			"evolutions": [
 				{
@@ -3677,7 +3690,7 @@
 				"Primeape"
 			],
 			"evolutions_ids": [
-				null
+				57
 			],
 			"evolutions": [
 				{
@@ -3795,7 +3808,7 @@
 				"Arcanine"
 			],
 			"evolutions_ids": [
-				null
+				59
 			],
 			"evolutions": [
 				{
@@ -3915,7 +3928,7 @@
 				"Poliwhirl"
 			],
 			"evolutions_ids": [
-				null
+				61
 			],
 			"evolutions": [
 				{
@@ -3981,7 +3994,7 @@
 				"Poliwrath"
 			],
 			"evolutions_ids": [
-				null
+				62
 			],
 			"evolutions": [
 				{
@@ -4108,7 +4121,7 @@
 				"Kadabra"
 			],
 			"evolutions_ids": [
-				null
+				64
 			],
 			"evolutions": [
 				{
@@ -4174,7 +4187,7 @@
 				"Alakazam"
 			],
 			"evolutions_ids": [
-				null
+				65
 			],
 			"evolutions": [
 				{
@@ -4293,7 +4306,7 @@
 				"Machoke"
 			],
 			"evolutions_ids": [
-				null
+				67
 			],
 			"evolutions": [
 				{
@@ -4359,7 +4372,7 @@
 				"Machamp"
 			],
 			"evolutions_ids": [
-				null
+				68
 			],
 			"evolutions": [
 				{
@@ -4480,7 +4493,7 @@
 				"Weepinbell"
 			],
 			"evolutions_ids": [
-				null
+				70
 			],
 			"evolutions": [
 				{
@@ -4547,7 +4560,7 @@
 				"Victreebel"
 			],
 			"evolutions_ids": [
-				null
+				71
 			],
 			"evolutions": [
 				{
@@ -4666,7 +4679,7 @@
 				"Tentacruel"
 			],
 			"evolutions_ids": [
-				null
+				73
 			],
 			"evolutions": [
 				{
@@ -4753,6 +4766,7 @@
 					"form": "Alola",
 					"form_id": 68,
 					"proto": "GEODUDE_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 70,
 					"height": 0.4,
 					"weight": 20.3,
@@ -4808,7 +4822,7 @@
 				"Graveler"
 			],
 			"evolutions_ids": [
-				null
+				75
 			],
 			"evolutions": [
 				{
@@ -4841,6 +4855,7 @@
 					"form": "Alola",
 					"form_id": 70,
 					"proto": "GRAVELER_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 72,
 					"height": 1,
 					"weight": 110,
@@ -4896,7 +4911,7 @@
 				"Golem"
 			],
 			"evolutions_ids": [
-				null
+				76
 			],
 			"evolutions": [
 				{
@@ -4928,6 +4943,7 @@
 					"form": "Alola",
 					"form_id": 72,
 					"proto": "GOLEM_ALOLA",
+					"asset_form": 61,
 					"height": 1.7,
 					"weight": 316,
 					"quick_moves": [
@@ -5038,7 +5054,7 @@
 				"Rapidash"
 			],
 			"evolutions_ids": [
-				null
+				78
 			],
 			"evolutions": [
 				{
@@ -5164,7 +5180,7 @@
 				"Slowbro"
 			],
 			"evolutions_ids": [
-				null
+				80
 			],
 			"evolutions": [
 				{
@@ -5295,7 +5311,7 @@
 				"Magneton"
 			],
 			"evolutions_ids": [
-				null
+				82
 			],
 			"evolutions": [
 				{
@@ -5398,6 +5414,7 @@
 					"form": "Galarian",
 					"form_id": 2338,
 					"proto": "FARFETCHD_GALARIAN",
+					"asset_form": 31,
 					"attack": 174,
 					"defense": 114,
 					"stamina": 141,
@@ -5495,7 +5512,7 @@
 				"Dodrio"
 			],
 			"evolutions_ids": [
-				null
+				85
 			],
 			"evolutions": [
 				{
@@ -5611,7 +5628,7 @@
 				"Dewgong"
 			],
 			"evolutions_ids": [
-				null
+				87
 			],
 			"evolutions": [
 				{
@@ -5697,6 +5714,7 @@
 					"form": "Alola",
 					"form_id": 74,
 					"proto": "GRIMER_ALOLA",
+					"asset_form": 61,
 					"evolution_form": 76,
 					"height": 0.7,
 					"weight": 42,
@@ -5751,7 +5769,7 @@
 				"Muk"
 			],
 			"evolutions_ids": [
-				null
+				89
 			],
 			"evolutions": [
 				{
@@ -5783,6 +5801,7 @@
 					"form": "Alola",
 					"form_id": 76,
 					"proto": "MUK_ALOLA",
+					"asset_form": 61,
 					"height": 1,
 					"weight": 52,
 					"quick_moves": [
@@ -5893,7 +5912,7 @@
 				"Cloyster"
 			],
 			"evolutions_ids": [
-				null
+				91
 			],
 			"evolutions": [
 				{
@@ -6011,7 +6030,7 @@
 				"Haunter"
 			],
 			"evolutions_ids": [
-				null
+				93
 			],
 			"evolutions": [
 				{
@@ -6076,7 +6095,7 @@
 				"Gengar"
 			],
 			"evolutions_ids": [
-				null
+				94
 			],
 			"evolutions": [
 				{
@@ -6266,7 +6285,7 @@
 				"Hypno"
 			],
 			"evolutions_ids": [
-				null
+				97
 			],
 			"evolutions": [
 				{
@@ -6388,7 +6407,7 @@
 				"Kingler"
 			],
 			"evolutions_ids": [
-				null
+				99
 			],
 			"evolutions": [
 				{
@@ -6504,7 +6523,7 @@
 				"Electrode"
 			],
 			"evolutions_ids": [
-				null
+				101
 			],
 			"evolutions": [
 				{
@@ -6624,7 +6643,7 @@
 				"Exeggutor"
 			],
 			"evolutions_ids": [
-				null
+				103
 			],
 			"evolutions": [
 				{
@@ -6656,6 +6675,7 @@
 					"form": "Alola",
 					"form_id": 78,
 					"proto": "EXEGGUTOR_ALOLA",
+					"asset_form": 61,
 					"attack": 230,
 					"defense": 153,
 					"stamina": 216,
@@ -6767,7 +6787,7 @@
 				"Marowak"
 			],
 			"evolutions_ids": [
-				null
+				105
 			],
 			"evolutions": [
 				{
@@ -6799,6 +6819,7 @@
 					"form": "Alola",
 					"form_id": 80,
 					"proto": "MAROWAK_ALOLA",
+					"asset_form": 61,
 					"height": 1,
 					"weight": 34,
 					"quick_moves": [
@@ -7072,7 +7093,7 @@
 				"Weezing"
 			],
 			"evolutions_ids": [
-				null
+				110
 			],
 			"evolutions": [
 				{
@@ -7114,6 +7135,7 @@
 					"form": "Galarian",
 					"form_id": 944,
 					"proto": "WEEZING_GALARIAN",
+					"asset_form": 31,
 					"height": 3,
 					"weight": 16,
 					"quick_moves": [
@@ -7213,7 +7235,7 @@
 				"Rhydon"
 			],
 			"evolutions_ids": [
-				null
+				112
 			],
 			"evolutions": [
 				{
@@ -7506,7 +7528,7 @@
 				"Seadra"
 			],
 			"evolutions_ids": [
-				null
+				117
 			],
 			"evolutions": [
 				{
@@ -7628,7 +7650,7 @@
 				"Seaking"
 			],
 			"evolutions_ids": [
-				null
+				119
 			],
 			"evolutions": [
 				{
@@ -7743,7 +7765,7 @@
 				"Starmie"
 			],
 			"evolutions_ids": [
-				null
+				121
 			],
 			"evolutions": [
 				{
@@ -8234,7 +8256,7 @@
 				"Gyarados"
 			],
 			"evolutions_ids": [
-				null
+				130
 			],
 			"evolutions": [
 				{
@@ -8461,9 +8483,9 @@
 				"Flareon"
 			],
 			"evolutions_ids": [
-				null,
-				null,
-				null
+				134,
+				135,
+				136
 			],
 			"evolutions": [
 				{
@@ -8789,7 +8811,7 @@
 				"Omastar"
 			],
 			"evolutions_ids": [
-				null
+				139
 			],
 			"evolutions": [
 				{
@@ -8906,7 +8928,7 @@
 				"Kabutops"
 			],
 			"evolutions_ids": [
-				null
+				141
 			],
 			"evolutions": [
 				{
@@ -9297,7 +9319,7 @@
 				"Dragonair"
 			],
 			"evolutions_ids": [
-				null
+				148
 			],
 			"evolutions": [
 				{
@@ -9363,7 +9385,7 @@
 				"Dragonite"
 			],
 			"evolutions_ids": [
-				null
+				149
 			],
 			"evolutions": [
 				{
@@ -9641,7 +9663,7 @@
 				"Bayleef"
 			],
 			"evolutions_ids": [
-				null
+				153
 			],
 			"evolutions": [
 				{
@@ -9704,7 +9726,7 @@
 				"Meganium"
 			],
 			"evolutions_ids": [
-				null
+				154
 			],
 			"evolutions": [
 				{
@@ -9819,7 +9841,7 @@
 				"Quilava"
 			],
 			"evolutions_ids": [
-				null
+				156
 			],
 			"evolutions": [
 				{
@@ -9882,7 +9904,7 @@
 				"Typhlosion"
 			],
 			"evolutions_ids": [
-				null
+				157
 			],
 			"evolutions": [
 				{
@@ -9997,7 +10019,7 @@
 				"Croconaw"
 			],
 			"evolutions_ids": [
-				null
+				159
 			],
 			"evolutions": [
 				{
@@ -10060,7 +10082,7 @@
 				"Feraligatr"
 			],
 			"evolutions_ids": [
-				null
+				160
 			],
 			"evolutions": [
 				{
@@ -10176,7 +10198,7 @@
 				"Furret"
 			],
 			"evolutions_ids": [
-				null
+				162
 			],
 			"evolutions": [
 				{
@@ -10292,7 +10314,7 @@
 				"Noctowl"
 			],
 			"evolutions_ids": [
-				null
+				164
 			],
 			"evolutions": [
 				{
@@ -10409,7 +10431,7 @@
 				"Ledian"
 			],
 			"evolutions_ids": [
-				null
+				166
 			],
 			"evolutions": [
 				{
@@ -10526,7 +10548,7 @@
 				"Ariados"
 			],
 			"evolutions_ids": [
-				null
+				168
 			],
 			"evolutions": [
 				{
@@ -10696,7 +10718,7 @@
 				"Lanturn"
 			],
 			"evolutions_ids": [
-				null
+				171
 			],
 			"evolutions": [
 				{
@@ -10811,7 +10833,7 @@
 				"Pikachu"
 			],
 			"evolutions_ids": [
-				null
+				25
 			],
 			"evolutions": [
 				{
@@ -10873,7 +10895,7 @@
 				"Clefairy"
 			],
 			"evolutions_ids": [
-				null
+				35
 			],
 			"evolutions": [
 				{
@@ -10936,7 +10958,7 @@
 				"Jigglypuff"
 			],
 			"evolutions_ids": [
-				null
+				39
 			],
 			"evolutions": [
 				{
@@ -10998,7 +11020,7 @@
 				"Togetic"
 			],
 			"evolutions_ids": [
-				null
+				176
 			],
 			"evolutions": [
 				{
@@ -11122,7 +11144,7 @@
 				"Xatu"
 			],
 			"evolutions_ids": [
-				null
+				178
 			],
 			"evolutions": [
 				{
@@ -11241,7 +11263,7 @@
 				"Flaaffy"
 			],
 			"evolutions_ids": [
-				null
+				180
 			],
 			"evolutions": [
 				{
@@ -11307,7 +11329,7 @@
 				"Ampharos"
 			],
 			"evolutions_ids": [
-				null
+				181
 			],
 			"evolutions": [
 				{
@@ -11478,7 +11500,7 @@
 				"Azumarill"
 			],
 			"evolutions_ids": [
-				null
+				184
 			],
 			"evolutions": [
 				{
@@ -11699,7 +11721,7 @@
 				"Skiploom"
 			],
 			"evolutions_ids": [
-				null
+				188
 			],
 			"evolutions": [
 				{
@@ -11763,7 +11785,7 @@
 				"Jumpluff"
 			],
 			"evolutions_ids": [
-				null
+				189
 			],
 			"evolutions": [
 				{
@@ -11939,7 +11961,7 @@
 				"Sunflora"
 			],
 			"evolutions_ids": [
-				null
+				192
 			],
 			"evolutions": [
 				{
@@ -12116,7 +12138,7 @@
 				"Quagsire"
 			],
 			"evolutions_ids": [
-				null
+				195
 			],
 			"evolutions": [
 				{
@@ -12471,142 +12493,170 @@
 				"1": {
 					"form": "A",
 					"form_id": 1,
-					"proto": "UNOWN_A"
+					"proto": "UNOWN_A",
+					"asset_form": 11
 				},
 				"2": {
 					"form": "B",
 					"form_id": 2,
-					"proto": "UNOWN_B"
+					"proto": "UNOWN_B",
+					"asset_form": 12
 				},
 				"3": {
 					"form": "C",
 					"form_id": 3,
-					"proto": "UNOWN_C"
+					"proto": "UNOWN_C",
+					"asset_form": 13
 				},
 				"4": {
 					"form": "D",
 					"form_id": 4,
-					"proto": "UNOWN_D"
+					"proto": "UNOWN_D",
+					"asset_form": 14
 				},
 				"5": {
 					"form": "E",
 					"form_id": 5,
-					"proto": "UNOWN_E"
+					"proto": "UNOWN_E",
+					"asset_form": 15
 				},
 				"6": {
 					"form": "F",
 					"form_id": 6,
-					"proto": "UNOWN_F"
+					"proto": "UNOWN_F",
+					"asset_form": 16
 				},
 				"7": {
 					"form": "G",
 					"form_id": 7,
-					"proto": "UNOWN_G"
+					"proto": "UNOWN_G",
+					"asset_form": 17
 				},
 				"8": {
 					"form": "H",
 					"form_id": 8,
-					"proto": "UNOWN_H"
+					"proto": "UNOWN_H",
+					"asset_form": 18
 				},
 				"9": {
 					"form": "I",
 					"form_id": 9,
-					"proto": "UNOWN_I"
+					"proto": "UNOWN_I",
+					"asset_form": 19
 				},
 				"10": {
 					"form": "J",
 					"form_id": 10,
-					"proto": "UNOWN_J"
+					"proto": "UNOWN_J",
+					"asset_form": 20
 				},
 				"11": {
 					"form": "K",
 					"form_id": 11,
-					"proto": "UNOWN_K"
+					"proto": "UNOWN_K",
+					"asset_form": 21
 				},
 				"12": {
 					"form": "L",
 					"form_id": 12,
-					"proto": "UNOWN_L"
+					"proto": "UNOWN_L",
+					"asset_form": 22
 				},
 				"13": {
 					"form": "M",
 					"form_id": 13,
-					"proto": "UNOWN_M"
+					"proto": "UNOWN_M",
+					"asset_form": 23
 				},
 				"14": {
 					"form": "N",
 					"form_id": 14,
-					"proto": "UNOWN_N"
+					"proto": "UNOWN_N",
+					"asset_form": 24
 				},
 				"15": {
 					"form": "O",
 					"form_id": 15,
-					"proto": "UNOWN_O"
+					"proto": "UNOWN_O",
+					"asset_form": 25
 				},
 				"16": {
 					"form": "P",
 					"form_id": 16,
-					"proto": "UNOWN_P"
+					"proto": "UNOWN_P",
+					"asset_form": 26
 				},
 				"17": {
 					"form": "Q",
 					"form_id": 17,
-					"proto": "UNOWN_Q"
+					"proto": "UNOWN_Q",
+					"asset_form": 27
 				},
 				"18": {
 					"form": "R",
 					"form_id": 18,
-					"proto": "UNOWN_R"
+					"proto": "UNOWN_R",
+					"asset_form": 28
 				},
 				"19": {
 					"form": "S",
 					"form_id": 19,
-					"proto": "UNOWN_S"
+					"proto": "UNOWN_S",
+					"asset_form": 29
 				},
 				"20": {
 					"form": "T",
 					"form_id": 20,
-					"proto": "UNOWN_T"
+					"proto": "UNOWN_T",
+					"asset_form": 30
 				},
 				"21": {
 					"form": "U",
 					"form_id": 21,
-					"proto": "UNOWN_U"
+					"proto": "UNOWN_U",
+					"asset_form": 31
 				},
 				"22": {
 					"form": "V",
 					"form_id": 22,
-					"proto": "UNOWN_V"
+					"proto": "UNOWN_V",
+					"asset_form": 32
 				},
 				"23": {
 					"form": "W",
 					"form_id": 23,
-					"proto": "UNOWN_W"
+					"proto": "UNOWN_W",
+					"asset_form": 33
 				},
 				"24": {
 					"form": "X",
 					"form_id": 24,
-					"proto": "UNOWN_X"
+					"proto": "UNOWN_X",
+					"asset_form": 34
 				},
 				"25": {
 					"form": "Y",
 					"form_id": 25,
-					"proto": "UNOWN_Y"
+					"proto": "UNOWN_Y",
+					"asset_form": 35
 				},
 				"26": {
 					"form": "Z",
 					"form_id": 26,
-					"proto": "UNOWN_Z"
+					"proto": "UNOWN_Z",
+					"asset_form": 36
 				},
 				"27": {
 					"form": "Exclamation Point",
 					"form_id": 27,
-					"proto": "UNOWN_EXCLAMATION_POINT"
+					"proto": "UNOWN_EXCLAMATION_POINT",
+					"asset_form": 37
 				},
 				"28": {
 					"form": "Question Mark",
 					"form_id": 28,
-					"proto": "UNOWN_QUESTION_MARK"
+					"proto": "UNOWN_QUESTION_MARK",
+					"asset_form": 38
 				}
 			},
 			"default_form_id": "1",
@@ -12794,7 +12844,7 @@
 				"Forretress"
 			],
 			"evolutions_ids": [
-				null
+				205
 			],
 			"evolutions": [
 				{
@@ -13078,7 +13128,7 @@
 				"Granbull"
 			],
 			"evolutions_ids": [
-				null
+				210
 			],
 			"evolutions": [
 				{
@@ -13468,7 +13518,7 @@
 				"Ursaring"
 			],
 			"evolutions_ids": [
-				null
+				217
 			],
 			"evolutions": [
 				{
@@ -13584,7 +13634,7 @@
 				"Magcargo"
 			],
 			"evolutions_ids": [
-				null
+				219
 			],
 			"evolutions": [
 				{
@@ -13701,7 +13751,7 @@
 				"Piloswine"
 			],
 			"evolutions_ids": [
-				null
+				221
 			],
 			"evolutions": [
 				{
@@ -13882,7 +13932,7 @@
 				"Octillery"
 			],
 			"evolutions_ids": [
-				null
+				224
 			],
 			"evolutions": [
 				{
@@ -14163,7 +14213,7 @@
 				"Houndoom"
 			],
 			"evolutions_ids": [
-				null
+				229
 			],
 			"evolutions": [
 				{
@@ -14334,7 +14384,7 @@
 				"Donphan"
 			],
 			"evolutions_ids": [
-				null
+				232
 			],
 			"evolutions": [
 				{
@@ -14608,9 +14658,9 @@
 				"Hitmontop"
 			],
 			"evolutions_ids": [
-				null,
-				null,
-				null
+				106,
+				107,
+				237
 			],
 			"evolutions": [
 				{
@@ -14735,7 +14785,7 @@
 				"Jynx"
 			],
 			"evolutions_ids": [
-				null
+				124
 			],
 			"evolutions": [
 				{
@@ -14797,7 +14847,7 @@
 				"Electabuzz"
 			],
 			"evolutions_ids": [
-				null
+				125
 			],
 			"evolutions": [
 				{
@@ -14859,7 +14909,7 @@
 				"Magmar"
 			],
 			"evolutions_ids": [
-				null
+				126
 			],
 			"evolutions": [
 				{
@@ -15189,7 +15239,7 @@
 				"Pupitar"
 			],
 			"evolutions_ids": [
-				null
+				247
 			],
 			"evolutions": [
 				{
@@ -15256,7 +15306,7 @@
 				"Tyranitar"
 			],
 			"evolutions_ids": [
-				null
+				248
 			],
 			"evolutions": [
 				{
@@ -16103,6 +16153,7 @@
 					"form": "Galarian",
 					"form_id": 946,
 					"proto": "ZIGZAGOON_GALARIAN",
+					"asset_form": 31,
 					"quick_moves": [
 						"Tackle",
 						"Take Down"
@@ -16179,6 +16230,7 @@
 					"form": "Galarian",
 					"form_id": 948,
 					"proto": "LINOONE_GALARIAN",
+					"asset_form": 31,
 					"quick_moves": [
 						"Snarl",
 						"Lick"
@@ -19716,102 +19768,122 @@
 				"37": {
 					"form": "00",
 					"form_id": 37,
-					"proto": "SPINDA_00"
+					"proto": "SPINDA_00",
+					"asset_form": 11
 				},
 				"38": {
 					"form": "01",
 					"form_id": 38,
-					"proto": "SPINDA_01"
+					"proto": "SPINDA_01",
+					"asset_form": 12
 				},
 				"39": {
 					"form": "02",
 					"form_id": 39,
-					"proto": "SPINDA_02"
+					"proto": "SPINDA_02",
+					"asset_form": 13
 				},
 				"40": {
 					"form": "03",
 					"form_id": 40,
-					"proto": "SPINDA_03"
+					"proto": "SPINDA_03",
+					"asset_form": 14
 				},
 				"41": {
 					"form": "04",
 					"form_id": 41,
-					"proto": "SPINDA_04"
+					"proto": "SPINDA_04",
+					"asset_form": 15
 				},
 				"42": {
 					"form": "05",
 					"form_id": 42,
-					"proto": "SPINDA_05"
+					"proto": "SPINDA_05",
+					"asset_form": 16
 				},
 				"43": {
 					"form": "06",
 					"form_id": 43,
-					"proto": "SPINDA_06"
+					"proto": "SPINDA_06",
+					"asset_form": 17
 				},
 				"44": {
 					"form": "07",
 					"form_id": 44,
-					"proto": "SPINDA_07"
+					"proto": "SPINDA_07",
+					"asset_form": 18
 				},
 				"121": {
 					"form": "08",
 					"form_id": 121,
-					"proto": "SPINDA_08"
+					"proto": "SPINDA_08",
+					"asset_form": 19
 				},
 				"122": {
 					"form": "09",
 					"form_id": 122,
-					"proto": "SPINDA_09"
+					"proto": "SPINDA_09",
+					"asset_form": 20
 				},
 				"123": {
 					"form": "10",
 					"form_id": 123,
-					"proto": "SPINDA_10"
+					"proto": "SPINDA_10",
+					"asset_form": 21
 				},
 				"124": {
 					"form": "11",
 					"form_id": 124,
-					"proto": "SPINDA_11"
+					"proto": "SPINDA_11",
+					"asset_form": 22
 				},
 				"125": {
 					"form": "12",
 					"form_id": 125,
-					"proto": "SPINDA_12"
+					"proto": "SPINDA_12",
+					"asset_form": 23
 				},
 				"126": {
 					"form": "13",
 					"form_id": 126,
-					"proto": "SPINDA_13"
+					"proto": "SPINDA_13",
+					"asset_form": 24
 				},
 				"127": {
 					"form": "14",
 					"form_id": 127,
-					"proto": "SPINDA_14"
+					"proto": "SPINDA_14",
+					"asset_form": 25
 				},
 				"128": {
 					"form": "15",
 					"form_id": 128,
-					"proto": "SPINDA_15"
+					"proto": "SPINDA_15",
+					"asset_form": 26
 				},
 				"129": {
 					"form": "16",
 					"form_id": 129,
-					"proto": "SPINDA_16"
+					"proto": "SPINDA_16",
+					"asset_form": 27
 				},
 				"130": {
 					"form": "17",
 					"form_id": 130,
-					"proto": "SPINDA_17"
+					"proto": "SPINDA_17",
+					"asset_form": 28
 				},
 				"131": {
 					"form": "18",
 					"form_id": 131,
-					"proto": "SPINDA_18"
+					"proto": "SPINDA_18",
+					"asset_form": 29
 				},
 				"132": {
 					"form": "19",
 					"form_id": 132,
-					"proto": "SPINDA_19"
+					"proto": "SPINDA_19",
+					"asset_form": 30
 				}
 			},
 			"default_form_id": "37",
@@ -21128,6 +21200,7 @@
 					"form": "Normal",
 					"form_id": 29,
 					"proto": "CASTFORM_NORMAL",
+					"asset_form": 11,
 					"charged_moves": [
 						"Hurricane",
 						"Energy Ball",
@@ -21138,6 +21211,7 @@
 					"form": "Sunny",
 					"form_id": 30,
 					"proto": "CASTFORM_SUNNY",
+					"asset_form": 12,
 					"quick_moves": [
 						"Ember",
 						"Tackle"
@@ -21155,6 +21229,7 @@
 					"form": "Rainy",
 					"form_id": 31,
 					"proto": "CASTFORM_RAINY",
+					"asset_form": 13,
 					"quick_moves": [
 						"Water Gun",
 						"Tackle"
@@ -21172,6 +21247,7 @@
 					"form": "Snowy",
 					"form_id": 32,
 					"proto": "CASTFORM_SNOWY",
+					"asset_form": 14,
 					"quick_moves": [
 						"Powder Snow",
 						"Tackle"
@@ -23084,6 +23160,7 @@
 					"form": "Normal",
 					"form_id": 33,
 					"proto": "DEOXYS_NORMAL",
+					"asset_form": 11,
 					"charged_moves": [
 						"Psycho Boost",
 						"Thunderbolt",
@@ -23094,6 +23171,7 @@
 					"form": "Attack",
 					"form_id": 34,
 					"proto": "DEOXYS_ATTACK",
+					"asset_form": 12,
 					"attack": 414,
 					"defense": 46,
 					"stamina": 137,
@@ -23111,6 +23189,7 @@
 					"form": "Defense",
 					"form_id": 35,
 					"proto": "DEOXYS_DEFENSE",
+					"asset_form": 13,
 					"attack": 144,
 					"defense": 330,
 					"stamina": 137,
@@ -23128,6 +23207,7 @@
 					"form": "Speed",
 					"form_id": 36,
 					"proto": "DEOXYS_SPEED",
+					"asset_form": 14,
 					"attack": 230,
 					"defense": 218,
 					"stamina": 137,
@@ -24602,17 +24682,20 @@
 				"118": {
 					"form": "Plant",
 					"form_id": 118,
-					"proto": "BURMY_PLANT"
+					"proto": "BURMY_PLANT",
+					"asset_form": 11
 				},
 				"119": {
 					"form": "Sandy",
 					"form_id": 119,
-					"proto": "BURMY_SANDY"
+					"proto": "BURMY_SANDY",
+					"asset_form": 12
 				},
 				"120": {
 					"form": "Trash",
 					"form_id": 120,
-					"proto": "BURMY_TRASH"
+					"proto": "BURMY_TRASH",
+					"asset_form": 13
 				},
 				"1706": {
 					"form": "Normal",
@@ -24682,6 +24765,7 @@
 					"form": "Plant",
 					"form_id": 87,
 					"proto": "WORMADAM_PLANT",
+					"asset_form": 11,
 					"quick_moves": [
 						"Confusion",
 						"Bug Bite"
@@ -24696,6 +24780,7 @@
 					"form": "Sandy",
 					"form_id": 88,
 					"proto": "WORMADAM_SANDY",
+					"asset_form": 12,
 					"quick_moves": [
 						"Confusion",
 						"Bug Bite"
@@ -24714,6 +24799,7 @@
 					"form": "Trash",
 					"form_id": 89,
 					"proto": "WORMADAM_TRASH",
+					"asset_form": 13,
 					"attack": 127,
 					"defense": 175,
 					"stamina": 155,
@@ -25184,12 +25270,14 @@
 				"94": {
 					"form": "Overcast",
 					"form_id": 94,
-					"proto": "CHERRIM_OVERCAST"
+					"proto": "CHERRIM_OVERCAST",
+					"asset_form": 11
 				},
 				"95": {
 					"form": "Sunny",
 					"form_id": 95,
 					"proto": "CHERRIM_SUNNY",
+					"asset_form": 12,
 					"charged_moves": [
 						"Dazzling Gleam",
 						"Hyper Beam",
@@ -25253,12 +25341,14 @@
 				"96": {
 					"form": "West Sea",
 					"form_id": 96,
-					"proto": "SHELLOS_WEST_SEA"
+					"proto": "SHELLOS_WEST_SEA",
+					"asset_form": 11
 				},
 				"97": {
 					"form": "East Sea",
 					"form_id": 97,
-					"proto": "SHELLOS_EAST_SEA"
+					"proto": "SHELLOS_EAST_SEA",
+					"asset_form": 12
 				},
 				"1736": {
 					"form": "Normal",
@@ -25322,12 +25412,14 @@
 				"98": {
 					"form": "West Sea",
 					"form_id": 98,
-					"proto": "GASTRODON_WEST_SEA"
+					"proto": "GASTRODON_WEST_SEA",
+					"asset_form": 11
 				},
 				"99": {
 					"form": "East Sea",
 					"form_id": 99,
-					"proto": "GASTRODON_EAST_SEA"
+					"proto": "GASTRODON_EAST_SEA",
+					"asset_form": 12
 				},
 				"1739": {
 					"form": "Normal",
@@ -28433,12 +28525,14 @@
 				"81": {
 					"form": "Normal",
 					"form_id": 81,
-					"proto": "ROTOM_NORMAL"
+					"proto": "ROTOM_NORMAL",
+					"asset_form": 11
 				},
 				"82": {
 					"form": "Frost",
 					"form_id": 82,
 					"proto": "ROTOM_FROST",
+					"asset_form": 14,
 					"attack": 204,
 					"defense": 219,
 					"stamina": 137,
@@ -28456,6 +28550,7 @@
 					"form": "Fan",
 					"form_id": 83,
 					"proto": "ROTOM_FAN",
+					"asset_form": 15,
 					"attack": 204,
 					"defense": 219,
 					"stamina": 137,
@@ -28472,6 +28567,7 @@
 					"form": "Mow",
 					"form_id": 84,
 					"proto": "ROTOM_MOW",
+					"asset_form": 16,
 					"attack": 204,
 					"defense": 219,
 					"stamina": 137,
@@ -28484,6 +28580,7 @@
 					"form": "Wash",
 					"form_id": 85,
 					"proto": "ROTOM_WASH",
+					"asset_form": 13,
 					"attack": 204,
 					"defense": 219,
 					"stamina": 137,
@@ -28501,6 +28598,7 @@
 					"form": "Heat",
 					"form_id": 86,
 					"proto": "ROTOM_HEAT",
+					"asset_form": 12,
 					"attack": 204,
 					"defense": 219,
 					"stamina": 137,
@@ -28922,12 +29020,14 @@
 				"90": {
 					"form": "Altered",
 					"form_id": 90,
-					"proto": "GIRATINA_ALTERED"
+					"proto": "GIRATINA_ALTERED",
+					"asset_form": 11
 				},
 				"91": {
 					"form": "Origin",
 					"form_id": 91,
 					"proto": "GIRATINA_ORIGIN",
+					"asset_form": 12,
 					"attack": 225,
 					"defense": 187,
 					"stamina": 284,
@@ -29205,6 +29305,7 @@
 					"form": "Sky",
 					"form_id": 92,
 					"proto": "SHAYMIN_SKY",
+					"asset_form": 12,
 					"attack": 261,
 					"defense": 166,
 					"stamina": 225,
@@ -29218,7 +29319,8 @@
 				"93": {
 					"form": "Land",
 					"form_id": 93,
-					"proto": "SHAYMIN_LAND"
+					"proto": "SHAYMIN_LAND",
+					"asset_form": 11
 				},
 				"1883": {
 					"form": "Normal",
@@ -29274,12 +29376,14 @@
 				"100": {
 					"form": "Normal",
 					"form_id": 100,
-					"proto": "ARCEUS_NORMAL"
+					"proto": "ARCEUS_NORMAL",
+					"asset_form": 11
 				},
 				"101": {
 					"form": "Fighting",
 					"form_id": 101,
 					"proto": "ARCEUS_FIGHTING",
+					"asset_form": 12,
 					"types": [
 						"Fighting"
 					]
@@ -29288,6 +29392,7 @@
 					"form": "Flying",
 					"form_id": 102,
 					"proto": "ARCEUS_FLYING",
+					"asset_form": 13,
 					"types": [
 						"Flying"
 					]
@@ -29296,6 +29401,7 @@
 					"form": "Poison",
 					"form_id": 103,
 					"proto": "ARCEUS_POISON",
+					"asset_form": 14,
 					"types": [
 						"Poison"
 					]
@@ -29304,6 +29410,7 @@
 					"form": "Ground",
 					"form_id": 104,
 					"proto": "ARCEUS_GROUND",
+					"asset_form": 15,
 					"types": [
 						"Ground"
 					]
@@ -29312,6 +29419,7 @@
 					"form": "Rock",
 					"form_id": 105,
 					"proto": "ARCEUS_ROCK",
+					"asset_form": 16,
 					"types": [
 						"Rock"
 					]
@@ -29320,6 +29428,7 @@
 					"form": "Bug",
 					"form_id": 106,
 					"proto": "ARCEUS_BUG",
+					"asset_form": 17,
 					"types": [
 						"Bug"
 					]
@@ -29328,6 +29437,7 @@
 					"form": "Ghost",
 					"form_id": 107,
 					"proto": "ARCEUS_GHOST",
+					"asset_form": 18,
 					"types": [
 						"Ghost"
 					]
@@ -29336,6 +29446,7 @@
 					"form": "Steel",
 					"form_id": 108,
 					"proto": "ARCEUS_STEEL",
+					"asset_form": 19,
 					"types": [
 						"Steel"
 					]
@@ -29344,6 +29455,7 @@
 					"form": "Fire",
 					"form_id": 109,
 					"proto": "ARCEUS_FIRE",
+					"asset_form": 20,
 					"types": [
 						"Fire"
 					]
@@ -29352,6 +29464,7 @@
 					"form": "Water",
 					"form_id": 110,
 					"proto": "ARCEUS_WATER",
+					"asset_form": 21,
 					"types": [
 						"Water"
 					]
@@ -29360,6 +29473,7 @@
 					"form": "Grass",
 					"form_id": 111,
 					"proto": "ARCEUS_GRASS",
+					"asset_form": 22,
 					"types": [
 						"Grass"
 					]
@@ -29368,6 +29482,7 @@
 					"form": "Electric",
 					"form_id": 112,
 					"proto": "ARCEUS_ELECTRIC",
+					"asset_form": 23,
 					"types": [
 						"Electric"
 					]
@@ -29376,6 +29491,7 @@
 					"form": "Psychic",
 					"form_id": 113,
 					"proto": "ARCEUS_PSYCHIC",
+					"asset_form": 24,
 					"types": [
 						"Psychic"
 					]
@@ -29384,6 +29500,7 @@
 					"form": "Ice",
 					"form_id": 114,
 					"proto": "ARCEUS_ICE",
+					"asset_form": 25,
 					"types": [
 						"Ice"
 					]
@@ -29392,6 +29509,7 @@
 					"form": "Dragon",
 					"form_id": 115,
 					"proto": "ARCEUS_DRAGON",
+					"asset_form": 26,
 					"types": [
 						"Dragon"
 					]
@@ -29400,6 +29518,7 @@
 					"form": "Dark",
 					"form_id": 116,
 					"proto": "ARCEUS_DARK",
+					"asset_form": 27,
 					"types": [
 						"Dark"
 					]
@@ -29408,6 +29527,7 @@
 					"form": "Fairy",
 					"form_id": 117,
 					"proto": "ARCEUS_FAIRY",
+					"asset_form": 28,
 					"types": [
 						"Fairy"
 					]
@@ -32631,12 +32751,14 @@
 				"136": {
 					"form": "Red Striped",
 					"form_id": 136,
-					"proto": "BASCULIN_RED_STRIPED"
+					"proto": "BASCULIN_RED_STRIPED",
+					"asset_form": 11
 				},
 				"137": {
 					"form": "Blue Striped",
 					"form_id": 137,
-					"proto": "BASCULIN_BLUE_STRIPED"
+					"proto": "BASCULIN_BLUE_STRIPED",
+					"asset_form": 12
 				}
 			},
 			"default_form_id": "136",
@@ -32869,6 +32991,7 @@
 					"form": "Galarian",
 					"form_id": 2341,
 					"proto": "DARUMAKA_GALARIAN",
+					"asset_form": 31,
 					"height": 0.7,
 					"weight": 40,
 					"quick_moves": [
@@ -32929,12 +33052,14 @@
 				"138": {
 					"form": "Standard",
 					"form_id": 138,
-					"proto": "DARMANITAN_STANDARD"
+					"proto": "DARMANITAN_STANDARD",
+					"asset_form": 11
 				},
 				"139": {
 					"form": "Zen",
 					"form_id": 139,
 					"proto": "DARMANITAN_ZEN",
+					"asset_form": 12,
 					"attack": 243,
 					"defense": 202,
 					"stamina": 233,
@@ -32946,12 +33071,14 @@
 				"2342": {
 					"form": "Galarian Standard",
 					"form_id": 2342,
-					"proto": "DARMANITAN_GALARIAN_STANDARD"
+					"proto": "DARMANITAN_GALARIAN_STANDARD",
+					"asset_form": 31
 				},
 				"2343": {
 					"form": "Galarian Zen",
 					"form_id": 2343,
-					"proto": "DARMANITAN_GALARIAN_ZEN"
+					"proto": "DARMANITAN_GALARIAN_ZEN",
+					"asset_form": 32
 				}
 			},
 			"default_form_id": "138",
@@ -34641,22 +34768,26 @@
 				"585": {
 					"form": "Spring",
 					"form_id": 585,
-					"proto": "DEERLING_SPRING"
+					"proto": "DEERLING_SPRING",
+					"asset_form": 11
 				},
 				"586": {
 					"form": "Summer",
 					"form_id": 586,
-					"proto": "DEERLING_SUMMER"
+					"proto": "DEERLING_SUMMER",
+					"asset_form": 12
 				},
 				"587": {
 					"form": "Autumn",
 					"form_id": 587,
-					"proto": "DEERLING_AUTUMN"
+					"proto": "DEERLING_AUTUMN",
+					"asset_form": 13
 				},
 				"588": {
 					"form": "Winter",
 					"form_id": 588,
-					"proto": "DEERLING_WINTER"
+					"proto": "DEERLING_WINTER",
+					"asset_form": 14
 				}
 			},
 			"default_form_id": "585",
@@ -34700,22 +34831,26 @@
 				"589": {
 					"form": "Spring",
 					"form_id": 589,
-					"proto": "SAWSBUCK_SPRING"
+					"proto": "SAWSBUCK_SPRING",
+					"asset_form": 11
 				},
 				"590": {
 					"form": "Summer",
 					"form_id": 590,
-					"proto": "SAWSBUCK_SUMMER"
+					"proto": "SAWSBUCK_SUMMER",
+					"asset_form": 12
 				},
 				"591": {
 					"form": "Autumn",
 					"form_id": 591,
-					"proto": "SAWSBUCK_AUTUMN"
+					"proto": "SAWSBUCK_AUTUMN",
+					"asset_form": 13
 				},
 				"592": {
 					"form": "Winter",
 					"form_id": 592,
-					"proto": "SAWSBUCK_WINTER"
+					"proto": "SAWSBUCK_WINTER",
+					"asset_form": 14
 				}
 			},
 			"default_form_id": "589",
@@ -35058,7 +35193,8 @@
 				"2330": {
 					"form": "Female",
 					"form_id": 2330,
-					"proto": "FRILLISH_FEMALE"
+					"proto": "FRILLISH_FEMALE",
+					"asset_form": 1
 				}
 			},
 			"default_form_id": "2168",
@@ -35123,7 +35259,8 @@
 				"2331": {
 					"form": "Female",
 					"form_id": 2331,
-					"proto": "JELLICENT_FEMALE"
+					"proto": "JELLICENT_FEMALE",
+					"asset_form": 1
 				}
 			},
 			"default_form_id": "2171",
@@ -36548,6 +36685,7 @@
 					"form": "Galarian",
 					"form_id": 2345,
 					"proto": "STUNFISK_GALARIAN",
+					"asset_form": 31,
 					"height": 0.7,
 					"weight": 20.5,
 					"quick_moves": [
@@ -37839,12 +37977,14 @@
 				"140": {
 					"form": "Incarnate",
 					"form_id": 140,
-					"proto": "TORNADUS_INCARNATE"
+					"proto": "TORNADUS_INCARNATE",
+					"asset_form": 11
 				},
 				"141": {
 					"form": "Therian",
 					"form_id": 141,
 					"proto": "TORNADUS_THERIAN",
+					"asset_form": 12,
 					"attack": 238,
 					"defense": 189,
 					"stamina": 188
@@ -37890,12 +38030,14 @@
 				"142": {
 					"form": "Incarnate",
 					"form_id": 142,
-					"proto": "THUNDURUS_INCARNATE"
+					"proto": "THUNDURUS_INCARNATE",
+					"asset_form": 11
 				},
 				"143": {
 					"form": "Therian",
 					"form_id": 143,
 					"proto": "THUNDURUS_THERIAN",
+					"asset_form": 12,
 					"attack": 295,
 					"defense": 161,
 					"stamina": 188
@@ -38050,12 +38192,14 @@
 				"144": {
 					"form": "Incarnate",
 					"form_id": 144,
-					"proto": "LANDORUS_INCARNATE"
+					"proto": "LANDORUS_INCARNATE",
+					"asset_form": 11
 				},
 				"145": {
 					"form": "Therian",
 					"form_id": 145,
 					"proto": "LANDORUS_THERIAN",
+					"asset_form": 12,
 					"attack": 289,
 					"defense": 179,
 					"stamina": 205
@@ -38102,12 +38246,14 @@
 				"146": {
 					"form": "Normal",
 					"form_id": 146,
-					"proto": "KYUREM_NORMAL"
+					"proto": "KYUREM_NORMAL",
+					"asset_form": 11
 				},
 				"147": {
 					"form": "Black",
 					"form_id": 147,
 					"proto": "KYUREM_BLACK",
+					"asset_form": 13,
 					"attack": 310,
 					"defense": 183,
 					"stamina": 245,
@@ -38126,6 +38272,7 @@
 					"form": "White",
 					"form_id": 148,
 					"proto": "KYUREM_WHITE",
+					"asset_form": 12,
 					"attack": 310,
 					"defense": 183,
 					"stamina": 245,
@@ -38177,12 +38324,14 @@
 				"149": {
 					"form": "Ordinary",
 					"form_id": 149,
-					"proto": "KELDEO_ORDINARY"
+					"proto": "KELDEO_ORDINARY",
+					"asset_form": 11
 				},
 				"150": {
 					"form": "Resolute",
 					"form_id": 150,
-					"proto": "KELDEO_RESOLUTE"
+					"proto": "KELDEO_RESOLUTE",
+					"asset_form": 12
 				}
 			},
 			"default_form_id": "149",
@@ -38227,6 +38376,7 @@
 					"form": "Aria",
 					"form_id": 151,
 					"proto": "MELOETTA_ARIA",
+					"asset_form": 11,
 					"quick_moves": [
 						"Quick Attack",
 						"Confusion"
@@ -38242,6 +38392,7 @@
 					"form": "Pirouette",
 					"form_id": 152,
 					"proto": "MELOETTA_PIROUETTE",
+					"asset_form": 12,
 					"attack": 269,
 					"defense": 188,
 					"stamina": 225,
@@ -38292,12 +38443,14 @@
 				"593": {
 					"form": "Normal",
 					"form_id": 593,
-					"proto": "GENESECT_NORMAL"
+					"proto": "GENESECT_NORMAL",
+					"asset_form": 11
 				},
 				"594": {
 					"form": "Shock",
 					"form_id": 594,
 					"proto": "GENESECT_SHOCK",
+					"asset_form": 13,
 					"charged_moves": [
 						"X Scissor",
 						"Magnet Bomb",
@@ -38308,6 +38461,7 @@
 					"form": "Burn",
 					"form_id": 595,
 					"proto": "GENESECT_BURN",
+					"asset_form": 14,
 					"charged_moves": [
 						"X Scissor",
 						"Magnet Bomb",
@@ -38318,6 +38472,7 @@
 					"form": "Chill",
 					"form_id": 596,
 					"proto": "GENESECT_CHILL",
+					"asset_form": 15,
 					"charged_moves": [
 						"X Scissor",
 						"Magnet Bomb",
@@ -38328,6 +38483,7 @@
 					"form": "Douse",
 					"form_id": 597,
 					"proto": "GENESECT_DOUSE",
+					"asset_form": 12,
 					"charged_moves": [
 						"X Scissor",
 						"Magnet Bomb",
@@ -38484,17 +38640,20 @@
 				"2501": {
 					"form": "Normal",
 					"form_id": 2501,
-					"proto": "OBSTAGOON_NORMAL"
+					"proto": "OBSTAGOON_NORMAL",
+					"asset_form": 31
 				},
 				"2502": {
 					"form": "Shadow",
 					"form_id": 2502,
-					"proto": "OBSTAGOON_SHADOW"
+					"proto": "OBSTAGOON_SHADOW",
+					"asset_form": 31
 				},
 				"2503": {
 					"form": "Purified",
 					"form_id": 2503,
-					"proto": "OBSTAGOON_PURIFIED"
+					"proto": "OBSTAGOON_PURIFIED",
+					"asset_form": 31
 				}
 			},
 			"default_form_id": "2501",
@@ -38538,17 +38697,20 @@
 				"2504": {
 					"form": "Normal",
 					"form_id": 2504,
-					"proto": "PERRSERKER_NORMAL"
+					"proto": "PERRSERKER_NORMAL",
+					"asset_form": 31
 				},
 				"2505": {
 					"form": "Shadow",
 					"form_id": 2505,
-					"proto": "PERRSERKER_SHADOW"
+					"proto": "PERRSERKER_SHADOW",
+					"asset_form": 31
 				},
 				"2506": {
 					"form": "Purified",
 					"form_id": 2506,
-					"proto": "PERRSERKER_PURIFIED"
+					"proto": "PERRSERKER_PURIFIED",
+					"asset_form": 31
 				}
 			},
 			"default_form_id": "2504",
@@ -38591,17 +38753,20 @@
 				"2510": {
 					"form": "Normal",
 					"form_id": 2510,
-					"proto": "SIRFETCHD_NORMAL"
+					"proto": "SIRFETCHD_NORMAL",
+					"asset_form": 31
 				},
 				"2511": {
 					"form": "Shadow",
 					"form_id": 2511,
-					"proto": "SIRFETCHD_SHADOW"
+					"proto": "SIRFETCHD_SHADOW",
+					"asset_form": 31
 				},
 				"2512": {
 					"form": "Purified",
 					"form_id": 2512,
-					"proto": "SIRFETCHD_PURIFIED"
+					"proto": "SIRFETCHD_PURIFIED",
+					"asset_form": 31
 				}
 			},
 			"default_form_id": "2510",
@@ -38636,3803 +38801,6 @@
 			"third_move_candy": 50,
 			"gym_defender_eligible": true,
 			"default_form": "Normal"
-		},
-		"undefined": {
-			"name": "Bulbasaur",
-			"forms": {
-				"1": {
-					"form": "A",
-					"form_id": 1,
-					"proto": "UNOWN_A",
-					"asset_form": 11
-				},
-				"2": {
-					"form": "B",
-					"form_id": 2,
-					"proto": "UNOWN_B",
-					"asset_form": 12
-				},
-				"3": {
-					"form": "C",
-					"form_id": 3,
-					"proto": "UNOWN_C",
-					"asset_form": 13
-				},
-				"4": {
-					"form": "D",
-					"form_id": 4,
-					"proto": "UNOWN_D",
-					"asset_form": 14
-				},
-				"5": {
-					"form": "E",
-					"form_id": 5,
-					"proto": "UNOWN_E",
-					"asset_form": 15
-				},
-				"6": {
-					"form": "F",
-					"form_id": 6,
-					"proto": "UNOWN_F",
-					"asset_form": 16
-				},
-				"7": {
-					"form": "G",
-					"form_id": 7,
-					"proto": "UNOWN_G",
-					"asset_form": 17
-				},
-				"8": {
-					"form": "H",
-					"form_id": 8,
-					"proto": "UNOWN_H",
-					"asset_form": 18
-				},
-				"9": {
-					"form": "I",
-					"form_id": 9,
-					"proto": "UNOWN_I",
-					"asset_form": 19
-				},
-				"10": {
-					"form": "J",
-					"form_id": 10,
-					"proto": "UNOWN_J",
-					"asset_form": 20
-				},
-				"11": {
-					"form": "K",
-					"form_id": 11,
-					"proto": "UNOWN_K",
-					"asset_form": 21
-				},
-				"12": {
-					"form": "L",
-					"form_id": 12,
-					"proto": "UNOWN_L",
-					"asset_form": 22
-				},
-				"13": {
-					"form": "M",
-					"form_id": 13,
-					"proto": "UNOWN_M",
-					"asset_form": 23
-				},
-				"14": {
-					"form": "N",
-					"form_id": 14,
-					"proto": "UNOWN_N",
-					"asset_form": 24
-				},
-				"15": {
-					"form": "O",
-					"form_id": 15,
-					"proto": "UNOWN_O",
-					"asset_form": 25
-				},
-				"16": {
-					"form": "P",
-					"form_id": 16,
-					"proto": "UNOWN_P",
-					"asset_form": 26
-				},
-				"17": {
-					"form": "Q",
-					"form_id": 17,
-					"proto": "UNOWN_Q",
-					"asset_form": 27
-				},
-				"18": {
-					"form": "R",
-					"form_id": 18,
-					"proto": "UNOWN_R",
-					"asset_form": 28
-				},
-				"19": {
-					"form": "S",
-					"form_id": 19,
-					"proto": "UNOWN_S",
-					"asset_form": 29
-				},
-				"20": {
-					"form": "T",
-					"form_id": 20,
-					"proto": "UNOWN_T",
-					"asset_form": 30
-				},
-				"21": {
-					"form": "U",
-					"form_id": 21,
-					"proto": "UNOWN_U",
-					"asset_form": 31
-				},
-				"22": {
-					"form": "V",
-					"form_id": 22,
-					"proto": "UNOWN_V",
-					"asset_form": 32
-				},
-				"23": {
-					"form": "W",
-					"form_id": 23,
-					"proto": "UNOWN_W",
-					"asset_form": 33
-				},
-				"24": {
-					"form": "X",
-					"form_id": 24,
-					"proto": "UNOWN_X",
-					"asset_form": 34
-				},
-				"25": {
-					"form": "Y",
-					"form_id": 25,
-					"proto": "UNOWN_Y",
-					"asset_form": 35
-				},
-				"26": {
-					"form": "Z",
-					"form_id": 26,
-					"proto": "UNOWN_Z",
-					"asset_form": 36
-				},
-				"27": {
-					"form": "Exclamation",
-					"form_id": 27,
-					"proto": "UNOWN_EXCLAMATION_POINT",
-					"asset_form": 37
-				},
-				"28": {
-					"form": "Question",
-					"form_id": 28,
-					"proto": "UNOWN_QUESTION_MARK",
-					"asset_form": 38
-				},
-				"29": {
-					"form": "Normal",
-					"form_id": 29,
-					"proto": "CASTFORM_NORMAL",
-					"asset_form": 11
-				},
-				"30": {
-					"form": "Sunny",
-					"form_id": 30,
-					"proto": "CASTFORM_SUNNY",
-					"asset_form": 12
-				},
-				"31": {
-					"form": "Rainy",
-					"form_id": 31,
-					"proto": "CASTFORM_RAINY",
-					"asset_form": 13
-				},
-				"32": {
-					"form": "Snowy",
-					"form_id": 32,
-					"proto": "CASTFORM_SNOWY",
-					"asset_form": 14
-				},
-				"33": {
-					"form": "Normal",
-					"form_id": 33,
-					"proto": "DEOXYS_NORMAL",
-					"asset_form": 11
-				},
-				"34": {
-					"form": "Attack",
-					"form_id": 34,
-					"proto": "DEOXYS_ATTACK",
-					"asset_form": 12
-				},
-				"35": {
-					"form": "Defense",
-					"form_id": 35,
-					"proto": "DEOXYS_DEFENSE",
-					"asset_form": 13
-				},
-				"36": {
-					"form": "Speed",
-					"form_id": 36,
-					"proto": "DEOXYS_SPEED",
-					"asset_form": 14
-				},
-				"37": {
-					"form": "00",
-					"form_id": 37,
-					"proto": "SPINDA_00",
-					"asset_form": 11
-				},
-				"38": {
-					"form": "01",
-					"form_id": 38,
-					"proto": "SPINDA_01",
-					"asset_form": 12
-				},
-				"39": {
-					"form": "02",
-					"form_id": 39,
-					"proto": "SPINDA_02",
-					"asset_form": 13
-				},
-				"40": {
-					"form": "03",
-					"form_id": 40,
-					"proto": "SPINDA_03",
-					"asset_form": 14
-				},
-				"41": {
-					"form": "04",
-					"form_id": 41,
-					"proto": "SPINDA_04",
-					"asset_form": 15
-				},
-				"42": {
-					"form": "05",
-					"form_id": 42,
-					"proto": "SPINDA_05",
-					"asset_form": 16
-				},
-				"43": {
-					"form": "06",
-					"form_id": 43,
-					"proto": "SPINDA_06",
-					"asset_form": 17
-				},
-				"44": {
-					"form": "07",
-					"form_id": 44,
-					"proto": "SPINDA_07",
-					"asset_form": 18
-				},
-				"45": {
-					"form": "Normal",
-					"form_id": 45,
-					"proto": "RATTATA_NORMAL"
-				},
-				"46": {
-					"form": "Alola",
-					"form_id": 46,
-					"proto": "RATTATA_ALOLA",
-					"asset_form": 61
-				},
-				"47": {
-					"form": "Normal",
-					"form_id": 47,
-					"proto": "RATICATE_NORMAL"
-				},
-				"48": {
-					"form": "Alola",
-					"form_id": 48,
-					"proto": "RATICATE_ALOLA",
-					"asset_form": 61
-				},
-				"49": {
-					"form": "Normal",
-					"form_id": 49,
-					"proto": "RAICHU_NORMAL"
-				},
-				"50": {
-					"form": "Alola",
-					"form_id": 50,
-					"proto": "RAICHU_ALOLA",
-					"asset_form": 61
-				},
-				"51": {
-					"form": "Normal",
-					"form_id": 51,
-					"proto": "SANDSHREW_NORMAL"
-				},
-				"52": {
-					"form": "Alola",
-					"form_id": 52,
-					"proto": "SANDSHREW_ALOLA",
-					"asset_form": 61
-				},
-				"53": {
-					"form": "Normal",
-					"form_id": 53,
-					"proto": "SANDSLASH_NORMAL"
-				},
-				"54": {
-					"form": "Alola",
-					"form_id": 54,
-					"proto": "SANDSLASH_ALOLA",
-					"asset_form": 61
-				},
-				"55": {
-					"form": "Normal",
-					"form_id": 55,
-					"proto": "VULPIX_NORMAL"
-				},
-				"56": {
-					"form": "Alola",
-					"form_id": 56,
-					"proto": "VULPIX_ALOLA",
-					"asset_form": 61
-				},
-				"57": {
-					"form": "Normal",
-					"form_id": 57,
-					"proto": "NINETALES_NORMAL"
-				},
-				"58": {
-					"form": "Alola",
-					"form_id": 58,
-					"proto": "NINETALES_ALOLA",
-					"asset_form": 61
-				},
-				"59": {
-					"form": "Normal",
-					"form_id": 59,
-					"proto": "DIGLETT_NORMAL"
-				},
-				"60": {
-					"form": "Alola",
-					"form_id": 60,
-					"proto": "DIGLETT_ALOLA",
-					"asset_form": 61
-				},
-				"61": {
-					"form": "Normal",
-					"form_id": 61,
-					"proto": "DUGTRIO_NORMAL"
-				},
-				"62": {
-					"form": "Alola",
-					"form_id": 62,
-					"proto": "DUGTRIO_ALOLA",
-					"asset_form": 61
-				},
-				"63": {
-					"form": "Normal",
-					"form_id": 63,
-					"proto": "MEOWTH_NORMAL"
-				},
-				"64": {
-					"form": "Alola",
-					"form_id": 64,
-					"proto": "MEOWTH_ALOLA",
-					"asset_form": 61
-				},
-				"65": {
-					"form": "Normal",
-					"form_id": 65,
-					"proto": "PERSIAN_NORMAL"
-				},
-				"66": {
-					"form": "Alola",
-					"form_id": 66,
-					"proto": "PERSIAN_ALOLA",
-					"asset_form": 61
-				},
-				"67": {
-					"form": "Normal",
-					"form_id": 67,
-					"proto": "GEODUDE_NORMAL"
-				},
-				"68": {
-					"form": "Alola",
-					"form_id": 68,
-					"proto": "GEODUDE_ALOLA",
-					"asset_form": 61
-				},
-				"69": {
-					"form": "Normal",
-					"form_id": 69,
-					"proto": "GRAVELER_NORMAL"
-				},
-				"70": {
-					"form": "Alola",
-					"form_id": 70,
-					"proto": "GRAVELER_ALOLA",
-					"asset_form": 61
-				},
-				"71": {
-					"form": "Normal",
-					"form_id": 71,
-					"proto": "GOLEM_NORMAL"
-				},
-				"72": {
-					"form": "Alola",
-					"form_id": 72,
-					"proto": "GOLEM_ALOLA",
-					"asset_form": 61
-				},
-				"73": {
-					"form": "Normal",
-					"form_id": 73,
-					"proto": "GRIMER_NORMAL"
-				},
-				"74": {
-					"form": "Alola",
-					"form_id": 74,
-					"proto": "GRIMER_ALOLA",
-					"asset_form": 61
-				},
-				"75": {
-					"form": "Normal",
-					"form_id": 75,
-					"proto": "MUK_NORMAL"
-				},
-				"76": {
-					"form": "Alola",
-					"form_id": 76,
-					"proto": "MUK_ALOLA",
-					"asset_form": 61
-				},
-				"77": {
-					"form": "Normal",
-					"form_id": 77,
-					"proto": "EXEGGUTOR_NORMAL"
-				},
-				"78": {
-					"form": "Alola",
-					"form_id": 78,
-					"proto": "EXEGGUTOR_ALOLA",
-					"asset_form": 61
-				},
-				"79": {
-					"form": "Normal",
-					"form_id": 79,
-					"proto": "MAROWAK_NORMAL"
-				},
-				"80": {
-					"form": "Alola",
-					"form_id": 80,
-					"proto": "MAROWAK_ALOLA",
-					"asset_form": 61
-				},
-				"81": {
-					"form": "Normal",
-					"form_id": 81,
-					"proto": "ROTOM_NORMAL",
-					"asset_form": 11
-				},
-				"82": {
-					"form": "Frost",
-					"form_id": 82,
-					"proto": "ROTOM_FROST",
-					"asset_form": 14
-				},
-				"83": {
-					"form": "Fan",
-					"form_id": 83,
-					"proto": "ROTOM_FAN",
-					"asset_form": 15
-				},
-				"84": {
-					"form": "Mow",
-					"form_id": 84,
-					"proto": "ROTOM_MOW",
-					"asset_form": 16
-				},
-				"85": {
-					"form": "Wash",
-					"form_id": 85,
-					"proto": "ROTOM_WASH",
-					"asset_form": 13
-				},
-				"86": {
-					"form": "Heat",
-					"form_id": 86,
-					"proto": "ROTOM_HEAT",
-					"asset_form": 12
-				},
-				"87": {
-					"form": "Plant",
-					"form_id": 87,
-					"proto": "WORMADAM_PLANT",
-					"asset_form": 11
-				},
-				"88": {
-					"form": "Sandy",
-					"form_id": 88,
-					"proto": "WORMADAM_SANDY",
-					"asset_form": 12
-				},
-				"89": {
-					"form": "Trash",
-					"form_id": 89,
-					"proto": "WORMADAM_TRASH",
-					"asset_form": 13
-				},
-				"90": {
-					"form": "Altered",
-					"form_id": 90,
-					"proto": "GIRATINA_ALTERED",
-					"asset_form": 11
-				},
-				"91": {
-					"form": "Origin",
-					"form_id": 91,
-					"proto": "GIRATINA_ORIGIN",
-					"asset_form": 12
-				},
-				"92": {
-					"form": "Sky",
-					"form_id": 92,
-					"proto": "SHAYMIN_SKY",
-					"asset_form": 12
-				},
-				"93": {
-					"form": "Land",
-					"form_id": 93,
-					"proto": "SHAYMIN_LAND",
-					"asset_form": 11
-				},
-				"94": {
-					"form": "Overcast",
-					"form_id": 94,
-					"proto": "CHERRIM_OVERCAST",
-					"asset_form": 11
-				},
-				"95": {
-					"form": "Sunny",
-					"form_id": 95,
-					"proto": "CHERRIM_SUNNY",
-					"asset_form": 12
-				},
-				"96": {
-					"form": "West",
-					"form_id": 96,
-					"proto": "SHELLOS_WEST_SEA",
-					"asset_form": 11
-				},
-				"97": {
-					"form": "East",
-					"form_id": 97,
-					"proto": "SHELLOS_EAST_SEA",
-					"asset_form": 12
-				},
-				"98": {
-					"form": "West",
-					"form_id": 98,
-					"proto": "GASTRODON_WEST_SEA",
-					"asset_form": 11
-				},
-				"99": {
-					"form": "East",
-					"form_id": 99,
-					"proto": "GASTRODON_EAST_SEA",
-					"asset_form": 12
-				},
-				"100": {
-					"form": "Normal",
-					"form_id": 100,
-					"proto": "ARCEUS_NORMAL",
-					"asset_form": 11
-				},
-				"101": {
-					"form": "Fighting",
-					"form_id": 101,
-					"proto": "ARCEUS_FIGHTING",
-					"asset_form": 12
-				},
-				"102": {
-					"form": "Flying",
-					"form_id": 102,
-					"proto": "ARCEUS_FLYING",
-					"asset_form": 13
-				},
-				"103": {
-					"form": "Poison",
-					"form_id": 103,
-					"proto": "ARCEUS_POISON",
-					"asset_form": 14
-				},
-				"104": {
-					"form": "Ground",
-					"form_id": 104,
-					"proto": "ARCEUS_GROUND",
-					"asset_form": 15
-				},
-				"105": {
-					"form": "Rock",
-					"form_id": 105,
-					"proto": "ARCEUS_ROCK",
-					"asset_form": 16
-				},
-				"106": {
-					"form": "Bug",
-					"form_id": 106,
-					"proto": "ARCEUS_BUG",
-					"asset_form": 17
-				},
-				"107": {
-					"form": "Ghost",
-					"form_id": 107,
-					"proto": "ARCEUS_GHOST",
-					"asset_form": 18
-				},
-				"108": {
-					"form": "Steel",
-					"form_id": 108,
-					"proto": "ARCEUS_STEEL",
-					"asset_form": 19
-				},
-				"109": {
-					"form": "Fire",
-					"form_id": 109,
-					"proto": "ARCEUS_FIRE",
-					"asset_form": 20
-				},
-				"110": {
-					"form": "Water",
-					"form_id": 110,
-					"proto": "ARCEUS_WATER",
-					"asset_form": 21
-				},
-				"111": {
-					"form": "Grass",
-					"form_id": 111,
-					"proto": "ARCEUS_GRASS",
-					"asset_form": 22
-				},
-				"112": {
-					"form": "Electric",
-					"form_id": 112,
-					"proto": "ARCEUS_ELECTRIC",
-					"asset_form": 23
-				},
-				"113": {
-					"form": "Psychic",
-					"form_id": 113,
-					"proto": "ARCEUS_PSYCHIC",
-					"asset_form": 24
-				},
-				"114": {
-					"form": "Ice",
-					"form_id": 114,
-					"proto": "ARCEUS_ICE",
-					"asset_form": 25
-				},
-				"115": {
-					"form": "Dragon",
-					"form_id": 115,
-					"proto": "ARCEUS_DRAGON",
-					"asset_form": 26
-				},
-				"116": {
-					"form": "Dark",
-					"form_id": 116,
-					"proto": "ARCEUS_DARK",
-					"asset_form": 27
-				},
-				"117": {
-					"form": "Fairy",
-					"form_id": 117,
-					"proto": "ARCEUS_FAIRY",
-					"asset_form": 28
-				},
-				"118": {
-					"form": "Plant",
-					"form_id": 118,
-					"proto": "BURMY_PLANT",
-					"asset_form": 11
-				},
-				"119": {
-					"form": "Sandy",
-					"form_id": 119,
-					"proto": "BURMY_SANDY",
-					"asset_form": 12
-				},
-				"120": {
-					"form": "Trash",
-					"form_id": 120,
-					"proto": "BURMY_TRASH",
-					"asset_form": 13
-				},
-				"121": {
-					"form": "08",
-					"form_id": 121,
-					"proto": "SPINDA_08",
-					"asset_form": 19
-				},
-				"122": {
-					"form": "09",
-					"form_id": 122,
-					"proto": "SPINDA_09",
-					"asset_form": 20
-				},
-				"123": {
-					"form": "10",
-					"form_id": 123,
-					"proto": "SPINDA_10",
-					"asset_form": 21
-				},
-				"124": {
-					"form": "11",
-					"form_id": 124,
-					"proto": "SPINDA_11",
-					"asset_form": 22
-				},
-				"125": {
-					"form": "12",
-					"form_id": 125,
-					"proto": "SPINDA_12",
-					"asset_form": 23
-				},
-				"126": {
-					"form": "13",
-					"form_id": 126,
-					"proto": "SPINDA_13",
-					"asset_form": 24
-				},
-				"127": {
-					"form": "14",
-					"form_id": 127,
-					"proto": "SPINDA_14",
-					"asset_form": 25
-				},
-				"128": {
-					"form": "15",
-					"form_id": 128,
-					"proto": "SPINDA_15",
-					"asset_form": 26
-				},
-				"129": {
-					"form": "16",
-					"form_id": 129,
-					"proto": "SPINDA_16",
-					"asset_form": 27
-				},
-				"130": {
-					"form": "17",
-					"form_id": 130,
-					"proto": "SPINDA_17",
-					"asset_form": 28
-				},
-				"131": {
-					"form": "18",
-					"form_id": 131,
-					"proto": "SPINDA_18",
-					"asset_form": 29
-				},
-				"132": {
-					"form": "19",
-					"form_id": 132,
-					"proto": "SPINDA_19",
-					"asset_form": 30
-				},
-				"133": {
-					"form": "A",
-					"form_id": 133,
-					"proto": "MEWTWO_A"
-				},
-				"135": {
-					"form": "Normal",
-					"form_id": 135,
-					"proto": "MEWTWO_NORMAL"
-				},
-				"136": {
-					"form": "Red",
-					"form_id": 136,
-					"proto": "BASCULIN_RED_STRIPED",
-					"asset_form": 11
-				},
-				"137": {
-					"form": "Blue",
-					"form_id": 137,
-					"proto": "BASCULIN_BLUE_STRIPED",
-					"asset_form": 12
-				},
-				"138": {
-					"form": "Standard",
-					"form_id": 138,
-					"proto": "DARMANITAN_STANDARD",
-					"asset_form": 11
-				},
-				"139": {
-					"form": "Zen",
-					"form_id": 139,
-					"proto": "DARMANITAN_ZEN",
-					"asset_form": 12
-				},
-				"140": {
-					"form": "Incarnate",
-					"form_id": 140,
-					"proto": "TORNADUS_INCARNATE",
-					"asset_form": 11
-				},
-				"141": {
-					"form": "Therian",
-					"form_id": 141,
-					"proto": "TORNADUS_THERIAN",
-					"asset_form": 12
-				},
-				"142": {
-					"form": "Incarnate",
-					"form_id": 142,
-					"proto": "THUNDURUS_INCARNATE",
-					"asset_form": 11
-				},
-				"143": {
-					"form": "Therian",
-					"form_id": 143,
-					"proto": "THUNDURUS_THERIAN",
-					"asset_form": 12
-				},
-				"144": {
-					"form": "Incarnate",
-					"form_id": 144,
-					"proto": "LANDORUS_INCARNATE",
-					"asset_form": 11
-				},
-				"145": {
-					"form": "Therian",
-					"form_id": 145,
-					"proto": "LANDORUS_THERIAN",
-					"asset_form": 12
-				},
-				"146": {
-					"form": "Normal",
-					"form_id": 146,
-					"proto": "KYUREM_NORMAL",
-					"asset_form": 11
-				},
-				"147": {
-					"form": "Black",
-					"form_id": 147,
-					"proto": "KYUREM_BLACK",
-					"asset_form": 13
-				},
-				"148": {
-					"form": "White",
-					"form_id": 148,
-					"proto": "KYUREM_WHITE",
-					"asset_form": 12
-				},
-				"149": {
-					"form": "Ordinary",
-					"form_id": 149,
-					"proto": "KELDEO_ORDINARY",
-					"asset_form": 11
-				},
-				"150": {
-					"form": "Resolute",
-					"form_id": 150,
-					"proto": "KELDEO_RESOLUTE",
-					"asset_form": 12
-				},
-				"151": {
-					"form": "Aria",
-					"form_id": 151,
-					"proto": "MELOETTA_ARIA",
-					"asset_form": 11
-				},
-				"152": {
-					"form": "Pirouette",
-					"form_id": 152,
-					"proto": "MELOETTA_PIROUETTE",
-					"asset_form": 12
-				},
-				"153": {
-					"form": "Shadow",
-					"form_id": 153,
-					"proto": "RATTATA_SHADOW"
-				},
-				"154": {
-					"form": "Purified",
-					"form_id": 154,
-					"proto": "RATTATA_PURIFIED"
-				},
-				"155": {
-					"form": "Shadow",
-					"form_id": 155,
-					"proto": "RATICATE_SHADOW"
-				},
-				"156": {
-					"form": "Purified",
-					"form_id": 156,
-					"proto": "RATICATE_PURIFIED"
-				},
-				"157": {
-					"form": "Normal",
-					"form_id": 157,
-					"proto": "ZUBAT_NORMAL"
-				},
-				"158": {
-					"form": "Shadow",
-					"form_id": 158,
-					"proto": "ZUBAT_SHADOW"
-				},
-				"159": {
-					"form": "Purified",
-					"form_id": 159,
-					"proto": "ZUBAT_PURIFIED"
-				},
-				"160": {
-					"form": "Normal",
-					"form_id": 160,
-					"proto": "GOLBAT_NORMAL"
-				},
-				"161": {
-					"form": "Shadow",
-					"form_id": 161,
-					"proto": "GOLBAT_SHADOW"
-				},
-				"162": {
-					"form": "Purified",
-					"form_id": 162,
-					"proto": "GOLBAT_PURIFIED"
-				},
-				"163": {
-					"form": "Normal",
-					"form_id": 163,
-					"proto": "BULBASAUR_NORMAL"
-				},
-				"164": {
-					"form": "Shadow",
-					"form_id": 164,
-					"proto": "BULBASAUR_SHADOW"
-				},
-				"165": {
-					"form": "Purified",
-					"form_id": 165,
-					"proto": "BULBASAUR_PURIFIED"
-				},
-				"166": {
-					"form": "Normal",
-					"form_id": 166,
-					"proto": "IVYSAUR_NORMAL"
-				},
-				"167": {
-					"form": "Shadow",
-					"form_id": 167,
-					"proto": "IVYSAUR_SHADOW"
-				},
-				"168": {
-					"form": "Purified",
-					"form_id": 168,
-					"proto": "IVYSAUR_PURIFIED"
-				},
-				"169": {
-					"form": "Normal",
-					"form_id": 169,
-					"proto": "VENUSAUR_NORMAL"
-				},
-				"170": {
-					"form": "Shadow",
-					"form_id": 170,
-					"proto": "VENUSAUR_SHADOW"
-				},
-				"171": {
-					"form": "Purified",
-					"form_id": 171,
-					"proto": "VENUSAUR_PURIFIED"
-				},
-				"172": {
-					"form": "Normal",
-					"form_id": 172,
-					"proto": "CHARMANDER_NORMAL"
-				},
-				"173": {
-					"form": "Shadow",
-					"form_id": 173,
-					"proto": "CHARMANDER_SHADOW"
-				},
-				"174": {
-					"form": "Purified",
-					"form_id": 174,
-					"proto": "CHARMANDER_PURIFIED"
-				},
-				"175": {
-					"form": "Normal",
-					"form_id": 175,
-					"proto": "CHARMELEON_NORMAL"
-				},
-				"176": {
-					"form": "Shadow",
-					"form_id": 176,
-					"proto": "CHARMELEON_SHADOW"
-				},
-				"177": {
-					"form": "Purified",
-					"form_id": 177,
-					"proto": "CHARMELEON_PURIFIED"
-				},
-				"178": {
-					"form": "Normal",
-					"form_id": 178,
-					"proto": "CHARIZARD_NORMAL"
-				},
-				"179": {
-					"form": "Shadow",
-					"form_id": 179,
-					"proto": "CHARIZARD_SHADOW"
-				},
-				"180": {
-					"form": "Purified",
-					"form_id": 180,
-					"proto": "CHARIZARD_PURIFIED"
-				},
-				"181": {
-					"form": "Normal",
-					"form_id": 181,
-					"proto": "SQUIRTLE_NORMAL"
-				},
-				"182": {
-					"form": "Shadow",
-					"form_id": 182,
-					"proto": "SQUIRTLE_SHADOW"
-				},
-				"183": {
-					"form": "Purified",
-					"form_id": 183,
-					"proto": "SQUIRTLE_PURIFIED"
-				},
-				"184": {
-					"form": "Normal",
-					"form_id": 184,
-					"proto": "WARTORTLE_NORMAL"
-				},
-				"185": {
-					"form": "Shadow",
-					"form_id": 185,
-					"proto": "WARTORTLE_SHADOW"
-				},
-				"186": {
-					"form": "Purified",
-					"form_id": 186,
-					"proto": "WARTORTLE_PURIFIED"
-				},
-				"187": {
-					"form": "Normal",
-					"form_id": 187,
-					"proto": "BLASTOISE_NORMAL"
-				},
-				"188": {
-					"form": "Shadow",
-					"form_id": 188,
-					"proto": "BLASTOISE_SHADOW"
-				},
-				"189": {
-					"form": "Purified",
-					"form_id": 189,
-					"proto": "BLASTOISE_PURIFIED"
-				},
-				"190": {
-					"form": "Normal",
-					"form_id": 190,
-					"proto": "DRATINI_NORMAL"
-				},
-				"191": {
-					"form": "Shadow",
-					"form_id": 191,
-					"proto": "DRATINI_SHADOW"
-				},
-				"192": {
-					"form": "Purified",
-					"form_id": 192,
-					"proto": "DRATINI_PURIFIED"
-				},
-				"193": {
-					"form": "Normal",
-					"form_id": 193,
-					"proto": "DRAGONAIR_NORMAL"
-				},
-				"194": {
-					"form": "Shadow",
-					"form_id": 194,
-					"proto": "DRAGONAIR_SHADOW"
-				},
-				"195": {
-					"form": "Purified",
-					"form_id": 195,
-					"proto": "DRAGONAIR_PURIFIED"
-				},
-				"196": {
-					"form": "Normal",
-					"form_id": 196,
-					"proto": "DRAGONITE_NORMAL"
-				},
-				"197": {
-					"form": "Shadow",
-					"form_id": 197,
-					"proto": "DRAGONITE_SHADOW"
-				},
-				"198": {
-					"form": "Purified",
-					"form_id": 198,
-					"proto": "DRAGONITE_PURIFIED"
-				},
-				"199": {
-					"form": "Normal",
-					"form_id": 199,
-					"proto": "SNORLAX_NORMAL"
-				},
-				"200": {
-					"form": "Shadow",
-					"form_id": 200,
-					"proto": "SNORLAX_SHADOW"
-				},
-				"201": {
-					"form": "Purified",
-					"form_id": 201,
-					"proto": "SNORLAX_PURIFIED"
-				},
-				"202": {
-					"form": "Normal",
-					"form_id": 202,
-					"proto": "CROBAT_NORMAL"
-				},
-				"203": {
-					"form": "Shadow",
-					"form_id": 203,
-					"proto": "CROBAT_SHADOW"
-				},
-				"204": {
-					"form": "Purified",
-					"form_id": 204,
-					"proto": "CROBAT_PURIFIED"
-				},
-				"205": {
-					"form": "Normal",
-					"form_id": 205,
-					"proto": "MUDKIP_NORMAL"
-				},
-				"206": {
-					"form": "Shadow",
-					"form_id": 206,
-					"proto": "MUDKIP_SHADOW"
-				},
-				"207": {
-					"form": "Purified",
-					"form_id": 207,
-					"proto": "MUDKIP_PURIFIED"
-				},
-				"208": {
-					"form": "Normal",
-					"form_id": 208,
-					"proto": "MARSHTOMP_NORMAL"
-				},
-				"209": {
-					"form": "Shadow",
-					"form_id": 209,
-					"proto": "MARSHTOMP_SHADOW"
-				},
-				"210": {
-					"form": "Purified",
-					"form_id": 210,
-					"proto": "MARSHTOMP_PURIFIED"
-				},
-				"211": {
-					"form": "Normal",
-					"form_id": 211,
-					"proto": "SWAMPERT_NORMAL"
-				},
-				"212": {
-					"form": "Shadow",
-					"form_id": 212,
-					"proto": "SWAMPERT_SHADOW"
-				},
-				"213": {
-					"form": "Purified",
-					"form_id": 213,
-					"proto": "SWAMPERT_PURIFIED"
-				},
-				"214": {
-					"form": "Normal",
-					"form_id": 214,
-					"proto": "DROWZEE_NORMAL"
-				},
-				"215": {
-					"form": "Shadow",
-					"form_id": 215,
-					"proto": "DROWZEE_SHADOW"
-				},
-				"216": {
-					"form": "Purified",
-					"form_id": 216,
-					"proto": "DROWZEE_PURIFIED"
-				},
-				"217": {
-					"form": "Normal",
-					"form_id": 217,
-					"proto": "HYPNO_NORMAL"
-				},
-				"218": {
-					"form": "Shadow",
-					"form_id": 218,
-					"proto": "HYPNO_SHADOW"
-				},
-				"219": {
-					"form": "Purified",
-					"form_id": 219,
-					"proto": "HYPNO_PURIFIED"
-				},
-				"220": {
-					"form": "Shadow",
-					"form_id": 220,
-					"proto": "GRIMER_SHADOW"
-				},
-				"221": {
-					"form": "Purified",
-					"form_id": 221,
-					"proto": "GRIMER_PURIFIED"
-				},
-				"222": {
-					"form": "Shadow",
-					"form_id": 222,
-					"proto": "MUK_SHADOW"
-				},
-				"223": {
-					"form": "Purified",
-					"form_id": 223,
-					"proto": "MUK_PURIFIED"
-				},
-				"224": {
-					"form": "Normal",
-					"form_id": 224,
-					"proto": "CUBONE_NORMAL"
-				},
-				"225": {
-					"form": "Shadow",
-					"form_id": 225,
-					"proto": "CUBONE_SHADOW"
-				},
-				"226": {
-					"form": "Purified",
-					"form_id": 226,
-					"proto": "CUBONE_PURIFIED"
-				},
-				"227": {
-					"form": "Shadow",
-					"form_id": 227,
-					"proto": "MAROWAK_SHADOW"
-				},
-				"228": {
-					"form": "Purified",
-					"form_id": 228,
-					"proto": "MAROWAK_PURIFIED"
-				},
-				"229": {
-					"form": "Normal",
-					"form_id": 229,
-					"proto": "HOUNDOUR_NORMAL"
-				},
-				"230": {
-					"form": "Shadow",
-					"form_id": 230,
-					"proto": "HOUNDOUR_SHADOW"
-				},
-				"231": {
-					"form": "Purified",
-					"form_id": 231,
-					"proto": "HOUNDOUR_PURIFIED"
-				},
-				"232": {
-					"form": "Normal",
-					"form_id": 232,
-					"proto": "HOUNDOOM_NORMAL"
-				},
-				"233": {
-					"form": "Shadow",
-					"form_id": 233,
-					"proto": "HOUNDOOM_SHADOW"
-				},
-				"234": {
-					"form": "Purified",
-					"form_id": 234,
-					"proto": "HOUNDOOM_PURIFIED"
-				},
-				"235": {
-					"form": "Normal",
-					"form_id": 235,
-					"proto": "POLIWAG_NORMAL"
-				},
-				"236": {
-					"form": "Shadow",
-					"form_id": 236,
-					"proto": "POLIWAG_SHADOW"
-				},
-				"237": {
-					"form": "Purified",
-					"form_id": 237,
-					"proto": "POLIWAG_PURIFIED"
-				},
-				"238": {
-					"form": "Normal",
-					"form_id": 238,
-					"proto": "POLIWHIRL_NORMAL"
-				},
-				"239": {
-					"form": "Shadow",
-					"form_id": 239,
-					"proto": "POLIWHIRL_SHADOW"
-				},
-				"240": {
-					"form": "Purified",
-					"form_id": 240,
-					"proto": "POLIWHIRL_PURIFIED"
-				},
-				"241": {
-					"form": "Normal",
-					"form_id": 241,
-					"proto": "POLIWRATH_NORMAL"
-				},
-				"242": {
-					"form": "Shadow",
-					"form_id": 242,
-					"proto": "POLIWRATH_SHADOW"
-				},
-				"243": {
-					"form": "Purified",
-					"form_id": 243,
-					"proto": "POLIWRATH_PURIFIED"
-				},
-				"244": {
-					"form": "Normal",
-					"form_id": 244,
-					"proto": "POLITOED_NORMAL"
-				},
-				"245": {
-					"form": "Shadow",
-					"form_id": 245,
-					"proto": "POLITOED_SHADOW"
-				},
-				"246": {
-					"form": "Purified",
-					"form_id": 246,
-					"proto": "POLITOED_PURIFIED"
-				},
-				"247": {
-					"form": "Normal",
-					"form_id": 247,
-					"proto": "SCYTHER_NORMAL"
-				},
-				"248": {
-					"form": "Shadow",
-					"form_id": 248,
-					"proto": "SCYTHER_SHADOW"
-				},
-				"249": {
-					"form": "Purified",
-					"form_id": 249,
-					"proto": "SCYTHER_PURIFIED"
-				},
-				"250": {
-					"form": "Normal",
-					"form_id": 250,
-					"proto": "SCIZOR_NORMAL"
-				},
-				"251": {
-					"form": "Shadow",
-					"form_id": 251,
-					"proto": "SCIZOR_SHADOW"
-				},
-				"252": {
-					"form": "Purified",
-					"form_id": 252,
-					"proto": "SCIZOR_PURIFIED"
-				},
-				"253": {
-					"form": "Normal",
-					"form_id": 253,
-					"proto": "MAGIKARP_NORMAL"
-				},
-				"254": {
-					"form": "Shadow",
-					"form_id": 254,
-					"proto": "MAGIKARP_SHADOW"
-				},
-				"255": {
-					"form": "Purified",
-					"form_id": 255,
-					"proto": "MAGIKARP_PURIFIED"
-				},
-				"256": {
-					"form": "Normal",
-					"form_id": 256,
-					"proto": "GYARADOS_NORMAL"
-				},
-				"257": {
-					"form": "Shadow",
-					"form_id": 257,
-					"proto": "GYARADOS_SHADOW"
-				},
-				"258": {
-					"form": "Purified",
-					"form_id": 258,
-					"proto": "GYARADOS_PURIFIED"
-				},
-				"259": {
-					"form": "Normal",
-					"form_id": 259,
-					"proto": "VENONAT_NORMAL"
-				},
-				"260": {
-					"form": "Shadow",
-					"form_id": 260,
-					"proto": "VENONAT_SHADOW"
-				},
-				"261": {
-					"form": "Purified",
-					"form_id": 261,
-					"proto": "VENONAT_PURIFIED"
-				},
-				"262": {
-					"form": "Normal",
-					"form_id": 262,
-					"proto": "VENOMOTH_NORMAL"
-				},
-				"263": {
-					"form": "Shadow",
-					"form_id": 263,
-					"proto": "VENOMOTH_SHADOW"
-				},
-				"264": {
-					"form": "Purified",
-					"form_id": 264,
-					"proto": "VENOMOTH_PURIFIED"
-				},
-				"265": {
-					"form": "Normal",
-					"form_id": 265,
-					"proto": "ODDISH_NORMAL"
-				},
-				"266": {
-					"form": "Shadow",
-					"form_id": 266,
-					"proto": "ODDISH_SHADOW"
-				},
-				"267": {
-					"form": "Purified",
-					"form_id": 267,
-					"proto": "ODDISH_PURIFIED"
-				},
-				"268": {
-					"form": "Normal",
-					"form_id": 268,
-					"proto": "GLOOM_NORMAL"
-				},
-				"269": {
-					"form": "Shadow",
-					"form_id": 269,
-					"proto": "GLOOM_SHADOW"
-				},
-				"270": {
-					"form": "Purified",
-					"form_id": 270,
-					"proto": "GLOOM_PURIFIED"
-				},
-				"271": {
-					"form": "Normal",
-					"form_id": 271,
-					"proto": "VILEPLUME_NORMAL"
-				},
-				"272": {
-					"form": "Shadow",
-					"form_id": 272,
-					"proto": "VILEPLUME_SHADOW"
-				},
-				"273": {
-					"form": "Purified",
-					"form_id": 273,
-					"proto": "VILEPLUME_PURIFIED"
-				},
-				"274": {
-					"form": "Normal",
-					"form_id": 274,
-					"proto": "BELLOSSOM_NORMAL"
-				},
-				"275": {
-					"form": "Shadow",
-					"form_id": 275,
-					"proto": "BELLOSSOM_SHADOW"
-				},
-				"276": {
-					"form": "Purified",
-					"form_id": 276,
-					"proto": "BELLOSSOM_PURIFIED"
-				},
-				"277": {
-					"form": "Normal",
-					"form_id": 277,
-					"proto": "HITMONCHAN_NORMAL"
-				},
-				"278": {
-					"form": "Shadow",
-					"form_id": 278,
-					"proto": "HITMONCHAN_SHADOW"
-				},
-				"279": {
-					"form": "Purified",
-					"form_id": 279,
-					"proto": "HITMONCHAN_PURIFIED"
-				},
-				"280": {
-					"form": "Normal",
-					"form_id": 280,
-					"proto": "GROWLITHE_NORMAL"
-				},
-				"281": {
-					"form": "Shadow",
-					"form_id": 281,
-					"proto": "GROWLITHE_SHADOW"
-				},
-				"282": {
-					"form": "Purified",
-					"form_id": 282,
-					"proto": "GROWLITHE_PURIFIED"
-				},
-				"283": {
-					"form": "Normal",
-					"form_id": 283,
-					"proto": "ARCANINE_NORMAL"
-				},
-				"284": {
-					"form": "Shadow",
-					"form_id": 284,
-					"proto": "ARCANINE_SHADOW"
-				},
-				"285": {
-					"form": "Purified",
-					"form_id": 285,
-					"proto": "ARCANINE_PURIFIED"
-				},
-				"286": {
-					"form": "Normal",
-					"form_id": 286,
-					"proto": "PSYDUCK_NORMAL"
-				},
-				"287": {
-					"form": "Shadow",
-					"form_id": 287,
-					"proto": "PSYDUCK_SHADOW"
-				},
-				"288": {
-					"form": "Purified",
-					"form_id": 288,
-					"proto": "PSYDUCK_PURIFIED"
-				},
-				"289": {
-					"form": "Normal",
-					"form_id": 289,
-					"proto": "GOLDUCK_NORMAL"
-				},
-				"290": {
-					"form": "Shadow",
-					"form_id": 290,
-					"proto": "GOLDUCK_SHADOW"
-				},
-				"291": {
-					"form": "Purified",
-					"form_id": 291,
-					"proto": "GOLDUCK_PURIFIED"
-				},
-				"292": {
-					"form": "Normal",
-					"form_id": 292,
-					"proto": "RALTS_NORMAL"
-				},
-				"293": {
-					"form": "Shadow",
-					"form_id": 293,
-					"proto": "RALTS_SHADOW"
-				},
-				"294": {
-					"form": "Purified",
-					"form_id": 294,
-					"proto": "RALTS_PURIFIED"
-				},
-				"295": {
-					"form": "Normal",
-					"form_id": 295,
-					"proto": "KIRLIA_NORMAL"
-				},
-				"296": {
-					"form": "Shadow",
-					"form_id": 296,
-					"proto": "KIRLIA_SHADOW"
-				},
-				"297": {
-					"form": "Purified",
-					"form_id": 297,
-					"proto": "KIRLIA_PURIFIED"
-				},
-				"298": {
-					"form": "Normal",
-					"form_id": 298,
-					"proto": "GARDEVOIR_NORMAL"
-				},
-				"299": {
-					"form": "Shadow",
-					"form_id": 299,
-					"proto": "GARDEVOIR_SHADOW"
-				},
-				"300": {
-					"form": "Purified",
-					"form_id": 300,
-					"proto": "GARDEVOIR_PURIFIED"
-				},
-				"301": {
-					"form": "Normal",
-					"form_id": 301,
-					"proto": "GALLADE_NORMAL"
-				},
-				"302": {
-					"form": "Shadow",
-					"form_id": 302,
-					"proto": "GALLADE_SHADOW"
-				},
-				"303": {
-					"form": "Purified",
-					"form_id": 303,
-					"proto": "GALLADE_PURIFIED"
-				},
-				"304": {
-					"form": "Normal",
-					"form_id": 304,
-					"proto": "ABRA_NORMAL"
-				},
-				"305": {
-					"form": "Shadow",
-					"form_id": 305,
-					"proto": "ABRA_SHADOW"
-				},
-				"306": {
-					"form": "Purified",
-					"form_id": 306,
-					"proto": "ABRA_PURIFIED"
-				},
-				"307": {
-					"form": "Normal",
-					"form_id": 307,
-					"proto": "KADABRA_NORMAL"
-				},
-				"308": {
-					"form": "Shadow",
-					"form_id": 308,
-					"proto": "KADABRA_SHADOW"
-				},
-				"309": {
-					"form": "Purified",
-					"form_id": 309,
-					"proto": "KADABRA_PURIFIED"
-				},
-				"310": {
-					"form": "Normal",
-					"form_id": 310,
-					"proto": "ALAKAZAM_NORMAL"
-				},
-				"311": {
-					"form": "Shadow",
-					"form_id": 311,
-					"proto": "ALAKAZAM_SHADOW"
-				},
-				"312": {
-					"form": "Purified",
-					"form_id": 312,
-					"proto": "ALAKAZAM_PURIFIED"
-				},
-				"313": {
-					"form": "Normal",
-					"form_id": 313,
-					"proto": "LARVITAR_NORMAL"
-				},
-				"314": {
-					"form": "Shadow",
-					"form_id": 314,
-					"proto": "LARVITAR_SHADOW"
-				},
-				"315": {
-					"form": "Purified",
-					"form_id": 315,
-					"proto": "LARVITAR_PURIFIED"
-				},
-				"316": {
-					"form": "Normal",
-					"form_id": 316,
-					"proto": "PUPITAR_NORMAL"
-				},
-				"317": {
-					"form": "Shadow",
-					"form_id": 317,
-					"proto": "PUPITAR_SHADOW"
-				},
-				"318": {
-					"form": "Purified",
-					"form_id": 318,
-					"proto": "PUPITAR_PURIFIED"
-				},
-				"319": {
-					"form": "Normal",
-					"form_id": 319,
-					"proto": "TYRANITAR_NORMAL"
-				},
-				"320": {
-					"form": "Shadow",
-					"form_id": 320,
-					"proto": "TYRANITAR_SHADOW"
-				},
-				"321": {
-					"form": "Purified",
-					"form_id": 321,
-					"proto": "TYRANITAR_PURIFIED"
-				},
-				"322": {
-					"form": "Normal",
-					"form_id": 322,
-					"proto": "LAPRAS_NORMAL"
-				},
-				"323": {
-					"form": "Shadow",
-					"form_id": 323,
-					"proto": "LAPRAS_SHADOW"
-				},
-				"324": {
-					"form": "Purified",
-					"form_id": 324,
-					"proto": "LAPRAS_PURIFIED"
-				},
-				"585": {
-					"form": "Spring",
-					"form_id": 585,
-					"proto": "DEERLING_SPRING",
-					"asset_form": 11
-				},
-				"586": {
-					"form": "Summer",
-					"form_id": 586,
-					"proto": "DEERLING_SUMMER",
-					"asset_form": 12
-				},
-				"587": {
-					"form": "Autumn",
-					"form_id": 587,
-					"proto": "DEERLING_AUTUMN",
-					"asset_form": 13
-				},
-				"588": {
-					"form": "Winter",
-					"form_id": 588,
-					"proto": "DEERLING_WINTER",
-					"asset_form": 14
-				},
-				"589": {
-					"form": "Spring",
-					"form_id": 589,
-					"proto": "SAWSBUCK_SPRING",
-					"asset_form": 11
-				},
-				"590": {
-					"form": "Summer",
-					"form_id": 590,
-					"proto": "SAWSBUCK_SUMMER",
-					"asset_form": 12
-				},
-				"591": {
-					"form": "Autumn",
-					"form_id": 591,
-					"proto": "SAWSBUCK_AUTUMN",
-					"asset_form": 13
-				},
-				"592": {
-					"form": "Winter",
-					"form_id": 592,
-					"proto": "SAWSBUCK_WINTER",
-					"asset_form": 14
-				},
-				"593": {
-					"form": "Normal",
-					"form_id": 593,
-					"proto": "GENESECT_NORMAL",
-					"asset_form": 11
-				},
-				"594": {
-					"form": "Shock",
-					"form_id": 594,
-					"proto": "GENESECT_SHOCK",
-					"asset_form": 13
-				},
-				"595": {
-					"form": "Burn",
-					"form_id": 595,
-					"proto": "GENESECT_BURN",
-					"asset_form": 14
-				},
-				"596": {
-					"form": "Chill",
-					"form_id": 596,
-					"proto": "GENESECT_CHILL",
-					"asset_form": 15
-				},
-				"597": {
-					"form": "Douse",
-					"form_id": 597,
-					"proto": "GENESECT_DOUSE",
-					"asset_form": 12
-				},
-				"598": {
-					"form": "Normal",
-					"form_id": 598,
-					"proto": "PIKACHU_NORMAL"
-				},
-				"602": {
-					"form": "Normal",
-					"form_id": 602,
-					"proto": "WOBBUFFET_NORMAL"
-				},
-				"610": {
-					"form": "Normal",
-					"form_id": 610,
-					"proto": "CACNEA_NORMAL"
-				},
-				"611": {
-					"form": "Shadow",
-					"form_id": 611,
-					"proto": "CACNEA_SHADOW"
-				},
-				"612": {
-					"form": "Purified",
-					"form_id": 612,
-					"proto": "CACNEA_PURIFIED"
-				},
-				"613": {
-					"form": "Normal",
-					"form_id": 613,
-					"proto": "CACTURNE_NORMAL"
-				},
-				"614": {
-					"form": "Shadow",
-					"form_id": 614,
-					"proto": "CACTURNE_SHADOW"
-				},
-				"615": {
-					"form": "Purified",
-					"form_id": 615,
-					"proto": "CACTURNE_PURIFIED"
-				},
-				"616": {
-					"form": "Normal",
-					"form_id": 616,
-					"proto": "WEEDLE_NORMAL"
-				},
-				"617": {
-					"form": "Shadow",
-					"form_id": 617,
-					"proto": "WEEDLE_SHADOW"
-				},
-				"618": {
-					"form": "Purified",
-					"form_id": 618,
-					"proto": "WEEDLE_PURIFIED"
-				},
-				"619": {
-					"form": "Normal",
-					"form_id": 619,
-					"proto": "KAKUNA_NORMAL"
-				},
-				"620": {
-					"form": "Shadow",
-					"form_id": 620,
-					"proto": "KAKUNA_SHADOW"
-				},
-				"621": {
-					"form": "Purified",
-					"form_id": 621,
-					"proto": "KAKUNA_PURIFIED"
-				},
-				"622": {
-					"form": "Normal",
-					"form_id": 622,
-					"proto": "BEEDRILL_NORMAL"
-				},
-				"623": {
-					"form": "Shadow",
-					"form_id": 623,
-					"proto": "BEEDRILL_SHADOW"
-				},
-				"624": {
-					"form": "Purified",
-					"form_id": 624,
-					"proto": "BEEDRILL_PURIFIED"
-				},
-				"625": {
-					"form": "Normal",
-					"form_id": 625,
-					"proto": "SEEDOT_NORMAL"
-				},
-				"626": {
-					"form": "Shadow",
-					"form_id": 626,
-					"proto": "SEEDOT_SHADOW"
-				},
-				"627": {
-					"form": "Purified",
-					"form_id": 627,
-					"proto": "SEEDOT_PURIFIED"
-				},
-				"628": {
-					"form": "Normal",
-					"form_id": 628,
-					"proto": "NUZLEAF_NORMAL"
-				},
-				"629": {
-					"form": "Shadow",
-					"form_id": 629,
-					"proto": "NUZLEAF_SHADOW"
-				},
-				"630": {
-					"form": "Purified",
-					"form_id": 630,
-					"proto": "NUZLEAF_PURIFIED"
-				},
-				"631": {
-					"form": "Normal",
-					"form_id": 631,
-					"proto": "SHIFTRY_NORMAL"
-				},
-				"632": {
-					"form": "Shadow",
-					"form_id": 632,
-					"proto": "SHIFTRY_SHADOW"
-				},
-				"633": {
-					"form": "Purified",
-					"form_id": 633,
-					"proto": "SHIFTRY_PURIFIED"
-				},
-				"634": {
-					"form": "Normal",
-					"form_id": 634,
-					"proto": "MAGMAR_NORMAL"
-				},
-				"635": {
-					"form": "Shadow",
-					"form_id": 635,
-					"proto": "MAGMAR_SHADOW"
-				},
-				"636": {
-					"form": "Purified",
-					"form_id": 636,
-					"proto": "MAGMAR_PURIFIED"
-				},
-				"637": {
-					"form": "Normal",
-					"form_id": 637,
-					"proto": "MAGMORTAR_NORMAL"
-				},
-				"638": {
-					"form": "Shadow",
-					"form_id": 638,
-					"proto": "MAGMORTAR_SHADOW"
-				},
-				"639": {
-					"form": "Purified",
-					"form_id": 639,
-					"proto": "MAGMORTAR_PURIFIED"
-				},
-				"640": {
-					"form": "Normal",
-					"form_id": 640,
-					"proto": "ELECTABUZZ_NORMAL"
-				},
-				"641": {
-					"form": "Shadow",
-					"form_id": 641,
-					"proto": "ELECTABUZZ_SHADOW"
-				},
-				"642": {
-					"form": "Purified",
-					"form_id": 642,
-					"proto": "ELECTABUZZ_PURIFIED"
-				},
-				"643": {
-					"form": "Normal",
-					"form_id": 643,
-					"proto": "ELECTIVIRE_NORMAL"
-				},
-				"644": {
-					"form": "Shadow",
-					"form_id": 644,
-					"proto": "ELECTIVIRE_SHADOW"
-				},
-				"645": {
-					"form": "Purified",
-					"form_id": 645,
-					"proto": "ELECTIVIRE_PURIFIED"
-				},
-				"646": {
-					"form": "Normal",
-					"form_id": 646,
-					"proto": "MAREEP_NORMAL"
-				},
-				"647": {
-					"form": "Shadow",
-					"form_id": 647,
-					"proto": "MAREEP_SHADOW"
-				},
-				"648": {
-					"form": "Purified",
-					"form_id": 648,
-					"proto": "MAREEP_PURIFIED"
-				},
-				"649": {
-					"form": "Normal",
-					"form_id": 649,
-					"proto": "FLAAFFY_NORMAL"
-				},
-				"650": {
-					"form": "Shadow",
-					"form_id": 650,
-					"proto": "FLAAFFY_SHADOW"
-				},
-				"651": {
-					"form": "Purified",
-					"form_id": 651,
-					"proto": "FLAAFFY_PURIFIED"
-				},
-				"652": {
-					"form": "Normal",
-					"form_id": 652,
-					"proto": "AMPHAROS_NORMAL"
-				},
-				"653": {
-					"form": "Shadow",
-					"form_id": 653,
-					"proto": "AMPHAROS_SHADOW"
-				},
-				"654": {
-					"form": "Purified",
-					"form_id": 654,
-					"proto": "AMPHAROS_PURIFIED"
-				},
-				"655": {
-					"form": "Normal",
-					"form_id": 655,
-					"proto": "MAGNEMITE_NORMAL"
-				},
-				"656": {
-					"form": "Shadow",
-					"form_id": 656,
-					"proto": "MAGNEMITE_SHADOW"
-				},
-				"657": {
-					"form": "Purified",
-					"form_id": 657,
-					"proto": "MAGNEMITE_PURIFIED"
-				},
-				"658": {
-					"form": "Normal",
-					"form_id": 658,
-					"proto": "MAGNETON_NORMAL"
-				},
-				"659": {
-					"form": "Shadow",
-					"form_id": 659,
-					"proto": "MAGNETON_SHADOW"
-				},
-				"660": {
-					"form": "Purified",
-					"form_id": 660,
-					"proto": "MAGNETON_PURIFIED"
-				},
-				"661": {
-					"form": "Normal",
-					"form_id": 661,
-					"proto": "MAGNEZONE_NORMAL"
-				},
-				"662": {
-					"form": "Shadow",
-					"form_id": 662,
-					"proto": "MAGNEZONE_SHADOW"
-				},
-				"663": {
-					"form": "Purified",
-					"form_id": 663,
-					"proto": "MAGNEZONE_PURIFIED"
-				},
-				"664": {
-					"form": "Normal",
-					"form_id": 664,
-					"proto": "BELLSPROUT_NORMAL"
-				},
-				"665": {
-					"form": "Shadow",
-					"form_id": 665,
-					"proto": "BELLSPROUT_SHADOW"
-				},
-				"666": {
-					"form": "Purified",
-					"form_id": 666,
-					"proto": "BELLSPROUT_PURIFIED"
-				},
-				"667": {
-					"form": "Normal",
-					"form_id": 667,
-					"proto": "WEEPINBELL_NORMAL"
-				},
-				"668": {
-					"form": "Shadow",
-					"form_id": 668,
-					"proto": "WEEPINBELL_SHADOW"
-				},
-				"669": {
-					"form": "Purified",
-					"form_id": 669,
-					"proto": "WEEPINBELL_PURIFIED"
-				},
-				"670": {
-					"form": "Normal",
-					"form_id": 670,
-					"proto": "VICTREEBEL_NORMAL"
-				},
-				"671": {
-					"form": "Shadow",
-					"form_id": 671,
-					"proto": "VICTREEBEL_SHADOW"
-				},
-				"672": {
-					"form": "Purified",
-					"form_id": 672,
-					"proto": "VICTREEBEL_PURIFIED"
-				},
-				"673": {
-					"form": "Shadow",
-					"form_id": 673,
-					"proto": "SANDSHREW_SHADOW"
-				},
-				"674": {
-					"form": "Purified",
-					"form_id": 674,
-					"proto": "SANDSHREW_PURIFIED"
-				},
-				"675": {
-					"form": "Shadow",
-					"form_id": 675,
-					"proto": "SANDSLASH_SHADOW"
-				},
-				"676": {
-					"form": "Purified",
-					"form_id": 676,
-					"proto": "SANDSLASH_PURIFIED"
-				},
-				"677": {
-					"form": "Normal",
-					"form_id": 677,
-					"proto": "PORYGON_NORMAL"
-				},
-				"678": {
-					"form": "Shadow",
-					"form_id": 678,
-					"proto": "PORYGON_SHADOW"
-				},
-				"679": {
-					"form": "Purified",
-					"form_id": 679,
-					"proto": "PORYGON_PURIFIED"
-				},
-				"680": {
-					"form": "Normal",
-					"form_id": 680,
-					"proto": "PORYGON2_NORMAL"
-				},
-				"681": {
-					"form": "Shadow",
-					"form_id": 681,
-					"proto": "PORYGON2_SHADOW"
-				},
-				"682": {
-					"form": "Purified",
-					"form_id": 682,
-					"proto": "PORYGON2_PURIFIED"
-				},
-				"683": {
-					"form": "Z",
-					"form_id": 683,
-					"proto": "PORYGON_Z_NORMAL"
-				},
-				"684": {
-					"form": "Z",
-					"form_id": 684,
-					"proto": "PORYGON_Z_SHADOW"
-				},
-				"685": {
-					"form": "Z",
-					"form_id": 685,
-					"proto": "PORYGON_Z_PURIFIED"
-				},
-				"686": {
-					"form": "Shadow",
-					"form_id": 686,
-					"proto": "WOBBUFFET_SHADOW"
-				},
-				"687": {
-					"form": "Purified",
-					"form_id": 687,
-					"proto": "WOBBUFFET_PURIFIED"
-				},
-				"688": {
-					"form": "Normal",
-					"form_id": 688,
-					"proto": "TURTWIG_NORMAL"
-				},
-				"689": {
-					"form": "Shadow",
-					"form_id": 689,
-					"proto": "TURTWIG_SHADOW"
-				},
-				"690": {
-					"form": "Purified",
-					"form_id": 690,
-					"proto": "TURTWIG_PURIFIED"
-				},
-				"691": {
-					"form": "Normal",
-					"form_id": 691,
-					"proto": "GROTLE_NORMAL"
-				},
-				"692": {
-					"form": "Shadow",
-					"form_id": 692,
-					"proto": "GROTLE_SHADOW"
-				},
-				"693": {
-					"form": "Purified",
-					"form_id": 693,
-					"proto": "GROTLE_PURIFIED"
-				},
-				"694": {
-					"form": "Normal",
-					"form_id": 694,
-					"proto": "TORTERRA_NORMAL"
-				},
-				"695": {
-					"form": "Shadow",
-					"form_id": 695,
-					"proto": "TORTERRA_SHADOW"
-				},
-				"696": {
-					"form": "Purified",
-					"form_id": 696,
-					"proto": "TORTERRA_PURIFIED"
-				},
-				"697": {
-					"form": "Normal",
-					"form_id": 697,
-					"proto": "EKANS_NORMAL"
-				},
-				"698": {
-					"form": "Shadow",
-					"form_id": 698,
-					"proto": "EKANS_SHADOW"
-				},
-				"699": {
-					"form": "Purified",
-					"form_id": 699,
-					"proto": "EKANS_PURIFIED"
-				},
-				"700": {
-					"form": "Normal",
-					"form_id": 700,
-					"proto": "ARBOK_NORMAL"
-				},
-				"701": {
-					"form": "Shadow",
-					"form_id": 701,
-					"proto": "ARBOK_SHADOW"
-				},
-				"702": {
-					"form": "Purified",
-					"form_id": 702,
-					"proto": "ARBOK_PURIFIED"
-				},
-				"703": {
-					"form": "Normal",
-					"form_id": 703,
-					"proto": "KOFFING_NORMAL"
-				},
-				"704": {
-					"form": "Shadow",
-					"form_id": 704,
-					"proto": "KOFFING_SHADOW"
-				},
-				"705": {
-					"form": "Purified",
-					"form_id": 705,
-					"proto": "KOFFING_PURIFIED"
-				},
-				"706": {
-					"form": "Normal",
-					"form_id": 706,
-					"proto": "WEEZING_NORMAL"
-				},
-				"707": {
-					"form": "Shadow",
-					"form_id": 707,
-					"proto": "WEEZING_SHADOW"
-				},
-				"708": {
-					"form": "Purified",
-					"form_id": 708,
-					"proto": "WEEZING_PURIFIED"
-				},
-				"709": {
-					"form": "Shadow",
-					"form_id": 709,
-					"proto": "MEOWTH_SHADOW"
-				},
-				"710": {
-					"form": "Purified",
-					"form_id": 710,
-					"proto": "MEOWTH_PURIFIED"
-				},
-				"711": {
-					"form": "Shadow",
-					"form_id": 711,
-					"proto": "PERSIAN_SHADOW"
-				},
-				"712": {
-					"form": "Purified",
-					"form_id": 712,
-					"proto": "PERSIAN_PURIFIED"
-				},
-				"713": {
-					"form": "Normal",
-					"form_id": 713,
-					"proto": "HITMONLEE_NORMAL"
-				},
-				"714": {
-					"form": "Shadow",
-					"form_id": 714,
-					"proto": "HITMONLEE_SHADOW"
-				},
-				"715": {
-					"form": "Purified",
-					"form_id": 715,
-					"proto": "HITMONLEE_PURIFIED"
-				},
-				"716": {
-					"form": "Normal",
-					"form_id": 716,
-					"proto": "ARTICUNO_NORMAL"
-				},
-				"717": {
-					"form": "Shadow",
-					"form_id": 717,
-					"proto": "ARTICUNO_SHADOW"
-				},
-				"718": {
-					"form": "Purified",
-					"form_id": 718,
-					"proto": "ARTICUNO_PURIFIED"
-				},
-				"719": {
-					"form": "Normal",
-					"form_id": 719,
-					"proto": "MISDREAVUS_NORMAL"
-				},
-				"720": {
-					"form": "Shadow",
-					"form_id": 720,
-					"proto": "MISDREAVUS_SHADOW"
-				},
-				"721": {
-					"form": "Purified",
-					"form_id": 721,
-					"proto": "MISDREAVUS_PURIFIED"
-				},
-				"722": {
-					"form": "Normal",
-					"form_id": 722,
-					"proto": "MISMAGIUS_NORMAL"
-				},
-				"723": {
-					"form": "Shadow",
-					"form_id": 723,
-					"proto": "MISMAGIUS_SHADOW"
-				},
-				"724": {
-					"form": "Purified",
-					"form_id": 724,
-					"proto": "MISMAGIUS_PURIFIED"
-				},
-				"725": {
-					"form": "Shadow",
-					"form_id": 725,
-					"proto": "VULPIX_SHADOW"
-				},
-				"726": {
-					"form": "Purified",
-					"form_id": 726,
-					"proto": "VULPIX_PURIFIED"
-				},
-				"727": {
-					"form": "Shadow",
-					"form_id": 727,
-					"proto": "NINETALES_SHADOW"
-				},
-				"728": {
-					"form": "Purified",
-					"form_id": 728,
-					"proto": "NINETALES_PURIFIED"
-				},
-				"729": {
-					"form": "Normal",
-					"form_id": 729,
-					"proto": "EXEGGCUTE_NORMAL"
-				},
-				"730": {
-					"form": "Shadow",
-					"form_id": 730,
-					"proto": "EXEGGCUTE_SHADOW"
-				},
-				"731": {
-					"form": "Purified",
-					"form_id": 731,
-					"proto": "EXEGGCUTE_PURIFIED"
-				},
-				"732": {
-					"form": "Shadow",
-					"form_id": 732,
-					"proto": "EXEGGUTOR_SHADOW"
-				},
-				"733": {
-					"form": "Purified",
-					"form_id": 733,
-					"proto": "EXEGGUTOR_PURIFIED"
-				},
-				"734": {
-					"form": "Normal",
-					"form_id": 734,
-					"proto": "CARVANHA_NORMAL"
-				},
-				"735": {
-					"form": "Shadow",
-					"form_id": 735,
-					"proto": "CARVANHA_SHADOW"
-				},
-				"736": {
-					"form": "Purified",
-					"form_id": 736,
-					"proto": "CARVANHA_PURIFIED"
-				},
-				"737": {
-					"form": "Normal",
-					"form_id": 737,
-					"proto": "SHARPEDO_NORMAL"
-				},
-				"738": {
-					"form": "Shadow",
-					"form_id": 738,
-					"proto": "SHARPEDO_SHADOW"
-				},
-				"739": {
-					"form": "Purified",
-					"form_id": 739,
-					"proto": "SHARPEDO_PURIFIED"
-				},
-				"740": {
-					"form": "Normal",
-					"form_id": 740,
-					"proto": "OMANYTE_NORMAL"
-				},
-				"741": {
-					"form": "Shadow",
-					"form_id": 741,
-					"proto": "OMANYTE_SHADOW"
-				},
-				"742": {
-					"form": "Purified",
-					"form_id": 742,
-					"proto": "OMANYTE_PURIFIED"
-				},
-				"743": {
-					"form": "Normal",
-					"form_id": 743,
-					"proto": "OMASTAR_NORMAL"
-				},
-				"744": {
-					"form": "Shadow",
-					"form_id": 744,
-					"proto": "OMASTAR_SHADOW"
-				},
-				"745": {
-					"form": "Purified",
-					"form_id": 745,
-					"proto": "OMASTAR_PURIFIED"
-				},
-				"746": {
-					"form": "Normal",
-					"form_id": 746,
-					"proto": "TRAPINCH_NORMAL"
-				},
-				"747": {
-					"form": "Shadow",
-					"form_id": 747,
-					"proto": "TRAPINCH_SHADOW"
-				},
-				"748": {
-					"form": "Purified",
-					"form_id": 748,
-					"proto": "TRAPINCH_PURIFIED"
-				},
-				"749": {
-					"form": "Normal",
-					"form_id": 749,
-					"proto": "VIBRAVA_NORMAL"
-				},
-				"750": {
-					"form": "Shadow",
-					"form_id": 750,
-					"proto": "VIBRAVA_SHADOW"
-				},
-				"751": {
-					"form": "Purified",
-					"form_id": 751,
-					"proto": "VIBRAVA_PURIFIED"
-				},
-				"752": {
-					"form": "Normal",
-					"form_id": 752,
-					"proto": "FLYGON_NORMAL"
-				},
-				"753": {
-					"form": "Shadow",
-					"form_id": 753,
-					"proto": "FLYGON_SHADOW"
-				},
-				"754": {
-					"form": "Purified",
-					"form_id": 754,
-					"proto": "FLYGON_PURIFIED"
-				},
-				"755": {
-					"form": "Normal",
-					"form_id": 755,
-					"proto": "BAGON_NORMAL"
-				},
-				"756": {
-					"form": "Shadow",
-					"form_id": 756,
-					"proto": "BAGON_SHADOW"
-				},
-				"757": {
-					"form": "Purified",
-					"form_id": 757,
-					"proto": "BAGON_PURIFIED"
-				},
-				"758": {
-					"form": "Normal",
-					"form_id": 758,
-					"proto": "SHELGON_NORMAL"
-				},
-				"759": {
-					"form": "Shadow",
-					"form_id": 759,
-					"proto": "SHELGON_SHADOW"
-				},
-				"760": {
-					"form": "Purified",
-					"form_id": 760,
-					"proto": "SHELGON_PURIFIED"
-				},
-				"761": {
-					"form": "Normal",
-					"form_id": 761,
-					"proto": "SALAMENCE_NORMAL"
-				},
-				"762": {
-					"form": "Shadow",
-					"form_id": 762,
-					"proto": "SALAMENCE_SHADOW"
-				},
-				"763": {
-					"form": "Purified",
-					"form_id": 763,
-					"proto": "SALAMENCE_PURIFIED"
-				},
-				"764": {
-					"form": "Normal",
-					"form_id": 764,
-					"proto": "BELDUM_NORMAL"
-				},
-				"765": {
-					"form": "Shadow",
-					"form_id": 765,
-					"proto": "BELDUM_SHADOW"
-				},
-				"766": {
-					"form": "Purified",
-					"form_id": 766,
-					"proto": "BELDUM_PURIFIED"
-				},
-				"767": {
-					"form": "Normal",
-					"form_id": 767,
-					"proto": "METANG_NORMAL"
-				},
-				"768": {
-					"form": "Shadow",
-					"form_id": 768,
-					"proto": "METANG_SHADOW"
-				},
-				"769": {
-					"form": "Purified",
-					"form_id": 769,
-					"proto": "METANG_PURIFIED"
-				},
-				"770": {
-					"form": "Normal",
-					"form_id": 770,
-					"proto": "METAGROSS_NORMAL"
-				},
-				"771": {
-					"form": "Shadow",
-					"form_id": 771,
-					"proto": "METAGROSS_SHADOW"
-				},
-				"772": {
-					"form": "Purified",
-					"form_id": 772,
-					"proto": "METAGROSS_PURIFIED"
-				},
-				"773": {
-					"form": "Normal",
-					"form_id": 773,
-					"proto": "ZAPDOS_NORMAL"
-				},
-				"774": {
-					"form": "Shadow",
-					"form_id": 774,
-					"proto": "ZAPDOS_SHADOW"
-				},
-				"775": {
-					"form": "Purified",
-					"form_id": 775,
-					"proto": "ZAPDOS_PURIFIED"
-				},
-				"776": {
-					"form": "Normal",
-					"form_id": 776,
-					"proto": "NIDORAN_NORMAL"
-				},
-				"777": {
-					"form": "Shadow",
-					"form_id": 777,
-					"proto": "NIDORAN_SHADOW"
-				},
-				"778": {
-					"form": "Purified",
-					"form_id": 778,
-					"proto": "NIDORAN_PURIFIED"
-				},
-				"779": {
-					"form": "Normal",
-					"form_id": 779,
-					"proto": "NIDORINA_NORMAL"
-				},
-				"780": {
-					"form": "Shadow",
-					"form_id": 780,
-					"proto": "NIDORINA_SHADOW"
-				},
-				"781": {
-					"form": "Purified",
-					"form_id": 781,
-					"proto": "NIDORINA_PURIFIED"
-				},
-				"782": {
-					"form": "Normal",
-					"form_id": 782,
-					"proto": "NIDOQUEEN_NORMAL"
-				},
-				"783": {
-					"form": "Shadow",
-					"form_id": 783,
-					"proto": "NIDOQUEEN_SHADOW"
-				},
-				"784": {
-					"form": "Purified",
-					"form_id": 784,
-					"proto": "NIDOQUEEN_PURIFIED"
-				},
-				"785": {
-					"form": "Normal",
-					"form_id": 785,
-					"proto": "NIDORINO_NORMAL"
-				},
-				"786": {
-					"form": "Shadow",
-					"form_id": 786,
-					"proto": "NIDORINO_SHADOW"
-				},
-				"787": {
-					"form": "Purified",
-					"form_id": 787,
-					"proto": "NIDORINO_PURIFIED"
-				},
-				"788": {
-					"form": "Normal",
-					"form_id": 788,
-					"proto": "NIDOKING_NORMAL"
-				},
-				"789": {
-					"form": "Shadow",
-					"form_id": 789,
-					"proto": "NIDOKING_SHADOW"
-				},
-				"790": {
-					"form": "Purified",
-					"form_id": 790,
-					"proto": "NIDOKING_PURIFIED"
-				},
-				"791": {
-					"form": "Normal",
-					"form_id": 791,
-					"proto": "STUNKY_NORMAL"
-				},
-				"792": {
-					"form": "Shadow",
-					"form_id": 792,
-					"proto": "STUNKY_SHADOW"
-				},
-				"793": {
-					"form": "Purified",
-					"form_id": 793,
-					"proto": "STUNKY_PURIFIED"
-				},
-				"794": {
-					"form": "Normal",
-					"form_id": 794,
-					"proto": "SKUNTANK_NORMAL"
-				},
-				"795": {
-					"form": "Shadow",
-					"form_id": 795,
-					"proto": "SKUNTANK_SHADOW"
-				},
-				"796": {
-					"form": "Purified",
-					"form_id": 796,
-					"proto": "SKUNTANK_PURIFIED"
-				},
-				"797": {
-					"form": "Normal",
-					"form_id": 797,
-					"proto": "SNEASEL_NORMAL"
-				},
-				"798": {
-					"form": "Shadow",
-					"form_id": 798,
-					"proto": "SNEASEL_SHADOW"
-				},
-				"799": {
-					"form": "Purified",
-					"form_id": 799,
-					"proto": "SNEASEL_PURIFIED"
-				},
-				"800": {
-					"form": "Normal",
-					"form_id": 800,
-					"proto": "WEAVILE_NORMAL"
-				},
-				"801": {
-					"form": "Shadow",
-					"form_id": 801,
-					"proto": "WEAVILE_SHADOW"
-				},
-				"802": {
-					"form": "Purified",
-					"form_id": 802,
-					"proto": "WEAVILE_PURIFIED"
-				},
-				"803": {
-					"form": "Normal",
-					"form_id": 803,
-					"proto": "GLIGAR_NORMAL"
-				},
-				"804": {
-					"form": "Shadow",
-					"form_id": 804,
-					"proto": "GLIGAR_SHADOW"
-				},
-				"805": {
-					"form": "Purified",
-					"form_id": 805,
-					"proto": "GLIGAR_PURIFIED"
-				},
-				"806": {
-					"form": "Normal",
-					"form_id": 806,
-					"proto": "GLISCOR_NORMAL"
-				},
-				"807": {
-					"form": "Shadow",
-					"form_id": 807,
-					"proto": "GLISCOR_SHADOW"
-				},
-				"808": {
-					"form": "Purified",
-					"form_id": 808,
-					"proto": "GLISCOR_PURIFIED"
-				},
-				"809": {
-					"form": "Normal",
-					"form_id": 809,
-					"proto": "MACHOP_NORMAL"
-				},
-				"810": {
-					"form": "Shadow",
-					"form_id": 810,
-					"proto": "MACHOP_SHADOW"
-				},
-				"811": {
-					"form": "Purified",
-					"form_id": 811,
-					"proto": "MACHOP_PURIFIED"
-				},
-				"812": {
-					"form": "Normal",
-					"form_id": 812,
-					"proto": "MACHOKE_NORMAL"
-				},
-				"813": {
-					"form": "Shadow",
-					"form_id": 813,
-					"proto": "MACHOKE_SHADOW"
-				},
-				"814": {
-					"form": "Purified",
-					"form_id": 814,
-					"proto": "MACHOKE_PURIFIED"
-				},
-				"815": {
-					"form": "Normal",
-					"form_id": 815,
-					"proto": "MACHAMP_NORMAL"
-				},
-				"816": {
-					"form": "Shadow",
-					"form_id": 816,
-					"proto": "MACHAMP_SHADOW"
-				},
-				"817": {
-					"form": "Purified",
-					"form_id": 817,
-					"proto": "MACHAMP_PURIFIED"
-				},
-				"818": {
-					"form": "Normal",
-					"form_id": 818,
-					"proto": "CHIMCHAR_NORMAL"
-				},
-				"819": {
-					"form": "Shadow",
-					"form_id": 819,
-					"proto": "CHIMCHAR_SHADOW"
-				},
-				"820": {
-					"form": "Purified",
-					"form_id": 820,
-					"proto": "CHIMCHAR_PURIFIED"
-				},
-				"821": {
-					"form": "Normal",
-					"form_id": 821,
-					"proto": "MONFERNO_NORMAL"
-				},
-				"822": {
-					"form": "Shadow",
-					"form_id": 822,
-					"proto": "MONFERNO_SHADOW"
-				},
-				"823": {
-					"form": "Purified",
-					"form_id": 823,
-					"proto": "MONFERNO_PURIFIED"
-				},
-				"824": {
-					"form": "Normal",
-					"form_id": 824,
-					"proto": "INFERNAPE_NORMAL"
-				},
-				"825": {
-					"form": "Shadow",
-					"form_id": 825,
-					"proto": "INFERNAPE_SHADOW"
-				},
-				"826": {
-					"form": "Purified",
-					"form_id": 826,
-					"proto": "INFERNAPE_PURIFIED"
-				},
-				"827": {
-					"form": "Normal",
-					"form_id": 827,
-					"proto": "SHUCKLE_NORMAL"
-				},
-				"828": {
-					"form": "Shadow",
-					"form_id": 828,
-					"proto": "SHUCKLE_SHADOW"
-				},
-				"829": {
-					"form": "Purified",
-					"form_id": 829,
-					"proto": "SHUCKLE_PURIFIED"
-				},
-				"830": {
-					"form": "Normal",
-					"form_id": 830,
-					"proto": "ABSOL_NORMAL"
-				},
-				"831": {
-					"form": "Shadow",
-					"form_id": 831,
-					"proto": "ABSOL_SHADOW"
-				},
-				"832": {
-					"form": "Purified",
-					"form_id": 832,
-					"proto": "ABSOL_PURIFIED"
-				},
-				"833": {
-					"form": "Normal",
-					"form_id": 833,
-					"proto": "MAWILE_NORMAL"
-				},
-				"834": {
-					"form": "Shadow",
-					"form_id": 834,
-					"proto": "MAWILE_SHADOW"
-				},
-				"835": {
-					"form": "Purified",
-					"form_id": 835,
-					"proto": "MAWILE_PURIFIED"
-				},
-				"836": {
-					"form": "Normal",
-					"form_id": 836,
-					"proto": "MOLTRES_NORMAL"
-				},
-				"837": {
-					"form": "Shadow",
-					"form_id": 837,
-					"proto": "MOLTRES_SHADOW"
-				},
-				"838": {
-					"form": "Purified",
-					"form_id": 838,
-					"proto": "MOLTRES_PURIFIED"
-				},
-				"839": {
-					"form": "Normal",
-					"form_id": 839,
-					"proto": "KANGASKHAN_NORMAL"
-				},
-				"840": {
-					"form": "Shadow",
-					"form_id": 840,
-					"proto": "KANGASKHAN_SHADOW"
-				},
-				"841": {
-					"form": "Purified",
-					"form_id": 841,
-					"proto": "KANGASKHAN_PURIFIED"
-				},
-				"842": {
-					"form": "Shadow",
-					"form_id": 842,
-					"proto": "DIGLETT_SHADOW"
-				},
-				"843": {
-					"form": "Purified",
-					"form_id": 843,
-					"proto": "DIGLETT_PURIFIED"
-				},
-				"844": {
-					"form": "Shadow",
-					"form_id": 844,
-					"proto": "DUGTRIO_SHADOW"
-				},
-				"845": {
-					"form": "Purified",
-					"form_id": 845,
-					"proto": "DUGTRIO_PURIFIED"
-				},
-				"846": {
-					"form": "Normal",
-					"form_id": 846,
-					"proto": "RHYHORN_NORMAL"
-				},
-				"847": {
-					"form": "Shadow",
-					"form_id": 847,
-					"proto": "RHYHORN_SHADOW"
-				},
-				"848": {
-					"form": "Purified",
-					"form_id": 848,
-					"proto": "RHYHORN_PURIFIED"
-				},
-				"849": {
-					"form": "Normal",
-					"form_id": 849,
-					"proto": "RHYDON_NORMAL"
-				},
-				"850": {
-					"form": "Shadow",
-					"form_id": 850,
-					"proto": "RHYDON_SHADOW"
-				},
-				"851": {
-					"form": "Purified",
-					"form_id": 851,
-					"proto": "RHYDON_PURIFIED"
-				},
-				"852": {
-					"form": "Normal",
-					"form_id": 852,
-					"proto": "RHYPERIOR_NORMAL"
-				},
-				"853": {
-					"form": "Shadow",
-					"form_id": 853,
-					"proto": "RHYPERIOR_SHADOW"
-				},
-				"854": {
-					"form": "Purified",
-					"form_id": 854,
-					"proto": "RHYPERIOR_PURIFIED"
-				},
-				"855": {
-					"form": "Normal",
-					"form_id": 855,
-					"proto": "MURKROW_NORMAL"
-				},
-				"856": {
-					"form": "Shadow",
-					"form_id": 856,
-					"proto": "MURKROW_SHADOW"
-				},
-				"857": {
-					"form": "Purified",
-					"form_id": 857,
-					"proto": "MURKROW_PURIFIED"
-				},
-				"858": {
-					"form": "Normal",
-					"form_id": 858,
-					"proto": "HONCHKROW_NORMAL"
-				},
-				"859": {
-					"form": "Shadow",
-					"form_id": 859,
-					"proto": "HONCHKROW_SHADOW"
-				},
-				"860": {
-					"form": "Purified",
-					"form_id": 860,
-					"proto": "HONCHKROW_PURIFIED"
-				},
-				"861": {
-					"form": "Normal",
-					"form_id": 861,
-					"proto": "GIBLE_NORMAL"
-				},
-				"862": {
-					"form": "Shadow",
-					"form_id": 862,
-					"proto": "GIBLE_SHADOW"
-				},
-				"863": {
-					"form": "Purified",
-					"form_id": 863,
-					"proto": "GIBLE_PURIFIED"
-				},
-				"864": {
-					"form": "Normal",
-					"form_id": 864,
-					"proto": "GABITE_NORMAL"
-				},
-				"865": {
-					"form": "Shadow",
-					"form_id": 865,
-					"proto": "GABITE_SHADOW"
-				},
-				"866": {
-					"form": "Purified",
-					"form_id": 866,
-					"proto": "GABITE_PURIFIED"
-				},
-				"867": {
-					"form": "Normal",
-					"form_id": 867,
-					"proto": "GARCHOMP_NORMAL"
-				},
-				"868": {
-					"form": "Shadow",
-					"form_id": 868,
-					"proto": "GARCHOMP_SHADOW"
-				},
-				"869": {
-					"form": "Purified",
-					"form_id": 869,
-					"proto": "GARCHOMP_PURIFIED"
-				},
-				"870": {
-					"form": "Normal",
-					"form_id": 870,
-					"proto": "KRABBY_NORMAL"
-				},
-				"871": {
-					"form": "Shadow",
-					"form_id": 871,
-					"proto": "KRABBY_SHADOW"
-				},
-				"872": {
-					"form": "Purified",
-					"form_id": 872,
-					"proto": "KRABBY_PURIFIED"
-				},
-				"873": {
-					"form": "Normal",
-					"form_id": 873,
-					"proto": "KINGLER_NORMAL"
-				},
-				"874": {
-					"form": "Shadow",
-					"form_id": 874,
-					"proto": "KINGLER_SHADOW"
-				},
-				"875": {
-					"form": "Purified",
-					"form_id": 875,
-					"proto": "KINGLER_PURIFIED"
-				},
-				"876": {
-					"form": "Normal",
-					"form_id": 876,
-					"proto": "SHELLDER_NORMAL"
-				},
-				"877": {
-					"form": "Shadow",
-					"form_id": 877,
-					"proto": "SHELLDER_SHADOW"
-				},
-				"878": {
-					"form": "Purified",
-					"form_id": 878,
-					"proto": "SHELLDER_PURIFIED"
-				},
-				"879": {
-					"form": "Normal",
-					"form_id": 879,
-					"proto": "CLOYSTER_NORMAL"
-				},
-				"880": {
-					"form": "Shadow",
-					"form_id": 880,
-					"proto": "CLOYSTER_SHADOW"
-				},
-				"881": {
-					"form": "Purified",
-					"form_id": 881,
-					"proto": "CLOYSTER_PURIFIED"
-				},
-				"882": {
-					"form": "Shadow",
-					"form_id": 882,
-					"proto": "GEODUDE_SHADOW"
-				},
-				"883": {
-					"form": "Purified",
-					"form_id": 883,
-					"proto": "GEODUDE_PURIFIED"
-				},
-				"884": {
-					"form": "Shadow",
-					"form_id": 884,
-					"proto": "GRAVELER_SHADOW"
-				},
-				"885": {
-					"form": "Purified",
-					"form_id": 885,
-					"proto": "GRAVELER_PURIFIED"
-				},
-				"886": {
-					"form": "Shadow",
-					"form_id": 886,
-					"proto": "GOLEM_SHADOW"
-				},
-				"887": {
-					"form": "Purified",
-					"form_id": 887,
-					"proto": "GOLEM_PURIFIED"
-				},
-				"888": {
-					"form": "Normal",
-					"form_id": 888,
-					"proto": "HIPPOPOTAS_NORMAL"
-				},
-				"889": {
-					"form": "Shadow",
-					"form_id": 889,
-					"proto": "HIPPOPOTAS_SHADOW"
-				},
-				"890": {
-					"form": "Purified",
-					"form_id": 890,
-					"proto": "HIPPOPOTAS_PURIFIED"
-				},
-				"891": {
-					"form": "Normal",
-					"form_id": 891,
-					"proto": "HIPPOWDON_NORMAL"
-				},
-				"892": {
-					"form": "Shadow",
-					"form_id": 892,
-					"proto": "HIPPOWDON_SHADOW"
-				},
-				"893": {
-					"form": "Purified",
-					"form_id": 893,
-					"proto": "HIPPOWDON_PURIFIED"
-				},
-				"894": {
-					"form": "Fall",
-					"form_id": 894,
-					"proto": "PIKACHU_FALL_2019"
-				},
-				"895": {
-					"form": "Fall",
-					"form_id": 895,
-					"proto": "SQUIRTLE_FALL_2019"
-				},
-				"896": {
-					"form": "Fall",
-					"form_id": 896,
-					"proto": "CHARMANDER_FALL_2019"
-				},
-				"897": {
-					"form": "Fall",
-					"form_id": 897,
-					"proto": "BULBASAUR_FALL_2019"
-				},
-				"898": {
-					"form": "Normal",
-					"form_id": 898,
-					"proto": "PINSIR_NORMAL"
-				},
-				"899": {
-					"form": "Shadow",
-					"form_id": 899,
-					"proto": "PINSIR_SHADOW"
-				},
-				"900": {
-					"form": "Purified",
-					"form_id": 900,
-					"proto": "PINSIR_PURIFIED"
-				},
-				"901": {
-					"form": "Vs",
-					"form_id": 901,
-					"proto": "PIKACHU_VS_2019",
-					"asset_form": 16
-				},
-				"902": {
-					"form": "Normal",
-					"form_id": 902,
-					"proto": "ONIX_NORMAL"
-				},
-				"903": {
-					"form": "Shadow",
-					"form_id": 903,
-					"proto": "ONIX_SHADOW"
-				},
-				"904": {
-					"form": "Purified",
-					"form_id": 904,
-					"proto": "ONIX_PURIFIED"
-				},
-				"905": {
-					"form": "Normal",
-					"form_id": 905,
-					"proto": "STEELIX_NORMAL"
-				},
-				"906": {
-					"form": "Shadow",
-					"form_id": 906,
-					"proto": "STEELIX_SHADOW"
-				},
-				"907": {
-					"form": "Purified",
-					"form_id": 907,
-					"proto": "STEELIX_PURIFIED"
-				},
-				"908": {
-					"form": "Normal",
-					"form_id": 908,
-					"proto": "SHUPPET_NORMAL"
-				},
-				"909": {
-					"form": "Shadow",
-					"form_id": 909,
-					"proto": "SHUPPET_SHADOW"
-				},
-				"910": {
-					"form": "Purified",
-					"form_id": 910,
-					"proto": "SHUPPET_PURIFIED"
-				},
-				"911": {
-					"form": "Normal",
-					"form_id": 911,
-					"proto": "BANETTE_NORMAL"
-				},
-				"912": {
-					"form": "Shadow",
-					"form_id": 912,
-					"proto": "BANETTE_SHADOW"
-				},
-				"913": {
-					"form": "Purified",
-					"form_id": 913,
-					"proto": "BANETTE_PURIFIED"
-				},
-				"914": {
-					"form": "Normal",
-					"form_id": 914,
-					"proto": "DUSKULL_NORMAL"
-				},
-				"915": {
-					"form": "Shadow",
-					"form_id": 915,
-					"proto": "DUSKULL_SHADOW"
-				},
-				"916": {
-					"form": "Purified",
-					"form_id": 916,
-					"proto": "DUSKULL_PURIFIED"
-				},
-				"917": {
-					"form": "Normal",
-					"form_id": 917,
-					"proto": "DUSCLOPS_NORMAL"
-				},
-				"918": {
-					"form": "Shadow",
-					"form_id": 918,
-					"proto": "DUSCLOPS_SHADOW"
-				},
-				"919": {
-					"form": "Purified",
-					"form_id": 919,
-					"proto": "DUSCLOPS_PURIFIED"
-				},
-				"920": {
-					"form": "Normal",
-					"form_id": 920,
-					"proto": "DUSKNOIR_NORMAL"
-				},
-				"921": {
-					"form": "Shadow",
-					"form_id": 921,
-					"proto": "DUSKNOIR_SHADOW"
-				},
-				"922": {
-					"form": "Purified",
-					"form_id": 922,
-					"proto": "DUSKNOIR_PURIFIED"
-				},
-				"923": {
-					"form": "Normal",
-					"form_id": 923,
-					"proto": "SABLEYE_NORMAL"
-				},
-				"924": {
-					"form": "Shadow",
-					"form_id": 924,
-					"proto": "SABLEYE_SHADOW"
-				},
-				"925": {
-					"form": "Purified",
-					"form_id": 925,
-					"proto": "SABLEYE_PURIFIED"
-				},
-				"932": {
-					"form": "Normal",
-					"form_id": 932,
-					"proto": "SNOVER_NORMAL"
-				},
-				"933": {
-					"form": "Shadow",
-					"form_id": 933,
-					"proto": "SNOVER_SHADOW"
-				},
-				"934": {
-					"form": "Purified",
-					"form_id": 934,
-					"proto": "SNOVER_PURIFIED"
-				},
-				"935": {
-					"form": "Normal",
-					"form_id": 935,
-					"proto": "ABOMASNOW_NORMAL"
-				},
-				"936": {
-					"form": "Shadow",
-					"form_id": 936,
-					"proto": "ABOMASNOW_SHADOW"
-				},
-				"937": {
-					"form": "Purified",
-					"form_id": 937,
-					"proto": "ABOMASNOW_PURIFIED"
-				},
-				"938": {
-					"form": "Normal",
-					"form_id": 938,
-					"proto": "DELIBIRD_NORMAL"
-				},
-				"939": {
-					"form": "Shadow",
-					"form_id": 939,
-					"proto": "DELIBIRD_SHADOW"
-				},
-				"940": {
-					"form": "Purified",
-					"form_id": 940,
-					"proto": "DELIBIRD_PURIFIED"
-				},
-				"941": {
-					"form": "Normal",
-					"form_id": 941,
-					"proto": "STANTLER_NORMAL"
-				},
-				"942": {
-					"form": "Shadow",
-					"form_id": 942,
-					"proto": "STANTLER_SHADOW"
-				},
-				"943": {
-					"form": "Purified",
-					"form_id": 943,
-					"proto": "STANTLER_PURIFIED"
-				},
-				"944": {
-					"form": "Galarian",
-					"form_id": 944,
-					"proto": "WEEZING_GALARIAN",
-					"asset_form": 31
-				},
-				"945": {
-					"form": "Normal",
-					"form_id": 945,
-					"proto": "ZIGZAGOON_NORMAL"
-				},
-				"946": {
-					"form": "Galarian",
-					"form_id": 946,
-					"proto": "ZIGZAGOON_GALARIAN",
-					"asset_form": 31
-				},
-				"947": {
-					"form": "Normal",
-					"form_id": 947,
-					"proto": "LINOONE_NORMAL"
-				},
-				"948": {
-					"form": "Galarian",
-					"form_id": 948,
-					"proto": "LINOONE_GALARIAN",
-					"asset_form": 31
-				},
-				"949": {
-					"form": "Copy",
-					"form_id": 949,
-					"proto": "PIKACHU_COPY_2019"
-				},
-				"950": {
-					"form": "Copy",
-					"form_id": 950,
-					"proto": "VENUSAUR_COPY_2019"
-				},
-				"951": {
-					"form": "Copy",
-					"form_id": 951,
-					"proto": "CHARIZARD_COPY_2019"
-				},
-				"952": {
-					"form": "Copy",
-					"form_id": 952,
-					"proto": "BLASTOISE_COPY_2019"
-				},
-				"1023": {
-					"form": "Normal",
-					"form_id": 1023,
-					"proto": "FARFETCHD_NORMAL"
-				},
-				"1024": {
-					"form": "Shadow",
-					"form_id": 1024,
-					"proto": "FARFETCHD_SHADOW"
-				},
-				"1025": {
-					"form": "Purified",
-					"form_id": 1025,
-					"proto": "FARFETCHD_PURIFIED"
-				},
-				"1113": {
-					"form": "Shadow",
-					"form_id": 1113,
-					"proto": "MEWTWO_SHADOW"
-				},
-				"1114": {
-					"form": "Purified",
-					"form_id": 1114,
-					"proto": "MEWTWO_PURIFIED"
-				},
-				"1244": {
-					"form": "Normal",
-					"form_id": 1244,
-					"proto": "PINECO_NORMAL"
-				},
-				"1245": {
-					"form": "Shadow",
-					"form_id": 1245,
-					"proto": "PINECO_SHADOW"
-				},
-				"1246": {
-					"form": "Purified",
-					"form_id": 1246,
-					"proto": "PINECO_PURIFIED"
-				},
-				"1247": {
-					"form": "Normal",
-					"form_id": 1247,
-					"proto": "FORRETRESS_NORMAL"
-				},
-				"1248": {
-					"form": "Shadow",
-					"form_id": 1248,
-					"proto": "FORRETRESS_SHADOW"
-				},
-				"1249": {
-					"form": "Purified",
-					"form_id": 1249,
-					"proto": "FORRETRESS_PURIFIED"
-				},
-				"1331": {
-					"form": "Normal",
-					"form_id": 1331,
-					"proto": "RAIKOU_NORMAL"
-				},
-				"1332": {
-					"form": "Shadow",
-					"form_id": 1332,
-					"proto": "RAIKOU_SHADOW"
-				},
-				"1333": {
-					"form": "Purified",
-					"form_id": 1333,
-					"proto": "RAIKOU_PURIFIED"
-				},
-				"1334": {
-					"form": "Normal",
-					"form_id": 1334,
-					"proto": "ENTEI_NORMAL"
-				},
-				"1335": {
-					"form": "Shadow",
-					"form_id": 1335,
-					"proto": "ENTEI_SHADOW"
-				},
-				"1336": {
-					"form": "Purified",
-					"form_id": 1336,
-					"proto": "ENTEI_PURIFIED"
-				},
-				"1337": {
-					"form": "Normal",
-					"form_id": 1337,
-					"proto": "SUICUNE_NORMAL"
-				},
-				"1338": {
-					"form": "Shadow",
-					"form_id": 1338,
-					"proto": "SUICUNE_SHADOW"
-				},
-				"1339": {
-					"form": "Purified",
-					"form_id": 1339,
-					"proto": "SUICUNE_PURIFIED"
-				},
-				"1373": {
-					"form": "Shadow",
-					"form_id": 1373,
-					"proto": "ZIGZAGOON_SHADOW"
-				},
-				"1374": {
-					"form": "Purified",
-					"form_id": 1374,
-					"proto": "ZIGZAGOON_PURIFIED"
-				},
-				"1375": {
-					"form": "Shadow",
-					"form_id": 1375,
-					"proto": "LINOONE_SHADOW"
-				},
-				"1376": {
-					"form": "Purified",
-					"form_id": 1376,
-					"proto": "LINOONE_PURIFIED"
-				},
-				"2063": {
-					"form": "Normal",
-					"form_id": 2063,
-					"proto": "DARUMAKA_NORMAL"
-				},
-				"2064": {
-					"form": "Shadow",
-					"form_id": 2064,
-					"proto": "DARUMAKA_SHADOW"
-				},
-				"2065": {
-					"form": "Purified",
-					"form_id": 2065,
-					"proto": "DARUMAKA_PURIFIED"
-				},
-				"2168": {
-					"form": "Normal",
-					"form_id": 2168,
-					"proto": "FRILLISH_NORMAL"
-				},
-				"2171": {
-					"form": "Normal",
-					"form_id": 2171,
-					"proto": "JELLICENT_NORMAL"
-				},
-				"2246": {
-					"form": "Normal",
-					"form_id": 2246,
-					"proto": "STUNFISK_NORMAL"
-				},
-				"2247": {
-					"form": "Shadow",
-					"form_id": 2247,
-					"proto": "STUNFISK_SHADOW"
-				},
-				"2248": {
-					"form": "Purified",
-					"form_id": 2248,
-					"proto": "STUNFISK_PURIFIED"
-				},
-				"2330": {
-					"form": "Female",
-					"form_id": 2330,
-					"proto": "FRILLISH_FEMALE",
-					"asset_form": 1
-				},
-				"2331": {
-					"form": "Female",
-					"form_id": 2331,
-					"proto": "JELLICENT_FEMALE",
-					"asset_form": 1
-				},
-				"2332": {
-					"form": "Costume",
-					"form_id": 2332,
-					"proto": "PIKACHU_COSTUME_2020"
-				},
-				"2335": {
-					"form": "Galarian",
-					"form_id": 2335,
-					"proto": "MEOWTH_GALARIAN",
-					"asset_form": 31
-				},
-				"2338": {
-					"form": "Galarian",
-					"form_id": 2338,
-					"proto": "FARFETCHD_GALARIAN",
-					"asset_form": 31
-				},
-				"2341": {
-					"form": "Galarian",
-					"form_id": 2341,
-					"proto": "DARUMAKA_GALARIAN",
-					"asset_form": 31
-				},
-				"2342": {
-					"form": "Galarian",
-					"form_id": 2342,
-					"proto": "DARMANITAN_GALARIAN_STANDARD",
-					"asset_form": 31
-				},
-				"2343": {
-					"form": "Galarian",
-					"form_id": 2343,
-					"proto": "DARMANITAN_GALARIAN_ZEN",
-					"asset_form": 32
-				},
-				"2345": {
-					"form": "Galarian",
-					"form_id": 2345,
-					"proto": "STUNFISK_GALARIAN",
-					"asset_form": 31
-				},
-				"2501": {
-					"form": "Normal",
-					"form_id": 2501,
-					"proto": "OBSTAGOON_NORMAL",
-					"asset_form": 31
-				},
-				"2502": {
-					"form": "Shadow",
-					"form_id": 2502,
-					"proto": "OBSTAGOON_SHADOW",
-					"asset_form": 31
-				},
-				"2503": {
-					"form": "Purified",
-					"form_id": 2503,
-					"proto": "OBSTAGOON_PURIFIED",
-					"asset_form": 31
-				},
-				"2504": {
-					"form": "Normal",
-					"form_id": 2504,
-					"proto": "PERRSERKER_NORMAL",
-					"asset_form": 31
-				},
-				"2505": {
-					"form": "Shadow",
-					"form_id": 2505,
-					"proto": "PERRSERKER_SHADOW",
-					"asset_form": 31
-				},
-				"2506": {
-					"form": "Purified",
-					"form_id": 2506,
-					"proto": "PERRSERKER_PURIFIED",
-					"asset_form": 31
-				},
-				"2510": {
-					"form": "Normal",
-					"form_id": 2510,
-					"proto": "SIRFETCHD_NORMAL",
-					"asset_form": 31
-				},
-				"2511": {
-					"form": "Shadow",
-					"form_id": 2511,
-					"proto": "SIRFETCHD_SHADOW",
-					"asset_form": 31
-				},
-				"2512": {
-					"form": "Purified",
-					"form_id": 2512,
-					"proto": "SIRFETCHD_PURIFIED",
-					"asset_form": 31
-				}
-			},
-			"default_form_id": "1",
-			"default_form": "A"
 		}
 	},
 	"Forms": {},
@@ -42441,40 +38809,40 @@
 			"name": ""
 		},
 		"1": {
-			"name": "Thunder Shock"
+			"name": ""
 		},
 		"2": {
-			"name": "Quick Attack"
+			"name": ""
 		},
 		"3": {
-			"name": "Scratch"
+			"name": ""
 		},
 		"4": {
-			"name": "Ember"
+			"name": ""
 		},
 		"5": {
-			"name": "Vine Whip"
+			"name": ""
 		},
 		"6": {
-			"name": "Tackle"
+			"name": ""
 		},
 		"7": {
-			"name": "Razor Leaf"
+			"name": ""
 		},
 		"8": {
-			"name": "Take Down"
+			"name": ""
 		},
 		"9": {
-			"name": "Water Gun"
+			"name": ""
 		},
 		"10": {
-			"name": "Bite"
+			"name": ""
 		},
 		"11": {
-			"name": "Pound"
+			"name": ""
 		},
 		"12": {
-			"name": "Double Slap"
+			"name": ""
 		},
 		"13": {
 			"name": "Wrap",
@@ -42489,7 +38857,7 @@
 			"power": 150
 		},
 		"15": {
-			"name": "Lick"
+			"name": ""
 		},
 		"16": {
 			"name": "Dark Pulse",
@@ -42498,7 +38866,7 @@
 			"power": 80
 		},
 		"17": {
-			"name": "Smog"
+			"name": ""
 		},
 		"18": {
 			"name": "Sludge",
@@ -42507,7 +38875,7 @@
 			"power": 50
 		},
 		"19": {
-			"name": "Metal Claw"
+			"name": ""
 		},
 		"20": {
 			"name": "Vice Grip",
@@ -42528,7 +38896,7 @@
 			"power": 100
 		},
 		"23": {
-			"name": "Wing Attack"
+			"name": ""
 		},
 		"24": {
 			"name": "Flamethrower",
@@ -42537,7 +38905,7 @@
 			"power": 90
 		},
 		"25": {
-			"name": "Sucker Punch"
+			"name": ""
 		},
 		"26": {
 			"name": "Dig",
@@ -42546,7 +38914,7 @@
 			"power": 100
 		},
 		"27": {
-			"name": "Low Kick"
+			"name": ""
 		},
 		"28": {
 			"name": "Cross Chop",
@@ -42555,7 +38923,7 @@
 			"power": 50
 		},
 		"29": {
-			"name": "Psycho Cut"
+			"name": ""
 		},
 		"30": {
 			"name": "Psybeam",
@@ -42600,7 +38968,7 @@
 			"power": 110
 		},
 		"37": {
-			"name": "Peck"
+			"name": ""
 		},
 		"38": {
 			"name": "Drill Peck",
@@ -42621,7 +38989,7 @@
 			"power": 130
 		},
 		"41": {
-			"name": "Air Slash"
+			"name": ""
 		},
 		"42": {
 			"name": "Heat Wave",
@@ -42630,10 +38998,10 @@
 			"power": 95
 		},
 		"43": {
-			"name": "Twineedle"
+			"name": ""
 		},
 		"44": {
-			"name": "Poison Jab"
+			"name": ""
 		},
 		"45": {
 			"name": "Aerial Ace",
@@ -42678,7 +39046,7 @@
 			"power": 50
 		},
 		"52": {
-			"name": "Slash"
+			"name": ""
 		},
 		"53": {
 			"name": "Bubble Beam",
@@ -42693,7 +39061,7 @@
 			"power": 60
 		},
 		"55": {
-			"name": "Karate Chop"
+			"name": ""
 		},
 		"56": {
 			"name": "Low Sweep",
@@ -42726,7 +39094,7 @@
 			"power": 70
 		},
 		"61": {
-			"name": "Rock Throw"
+			"name": ""
 		},
 		"62": {
 			"name": "Ancient Power",
@@ -42765,7 +39133,7 @@
 			"power": 40
 		},
 		"68": {
-			"name": "Shadow Claw"
+			"name": ""
 		},
 		"69": {
 			"name": "Ominous Wind",
@@ -42780,7 +39148,7 @@
 			"power": 100
 		},
 		"71": {
-			"name": "Bullet Punch"
+			"name": ""
 		},
 		"72": {
 			"name": "Magnet Bomb",
@@ -42789,7 +39157,7 @@
 			"power": 70
 		},
 		"73": {
-			"name": "Steel Wing"
+			"name": ""
 		},
 		"74": {
 			"name": "Iron Head",
@@ -42804,7 +39172,7 @@
 			"power": 25
 		},
 		"76": {
-			"name": "Spark"
+			"name": ""
 		},
 		"77": {
 			"name": "Thunder Punch",
@@ -42831,7 +39199,7 @@
 			"power": 45
 		},
 		"81": {
-			"name": "Dragon Breath"
+			"name": ""
 		},
 		"82": {
 			"name": "Dragon Pulse",
@@ -42900,7 +39268,7 @@
 			"power": 130
 		},
 		"93": {
-			"name": "Mud Shot"
+			"name": ""
 		},
 		"94": {
 			"name": "Bone Club",
@@ -42921,10 +39289,10 @@
 			"power": 55
 		},
 		"97": {
-			"name": "Fury Cutter"
+			"name": ""
 		},
 		"98": {
-			"name": "Bug Bite"
+			"name": ""
 		},
 		"99": {
 			"name": "Signal Beam",
@@ -42993,7 +39361,7 @@
 			"power": 90
 		},
 		"110": {
-			"name": "Ice Shard"
+			"name": ""
 		},
 		"111": {
 			"name": "Icy Wind",
@@ -43002,10 +39370,10 @@
 			"power": 60
 		},
 		"112": {
-			"name": "Frost Breath"
+			"name": ""
 		},
 		"113": {
-			"name": "Absorb"
+			"name": ""
 		},
 		"114": {
 			"name": "Giga Drain",
@@ -43038,10 +39406,10 @@
 			"power": 90
 		},
 		"119": {
-			"name": "Splash"
+			"name": ""
 		},
 		"120": {
-			"name": "Acid"
+			"name": ""
 		},
 		"121": {
 			"name": "Air Cutter",
@@ -43062,7 +39430,7 @@
 			"power": 40
 		},
 		"124": {
-			"name": "Cut"
+			"name": ""
 		},
 		"125": {
 			"name": "Swift",
@@ -43083,7 +39451,7 @@
 			"power": 55
 		},
 		"128": {
-			"name": "Headbutt"
+			"name": ""
 		},
 		"129": {
 			"name": "Hyper Fang",
@@ -43092,7 +39460,7 @@
 			"power": 80
 		},
 		"130": {
-			"name": "Slam"
+			"name": ""
 		},
 		"131": {
 			"name": "Body Slam",
@@ -43328,7 +39696,7 @@
 			"type": "Water"
 		},
 		"232": {
-			"name": "Water Gun Fast Blastoise",
+			"name": "Blastoise",
 			"proto": "COMBAT_V0232_MOVE_WATER_GUN_FAST_BLASTOISE",
 			"type": "Water",
 			"power": 6
@@ -43770,10 +40138,10 @@
 			"power": 75
 		},
 		"306": {
-			"name": "Lunge"
+			"name": ""
 		},
 		"307": {
-			"name": "Crush Claw"
+			"name": ""
 		},
 		"308": {
 			"name": "Octazooka",
@@ -43806,13 +40174,13 @@
 			"power": 45
 		},
 		"313": {
-			"name": "Leech Life"
+			"name": ""
 		},
 		"314": {
-			"name": "Drain Punch"
+			"name": ""
 		},
 		"315": {
-			"name": "Shadow Bone"
+			"name": ""
 		},
 		"316": {
 			"name": "Muddy Water",
@@ -43827,7 +40195,7 @@
 			"power": 55
 		},
 		"318": {
-			"name": "Razor Shell"
+			"name": ""
 		},
 		"319": {
 			"name": "Power Up Punch",
@@ -43884,10 +40252,10 @@
 			"power": 8
 		},
 		"328": {
-			"name": "Horn Drill"
+			"name": ""
 		},
 		"329": {
-			"name": "Fissure"
+			"name": ""
 		},
 		"330": {
 			"name": "Sacred Sword",
@@ -43908,7 +40276,7 @@
 			"power": 100
 		},
 		"333": {
-			"name": "Payback"
+			"name": ""
 		},
 		"334": {
 			"name": "Rock Wrecker",
@@ -43917,22 +40285,22 @@
 			"power": 110
 		},
 		"335": {
-			"name": "Aeroblast"
+			"name": ""
 		},
 		"336": {
-			"name": "Techno Blast Normal"
+			"name": ""
 		},
 		"337": {
-			"name": "Techno Blast Burn"
+			"name": ""
 		},
 		"338": {
-			"name": "Techno Blast Chill"
+			"name": ""
 		},
 		"339": {
-			"name": "Techno Blast Water"
+			"name": ""
 		},
 		"340": {
-			"name": "Techno Blast Shock"
+			"name": ""
 		},
 		"341": {
 			"name": "Fly",
@@ -43945,163 +40313,169 @@
 			"proto": "COMBAT_V0342_MOVE_V_CREATE",
 			"type": "Fire",
 			"power": 95
+		},
+		"343": {
+			"name": ""
+		},
+		"344": {
+			"name": ""
 		}
 	},
 	"Quest_Types": {
 		"0": {
-			"proto": "QUEST_UNSET",
+			"proto": "",
 			"text": ""
 		},
 		"1": {
-			"proto": "QUEST_FIRST_CATCH_OF_THE_DAY",
+			"proto": "CATCH_OF_THE_DAY",
 			"text": "First catch of the day"
 		},
 		"2": {
-			"proto": "QUEST_FIRST_POKESTOP_OF_THE_DAY",
+			"proto": "POKESTOP_OF_THE_DAY",
 			"text": "First pokéstop of the day"
 		},
 		"3": {
-			"proto": "QUEST_MULTI_PART",
+			"proto": "PART",
 			"text": ""
 		},
 		"4": {
-			"proto": "QUEST_CATCH_POKEMON",
-			"text": "Catch {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"5": {
-			"proto": "QUEST_SPIN_POKESTOP",
-			"text": "Spin {0} pokestop(s)"
+			"proto": "POKESTOP",
+			"text": ""
 		},
 		"6": {
-			"proto": "QUEST_HATCH_EGG",
-			"text": "Hatch {0} egg(s)"
+			"proto": "EGG",
+			"text": ""
 		},
 		"7": {
-			"proto": "QUEST_COMPLETE_GYM_BATTLE",
-			"text": "Complete {0} gym battle(s)"
+			"proto": "GYM_BATTLE",
+			"text": ""
 		},
 		"8": {
-			"proto": "QUEST_COMPLETE_RAID_BATTLE",
-			"text": "Complete {0} raid battle(s)"
+			"proto": "RAID_BATTLE",
+			"text": ""
 		},
 		"9": {
-			"proto": "QUEST_COMPLETE_QUEST",
-			"text": "Complete {0} quest(s)"
+			"proto": "QUEST",
+			"text": ""
 		},
 		"10": {
-			"proto": "QUEST_TRANSFER_POKEMON",
-			"text": "Transfer {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"11": {
-			"proto": "QUEST_FAVORITE_POKEMON",
-			"text": "Favorite {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"12": {
-			"proto": "QUEST_AUTOCOMPLETE",
+			"proto": "",
 			"text": ""
 		},
 		"13": {
-			"proto": "QUEST_USE_BERRY_IN_ENCOUNTER",
+			"proto": "BERRY_IN_ENCOUNTER",
 			"text": "Catch {0} pokémon with berrie(s)"
 		},
 		"14": {
-			"proto": "QUEST_UPGRADE_POKEMON",
+			"proto": "POKEMON",
 			"text": "Power up a pokémon {0} times"
 		},
 		"15": {
-			"proto": "QUEST_EVOLVE_POKEMON",
-			"text": "Evolve {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"16": {
-			"proto": "QUEST_LAND_THROW",
-			"text": "Land {0} throw(s)"
+			"proto": "THROW",
+			"text": ""
 		},
 		"17": {
-			"proto": "QUEST_GET_BUDDY_CANDY",
+			"proto": "BUDDY_CANDY",
 			"text": "Walk your buddy to earn {0} candy"
 		},
 		"18": {
-			"proto": "QUEST_BADGE_RANK",
+			"proto": "RANK",
 			"text": "Collect {0} badge(s)"
 		},
 		"19": {
-			"proto": "QUEST_PLAYER_LEVEL",
+			"proto": "LEVEL",
 			"text": "Become level {0}"
 		},
 		"20": {
-			"proto": "QUEST_JOIN_RAID",
-			"text": "Join {0} raid(s)"
+			"proto": "RAID",
+			"text": ""
 		},
 		"21": {
-			"proto": "QUEST_COMPLETE_BATTLE",
-			"text": "Complete {0} battle(s)"
+			"proto": "BATTLE",
+			"text": ""
 		},
 		"22": {
-			"proto": "QUEST_ADD_FRIEND",
+			"proto": "FRIEND",
 			"text": ""
 		},
 		"23": {
-			"proto": "QUEST_TRADE_POKEMON",
-			"text": "Trade {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"24": {
-			"proto": "QUEST_SEND_GIFT",
-			"text": "Send {0} gift(s)"
+			"proto": "GIFT",
+			"text": ""
 		},
 		"25": {
-			"proto": "QUEST_EVOLVE_INTO_POKEMON",
-			"text": "Evolve {0} pokémon into"
+			"proto": "INTO_POKEMON",
+			"text": ""
 		},
 		"27": {
-			"proto": "QUEST_COMPLETE_COMBAT",
-			"text": "Complete {0} pvp battle(s)"
+			"proto": "COMBAT",
+			"text": ""
 		},
 		"28": {
-			"proto": "QUEST_TAKE_SNAPSHOT",
-			"text": "Take {0} snapshot(s)"
+			"proto": "SNAPSHOT",
+			"text": ""
 		},
 		"29": {
-			"proto": "QUEST_BATTLE_TEAM_ROCKET",
+			"proto": "TEAM_ROCKET",
 			"text": "Battle against {0} Team GO Rocket Grunt(s)"
 		},
 		"30": {
-			"proto": "QUEST_PURIFY_POKEMON",
-			"text": "Purify {0} pokémon"
+			"proto": "POKEMON",
+			"text": ""
 		},
 		"31": {
-			"proto": "QUEST_FIND_TEAM_ROCKET",
+			"proto": "TEAM_ROCKET",
 			"text": "Find Team Rocket {0} times"
 		},
 		"32": {
-			"proto": "QUEST_FIRST_GRUNT_OF_THE_DAY",
+			"proto": "GRUNT_OF_THE_DAY",
 			"text": "First Grunt of the day"
 		},
 		"33": {
-			"proto": "QUEST_BUDDY_FEED",
+			"proto": "FEED",
 			"text": ""
 		},
 		"34": {
-			"proto": "QUEST_BUDDY_EARN_AFFECTION_POINTS",
+			"proto": "EARN_AFFECTION_POINTS",
 			"text": "Earn {0} Heart(s) with your Buddy"
 		},
 		"35": {
-			"proto": "QUEST_BUDDY_PET",
+			"proto": "PET",
 			"text": "Play with your Buddy {0} times"
 		},
 		"36": {
-			"proto": "QUEST_BUDDY_LEVEL",
+			"proto": "LEVEL",
 			"text": ""
 		},
 		"37": {
-			"proto": "QUEST_BUDDY_WALK",
+			"proto": "WALK",
 			"text": ""
 		},
 		"38": {
-			"proto": "QUEST_BUDDY_YATTA",
+			"proto": "YATTA",
 			"text": ""
 		},
 		"39": {
-			"proto": "QUEST_USE_INCENSE",
+			"proto": "INCENSE",
 			"text": ""
 		}
 	},
@@ -44232,45 +40606,33 @@
 		}
 	},
 	"Quest_Reward_Types": {
-		"0": {
-			"proto": "UNSET",
-			"text": "Unset"
+		"undefined": {
+			"proto": "reserved",
+			"text": "Reserved"
 		},
-		"1": {
-			"proto": "EXPERIENCE",
-			"text": "Experience"
+		"NANLEIFKHHB": {
+			"proto": "name",
+			"text": "Name"
 		},
-		"2": {
-			"proto": "ITEM",
-			"text": "Item"
+		"Type .DumpProtos.EIMLCIGGHAL": {
+			"proto": "parent",
+			"text": "Parent"
 		},
-		"3": {
-			"proto": "STARDUST",
-			"text": "Stardust"
+		"false": {
+			"proto": "resolved",
+			"text": "Resolved"
 		},
-		"4": {
-			"proto": "CANDY",
-			"text": "Candy"
+		"null": {
+			"proto": "comment",
+			"text": "Comment"
 		},
-		"5": {
-			"proto": "AVATAR_CLOTHING",
-			"text": "Avatar Clothing"
+		"/home/pokemap/WDR/src/static/rawprotos.proto": {
+			"proto": "filename",
+			"text": "Filename"
 		},
-		"6": {
-			"proto": "QUEST",
-			"text": "Quest"
-		},
-		"7": {
-			"proto": "POKEMON_ENCOUNTER",
-			"text": "Pokemon Encounter"
-		},
-		"8": {
-			"proto": "POKECOIN",
-			"text": "Pokecoin"
-		},
-		"11": {
-			"proto": "STICKER",
-			"text": "Sticker"
+		"[object Object]": {
+			"proto": "comments",
+			"text": "Comments"
 		}
 	},
 	"Grunt_Types": {
@@ -44493,423 +40855,413 @@
 		"54": {
 			"type": "",
 			"grunt": "Male"
+		},
+		"55": {
+			"type": "Bug",
+			"grunt": ""
+		},
+		"56": {
+			"type": "Bug",
+			"grunt": ""
+		},
+		"57": {
+			"type": "Dark",
+			"grunt": ""
+		},
+		"58": {
+			"type": "Dark",
+			"grunt": ""
+		},
+		"59": {
+			"type": "Dragon",
+			"grunt": ""
+		},
+		"60": {
+			"type": "Dragon",
+			"grunt": ""
+		},
+		"61": {
+			"type": "Fairy",
+			"grunt": ""
+		},
+		"62": {
+			"type": "Fairy",
+			"grunt": ""
+		},
+		"63": {
+			"type": "Fighting",
+			"grunt": ""
+		},
+		"64": {
+			"type": "Fighting",
+			"grunt": ""
+		},
+		"65": {
+			"type": "Fire",
+			"grunt": ""
+		},
+		"66": {
+			"type": "Fire",
+			"grunt": ""
+		},
+		"67": {
+			"type": "Flying",
+			"grunt": ""
+		},
+		"68": {
+			"type": "Flying",
+			"grunt": ""
+		},
+		"69": {
+			"type": "Grass",
+			"grunt": ""
+		},
+		"70": {
+			"type": "Grass",
+			"grunt": ""
+		},
+		"71": {
+			"type": "Ground",
+			"grunt": ""
+		},
+		"72": {
+			"type": "Ground",
+			"grunt": ""
+		},
+		"73": {
+			"type": "Ice",
+			"grunt": ""
+		},
+		"74": {
+			"type": "Ice",
+			"grunt": ""
+		},
+		"75": {
+			"type": "Metal",
+			"grunt": ""
+		},
+		"76": {
+			"type": "Metal",
+			"grunt": ""
+		},
+		"77": {
+			"type": "Normal",
+			"grunt": ""
+		},
+		"78": {
+			"type": "Normal",
+			"grunt": ""
+		},
+		"79": {
+			"type": "Poison",
+			"grunt": ""
+		},
+		"80": {
+			"type": "Poison",
+			"grunt": ""
+		},
+		"81": {
+			"type": "Psychic",
+			"grunt": ""
+		},
+		"82": {
+			"type": "Psychic",
+			"grunt": ""
+		},
+		"83": {
+			"type": "Rock",
+			"grunt": ""
+		},
+		"84": {
+			"type": "Rock",
+			"grunt": ""
+		},
+		"85": {
+			"type": "Water",
+			"grunt": ""
+		},
+		"86": {
+			"type": "Water",
+			"grunt": ""
+		},
+		"87": {
+			"type": "Ghost",
+			"grunt": ""
+		},
+		"88": {
+			"type": "Ghost",
+			"grunt": ""
+		},
+		"89": {
+			"type": "Electric",
+			"grunt": ""
+		},
+		"90": {
+			"type": "Electric",
+			"grunt": ""
 		}
 	},
 	"Items": {
 		"0": {
-			"name": "Unknown",
-			"proto": "ITEM_UNKNOWN"
+			"name": "",
+			"proto": "UNKNOWN"
 		},
 		"1": {
-			"name": "Poke Ball",
-			"proto": "ITEM_POKE_BALL",
-			"type": "Pokeball",
-			"category": "Pokeball",
-			"min_trainer_level": 1
+			"name": "Ball",
+			"proto": "POKE_BALL"
 		},
 		"2": {
-			"name": "Great Ball",
-			"proto": "ITEM_GREAT_BALL",
-			"type": "Pokeball",
-			"category": "Pokeball",
-			"min_trainer_level": 12
+			"name": "Ball",
+			"proto": "GREAT_BALL"
 		},
 		"3": {
-			"name": "Ultra Ball",
-			"proto": "ITEM_ULTRA_BALL",
-			"type": "Pokeball",
-			"category": "Pokeball",
-			"min_trainer_level": 20
+			"name": "Ball",
+			"proto": "ULTRA_BALL"
 		},
 		"4": {
-			"name": "Master Ball",
-			"proto": "ITEM_MASTER_BALL",
-			"type": "Pokeball",
-			"category": "Pokeball"
+			"name": "Ball",
+			"proto": "MASTER_BALL"
 		},
 		"5": {
-			"name": "Premier Ball",
-			"proto": "ITEM_PREMIER_BALL",
-			"type": "Pokeball",
-			"category": "Pokeball"
+			"name": "Ball",
+			"proto": "PREMIER_BALL"
 		},
 		"101": {
-			"name": "Potion",
-			"proto": "ITEM_POTION",
-			"type": "Potion",
-			"category": "Medicine",
-			"min_trainer_level": 5
+			"name": "",
+			"proto": "POTION"
 		},
 		"102": {
-			"name": "Super Potion",
-			"proto": "ITEM_SUPER_POTION",
-			"type": "Potion",
-			"category": "Medicine",
-			"min_trainer_level": 10
+			"name": "Potion",
+			"proto": "SUPER_POTION"
 		},
 		"103": {
-			"name": "Hyper Potion",
-			"proto": "ITEM_HYPER_POTION",
-			"type": "Potion",
-			"category": "Medicine",
-			"min_trainer_level": 15
+			"name": "Potion",
+			"proto": "HYPER_POTION"
 		},
 		"104": {
-			"name": "Max Potion",
-			"proto": "ITEM_MAX_POTION",
-			"type": "Potion",
-			"category": "Medicine",
-			"min_trainer_level": 25
+			"name": "Potion",
+			"proto": "MAX_POTION"
 		},
 		"201": {
-			"name": "Revive",
-			"proto": "ITEM_REVIVE",
-			"type": "Revive",
-			"category": "Medicine",
-			"min_trainer_level": 5
+			"name": "",
+			"proto": "REVIVE"
 		},
 		"202": {
-			"name": "Max Revive",
-			"proto": "ITEM_MAX_REVIVE",
-			"type": "Revive",
-			"category": "Medicine",
-			"min_trainer_level": 30
+			"name": "Revive",
+			"proto": "MAX_REVIVE"
 		},
 		"301": {
-			"name": "Lucky Egg",
-			"proto": "ITEM_LUCKY_EGG",
-			"type": "Xp Boost",
-			"category": "Xp Boost",
-			"min_trainer_level": 1
+			"name": "Egg",
+			"proto": "LUCKY_EGG"
 		},
 		"401": {
-			"name": "Incense Ordinary",
-			"proto": "ITEM_INCENSE_ORDINARY",
-			"type": "Incense",
-			"category": "Incense",
-			"min_trainer_level": 1
+			"name": "Ordinary",
+			"proto": "INCENSE_ORDINARY"
 		},
 		"402": {
-			"name": "Incense Spicy",
-			"proto": "ITEM_INCENSE_SPICY"
+			"name": "Spicy",
+			"proto": "INCENSE_SPICY"
 		},
 		"403": {
-			"name": "Incense Cool",
-			"proto": "ITEM_INCENSE_COOL"
+			"name": "Cool",
+			"proto": "INCENSE_COOL"
 		},
 		"404": {
-			"name": "Incense Floral",
-			"proto": "ITEM_INCENSE_FLORAL"
+			"name": "Floral",
+			"proto": "INCENSE_FLORAL"
 		},
 		"405": {
-			"name": "Incense Beluga Box",
-			"proto": "ITEM_INCENSE_BELUGA_BOX",
-			"type": "Incense",
-			"category": "Incense",
-			"min_trainer_level": 1
+			"name": "Beluga Box",
+			"proto": "INCENSE_BELUGA_BOX"
 		},
 		"501": {
-			"name": "Troy Disk",
-			"proto": "ITEM_TROY_DISK",
-			"type": "Disk",
-			"category": "Disk",
-			"min_trainer_level": 1
+			"name": "Disk",
+			"proto": "TROY_DISK"
 		},
 		"502": {
-			"name": "Troy Disk Glacial",
-			"proto": "ITEM_TROY_DISK_GLACIAL",
-			"type": "Disk",
-			"category": "Disk",
-			"min_trainer_level": 1
+			"name": "Disk Glacial",
+			"proto": "TROY_DISK_GLACIAL"
 		},
 		"503": {
-			"name": "Troy Disk Mossy",
-			"proto": "ITEM_TROY_DISK_MOSSY",
-			"type": "Disk",
-			"category": "Disk",
-			"min_trainer_level": 1
+			"name": "Disk Mossy",
+			"proto": "TROY_DISK_MOSSY"
 		},
 		"504": {
-			"name": "Troy Disk Magnetic",
-			"proto": "ITEM_TROY_DISK_MAGNETIC",
-			"type": "Disk",
-			"category": "Disk",
-			"min_trainer_level": 1
+			"name": "Disk Magnetic",
+			"proto": "TROY_DISK_MAGNETIC"
 		},
 		"602": {
-			"name": "X Attack",
-			"proto": "ITEM_X_ATTACK",
-			"type": "Battle",
-			"category": "Boost"
+			"name": "Attack",
+			"proto": "X_ATTACK"
 		},
 		"603": {
-			"name": "X Defense",
-			"proto": "ITEM_X_DEFENSE",
-			"type": "Battle",
-			"category": "Boost"
+			"name": "Defense",
+			"proto": "X_DEFENSE"
 		},
 		"604": {
-			"name": "X Miracle",
-			"proto": "ITEM_X_MIRACLE",
-			"type": "Battle",
-			"category": "Boost"
+			"name": "Miracle",
+			"proto": "X_MIRACLE"
 		},
 		"701": {
-			"name": "Razz Berry",
-			"proto": "ITEM_RAZZ_BERRY",
-			"type": "Food",
-			"category": "Food",
-			"min_trainer_level": 8
+			"name": "Berry",
+			"proto": "RAZZ_BERRY"
 		},
 		"702": {
-			"name": "Bluk Berry",
-			"proto": "ITEM_BLUK_BERRY",
-			"type": "Food",
-			"category": "Food"
+			"name": "Berry",
+			"proto": "BLUK_BERRY"
 		},
 		"703": {
-			"name": "Nanab Berry",
-			"proto": "ITEM_NANAB_BERRY",
-			"type": "Food",
-			"category": "Food",
-			"min_trainer_level": 4
+			"name": "Berry",
+			"proto": "NANAB_BERRY"
 		},
 		"704": {
-			"name": "Wepar Berry",
-			"proto": "ITEM_WEPAR_BERRY",
-			"type": "Food",
-			"category": "Food"
+			"name": "Berry",
+			"proto": "WEPAR_BERRY"
 		},
 		"705": {
-			"name": "Pinap Berry",
-			"proto": "ITEM_PINAP_BERRY",
-			"type": "Food",
-			"category": "Food",
-			"min_trainer_level": 18
+			"name": "Berry",
+			"proto": "PINAP_BERRY"
 		},
 		"706": {
-			"name": "Golden Razz Berry",
-			"proto": "ITEM_GOLDEN_RAZZ_BERRY",
-			"type": "Food",
-			"category": "Food",
-			"min_trainer_level": 10
+			"name": "Razz Berry",
+			"proto": "GOLDEN_RAZZ_BERRY"
 		},
 		"707": {
-			"name": "Golden Nanab Berry",
-			"proto": "ITEM_GOLDEN_NANAB_BERRY"
+			"name": "Nanab Berry",
+			"proto": "GOLDEN_NANAB_BERRY"
 		},
 		"708": {
-			"name": "Golden Pinap Berry",
-			"proto": "ITEM_GOLDEN_PINAP_BERRY",
-			"type": "Food",
-			"category": "Food",
-			"min_trainer_level": 20
+			"name": "Pinap Berry",
+			"proto": "GOLDEN_PINAP_BERRY"
 		},
 		"709": {
-			"name": "Poffin",
-			"proto": "ITEM_POFFIN",
-			"type": "Food",
-			"category": "Buddy Exclusive Food"
+			"name": "",
+			"proto": "POFFIN"
 		},
 		"801": {
-			"name": "Special Camera",
-			"proto": "ITEM_SPECIAL_CAMERA",
-			"type": "Camera",
-			"category": "Camera"
+			"name": "Camera",
+			"proto": "SPECIAL_CAMERA"
 		},
 		"901": {
-			"name": "Incubator Basic Unlimited",
-			"proto": "ITEM_INCUBATOR_BASIC_UNLIMITED",
-			"type": "Incubator",
-			"category": "Incubator"
+			"name": "Basic Unlimited",
+			"proto": "INCUBATOR_BASIC_UNLIMITED"
 		},
 		"902": {
-			"name": "Incubator Basic",
-			"proto": "ITEM_INCUBATOR_BASIC",
-			"type": "Incubator",
-			"category": "Incubator",
-			"min_trainer_level": 1
+			"name": "Basic",
+			"proto": "INCUBATOR_BASIC"
 		},
 		"903": {
-			"name": "Incubator Super",
-			"proto": "ITEM_INCUBATOR_SUPER",
-			"type": "Incubator",
-			"category": "Incubator",
-			"min_trainer_level": 1
+			"name": "Super",
+			"proto": "INCUBATOR_SUPER"
 		},
 		"1001": {
-			"name": "Pokemon Storage Upgrade",
-			"proto": "ITEM_POKEMON_STORAGE_UPGRADE",
-			"type": "Inventory Upgrade",
-			"category": "Inventory Upgrade"
+			"name": "Storage Upgrade",
+			"proto": "POKEMON_STORAGE_UPGRADE"
 		},
 		"1002": {
-			"name": "Item Storage Upgrade",
-			"proto": "ITEM_ITEM_STORAGE_UPGRADE",
-			"type": "Inventory Upgrade",
-			"category": "Inventory Upgrade"
+			"name": "Storage Upgrade",
+			"proto": "ITEM_STORAGE_UPGRADE"
 		},
 		"1101": {
-			"name": "Sun Stone",
-			"proto": "ITEM_SUN_STONE",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Stone",
+			"proto": "SUN_STONE"
 		},
 		"1102": {
-			"name": "Kings Rock",
-			"proto": "ITEM_KINGS_ROCK",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Rock",
+			"proto": "KINGS_ROCK"
 		},
 		"1103": {
-			"name": "Metal Coat",
-			"proto": "ITEM_METAL_COAT",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Coat",
+			"proto": "METAL_COAT"
 		},
 		"1104": {
-			"name": "Dragon Scale",
-			"proto": "ITEM_DRAGON_SCALE",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Scale",
+			"proto": "DRAGON_SCALE"
 		},
 		"1105": {
-			"name": "Up Grade",
-			"proto": "ITEM_UP_GRADE",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Grade",
+			"proto": "UP_GRADE"
 		},
 		"1106": {
-			"name": "Gen4 Evolution Stone",
-			"proto": "ITEM_GEN4_EVOLUTION_STONE",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Evolution Stone",
+			"proto": "GEN4_EVOLUTION_STONE"
 		},
 		"1107": {
-			"name": "Gen5 Evolution Stone",
-			"proto": "ITEM_GEN5_EVOLUTION_STONE",
-			"type": "Evolution Requirement",
-			"category": "Evolution Requirement",
-			"min_trainer_level": 10
+			"name": "Evolution Stone",
+			"proto": "GEN5_EVOLUTION_STONE"
 		},
 		"1201": {
-			"name": "Move Reroll Fast Attack",
-			"proto": "ITEM_MOVE_REROLL_FAST_ATTACK",
-			"type": "Move Reroll",
-			"category": "Move Reroll",
-			"min_trainer_level": 15
+			"name": "Reroll Fast Attack",
+			"proto": "MOVE_REROLL_FAST_ATTACK"
 		},
 		"1202": {
-			"name": "Move Reroll Special Attack",
-			"proto": "ITEM_MOVE_REROLL_SPECIAL_ATTACK",
-			"type": "Move Reroll",
-			"category": "Move Reroll",
-			"min_trainer_level": 25
+			"name": "Reroll Special Attack",
+			"proto": "MOVE_REROLL_SPECIAL_ATTACK"
 		},
 		"1203": {
-			"name": "Move Reroll Elite Fast Attack",
-			"proto": "ITEM_MOVE_REROLL_ELITE_FAST_ATTACK",
-			"type": "Move Reroll",
-			"category": "Move Reroll",
-			"min_trainer_level": 1
+			"name": "Reroll Elite Fast Attack",
+			"proto": "MOVE_REROLL_ELITE_FAST_ATTACK"
 		},
 		"1204": {
-			"name": "Move Reroll Elite Special Attack",
-			"proto": "ITEM_MOVE_REROLL_ELITE_SPECIAL_ATTACK",
-			"type": "Move Reroll",
-			"category": "Move Reroll",
-			"min_trainer_level": 1
+			"name": "Reroll Elite Special Attack",
+			"proto": "MOVE_REROLL_ELITE_SPECIAL_ATTACK"
 		},
 		"1301": {
-			"name": "Rare Candy",
-			"proto": "ITEM_RARE_CANDY",
-			"type": "Candy",
-			"category": "Candy",
-			"min_trainer_level": 5
+			"name": "Candy",
+			"proto": "RARE_CANDY"
 		},
 		"1401": {
-			"name": "Free Raid Ticket",
-			"proto": "ITEM_FREE_RAID_TICKET",
-			"type": "Raid Ticket",
-			"category": "Raid Ticket"
+			"name": "Raid Ticket",
+			"proto": "FREE_RAID_TICKET"
 		},
 		"1402": {
-			"name": "Paid Raid Ticket",
-			"proto": "ITEM_PAID_RAID_TICKET",
-			"type": "Raid Ticket",
-			"category": "Raid Ticket",
-			"min_trainer_level": 1
+			"name": "Raid Ticket",
+			"proto": "PAID_RAID_TICKET"
 		},
 		"1403": {
-			"name": "Legendary Raid Ticket",
-			"proto": "ITEM_LEGENDARY_RAID_TICKET",
-			"type": "Raid Ticket",
-			"category": "Raid Ticket"
+			"name": "Raid Ticket",
+			"proto": "LEGENDARY_RAID_TICKET"
 		},
 		"1404": {
-			"name": "Star Piece",
-			"proto": "ITEM_STAR_PIECE",
-			"type": "Stardust Boost",
-			"category": "Stardust Boost",
-			"min_trainer_level": 1
+			"name": "Piece",
+			"proto": "STAR_PIECE"
 		},
 		"1405": {
-			"name": "Friend Gift Box",
-			"proto": "ITEM_FRIEND_GIFT_BOX",
-			"type": "Friend Gift Box",
-			"category": "Friend Gift Box"
+			"name": "Gift Box",
+			"proto": "FRIEND_GIFT_BOX"
 		},
 		"1406": {
-			"name": "Team Change",
-			"proto": "ITEM_TEAM_CHANGE",
-			"type": "Team Change",
-			"category": "Team Change"
+			"name": "Change",
+			"proto": "TEAM_CHANGE"
 		},
 		"1408": {
-			"name": "Remote Raid Ticket",
-			"proto": "ITEM_REMOTE_RAID_TICKET",
-			"type": "Raid Ticket",
-			"category": "Raid Ticket",
-			"min_trainer_level": 5
+			"name": "Raid Ticket",
+			"proto": "REMOTE_RAID_TICKET"
 		},
 		"1501": {
-			"name": "Leader Map Fragment",
-			"proto": "ITEM_LEADER_MAP_FRAGMENT",
-			"type": "Incident Ticket",
-			"category": "Incident Ticket",
-			"min_trainer_level": 8
+			"name": "Map Fragment",
+			"proto": "LEADER_MAP_FRAGMENT"
 		},
 		"1502": {
-			"name": "Leader Map",
-			"proto": "ITEM_LEADER_MAP",
-			"type": "Incident Ticket",
-			"category": "Incident Ticket",
-			"min_trainer_level": 8
+			"name": "Map",
+			"proto": "LEADER_MAP"
 		},
 		"1503": {
-			"name": "Giovanni Map",
-			"proto": "ITEM_GIOVANNI_MAP",
-			"type": "Incident Ticket",
-			"category": "Incident Ticket",
-			"min_trainer_level": 8
+			"name": "Map",
+			"proto": "GIOVANNI_MAP"
 		},
 		"1600": {
-			"name": "Global Event Ticket",
-			"proto": "ITEM_GLOBAL_EVENT_TICKET",
-			"type": "Global Event Ticket",
-			"category": "Global Event Ticket"
+			"name": "Event Ticket",
+			"proto": "GLOBAL_EVENT_TICKET"
 		},
 		"1601": {
-			"name": "Event Ticket Pink",
-			"proto": "ITEM_EVENT_TICKET_PINK",
+			"name": "Ticket Pink",
+			"proto": "EVENT_TICKET_PINK"
+		},
+		"undefined": {
 			"type": "Global Event Ticket",
-			"category": "Global Event Ticket"
+			"category": "Global Event Ticket",
+			"min_trainer_level": 10
 		}
 	},
 	"Pokemon_Types": [
