@@ -60,7 +60,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         // } else {
         //   create.min_cp = 0;
         // }
-        create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes', 'No' or 'Areas Names'", create);
+        create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
         if (create.areas == Message.Discord.name) {
           create.geotype = "city";
         } else {

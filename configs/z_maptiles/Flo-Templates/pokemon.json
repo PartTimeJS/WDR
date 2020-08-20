@@ -43,8 +43,8 @@
   	   "url": "#(url)",
   	   "latitude": #(lat),
   	   "longitude": #(lon),
-  	   "width": 45,
-  	   "height": 45
+  	   "width": 50,
+  	   "height": 50
   	}
   ]
 }

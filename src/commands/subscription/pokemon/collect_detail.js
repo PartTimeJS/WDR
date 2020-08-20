@@ -112,7 +112,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Does all of this look correct?")
           .setDescription("Name: `" + sub.name + "`\n" +
-            "Form: " + form + "`\n" +
+            "Form: `" + form + "`\n" +
             "Type: `" + ptype + "`\n" +
             "Min IV: `" + sub.min_iv + "`\n" +
             "Max IV: `" + sub.max_iv + "`\n" +
@@ -152,10 +152,9 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your subscribed Areas?")
-          .setDescription("**Yes**, your notifications for this Pokémon will be filtered based on your areas.\n" +
-            "**No**, you will get notifications for this pokemon in ALL areas for the city.\n" +
-            "Type 'Distance' to be notified based on your Distance Coordinates in Area settings.")
+          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas or Locations?")
+          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your areas or set location.\n" +
+            "**No** - You will get notifications for this pokemon in the entire scan area.")
           .setFooter(requirements);
         break;
 

@@ -69,7 +69,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
         break;
 
-        // CONFIRMATION EMBED
       case "Confirm-Add":
         let form = "";
         switch (sub.form) {
@@ -129,7 +128,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
-        // REMOVAL EMBED
       case "Remove":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -138,7 +136,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
-        // MODIFY EMBED
       case "Modify":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -146,18 +143,15 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
-        // AREA EMBED
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your subscribed Areas?")
-          .setDescription("If you choose **Yes**, your notifications for this Pokémon will be filtered based on your areas.\n" +
-            "If you choose **No**, you will get notifications for this pokemon in ALL areas for the city.")
+          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas or Locations?")
+          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your areas or set location.\n" +
+            "**No** - You will get notifications for this pokemon in the entire scan area.")
           .setFooter(requirements);
         break;
 
-
-        // DEFAULT EMBED
       default:
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
