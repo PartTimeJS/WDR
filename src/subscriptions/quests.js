@@ -1,66 +1,161 @@
-delete require.cache[require.resolve(__dirname + '/../embeds/quests.js')];
+module.exports = async (WDR, Sighting) => {
 
-const Send_Quest = require(__dirname + '/../embeds/quests.js');
+  Sighting.form_id = Sighting.form_id ? Sighting.form_id : 0;
 
-module.exports = async (WDR, quest, area, server, timezone) => {
+  let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
 
-  // DEFINE VARIABLES
-  let reward = WDR.Get_Quest_Reward(WDR, quest);
-  let quest_reward = reward.reward, simple_reward = reward.simple;
-  let form_name = reward.form;
-  let embed = 'quests.js', content = '';
+  let typing = await WDR.Get_Typing(WDR, {
+    pokemon_id: Sighting.pokemon_id,
+    form: Sighting.form,
+    type: "type_array"
+  });
 
-  if(WDR.config.QUEST.Subscriptions == 'ENABLED'){
-    if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Quests == 'ENABLED'){
-      console.log(WDR.Color.pink+'[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [quests.js] Received '+quest_reward+' Quest for '+server.name+'.'+WDR.Color.reset);
-    }
-  } else {
-    return questFailed(WDR, quest_reward, server.name, ' Disabled Discord Subscription Setting.');
-  }
+  let query = `
+    SELECT
+        *
+    FROM
+        wdr_subscriptions
+    WHERE
+          status = 1
+        AND
+          sub_type = 'quest'
+        AND
+          (
+            reward = ${Quest.pokemon_id}
+              OR
+            reward = ${Quest.simple_reward}
+              OR
+            reward = ${Quest.full_reward}
+          )
+  ;`;
 
-  // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
- WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, quest_subs, fields){
-    if(quest_subs && quest_subs[0]){
-      quest_subs.forEach((user,index) => {
-        //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
-        if(user.discord_id != server.id){return;}
-        let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(user.user_id);
-        switch(true){
-          case !member:
-          case member == undefined: return;
-          case WDR.Config.Donor_Check == 'DISABLED': break;
-          case !member.roles.cache.has(server.donor_role): return;
+  WDR.wdrDB.query(
+    query,
+    async function(error, matching, fields) {
+      if (error) {
+        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+      } else if (matching && matching[0]) {
+
+        Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
+
+        if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
+          Sighting.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
+          Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
         }
 
-        // DEFINE VARIABLES
-        let user_areas = user.areas.split(',');
+        for (let m = 0, mlen = matching.length; m < mlen; m++) {
+          let User = matching[m];
 
-        // CONVERT SUBSCRIBED LIST TO AN ARRAY
-        let subs = user.quests ? user.quests.split(',') : '';
+          if (matching[0] == "areas" || matching[0].geotype == "city") {
+            let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+            let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+            let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+            if (defGeo || mainGeo || subGeo) {
+              Send_Subscription(WDR, Sighting, User);
+            }
 
-        // CHECK IF THE USER HAS SUBS
-        if(subs && user.quests_status == 'ACTIVE'){
+          } else if (User.geotype == "location") {
+            let values = User.location.split(";");
+            let distance = WDR.Distance.between({
+              lat: Sighting.latitude,
+              lon: Sighting.longitude
+            }, {
+              lat: values[0].split(",")[0],
+              lon: values[0].split(",")[1]
+            });
+            let loc_dist = WDR.Distance(values[1] + " km");
+            if (loc_dist > distance) {
+              Send_Subscription(WDR, Sighting, User);
+            }
+          }
+        }
+      }
+    }
+  );
 
-          // CHECK IF THE REWARD IS ONE THEY ARE SUBSCRIBED TO
-          if(subs.indexOf(quest_reward) >= 0 || subs.indexOf(simple_reward) >= 0 || subs.indexOf('ALL') >= 0){
-
-            // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES
-            if(user.areas == server.name || user_areas.indexOf(area.WDR) >= 0 || user_areas.indexOf(area.sub) >= 0){
-
-              // PREPARE ALERT TO SEND TO USER
-              if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Quests == 'ENABLED'){ console.log(WDR.Color.pink+'[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [quests.js] Preparing '+quest_reward+' Quest DM for '+user.user_name+WDR.Color.reset); }
-              Send_Quest(WDR, user, quest, quest_reward, simple_reward, area, server, timezone, content, embed);
-              return;
-            } else{ return questFailed(WDR, quest_reward, user.user_name, 'Area Filters. '+user.areas+' | '+server.name+','+area.WDR+','+area.sub); }
-          } else{ return questFailed(WDR, quest_reward, user.user_name, 'Reward Filters'); }
-        } else { return; }
-      });
-    } return;
-  });
+  // END
+  return;
 }
 
-function questFailed(WDR, quest_reward, user_name, reason){
-  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Quests == 'ENABLED'){
-    console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [quests.js] '+quest_reward+' failed '+user_name+'\'s '+reason+'.');
+async function Send_Subscription(WDR, Sighting, User) {
+
+  let match = {};
+
+  match.embed = "pokemon_iv.js";
+
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
+
+  match.typing = await WDR.Get_Typing(WDR, {
+    pokemon_id: Sighting.pokemon_id,
+    form: Sighting.form
+  });
+
+  match.sprite = Sighting.sprite;
+
+  match.body = Sighting.body;
+  match.static_map = Sighting.static_map;
+
+  match.type = match.typing.type;
+  match.type_noemoji = match.typing.type_noemoji;
+
+  match.color = match.typing.color;
+
+  match.name = Sighting.pokemon_name;
+  match.id = Sighting.pokemon_id;
+  match.form = Sighting.form_name ? Sighting.form_name : "";
+  match.form = Sighting.form_name == "[Normal]" ? "" : Sighting.form_name;
+
+  match.iv = Sighting.internal_value;
+  match.cp = Sighting.cp;
+
+  match.lat = Sighting.latitude;
+  match.lon = Sighting.longitude;
+
+  match.weather_boost = Sighting.weather_boost;
+
+  match.area = Sighting.area.embed;
+
+  match.map_url = WDR.Config.FRONTEND_URL;
+
+  match.atk = Sighting.individual_attack;
+  match.def = Sighting.individual_defense;
+  match.sta = Sighting.individual_stamina;
+
+  match.lvl = Sighting.pokemon_level;
+  match.gen = Sighting.gen;
+
+  match.move_1_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_1].type.toLowerCase()];
+  match.move_2_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_2].type.toLowerCase()];
+  match.move_1_name = Sighting.move_1_name;
+  match.move_2_name = Sighting.move_2_name;
+
+  match.height = Math.floor(Sighting.height * 100) / 100;
+  match.weight = Math.floor(Sighting.weight * 100) / 100;
+  match.size = await WDR.Capitalize(Sighting.size);
+
+  match.google = "[Google Maps](https://www.google.com/maps?q=" + Sighting.latitude + "," + Sighting.longitude + ")";
+  match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + Sighting.latitude + "," + Sighting.longitude + "&z=10&t=s&dirflg=d)";
+  match.waze = "[Waze](https://www.waze.com/ul?ll=" + Sighting.latitude + "," + Sighting.longitude + "&navigate=yes)";
+  match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + Sighting.latitude + "&lon=" + Sighting.longitude + "&zoom=15)";
+  match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + Sighting.latitude + "/" + Sighting.longitude + "/15)";
+
+  match.verified = Sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
+  match.time = WDR.Time(Sighting.disappear_time, "1", Sighting.Timezone);
+  match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
+  match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
+
+  if (match.mins >= 5) {
+
+    if (WDR.Debug.Processing_Speed == "ENABLED") {
+      let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
+      match.footer = "Latency: " + difference + "s";
+    }
+
+    match.embed = Embed_Config(WDR, match);
+
+    WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
+
   }
+
+
 }
