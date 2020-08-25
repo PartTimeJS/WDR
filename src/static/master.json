@@ -40398,7 +40398,168 @@
 			"name": "Tri Attack"
 		}
 	},
-	"Quest_Types": {},
+	"Quest_Types": {
+		"0": {
+			"proto": "",
+			"text": ""
+		},
+		"1": {
+			"proto": "CATCH_OF_THE_DAY",
+			"text": "First catch of the day"
+		},
+		"2": {
+			"proto": "POKESTOP_OF_THE_DAY",
+			"text": "First pokéstop of the day"
+		},
+		"3": {
+			"proto": "PART",
+			"text": ""
+		},
+		"4": {
+			"proto": "POKEMON",
+			"text": "Catch {0} pokémon"
+		},
+		"5": {
+			"proto": "POKESTOP",
+			"text": "Spin {0} pokestop(s)"
+		},
+		"6": {
+			"proto": "EGG",
+			"text": "Hatch {0} egg(s)"
+		},
+		"7": {
+			"proto": "GYM_BATTLE",
+			"text": "Complete {0} gym battle(s)"
+		},
+		"8": {
+			"proto": "RAID_BATTLE",
+			"text": "Complete {0} raid battle(s)"
+		},
+		"9": {
+			"proto": "QUEST",
+			"text": "Complete {0} quest(s)"
+		},
+		"10": {
+			"proto": "POKEMON",
+			"text": "Transfer {0} pokémon"
+		},
+		"11": {
+			"proto": "POKEMON",
+			"text": "Favorite {0} pokémon"
+		},
+		"12": {
+			"proto": "",
+			"text": ""
+		},
+		"13": {
+			"proto": "BERRY_IN_ENCOUNTER",
+			"text": "Catch {0} pokémon with berrie(s)"
+		},
+		"14": {
+			"proto": "POKEMON",
+			"text": "Power up a pokémon {0} times"
+		},
+		"15": {
+			"proto": "POKEMON",
+			"text": "Evolve {0} pokémon"
+		},
+		"16": {
+			"proto": "THROW",
+			"text": "Land {0} throw(s)"
+		},
+		"17": {
+			"proto": "BUDDY_CANDY",
+			"text": "Walk your buddy to earn {0} candy"
+		},
+		"18": {
+			"proto": "RANK",
+			"text": "Collect {0} badge(s)"
+		},
+		"19": {
+			"proto": "LEVEL",
+			"text": "Become level {0}"
+		},
+		"20": {
+			"proto": "RAID",
+			"text": "Join {0} raid(s)"
+		},
+		"21": {
+			"proto": "BATTLE",
+			"text": "Complete {0} battle(s)"
+		},
+		"22": {
+			"proto": "FRIEND",
+			"text": "Make {0} new friends"
+		},
+		"23": {
+			"proto": "POKEMON",
+			"text": "Trade {0} pokémon"
+		},
+		"24": {
+			"proto": "GIFT",
+			"text": "Send {0} gift(s)"
+		},
+		"25": {
+			"proto": "INTO_POKEMON",
+			"text": "Evolve {0} pokémon into"
+		},
+		"27": {
+			"proto": "COMBAT",
+			"text": "Complete {0} pvp battle(s)"
+		},
+		"28": {
+			"proto": "SNAPSHOT",
+			"text": "Take {0} snapshot(s)"
+		},
+		"29": {
+			"proto": "TEAM_ROCKET",
+			"text": "Battle against {0} Team GO Rocket Grunt(s)"
+		},
+		"30": {
+			"proto": "POKEMON",
+			"text": "Purify {0} pokémon"
+		},
+		"31": {
+			"proto": "TEAM_ROCKET",
+			"text": "Find Team Rocket {0} times"
+		},
+		"32": {
+			"proto": "GRUNT_OF_THE_DAY",
+			"text": "First Grunt of the day"
+		},
+		"33": {
+			"proto": "FEED",
+			"text": "Give your buddy {0} treat(s)"
+		},
+		"34": {
+			"proto": "EARN_AFFECTION_POINTS",
+			"text": "Earn {0} Heart(s) with your Buddy"
+		},
+		"35": {
+			"proto": "PET",
+			"text": "Play with your Buddy {0} times"
+		},
+		"36": {
+			"proto": "LEVEL",
+			"text": ""
+		},
+		"37": {
+			"proto": "WALK",
+			"text": ""
+		},
+		"38": {
+			"proto": "YATTA",
+			"text": ""
+		},
+		"39": {
+			"proto": "INCENSE",
+			"text": ""
+		},
+		"43": {
+			"proto": "EVOLVE_POKEMON",
+			"text": ""
+		}
+	},
 	"Quest_Conditions": {
 		"0": {
 			"proto": "UNSET",
