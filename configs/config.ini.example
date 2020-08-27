@@ -54,7 +54,7 @@ RAID_PREGEN_TILES     = ENABLED
 QUEST_PREGEN_TILES    = ENABLED
 
 
-TILE_PROVIDER         = (flo or versx)
+TILE_PROVIDER         = (flo or versx or none) // choose none if you will manually put a url in your embeds.
 STATIC_MAP_URL        = https://map.com/
 STATIC_SPRITE         = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/pokemon/pmsf/niantic/60/
 STATIC_SPRITE_MINI    = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/pokemon/pmsf/niantic/70/
