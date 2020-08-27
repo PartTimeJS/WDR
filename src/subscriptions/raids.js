@@ -1,107 +1,197 @@
-delete require.cache[require.resolve(__dirname + '/../embeds/raids.js')];
-const Send_Raid = require(__dirname + '/../embeds/raids.js');
-
-
 module.exports = async (WDR, raid, area, server, timezone) => {
 
-  // DEFINE VARIABLES
-  let type = '', boss_name = '';
-  let embed = '';
+  let query = `
+      SELECT
+          *
+      FROM
+          wdr_subscriptions
+      WHERE
+            status = 1
+          AND
+            sub_type = 'raid'
+          AND
+            (
+              pokemon_id = 0
+                OR
+              pokemon_id = ${Raid.pokemon_id}
+            )
+          AND
+            (
+              max_lvl = 0
+                OR
+              max_lvl >= ${Raid.level}
+            )
+          AND
+            (
+              min_lvl = 0
+                OR
+              min_lvl <= ${Raid.level}
+            )
+          AND
+            (
+              gym_id = '0'
+                OR
+              gym_id = '${Raid.gym_id}'
+            )
+    ;`;
 
-  if(raid.cp > 0 || raid.is_exclusive == true){
-    type = 'Boss';
-    if (raid.pokemon_id == 0){
-      boss_name = 'exRaid';
-    } else {
-      boss_name = raid.locale.pokemon_name;
+  WDR.wdrDB.query(
+    query,
+    async function(error, matching, fields) {
+      if (error) {
+        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+      } else if (matching && matching[0]) {
+
+        Raid.sprite = WDR.Get_Sprite(WDR, Raid);
+
+        if (WDR.Config.RAID_PREGEN_TILES != "DISABLED") {
+          Raid.body = await WDR.Generate_Tile(WDR, Raid, "pokemon", Raid.latitude, Raid.longitude, Raid.sprite);
+          Raid.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Raid.body;
+        }
+
+        for (let m = 0, mlen = matching.length; m < mlen; m++) {
+          let User = matching[m];
+
+          if (matching[0] == "areas" || matching[0].geotype == "city") {
+            let defGeo = (User.areas.indexOf(Raid.area.default) >= 0);
+            let mainGeo = (User.areas.indexOf(Raid.area.main) >= 0);
+            let subGeo = (User.areas.indexOf(Raid.area.sub) >= 0);
+            if (defGeo || mainGeo || subGeo) {
+              Send_Subscription(WDR, Raid, User);
+            }
+
+          } else if (User.geotype == "location") {
+            let values = User.location.split(";");
+            let distance = WDR.Distance.between({
+              lat: Raid.latitude,
+              lon: Raid.longitude
+            }, {
+              lat: values[0].split(",")[0],
+              lon: values[0].split(",")[1]
+            });
+            let loc_dist = WDR.Distance(values[1] + " km");
+            if (loc_dist > distance) {
+              Send_Subscription(WDR, Raid, User);
+            }
+          }
+        }
+      }
     }
-    embed = 'raids.js'
-  }
-  else{
-    type = 'Egg';
-    boss_name = 'Lvl'+raid.level;
-    embed = 'raid_eggs.js';
-  }
+  );
 
-  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Raids == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [raids.js] Received '+boss_name+' Raid for '+server.name+'.'); }
-
-  // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
- WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?;`, [server.id, 'ACTIVE'], function (error, raid_subs, fields){
-    if(raid_subs && raid_subs[0]){
-      raid_subs.forEach((user,index) => {
-
-        //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
-        if(user.discord_id != server.id){return;}
-        let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(user.user_id);
-        switch(true){
-          case !member:
-          case member == undefined: return;
-          case WDR.Config.Donor_Check == 'DISABLED': break;
-          case !member.roles.cache.has(server.donor_role): return;
-        }
-
-        // DEFINE VARIABLES
-        let user_areas = user.areas.split(',');
-
-        // CHECK IF THE USER HAS SUBS
-        if(user.raids && user.raids_status == 'ACTIVE'){
-
-          // CONVERT POKEMON LIST TO AN ARRAY
-          let subs = JSON.parse(user.raids);
-
-          // CHECK EACH USER SUBSCRIPTION
-          subs.subscriptions.forEach((sub,index) => {
-
-            // CHECK IF THE GYM ID MATCHES THE USER'S SUBSCRIPTION
-            if(sub.id == raid.gym_id || sub.gym == 'All'){
-
-              // CHECK IF THE RAID BOSS NAME MATCHES THE USER'S SUB
-              if(sub.boss == type || sub.boss == 'All' || sub.boss == boss_name){
-                if(raid.form > 0 && sub.boss != 'All' && type != 'Egg'){
-                  sub.form = sub.form ? sub.form : 'All';
-                  switch (true) {
-                    case raid.form == sub.form:
-                    case sub.form == 'All': break;
-                    default:
-                      return raidFailed(WDR, user, boss_name, "Raid Form. Expected: "+sub.form+' | Saw: '+raid.form,false);
-                  }
-                }
-
-                // CHECK THE SUBS MIN LEVEL
-                if(sub.min_lvl == 'Boss Specified' || raid.level >= sub.min_lvl || sub.min_lvl == 'All'){
-
-                  // CHECK THE SUBS MAX LEVEL
-                  if(sub.max_lvl == 'Boss Specified' || raid.level <= sub.max_lvl || sub.max_lvl == 'All'){
-
-                    // CHECK IF THE AREA IS WITHIN THE USER'S GEOFENCES ETC.
-                    let area_pass = false;
-                    switch(true){
-                      case !sub.areas:
-                      case (sub.areas.toLowerCase() == 'no' || sub.areas.toLowerCase() == 'all'): area_pass = true; break;
-                      case sub.areas == 'Gym Specified':
-                        area_pass = true; break;
-                      case user.areas == server.name:
-                        area_pass = true; break;
-                      case user_areas.indexOf(area.WDR) >= 0:
-                        area_pass = true; break;
-                      case user_areas.indexOf(area.sub) >= 0:
-                        area_pass = true; break;
-                    }
-
-                    if(area_pass == true){
-                      Send_Raid(WDR, user, raid, type, area, server, timezone, '', embed);
-                    } else{ return raidFailed(WDR, user, boss_name, 'Area Filter') }
-                  } else{ return raidFailed(WDR, user, boss_name, 'Max Raid Level Filter') }
-                } else{ return raidFailed(WDR, user, boss_name, 'Min Raid Level Filter') }
-              } else{ return raidFailed(WDR, user, boss_name, 'Raid Boss Name Filter') }
-            } else{ return raidFailed(WDR, user, boss_name, 'Gym Name Filter') }
-          });
-        }
-      });
-    } return;
-  });
+  // END
+  return;
 }
 
-function raidFailed(WDR, user, raid, reason){
-  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Raids == 'ENABLED'){ console.log(WDR.Color.purple+'[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [raids.js] '+raid+' Did Not Pass '+user.user_name+'\'s '+reason+'.'+WDR.Color.reset); } return;
+async function Send_Subscription() {
+  match.id = Raid.gym_id;
+  match.lvl = Raid.level;
+  match.gym = Raid.gym_name ? Raid.gym_name : "No Name";
+
+  if (WDR.Gym_Notes && WDR.Gym_Notes[Raid.gym_id]) {
+    match.notes = WDR.Gym_Notes[Raid.gym_id] ? WDR.Gym_Notes[Raid.gym_id].description : "";
+  } else {
+    match.notes = "";
+  }
+  match.boss = Raid.pokemon_name ? Raid.pokemon_name : "Egg";
+  match.exraid = Raid.is_exclusive ? "**EXRaid Invite Only**\n" : "";
+
+  match.lat = Raid.latitude;
+  match.lon = Raid.longitude;
+  match.map_img = "";
+  match.area = Raid.area.embed;
+  match.map_url = WDR.Config.FRONTEND_URL;
+
+  match.google = "[Google Maps](https://www.google.com/maps?q=" + match.lat + "," + match.lon + ")";
+  match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + match.lat + "," + match.lon + "&z=10&t=s&dirflg=d)";
+  match.waze = "[Waze](https://www.waze.com/ul?ll=" + match.lat + "," + match.lon + "&navigate=yes)";
+  match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + match.lat + "&lon=" + match.lon + "&zoom=15)";
+  match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + match.lat + "/" + match.lon + "/15)";
+
+  if (Raid.team_id == 1) {
+    match.team = WDR.Emotes.mystic + " Control";
+    match.url = Raid.gym_url ? Raid.gym_url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_blue.png";
+    match.embed_image = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Mystic.png";
+  } else if (Raid.team_id == 2) {
+    match.team = WDR.Emotes.valor + " Control";
+    match.url = Raid.gym_url ? Raid.gym_url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_red.png";
+    match.embed_image = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Valor.png";
+  } else if (Raid.team_id == 3) {
+    match.team = WDR.Emotes.instinct + " Control";
+    match.url = Raid.gym_url ? Raid.gym_url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/team_yellow.png";
+    match.embed_image = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Instinct.png";
+  } else {
+    match.team = "Uncontested Gym";
+    match.url = Raid.gym_url ? Raid.gym_url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/TeamLesRaid.png";
+    match.embed_image = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Uncontested.png";
+  }
+
+  // CHECK IF SPONSORED GYM
+  match.sponsor = (Raid.sponsor_id || Raid.ex_raid_eligible) ? WDR.Emotes.exPass + " Eligible" : "";
+
+  // GET RAID COLOR
+  if (Raid.level == 1 || Raid.level == 2) {
+    match.color = "f358fb";
+  } else if (Raid.level == 3 || Raid.level == 4) {
+    match.color = "ffd300";
+  } else {
+    match.color = "5b00de";
+  }
+
+  match.hatch_time = WDR.Time(Raid.start, "1", Raid.Timezone);
+  match.end_time = WDR.Time(Raid.end, "1", Raid.Timezone);
+  match.hatch_mins = Math.floor((Raid.start - (Raid.Time_Now / 1000)) / 60);
+  match.end_mins = Math.floor((Raid.end - (Raid.Time_Now / 1000)) / 60);
+
+  match.marker_latitude = Raid.latitude + .0004;
+
+  // DETERMINE IF IT"S AN EGG OR A RAID
+  if (Raid.Type == "Egg") {
+    if (Raid.level == 1 || Raid.level == 2) {
+      match.sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/ic_raid_egg_normal.png";
+    } else if (Raid.level == 3 || Raid.level == 4) {
+      match.sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/ic_raid_egg_rare.png";
+    } else {
+      match.sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/ic_raid_egg_legendary.png";
+    }
+  } else {
+    match.sprite = WDR.Get_Sprite(WDR, Raid);
+    match.form = Raid.form_name ? Raid.form_name : "";
+    match.form = match.form == "[Normal]" ? "" : match.form;
+    match.typing = await WDR.Get_Typing(WDR, Raid);
+    match.type = match.typing.type;
+    match.type_noemoji = match.typing.type_noemoji;
+    match.weaknesses = match.typing.weaknesses;
+    match.resistances = match.typing.resistances;
+    match.reduced = match.typing.reduced;
+    match.move_1_type = WDR.Emotes[WDR.Master.Moves[Raid.move_1].type.toLowerCase()];
+    match.move_2_type = WDR.Emotes[WDR.Master.Moves[Raid.move_2].type.toLowerCase()];
+    match.move_1_name = Raid.move_1_name;
+    match.move_2_name = Raid.move_2_name;
+    match.minCP = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 10, 10, 10, 20);
+    match.maxCP = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 15, 15, 15, 20);
+    match.minCP_boosted = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 10, 10, 10, 25);
+    match.maxCP_boosted = WDR.PvP.CalculateCP(WDR, Raid.pokemon_id, Raid.form_id, 15, 15, 15, 25);
+  }
+
+  if (WDR.Debug.Processing_Speed == "ENABLED") {
+    let difference = Math.round((new Date().getTime() - Raid.WDR_Received) / 10) / 100;
+    match.footer = "Latency: " + difference + "s";
+  }
+
+  if (WDR.Config.RAID_PREGEN_TILES != "DISABLED") {
+    if (Raid.static_map) {
+      match.body = Raid.body;
+      match.static_map = Raid.static_map;
+    } else {
+      match.body = await WDR.Generate_Tile(WDR, Raid, "raids", match.marker_latitude, match.lon, match.embed_image, match.sprite);
+      Raid.body = match.body;
+      match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+      Raid.static_map = match.static_map;
+    }
+  }
+
+  match.embed = await Embed_Config(WDR, match);
+
+  WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
 }
