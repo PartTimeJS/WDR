@@ -120,7 +120,6 @@ module.exports = async (WDR, Sighting) => {
                     lon: values[0].split(",")[1]
                   });
                   let loc_dist = WDR.Distance(values[1] + " km");
-                  console.log(loc_dist + " " + distance);
                   if (loc_dist > distance) {
                     match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
                     Send_Subscription(WDR, match, Sighting, User);
