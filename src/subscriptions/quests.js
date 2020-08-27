@@ -1,15 +1,5 @@
 module.exports = async (WDR, Sighting) => {
 
-  Sighting.form_id = Sighting.form_id ? Sighting.form_id : 0;
-
-  let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
-
-  let typing = await WDR.Get_Typing(WDR, {
-    pokemon_id: Sighting.pokemon_id,
-    form: Sighting.form,
-    type: "type_array"
-  });
-
   let query = `
     SELECT
         *
@@ -36,36 +26,36 @@ module.exports = async (WDR, Sighting) => {
         WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
       } else if (matching && matching[0]) {
 
-        Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
+        Quest.sprite = WDR.Get_Sprite(WDR, Quest);
 
-        if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
-          Sighting.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
-          Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
+        if (WDR.Config.QUEST_PREGEN_TILES != "DISABLED") {
+          Quest.body = await WDR.Generate_Tile(WDR, Quest, "pokemon", Quest.latitude, Quest.longitude, Quest.sprite);
+          Quest.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Quest.body;
         }
 
         for (let m = 0, mlen = matching.length; m < mlen; m++) {
           let User = matching[m];
 
           if (matching[0] == "areas" || matching[0].geotype == "city") {
-            let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
-            let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
-            let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+            let defGeo = (User.areas.indexOf(Quest.area.default) >= 0);
+            let mainGeo = (User.areas.indexOf(Quest.area.main) >= 0);
+            let subGeo = (User.areas.indexOf(Quest.area.sub) >= 0);
             if (defGeo || mainGeo || subGeo) {
-              Send_Subscription(WDR, Sighting, User);
+              Send_Subscription(WDR, Quest, User);
             }
 
           } else if (User.geotype == "location") {
             let values = User.location.split(";");
             let distance = WDR.Distance.between({
-              lat: Sighting.latitude,
-              lon: Sighting.longitude
+              lat: Quest.latitude,
+              lon: Quest.longitude
             }, {
               lat: values[0].split(",")[0],
               lon: values[0].split(",")[1]
             });
             let loc_dist = WDR.Distance(values[1] + " km");
             if (loc_dist > distance) {
-              Send_Subscription(WDR, Sighting, User);
+              Send_Subscription(WDR, Quest, User);
             }
           }
         }
@@ -77,85 +67,98 @@ module.exports = async (WDR, Sighting) => {
   return;
 }
 
-async function Send_Subscription(WDR, Sighting, User) {
+async function Send_Subscription(WDR, Quest, User) {
 
-  let match = {};
+  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Quest.Embed);
 
-  match.embed = "pokemon_iv.js";
+  match.member = WDR.Bot.guilds.cache.get(Quest.Discord.id).members.cache.get(User.user_id);
 
-  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
+  if (match.member) {
 
-  match.typing = await WDR.Get_Typing(WDR, {
-    pokemon_id: Sighting.pokemon_id,
-    form: Sighting.form
-  });
+    match.name = Quest.pokestop_name;
 
-  match.sprite = Sighting.sprite;
+    match.reward = Quest.quest_reward;
+    match.sprite = Quest.sprite;
 
-  match.body = Sighting.body;
-  match.static_map = Sighting.static_map;
+    match.lat = Quest.latitude;
+    match.lon = Quest.longitude;
+    match.area = Quest.area.embed;
 
-  match.type = match.typing.type;
-  match.type_noemoji = match.typing.type_noemoji;
+    match.url = Quest.pokestop_url;
+    match.map_url = WDR.Config.FRONTEND_URL;
 
-  match.color = match.typing.color;
+    match.google = "[Google Maps](https://www.google.com/maps?q=" + Quest.latitude + "," + Quest.longitude + ")";
+    match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + Quest.latitude + "," + Quest.longitude + "&z=10&t=s&dirflg=d)";
+    match.waze = "[Waze](https://www.waze.com/ul?ll=" + Quest.latitude + "," + Quest.longitude + "&navigate=yes)";
+    match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + Quest.latitude + "&lon=" + Quest.longitude + "&zoom=15)";
+    match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + Quest.latitude + "/" + Quest.longitude + "/15)";
 
-  match.name = Sighting.pokemon_name;
-  match.id = Sighting.pokemon_id;
-  match.form = Sighting.form_name ? Sighting.form_name : "";
-  match.form = Sighting.form_name == "[Normal]" ? "" : Sighting.form_name;
+    match.marker_latitude = Quest.latitude + .0004;
 
-  match.iv = Sighting.internal_value;
-  match.cp = Sighting.cp;
+    match.body = await WDR.Generate_Tile(WDR, Q, "quests", match.marker_latitude, match.lon, match.reward_sprite);
+    match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
 
-  match.lat = Sighting.latitude;
-  match.lon = Sighting.longitude;
+    match.time = WDR.Time(null, "quest", Quest.Timezone);
 
-  match.weather_boost = Sighting.weather_boost;
-
-  match.area = Sighting.area.embed;
-
-  match.map_url = WDR.Config.FRONTEND_URL;
-
-  match.atk = Sighting.individual_attack;
-  match.def = Sighting.individual_defense;
-  match.sta = Sighting.individual_stamina;
-
-  match.lvl = Sighting.pokemon_level;
-  match.gen = Sighting.gen;
-
-  match.move_1_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_1].type.toLowerCase()];
-  match.move_2_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_2].type.toLowerCase()];
-  match.move_1_name = Sighting.move_1_name;
-  match.move_2_name = Sighting.move_2_name;
-
-  match.height = Math.floor(Sighting.height * 100) / 100;
-  match.weight = Math.floor(Sighting.weight * 100) / 100;
-  match.size = await WDR.Capitalize(Sighting.size);
-
-  match.google = "[Google Maps](https://www.google.com/maps?q=" + Sighting.latitude + "," + Sighting.longitude + ")";
-  match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + Sighting.latitude + "," + Sighting.longitude + "&z=10&t=s&dirflg=d)";
-  match.waze = "[Waze](https://www.waze.com/ul?ll=" + Sighting.latitude + "," + Sighting.longitude + "&navigate=yes)";
-  match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + Sighting.latitude + "&lon=" + Sighting.longitude + "&zoom=15)";
-  match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + Sighting.latitude + "/" + Sighting.longitude + "/15)";
-
-  match.verified = Sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
-  match.time = WDR.Time(Sighting.disappear_time, "1", Sighting.Timezone);
-  match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
-  match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
-
-  if (match.mins >= 5) {
-
-    if (WDR.Debug.Processing_Speed == "ENABLED") {
-      let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
-      match.footer = "Latency: " + difference + "s";
+    switch (true) {
+      case Quest.template.indexOf("easy") >= 0:
+        match.color = "00ff00";
+        break;
+      case Quest.template.indexOf("moderate") >= 0:
+        match.color = "ffff00";
+        break;
+      case Quest.template.indexOf("hard") >= 0:
+        match.color = "ff0000";
+        break;
+      default:
+        match.color = "00ccff";
     }
 
-    match.embed = Embed_Config(WDR, match);
+    if (!match.sprite) {
+      match.sprite = match.url;
+    }
+    match.Embed = Embed_Config(WDR, Quest);
 
-    WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
+    let DB_Date = moment(Quest.Time_Now).format("MM/DD/YYYY");
+    DB_Date = moment(DB_Date + " " + User.quest_time, "MM/DD/YYYY H:mm").valueOf();
 
+    let Quest_Object = JSON.stringify(Quest);
+    let Embed = JSON.stringify(match.Embed);
+
+    let query = `
+      INSERT INTO
+        quest_alerts (
+            user_id,
+            user_name,
+            guild_id,
+            bot,
+            area,
+            alert,
+            quest_time,
+            embed
+        )
+      VALUES
+        (
+            ${User.user_id},
+            '${User.user_name}',
+            '${Quest_Object}',
+            '${Embed}',
+            '${match.area.embed}',
+            ${User.bot},
+            '${DB_Date}',
+            '${Quest.Discord.id}'
+        )
+      ;`;
+    WDR.wdrDB.query(
+      query,
+      function(error, alert, fields) {
+        if (error) {
+          WDR.Console.error(WDR, "[" + WDR.Time(null, "stamp") + "] UNABLE TO ADD ALERT TO quest_alerts", [query, error]);
+        }
+      }
+    );
   }
 
-
+  // END
+  return;
 }
