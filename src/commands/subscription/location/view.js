@@ -27,8 +27,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         let location_list = "";
         if (user.locations) {
           let locations = Object.keys(user.locations).map(i => user.locations[i]);
-          let coords = user.db.location.split(";")[0];
-          let distance = user.db.location.split(";")[0];
+          let coords = Member.db.location.split(";")[0];
+          let distance = Member.db.location.split(";")[0];
           let active = "";
           locations.forEach((location, index) => {
             if (location.coords == coords && location.radius == distance) {
