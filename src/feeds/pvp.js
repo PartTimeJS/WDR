@@ -54,14 +54,15 @@ module.exports = async (WDR, Sighting) => {
       if (!channel.Filter.min_level && channel.Filter.min_level !== 0) {
         return WDR.Console.error(WDR, "[feeds/pvp.js] Missing `min_level` variable in " + feed_channel[1].filter + ".");
       }
-      let lvlRange = (Sighting.pokemon_level >= channel.Filter.min_level);
+      //let lvlRange = (Sighting.pokemon_level >= channel.Filter.min_level);
 
       if (!channel.Filter[WDR.Master.Pokemon[Sighting.pokemon_id].name]) {
         return WDR.Console.error(WDR, "[feeds/pvp.js] Missing `" + WDR.Master.Pokemon[Sighting.pokemon_id].name + "` in " + feed_channel[1].filter + ".");
       }
       let filterStatus = (channel.Filter[WDR.Master.Pokemon[Sighting.pokemon_id].name] == 'True');
 
-      if (lvlRange && filterStatus) {
+      if (filterStatus) {
+        //if (lvlRange && filterStatus) {
         //if (cpRange && filterStatus) {
 
         let match = {
@@ -81,6 +82,9 @@ module.exports = async (WDR, Sighting) => {
           let cpMatch = potential.cp >= channel.Filter.min_cp_range;
           let typeMatch = (channel.Filter.type == "all") ? true : potential.typing.some(type => channel.Filter.type.includes(type));
           if (rankMatch && cpMatch && typeMatch) {
+            if (match.league == "ultra_leage") {
+              console.log("filter match!")
+            }
             let filtered = {};
             filtered.types = potential.typing;
             filtered.pokemon_id = potential.pokemon_id;
@@ -96,6 +100,9 @@ module.exports = async (WDR, Sighting) => {
 
         if (match.possible_cps.length > 0) {
 
+          if (match.league == "ultra_leage") {
+            console.log("making embed!")
+          }
           let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Embed_File);
 
           match.typing = await WDR.Get_Typing(WDR, {
