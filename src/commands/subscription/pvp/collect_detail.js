@@ -202,7 +202,18 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case "yes":
-                collector.stop(Member.db.areas);
+                if (Member.db.geotype == "location") {
+                  let locations = Object.keys(Member.db.locations).map(i => Member.db.locations[i]);
+                  let coords = Member.db.location.split(";")[0];
+                  let distance = Member.db.location.split(";")[1];
+                  locations.forEach((location, index) => {
+                    if (location.coords == coords && location.radius == distance) {
+                      collector.stop(location.name);
+                    }
+                  });
+                } else if (Member.db.geotype == "areas") {
+                  collector.stop(Member.db.areas);
+                }
                 break;
               case "all":
               case "no":
