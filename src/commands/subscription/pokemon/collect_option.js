@@ -10,7 +10,11 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
   collector.on("collect", CollectedMsg => {
 
-    CollectedMsg.delete();
+    try {
+      CollectedMsg.delete();
+    } catch (e) {
+
+    }
 
     let input = CollectedMsg.content.split(" ")[0].toString().toLowerCase();
 
@@ -55,7 +59,11 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
   collector.on("end", (collected, arg) => {
 
-    BotMsg.delete();
+    try {
+      BotMsg.delete();
+    } catch (e) {
+
+    }
 
     switch (arg) {
       case "cancel":

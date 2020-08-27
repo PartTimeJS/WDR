@@ -182,7 +182,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
 
 async function generate_body(WDR, Message, location) {
   return new Promise(resolve => {
-    Message.channel.send("<a:loading:421047508605599744> Generating Location Preview...").catch(console.error).then(async loadingMsg => {
+    Message.channel.send(WDR.Emotes.loading + " Generating Location Preview...").catch(console.error).then(async loadingMsg => {
 
       let sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/map/circle_geofence/" + location.radius + "km.png";
 
@@ -204,7 +204,13 @@ async function generate_body(WDR, Message, location) {
       }
 
       let body = await WDR.Generate_Tile(WDR, location, "location", location.coords.split(",")[0], location.coords.split(",")[1], sprite, null, zoom);
-      loadingMsg.delete();
+
+      try {
+        loadingMsg.delete();
+      } catch (e) {
+
+      }
+
       return resolve(body);
     });
   });

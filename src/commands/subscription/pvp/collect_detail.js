@@ -166,7 +166,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       // FILTER COLLECT EVENT
       collector.on("collect", async CollectedMsg => {
 
-        CollectedMsg.delete();
+        try {
+          CollectedMsg.delete();
+        } catch (e) {
+
+        }
 
         switch (true) {
 
@@ -412,7 +416,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           return;
         }
         if (msg && msg.channel.type != "dm") {
-          msg.delete();
+          try {
+            msg.delete();
+          } catch (e) {
+
+          }
         }
         switch (reason) {
           case "cancel":
