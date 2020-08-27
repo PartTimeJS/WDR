@@ -9,11 +9,9 @@ module.exports = async (WDR, Sighting) => {
 
   for (let lg = 0, lglen = Leagues.length; lg < lglen; lg++) {
     let league = Leagues[lg];
-
     let match = {
       league: league + "_league"
     };
-
     for (let l = 0, llen = Sighting[match.league].length; l < llen; l++) {
       let potential = Sighting[match.league][l];
       let rankMatch = potential.rank <= 20;
@@ -22,17 +20,17 @@ module.exports = async (WDR, Sighting) => {
         if (!potential.pokemon_id) {
           potential.pokemon_id = potential.pokemon
         }
-        if (!potential.form_id) {
+        if (!potential.form_id && potential.form_id !== 0 && potential.form && (potential.form === 0 || potential.form > 0)) {
           potential.form_id = potential.form
         }
+        potential.percent = potential.percentage;
         potential.gen = await WDR.Get_Gen(potential.pokemon_id);
         potential.typing = await WDR.Get_Typing(WDR, {
           pokemon_id: potential.pokemon_id,
-          form: potential.form,
+          form: potential.form_id,
           type: "type_array"
         });
         match.possible_cps = [potential];
-
         let query = `
           SELECT
             *
@@ -85,7 +83,6 @@ module.exports = async (WDR, Sighting) => {
                 generation = ${potential.gen}
               );
         `;
-
         WDR.wdrDB.query(
           query,
           async function(error, matching, fields) {
@@ -123,7 +120,9 @@ module.exports = async (WDR, Sighting) => {
                     lon: values[0].split(",")[1]
                   });
                   let loc_dist = WDR.Distance(values[1] + " km");
+                  console.log(loc_dist + " " + distance);
                   if (loc_dist > distance) {
+                    match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
                     Send_Subscription(WDR, match, Sighting, User);
                   }
                 }
