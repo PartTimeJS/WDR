@@ -152,9 +152,9 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas or Locations?")
-          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your areas or set location.\n" +
-            "**No** - You will get notifications for this pokemon in the entire scan area.")
+          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas/Location?")
+          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your set areas/location.\n" +
+            "**No** - You will get notifications for this pokemon in the entire city scan area.")
           .setFooter(requirements);
         break;
 
@@ -209,7 +209,18 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case "yes":
-                collector.stop(Member.db.areas);
+                if (Member.db.geotype == "location") {
+                  let locations = Object.keys(Member.db.locations).map(i => Member.db.locations[i]);
+                  let coords = Member.db.location.split(";")[0];
+                  let distance = Member.db.location.split(";")[0];
+                  locations.forEach((location, index) => {
+                    if (location.coords == coords && location.radius == distance) {
+                      collector.stop(location.name);
+                    }
+                  });
+                } else if (Member.db.geotype == "areas") {
+                  collector.stop(Member.db.areas);
+                }
                 break;
               case "all":
               case "no":
