@@ -8,6 +8,7 @@ module.exports = (WDR, Quest) => {
 
         // ITEM REWARDS (EXCEPT STARDUST)
       case 2:
+        Quest.reward_type = "item";
         Quest.simple_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
         Quest.quest_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
         Quest.amount = Quest.rewards[0].info.amount;
@@ -24,10 +25,13 @@ module.exports = (WDR, Quest) => {
 
         // STARDUST REWARD
       case 3:
+        Quest.reward_type = "stardust";
         Quest.quest_reward = Quest.rewards[0].info.amount + " Stardust";
+        Quest.simple_reward = "Stardust";
         break;
 
       case 4:
+        Quest.reward_type = "candy";
         return WDR.Console.error(WDR, "CANDY QUEST", [Quest, Quest.conditions[0], Quest.rewards[0]]);
 
       case 5:
@@ -39,7 +43,7 @@ module.exports = (WDR, Quest) => {
 
         // ENCOUNTER REWARDS
       case 7:
-
+        Quest.reward_type = "encounter";
         Quest.pokemon_id = Quest.rewards[0].info.pokemon_id;
         Quest.costume_id = Quest.rewards[0].info.costume_id;
 
