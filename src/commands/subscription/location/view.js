@@ -27,10 +27,23 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         let location_list = "";
         if (user.locations) {
           let locations = Object.keys(user.locations).map(i => user.locations[i]);
+          let coords = user.db.location.split(";")[0];
+          let distance = user.db.location.split(";")[0];
+          let active = "";
+          locations.forEach((location, index) => {
+            if (location.coords == coords && location.radius == distance) {
+              active = location.name;
+            }
+          });
           if (locations.length > 0) {
             locations.forEach((location, i) => {
-              location_list += "**" + (i + 1) + " - " + location.name + "**\n" +
-                "　Radius: `" + location.radius + "` km(s)\n";
+              if (location.name == active) {
+                location_list += "**" + (i + 1) + " - " + location.name + " [ACTIVE]**\n" +
+                  "　Radius: `" + location.radius + "` km(s)\n";
+              } else {
+                location_list += "**" + (i + 1) + " - " + location.name + "**\n" +
+                  "　Radius: `" + location.radius + "` km(s)\n";
+              }
             });
             let area_subs = new WDR.DiscordJS.MessageEmbed()
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
