@@ -33,7 +33,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 "　Radius: `" + location.radius + "` km(s)\n";
             });
 
-            let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
+            let number = await Functions.DetailCollect(WDR, Functions, "Edit", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
 
             let modify = user.locations[locations[number].name];
 
