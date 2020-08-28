@@ -74,7 +74,7 @@ module.exports = async (WDR, Sighting) => {
     async function(error, matching, fields) {
       if (error) {
         WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-      } else if (matching && matching[0]) {
+      } else if (matching && matching.length > 0) {
 
         Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
 
@@ -87,49 +87,48 @@ module.exports = async (WDR, Sighting) => {
           let User = matching[m];
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
-          let roles = member.roles.cache.map(r => r.id);
+          if (member) {
+            let memberRoles = member.roles.cache.map(r => r.id);
 
-          for (let r = 0, rlen = Sighting.Discord.allowed_roles.length; r < rlen; r++) {
-            let no_double = true;
-            if (roles.includes(Sighting.Discord.allowed_roles[r]) && no_double) {
-              no_double = false;
+            for (let r = 0, rlen = Sighting.Discord.allowed_roles.length; r < rlen; r++) {
+              if (memberRoles.includes(Sighting.Discord.allowed_roles[r])) {
 
-              let match = {};
+                let match = {};
 
-              if (User.geotype == "city") {
-                if (User.guid_name == Sighting.area.default) {
-                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                  Send_Subscription(WDR, match, Sighting, User);
+                if (User.geotype == "city") {
+                  if (User.guid_name == Sighting.area.default) {
+                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                    Send_Subscription(WDR, match, Sighting, User);
+                  }
+
+                } else if (User.geotype == "areas") {
+                  let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+                  let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+                  let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+                  if (defGeo || mainGeo || subGeo || cityGeo) {
+                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                    Send_Subscription(WDR, match, Sighting, User);
+                  }
+
+                } else if (User.geotype == "location") {
+                  let values = User.location.split(";");
+                  let distance = WDR.Distance.between({
+                    lat: Sighting.latitude,
+                    lon: Sighting.longitude
+                  }, {
+                    lat: values[0].split(",")[0],
+                    lon: values[0].split(",")[1]
+                  });
+                  let loc_dist = WDR.Distance(values[1] + " km");
+                  if (loc_dist > distance) {
+                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                    Send_Subscription(WDR, match, Sighting, User);
+                  }
                 }
-
-              } else if (User.geotype == "areas") {
-                let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
-                let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
-                let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
-                if (defGeo || mainGeo || subGeo || cityGeo) {
-                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                  Send_Subscription(WDR, match, Sighting, User);
-                }
-
-              } else if (User.geotype == "location") {
-                let values = User.location.split(";");
-                let distance = WDR.Distance.between({
-                  lat: Sighting.latitude,
-                  lon: Sighting.longitude
-                }, {
-                  lat: values[0].split(",")[0],
-                  lon: values[0].split(",")[1]
-                });
-                let loc_dist = WDR.Distance(values[1] + " km");
-                if (loc_dist > distance) {
-                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                  Send_Subscription(WDR, match, Sighting, User);
-                }
+                break;
               }
             }
           }
-
-
         }
       }
     }
@@ -140,8 +139,6 @@ module.exports = async (WDR, Sighting) => {
 }
 
 async function Send_Subscription(WDR, match, Sighting, User) {
-
-
 
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
