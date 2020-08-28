@@ -4,33 +4,27 @@ module.exports = (WDR, Sighting) => {
     return;
   }
 
-  // CHECK ALL FILTERS
   WDR.Pokemon_Channels.forEach(async feed_channel => {
 
-    // LOOK UP CHANNEL
     let channel = WDR.Bot.channels.cache.get(feed_channel[0]);
     if (!channel) {
       return WDR.Console.error(WDR, "[feeds/pokemon.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
 
-    // FETCH CHANNEL GEOFENCE
     channel.geofences = feed_channel[1].geofences.split(",");
     if (!channel.geofences) {
       return WDR.Console.error(WDR, "[feeds/pokemon.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
-    // FETCH CHANNEL FILTER
     channel.filter = WDR.Filters.get(feed_channel[1].filter);
     if (!channel.filter) {
       return WDR.Console.error(WDR, "[feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
-    // CHECK CHANNEL FILTER TYPE
     if (channel.filter.Type != "pokemon") {
       return WDR.Console.error(WDR, "[feeds/pokemon.js] The filter defined for " + feed_channel[0] + " does not appear to be a pokemon filter.");
     }
 
-    // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
         channel.role_id = "@" + feed_channel[1].roleid;
@@ -42,13 +36,11 @@ module.exports = (WDR, Sighting) => {
     let pobject = channel.filter[WDR.Master.Pokemon[Sighting.pokemon_id].name];
     if (!pobject) {
       return WDR.Console.error(WDR, "[feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[Sighting.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
-    }
+    } else if (pobject != "False") {
 
-    if (pobject != "False") {
       let defGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
       let mainGeo = (channel.geofences.indexOf(Sighting.area.main) >= 0);
       let subGeo = (channel.geofences.indexOf(Sighting.area.sub) >= 0);
-
       if (defGeo || mainGeo || subGeo) {
 
         let criteria = {};
@@ -76,14 +68,11 @@ module.exports = (WDR, Sighting) => {
         let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender_name));
         let genPass = ((criteria.generation == "all") || (criteria.generation == Sighting.gen));
         let ivPass = ((criteria.min_iv <= Sighting.internal_value) && (criteria.max_iv >= Sighting.internal_value));
-
         if (lvlPass && sizePass && genderPass && genPass && ivPass) {
 
           let match = {};
 
-          match.embed = (feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js");
-
-          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
+          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js"));
 
           match.typing = await WDR.Get_Typing(WDR, {
             pokemon_id: Sighting.pokemon_id,

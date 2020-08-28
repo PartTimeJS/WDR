@@ -6,77 +6,67 @@ module.exports = async (WDR, Lure) => {
     return;
   }
 
-  switch (Lure.lure_id) {
+  switch (LURE.lure_id) {
     case 501:
-      Lure.type = "Normal";
+      LURE.type = "Normal";
       break;
     case 502:
-      Lure.type = "Glacial";
+      LURE.type = "Glacial";
       break;
     case 503:
-      Lure.type = "Mossy";
+      LURE.type = "Mossy";
       break;
     case 504:
-      Lure.type = "Magnetic";
+      LURE.type = "Magnetic";
       break;
     default:
-      Lure.type = "Not Lured";
+      LURE.type = "Not Lured";
   }
 
-  // CHECK ALL FILTERS
   for (let c = 0, ch_len = WDR.Lure_Channels.length; c < ch_len; c++) {
 
-    // ASSIGN CHANNEL TO VARIABLE
     let feed_channel = WDR.Lure_Channels[c];
 
-    // LOOK UP CHANNEL
-    let Channel = WDR.Bot.channels.cache.get(feed_channel[0]);
-    if (!Channel) {
+    let channel = WDR.Bot.channels.cache.get(feed_channel[0]);
+    if (!channel) {
       return WDR.Console.error(WDR, "[feeds/lure.js] The channel " + feed_channel[0] + " does not appear to exist.");
     }
-
-    // FETCH CHANNEL GEOFENCE
-    Channel.Geofences = feed_channel[1].geofences.split(",");
-    if (!Channel.Geofences) {
+    channel.Geofences = feed_channel[1].geofences.split(",");
+    if (!channel.Geofences) {
       return WDR.Console.error(WDR, "[feeds/lure.js] You do not have a Geofences set for " + feed_channel[1] + ".");
     }
 
-    // FETCH CHANNEL FILTER
-    Channel.Filter = WDR.Filters.get(feed_channel[1].filter);
-    if (!Channel.Filter) {
+    channel.Filter = WDR.Filters.get(feed_channel[1].filter);
+    if (!channel.Filter) {
       return WDR.Console.error(WDR, "[feeds/lure.js] The filter defined for " + feed_channel[0] + " does not appear to exist.");
     }
 
-    // CHECK CHANNEL FILTER TYPE
-    if (Channel.Filter.Type != "lure") {
+    if (channel.Filter.Type != "lure") {
       return WDR.Console.error(WDR, "[feeds/lure.js] The filter defined for " + feed_channel[0] + " does not appear to be a lure filter.");
     }
 
-    // ADD ROLE ID IF IT EXISTS IN CHANNEL CONFIG
     if (feed_channel[1].roleid) {
       if (feed_channel[1].roleid == "here" || feed_channel[1].roleid == "everyone") {
-        Lure.role_id = "@" + feed_channel[1].roleid;
+        LURE.role_id = "@" + feed_channel[1].roleid;
       } else {
-        Lure.role_id = "<@&" + feed_channel[1].roleid + ">";
+        LURE.role_id = "<@&" + feed_channel[1].roleid + ">";
       }
     }
 
-    // IF CHANNEL SPECIFIC LURE EMBED SPECIFIED USE IT
-    Lure.Embed = feed_channel[1].embed ? feed_channel[1].embed : "lure.js";
+    LURE.Embed = feed_channel[1].embed ? feed_channel[1].embed : "lure.js";
 
     switch (true) {
-      case (Channel.Geofences.indexOf("ALL") >= 0):
-      case (Channel.Geofences.indexOf(Lure.area.default) >= 0):
-      case (Channel.Geofences.indexOf(Lure.area.main) >= 0):
-      case (Channel.Geofences.indexOf(Lure.area.sub) >= 0):
+      case (channel.Geofences.indexOf("ALL") >= 0):
+      case (channel.Geofences.indexOf(LURE.area.default) >= 0):
+      case (channel.Geofences.indexOf(LURE.area.main) >= 0):
+      case (channel.Geofences.indexOf(LURE.area.sub) >= 0):
 
         switch (true) {
-          case (Channel.Filter.Lure_Type.indexOf("ALL") >= 0):
-          case (Channel.Filter.Lure_Type.indexOf(Lure.type) >= 0):
+          case (channel.Filter.Lure_Type.indexOf("ALL") >= 0):
+          case (channel.Filter.Lure_Type.indexOf(LURE.type) >= 0):
 
-            Create_Lure_Embed(WDR, Channel, Lure);
+            Create_Lure_Embed(WDR, channel, LURE);
         }
-
     }
   }
 

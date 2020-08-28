@@ -34,12 +34,10 @@ module.exports = async (WDR, Sighting) => {
       }
     }
 
-    let Embed_File = feed_channel[1].embed ? feed_channel[1].embed : "pvp.js";
 
     let defGeo = (channel.Geofences.indexOf(Sighting.area.default) >= 0);
     let mainGeo = (channel.Geofences.indexOf(Sighting.area.main) >= 0);
     let subGeo = (channel.Geofences.indexOf(Sighting.area.sub) >= 0);
-
     if (defGeo || mainGeo || subGeo) {
 
       if (!channel.Filter.min_cp_range && channel.Filter.min_level !== 0) {
@@ -72,19 +70,20 @@ module.exports = async (WDR, Sighting) => {
         };
 
         for (let l = 0, llen = Sighting[match.league].length; l < llen; l++) {
+
           let potential = Sighting[match.league][l];
+
           potential.typing = await WDR.Get_Typing(WDR, {
             pokemon_id: potential.pokemon_id,
             form: potential.form,
             type: "type_array"
           });
+
           let rankMatch = potential.rank <= channel.Filter.min_pvp_rank;
           let cpMatch = potential.cp >= channel.Filter.min_cp_range;
           let typeMatch = (channel.Filter.type == "all") ? true : potential.typing.some(type => channel.Filter.type.includes(type));
           if (rankMatch && cpMatch && typeMatch) {
-            if (match.league == "ultra_leage") {
-              console.log("filter match!")
-            }
+
             let filtered = {};
             filtered.types = potential.typing;
             filtered.pokemon_id = potential.pokemon_id;
@@ -100,10 +99,7 @@ module.exports = async (WDR, Sighting) => {
 
         if (match.possible_cps.length > 0) {
 
-          if (match.league == "ultra_leage") {
-            console.log("making embed!")
-          }
-          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Embed_File);
+          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "pvp.js"));
 
           match.typing = await WDR.Get_Typing(WDR, {
             pokemon_id: Sighting.pokemon_id,
