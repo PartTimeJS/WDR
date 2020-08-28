@@ -40,55 +40,50 @@ module.exports = async (WDR, Sighting) => {
 
           let query = `
             SELECT
-              *
+                *
             FROM
-              wdr_subscriptions
+                wdr_subscriptions
             WHERE
-              status = 1
+                status = 1
               AND
                 sub_type = 'pvp'
-              AND
-                (
-                  pokemon_id  = 0
-                    OR
-                  pokemon_id = ${Sighting.pokemon_id}
-                    OR
-                  pokemon_id = ${potential.pokemon_id}
-                )
-              AND
-                (
-                  pokemon_type  = '0'
-                    OR
-                  pokemon_type = '${potential.typing[0]}'
-                    OR
-                  pokemon_type = '${potential.typing[1]}'
-                )
-              AND
-                (
-                  form = 0
-                    OR
-                  form = ${Sighting.form_id}
-                    OR
-                  form = ${potential.form_id}
-                )
-              AND
-                (
-                  league = '0'
-                    OR
-                  league = '${league}'
-                )
+              AND (
+                pokemon_id  = 0
+                  OR
+                pokemon_id = ${Sighting.pokemon_id}
+                  OR
+                pokemon_id = ${potential.pokemon_id}
+              )
+              AND (
+                pokemon_type  = '0'
+                  OR
+                pokemon_type = '${potential.typing[0]}'
+                  OR
+                pokemon_type = '${potential.typing[1]}'
+              )
+              AND (
+                form = 0
+                  OR
+                form = ${Sighting.form_id}
+                  OR
+                form = ${potential.form_id}
+              )
+              AND (
+                league = '0'
+                  OR
+                league = '${league}'
+              )
               AND
                 min_rank >= ${potential.rank}
               AND
                 min_lvl <= ${Sighting.pokemon_level}
-              AND
-                (
-                  generation = 0
-                    OR
-                  generation = ${Sighting.gen}
-                    OR
-                  generation = ${potential.gen}
-                );
+              AND (
+                generation = 0
+                  OR
+                generation = ${Sighting.gen}
+                  OR
+                generation = ${potential.gen}
+              );
             `;
           WDR.wdrDB.query(
             query,

@@ -16,58 +16,51 @@ module.exports = async (WDR, Sighting) => {
     FROM
         wdr_subscriptions
     WHERE
-          status = 1
-        AND
-          sub_type = 'pokemon'
-        AND
-          (
-            pokemon_id  = 0
-              OR
-            pokemon_id = ${Sighting.pokemon_id}
-          )
-        AND
-          (
-            pokemon_type  = '0'
-              OR
-            pokemon_type = '${typing[0]}'
-              OR
-            pokemon_type = '${typing[1]}'
-          )
-        AND
-          (
-            form = 0
-              OR
-            form = ${Sighting.form_id}
-          )
-        AND
-          min_iv <= ${Sighting.internal_value}
-        AND
-          max_iv >= ${Sighting.internal_value}
-        AND
-          min_lvl <= ${Sighting.pokemon_level}
-        AND
-          max_lvl >= ${Sighting.pokemon_level}
-        AND
-          (
-            size = '0'
-              OR
-            size = '${size}'
-          )
-        AND
-          (
-            gender = 0
-              OR
-            gender = ${Sighting.gender_id}
-              OR
-            gender = 3
-          )
-        AND
-          (
-            generation = 0
-              OR
-            generation = ${Sighting.gen}
-          );
-  `;
+        status = 1
+      AND
+        sub_type = 'pokemon'
+      AND (
+        pokemon_id = 0
+          OR
+        pokemon_id = ${Sighting.pokemon_id}
+      )
+      AND (
+        pokemon_type = '0'
+          OR
+        pokemon_type = '${typing[0]}'
+          OR
+        pokemon_type = '${typing[1]}'
+      )
+      AND (
+        form = 0
+        OR form = ${Sighting.form_id}
+      )
+      AND
+        min_iv <= ${Sighting.internal_value}
+      AND
+        max_iv >= ${Sighting.internal_value}
+      AND
+        min_lvl <= ${Sighting.pokemon_level}
+      AND
+        max_lvl >= ${Sighting.pokemon_level}
+      AND (
+        size = '0'
+          OR
+        size = '${size}'
+      )
+      AND (
+        gender = 0
+          OR
+        gender = ${Sighting.gender_id}
+          OR
+        gender = 3
+      )
+      AND (
+        generation = 0
+          OR
+        generation = ${Sighting.gen}
+      );
+    `;
 
   WDR.wdrDB.query(
     query,

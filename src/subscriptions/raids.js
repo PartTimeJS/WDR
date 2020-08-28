@@ -1,39 +1,42 @@
 module.exports = async (WDR, raid, area, server, timezone) => {
 
+  let query_id = "";
+  if (Raid.pokemon_id < 1) {
+    query_id = -1;
+  } else {
+    query_id = Raid.pokemon_id;
+  }
+
   let query = `
-      SELECT
-          *
-      FROM
-          wdr_subscriptions
-      WHERE
-            status = 1
-          AND
-            sub_type = 'raid'
-          AND
-            (
-              pokemon_id = 0
-                OR
-              pokemon_id = ${Raid.pokemon_id}
-            )
-          AND
-            (
-              max_lvl = 0
-                OR
-              max_lvl >= ${Raid.level}
-            )
-          AND
-            (
-              min_lvl = 0
-                OR
-              min_lvl <= ${Raid.level}
-            )
-          AND
-            (
-              gym_id = '0'
-                OR
-              gym_id = '${Raid.gym_id}'
-            )
-    ;`;
+    SELECT
+        *
+    FROM
+        wdr_subscriptions
+    WHERE
+        status = 1
+      AND
+        sub_type = 'raid'
+      AND (
+        pokemon_id = 0
+          OR
+        pokemon_id = ${query_id}
+      )
+      AND (
+        max_lvl = 0
+          OR
+        max_lvl >= ${Raid.level}
+      )
+      AND (
+        min_lvl = 0
+          OR
+        min_lvl <= ${Raid.level}
+      )
+      AND (
+        gym_id = '0'
+          OR
+        gym_id = '${Raid.gym_id}'
+      );
+    `;
 
   WDR.wdrDB.query(
     query,
@@ -49,29 +52,42 @@ module.exports = async (WDR, raid, area, server, timezone) => {
           Raid.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Raid.body;
         }
 
-        for (let m = 0, mlen = matching.length; m < mlen; m++) {
-          let User = matching[m];
+        let member = WDR.Bot.guilds.cache.get(Raid.Discord.id).members.cache.get(User.user_id);
+        let roles = member.roles.cache.map(r => r.id);
 
-          if (matching[0] == "areas" || matching[0].geotype == "city") {
-            let defGeo = (User.areas.indexOf(Raid.area.default) >= 0);
-            let mainGeo = (User.areas.indexOf(Raid.area.main) >= 0);
-            let subGeo = (User.areas.indexOf(Raid.area.sub) >= 0);
-            if (defGeo || mainGeo || subGeo) {
-              Send_Subscription(WDR, Raid, User);
-            }
+        for (let r = 0, rlen = Raid.Discord.allowed_roles.length; r < rlen; r++) {
+          let no_double = true;
+          if (roles.includes(Raid.Discord.allowed_roles[r]) && no_double) {
+            no_double = false;
 
-          } else if (User.geotype == "location") {
-            let values = User.location.split(";");
-            let distance = WDR.Distance.between({
-              lat: Raid.latitude,
-              lon: Raid.longitude
-            }, {
-              lat: values[0].split(",")[0],
-              lon: values[0].split(",")[1]
-            });
-            let loc_dist = WDR.Distance(values[1] + " km");
-            if (loc_dist > distance) {
-              Send_Subscription(WDR, Raid, User);
+            if (User.geotype == "city") {
+              if (User.guid_name == Raid.area.default) {
+                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                Send_Subscription(WDR, match, Raid, User);
+              }
+
+            } else if (User.geotype == "areas") {
+              let defGeo = (User.areas.indexOf(Raid.area.default) >= 0);
+              let mainGeo = (User.areas.indexOf(Raid.area.main) >= 0);
+              let subGeo = (User.areas.indexOf(Raid.area.sub) >= 0);
+              if (defGeo || mainGeo || subGeo || cityGeo) {
+                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                Send_Subscription(WDR, match, Raid, User);
+              }
+
+            } else if (User.geotype == "location") {
+              let values = User.location.split(";");
+              let distance = WDR.Distance.between({
+                lat: Raid.latitude,
+                lon: Raid.longitude
+              }, {
+                lat: values[0].split(",")[0],
+                lon: values[0].split(",")[1]
+              });
+              let loc_dist = WDR.Distance(values[1] + " km");
+              if (loc_dist > distance) {
+                Send_Subscription(WDR, Raid, User);
+              }
             }
           }
         }

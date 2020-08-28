@@ -6,18 +6,17 @@ module.exports = async (WDR, Sighting) => {
     FROM
         wdr_subscriptions
     WHERE
-          status = 1
-        AND
-          sub_type = 'quest'
-        AND
-          (
-            reward = ${Quest.pokemon_id}
-              OR
-            reward = ${Quest.simple_reward}
-              OR
-            reward = ${Quest.full_reward}
-          )
-  ;`;
+        status = 1
+      AND
+        sub_type = 'quest'
+      AND (
+        reward = '${Quest.pokemon_id}'
+          OR
+        reward = '${Quest.simple_reward}'
+          OR
+        reward = '${Quest.full_reward}'
+      );
+    `;
 
   WDR.wdrDB.query(
     query,
