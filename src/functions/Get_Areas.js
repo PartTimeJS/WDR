@@ -4,7 +4,7 @@ module.exports = (WDR, object) => {
     let geofences = await WDR.Geofences.get(object.Discord.geojson_file).features;
 
     if (!geofences) {
-      WDR.WDR.Console.error(WDR, "[Get_Area.js] Geofence configs/geofences/" + object.Discord.geojson_file + " does not appear to exist.");
+      WDR.Console.error(WDR, "[Get_Area.js] Geofence configs/geofences/" + object.Discord.geojson_file + " does not appear to exist.");
     } else {
       for (let g = 0, glen = geofences.length; g < glen; g++) {
         let geojson = geofences[g];
