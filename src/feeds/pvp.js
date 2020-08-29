@@ -81,7 +81,7 @@ module.exports = async (WDR, Sighting) => {
 
           let rankMatch = potential.rank <= channel.Filter.min_pvp_rank;
           let cpMatch = potential.cp >= channel.Filter.min_cp_range;
-          let typeMatch = (channel.Filter.type == "all") ? true : potential.typing.some(type => channel.Filter.type.includes(type));
+          let typeMatch = (channel.Filter.type == "all" || channel.Filter.type == undefined) ? true : potential.typing.some(type => channel.Filter.type.includes(type));
           if (rankMatch && cpMatch && typeMatch) {
 
             let filtered = {};
