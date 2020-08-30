@@ -66,24 +66,36 @@ module.exports = (WDR, Functions, Message, Member) => {
       let modified = subscriptions[number];
 
       old.name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].name : "All Pokémon";
-      if (WDR.Master.Pokemon[old.pokemon_id]) {
-        old.form_name = WDR.Master.Pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form].form : "All";
-      } else {
+      if (old.pokemon_id === 0) {
+        old.name = "All Pokémon";
         old.form_name = "All";
+      } else {
+        old.pokemon = await WDR.Pokemon_ID_Search(WDR, WDR.Master.Pokemon[old.pokemon_id].name);
+        old.name = old.pokemon.name;
+        old.form_name = WDR.Master.Pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form].form : "All";
+        modified.forms = old.pokemon.forms;
+        modified.form_ids = old.pokemon.form_ids;
       }
 
       modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with 'Next', 'All', or the Pokémon Name and Form if it has one. Names are not case-sensitive.", modified);
-      modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
-      modified.id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
+      if (modified.pokemon == old.name) {
+        modified.pokemon_id = old.pokemon_id;
+        modified.name = old.name;
+      } else {
+        modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
+        modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
+        modified.forms = modified.pokemon.forms;
+        modified.form_ids = modified.pokemon.form_ids;
+      }
 
       old.form_name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form] : "All";
-
-      if (modified.id > 0) {
-        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form_name, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
+      if (modified.pokemon_id > 0) {
+        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       } else {
         modified.type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, old.pokemon_type, "Please respond with the Pokemon Type -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       }
-      if (modifed.form = old.form_name) {
+      console.log(modified)
+      if (modifed.form == old.form_name) {
         modified.form = old.form;
       }
 

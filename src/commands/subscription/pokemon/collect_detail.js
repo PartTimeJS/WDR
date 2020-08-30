@@ -10,6 +10,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
     switch (type) {
 
+
       case "Guild":
         let list = "";
         object.forEach((guild, i) => {
@@ -24,6 +25,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
+
       case "Preset":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -31,6 +33,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setDescription(object)
           .setFooter(requirements);
         break;
+
 
       case "Name":
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -42,6 +45,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
         break;
 
+
       case "Type":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -51,6 +55,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           instruction.setDescription("Current: `" + WDR.Capitalize(object) + "`");
         }
         break;
+
 
       case "Form":
         let forms = "**0 - All**\n";
@@ -73,6 +78,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           }
         }
         break;
+
 
       case "Confirm-Add":
 
@@ -114,6 +120,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           gen = sub.gen;
         }
 
+
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Does all of this look correct?")
@@ -131,6 +138,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
+
       case "Confirm-Remove":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -138,6 +146,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setDescription("If you wanted to remove an `ALL` pokemon filter, you need to specify the number associated with it. \`ALL-1\`, \`ALL-2\`, etc")
           .setFooter(requirements);
         break;
+
 
       case "Remove":
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -147,6 +156,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setFooter(requirements);
         break;
 
+
       case "Modify":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
@@ -154,6 +164,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setDescription(sub)
           .setFooter(requirements);
         break;
+
 
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -163,6 +174,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             "**No** - You will get notifications for this pokemon in the entire city scan area.")
           .setFooter(requirements);
         break;
+
 
       default:
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -188,10 +200,12 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
         switch (true) {
 
+
           case CollectedMsg.content.toLowerCase() == "stop":
           case CollectedMsg.content.toLowerCase() == "cancel":
             collector.stop("cancel");
             break;
+
 
           case type.indexOf("Confirm-Add") >= 0:
           case type.indexOf("Confirm-Remove") >= 0:
@@ -211,6 +225,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 }));
             }
             break;
+
 
           case type.indexOf("Geofence") >= 0:
             switch (CollectedMsg.content.toLowerCase()) {
@@ -237,6 +252,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             }
             break;
 
+
           case type.indexOf("Guild") >= 0:
           case type.indexOf("Preset") >= 0:
           case type.indexOf("Modify") >= 0:
@@ -255,6 +271,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 }));
             }
             break;
+
 
           case type.indexOf("Name") >= 0:
             switch (true) {
@@ -277,6 +294,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 }
             }
             break;
+
 
           case type.indexOf("Type") >= 0:
             switch (true) {
@@ -304,6 +322,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             }
             break;
 
+
           case type.indexOf("Form") >= 0:
             switch (true) {
               case (CollectedMsg.content.toLowerCase() == "same"):
@@ -311,10 +330,10 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               case (CollectedMsg.content.toLowerCase() == "next"):
                 collector.stop(object);
                 break;
-              case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === 0):
+              case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === '0'):
                 collector.stop(0);
                 break;
-              case (CollectedMsg.content >= 0 && CollectedMsg.content <= sub.forms.length):
+              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= sub.forms.length):
                 collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
                 break;
               default:
@@ -323,6 +342,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 }));
             }
             break;
+
 
           case type.indexOf("Generation") >= 0:
             switch (true) {
@@ -376,7 +396,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               case (CollectedMsg.content.toLowerCase() == "next"):
                 collector.stop(object);
                 break;
-              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
+              case (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                 collector.stop(parseInt(CollectedMsg.content));
                 break;
               case (CollectedMsg.content.toLowerCase() == "all"):

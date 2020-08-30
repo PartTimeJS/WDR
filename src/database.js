@@ -405,8 +405,7 @@ async function create_tables(WDR) {
       CREATE TABLE IF NOT EXISTS wdr_info (
         db_version tinyint NOT NULL DEFAULT 1,
         next_bot tinyint NOT NULL,
-        pvp_tables_generated tinyint NOT NULL DEFAULT 0,
-        tokens varchar(255)
+        pvp_tables_generated tinyint NOT NULL DEFAULT 0
       );`;
     WDR.wdrDB.query(wdr_info);
 
@@ -417,8 +416,8 @@ async function create_tables(WDR) {
         guild_id bigint NOT NULL,
         guild_name varchar(40) NOT NULL,
         bot tinyint NOT NULL DEFAULT '0',
-        areas varchar(255) NOT NULL DEFAULT 'all',
-        location varchar(30) DEFAULT NULL,
+        areas varchar(50) NOT NULL DEFAULT 'all',
+        location json DEFAULT NULL,
         status tinyint NOT NULL DEFAULT '1',
         pokemon_status tinyint NOT NULL DEFAULT '1',
         pvp_status tinyint NOT NULL DEFAULT '1',
@@ -426,10 +425,12 @@ async function create_tables(WDR) {
         quest_status tinyint NOT NULL DEFAULT '1',
         lure_status tinyint NOT NULL DEFAULT '1',
         invasion_status tinyint NOT NULL DEFAULT '1',
-        quest_time varchar(5) NOT NULL DEFAULT '08:00',
+        quest_time varchar(5) NOT NULL DEFAULT '09:00',
         locations json DEFAULT NULL,
         geotype varchar(10) NOT NULL DEFAULT 'areas',
-        PRIMARY KEY(user_id, guild_id)
+        PRIMARY KEY (user_id),
+        KEY ix_data (user_name,guild_id,guild_name,bot,areas,location,locations,geotype) USING BTREE,
+        KEY ix_status(status,pokemon_status,pvp_status,raid_status,quest_status,lure_status,invasion_status) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_users);
 
@@ -441,8 +442,8 @@ async function create_tables(WDR) {
         guild_name varchar(40) NOT NULL,
         bot tinyint NOT NULL,
         status tinyint DEFAULT '1',
-        areas varchar(255) NOT NULL,
-        location varchar(30) NOT NULL DEFAULT '0',
+        areas varchar(50) NOT NULL,
+        location json NOT NULL,
         sub_type varchar(10) NOT NULL,
         pokemon_id smallint NOT NULL DEFAULT '0',
         pokemon_type varchar(10) NOT NULL DEFAULT '0',
@@ -461,38 +462,37 @@ async function create_tables(WDR) {
         league varchar(10) NOT NULL DEFAULT '0',
         quest_delivery varchar(10) DEFAULT '0',
         geotype varchar(10) NOT NULL DEFAULT 'areas',
-        PRIMARY KEY (user_id,guild_id,sub_type,pokemon_id,form,pokemon_type,min_lvl,max_lvl,min_iv,max_iv,size,generation,reward,gym_id,min_rank,league),
-        KEY ix_data (gender,min_cp,geotype,quest_delivery) USING BTREE
+        PRIMARY KEY (user_id,sub_type,pokemon_id,form,pokemon_type,min_lvl,max_lvl,min_iv,max_iv,size,generation,reward,gym_id,gender,min_rank,league),
+        KEY ix_data (guild_id,min_cp,geotype,quest_delivery) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_subscriptions);
 
     let wdr_quest_queue = `
-        CREATE TABLE IF NOT EXISTS wdr_quest_queue(
-          user_id bigint NOT NULL,
-          user_name varchar(40) NOT NULL,
-          guild_id bigint NOT NULL,
-          bot smallint NOT NULL,
-          area varchar(20),
-          alert varchar(10),
-          quest_delivery bigint,
-          embed LONGTEXT NOT NULL
-        );
-        `;
+      CREATE TABLE IF NOT EXISTS wdr_quest_queue(
+        user_id bigint NOT NULL,
+        user_name varchar(40) NOT NULL,
+        guild_id bigint NOT NULL,
+        bot smallint NOT NULL,
+        area varchar(20),
+        alert varchar(10),
+        quest_delivery bigint,
+        embed LONGTEXT NOT NULL,
+        KEY ix_data (user_id,guild_id,bot,alert,quest_delivery,embed) USING BTREE
+      );`;
     WDR.wdrDB.query(wdr_quest_queue);
 
     let wdr_pokedex = `
-        CREATE TABLE IF NOT EXISTS wdr_pokedex(
-          id smallint(4) NOT NULL,
-          name varchar(40) NOT NULL,
-          default_form bigint(25) NOT NULL,
-          default_form_id smallint(5) NOT NULL,
-          types varchar(20) NOT NULL,
-          attack smallint(4) NOT NULL,
-          defense smallint(4) NOT NULL,
-          stamina smallint(4) NOT NULL,
-          PRIMARY KEY(id, name)
-        );
-        `;
+      CREATE TABLE IF NOT EXISTS wdr_pokedex(
+        id smallint(4) NOT NULL,
+        name varchar(40) NOT NULL,
+        default_form bigint(25) NOT NULL,
+        default_form_id smallint(5) NOT NULL,
+        types varchar(20) NOT NULL,
+        attack smallint(4) NOT NULL,
+        defense smallint(4) NOT NULL,
+        stamina smallint(4) NOT NULL,
+        PRIMARY KEY(id, name)
+      );`;
     WDR.wdrDB.query(wdr_pokedex);
 
     // END
@@ -503,10 +503,12 @@ async function create_tables(WDR) {
 function update_database(WDR) {
   return new Promise(async resolve => {
 
-    WDR.wdrDB.query(
-      `
-        SELECT *
-        FROM wdr_info `,
+    WDR.wdrDB.query(`
+        SELECT
+            *
+        FROM
+            wdr_info
+        `,
       async function(error, row, fields) {
         if (!row || !row[0]) {
           WDR.Console.error(WDR, "[src/database.js] No data found in wdr_info. Inserting default values...");

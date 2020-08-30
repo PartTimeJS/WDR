@@ -39,18 +39,23 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         break;
 
       case "Form":
+        let forms = "**0 - All**\n";
+        for (let f = 0, flen = sub.forms.length; f < flen; f++) {
+          forms += "**" + (f + 1) + " - " + sub.forms[f] + "**\n"
+        }
+        forms = forms.slice(0, -1);
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What Form of " + sub.name + " would you like to Subscribe to?")
-          .setDescription("Available Forms:" + "\n　" + sub.forms.join("\n　"))
+          .setDescription(forms)
           .setFooter(requirements);
         if (object) {
           if (object.form == 0) {
             instruction.setDescription("Current: `All Pokémon`" + "\n" +
-              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+              "Available Forms:" + "\n　" + forms);
           } else {
             instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`" + "\n" +
-              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+              "Available Forms:" + "\n　" + forms);
           }
         }
         break;
@@ -285,21 +290,20 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             break;
 
           case type.indexOf("Form") >= 0:
-            let user_form = await WDR.Capitalize(CollectedMsg.content);
             switch (true) {
               case (CollectedMsg.content.toLowerCase() == "same"):
               case (CollectedMsg.content.toLowerCase() == "keep"):
               case (CollectedMsg.content.toLowerCase() == "next"):
-                collector.stop(object.form);
+                collector.stop(object);
                 break;
-              case (CollectedMsg.content.toLowerCase() == "all"):
+              case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === '0'):
                 collector.stop(0);
                 break;
-              case (sub.forms.indexOf(user_form) >= 0):
-                collector.stop(parseInt(sub.form_ids[sub.forms.indexOf(user_form)]));
+              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= sub.forms.length):
+                collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
                 break;
               default:
-                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn\'t appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
+                return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
                   timeout: 5000
                 }));
             }
