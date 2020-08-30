@@ -14,7 +14,7 @@ var Functions = {
 
 module.exports = async (WDR, Message) => {
 
-  var Member = Message.member ? Message.member : Message.author;
+  let Member = Message.member ? Message.member : Message.author;
 
   let request_action = new WDR.DiscordJS.MessageEmbed()
     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())

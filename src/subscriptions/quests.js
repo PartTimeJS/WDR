@@ -44,15 +44,14 @@ module.exports = async (WDR, Sighting) => {
             }
 
           } else if (User.geotype == "location") {
-            let values = User.location.split(";");
             let distance = WDR.Distance.between({
-              lat: Quest.latitude,
-              lon: Quest.longitude
+              lat: Sighting.latitude,
+              lon: Sighting.longitude
             }, {
-              lat: values[0].split(",")[0],
-              lon: values[0].split(",")[1]
+              lat: User.location.coords.split(",")[0],
+              lon: User.location.coords.split(",")[1]
             });
-            let loc_dist = WDR.Distance(values[1] + " km");
+            let loc_dist = WDR.Distance(User.location.radius + " km");
             if (loc_dist > distance) {
               Send_Subscription(WDR, Quest, User);
             }

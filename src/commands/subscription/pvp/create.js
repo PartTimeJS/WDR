@@ -11,7 +11,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
           sub_type = 'pvp';`,
     async function(error, subs) {
       if (error) {
-        WDR.Console.error(WDR, "[database.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);
+        WDR.Console.error(WDR, "[cmd/sub/pvp/create.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
@@ -98,7 +98,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
                 ${Member.db.pvp_status},
                 '${Member.db.geotype}',
                 '${create.areas}',
-                '${Member.db.location}',
+                '${JSON.stringify(Member.db.location)}',
                 'pvp',
                 ${create.pokemon_id},
                 '${create.pokemon_type}',

@@ -33,30 +33,30 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 "　Radius: `" + location.radius + "` km(s)\n";
             });
 
-            let number = await Functions.DetailCollect(WDR, Functions, "Edit", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
+            let number = await Functions.DetailCollect(WDR, Functions, "Modify", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
 
             let modify = user.locations[locations[number].name];
 
             modify.radius = await Functions.DetailCollect(WDR, Functions, "Radius", Member, Message, null, "Please respond with 'Next' or a whole number from 1 to 5.", modify);
+            modify.radius = parseInt(modify.radius);
 
-            modify.active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", modify);
+            let active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", modify);
 
             let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm", Member, Message, null, "Type 'Yes' to confirm or 'No' to cancel.", modify);
             if (confirm == false) {
               return;
             }
 
-            if (modify.active == true) {
+            user.locations[locations[number].name] = modify;
+
+            if (active == true) {
               let subs_active = `
                 UPDATE
                     wdr_subscriptions
                 SET
-                    geotype = 'location',
-                    location = '${(modify.coords + ";" + modify.radius)}'
+                    location = '${JSON.stringify(modify)}'
                 WHERE
                     user_id = ${Member.id}
-                      AND
-                    geotype != 'city'
               ;`;
               WDR.wdrDB.query(
                 subs_active,
@@ -73,8 +73,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 UPDATE
                     wdr_users
                 SET
-                    geotype = 'location',
-                    location = '${(modify.coords + ";" + modify.radius)}'
+                    location = '${JSON.stringify(modify)}'
                 WHERE
                     user_id = ${Member.id}
               ;`;
@@ -91,13 +90,11 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               );
             }
 
-            let jsonString = JSON.stringify(user.locations);
-
             let update = `
               UPDATE
                   wdr_users
               SET
-                  locations = '${jsonString}'
+                  locations = '${JSON.stringify(user.locations)}'
               WHERE
                   user_id = ${Member.id}
             ;`;

@@ -1,5 +1,4 @@
-// PAUSE OR RESUME POKEMON SUBSCRIPTIOONS
-function subscription_status(WDR, message, member, reason, prefix, available_gyms, discord, gym_collection) {
+module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
   WDR.wdrDB.query(
     `SELECT
         *
@@ -23,9 +22,9 @@ function subscription_status(WDR, message, member, reason, prefix, available_gym
 
       if (user[0].raids_status == "ACTIVE" && reason == "resume") {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
-          .setAuthor(Member.nickname, Member.author.displayAvatarURL)
+          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Raid subscriptions are already **Active**!")
-          .setFooter("You can type \'view\', \'add\', or \'remove\'.");
+          .setFooter("You can type 'view', 'add', or 'remove'.");
 
         // SEND THE EMBED
         message.channel.send(already_paused).catch(console.error).then(msg => {
@@ -33,9 +32,9 @@ function subscription_status(WDR, message, member, reason, prefix, available_gym
         });
       } else if (user[0].raids_status == "PAUSED" && reason == "pause") {
         let already_paused = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
-          .setAuthor(Member.nickname, Member.author.displayAvatarURL)
+          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Raid subscriptions are already **Paused**!")
-          .setFooter("You can type \'view\', \'add\', or \'remove\'.");
+          .setFooter("You can type 'view', 'add', or 'remove'.");
 
         // SEND THE EMBED
         message.channel.send(already_paused).catch(console.error).then(msg => {
@@ -53,7 +52,7 @@ function subscription_status(WDR, message, member, reason, prefix, available_gym
             return message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete(10000)).catch(console.error);
           } else {
             let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-              .setAuthor(Member.nickname, Member.author.displayAvatarURL)
+              .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle("Your Raid subscriptions have been set to `" + change + "`!")
               .setFooter("Saved to the " + WDR.config.BOT_NAME + " Database.");
             return message.channel.send(subscription_success).then(m => m.delete({

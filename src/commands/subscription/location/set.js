@@ -38,7 +38,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 wdr_subscriptions
             SET
                 geotype = 'location',
-                location = '${(active_location.coords + ";" + active_location.radius)}'
+                location = '${JSON.stringify(active_location)}'
             WHERE
                 user_id = ${Member.id}
                   AND
@@ -61,7 +61,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 wdr_subscriptions
             SET
                 geotype = 'location',
-                location = '${(active_location.coords + ";" + active_location.radius)}'
+                location = '${JSON.stringify(active_location)}'
             WHERE
                 user_id = ${Member.id}
                   AND

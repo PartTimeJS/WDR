@@ -44,26 +44,27 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         create.coords = await Functions.DetailCollect(WDR, Functions, "Coords", Member, Message, null, "Coordiantes must be separated by a comma with no spaces.", create);
 
         create.radius = await Functions.DetailCollect(WDR, Functions, "Radius", Member, Message, null, "Radius must be a whole number from 1 to 5.", create);
+        create.radius = parseInt(create.radius);
 
-        create.active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", create);
+        let active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", create);
 
         let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm", Member, Message, null, "Type 'Yes' to confirm or 'No' to cancel.", create);
         if (confirm == false) {
           return;
         }
 
-        if (create.active == true) {
+        if (active == true) {
           let subs_active = `
             UPDATE
                 wdr_subscriptions
             SET
                 geotype = 'location',
-                location = '${(create.coords + ";" + create.radius)}'
+                location = '${JSON.stringify(create)}'
             WHERE
                 user_id = ${Member.id}
                   AND
                 geotype != 'city'
-          ;`;
+            ;`;
           WDR.wdrDB.query(
             subs_active,
             function(error, user, fields) {
@@ -80,7 +81,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 wdr_users
             SET
                 geotype = 'location',
-                location = '${(create.coords + ";" + create.radius)}'
+                location = '${JSON.stringify(create)}'
             WHERE
                 user_id = ${Member.id}
           ;`;
@@ -99,13 +100,11 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
         user.locations[create.name] = create;
 
-        let jsonString = JSON.stringify(user.locations);
-
         let update = `
           UPDATE
               wdr_users
           SET
-              locations = '${jsonString}'
+              locations = '${JSON.stringify(user.locations)}'
           WHERE
               user_id = ${Member.id}
         ;`;

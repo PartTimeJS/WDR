@@ -38,7 +38,7 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.min_lvl != 0 && sub_data.min_lvl != 1) {
             data += "　Min Lvl: `" + sub_data.min_lvl + "`\n";
           }
-          if (sub_data.max_lvl != WDR.MaxLevel) {
+          if (sub_data.max_lvl != WDR.Max_Pokemon_Level) {
             data += "　Max Lvl: `" + sub_data.max_lvl + "`\n";
           }
           if (sub_data.gender != 0) {
@@ -60,24 +60,37 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type 'all'", sub_list);
 
-        let remove = subscriptions[number];
-
-        let query = `
+        let name = "",
+          query = "";
+        if (number == "all") {
+          name = "All";
+          query = `
           DELETE FROM
               wdr_subscriptions
           WHERE
               user_id = ${Message.author.id}
-              AND sub_type = 'pokemon'
-              AND pokemon_id = ${remove.pokemon_id}
-              AND form = ${remove.form}
-              AND min_lvl = ${remove.min_lvl}
-              AND max_lvl = ${remove.max_lvl}
-              AND min_iv = ${remove.min_iv}
-              AND max_iv = ${remove.max_iv}
-              AND size = '${remove.size}'
-              AND gender = ${remove.gender}
-              AND generation = ${remove.generation};
-        `;
+              AND sub_type = 'pokemon';
+          `;
+        } else {
+          let remove = subscriptions[number];
+          name = WDR.Master.Pokemon[remove.pokemon_id].name;
+          query = `
+            DELETE FROM
+                wdr_subscriptions
+            WHERE
+                user_id = ${Message.author.id}
+                AND sub_type = 'pokemon'
+                AND pokemon_id = ${remove.pokemon_id}
+                AND form = ${remove.form}
+                AND min_lvl = ${remove.min_lvl}
+                AND max_lvl = ${remove.max_lvl}
+                AND min_iv = ${remove.min_iv}
+                AND max_iv = ${remove.max_iv}
+                AND size = '${remove.size}'
+                AND gender = ${remove.gender}
+                AND generation = ${remove.generation};
+          `;
+        }
         WDR.wdrDB.query(
           query,
           async function(error, result) {
@@ -90,7 +103,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             } else {
               let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                 .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                .setTitle(WDR.Master.Pokemon[remove.pokemon_id].name + " Subscription Removed!")
+                .setTitle(name + " Subscription(s) Removed!")
                 .setDescription("Saved to the subscription Database.")
                 .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
               return Message.channel.send(subscription_success).then(BotMsg => {
@@ -99,6 +112,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             }
           }
         );
+
       }
     }
   );

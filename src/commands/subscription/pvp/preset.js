@@ -49,7 +49,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
         ${Member.db.pvp_status},
         '${Member.db.geotype}',
         '${preset.areas}',
-        '${Member.db.location}',
+        '${JSON.stringify(Member.db.location)}',
         'pvp',
         ${preset.pokemon_id},
         '${preset.pokemon_type}',

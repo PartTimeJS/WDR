@@ -1,7 +1,8 @@
 var WDR = {
   Dir: __dirname,
   Presets: {},
-  MaxLevel: 35
+  Max_Pokemon_Level: 35,
+  Max_Raid_Level: 6
 };
 
 //  PACKAGE REQUIREMENTS

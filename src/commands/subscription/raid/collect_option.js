@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
+module.exports = (WDR, Functions, source, oMessage, bMessage, Member, available_gyms, gym_collection) => {
 
   let BotMsg = bMessage;
   let OriginalMsg = oMessage;
@@ -28,9 +28,6 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
       resume_words = ["resum", "rseume", "reusme", "resuem", "resume"];
 
     switch (true) {
-      case adv_words.some(word => input.includes(word)):
-        collector.stop("advanced");
-        break;
       case add_words.some(word => input.includes(word)):
         collector.stop("add");
         break;
@@ -52,8 +49,6 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
       case resume_words.some(word => input.includes(word)):
         collector.stop("resume");
         break;
-      default:
-        collector.stop("cancel");
     }
   });
 
@@ -67,24 +62,24 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
     switch (arg) {
       case "cancel":
-        return Functions.Cancel(WDR, Functions, OriginalMsg, Member);
-      case "advanced":
-        return Functions.Create(WDR, Functions, OriginalMsg, Member, true);
+        return Functions.Cancel(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "add":
-        return Functions.Create(WDR, Functions, OriginalMsg, Member, false);
+        return Functions.Create(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "preset":
-        return Functions.Preset(WDR, Functions, OriginalMsg, Member);
+        return Functions.Preset(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "remove":
-        return Functions.Remove(WDR, Functions, OriginalMsg, Member);
+        return Functions.Remove(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "edit":
-        return Functions.Modify(WDR, Functions, OriginalMsg, Member);
+        return Functions.Modify(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "view":
-        return Functions.View(WDR, Functions, OriginalMsg, Member);
+        return Functions.View(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
       case "resume":
       case "pause":
         return Functions.Status(WDR, Functions, OriginalMsg, Member, arg);
       case "time":
         return Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
+      default:
+        return;
     }
   });
 

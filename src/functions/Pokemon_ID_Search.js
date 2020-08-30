@@ -5,6 +5,12 @@ module.exports = (WDR, name) => {
       let pokemon = WDR.Master.Pokemon[PokemonArray[p]];
       if (pokemon.name.toLowerCase() == name.toLowerCase()) {
         let forms = Object.keys(pokemon.forms).map(f => pokemon.forms[f].form);
+        if (forms.indexOf("Purified") >= 0) {
+          forms.splice(forms.indexOf("Purified"), 1);
+        }
+        if (forms.indexOf("Shadow") >= 0) {
+          forms.splice(forms.indexOf("Shadow"), 1);
+        }
         let form_ids = Object.keys(pokemon.forms);
         let data = {
           id: pokemon.pokedex_id,

@@ -61,7 +61,7 @@ module.exports = async (WDR, raid, area, server, timezone) => {
             no_double = false;
 
             if (User.geotype == "city") {
-              if (User.guid_name == Raid.area.default) {
+              if (User.guild_name == Raid.area.default) {
                 match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
                 Send_Subscription(WDR, match, Raid, User);
               }
@@ -76,15 +76,14 @@ module.exports = async (WDR, raid, area, server, timezone) => {
               }
 
             } else if (User.geotype == "location") {
-              let values = User.location.split(";");
               let distance = WDR.Distance.between({
-                lat: Raid.latitude,
-                lon: Raid.longitude
+                lat: Sighting.latitude,
+                lon: Sighting.longitude
               }, {
-                lat: values[0].split(",")[0],
-                lon: values[0].split(",")[1]
+                lat: User.location.coords.split(",")[0],
+                lon: User.location.coords.split(",")[1]
               });
-              let loc_dist = WDR.Distance(values[1] + " km");
+              let loc_dist = WDR.Distance(User.location.radius + " km");
               if (loc_dist > distance) {
                 Send_Subscription(WDR, Raid, User);
               }

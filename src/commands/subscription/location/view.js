@@ -5,14 +5,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     FROM
         wdr_users
     WHERE
-        user_id = ${Member.id}
-          AND
-        guild_id = ${Message.guild.id};
+        user_id = ${Member.id};
   `;
   WDR.wdrDB.query(
     query,
     function(error, user, fields) {
-      user = user[0];
+      let User = user[0];
       if (error) {
         WDR.Console.error(WDR, "[sub/loc/view.js] Error Fetching User to View Locations.", [query, error]);
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
@@ -20,24 +18,16 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }));
       } else {
 
-        if (JSON.stringify(Member.db.locations) != JSON.stringify(user.locations)) {
-          Member.db.locations = user.locations;
+        if (JSON.stringify(Member.db.locations) != JSON.stringify(User.locations)) {
+          Member.db.locations = User.locations;
         }
 
         let location_list = "";
-        if (user.locations) {
-          let locations = Object.keys(user.locations).map(i => user.locations[i]);
-          let coords = Member.db.location.split(";")[0];
-          let distance = Member.db.location.split(";")[0];
-          let active = "";
-          locations.forEach((location, index) => {
-            if (location.coords == coords && location.radius == distance) {
-              active = location.name;
-            }
-          });
+        if (User.locations) {
+          let locations = Object.keys(User.locations).map(i => User.locations[i]);
           if (locations.length > 0) {
             locations.forEach((location, i) => {
-              if (location.name == active) {
+              if (location.name == User.location.name) {
                 location_list += "**" + (i + 1) + " - " + location.name + " [ACTIVE]**\n" +
                   "　Radius: `" + location.radius + "` km(s)\n";
               } else {

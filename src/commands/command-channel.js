@@ -92,7 +92,7 @@ module.exports = (WDR, Message) => {
               Cmd(WDR, Message);
             }
           } else {
-            WDR.Console.error("[handlers/commands.js] " + Message.content + " command does not exist.");
+            WDR.Console.error(WDR, "[handlers/commands.js] " + Message.content + " command does not exist.");
           }
           // } catch (error) {
           //   try {

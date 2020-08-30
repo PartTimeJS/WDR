@@ -1,9 +1,7 @@
 module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub) => {
   return new Promise(async resolve => {
 
-    // DELCARE VARIABLES
-    let timeout = true,
-      instruction = "";
+    let instruction = "";
 
     const filter = cMessage => cMessage.author.id == Message.author.id;
     const collector = Message.channel.createMessageCollector(filter, {
@@ -11,18 +9,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
     });
 
     switch (type) {
-      case "Guild":
-        let list = "";
-        object.forEach((guild, i) => {
-          list += (i + 1) + " - " + guild.name + "\n";
-        });
-        list = list.slice(0, -1);
-        instruction = new WDR.DiscordJS.MessageEmbed()
-          .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Choose a Discord:")
-          .setDescription(list)
-          .setFooter(requirements);
-        break;
 
       case "Preset":
         instruction = new WDR.DiscordJS.MessageEmbed()
@@ -146,9 +132,9 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas or Locations?")
-          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your areas or set location.\n" +
-            "**No** - You will get notifications for this pokemon in the entire scan area.")
+          .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas/Location?")
+          .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your set areas/location.\n" +
+            "**No** - You will get notifications for this pokemon in the entire city scan area.")
           .setFooter(requirements);
         break;
 
@@ -174,7 +160,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
         switch (true) {
 
-          // CANCEL SUB
           case CollectedMsg.content.toLowerCase() == "stop":
           case CollectedMsg.content.toLowerCase() == "cancel":
             collector.stop("cancel");
@@ -375,14 +360,14 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               case (CollectedMsg.content.toLowerCase() == "next"):
                 collector.stop(object);
                 break;
-              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= WDR.MaxLevel):
+              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                 collector.stop(parseInt(CollectedMsg.content));
                 break;
               case (CollectedMsg.content.toLowerCase() == "all"):
                 if (type.indexOf("Minimum") >= 0) {
                   collector.stop(0);
                 } else {
-                  collector.stop(WDR.MaxLevel);
+                  collector.stop(WDR.Max_Pokemon_Level);
                 }
                 break;
               default:

@@ -53,18 +53,23 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         break;
 
       case "Form":
+        let forms = "**0 - All**\n";
+        for (let f = 0, flen = sub.forms.length; f < flen; f++) {
+          forms += "**" + (f + 1) + " - " + sub.forms[f] + "**\n"
+        }
+        forms = forms.slice(0, -1);
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("What Form of " + sub.name + " would you like to Subscribe to?")
-          .setDescription(sub.forms)
+          .setDescription(forms)
           .setFooter(requirements);
         if (object) {
           if (object.form == 0) {
             instruction.setDescription("Current: `All Pokémon`" + "\n" +
-              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+              "Available Forms:" + "\n　" + forms);
           } else {
             instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`" + "\n" +
-              "Available Forms:" + "\n　" + sub.forms.join("\n　"));
+              "Available Forms:" + "\n　" + forms);
           }
         }
         break;
@@ -95,14 +100,15 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
 
         let form = "";
-        if (sub.form == 0) {
+        console.log(sub);
+        if (sub.form === 0) {
           form = "All";
         } else {
           form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
         }
 
         let gen = "";
-        if (sub.form == 0) {
+        if (sub.gen == 0) {
           gen = "All";
         } else {
           gen = sub.gen;
@@ -167,7 +173,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           instruction.setDescription("Current: `" + object + "`");
         }
     }
-    return Message.channel.send(instruction).then(msg => {
+
+    Message.channel.send(instruction).then(msg => {
 
       let input = "";
 
@@ -214,14 +221,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 break;
               case "yes":
                 if (Member.db.geotype == "location") {
-                  let locations = Object.keys(Member.db.locations).map(i => Member.db.locations[i]);
-                  let coords = Member.db.location.split(";")[0];
-                  let distance = Member.db.location.split(";")[1];
-                  locations.forEach((location, index) => {
-                    if (location.coords == coords && location.radius == distance) {
-                      collector.stop(location.name);
-                    }
-                  });
+                  collector.stop(Member.db.location.name);
                 } else if (Member.db.geotype == "areas") {
                   collector.stop(Member.db.areas);
                 }
@@ -305,21 +305,20 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             break;
 
           case type.indexOf("Form") >= 0:
-            let user_form = await WDR.Capitalize(CollectedMsg.content);
             switch (true) {
               case (CollectedMsg.content.toLowerCase() == "same"):
               case (CollectedMsg.content.toLowerCase() == "keep"):
               case (CollectedMsg.content.toLowerCase() == "next"):
                 collector.stop(object);
                 break;
-              case (CollectedMsg.content.toLowerCase() == "all"):
+              case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === 0):
                 collector.stop(0);
                 break;
-              case (sub.forms.indexOf(user_form) >= 0):
-                collector.stop(sub.form_ids[sub.forms.indexOf(user_form)]);
+              case (CollectedMsg.content >= 0 && CollectedMsg.content <= sub.forms.length):
+                collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1]);]);
                 break;
               default:
-                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid form for `" + object.name + "`. Please check the spelling and try again.").then(m => m.delete({
+                return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
                   timeout: 5000
                 }));
             }
@@ -377,14 +376,14 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               case (CollectedMsg.content.toLowerCase() == "next"):
                 collector.stop(object);
                 break;
-              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= WDR.MaxLevel):
+              case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                 collector.stop(parseInt(CollectedMsg.content));
                 break;
               case (CollectedMsg.content.toLowerCase() == "all"):
                 if (type.indexOf("Minimum") >= 0) {
-                  collector.stop(0);
+                  collector.stop(1);
                 } else {
-                  collector.stop(WDR.MaxLevel);
+                  collector.stop(WDR.Max_Pokemon_Level);
                 }
                 break;
               default:

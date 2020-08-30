@@ -37,13 +37,35 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
             delete user.locations[locations[number].name];
 
-            let jsonString = JSON.stringify(user.locations);
+            if (user.location.toString() == user.locations[locations[number].name].toString()) {
+
+              Message.reply("WARNING: You are deleting your actie location. You will need to set a new location to receive location alerts.").then(m => m.delete({
+                timeout: 10000
+              }));
+
+              WDR.wdrDB.query(`
+                UPDATE
+                    wdr_users
+                SET
+                    location = NULL
+                WHERE
+                    user_id = ${Member.id};
+              `);
+              WDR.wdrDB.query(`
+                UPDATE
+                    wdr_subsriptions
+                SET
+                    location = NULL
+                WHERE
+                    user_id = ${Member.id};
+              `);
+            }
 
             let update = `
               UPDATE
                   wdr_users
               SET
-                  locations = '${jsonString}'
+                  locations = '${JSON.stringify(user.locations)}'
               WHERE
                   user_id = ${Member.id}
             ;`;
@@ -52,7 +74,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               update,
               function(error, user, fields) {
                 if (error) {
-                  WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating User Locations.", [update, error]);
+                  WDR.Console.error(WDR, "[cmd/sub/loc/remove.js] Error Updating User Locations.", [update, error]);
                   return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                     timeout: 10000
                   }));

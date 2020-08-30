@@ -56,8 +56,8 @@ QUEST_PREGEN_TILES    = ENABLED
 
 TILE_PROVIDER         = (flo or versx or none) // choose none if you will manually put a url in your embeds.
 STATIC_MAP_URL        = https://map.com/
-STATIC_SPRITE         = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/pokemon/pmsf/niantic/60/
-STATIC_SPRITE_MINI    = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/pokemon/pmsf/niantic/70/
+STATIC_SPRITE         = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
+STATIC_SPRITE_MINI    = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
 
 #===============================================================================
 # Optional URL for your front end for [Scan Map] embed link
@@ -69,7 +69,7 @@ FRONTEND_URL          =
 # SPRITES
 #===============================================================================
 
-SPRITE_URL            = https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/pokemon/pmsf/niantic/70/
+SPRITE_URL            = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
 
 #===============================================================================
 # AUTO-DELETE MESSAGES IN COMMAND CHANNEL

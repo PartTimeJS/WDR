@@ -1,4 +1,5 @@
-module.exports = async (WDR, Functions, Message, Member) => {
+module.exports = async (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
+
   let presets = "";
   let preset_names = WDR.Presets.Pokemon.map(p => p.name);
   for (let p = 0, plen = preset_names.length; p < plen; p++) {

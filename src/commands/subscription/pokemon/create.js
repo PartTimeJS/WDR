@@ -37,7 +37,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
         }
 
         if (create.pokemon_id > 0) {
-          create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with a Form Name of the specified Pokemon -OR- type 'All'. Type 'Cancel' to Stop.", create);
+          create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with the displayed number of the form -OR- type 'All'. Type 'Cancel' to Stop.", create);
         }
 
         if (advanced == true) {
@@ -58,12 +58,12 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
             create.max_iv = await Functions.DetailCollect(WDR, Functions, "Maximum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- specify minimum Atk/Def/Sta (15/14/13) Values -OR- type 'All'. Type 'Cancel' to Stop.", create);
           }
 
-          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.MaxLevel + " or type 'All'. Type 'Cancel' to Stop.", create);
+          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
 
-          if (create.min_lvl == WDR.MaxLevel) {
-            create.max_lvl = WDR.MaxLevel;
+          if (create.min_lvl == WDR.Max_Pokemon_Level) {
+            create.max_lvl = WDR.Max_Pokemon_Level;
           } else {
-            create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.MaxLevel + " or type 'All'. Type 'Cancel' to Stop.", create);
+            create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
           }
 
           if (create.pokemon > 0) {
@@ -78,9 +78,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
         } else {
 
-          create.form = 0;
           create.max_iv = 100;
-          create.max_lvl = WDR.MaxLevel;
+          create.max_lvl = WDR.Max_Pokemon_Level;
           create.gender = 0;
           create.pokemon_type = 0;
           create.gen = 0;
@@ -88,10 +87,10 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
           create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- specify minimum Atk/Def/Sta (15/14/13) Values -OR- type 'All'. Type 'Cancel' to Stop.", create);
 
-          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.MaxLevel + " or type 'All'. Type 'Cancel' to Stop.", create);
+          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
 
           create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
-          if (create.areas == Message.Discord.name) {
+          if (create.areas === 1) {
             create.geotype = "city";
           } else {
             create.geotype = Member.db.geotype;
@@ -133,8 +132,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                 ${Member.db.bot},
                 ${Member.db.pokemon_status},
                 '${create.geotype}',
-                '${create.areas}',
-                '${Member.db.location}',
+                '${Member.db.areas}',
+                '${JSON.stringify(Member.db.location)}',
                 'pokemon',
                 ${create.pokemon_id},
                 '${create.pokemon_type}',
