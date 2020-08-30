@@ -21,8 +21,9 @@ module.exports = function(WDR, p) {
       "Despawn: **" + p.time + " (" + p.mins + "m " + p.secs + "s)** " + p.verified + "\n" +
       p.weather_boost + " \n" +
       "Directions:" + "\n" +
-      p.google + " | " + p.apple + " | " + p.waze);
-  // STATIC MAP ADDED AUTOMATICALLY IF YOU DO NOT ADD ONE MANUALLY
+      p.google + " | " + p.apple + " | " + p.waze)
+    .setImage(p.static_map)
+    .setFooter(p.footer);
 
   return Sighting_Embed;
 }

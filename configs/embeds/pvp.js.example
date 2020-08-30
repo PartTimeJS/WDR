@@ -39,9 +39,9 @@ module.exports = function(WDR, p) {
       "Despawn: **" + p.time + " (" + p.mins + "m " + p.secs + "s)** " + p.verified + "\n" +
       p.weather_boost + " \n" +
       "Directions:" + "\n" +
-      p.google + " | " + p.apple + " | " + p.waze)
+      p.google + " - " + p.apple + " - " + p.waze)
+    .setImage(p.static_map)
     .setFooter(p.footer);
-  // STATIC MAP ADDED AUTOMATICALLY IF YOU DO NOT ADD ONE MANUALLY
 
   return Pokemon_Embed;
 }
@@ -54,7 +54,7 @@ module.exports = function(WDR, p) {
 //    p.pvp_data        -   Lines of PVP Data
 //    p.gen             -   Generation
 //    p.name            -   Locale Name
-//    p.form            -   Locale Form Name
+//    p.form       -   Locale Form Name
 //    p.id              -   Pokedex ID
 //    p.sprite          -   Sprite Image
 //    p.iv              -   Internal Value
