@@ -62,6 +62,10 @@ module.exports = async (WDR, Sighting) => {
       );
     `;
 
+  // if (Sighting.pokemon_id === 1) {
+  //   console.log(query)
+  // }
+
   WDR.wdrDB.query(
     query,
     async function(error, matching, fields) {
@@ -81,6 +85,11 @@ module.exports = async (WDR, Sighting) => {
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
           if (member) {
+
+            // if (Sighting.pokemon_id === 1) {
+            //   console.log("2")
+            // }
+
             let memberRoles = member.roles.cache.map(r => r.id);
 
             for (let r = 0, rlen = Sighting.Discord.allowed_roles.length; r < rlen; r++) {
@@ -89,12 +98,21 @@ module.exports = async (WDR, Sighting) => {
                 let match = {};
 
                 if (User.geotype == "city") {
-                  if (User.guid_name == Sighting.area.default) {
+                  // if (Sighting.pokemon_id === 1) {
+                  //   console.log("2.city");
+                  //   console.log(User)
+                  //   console.log(User.guild_name + " " + Sighting.area.default)
+                  //   console.log(User.guild_name == Sighting.area.default)
+                  // }
+                  if (User.guild_name == Sighting.area.default) {
                     match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
                     Send_Subscription(WDR, match, Sighting, User);
                   }
 
                 } else if (User.geotype == "areas") {
+                  // if (Sighting.pokemon_id === 1) {
+                  //   console.log("2.areas")
+                  // }
                   let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
                   let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
                   let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
@@ -104,15 +122,22 @@ module.exports = async (WDR, Sighting) => {
                   }
 
                 } else if (User.geotype == "location") {
-                  let values = User.location.split(";");
+                  if (Sighting.pokemon_id === 1) {
+                    console.log("2.location")
+                  }
                   let distance = WDR.Distance.between({
                     lat: Sighting.latitude,
                     lon: Sighting.longitude
                   }, {
-                    lat: values[0].split(",")[0],
-                    lon: values[0].split(",")[1]
+                    lat: User.location.coords.split(",")[0],
+                    lon: User.location.coords.split(",")[1]
                   });
-                  let loc_dist = WDR.Distance(values[1] + " km");
+                  let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+                  // if (Sighting.pokemon_id === 1) {
+                  //   console.log("2.location", loc_dist)
+                  //   console.log(distance)
+                  //   console.log(loc_dist > distance)
+                  // }
                   if (loc_dist > distance) {
                     match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
                     Send_Subscription(WDR, match, Sighting, User);
