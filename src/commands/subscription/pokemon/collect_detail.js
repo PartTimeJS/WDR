@@ -315,7 +315,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(0);
                 break;
               case (CollectedMsg.content >= 0 && CollectedMsg.content <= sub.forms.length):
-                collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1]);]);
+                collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
                 break;
               default:
                 return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
