@@ -1,5 +1,3 @@
-const Create_Lure_Embed = require(__dirname + "/../embeds/lure.js");
-
 module.exports = async (WDR, LURE) => {
 
   if (WDR.Lure_Channels.length < 1) {
