@@ -53,7 +53,7 @@ module.exports = (WDR, message, server) => {
             } else {
               WDR.wdrDB.query(`UPDATE wdr_info SET next_bot = ${next_bot};`);
               WDR.Console.info(WDR, "[Save_User.js] Added " + message.member.user.tag + " to the wdr_users Table.");
-              return;
+              return resolve();
             }
           }
         );
