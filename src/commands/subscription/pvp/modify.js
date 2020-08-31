@@ -13,7 +13,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("You do not have any PvP Subscriptions!")
-          .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
+          .setFooter("You can type 'view', 'presets', 'add', 'remove', or 'edit'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
         });
@@ -44,7 +44,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
       sub_list = sub_list.slice(0, -1);
 
-      let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'", sub_list);
+      let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, subscriptions, "Type the corressponding # of the subscription you would like to remove -OR- type 'all'", sub_list);
 
       let old = subscriptions[number];
 
@@ -58,36 +58,37 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
 
       // RETRIEVE POKEMON NAME FROM USER
-      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with \'All\'  or the Pokémon name. Names are not case-sensitive.", modified);
+      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with 'All'  or the Pokémon name. Names are not case-sensitive.", modified);
       modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
       modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
+
       if (modified.pokemon_id > 0) {
-        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", old);
+        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", old);
       } else {
         modified.form = 0;
       }
 
-      modified.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, old.league, "Please respond with \'Great\', or \'Ultra\'.", sub);
+      modified.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, old.league, "Please respond with 'Great', or 'Ultra'.", modified);
       modified.league = modified.league.toLowerCase();
 
-      modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", Member, Message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type \'All\'. Type \'Cancel\' to Stop.", sub);
+      modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", Member, Message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type 'All'. Type 'Cancel' to Stop.", modified);
 
-      //modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", Message, olc.min_lvl, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
+      //modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", Message, olc.min_lvl, "Please respond with a number greater than 0 or 'All'. Type 'Cancel' to Stop.", modified);
 
       // if (modified.min_lvl != 0 && modified.min_lvl != 1) {
-      //   modified.min_cp = await Functions.DetailCollect(WDR, Functions, "CP", Message, old.min_cp, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
+      //   modified.min_cp = await Functions.DetailCollect(WDR, Functions, "CP", Message, old.min_cp, "Please respond with a number greater than 0 or 'All'. Type 'Cancel' to Stop.", modified);
       // } else {
       //   modified.min_cp = 0;
       // }
 
-      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", undefined);
+      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No'", undefined);
       if (modified.areas == Message.Discord.name) {
         modified.geotype = "city";
       } else {
         modified.geotype = Member.db.geotype;
       }
 
-      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", sub);
+      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", modified);
 
       let query = `
         UPDATE
@@ -125,7 +126,7 @@ module.exports = (WDR, Functions, Message, Member) => {
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle(modified.name + " Subscription Modified!")
               .setDescription("Saved to the subscription Database.")
-              .setFooter("You can type \'view\', \'presets\', \'add\', \'remove\', or \'edit\'.");
+              .setFooter("You can type 'view', 'presets', 'add', 'remove', or 'edit'.");
             return Message.channel.send(modification_success).then(BotMsg => {
               return Functions.OptionCollect(WDR, Functions, "modify", Message, BotMsg, Member);
             });
