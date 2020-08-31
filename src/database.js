@@ -429,7 +429,7 @@ async function create_tables(WDR) {
         locations json DEFAULT NULL,
         geotype varchar(10) NOT NULL DEFAULT 'areas',
         PRIMARY KEY (user_id),
-        KEY ix_data (user_name,guild_id,guild_name,bot,areas,locations,geotype) USING BTREE,
+        KEY ix_data (user_name,guild_id,guild_name,bot,areas,geotype) USING BTREE,
         KEY ix_status(status,pokemon_status,pvp_status,raid_status,quest_status,lure_status,invasion_status) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_users);
