@@ -33,6 +33,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           let set = await Functions.DetailCollect(WDR, Functions, "Set", Member, Message, user.locations, "Please use one word to describe this location without punctuation.", null);
           let active_location = locations[set];
 
+          console.log(active_location)
+
           let sub_loc = `
             UPDATE
                 wdr_subscriptions
@@ -58,7 +60,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
           let user_loc = `
             UPDATE
-                wdr_subscriptions
+                wdr_users
             SET
                 geotype = 'location',
                 location = '${JSON.stringify(active_location)}'
