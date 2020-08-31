@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, type, Member, Mesage, object, requirements, sub, available_gyms, discord, gym_collection) => {
+module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub, available_gyms, discord, gym_collection) => {
   return new Promise(async resolve => {
 
     let options = "";
