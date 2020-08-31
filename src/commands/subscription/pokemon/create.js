@@ -38,6 +38,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
         if (create.pokemon_id > 0) {
           create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with the displayed number of the form -OR- type 'All'. Type 'Cancel' to Stop.", create);
+        } else {
+          create.form = 0;
         }
 
         if (advanced == true) {
