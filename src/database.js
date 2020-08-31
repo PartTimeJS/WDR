@@ -477,7 +477,7 @@ async function create_tables(WDR) {
         alert varchar(10),
         quest_delivery bigint,
         embed LONGTEXT NOT NULL,
-        KEY ix_data (user_id,guild_id,bot,alert,quest_delivery,embed) USING BTREE
+        KEY ix_data (user_id,guild_id,bot,alert,quest_delivery) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_quest_queue);
 
