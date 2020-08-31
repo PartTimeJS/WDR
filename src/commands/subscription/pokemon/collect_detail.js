@@ -377,7 +377,17 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= 100):
-                collector.stop(parseInt(CollectedMsg.content));
+                if (sub.pokemon_id === 0) {
+                  if (parseInt(CollectedMsg.content) >= 90 && parseInt(CollectedMsg.content) <= 100) {
+                    collector.stop(parseInt(CollectedMsg.content));
+                  } else {
+                    CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                      timeout: 5000
+                    }));
+                  }
+                } else {
+                  collector.stop(parseInt(CollectedMsg.content));
+                }
                 break;
               case (CollectedMsg.content.toLowerCase() == "all"):
                 if (type.indexOf("Minimum") >= 0) {
