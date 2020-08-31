@@ -59,8 +59,15 @@ module.exports = (WDR, Functions, Message, Member) => {
 
       // RETRIEVE POKEMON NAME FROM USER
       modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with 'All'  or the Pokémon name. Names are not case-sensitive.", modified);
-      modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
-      modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
+      if (modified.pokemon.name) {
+        modified.name = modified.pokemon.name;
+        modified.pokemon_id = modified.pokemon.id;
+        modified.forms = modified.pokemon.forms;
+        modified.form_ids = modified.pokemon.form_ids;
+      } else {
+        modified.name = "All";
+        modified.pokemon_id = 0;
+      }
 
       if (modified.pokemon_id > 0) {
         modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", old);
