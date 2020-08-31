@@ -490,9 +490,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       });
 
       collector.on("end", (collected, reason) => {
+
         if (reason == null) {
           return;
         }
+
         if (msg && msg.channel.type != "dm") {
           try {
             msg.delete();
@@ -500,6 +502,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
           }
         }
+
         switch (reason) {
           case "cancel":
             return Functions.Cancel(WDR, Functions, Message, Member, "Pokemon");
