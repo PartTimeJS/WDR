@@ -77,7 +77,8 @@ module.exports = (WDR, Quest) => {
         }
 
         Quest = await WDR.Get_Locale.Pokemon(WDR, Quest);
-        Quest.form = Quest.form == "[Normal]" ? "" : Quest.form;
+        Quest.form_name = Quest.form_name ? Quest.form_name : "";
+        Quest.form_name = Quest.form_name == "[Normal]" ? "" : Quest.form_name;
 
         if (Quest.rewards[0].info.shiny) {
           Quest.pokemon_name += " (Shiny)";
