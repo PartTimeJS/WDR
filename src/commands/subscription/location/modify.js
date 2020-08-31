@@ -21,7 +21,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
       } else {
 
         if (JSON.stringify(Member.db.locations) != JSON.stringify(user.locations)) {
-          Member.db.locations = user.locations;
+          Member.db.locations = JSON.parse(user.locations);
         }
 
         let location_list = "";

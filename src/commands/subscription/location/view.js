@@ -24,6 +24,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
         let location_list = "";
         if (User.locations) {
+          User.locations = JSON.parse(User.locations);
           let locations = Object.keys(User.locations).map(i => User.locations[i]);
           if (locations.length > 0) {
             locations.forEach((location, i) => {

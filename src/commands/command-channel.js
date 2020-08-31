@@ -58,6 +58,12 @@ module.exports = (WDR, Message) => {
             })).catch(console.error);
           } else {
             Message.member.db = user[0];
+            if (Message.member.db.location) {
+              Message.member.db.location = JSON.parse(Message.member.db.location);
+            }
+            if (Message.member.db.locations) {
+              Message.member.db.locations = JSON.parse(Message.member.db.locations);
+            }
           }
 
           let command = Message.content.split(" ")[0].slice(1);
