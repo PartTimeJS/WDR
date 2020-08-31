@@ -58,16 +58,16 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
 
       // RETRIEVE POKEMON NAME FROM USER
-      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Message, old.name, "Respond with \'All\'  or the Pokémon name. Names are not case-sensitive.", modified);
+      modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with \'All\'  or the Pokémon name. Names are not case-sensitive.", modified);
       modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
       modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
 
       modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", old);
 
-      modified.league = await Functions.DetailCollect(WDR, Functions, "League", Message, old.league, "Please respond with \'Great\', or \'Ultra\'.", sub);
+      modified.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, old.league, "Please respond with \'Great\', or \'Ultra\'.", sub);
       modified.league = modified.league.toLowerCase();
 
-      modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", Message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type \'All\'. Type \'Cancel\' to Stop.", sub);
+      modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", Member, Message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type \'All\'. Type \'Cancel\' to Stop.", sub);
 
       //modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", Message, olc.min_lvl, "Please respond with a number greater than 0 or \'All\'. Type \'Cancel\' to Stop.", sub);
 
@@ -77,14 +77,14 @@ module.exports = (WDR, Functions, Message, Member) => {
       //   modified.min_cp = 0;
       // }
 
-      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Message, old.areas, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", undefined);
+      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with \'Yes\', \'No\' or \'Areas Names\'", undefined);
       if (modified.areas == Message.Discord.name) {
         modified.geotype = "city";
       } else {
         modified.geotype = Member.db.geotype;
       }
 
-      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", sub);
+      modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type \'Yes\' or \'No\'. Subscription will be saved.", sub);
 
       let query = `
         UPDATE
