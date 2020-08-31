@@ -49,11 +49,11 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         let active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", create);
 
         let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm", Member, Message, null, "Type 'Yes' to confirm or 'No' to cancel.", create);
-        if (confirm == false) {
+        if (confirm === false) {
           return;
         }
 
-        if (active == true) {
+        if (active === true) {
           let subs_active = `
             UPDATE
                 wdr_subscriptions
