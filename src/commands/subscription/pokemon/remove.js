@@ -73,7 +73,25 @@ module.exports = (WDR, Functions, Message, Member) => {
           `;
         } else {
           let remove = subscriptions[number];
-          name = WDR.Master.Pokemon[remove.pokemon_id].name;
+          if (WDR.Master.Pokemon[remove.pokemon_id]) {
+            name = WDR.Master.Pokemon[remove.pokemon_id].name;
+          } else {
+            name = "All " + remove.min_iv + "+";
+            if (remove.min_lvl != 0 && remove.min_lvl != 1) {
+              name += " Lvl" + remove.min_lvl + "-" + remove.max_lvl;
+            }
+            if (remove.gender != 0) {
+              let gender = await WDR.Get_Gender(remove.gender);
+              data += await WDR.Capitalize(gender);
+            }
+            if (remove.size != 0) {
+              data += " " + remove.size;
+            }
+            if (remove.generation != 0) {
+              data += " Gen" + remove.generation;
+            }
+          }
+
           query = `
             DELETE FROM
                 wdr_subscriptions
