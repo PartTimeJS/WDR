@@ -3,7 +3,7 @@ module.exports = (WDR, Functions, type, Member, Mesage, object, requirements, su
 
     let options = "";
 
-    const filter = cMessage => cMessage.author.id == message.author.id;
+    const filter = cMessage => cMessage.author.id == Message.author.id;
     const collector = Message.channel.createMessageCollector(filter, {
       time: 60000
     });
