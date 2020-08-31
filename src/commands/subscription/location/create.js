@@ -96,6 +96,29 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               }
             }
           );
+        } else {
+          let user_active = `
+            UPDATE
+                wdr_users
+            SET
+                geotype = 'location',
+                location = '${JSON.stringify(create)}'
+            WHERE
+                location is NULL
+                  AND
+                user_id = ${Member.id}
+          ;`;
+          WDR.wdrDB.query(
+            user_active,
+            function(error, user, fields) {
+              if (error) {
+                WDR.Console.error(WDR, "[cmd/sub/loc/create.js] Error Updating wdr_users Active Location.", [update, error]);
+                return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+                  timeout: 10000
+                }));
+              }
+            }
+          );
         }
 
         user.locations[create.name] = create;
