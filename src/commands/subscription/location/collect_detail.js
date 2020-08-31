@@ -34,7 +34,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
           .setTitle("Enter the Coordinates for this location.")
           .setDescription("Example: 32.928357,-84.2342384" + "\n" +
             "**For Privacy Reasons**, your provided coordinates will be somewhat randomized. They will be within 150 meters (500ft) of your provided coordinates but protect the exact location.")
-          .setImage(location.static_map)
+          //.setImage(location.static_map)
           .setFooter(requirements);
         break;
 
@@ -42,8 +42,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Enter the Distance (Km) from that point to receive notifications for.")
-          .setDescription("The image below gives a visual representation for a 1-5km Radius")
-          .setImage(location.static_map)
+          //.setDescription("The image below gives a visual representation for a 1-5km Radius")
+          //.setImage(location.static_map)
           .setFooter(requirements);
         break;
 
@@ -97,7 +97,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
 
       collector.on("collect", async CollectedMsg => {
 
-        CollectedMsg.delete();
+        try {
+          CollectedMsg.delete();
+        } catch (e) {
+
+        }
 
         switch (true) {
           case CollectedMsg.content.toLowerCase() == "cancel":
@@ -165,7 +169,13 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
       // COLLECTOR ENDED
       collector.on("end", (collected, arg) => {
 
-        CollectorMsg.delete();
+        if (msg && msg.channel.type != "dm") {
+          try {
+            msg.delete();
+          } catch (e) {
+
+          }
+        }
 
         switch (arg) {
           case "cancel":
