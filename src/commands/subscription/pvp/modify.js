@@ -61,8 +61,11 @@ module.exports = (WDR, Functions, Message, Member) => {
       modified.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, old.name, "Respond with \'All\'  or the Pokémon name. Names are not case-sensitive.", modified);
       modified.name = modified.pokemon.name ? modified.pokemon.name : modified.pokemon;
       modified.pokemon_id = modified.pokemon.id ? modified.pokemon.id : modified.pokemon;
-
-      modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", old);
+      if (modified.pokemon_id > 0) {
+        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.", old);
+      } else {
+        modified.form = 0;
+      }
 
       modified.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, old.league, "Please respond with \'Great\', or \'Ultra\'.", sub);
       modified.league = modified.league.toLowerCase();
