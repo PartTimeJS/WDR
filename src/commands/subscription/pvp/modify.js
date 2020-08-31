@@ -81,7 +81,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       //   modified.min_cp = 0;
       // }
 
-      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No'", undefined);
+      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No'", modified);
       if (modified.areas == Message.Discord.name) {
         modified.geotype = "city";
       } else {
