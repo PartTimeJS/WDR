@@ -81,7 +81,7 @@ module.exports = async (WDR, Target, Lure) => {
 
   if (Lure.Member) {
     if (WDR.Debug.Lure == "ENABLED" && WDR.Debug.Subscriptions == "ENABLED") {
-      WDR.Console.log(WDR,"[EMBEDS] [" + WDR.Time(null, "stamp") + "] [Lure.js] Sent a " + Lure.name + " to " + Lure.Member.user.tag + " (" + Lure.Member.id + ").");
+      WDR.Console.log(WDR, "[EMBEDS] [" + WDR.Time(null, "stamp") + "] [Lure.js] Sent a " + Lure.name + " to " + Lure.Member.user.tag + " (" + Lure.Member.id + ").");
     }
     return WDR.Send_DM(WDR, Lure.Discord.id, Lure.Member.id, Lure.Embed, Target.bot);
   } else {
