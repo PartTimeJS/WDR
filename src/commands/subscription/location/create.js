@@ -41,7 +41,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
         create.name = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, user.locations, "Please use one word to describe this location without punctuation.", create);
 
-        create.coords = await Functions.DetailCollect(WDR, Functions, "Coords", Member, Message, null, "Coordiantes must be separated by a comma with no spaces.", create);
+        create.coords = await Functions.DetailCollect(WDR, Functions, "Coords", Member, Message, null, "Coordinates must be separated by a comma with no spaces.", create);
 
         create.radius = await Functions.DetailCollect(WDR, Functions, "Radius", Member, Message, null, "Radius must be a whole number from 1 to 5.", create);
         create.radius = parseInt(create.radius);

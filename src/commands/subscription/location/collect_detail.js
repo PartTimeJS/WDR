@@ -33,7 +33,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Enter the Coordinates for this location.")
           .setDescription("Example: 32.928357,-84.2342384" + "\n" +
-            "**For Privacy Reasons**, your provided coordinates will be somewhat randomized. They will be within 500 feet of your provided coordinates but protect the exact location.")
+            "**For Privacy Reasons**, your provided coordinates will be somewhat randomized. They will be within 150 meters (500ft) of your provided coordinates but protect the exact location.")
           .setImage(location.static_map)
           .setFooter(requirements);
         break;
