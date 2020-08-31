@@ -236,7 +236,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 break;
               case "yes":
                 if (Member.db.geotype == "location") {
-                  if (!Member.db.location || !Member.db.location.name) {
+                  if (!Member.db.location || Member.db.location == null) {
                     collector.stop("UNSET");
                   } else {
                     collector.stop(Member.db.location.name);
