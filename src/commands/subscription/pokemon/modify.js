@@ -94,8 +94,8 @@ module.exports = (WDR, Functions, Message, Member) => {
       } else {
         modified.type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, old.pokemon_type, "Please respond with the Pokemon Type -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       }
-      console.log(modified)
-      if (modifed.form == old.form_name) {
+
+      if (modified.form == old.form_name) {
         modified.form = old.form;
       }
 
