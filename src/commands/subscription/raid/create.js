@@ -35,6 +35,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym Name (CAPITALIZATION MATTERS). Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.gym === 0) {
             create.name = "All";
+            create.gym = "All";
             create.gym_id = 0;
             got_name = true;
 
@@ -44,6 +45,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
             if (results.length === 1) {
               let result_match = gym_collection.get(results[0].string);
               create.gym_id = result_match.id;
+              create.gym = result_match.name;
               create.name = result_match.name;
               got_name = true;
             } else {
@@ -67,6 +69,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 let collection_match = gym_collection.get(matches[user_choice]);
                 if (collection_match) {
                   create.gym_id = collection_match.id;
+                  create.gym = collection_match.name;
                   create.name = collection_match.name;
                   got_name = true;
                 }
@@ -151,6 +154,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                   sub_type,
                   pokemon_id,
                   gym_id,
+                  gym_name,
                   min_lvl,
                   max_lvl
                 )
@@ -168,6 +172,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 'raid',
                 ${create.pokemon_id},
                 '${create.gym_id}',
+                '${create.gym}',
                 ${create.min_lvl},
                 '${create.max_lvl}'
               )

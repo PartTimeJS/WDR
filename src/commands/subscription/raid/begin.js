@@ -40,7 +40,7 @@ module.exports = async (WDR, Message) => {
       }
       gym_name_array.push(gym.name);
       gym_detail_array.push(gym_name);
-      gym_collection.set(gym_name, gym);
+      gym_collection.set(gym.name, gym);
     }
   }
 

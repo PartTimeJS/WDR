@@ -55,7 +55,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
     Message.channel.send(options).catch(console.error).then(msg => {
 
-      collector.on("collect", message => {
+      collector.on("collect", CollectedMsg => {
 
         let num = parseInt(CollectedMsg.content);
 

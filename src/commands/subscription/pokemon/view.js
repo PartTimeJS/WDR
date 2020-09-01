@@ -32,13 +32,13 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.min_iv !== 0) {
             data += "　Min IV: `" + sub_data.min_iv + "`\n";
           }
-          if (sub_data.max_iv !== 100) {
+          if (sub_data.max_iv < 100) {
             data += "　Max IV: `" + sub_data.max_iv + "`\n";
           }
-          if (sub_data.min_lvl !== 0 && sub_data.min_lvl != 1) {
+          if (sub_data.min_lvl > 1) {
             data += "　Min Lvl: `" + sub_data.min_lvl + "`\n";
           }
-          if (sub_data.max_lvl !== WDR.Max_Pokemon_Level) {
+          if (sub_data.max_lvl < WDR.Max_Pokemon_Level) {
             data += "　Max Lvl: `" + sub_data.max_lvl + "`\n";
           }
           if (sub_data.gender && sub_data.gender !== '0') {

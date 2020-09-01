@@ -27,16 +27,16 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
           let data = "";
           if (sub_data.gym_id !== 0) {
-            data += "　Min IV: `" + sub_data.min_iv + "`\n";
+            data += "　" + "Gym: " + "`" + sub_data.gym_name + "`" + "\n";
           }
-          if (sub_data.min_lvl !== 0) {
-            data += "　Min Lvl: `" + sub_data.min_lvl + "`\n";
+          if (sub_data.min_lvl !== 1) {
+            data += "　" + "Min Lvl: " + "`" + sub_data.min_lvl + "`" + "\n";
           }
           if (sub_data.max_lvl !== WDR.Max_Raid_Level) {
-            data += "　Max Lvl: `" + sub_data.max_lvl + "`\n";
+            data += "　" + "Max Lvl: " + "`" + sub_data.max_lvl + "`" + "\n";
           }
           if (!data) {
-            data = "　`All" + "`\n";;
+            data = "　" + "`" + "All" + "`" + "\n";
           }
           sub_list += data + "\n";
         }

@@ -458,6 +458,7 @@ async function create_tables(WDR) {
         generation tinyint NOT NULL DEFAULT '0',
         reward varchar(25) NOT NULL DEFAULT '0',
         gym_id varchar(50) NOT NULL DEFAULT '0',
+        gym_name varchar(50) NOT NULL DEFAULT '0',
         min_rank smallint NOT NULL DEFAULT '0',
         league varchar(10) NOT NULL DEFAULT '0',
         quest_delivery varchar(10) DEFAULT '0',
