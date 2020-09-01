@@ -1,6 +1,3 @@
-delete require.cache[require.resolve(__dirname + '/../embeds/invasion.js')];
-const Send_Invasion = require(__dirname + '/../embeds/invasion.js');
-
 module.exports = async (WDR, invasion, area, server, timezone) => {
   //if(!invasion.pokemon_id){ return; }
 
