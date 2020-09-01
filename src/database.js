@@ -464,7 +464,7 @@ async function create_tables(WDR) {
         quest_delivery varchar(10) DEFAULT '0',
         geotype varchar(10) NOT NULL DEFAULT 'areas',
         PRIMARY KEY (user_id,sub_type,pokemon_id,form,pokemon_type,min_lvl,max_lvl,min_iv,max_iv,size,generation,reward,gym_id,gender,min_rank,league),
-        KEY ix_data (guild_id,min_cp,geotype,quest_delivery) USING BTREE
+        KEY ix_data (gym_name,guild_id,min_cp,geotype,quest_delivery) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_subscriptions);
 
