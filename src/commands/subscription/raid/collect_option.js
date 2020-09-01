@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, source, oMessage, bMessage, Member, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, source, oMessage, bMessage, Member, gym_name_array, gym_detail_array, gym_collection) => {
 
   let BotMsg = bMessage;
   let OriginalMsg = oMessage;
@@ -62,17 +62,17 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, available_
 
     switch (arg) {
       case "cancel":
-        return Functions.Cancel(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.Cancel(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "add":
-        return Functions.Create(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.Create(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "preset":
-        return Functions.Preset(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.Preset(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "remove":
-        return Functions.Remove(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.Remove(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "edit":
-        return Functions.Modify(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.Modify(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "view":
-        return Functions.View(WDR, Functions, OriginalMsg, Member, available_gyms, gym_collection);
+        return Functions.View(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
       case "resume":
       case "pause":
         return Functions.Status(WDR, Functions, OriginalMsg, Member, arg);

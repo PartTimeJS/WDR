@@ -1,6 +1,6 @@
 const Fuzzy = require("fuzzy");
 
-module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_array, gym_collection) => {
 
   WDR.wdrDB.query(
     `SELECT
@@ -32,7 +32,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
           got_name = false;
 
         do {
-          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym name. Names are not case-sensitive.", create, available_gyms, gym_collection);
+          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym name. Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.gym === 0) {
             create.name = "All";
             create.gym_id = 0;
@@ -40,19 +40,24 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
 
           } else if (create.gym.fuzzy) {
 
-            let results = Fuzzy.filter(create.gym.fuzzy, available_gyms);
+            console.log(create.gym)
+            let results = Fuzzy.filter(create.gym.fuzzy, gym_name_array);
             //let matches = results.map(el => el.string);
             let matches = results.map(function(el) {
+              console.log(el);
+              let index = gym_detail_array.indexOf(el);
+              console.log(index);
+              console.log(gym_detail_array[index]);
               return el.string;
             });
 
             if (matches.length < 1) {
-              Message.reply("`" + create.gym + "`, does not closely match any gym in the database.").then(m => m.delete({
+              Message.reply("`" + create.gym.fuzzy + "`, does not closely match any gym in the database.").then(m => m.delete({
                 timeout: 8000
               })).catch(console.error);
 
             } else {
-              let user_choice = await Functions.MatchCollect(WDR, Functions, "Matches", Member, Message, matches, "Type the number of the Correct Gym.", create, available_gyms, gym_collection);
+              let user_choice = await Functions.MatchCollect(WDR, Functions, "Matches", Member, Message, matches, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
               let collection_match = gym_collection.get(matches[user_choice]);
               if (collection_match) {
                 create.gym_id = collection_match.id;
@@ -62,7 +67,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
             }
 
           } else if (create.gym.length > 1) {
-            let user_choice = await Functions.CollectMatch(WDR, "Multiple", Member, Message, null, "Type the number of the Correct Gym.", create, available_gyms, gym_collection);
+            let user_choice = await Functions.CollectMatch(WDR, "Multiple", Member, Message, null, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
             create.gym_id = create.gym[user_choice].id;
             create.gym = create.gym[user_choice].name;
             create.name = create.gym[user_choice].name;
@@ -77,7 +82,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
         }
         while (got_name == false);
 
-        create.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Respond with 'All', 'Egg' or the Raid Boss's name. Names are not case-sensitive.", create, available_gyms, gym_collection);
+        create.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Respond with 'All', 'Egg' or the Raid Boss's name. Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
         if (create.pokemon.name) {
           create.boss = create.pokemon.name;
           create.name += " " + create.pokemon.name;
@@ -94,12 +99,12 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
         }
 
         if (create.pokemon_id === 0) {
-          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value of 1 through " + WDR.Max_Raid_Level + " or type 'All'. Type 'Cancel' to Stop.", create, available_gyms, gym_collection);
+          create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value of 1 through " + WDR.Max_Raid_Level + " or type 'All'. Type 'Cancel' to Stop.", create, gym_name_array, gym_detail_array, gym_collection);
 
           if (create.min_lvl == WDR.Max_Raid_Level) {
             create.max_lvl = WDR.Max_Raid_Level;
           } else {
-            create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value of 1 through " + WDR.Max_Raid_Level + " or type 'All'. Type 'Cancel' to Stop.", create, available_gyms, gym_collection);
+            create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value of 1 through " + WDR.Max_Raid_Level + " or type 'All'. Type 'Cancel' to Stop.", create, gym_name_array, gym_detail_array, gym_collection);
             console.log(create.max_lvl)
           }
 
@@ -109,7 +114,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
         }
 
         if (create.gym === 0) {
-          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, available_gyms, gym_collection);
+          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.areas == Message.Discord.name) {
             create.geotype = "city";
           } else {
@@ -120,7 +125,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
           create.geotype = "city";
         }
 
-        create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, available_gyms, gym_collection);
+        create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, gym_name_array, gym_detail_array, gym_collection);
 
         let query = `
           INSERT INTO

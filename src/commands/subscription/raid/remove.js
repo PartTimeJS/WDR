@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_array, gym_collection) => {
 
   WDR.wdrDB.query(
     `SELECT
@@ -24,7 +24,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
             .setTitle("You do not have any Raid Subscriptions!")
             .setFooter("You can type 'view', 'add', or 'remove'.");
           Message.channel.send(no_subscriptions).catch(console.error).then(msg => {
-            return Functions.DetailCollect(WDR, "view", message, msg, member, available_gyms, gym_collection);
+            return Functions.DetailCollect(WDR, "view", message, msg, member, gym_name_array, gym_detail_array, gym_collection);
           });
         } else {
 
@@ -32,12 +32,12 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
             found = false,
             embed_title = "";
 
-          let remove_id = await Functions.DetailCollect(WDR, Functions, "Remove", Message, Member, user[0], "Type the Number of the Subscription you want to remove.", raids, available_gyms, gym_collection);
+          let remove_id = await Functions.DetailCollect(WDR, Functions, "Remove", Message, Member, user[0], "Type the Number of the Subscription you want to remove.", raids, gym_name_array, gym_detail_array, gym_collection);
 
           switch (remove_id.toLowerCase()) {
             case "all":
 
-              let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Remove", Message, Member, remove_id, "Type 'Yes' or 'No'. Subscription will be saved.", undefined, available_gyms, gym_collection);
+              let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Remove", Message, Member, remove_id, "Type 'Yes' or 'No'. Subscription will be saved.", undefined, gym_name_array, gym_detail_array, gym_collection);
 
               raids.subscriptions = [];
               embed_title = "All Subscriptions Removed!";
@@ -71,7 +71,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
                   .setDescription("Saved to the " + WDR.config.BOT_NAME + " Database.")
                   .setFooter("You can type 'view', 'add', or 'remove'.");
                 return Message.channel.send(subscription_success).then(msg => {
-                  return Functions.DetailCollect(WDR, Functions, "remove", Message, Member, available_gyms, gym_collection);
+                  return Functions.DetailCollect(WDR, Functions, "remove", Message, Member, gym_name_array, gym_detail_array, gym_collection);
                 });
               }
             }

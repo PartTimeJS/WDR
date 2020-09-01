@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub, gym_name_array, gym_detail_array, gym_collection) => {
   return new Promise(async resolve => {
 
     let timeout = true,

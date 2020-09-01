@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_array, gym_collection) => {
   WDR.wdrDB.query(
     `SELECT
         *
@@ -15,7 +15,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
           .setTitle("You do not have any Raid Subscriptions!")
           .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
         Message.channel.send(no_subscriptions).catch(console.error).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, available_gyms, gym_collection);
+          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
         });
       } else {
 
@@ -51,7 +51,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
             "Pokemon Status: `" + r_status + "`\n\n" + sub_list)
           .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
         Message.channel.send(raidSubs).catch(console.error).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, available_gyms, gym_collection);
+          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
         });
       }
     }

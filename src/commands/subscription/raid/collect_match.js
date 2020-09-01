@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub, available_gyms, discord, gym_collection) => {
+module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub, gym_detail_array, discord, gym_collection) => {
   return new Promise(async resolve => {
 
     let options = "";
@@ -14,7 +14,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         let match_desc = "";
         for (let ma = 0, malen = object.length; ma < malen; ma++) {
           let match = object[ma];
-          match_desc += (index + 1) + ". " + match + "\n";
+          match_desc += (ma + 1) + ". " + match + "\n";
         }
         if (match_desc.length > 2000) {
           match_desc = match_desc.slice(0, 1950) + "\n**There are too many matches to display.**";

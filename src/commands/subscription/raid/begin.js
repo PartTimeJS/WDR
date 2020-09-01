@@ -16,7 +16,9 @@ module.exports = async (WDR, Message) => {
 
   let Member = Message.member ? Message.member : Message.author;
 
-  let available_gyms = [];
+  let gym_name_array = [];
+  let gym_detail_array = [];
+
   let gym_collection = new WDR.DiscordJS.Collection();
 
   for (let ga = 0, galen = WDR.Gym_Array.length; ga < galen; ga++) {
@@ -36,7 +38,8 @@ module.exports = async (WDR, Message) => {
       } else {
         gym_name = gym.name + " [" + gym.lat + "," + gym.lon + "]";
       }
-      available_gyms.push(gym_name);
+      gym_name_array.push(gym.name);
+      gym_detail_array.push(gym_name);
       gym_collection.set(gym_name, gym);
     }
   }
@@ -52,6 +55,6 @@ module.exports = async (WDR, Message) => {
     .setFooter("Type the action, no command prefix required.");
 
   Message.channel.send(request_action).catch(console.error).then(BotMsg => {
-    return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member, available_gyms, gym_collection);
+    return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
   });
 }

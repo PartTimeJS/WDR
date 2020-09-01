@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collection) => {
+module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_array, gym_collection) => {
   WDR.wdrDB.query(
     `SELECT
         *
@@ -28,7 +28,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
 
         // SEND THE EMBED
         message.channel.send(already_paused).catch(console.error).then(msg => {
-          return initiate_collector(WDR, "view", message, msg, member, prefix, available_gyms, discord, gym_collection);
+          return initiate_collector(WDR, "view", message, msg, member, prefix, gym_detail_array, discord, gym_collection);
         });
       } else if (user[0].raids_status == "PAUSED" && reason == "pause") {
         let already_paused = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
@@ -38,7 +38,7 @@ module.exports = (WDR, Functions, Message, Member, available_gyms, gym_collectio
 
         // SEND THE EMBED
         message.channel.send(already_paused).catch(console.error).then(msg => {
-          return initiate_collector(WDR, "view", message, msg, member, prefix, available_gyms, discord, gym_collection);
+          return initiate_collector(WDR, "view", message, msg, member, prefix, gym_detail_array, discord, gym_collection);
         });
       } else {
         if (reason == "pause") {
