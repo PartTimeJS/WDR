@@ -114,7 +114,7 @@ module.exports = async (WDR, LURE) => {
                 if (LURE.static_map) {
                   match.static_map = LURE.static_map;
                 } else {
-                  match.body = await WDR.Generate_Tile(WDR, LURE, "lure", match.lat, match.lon, match.sprite);
+                  match.body = await WDR.Generate_Tile(WDR, LURE, "lures", match.lat, match.lon, match.sprite);
                   LURE.body = match.body;
                   match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
                   LURE.static_map = match.static_map;
