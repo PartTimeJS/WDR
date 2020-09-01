@@ -1,4 +1,4 @@
-module.exports = (WDR, Sighting) => {
+module.exports = (WDR, SIGHTING) => {
 
   if (WDR.Pokemon_Channels.length < 1) {
     return;
@@ -33,14 +33,14 @@ module.exports = (WDR, Sighting) => {
       }
     }
 
-    let pobject = channel.filter[WDR.Master.Pokemon[Sighting.pokemon_id].name];
+    let pobject = channel.filter[WDR.Master.Pokemon[SIGHTING.pokemon_id].name];
     if (!pobject) {
-      return WDR.Console.error(WDR, "[feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[Sighting.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
+      return WDR.Console.error(WDR, "[feeds/pokemon.js] Missing filter data for " + WDR.Master.Pokemon[SIGHTING.pokemon_id].name + " in configs/filters/" + feed_channel[1].filter);
     } else if (pobject != "False") {
 
-      let defGeo = (channel.geofences.indexOf(Sighting.area.default) >= 0);
-      let mainGeo = (channel.geofences.indexOf(Sighting.area.main) >= 0);
-      let subGeo = (channel.geofences.indexOf(Sighting.area.sub) >= 0);
+      let defGeo = (channel.geofences.indexOf(SIGHTING.area.default) >= 0);
+      let mainGeo = (channel.geofences.indexOf(SIGHTING.area.main) >= 0);
+      let subGeo = (channel.geofences.indexOf(SIGHTING.area.sub) >= 0);
       if (defGeo || mainGeo || subGeo) {
 
         let criteria = {};
@@ -63,11 +63,11 @@ module.exports = (WDR, Sighting) => {
           criteria.max_level = pobject.max_level == undefined ? criteria.max_level : pobject.max_level;
         }
 
-        let lvlPass = ((criteria.min_level <= Sighting.pokemon_level) && (criteria.max_level >= Sighting.pokemon_level));
-        let sizePass = ((criteria.size == "all") || (criteria.size == Sighting.size));
-        let genderPass = ((criteria.gender == "all") || (criteria.gender == Sighting.gender_name));
-        let genPass = ((criteria.generation == "all") || (criteria.generation == Sighting.gen));
-        let ivPass = ((criteria.min_iv <= Sighting.internal_value) && (criteria.max_iv >= Sighting.internal_value));
+        let lvlPass = ((criteria.min_level <= SIGHTING.pokemon_level) && (criteria.max_level >= SIGHTING.pokemon_level));
+        let sizePass = ((criteria.size == "all") || (criteria.size == SIGHTING.size));
+        let genderPass = ((criteria.gender == "all") || (criteria.gender == SIGHTING.gender_name));
+        let genPass = ((criteria.generation == "all") || (criteria.generation == SIGHTING.gen));
+        let ivPass = ((criteria.min_iv <= SIGHTING.internal_value) && (criteria.max_iv >= SIGHTING.internal_value));
         if (lvlPass && sizePass && genderPass && genPass && ivPass) {
 
           let match = {};
@@ -75,80 +75,79 @@ module.exports = (WDR, Sighting) => {
           let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "pokemon_iv.js"));
 
           match.typing = await WDR.Get_Typing(WDR, {
-            pokemon_id: Sighting.pokemon_id,
-            form: Sighting.form
+            pokemon_id: SIGHTING.pokemon_id,
+            form: SIGHTING.form
           });
 
-          match.sprite = WDR.Get_Sprite(WDR, Sighting);
+          match.sprite = WDR.Get_Sprite(WDR, SIGHTING);
 
           match.type = match.typing.type;
           match.type_noemoji = match.typing.type_noemoji;
 
           match.color = match.typing.color;
 
-          match.name = Sighting.pokemon_name;
-          match.id = Sighting.pokemon_id;
-          match.form = Sighting.form_name ? Sighting.form_name : "";
-          match.form = Sighting.form_name == "[Normal]" ? "" : Sighting.form_name;
+          match.name = SIGHTING.pokemon_name;
+          match.id = SIGHTING.pokemon_id;
+          match.form = SIGHTING.form_name ? SIGHTING.form_name : "";
+          match.form = SIGHTING.form_name == "[Normal]" ? "" : SIGHTING.form_name;
 
-          match.map_url = Sighting.Discord.map_url;
-          match.subscribe_url = Sighting.Discord.subscribe_url;
+          match.map_url = SIGHTING.Discord.map_url;
+          match.subscribe_url = SIGHTING.Discord.subscribe_url;
 
-          match.iv = Sighting.internal_value;
-          match.cp = Sighting.cp;
+          match.iv = SIGHTING.internal_value;
+          match.cp = SIGHTING.cp;
 
-          match.lat = Sighting.latitude;
-          match.lon = Sighting.longitude;
+          match.lat = SIGHTING.latitude;
+          match.lon = SIGHTING.longitude;
 
-          match.weather_boost = Sighting.weather_boost;
+          match.weather_boost = SIGHTING.weather_boost;
 
-          match.area = Sighting.area.embed;
+          match.area = SIGHTING.area.embed;
 
           match.map_url = WDR.Config.FRONTEND_URL;
 
-          match.atk = Sighting.individual_attack;
-          match.def = Sighting.individual_defense;
-          match.sta = Sighting.individual_stamina;
+          match.atk = SIGHTING.individual_attack;
+          match.def = SIGHTING.individual_defense;
+          match.sta = SIGHTING.individual_stamina;
 
-          match.lvl = Sighting.pokemon_level;
-          match.gen = Sighting.gen;
+          match.lvl = SIGHTING.pokemon_level;
+          match.gen = SIGHTING.gen;
 
-          match.move_1_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_1].type.toLowerCase()];
-          match.move_2_type = WDR.Emotes[WDR.Master.Moves[Sighting.move_2].type.toLowerCase()];
-          match.move_1_name = Sighting.move_1_name;
-          match.move_2_name = Sighting.move_2_name;
+          match.move_1_type = WDR.Emotes[WDR.Master.Moves[SIGHTING.move_1].type.toLowerCase()];
+          match.move_2_type = WDR.Emotes[WDR.Master.Moves[SIGHTING.move_2].type.toLowerCase()];
+          match.move_1_name = SIGHTING.move_1_name;
+          match.move_2_name = SIGHTING.move_2_name;
 
-          match.height = Math.floor(Sighting.height * 100) / 100;
-          match.weight = Math.floor(Sighting.weight * 100) / 100;
-          match.size = await WDR.Capitalize(Sighting.size);
+          match.height = Math.floor(SIGHTING.height * 100) / 100;
+          match.weight = Math.floor(SIGHTING.weight * 100) / 100;
+          match.size = await WDR.Capitalize(SIGHTING.size);
 
-          match.google = "[Google Maps](https://www.google.com/maps?q=" + Sighting.latitude + "," + Sighting.longitude + ")";
-          match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + Sighting.latitude + "," + Sighting.longitude + "&z=10&t=s&dirflg=d)";
-          match.waze = "[Waze](https://www.waze.com/ul?ll=" + Sighting.latitude + "," + Sighting.longitude + "&navigate=yes)";
-          match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + Sighting.latitude + "&lon=" + Sighting.longitude + "&zoom=15)";
-          match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + Sighting.latitude + "/" + Sighting.longitude + "/15)";
+          match.google = "[Google Maps](https://www.google.com/maps?q=" + SIGHTING.latitude + "," + SIGHTING.longitude + ")";
+          match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + SIGHTING.latitude + "," + SIGHTING.longitude + "&z=10&t=s&dirflg=d)";
+          match.waze = "[Waze](https://www.waze.com/ul?ll=" + SIGHTING.latitude + "," + SIGHTING.longitude + "&navigate=yes)";
+          match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + SIGHTING.latitude + "&lon=" + SIGHTING.longitude + "&zoom=15)";
+          match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + SIGHTING.latitude + "/" + SIGHTING.longitude + "/15)";
 
-          match.verified = Sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
-          match.time = WDR.Time(Sighting.disappear_time, "1", Sighting.Timezone);
-          match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
-          match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
+          match.verified = SIGHTING.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
+          match.time = WDR.Time(SIGHTING.disappear_time, "1", SIGHTING.Timezone);
+          match.mins = Math.floor((SIGHTING.disappear_time - (SIGHTING.Time_Now / 1000)) / 60);
+          match.secs = Math.floor((SIGHTING.disappear_time - (SIGHTING.Time_Now / 1000)) - (match.mins * 60));
 
           if (match.mins >= 5) {
 
             if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
-              if (Sighting.static_map) {
-                match.body = Sighting.body;
-                match.static_map = Sighting.static_map;
+              if (SIGHTING.static_map) {
+                match.static_map = SIGHTING.static_map;
               } else {
-                match.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", match.lat, match.lon, match.sprite);
-                Sighting.body = match.body;
+                match.body = await WDR.Generate_Tile(WDR, SIGHTING, "pokemon", match.lat, match.lon, match.sprite);
+                SIGHTING.body = match.body;
                 match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
-                Sighting.static_map = match.static_map;
+                SIGHTING.static_map = match.static_map;
               }
             }
 
             if (WDR.Debug.Processing_Speed == "ENABLED") {
-              let difference = Math.round((new Date().getTime() - Sighting.WDR_Received) / 10) / 100;
+              let difference = Math.round((new Date().getTime() - SIGHTING.WDR_Received) / 10) / 100;
               match.footer = "Latency: " + difference + "s";
             }
 

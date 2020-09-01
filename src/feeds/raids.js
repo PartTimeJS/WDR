@@ -43,19 +43,6 @@ module.exports = async (WDR, RAID) => {
       }
     }
 
-    let Embed_File;
-    if (RAID.Type == "Egg") {
-      if (!feed_channel[1].embed_egg && !feed_channel[1].embed) {
-        Embed_File = "raid_eggs.js";
-      } else if (feed_channel[1].embed_egg) {
-        Embed_File = feed_channel[1].embed_egg;
-      } else {
-        Embed_File = feed_channel[1].embed ? feed_channel[1].embed : "raid_egg.js";
-      }
-    } else {
-      Embed_File = feed_channel[1].embed ? feed_channel[1].embed : "raid_boss.js";
-    }
-
     let defGeo = (channel.geofences.indexOf(RAID.area.default) >= 0);
     let mainGeo = (channel.geofences.indexOf(RAID.area.main) >= 0);
     let subGeo = (channel.geofences.indexOf(RAID.area.sub) >= 0);
@@ -68,8 +55,20 @@ module.exports = async (WDR, RAID) => {
         let matchedEx = (!channel.filter.Ex_Eligible_Only || channel.filter.Ex_Eligible_Only == false || channel.filter.Ex_Eligible_Only == RAID.ex_raid_eligible);
         if (matchedEx) {
 
+          let Embed_Config;
+          if (RAID.Type == "Egg") {
+            if (!feed_channel[1].embed_egg && !feed_channel[1].embed) {
+              Embed_Config = require(WDR.Dir + "/configs/embeds/raid_eggs.js");
+            } else if (feed_channel[1].embed_egg) {
+              Embed_Config = require(WDR.Dir + "/configs/embeds/" + feed_channel[1].embed_egg);
+            } else {
+              Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "raid_egg.js"));
+            }
+          } else {
+            Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "raid_boss.js"));
+          }
+
           let match = {};
-          let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Embed_File);
 
           match.id = RAID.gym_id;
           match.boss = RAID.pokemon_name ? RAID.pokemon_name : "Egg";

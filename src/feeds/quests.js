@@ -32,8 +32,6 @@ module.exports = async (WDR, QUEST) => {
       }
     }
 
-    let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "quests.js"));
-
     let defGeo = (channel.geofences.indexOf(QUEST.area.default) >= 0);
     let mainGeo = (channel.geofences.indexOf(QUEST.area.main) >= 0);
     let subGeo = (channel.geofences.indexOf(QUEST.area.sub) >= 0);
@@ -42,6 +40,8 @@ module.exports = async (WDR, QUEST) => {
       let rewardPass = (channel.Filter.Rewards.indexOf(QUEST.quest_reward) >= 0 || channel.Filter.Rewards.indexOf(QUEST.simple_reward) >= 0);
       let typePass = (channel.Filter.Rewards.indexOf(QUEST.reward_type) >= 0);
       if (rewardPass || typePass) {
+
+        let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "quests.js"));
 
         let match = {};
 
