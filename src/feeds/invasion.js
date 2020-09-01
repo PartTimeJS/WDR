@@ -11,6 +11,7 @@ module.exports = async (WDR, INVASION) => {
     return WDR.Console.error(WDR, "[feeds/INVASION.js] No Grunt found for " + INVASION.grunt_type + " in Grunts.json.");
   }
 
+  INVASION.type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
   INVASION.gender = WDR.Master.Grunt_Types[INVASION.grunt_type].grunt;
 
   for (let c = 0, ch_len = WDR.Invasion_Channels.length; c < ch_len; c++) {
@@ -57,6 +58,8 @@ module.exports = async (WDR, INVASION) => {
           case (channel.Filter[INVASION.type].toLowerCase() == INVASION.gender.toLowerCase()):
 
             let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "invasion.js"));
+
+            let match = {};
 
             match.name = INVASION.name;
             match.url = INVASION.url ? INVASION.url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png";
@@ -121,7 +124,7 @@ module.exports = async (WDR, INVASION) => {
                 match.gender = "";
             }
 
-            // match.marker_latitude = match.lat + .00045;
+            match.marker_latitude = match.lat + .00045;
             //
             // match.static_marker = [{
             //     "url": "https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/other/Pokestop_Expanded_Rocket.png",
@@ -206,7 +209,13 @@ module.exports = async (WDR, INVASION) => {
             match.grunt_gender = WDR.Master.Grunt_Types[INVASION.grunt_type].grunt;
             match.grunt_type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
 
+
             if (match.mins > 5) {
+
+              match.body = await WDR.Generate_Tile(WDR, INVASION, "invasions", match.marker_latitude, match.lon, match.sprite);
+              match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
+
+              match.embed = Embed_Config(WDR, match);
 
               WDR.Send_Embed(WDR, match.embed, channel.id);
             }
