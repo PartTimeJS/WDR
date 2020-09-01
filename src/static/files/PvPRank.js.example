@@ -1,5 +1,5 @@
 const baseStats = require('./master-latest.json');
-const cpMultiplier = require('./cp_multiplier.json');
+const cpMultiplier = require('./data/cp_multiplier.json');
 const fs = require('fs-extra');
 const mysql = require('mysql2');
 

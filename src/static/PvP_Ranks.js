@@ -1,5 +1,5 @@
 const baseStats = require("./master.json");
-const cpMultiplier = require("./cp_multiplier.json");
+const cpMultiplier = require("./data/cp_multiplier.json");
 
 let pokemon = {};
 let pokemonObject = baseStats.Pokemon;

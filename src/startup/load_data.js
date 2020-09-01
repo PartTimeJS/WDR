@@ -26,8 +26,8 @@ exports.Load = function(WDR) {
     WDR.Console.info(WDR, "[load_data.js] Loaded Language files.");
 
     // LOAD CP MULTIPLIER
-    delete require.cache[require.resolve(WDR.Dir + "/src/static/cp_multiplier.json")];
-    WDR.cp_multiplier = require(WDR.Dir + "/src/static/cp_multiplier.json");
+    delete require.cache[require.resolve(WDR.Dir + "/src/static/data/cp_multiplier.json")];
+    WDR.cp_multiplier = require(WDR.Dir + "/src/static/data/cp_multiplier.json");
 
     // END
     return resolve(WDR);
