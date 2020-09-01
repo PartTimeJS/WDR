@@ -3,6 +3,7 @@ module.exports = {
   // GET POKEMON INFORMATION
   async Pokemon(WDR, Locale) {
     return new Promise(async resolve => {
+
       let P_Locale = Locale;
 
       P_Locale.form_id = P_Locale.form;
@@ -24,11 +25,18 @@ module.exports = {
             P_Locale.weather_boost += " ***Boosted***";
           }
 
-          // ENGLISH POKEMON NAME
+
           P_Locale.pokemon_name = WDR.Master.Pokemon[P_Locale.pokemon_id].name;
 
-          // ENGLISH FORM
-          if (P_Locale.form_id) {
+
+          if (P_Locale.evolution > 0) {
+            P_Locale.pokemon_name = "Mega " + P_Locale.pokemon_name;
+            if (P_Locale.evolution > 1) {
+              P_Locale.pokemon_name = P_Locale.pokemon_name + " " + WDR.Master.Mega_Forms[P_Locale.evolution];
+            }
+
+
+          } else if (P_Locale.form_id) {
             if (!WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id]) {
               WDR.Console.error(WDR, "[Get_P_Locale.js] No form found for Pokemon: " + WDR.Master.Pokemon[P_Locale.pokemon_id].name + " Form#: " + P_Locale.form_id);
               return resolve(P_Locale);
@@ -38,12 +46,12 @@ module.exports = {
             P_Locale.form_name = "";
           }
 
-          // IDENTIFY DITTO AND ALTER DISPLAY NAME
+
           if (P_Locale.display_pokemon_id != null) {
             P_Locale.pokemon_name += " (" + WDR.Master.Pokemon[P_Locale.display_pokemon_id].name + ")";
           }
 
-          // ENGLISH MOVE 1 NAME
+
           if (P_Locale.move_1) {
             if (!WDR.Master.Moves[P_Locale.move_1]) {
               return WDR.Console.error(WDR, "[Get_P_Locale.js] No Move found for " + P_Locale.move_1);
@@ -51,7 +59,7 @@ module.exports = {
             P_Locale.move_1_name = WDR.Master.Moves[P_Locale.move_1].name;
           }
 
-          // ENGLISH MOVE 2 NAME
+
           if (P_Locale.move_2) {
             if (!WDR.Master.Moves[P_Locale.move_2]) {
               return WDR.Console.error(WDR, "[Get_P_Locale.js] No Move found for " + P_Locale.move_2);
@@ -60,7 +68,7 @@ module.exports = {
           }
           break;
 
-          // ALTERNATE LANGUAGES
+
         default:
 
           if (P_Locale.weather_boost != "") {
@@ -72,7 +80,7 @@ module.exports = {
 
           let locale_pokemon_name = WDR.Locales[P_Locale.Discord.locale][WDR.Master.Pokemon[P_Locale.pokemon_id].name];
 
-          // DEFAULT TO ENGLISH IF TRANSLATION DOES NOT EXIST
+
           P_Locale.pokemon_name = locale_pokemon_name ? locale_pokemon_name : WDR.Master.Pokemon[P_Locale.pokemon_id].name;
 
           if (P_Locale.move_1) {
@@ -118,7 +126,7 @@ module.exports = {
 
   async Quest(Quest) {
     return new Promise(async resolve => {
-      WDR.Console.log(WDR,"[LOCALE]", Quest);
+      WDR.Console.log(WDR, "[LOCALE]", Quest);
       return resolve(Quest);
     });
   },

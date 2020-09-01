@@ -6,7 +6,8 @@ module.exports = (WDR, Object, type) => {
   if (Object.pokemon_id > 0) {
     let pokemon_id = "",
       form_id = "",
-      costume_id = "";
+      costume_id = "",
+      mega_id = "";
 
     pokemon_id = pad(Object.pokemon_id, 3);
 
@@ -20,11 +21,15 @@ module.exports = (WDR, Object, type) => {
       form_id = "_00";
     }
 
+    if (Object.evolution > 0) {
+      mega_id = "_" + Object.evolution;
+    }
+
     if (Object.costume && Object.costume > 0) {
       costume_id = pad(Object.costume, 2);
     }
 
-    sprite = WDR.Config.SPRITE_URL + "pokemon_icon_" + pokemon_id + form_id + costume_id + ".png";
+    sprite = WDR.Config.SPRITE_URL + "pokemon_icon_" + pokemon_id + form_id + mega_id + costume_id + ".png";
 
   } else if (Object.rewards.length > 0) {
     switch (Object.rewards[0].type) {
