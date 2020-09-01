@@ -1,7 +1,5 @@
 module.exports = async (WDR, LURE) => {
 
-  console.log("1", LURE.name);
-
   if (WDR.Lure_Channels.length < 1) {
     return;
   }
@@ -124,8 +122,6 @@ module.exports = async (WDR, LURE) => {
                   LURE.static_map = match.static_map;
                 }
               }
-
-              console.log("2", match.name);
 
               match.embed = Embed_Config(WDR, match);
 
