@@ -1,5 +1,3 @@
-const Create_Raid_Embed = require(__dirname + "/../embeds/raids.js");
-
 module.exports = async (WDR, RAID) => {
 
   if (WDR.Raid_Channels.length < 1) {
@@ -177,6 +175,7 @@ module.exports = async (WDR, RAID) => {
       }
     }
   }
+
   // END
   return;
 }

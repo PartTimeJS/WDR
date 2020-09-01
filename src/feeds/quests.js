@@ -1,5 +1,3 @@
-const Create_Quest_Embed = require(__dirname + "/../embeds/quests.js");
-
 module.exports = async (WDR, QUEST) => {
 
   for (let c = 0, ch_len = WDR.Quest_Channels.length; c < ch_len; c++) {
@@ -93,8 +91,11 @@ module.exports = async (WDR, QUEST) => {
 
         match.Embed = Embed_Config(WDR, match);
 
-        return WDR.Send_Embed(WDR, match.Embed, channel.id);
+        WDR.Send_Embed(WDR, match.Embed, channel.id);
       }
     }
   }
+
+  // END
+  return;
 }

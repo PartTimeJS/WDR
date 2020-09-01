@@ -1,3 +1,8 @@
+var Reported_Raids = [],
+  Reported_Quests = [],
+  Reported_Lures = [],
+  Reported_Invasions = [];
+
 module.exports = async (WDR, Payload) => {
 
   for (let p = 0, plen = Payload.length; p < plen; p++) {
@@ -96,41 +101,58 @@ module.exports = async (WDR, Payload) => {
 
         } else if (data.type == "raid") {
 
-          object = await WDR.Get_Locale.Pokemon(WDR, object);
+          if (!Reported_Raids.includes(object.gym_id)) {
+            Reported_Raids.push(object.gym_id);
 
-          WDR.Feeds.Raids(WDR, object);
+            object = await WDR.Get_Locale.Pokemon(WDR, object);
 
-          //WDR.Subscriptions.Raids(WDR, object);
+            WDR.Feeds.Raids(WDR, object);
 
+            //WDR.Subscriptions.Raids(WDR, object);
+
+          }
         } else if (data.type == "quest") {
 
-          object = await WDR.Get_Quest_Reward(WDR, object);
+          if (!Reported_Quests.includes(object.pokestop_id)) {
+            Reported_Quests.push(object.pokestop_id);
 
-          if (!object) {
-            return WDR.Cosole.error(WDR, "[webhooks.js] Quest object lost when trying to get Reward", data.message)
+            object = await WDR.Get_Quest_Reward(WDR, object);
+
+            if (!object) {
+              return WDR.Cosole.error(WDR, "[webhooks.js] Quest object lost when trying to get Reward", data.message)
+            }
+
+            object = await WDR.Get_Quest_Task(WDR, object);
+
+            if (!object) {
+              return WDR.Cosole.error(WDR, "[webhooks.js] Quest object lost when trying to get Task", data.message)
+            }
+
+            WDR.Feeds.Quests(WDR, object);
+
+            //WDR.Subscriptions.Quests(WDR, object);
+
           }
-
-          object = await WDR.Get_Quest_Task(WDR, object);
-
-          if (!object) {
-            return WDR.Cosole.error(WDR, "[webhooks.js] Quest object lost when trying to get Task", data.message)
-          }
-
-          WDR.Feeds.Quests(WDR, object);
-
-          //WDR.Subscriptions.Quests(WDR, object);
 
         } else if (data.type == "pokestop") {
 
-          WDR.Feeds.Lures(WDR, object);
+          if (!Reported_Lures.includes(object.pokestop_id)) {
+            Reported_Lures.push(object.pokestop_id);
 
-          //WDR.Subscriptions.Lures(WDR, object);
+            WDR.Feeds.Lures(WDR, object);
 
+            //WDR.Subscriptions.Lures(WDR, object);
+
+          }
         } else if (data.type == "invasion") {
 
-          WDR.Feeds.Invasions(WDR, object);
+          if (!Reported_Invasions.includes(object.pokestop_id)) {
+            Reported_Invasions.push(object.pokestop_id);
 
-          //WDR.Subscriptions.Invasions(WDR, object);
+            WDR.Feeds.Invasions(WDR, object);
+
+            //WDR.Subscriptions.Invasions(WDR, object);
+          }
         }
       }
     }
@@ -139,6 +161,13 @@ module.exports = async (WDR, Payload) => {
   // END
   return;
 }
+
+setInterval(function() {
+  Reported_Raids = [];
+  Reported_Quests = [];
+  Reported_Lures = [];
+  Reported_Invasions = [];
+}, 60000 * 3);
 
 function Calculate_Size(pokemon_id) {
   let weightRatio = 0,

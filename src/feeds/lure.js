@@ -1,5 +1,7 @@
 module.exports = async (WDR, LURE) => {
 
+  console.log("1", LURE.name);
+
   if (WDR.Lure_Channels.length < 1) {
     return;
   }
@@ -75,6 +77,8 @@ module.exports = async (WDR, LURE) => {
             match.mins = Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) / 60);
             match.secs = Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) - ((Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) / 60)) * 60));
 
+            match.marker_latitude = LURE.latitude + .0004;
+
             match.lat = LURE.latitude;
             match.lon = LURE.longitude;
             match.area = LURE.area.embed;
@@ -114,16 +118,18 @@ module.exports = async (WDR, LURE) => {
                 if (LURE.static_map) {
                   match.static_map = LURE.static_map;
                 } else {
-                  match.body = await WDR.Generate_Tile(WDR, LURE, "lures", match.lat, match.lon, match.sprite);
+                  match.body = await WDR.Generate_Tile(WDR, LURE, "lures", match.marker_latitude, match.lon, match.sprite);
                   LURE.body = match.body;
                   match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
                   LURE.static_map = match.static_map;
                 }
               }
 
-              match.embed = await Embed_Config(WDR, match);
+              console.log("2", match.name);
 
-              return WDR.Send_Embed(WDR, match.embed, channel.id);
+              match.embed = Embed_Config(WDR, match);
+
+              WDR.Send_Embed(WDR, match.embed, channel.id);
             }
         }
     }
