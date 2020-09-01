@@ -32,42 +32,49 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           got_name = false;
 
         do {
-          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym name. Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
+          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym Name (CAPITALIZATION MATTERS). Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.gym === 0) {
             create.name = "All";
             create.gym_id = 0;
             got_name = true;
 
           } else if (create.gym.fuzzy) {
-
-            console.log(create.gym)
             let results = Fuzzy.filter(create.gym.fuzzy, gym_name_array);
-            //let matches = results.map(el => el.string);
-            let matches = results.map(function(el) {
-              console.log(el);
-              let index = gym_detail_array.indexOf(el);
-              console.log(index);
-              console.log(gym_detail_array[index]);
-              return el.string;
-            });
 
-            if (matches.length < 1) {
-              Message.reply("`" + create.gym.fuzzy + "`, does not closely match any gym in the database.").then(m => m.delete({
-                timeout: 8000
-              })).catch(console.error);
-
+            if (results.length === 1) {
+              let result_match = gym_collection.get(results[0].string);
+              create.gym_id = result_match.id;
+              create.name = result_match.name;
+              got_name = true;
             } else {
-              let user_choice = await Functions.MatchCollect(WDR, Functions, "Matches", Member, Message, matches, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
-              let collection_match = gym_collection.get(matches[user_choice]);
-              if (collection_match) {
-                create.gym_id = collection_match.id;
-                create.name = collection_match.name;
-                got_name = true;
+              //let matches = results.map(el => el.string);
+              let matches = results.map(function(el) {
+                console.log("1", el);
+                let index = gym_name_array.indexOf(el);
+                console.log("2", index);
+                console.log("3", gym_detail_array[index]);
+                return el.string;
+              });
+
+              if (matches.length < 1) {
+                Message.reply("`" + create.gym.fuzzy + "`, does not closely match any gym in the database.").then(m => m.delete({
+                  timeout: 8000
+                })).catch(console.error);
+
+              } else {
+                let user_choice = await Functions.MatchCollect(WDR, Functions, "Matches", Member, Message, matches, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
+                console.log(user_choice)
+                let collection_match = gym_collection.get(matches[user_choice]);
+                if (collection_match) {
+                  create.gym_id = collection_match.id;
+                  create.name = collection_match.name;
+                  got_name = true;
+                }
               }
             }
 
           } else if (create.gym.length > 1) {
-            let user_choice = await Functions.CollectMatch(WDR, "Multiple", Member, Message, null, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
+            let user_choice = await Functions.MatchCollect(WDR, "Multiple", Member, Message, null, "Type the number of the Correct Gym.", create, gym_name_array, gym_detail_array, gym_collection);
             create.gym_id = create.gym[user_choice].id;
             create.gym = create.gym[user_choice].name;
             create.name = create.gym[user_choice].name;
@@ -81,6 +88,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           }
         }
         while (got_name == false);
+
+        console.log(create)
 
         create.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Respond with 'All', 'Egg' or the Raid Boss's name. Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
         if (create.pokemon.name) {
