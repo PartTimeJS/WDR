@@ -32,7 +32,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           got_name = false;
 
         do {
-          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym Name (CAPITALIZATION MATTERS). Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
+          create.gym = await Functions.DetailCollect(WDR, Functions, "Gym", Member, Message, null, "Respond with 'All'  or a Gym Name. Names are not case-sensitive.", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.gym === 0) {
             create.name = "All";
             create.gym = "All";
