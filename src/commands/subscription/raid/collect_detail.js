@@ -175,10 +175,13 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 FROM
                     gym
                 WHERE
-                    name = ${CollectedMsg.content}
+                    name = '${CollectedMsg.content}'
                 ;`,
                 async function(error, gyms, fields) {
-                  if (!gyms || gyms.length == 0) {
+                  if (error) {
+                    WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+                  } else if (!gyms || gyms.length == 0) {
+                    console.log("mysql", gyms)
                     collector.stop({
                       fuzzy: CollectedMsg.content
                     });
