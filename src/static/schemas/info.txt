@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS wdr_info (
+  db_version tinyint NOT NULL DEFAULT 1,
+  next_bot tinyint NOT NULL,
+  pvp_tables_generated tinyint NOT NULL DEFAULT 0
+);
