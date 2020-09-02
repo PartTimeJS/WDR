@@ -102,6 +102,7 @@ module.exports = async (WDR, Sighting) => {
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
                   let User = matching[m];
+                  User.location = JSON.parse(User.location);
 
                   let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
                   if (member) {
@@ -120,7 +121,7 @@ module.exports = async (WDR, Sighting) => {
                           let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
                           let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
                           let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
-                          if (defGeo || mainGeo || subGeo || cityGeo) {
+                          if (defGeo || mainGeo || subGeo) {
                             match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
                             Send_Subscription(WDR, match, Sighting, User);
                           }
