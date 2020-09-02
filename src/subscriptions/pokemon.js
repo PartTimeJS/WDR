@@ -96,6 +96,11 @@ module.exports = async (WDR, Sighting) => {
           let member = await WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
           if (member) {
 
+            if (!member.roles) {
+              console.log("Member", member);
+              console.log(discord)
+            }
+
             let memberRoles = member.roles.cache.map(r => r.id);
 
             let authorized = await WDR.Check_Roles(memberRoles, discord.allowed_roles);
@@ -165,6 +170,8 @@ module.exports = async (WDR, Sighting) => {
 }
 
 async function Send_Subscription(WDR, match, Sighting, User) {
+
+  await WDR.Rate_Limit(WDR, User);
 
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
