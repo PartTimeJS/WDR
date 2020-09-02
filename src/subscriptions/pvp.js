@@ -109,7 +109,7 @@ module.exports = async (WDR, Sighting) => {
 
                     let memberRoles = member.roles.cache.map(r => r.id);
 
-                    let authorized = await WDR.Check_Roles(memberRoles, Sighting.discord.allowed_roles);
+                    let authorized = await WDR.Check_Roles(memberRoles, discord.allowed_roles);
                     if (authorized) {
 
                       if (User.geotype == "city") {

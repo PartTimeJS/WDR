@@ -58,7 +58,7 @@ module.exports = async (WDR, RAID) => {
 
             let memberRoles = member.roles.cache.map(r => r.id);
 
-            let authorized = await WDR.Check_Roles(memberRoles, RAID.discord.allowed_roles);
+            let authorized = await WDR.Check_Roles(memberRoles, discord.allowed_roles);
             if (authorized) {
 
               if (User.geotype == "city") {
