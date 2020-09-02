@@ -34,6 +34,7 @@ module.exports = (WDR, message, server) => {
               guild_id,
               guild_name,
               bot,
+              status,
               geotype,
               areas,
               quest_time
@@ -44,6 +45,7 @@ module.exports = (WDR, message, server) => {
               ${message.guild.id},
               '${server.name}',
               ${next_bot},
+              1,
               '${"areas"}',
               '${server.name}',
               '${quest_delivery}'
@@ -64,7 +66,11 @@ module.exports = (WDR, message, server) => {
                 areas: server.name,
                 location: null,
                 locations: null,
-                status: 1
+                status: 1,
+                pokemon_status: 1,
+                raid_status: 1,
+                quest_status: 1,
+                pvp_status: 1
               });
             }
           }
