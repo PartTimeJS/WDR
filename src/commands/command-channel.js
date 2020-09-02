@@ -65,7 +65,7 @@ module.exports = (WDR, Message) => {
             }
           }
 
-          if (User.guild_name === 'Migrated' || User.areas === 'undefined') {
+          if (Message.member.db.guild_name === 'Migrated' || Message.member.db.areas === 'undefined') {
             WDR.wdrDB.query(`
                 UPDATE
                     wdr_users
