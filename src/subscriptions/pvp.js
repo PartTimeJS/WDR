@@ -3,6 +3,8 @@ var CPs = [1000, 2000];
 
 module.exports = async (WDR, Sighting) => {
 
+  let discord = Sighting.discord;
+
   Sighting.form_id = Sighting.form_id ? Sighting.form_id : 0;
 
   let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
