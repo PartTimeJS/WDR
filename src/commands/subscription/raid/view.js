@@ -23,7 +23,15 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         for (let s = 0, slen = subscriptions.length; s < slen; s++) {
           let choice = s + 1;
           let sub_data = subscriptions[s];
-          sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : "All Raid Bosses";
+          if (sub_data.pokemon_id < 0) {
+            if (sub_data.pokemon_id == -1) {
+              sub_data.pokemon_name = "All Raids & Eggs";
+            } else if (sub_data.pokemon_id == -2) {
+              sub_data.pokemon_name = "All Eggs";
+            }
+          } else {
+            sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : "All Raid Bosses";
+          }
           sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
           let data = "";
           if (sub_data.gym_id !== 0) {

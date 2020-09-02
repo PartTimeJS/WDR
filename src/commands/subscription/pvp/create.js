@@ -60,7 +60,15 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         // } else {
         //   create.min_cp = 0;
         // }
+
         create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
+        if (create.geotype == "location") {
+          create.areas = Member.db.location.name;
+        } else if (create.geotype == "areas") {
+          create.areas = Member.db.areas;
+        } else {
+          create.areas = "All";
+        }
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
         if (create.confirm === false) {

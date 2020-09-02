@@ -132,8 +132,14 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
 
         if (create.gym === 0) {
           create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, gym_name_array, gym_detail_array, gym_collection);
+          if (create.geotype == "location") {
+            create.areas = Member.db.location.name;
+          } else if (create.geotype == "areas") {
+            create.areas = Member.db.areas;
+          }
         } else {
           create.geotype = "city";
+          sub.areas = "All"
         }
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, gym_name_array, gym_detail_array, gym_collection);
