@@ -51,6 +51,9 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.generation && sub_data.generation !== 0) {
             data += "　Gen: `" + sub_data.generation + "`\n";
           }
+          // if (sub_data.geotype == 'city') {
+          //   data += "　Area: `Entire Scan Area`";
+          // }
           if (!data) {
             data = "　`All" + "`\n";;
           }
