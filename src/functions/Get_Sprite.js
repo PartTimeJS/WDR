@@ -31,7 +31,7 @@ module.exports = (WDR, Object, type) => {
 
     sprite = WDR.Config.SPRITE_URL + "pokemon_icon_" + pokemon_id + form_id + mega_id + costume_id + ".png";
 
-  } else if (Object.rewards.length > 0) {
+  } else if (Object.rewards && Object.rewards.length > 0) {
     switch (Object.rewards[0].type) {
       case 1:
         sprite = null;
