@@ -148,10 +148,10 @@ module.exports = async (WDR, Sighting) => {
                 WDR.Console.error(WDR, "[DEBUG] [src/subs/pokemon.js] User: " + User.user_name + " | User geotype has a bad value.", User);
               }
             } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-              WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + Sighting.encounter_id + " | " + User.user_name + " IS NOT an Authorized User in " + discord.name + ".");
+              WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + Sighting.encounter_id + " | " + User.user_name + " IS NOT an Authorized User in " + discord.name + " (" + discord.id + ").", discord.allowed_roles);
             }
           } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-            WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + Sighting.encounter_id + " | " + User.user_name + " IS NOT a Member of " + discord.name + ".");
+            WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + Sighting.encounter_id + " | " + User.user_name + " IS NOT a Member of " + discord.name + " (" + discord.id + ").", discord);
           }
         }
       }
