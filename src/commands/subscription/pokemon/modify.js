@@ -121,7 +121,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         modified.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, old.max_lvl, "Please respond with 'Next', a Number between 0 and " + WDR.Max_Pokemon_Level + ", or type 'All'. Type 'Cancel' to Stop.", modified);
       }
 
-      if (sub.pokemon > 0) {
+      if (modified.pokemon_id > 0) {
         modified.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, old.gender, "Please respond with 'Next', 'Male', 'Female', or type 'All'.", modified);
         modified.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, old.size, "Please respond with 'Next', 'Big', 'Large', 'Normal', 'Small', 'Tiny' or 'All'.", modified);
         modified.size = modified.size.toLowerCase();
