@@ -126,14 +126,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         }
 
         if (create.gym === 0) {
-          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, gym_name_array, gym_detail_array, gym_collection);
-          if (create.areas == Message.Discord.name) {
-            create.geotype = "city";
-          } else {
-            create.geotype = Member.db.geotype;
-          }
+          create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, gym_name_array, gym_detail_array, gym_collection);
         } else {
-          create.areas = Message.Discord.name;
           create.geotype = "city";
         }
 
@@ -166,8 +160,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pvp_status},
-                '${Member.db.geotype}',
-                '${create.areas}',
+                '${create.geotype}',
+                '${Member.db.areas}',
                 '${JSON.stringify(Member.db.location)}',
                 'raid',
                 ${create.pokemon_id},
