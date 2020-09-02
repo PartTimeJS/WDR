@@ -1,6 +1,8 @@
 const fs = require('fs-extra');
 
 
+
+
 const availableLures = ["Normal", "Glacial", "Mossy", "Magnetic"];
 
 const raid = {
@@ -48,7 +50,7 @@ const functions = {
   invasion: invasion
 }
 
-module.exports = async (WDR, message, prefix, discord) => {
+module.exports = (WDR, message) => {
 
   let content = message.content.slice(1);
   let args = content.split(" ");
@@ -715,7 +717,7 @@ function SaveRaidFilter(filter) {
     "Egg_Levels": filter.Egg_Levels,
     "Ex_Eligible_Only": filter.Ex_Eligible_Only
   }
-  return fs.writeJSONSync('./filters/' + filter.name, saveFilter, {
+  return fs.writeJSONSync(WDR.Dir + "/configs/filters/" + filter.name, saveFilter, {
     spaces: '\t',
     EOL: '\n'
   });
@@ -730,7 +732,7 @@ function SavePokemonFilter(filter) {
 
   delete saveFilter.name;
 
-  return fs.writeJSONSync('./filters/' + filter.name, saveFilter, {
+  return fs.writeJSONSync(WDR.Dir + "/configs/filters/" + filter.name, saveFilter, {
     spaces: '\t',
     EOL: '\n'
   });
@@ -742,7 +744,7 @@ function SaveLureFilter(filter) {
     "Lure_Type": filter.Lure_Type
   }
 
-  return fs.writeJSONSync('./filters/' + filter.name, saveFilter, {
+  return fs.writeJSONSync(WDR.Dir + "/configs/filters/" + filter.name, saveFilter, {
     spaces: '\t',
     EOL: '\n'
   });
@@ -757,7 +759,7 @@ function SaveInvasionFilter(filter) {
     }
   }
 
-  return fs.writeJSONSync('./filters/' + filter.name, saveFilter, {
+  return fs.writeJSONSync(WDR.Dir + "/configs/filters/" + filter.name, saveFilter, {
     spaces: '\t',
     EOL: '\n'
   });
@@ -769,7 +771,7 @@ function SaveQuestFilter(filter) {
     "Rewards": filter.Rewards
   }
 
-  return fs.writeJSONSync('./filters/' + filter.name, saveFilter, {
+  return fs.writeJSONSync(WDR.Dir + "/configs/filters/" + filter.name, saveFilter, {
     spaces: '\t',
     EOL: '\n'
   });
