@@ -89,7 +89,7 @@ module.exports = async (WDR, Sighting) => {
           let User = matching[m];
           User.location = JSON.parse(User.location);
 
-          console.log(User)
+          console.log("1", User.user_name)
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
           if (member) {
@@ -103,7 +103,7 @@ module.exports = async (WDR, Sighting) => {
 
               if (User.geotype == "city") {
                 if (User.guild_name == Sighting.area.default) {
-                  console.log(User.user_name);
+                  console.log("2", User.user_name);
                   match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
                   Send_Subscription(WDR, match, Sighting, User);
                 }
