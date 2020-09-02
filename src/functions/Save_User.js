@@ -1,7 +1,6 @@
 const moment = require("moment-timezone");
 const GeoTz = require("geo-tz");
 
-// SAVE A USER IN THE USER TABLE
 module.exports = (WDR, message, server) => {
   return new Promise(async resolve => {
     WDR.wdrDB.query(`
@@ -35,6 +34,7 @@ module.exports = (WDR, message, server) => {
               guild_id,
               guild_name,
               bot,
+              geotype,
               areas,
               quest_time
             )
@@ -44,6 +44,7 @@ module.exports = (WDR, message, server) => {
               ${message.guild.id},
               '${server.name}',
               ${next_bot},
+              '${"areas"}',
               '${server.name}',
               '${quest_delivery}'
             );`,
@@ -53,7 +54,17 @@ module.exports = (WDR, message, server) => {
             } else {
               WDR.wdrDB.query(`UPDATE wdr_info SET next_bot = ${next_bot};`);
               WDR.Console.info(WDR, "[Save_User.js] Added " + message.member.user.tag + " to the wdr_users Table.");
-              return resolve();
+              return resolve({
+                user_id: message.member.id,
+                user_name: user_name,
+                guild_id: message.guild.id,
+                guild_name: server.name,
+                bot: next_bot,
+                geotype: "areas",
+                areas: server.name,
+                location: null,
+                locations: null
+              });
             }
           }
         );
