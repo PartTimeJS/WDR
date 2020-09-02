@@ -165,5 +165,6 @@ Rewards[]             = Spinda
 [DEBUG]
 Processing_Speed      = DISABLED
 Map_Tiles             = DISABLED
-Pokemon               = DISABLED
-PvP                   = DISABLED
+Pokemon_Subs          = DISABLED
+PvP_Subs              = DISABLED
+Raid_Subs             = DISABLED
