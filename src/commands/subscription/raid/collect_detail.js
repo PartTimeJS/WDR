@@ -24,7 +24,12 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
       case "Name":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Which Raid Boss would you like to Subscribe to?")
+          .setTitle("Which would you like to Subscribe to?")
+          .setDescription("Choices:" +
+            "　**Pokemon Name**　-　Only that Boss." +
+            "　'**Boss**'　-　All Raid Bosses only." +
+            "　'**Egg**'　-　All Eggs only." +
+            "　'**All**'　-　All Bosses and Eggs.")
           .setFooter(requirements);
         break;
 
@@ -280,10 +285,13 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(old_data);
                 break;
               case (CollectedMsg.content.toLowerCase() == "all"):
+                collector.stop(-1);
+                break;
+              case (CollectedMsg.content.toLowerCase() == "boss"):
                 collector.stop(0);
                 break;
               case (CollectedMsg.content.toLowerCase() == "egg"):
-                collector.stop(-1);
+                collector.stop(-2);
                 break;
               default:
                 let valid = await WDR.Pokemon_ID_Search(WDR, CollectedMsg.content.split(" ")[0]);
