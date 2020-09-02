@@ -101,13 +101,18 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           create.pokemon_id = create.pokemon.id;
           create.forms = create.pokemon.forms;
           create.form_ids = create.pokemon.form_ids;
-        } else if (create.pokemon < 0) {
-          create.name += " Egg";
-          create.boss = -1;
+        } else if (create.pokemon === -2) {
+          create.name += " Eggs";
+          create.boss = "Eggs";
+          create.pokemon_id = -2;
+        } else if (create.pokemon === -1) {
+          create.name += " Eggs & Bosses";
+          create.boss = "Eggs & Bosses";
           create.pokemon_id = 0;
         } else {
+          create.name += " Bosses";
+          create.boss = "Bosses";
           create.pokemon_id = 0;
-          create.boss = 0;
         }
 
         if (create.pokemon_id === 0) {
