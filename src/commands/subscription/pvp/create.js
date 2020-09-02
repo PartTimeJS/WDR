@@ -60,12 +60,8 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
         // } else {
         //   create.min_cp = 0;
         // }
-        create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
-        if (create.areas == Message.Discord.name) {
-          create.geotype = "city";
-        } else {
-          create.geotype = Member.db.geotype;
-        }
+        create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
+
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
 
         let query = `
@@ -96,8 +92,8 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pvp_status},
-                '${Member.db.geotype}',
-                '${create.areas}',
+                '${create.geotype}',
+                '${Member.db.areas}',
                 '${JSON.stringify(Member.db.location)}',
                 'pvp',
                 ${create.pokemon_id},

@@ -235,19 +235,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 collector.stop(object);
                 break;
               case "yes":
-                if (Member.db.geotype == "location") {
-                  if (!Member.db.location || Member.db.location == null) {
-                    collector.stop("UNSET");
-                  } else {
-                    collector.stop(Member.db.location.name);
-                  }
-                } else if (Member.db.geotype == "areas") {
-                  collector.stop(Member.db.areas);
-                }
+                collector.stop(Member.db.geotype);
                 break;
               case "all":
               case "no":
-                collector.stop(Message.Discord.name);
+                collector.stop("city");
                 break;
               default:
                 CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
