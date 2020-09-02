@@ -93,7 +93,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
         break;
     }
 
-    Message.channel.send(instruction).catch(console.error).then(CollectorMsg => {
+    Message.channel.send(instruction).catch(console.error).then(msg => {
 
       collector.on("collect", async CollectedMsg => {
 
