@@ -1,5 +1,7 @@
 module.exports = async (WDR, Raid) => {
 
+  let discord = Raid.discord;
+
   let query_id = "";
   if (Raid.pokemon_id < 1) {
     query_id = -1;
@@ -52,42 +54,73 @@ module.exports = async (WDR, Raid) => {
           Raid.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Raid.body;
         }
 
-        let member = WDR.Bot.guilds.cache.get(Raid.discord.id).members.cache.get(User.user_id);
-        if (member) {
+        for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
-          let memberRoles = member.roles.cache.map(r => r.id);
+          let User = matching[m];
 
-          let authorized = await WDR.Check_Roles(memberRoles, Sighting.discord.allowed_roles);
-          if (authorized) {
+          User.location = JSON.parse(User.location);
 
-            if (User.geotype == "city") {
-              if (User.guild_name == Raid.area.default) {
-                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                Send_Subscription(WDR, match, Raid, User);
+          let member = WDR.Bot.guilds.cache.get(Raid.discord.id).members.cache.get(User.user_id);
+          if (member) {
+
+            let memberRoles = member.roles.cache.map(r => r.id);
+
+            let authorized = await WDR.Check_Roles(memberRoles, Raid.discord.allowed_roles);
+            if (authorized) {
+
+              let match = {};
+
+              if (User.geotype == "city") {
+                if (User.guild_name == Raid.area.default) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | Sent city sub to " + User.user_name + ".");
+                  }
+                  Send_Subscription(WDR, match, Raid, User);
+                } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + Raid.area.default+"`")
+                }
+
+              } else if (User.geotype == "areas") {
+                let defGeo = (User.areas.indexOf(Raid.area.default) >= 0);
+                let mainGeo = (User.areas.indexOf(Raid.area.main) >= 0);
+                let subGeo = (User.areas.indexOf(Raid.area.sub) >= 0);
+                if (defGeo || mainGeo || subGeo) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | Sent area sub to " + User.user_name + ".");
+                  }
+                  Send_Subscription(WDR, match, Raid, User);
+                } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | User: " + User.user_name + " | Failed Area Geofence.")
+                }
+
+              } else if (User.geotype == "location") {
+                let distance = WDR.Distance.between({
+                  lat: Raid.latitude,
+                  lon: Raid.longitude
+                }, {
+                  lat: User.location.coords.split(",")[0],
+                  lon: User.location.coords.split(",")[1]
+                });
+                let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+                if (loc_dist > distance) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | Sent location sub to " + User.user_name + ".");
+                  }
+                  Send_Subscription(WDR, match, Raid, User);
+                }
+              } else {
+                WDR.Console.error(WDR, "[DEBUG] [src/subs/raids.js] User: " + User.user_name + " | User geotype has a bad value.", User);
               }
-
-            } else if (User.geotype == "areas") {
-              let defGeo = (User.areas.indexOf(Raid.area.default) >= 0);
-              let mainGeo = (User.areas.indexOf(Raid.area.main) >= 0);
-              let subGeo = (User.areas.indexOf(Raid.area.sub) >= 0);
-              if (defGeo || mainGeo || subGeo || cityGeo) {
-                match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                Send_Subscription(WDR, match, Raid, User);
-              }
-
-            } else if (User.geotype == "location") {
-              let distance = WDR.Distance.between({
-                lat: Sighting.latitude,
-                lon: Sighting.longitude
-              }, {
-                lat: User.location.coords.split(",")[0],
-                lon: User.location.coords.split(",")[1]
-              });
-              let loc_dist = WDR.Distance(User.location.radius + " km");
-              if (loc_dist > distance) {
-                Send_Subscription(WDR, Raid, User);
-              }
+            } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+              WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | " + User.user_name + " IS NOT an Authorized User in " + discord.name + " (" + discord.id + ").");
+              console.info("[DEBUG] [src/subs/raids.js] Allowed Roles: ", discord.allowed_roles);
+              console.info("[DEBUG] [src/subs/raids.js] User Roles: ", memberRoles);
             }
+          } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+            WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + Raid.gym_id + " | " + User.user_name + " IS NOT a Member of " + discord.name + " (" + discord.id + ").", discord);
           }
         }
       }
@@ -98,7 +131,7 @@ module.exports = async (WDR, Raid) => {
   return;
 }
 
-async function Send_Subscription() {
+async function Send_Subscription(WDR, match, Raid, User) {
   match.id = Raid.gym_id;
   match.lvl = Raid.level;
   match.gym = Raid.gym_name ? Raid.gym_name : "No Name";
