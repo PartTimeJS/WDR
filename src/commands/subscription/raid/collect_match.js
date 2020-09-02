@@ -31,7 +31,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         let description = "";
         for (let mu = 0, mulen = object.length; mu < mulen; mu++) {
           let match = object[mu];
-          match.Discord = Message.Discord;
           let match_area = await WDR.Get_Area(WDR, match);
           let match_name = "";
           if (area.sub) {

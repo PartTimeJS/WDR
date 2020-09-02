@@ -27,7 +27,7 @@ module.exports = async (WDR, Message) => {
       let area = await WDR.Get_Areas(WDR, {
         latitude: gym.lat,
         longitude: gym.lon,
-        Discord: Message.Discord,
+        Discord: Message.discord,
         area: {}
       });
       let gym_name = "";

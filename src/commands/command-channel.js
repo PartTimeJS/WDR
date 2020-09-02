@@ -12,7 +12,7 @@ module.exports = (WDR, Message) => {
 
     if (Message.guild.id == Server.id && Server.command_channels.indexOf(Message.channel.id) >= 0) {
 
-      Message.Discord = Server;
+      Message.discord = Server;
 
       // DELETE THE MESSAGE
       //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
