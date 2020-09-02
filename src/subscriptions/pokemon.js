@@ -94,49 +94,44 @@ module.exports = async (WDR, Sighting) => {
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
           if (member) {
 
-            // if (Sighting.pokemon_id === 1) {
-            //   console.log("2")
-            // }
-
             let memberRoles = member.roles.cache.map(r => r.id);
 
-            for (let r = 0, rlen = Sighting.Discord.allowed_roles.length; r < rlen; r++) {
-              if (memberRoles.includes(Sighting.Discord.allowed_roles[r])) {
+            let authorized = await WDR.Check_Roles(memberRoles, Sighting.Discord.allowed_roles);
+            if (authorized) {
+              console.log("AUTHORIZED")
+              let match = {};
 
-                let match = {};
-
-                if (User.geotype == "city") {
-                  if (User.guild_name == Sighting.area.default) {
-                    console.log(User.user_name);
-                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                    Send_Subscription(WDR, match, Sighting, User);
-                  }
-
-                } else if (User.geotype == "areas") {
-                  let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
-                  let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
-                  let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
-                  if (defGeo || mainGeo || subGeo) {
-                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                    Send_Subscription(WDR, match, Sighting, User);
-                  }
-
-                } else if (User.geotype == "location") {
-                  let distance = WDR.Distance.between({
-                    lat: Sighting.latitude,
-                    lon: Sighting.longitude
-                  }, {
-                    lat: User.location.coords.split(",")[0],
-                    lon: User.location.coords.split(",")[1]
-                  });
-                  let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
-                  if (loc_dist > distance) {
-                    match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                    Send_Subscription(WDR, match, Sighting, User);
-                  }
+              if (User.geotype == "city") {
+                if (User.guild_name == Sighting.area.default) {
+                  console.log(User.user_name);
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  Send_Subscription(WDR, match, Sighting, User);
                 }
-                break;
+
+              } else if (User.geotype == "areas") {
+                let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+                let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+                let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+                if (defGeo || mainGeo || subGeo) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  Send_Subscription(WDR, match, Sighting, User);
+                }
+
+              } else if (User.geotype == "location") {
+                let distance = WDR.Distance.between({
+                  lat: Sighting.latitude,
+                  lon: Sighting.longitude
+                }, {
+                  lat: User.location.coords.split(",")[0],
+                  lon: User.location.coords.split(",")[1]
+                });
+                let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+                if (loc_dist > distance) {
+                  match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                  Send_Subscription(WDR, match, Sighting, User);
+                }
               }
+              break;
             }
           }
         }
