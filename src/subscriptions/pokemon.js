@@ -90,28 +90,26 @@ module.exports = async (WDR, Sighting) => {
           User.location = JSON.parse(User.location);
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
-          console.log("Discord ID: ", Sighting.Discord.id);
-          console.log("Member:", member.id);
           if (member) {
+            console.log(User.user_name + " *IS* a Member of " + Sighting.Discord.name)
 
             let memberRoles = member.roles.cache.map(r => r.id);
-            console.log(member.roles.cache);
-            console.log(memberRoles);
-            console.log(Sighting.Discord.allowed_roles);
 
             let authorized = await WDR.Check_Roles(memberRoles, Sighting.Discord.allowed_roles);
+            console.log(User.user_name + " is an AUTHORIZED User");
             if (authorized) {
 
               let match = {};
 
               if (User.geotype == "city") {
                 if (User.guild_name == Sighting.area.default) {
-                  console.log("2", User.user_name);
+                  console.log("city", User.user_name);
                   match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
                   Send_Subscription(WDR, match, Sighting, User);
                 }
 
               } else if (User.geotype == "areas") {
+                console.log("areas", User.user_name);
                 let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
                 let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
                 let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
@@ -121,6 +119,7 @@ module.exports = async (WDR, Sighting) => {
                 }
 
               } else if (User.geotype == "location") {
+                console.log("location", User.user_name);
                 let distance = WDR.Distance.between({
                   lat: Sighting.latitude,
                   lon: Sighting.longitude
@@ -134,8 +133,9 @@ module.exports = async (WDR, Sighting) => {
                   Send_Subscription(WDR, match, Sighting, User);
                 }
               }
-              break;
             }
+          } else {
+            console.log(User.user_name + " *IS NOT* a Member of " + Sighting.Discord.name);
           }
         }
       }
