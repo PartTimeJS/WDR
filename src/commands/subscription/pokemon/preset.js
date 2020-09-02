@@ -11,15 +11,17 @@ module.exports = async (WDR, Functions, Message, Member) => {
   let preset_name = preset_names[preset];
   preset = WDR.Presets.Pokemon.get(preset_name);
 
-  // RETRIEVE AREA CONFIMATION FROM USER
   preset.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, undefined, "Please respond with 'Yes' or 'No'", preset);
   if (preset.areas == Message.discord.name) {
     preset.geotype = "city";
   } else {
     preset.geotype = Member.db.geotype;
   }
-  // RETRIEVE CONFIRMATION FROM USER
+
   preset.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type 'Yes' or 'No'. Subscription will be saved.", preset);
+  if (preset.confirm === false) {
+    Functions.Cancel(WDR, Functions, Message, Member);
+  }
 
   WDR.wdrDB.query(`
       INSERT INTO

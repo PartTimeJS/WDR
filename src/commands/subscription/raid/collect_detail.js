@@ -26,9 +26,9 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Which would you like to Subscribe to?")
           .setDescription("Choices:" +
-            "　**Pokemon Name**　-　Only that Boss." +
-            "　'**Boss**'　-　All Raid Bosses only." +
-            "　'**Egg**'　-　All Eggs only." +
+            "　**Pokemon Name**　-　Only that Boss." + "\n" +
+            "　'**Boss**'　-　All Raid Bosses only." + "\n" +
+            "　'**Egg**'　-　All Eggs only." + "\n" +
             "　'**All**'　-　All Bosses and Eggs.")
           .setFooter(requirements);
         break;
@@ -44,12 +44,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
       case "Confirm-Add":
 
-        let boss = "";
-        if (sub.pokemon_id > 0) {
-          boss = WDR.Master.Pokemon[sub.pokemon_id].name
-        } else if (sub.gender == 2) {
-          boss = "All"
-        }
+        console.log(sub)
 
         let gym = "";
         if (sub.gym === 0) {
@@ -61,7 +56,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Does all of this look correct?")
-          .setDescription("Boss: `" + boss + "`\n" +
+          .setDescription("Boss: `" + sub.boss + "`\n" +
             "Gym: `" + gym + "`\n" +
             "Min Lvl: `" + sub.min_lvl + "`\n" +
             "Max Lvl: `" + sub.max_lvl + "`\n" +
@@ -242,8 +237,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 break;
               case "no":
               case "cancel":
-                return Functions.Cancel(WDR, Functions, Message, Member);
-                collector.stop(null);
+                collector.stop(false);
                 break;
               default:
                 CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({

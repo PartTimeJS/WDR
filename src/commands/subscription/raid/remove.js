@@ -87,7 +87,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                   .setDescription("Saved to the Database.")
                   .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
                 return Message.channel.send(subscription_success).then(BotMsg => {
-                  return Functions.OptionCollect(WDR, Functions, "remove", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+                  return Functions.OptionCollect(WDR, Functions, "complete", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
                 });
               }
             }

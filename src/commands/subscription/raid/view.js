@@ -51,7 +51,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
             "Pokemon Status: `" + r_status + "`\n\n" + sub_list)
           .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
         Message.channel.send(raidSubs).catch(console.error).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+          return Functions.OptionCollect(WDR, Functions, "complete", Message, BotMsg, Member, gym_name_array, gym_detail_array, gym_collection);
         });
       }
     }

@@ -98,7 +98,10 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
         }
 
-        let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
+        create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
+        if (create.confirm === false) {
+          Functions.Cancel(WDR, Functions, Message, Member);
+        }
 
         let query =
           `INSERT INTO

@@ -212,12 +212,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             switch (CollectedMsg.content.toLowerCase()) {
               case "save":
               case "yes":
-                collector.stop("Yes");
+                collector.stop(true);
                 break;
               case "no":
               case "cancel":
-                return Functions.Cancel(WDR, Functions, Message, Member);
-                collector.stop(null);
+                collector.stop(false);
                 break;
               default:
                 CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({

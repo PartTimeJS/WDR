@@ -137,6 +137,9 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         }
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, gym_name_array, gym_detail_array, gym_collection);
+        if (create.confirm === false) {
+          Functions.Cancel(WDR, Functions, Message, Member);
+        }
 
         let query = `
           INSERT INTO
@@ -202,7 +205,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 .setDescription("Saved to the Database.")
                 .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
               Message.channel.send(subscription_success).then(msg => {
-                return Functions.OptionCollect(WDR, Functions, "create", Message, msg, Member);
+                return Functions.OptionCollect(WDR, Functions, "complete", Message, msg, Member);
               });
             }
           }

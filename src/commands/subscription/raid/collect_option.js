@@ -62,25 +62,38 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, gym_name_a
 
     switch (arg) {
       case "cancel":
-        return Functions.Cancel(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.Cancel(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "add":
-        return Functions.Create(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.Create(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "preset":
-        return Functions.Preset(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.Preset(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "remove":
-        return Functions.Remove(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.Remove(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "edit":
-        return Functions.Modify(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.Modify(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "view":
-        return Functions.View(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        Functions.View(WDR, Functions, OriginalMsg, Member, gym_name_array, gym_detail_array, gym_collection);
+        break;
       case "resume":
       case "pause":
-        return Functions.Status(WDR, Functions, OriginalMsg, Member, arg);
+        Functions.Status(WDR, Functions, OriginalMsg, Member, arg);
+        break;
       case "time":
-        return Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
+        if (source != "complete") {
+          Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
+        }
+        break;
       default:
         return;
     }
+
+    // END
+    return;
   });
 
   // END
