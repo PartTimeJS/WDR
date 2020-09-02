@@ -53,12 +53,12 @@ module.exports = async (WDR, raid, area, server, timezone) => {
         }
 
         let member = WDR.Bot.guilds.cache.get(Raid.Discord.id).members.cache.get(User.user_id);
-        let roles = member.roles.cache.map(r => r.id);
+        if (member) {
 
-        for (let r = 0, rlen = Raid.Discord.allowed_roles.length; r < rlen; r++) {
-          let no_double = true;
-          if (roles.includes(Raid.Discord.allowed_roles[r]) && no_double) {
-            no_double = false;
+          let memberRoles = member.roles.cache.map(r => r.id);
+
+          let authorized = await WDR.Check_Roles(memberRoles, Sighting.Discord.allowed_roles);
+          if (authorized) {
 
             if (User.geotype == "city") {
               if (User.guild_name == Raid.area.default) {
