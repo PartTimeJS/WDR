@@ -26,7 +26,7 @@ exports.Load = function(WDR) {
     WDR.Console.info(WDR, "[load_modules.js] Loaded all feed filtering Modules.");
 
     delete require.cache[require.resolve(WDR.Dir + "/src/subscriptions/raids.js")];
-    Modules.Subscriptions.Eaids = require(WDR.Dir + "/src/subscriptions/raids.js");
+    Modules.Subscriptions.Raids = require(WDR.Dir + "/src/subscriptions/raids.js");
 
     delete require.cache[require.resolve(WDR.Dir + "/src/subscriptions/quests.js")];
     Modules.Subscriptions.Quests = require(WDR.Dir + "/src/subscriptions/quests.js");

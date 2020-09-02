@@ -1,4 +1,4 @@
-module.exports = async (WDR, raid, area, server, timezone) => {
+module.exports = async (WDR, Raid) => {
 
   let query_id = "";
   if (Raid.pokemon_id < 1) {
@@ -52,12 +52,12 @@ module.exports = async (WDR, raid, area, server, timezone) => {
           Raid.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Raid.body;
         }
 
-        let member = WDR.Bot.guilds.cache.get(Raid.Discord.id).members.cache.get(User.user_id);
+        let member = WDR.Bot.guilds.cache.get(Raid.discord.id).members.cache.get(User.user_id);
         if (member) {
 
           let memberRoles = member.roles.cache.map(r => r.id);
 
-          let authorized = await WDR.Check_Roles(memberRoles, Sighting.Discord.allowed_roles);
+          let authorized = await WDR.Check_Roles(memberRoles, Sighting.discord.allowed_roles);
           if (authorized) {
 
             if (User.geotype == "city") {

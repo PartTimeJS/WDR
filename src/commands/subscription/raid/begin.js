@@ -23,7 +23,7 @@ module.exports = async (WDR, Message) => {
 
   for (let ga = 0, galen = WDR.Gym_Array.length; ga < galen; ga++) {
     let gym = WDR.Gym_Array[ga];
-    if (WDR.PointInGeoJSON.polygon(Message.Discord.geofence, [gym.lon, gym.lat])) {
+    if (WDR.PointInGeoJSON.polygon(Message.discord.geofence, [gym.lon, gym.lat])) {
       let area = await WDR.Get_Areas(WDR, {
         latitude: gym.lat,
         longitude: gym.lon,

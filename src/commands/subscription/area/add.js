@@ -32,7 +32,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             case sub == "all":
               areas = Member.db.name;
               break;
-            case user[0].areas == Message.Discord.name:
+            case user[0].areas == Message.discord.name:
             case user[0].areas == "None":
               areas = [];
               areas.push(sub);

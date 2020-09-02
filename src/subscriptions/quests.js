@@ -69,7 +69,7 @@ async function Send_Subscription(WDR, Quest, User) {
 
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Quest.Embed);
 
-  match.member = WDR.Bot.guilds.cache.get(Quest.Discord.id).members.cache.get(User.user_id);
+  match.member = WDR.Bot.guilds.cache.get(Quest.discord.id).members.cache.get(User.user_id);
 
   if (match.member) {
 
@@ -144,7 +144,7 @@ async function Send_Subscription(WDR, Quest, User) {
             '${match.area.embed}',
             ${User.bot},
             '${DB_Date}',
-            '${Quest.Discord.id}'
+            '${Quest.discord.id}'
         )
       ;`;
     WDR.wdrDB.query(

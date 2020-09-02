@@ -91,8 +91,8 @@ module.exports = (WDR, SIGHTING) => {
           match.form = SIGHTING.form_name ? SIGHTING.form_name : "";
           match.form = SIGHTING.form_name == "[Normal]" ? "" : SIGHTING.form_name;
 
-          match.map_url = SIGHTING.Discord.map_url;
-          match.subscribe_url = SIGHTING.Discord.subscribe_url;
+          match.map_url = SIGHTING.discord.map_url;
+          match.subscribe_url = SIGHTING.discord.subscribe_url;
 
           match.iv = SIGHTING.internal_value;
           match.cp = SIGHTING.cp;

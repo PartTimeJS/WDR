@@ -5,7 +5,7 @@ module.exports = async (WDR, Message) => {
 
 
   // COMMAND CHANNEL HELP
-  // if ((Message.Discord.command_channels.indexOf(Message.channel.id) >= 0 && Message.Discord.spam_channels.indexOf(Message.channel.id) < 0) || Message.channel.type == "dm") {
+  // if ((Message.discord.command_channels.indexOf(Message.channel.id) >= 0 && Message.discord.spam_channels.indexOf(Message.channel.id) < 0) || Message.channel.type == "dm") {
   //
   //   embed = Embed_Config(WDR, match);
   //
@@ -15,7 +15,7 @@ module.exports = async (WDR, Message) => {
   // } else
 
 
-  if (Message.Discord.command_channels.indexOf(Message.channel.id) >= 0) {
+  if (Message.discord.command_channels.indexOf(Message.channel.id) >= 0) {
     let command_channel_help = new WDR.DiscordJS.MessageEmbed().setColor("000044")
       .setTitle("Available Subscription Commands:")
       .setDescription("" +
@@ -37,7 +37,7 @@ module.exports = async (WDR, Message) => {
 
 
 
-  } else if (Message.Discord.command_channels.indexOf(Message.channel.id) >= 0) {
+  } else if (Message.discord.command_channels.indexOf(Message.channel.id) >= 0) {
 
     let command_channel_help = new WDR.DiscordJS.MessageEmbed().setColor("000044")
       .setTitle("Available Subscription Commands:")
@@ -60,7 +60,7 @@ module.exports = async (WDR, Message) => {
 
 
 
-  } else if (Message.Discord.spam_channels.indexOf(Message.channel.id) >= 0) {
+  } else if (Message.discord.spam_channels.indexOf(Message.channel.id) >= 0) {
     help.setColor("000044")
     help.setAuthor("Available Spam Commands:")
     help.setDescription("Type a Command to view category options.");

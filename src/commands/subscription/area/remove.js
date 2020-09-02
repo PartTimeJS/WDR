@@ -30,7 +30,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
       if (sub == "all") {
         areas = [];
       } else if (sub == "reset") {
-        areas = Message.Discord.name;
+        areas = Message.discord.name;
       } else {
         areas.splice(area_index, 1);
       }

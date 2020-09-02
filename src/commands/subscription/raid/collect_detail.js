@@ -187,7 +187,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     });
                   } else {
                     for (let g = 0, glen = gyms.length; g < glen; g++) {
-                      if (!WDR.PointInGeoJSON.polygon(Message.Discord.geofence, [gym.lon, gym.lat])) {
+                      if (!WDR.PointInGeoJSON.polygon(Message.discord.geofence, [gym.lon, gym.lat])) {
                         gyms.splice(index, 1);
                       }
                     }

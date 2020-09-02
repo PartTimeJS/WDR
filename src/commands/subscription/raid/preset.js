@@ -14,7 +14,7 @@ module.exports = async (WDR, Functions, Message, Member, gym_name_array, gym_det
 
   // RETRIEVE AREA CONFIMATION FROM USER
   preset.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, undefined, "Please respond with 'Yes' or 'No'", preset);
-  if (preset.areas == Message.Discord.name) {
+  if (preset.areas == Message.discord.name) {
     preset.geotype = "city";
   } else {
     preset.geotype = Member.db.geotype;
