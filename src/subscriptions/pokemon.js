@@ -130,9 +130,11 @@ module.exports = async (WDR, Sighting) => {
                   }
 
                 } else if (User.geotype == "location") {
-                  if (Sighting.pokemon_id === 1) {
-                    console.log("2.location")
-                  }
+
+                  // if (Sighting.pokemon_id === 1) {
+                  //   console.log("2.location")
+                  // }
+
                   let distance = WDR.Distance.between({
                     lat: Sighting.latitude,
                     lon: Sighting.longitude
