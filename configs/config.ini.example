@@ -16,6 +16,8 @@ Admin_Enabled         = YES
 
 DOWN_ALERT            = ENABLED
 DOWN_MINS             = 10
+DOWN_USER_ID          = 329584924573040645
+
 
 #===============================================================================
 # Emoji Servers separate by a comma
