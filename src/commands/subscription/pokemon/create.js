@@ -95,12 +95,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
 
-          create.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
-          if (create.areas === 1) {
-            create.geotype = "city";
-          } else {
-            create.geotype = Member.db.geotype;
-          }
+          create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
         }
 
         let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
