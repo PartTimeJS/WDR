@@ -11,7 +11,11 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
   // FILTER COLLECT EVENT
   collector.on("collect", CollectedMsg => {
 
-    CollectedMsg.delete();
+    try {
+      CollectedMsg.delete();
+    } catch (e) {
+
+    }
 
     switch (CollectedMsg.content.toLowerCase()) {
       case "create":
@@ -35,7 +39,13 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
   // COLLECTOR HAS BEEN ENDED
   collector.on("end", (collected, msg) => {
 
-    BotMsg.delete();
+    if (BotMsg && BotMsg.channel.type != "dm") {
+      try {
+        BotMsg.delete();
+      } catch (e) {
+
+      }
+    }
 
     switch (msg) {
       case "create":

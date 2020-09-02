@@ -55,7 +55,13 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
   collector.on("end", (collected, arg) => {
 
-    BotMsg.delete();
+    if (BotMsg && BotMsg.channel.type != "dm") {
+      try {
+        BotMsg.delete();
+      } catch (e) {
+
+      }
+    }
 
     switch (arg) {
       case "cancel":
