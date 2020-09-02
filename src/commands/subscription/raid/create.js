@@ -139,7 +139,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           }
         } else {
           create.geotype = "city";
-          sub.areas = "All"
+          create.areas = "All"
         }
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, gym_name_array, gym_detail_array, gym_collection);
