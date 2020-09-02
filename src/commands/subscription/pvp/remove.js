@@ -53,12 +53,18 @@ module.exports = (WDR, Functions, Message, Member) => {
               wdr_subscriptions
           WHERE
               user_id = ${Message.author.id}
-              AND guild_id = ${Message.guild.id}
-              AND sub_type = 'pvp'
-              AND pokemon_id = ${remove.pokemon_id}
-              AND form = ${remove.form}
-              AND min_rank = ${remove.min_rank}
-              AND league = ${remove.league};
+                AND
+              guild_id = ${Message.guild.id}
+                AND
+              sub_type = 'pvp'
+                AND
+              pokemon_id = ${remove.pokemon_id}
+                AND
+              form = ${remove.form}
+                AND
+              min_rank = ${remove.min_rank}
+                AND 
+              league = '${remove.league}';
         `;
 
         WDR.wdrDB.query(
