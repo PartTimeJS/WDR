@@ -23,7 +23,7 @@ module.exports = {
 
   info: function(WDR, info, object) {
     if (info.includes("[DEBUG]")) {
-      console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info).bold.yellow);
+      console.log((info).bold.yellow);
       if (object) {
         console.log(object);
       }
