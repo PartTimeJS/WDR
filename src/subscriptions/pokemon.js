@@ -96,11 +96,6 @@ module.exports = async (WDR, Sighting) => {
           let member = await WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
           if (member) {
 
-            if (!member.roles) {
-              console.log("Member", member);
-              console.log(discord)
-            }
-
             let memberRoles = member.roles.cache.map(r => r.id);
 
             let authorized = await WDR.Check_Roles(memberRoles, discord.allowed_roles);
