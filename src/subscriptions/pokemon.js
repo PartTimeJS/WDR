@@ -82,7 +82,7 @@ module.exports = async (WDR, Sighting) => {
 
         Sighting.sprite = WDR.Get_Sprite(WDR, Sighting);
 
-        if (WDR.Config.PVP_PREGEN_TILES != "DISABLED") {
+        if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
           Sighting.body = await WDR.Generate_Tile(WDR, Sighting, "pokemon", Sighting.latitude, Sighting.longitude, Sighting.sprite);
           Sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Sighting.body;
         }
@@ -93,7 +93,7 @@ module.exports = async (WDR, Sighting) => {
 
           User.location = JSON.parse(User.location);
 
-          let member = WDR.Bot.guilds.cache.get(discord.id).members.cache.get(User.user_id);
+          let member = WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
           if (member) {
 
             let memberRoles = member.roles.cache.map(r => r.id);

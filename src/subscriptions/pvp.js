@@ -104,7 +104,7 @@ module.exports = async (WDR, Sighting) => {
                   let User = matching[m];
                   User.location = JSON.parse(User.location);
 
-                  let member = WDR.Bot.guilds.cache.get(Sighting.discord.id).members.cache.get(User.user_id);
+                  let member = WDR.Bot.guilds.cache.get(Sighting.discord.id).members.fetch(User.user_id);
                   if (member) {
 
                     let memberRoles = member.roles.cache.map(r => r.id);

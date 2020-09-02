@@ -9,7 +9,7 @@ module.exports = async (WDR, invasion, area, server, timezone) => {
   //      users.forEach((user,index) => {
   //
   //        //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
-  //        let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(user.user_id);
+  //        let member = WDR.Bot.guilds.cache.get(server.id).members.fetch(User.user_id);
   //        switch(true){
   //          case !member:
   //          case member == undefined: return;

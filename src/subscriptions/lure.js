@@ -10,7 +10,7 @@ module.exports = async (WDR, lure, area, server, timezone) => {
   //
   //        //FETCH THE GUILD MEMBER AND CHECK IF A ADMINISTRATOR/DONOR
   //        if(user.discord_id != server.id){return;}
-  //        let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(user.user_id);
+  //        let member = WDR.Bot.guilds.cache.get(server.id).members.fetch(User.user_id);
   //        switch(true){
   //          case !member:
   //          case member == undefined: return;
