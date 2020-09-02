@@ -69,6 +69,11 @@ module.exports = async (WDR, Sighting) => {
   WDR.wdrDB.query(
     query,
     async function(error, matching, fields) {
+
+      // if (Sighting.internal_value == 100) {
+      //   console.log(matching);
+      // }
+
       if (error) {
         WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
       } else if (matching && matching.length > 0) {
@@ -82,6 +87,7 @@ module.exports = async (WDR, Sighting) => {
 
         for (let m = 0, mlen = matching.length; m < mlen; m++) {
           let User = matching[m];
+          User.location = JSON.parse(User.location);
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
           if (member) {
@@ -98,12 +104,14 @@ module.exports = async (WDR, Sighting) => {
                 let match = {};
 
                 if (User.geotype == "city") {
+
                   // if (Sighting.pokemon_id === 1) {
                   //   console.log("2.city");
                   //   console.log(User)
                   //   console.log(User.guild_name + " " + Sighting.area.default)
                   //   console.log(User.guild_name == Sighting.area.default)
                   // }
+
                   if (User.guild_name == Sighting.area.default) {
                     match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
                     Send_Subscription(WDR, match, Sighting, User);
