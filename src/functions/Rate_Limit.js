@@ -50,7 +50,7 @@ module.exports = (WDR, User) => {
 
       setTimeout(function() {
         if (rateLimit[User.user_id].paused === false) {
-          WDR.Console.error(WDR, "[Rate_Limit.js] User " + User.user_name + " (" + User.user_id + ") is exceeding DM rate limits. User has been paused.");
+          WDR.Console.error(WDR, "[Rate_Limit.js] User " + User.user_name + " (" + User.user_id + ") has exceeded DM rate limits. User has been paused.");
           rateLimit[User.user_id].paused = true;
           let embed = new WDR.DiscordJS.MessageEmbed()
             .setColor("FF0000")
