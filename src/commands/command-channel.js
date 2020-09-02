@@ -42,14 +42,13 @@ module.exports = (WDR, Message) => {
       }
 
       // LOAD DATABASE RECORD BASED OFF OF ORIGIN SERVER_ID AND AUTHOR_ID
-      WDR.wdrDB.query(
-        `SELECT
-                  *
-               FROM
-                  wdr_users
-               WHERE
-                  user_id = ${Message.member.id}
-                  AND guild_id = ${Message.guild.id};`,
+      WDR.wdrDB.query(`
+          SELECT
+              *
+          FROM
+              wdr_users
+          WHERE
+              user_id = ${Message.member.id};`,
         async function(error, user, fields) {
           if (!user || !user[0]) {
             Message.member.db = await WDR.Save_User(WDR, Message, Server);
@@ -64,6 +63,17 @@ module.exports = (WDR, Message) => {
             if (Message.member.db.locations) {
               Message.member.db.locations = JSON.parse(Message.member.db.locations);
             }
+          }
+
+          if (User.guild_name === 'Migrated' || User.areas === 'undefined') {
+            WDR.wdrDB.query(`
+                UPDATE
+                    wdr_users
+                SET
+                    guild_name = '${Message.discord.name}',
+                    areas = '${Message.discord.name}'
+                WHERE
+                    user_id = ${Message.member.id};`);
           }
 
           let command = Message.content.split(" ")[0].slice(1);
