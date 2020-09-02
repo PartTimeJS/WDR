@@ -63,7 +63,8 @@ module.exports = (WDR, message, server) => {
                 geotype: "areas",
                 areas: server.name,
                 location: null,
-                locations: null
+                locations: null,
+                status: 1
               });
             }
           }
