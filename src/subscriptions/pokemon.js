@@ -90,6 +90,8 @@ module.exports = async (WDR, Sighting) => {
           User.location = JSON.parse(User.location);
 
           let member = WDR.Bot.guilds.cache.get(Sighting.Discord.id).members.cache.get(User.user_id);
+          console.log("Member:", member.id);
+          console.log("Discord ID: ", Sighting.Discord.id);
           if (member) {
 
             let memberRoles = member.roles.cache.map(r => r.id);
@@ -99,6 +101,7 @@ module.exports = async (WDR, Sighting) => {
 
             let authorized = await WDR.Check_Roles(memberRoles, Sighting.Discord.allowed_roles);
             if (authorized) {
+
               let match = {};
 
               if (User.geotype == "city") {
