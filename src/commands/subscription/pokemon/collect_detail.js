@@ -106,7 +106,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
 
         let form = "";
-        console.log(sub);
         if (sub.form === 0) {
           form = "All";
         } else {
