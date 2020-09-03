@@ -93,12 +93,12 @@ module.exports = async (WDR, Sighting) => {
 
           User.location = JSON.parse(User.location);
 
-          let member = await WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
-          if (member) {
+          let subMember = await WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
+          if (subMember) {
 
-            let memberRoles = member.roles.cache.map(r => r.id);
+            let subMemberRoles = subMember.roles.cache.map(r => r.id);
 
-            let authorized = await WDR.Check_Roles(memberRoles, discord.allowed_roles);
+            let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles);
             if (authorized) {
 
               let match = {};
