@@ -102,8 +102,8 @@ module.exports = (WDR, Message) => {
             if (Cmd) {
               Cmd(WDR, Message);
             }
-          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js")) {
-            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
+          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/" + command.toLowerCase() + ".js")) {
+            let Cmd = require(WDR.Dir + "/src/commands/" + command.toLowerCase() + ".js");
             if (Cmd) {
               Cmd(WDR, Message);
             }
@@ -124,7 +124,7 @@ module.exports = (WDR, Message) => {
                   UPDATE
                       wdr_users
                   SET
-                      user_name = '${Message.member.user.username}'
+                      user_name = '${Message.member.user.username.replace(/[\W]+/g, "")}'
                   WHERE
                       user_id = ${Message.member.id};
                 `);
@@ -132,7 +132,7 @@ module.exports = (WDR, Message) => {
                   UPDATE
                       wdr_subscriptions
                   SET
-                      user_name = '${Message.member.user.username}'
+                      user_name = '${Message.member.user.username.replace(/[\W]+/g, "")}'
                   WHERE
                       user_id = ${Message.member.id};
                 `);
