@@ -9,7 +9,9 @@ const botOptions = {
   messageCacheLifetime: 120,
   messageSweepInterval: 60
 };
-const Bot = new Discord.Client(botOptions);
+const Bot = new Discord.Client({
+  fetchAllMembers: true
+});
 const ALPHA = new Discord.Client(botOptions);
 const BRAVO = new Discord.Client(botOptions);
 const CHARLIE = new Discord.Client(botOptions);
