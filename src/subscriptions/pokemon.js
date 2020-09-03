@@ -97,9 +97,9 @@ module.exports = async (WDR, Sighting) => {
           //let subMember = await subGuild.members.fetch(User.user_id);
           let subMember = await subGuild.members.cache.get(User.user_id);
           if (subMember) {
-
+            let subMemberRoles;
             try {
-              let subMemberRoles = subMember.roles.cache.map(r => r.id);
+              subMemberRoles = await subMember.roles.cache.map(r => r.id);
             } catch (err) {
               console.log("discord", discord);
               console.log("User", User);

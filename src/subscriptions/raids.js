@@ -51,13 +51,23 @@ module.exports = async (WDR, RAID) => {
           let allEggs = (User.pokemon_id === -2 && RAID.pokemon_id < 1);
           if (bossCheck || allRaids || allEggs) {
 
-            let subMember = await WDR.Bot.guilds.cache.get(discord.id).members.fetch(User.user_id);
+            let subGuild = await WDR.Bot.guilds.cache.get(discord.id);
+            //let subMember = await subGuild.members.fetch(User.user_id);
+            let subMember = await subGuild.members.cache.get(User.user_id);
             if (subMember) {
-
-              let subMemberRoles = subMember.roles.cache.map(r => r.id);
+              let subMemberRoles;
+              try {
+                subMemberRoles = await subMember.roles.cache.map(r => r.id);
+              } catch (err) {
+                console.log("discord", discord);
+                console.log("User", User);
+                console.log("subMember", subMember);
+                console.log("subMember.roles", subMember.roles);
+              }
 
               let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles);
               if (authorized) {
+
 
                 if (User.geotype == "city") {
                   if (User.guild_name == RAID.area.default) {
