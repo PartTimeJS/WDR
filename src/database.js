@@ -412,38 +412,13 @@ async function create_tables(WDR) {
     let wdr_users = `
       CREATE TABLE IF NOT EXISTS wdr_users (
         user_id bigint NOT NULL,
-        user_name varchar(40) NOT NULL,
-        guild_id bigint NOT NULL,
-        guild_name varchar(40) NOT NULL,
-        bot tinyint NOT NULL DEFAULT '0',
-        areas varchar(255) NOT NULL DEFAULT 'all',
-        location text DEFAULT NULL,
-        status tinyint NOT NULL DEFAULT '1',
-        pokemon_status tinyint NOT NULL DEFAULT '1',
-        pvp_status tinyint NOT NULL DEFAULT '1',
-        raid_status tinyint NOT NULL DEFAULT '1',
-        quest_status tinyint NOT NULL DEFAULT '1',
-        lure_status tinyint NOT NULL DEFAULT '1',
-        invasion_status tinyint NOT NULL DEFAULT '1',
-        quest_time varchar(5) NOT NULL DEFAULT '09:00',
-        locations longtext DEFAULT NULL,
-        geotype varchar(10) NOT NULL DEFAULT 'areas',
-        PRIMARY KEY (user_id),
-        KEY ix_data (user_name,guild_id,guild_name,bot,areas,geotype) USING BTREE,
-        KEY ix_status(status,pokemon_status,pvp_status,raid_status,quest_status,lure_status,invasion_status) USING BTREE
-      );`;
-    WDR.wdrDB.query(wdr_users);
-
-    let wdr_subscriptions = `
-      CREATE TABLE IF NOT EXISTS wdr_subscriptions(
-        user_id bigint NOT NULL,
-        user_name varchar(40) NOT NULL,
-        guild_id bigint NOT NULL,
-        guild_name varchar(40) NOT NULL,
-        bot tinyint NOT NULL,
+        user_name varchar(40) DEFAULT NULL,
+        guild_id bigint DEFAULT NULL,
+        guild_name varchar(40) DEFAULT NULL,
+        bot tinyint DEFAULT NULL,
         status tinyint DEFAULT '1',
-        areas varchar(255) NOT NULL,
-        location text NOT NULL,
+        areas varchar(255) DEFAULT NULL,
+        location varchar(255) DEFAULT NULL,
         sub_type varchar(10) NOT NULL,
         pokemon_id smallint NOT NULL DEFAULT '0',
         pokemon_type varchar(10) NOT NULL DEFAULT '0',
@@ -462,9 +437,55 @@ async function create_tables(WDR) {
         min_rank smallint NOT NULL DEFAULT '0',
         league varchar(10) NOT NULL DEFAULT '0',
         quest_delivery varchar(10) DEFAULT '0',
-        geotype varchar(10) NOT NULL DEFAULT 'areas',
-        PRIMARY KEY (user_id,sub_type,pokemon_id,form,pokemon_type,min_lvl,max_lvl,min_iv,max_iv,size,generation,reward,gym_id,gender,min_rank,league),
-        KEY ix_data (gym_name,guild_id,min_cp,geotype,quest_delivery) USING BTREE
+        geotype varchar(10) NOT NULL,
+        PRIMARY KEY (user_id,sub_type,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
+        KEY ix_lvl (min_lvl,max_lvl) USING BTREE,
+        KEY ix_iv (min_iv,max_iv) USING BTREE,
+        KEY ix_form (form) USING BTREE,
+        KEY ix_char (pokemon_type,size,gender,generation) USING BTREE,
+        KEY ix_gym_id (gym_id) USING BTREE,
+        KEY ix_reward (reward) USING BTREE,
+        KEY ix_rank (min_rank) USING BTREE
+      );`;
+    WDR.wdrDB.query(wdr_users);
+
+    let wdr_subscriptions = `
+      CREATE TABLE IF NOT EXISTS wdr_subscriptions(
+        user_id bigint NOT NULL,
+        user_name varchar(40) DEFAULT NULL,
+        guild_id bigint DEFAULT NULL,
+        guild_name varchar(40) DEFAULT NULL,
+        bot tinyint DEFAULT NULL,
+        status tinyint DEFAULT '1',
+        areas varchar(255) DEFAULT NULL,
+        location varchar(255) DEFAULT NULL,
+        sub_type varchar(10) NOT NULL,
+        pokemon_id smallint NOT NULL DEFAULT '0',
+        pokemon_type varchar(10) NOT NULL DEFAULT '0',
+        form smallint NOT NULL DEFAULT '0',
+        min_lvl tinyint NOT NULL DEFAULT '0',
+        max_lvl tinyint NOT NULL DEFAULT '0',
+        min_iv tinyint NOT NULL DEFAULT '0',
+        max_iv tinyint NOT NULL DEFAULT '0',
+        min_cp smallint NOT NULL DEFAULT '0',
+        size varchar(5) NOT NULL DEFAULT '0',
+        gender tinyint NOT NULL DEFAULT '0',
+        generation tinyint NOT NULL DEFAULT '0',
+        reward varchar(25) NOT NULL DEFAULT '0',
+        gym_id varchar(50) NOT NULL DEFAULT '0',
+        gym_name varchar(50) NOT NULL DEFAULT '0',
+        min_rank smallint NOT NULL DEFAULT '0',
+        league varchar(10) NOT NULL DEFAULT '0',
+        quest_delivery varchar(10) DEFAULT '0',
+        geotype varchar(10) NOT NULL,
+        PRIMARY KEY (user_id,sub_type,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
+        KEY ix_lvl (min_lvl,max_lvl) USING BTREE,
+        KEY ix_iv (min_iv,max_iv) USING BTREE,
+        KEY ix_form (form) USING BTREE,
+        KEY ix_char (pokemon_type,size,gender,generation) USING BTREE,
+        KEY ix_gym_id (gym_id) USING BTREE,
+        KEY ix_reward (reward) USING BTREE,
+        KEY ix_rank (min_rank) USING BTREE
       );`;
     WDR.wdrDB.query(wdr_subscriptions);
 
