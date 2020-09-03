@@ -1,4 +1,5 @@
 module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
+
   let query = `
     SELECT
         *
@@ -9,11 +10,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           AND
         guild_id = ${Message.guild.id};
   `;
+
   WDR.wdrDB.query(
     query,
     async function(error, user, fields) {
       if (error) {
-        WDR.Console.error(WDR, "[subs/poke/create.js] Error Fetching Subscriptions to Create Subscription.", [query, error]);
+        WDR.Console.error(WDR, "[cmd/sub/area/add.js] Error Fetching Subscriptions to Create Subscription.", [query, error]);
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
@@ -22,7 +24,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
 
         let areas;
-        if (areas.includes(",")) {
+        if (user[0].areas.includes(",")) {
           areas = user[0].areas.split(",");
         } else {
           areas = user[0].areas.split(";");
@@ -66,11 +68,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           WHERE
               user_id = ${Member.id};
         `;
+
         WDR.wdrDB.query(
           update,
           function(error, user, fields) {
             if (error) {
-              WDR.Console.error(WDR, "[subs/poke/create.js] Error Updating User Geofences.", [update, error]);
+              WDR.Console.error(WDR, "[cmd/sub/area/add.js] Error Updating User Geofences.", [update, error]);
               return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                 timeout: 10000
               }));
