@@ -43,8 +43,8 @@ module.exports = (WDR, Functions, Message, Member) => {
         }
         sub_list = sub_list.slice(0, -1);
 
-        let o_status = Member.db.status ? "Enabled" : "Disabled";
-        let p_status = Member.db.pvp_status ? "Enabled" : "Disabled";
+        let o_status = Member.db.status === 1 ? "Enabled" : "Disabled";
+        let p_status = Member.db.pvp_status === 1 ? "Enabled" : "Disabled";
         let pokemonSubs = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your PvP Subscriptions")

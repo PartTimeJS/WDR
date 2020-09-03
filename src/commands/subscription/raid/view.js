@@ -50,8 +50,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         }
         sub_list = sub_list.slice(0, -1);
 
-        let o_status = Member.db.status ? "Enabled" : "Disabled";
-        let r_status = Member.db.pokemon_status ? "Enabled" : "Disabled";
+        let o_status = Member.db.status === 1 ? "Enabled" : "Disabled";
+        let r_status = Member.db.pokemon_status === 1 ? "Enabled" : "Disabled";
         let raidSubs = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Raid Subscriptions")
