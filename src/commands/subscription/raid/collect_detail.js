@@ -169,19 +169,20 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             } else if (CollectedMsg.content.toLowerCase() == "egg") {
               collector.stop(-1);
             } else {
-              WDR.scannerDB.query(`
+              let gquery = `
                 SELECT
                     *
                 FROM
                     gym
                 WHERE
-                    name = '${CollectedMsg.content}'
-                ;`,
+                    name = '${CollectedMsg.content.replace("'","")}'
+                ;`
+              WDR.scannerDB.query(
+                gquery,
                 async function(error, gyms, fields) {
                   if (error) {
-                    WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+                    WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [gquery, error]);
                   } else if (!gyms || gyms.length == 0) {
-                    console.log("mysql", gyms)
                     collector.stop({
                       fuzzy: CollectedMsg.content
                     });
