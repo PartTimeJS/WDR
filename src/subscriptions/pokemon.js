@@ -107,7 +107,7 @@ module.exports = async (WDR, Sighting) => {
               console.log("subMember.roles", subMember.roles);
             }
 
-            let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles);
+            let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles, subMember);
             if (authorized) {
 
               let match = {};
