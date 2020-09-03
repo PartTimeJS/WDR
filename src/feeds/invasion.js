@@ -60,6 +60,8 @@ module.exports = async (WDR, INVASION) => {
             let Embed_Config = require(WDR.Dir + "/configs/embeds/" + (feed_channel[1].embed ? feed_channel[1].embed : "invasion.js"));
 
             let match = {};
+            
+            match.type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
 
             match.name = INVASION.name;
             match.url = INVASION.url ? INVASION.url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png";
