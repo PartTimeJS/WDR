@@ -7,29 +7,34 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
         .members
         .fetch();
 
-      const member = members.get(user_id);
-      if (member) {
+      if (members) {
+        const member = members.get(user_id);
+        if (member) {
 
-        let foundRole = false;
+          let foundRole = false;
 
-        const roles = member.roles.cache
-          .filter(x => BigInt(x.id).toString())
-          .keyArray();
+          const roles = member.roles.cache
+            .filter(x => BigInt(x.id).toString())
+            .keyArray();
 
-        for (let r = 0, rlen = allowedRoles.length; r < rlen; r++) {
-          if (roles.includes(allowedRoles[r])) {
-            foundRole = true;
-            break;
+          for (let r = 0, rlen = allowedRoles.length; r < rlen; r++) {
+            if (roles.includes(allowedRoles[r])) {
+              foundRole = true;
+              break;
+            }
+            if (member.roles.cache.has(allowedRoles[r])) {
+              foundRole = true;
+              break;
+            }
           }
-          if (member.roles.cache.has(allowedRoles[r])) {
-            foundRole = true;
-            break;
-          }
+          return resolve(foundRole);
+
+        } else {
+          return resolve(false);
         }
 
-        return resolve(foundRole);
-
       } else {
+        WDR.Console.error(WDR, '[src/services/discord.js] No Members returned for guild: ' + guild_id);
         return resolve(false);
       }
 
