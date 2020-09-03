@@ -24,7 +24,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         if (!user[0].areas) {
           area_list = "None";
         } else {
-          area_list = user[0].areas.replace(/,/g, "\n");
+          area_list = user[0].areas.reaplce(/;/g, "\n").replace(/,/g, "\n");
         }
 
         // CREATE THE EMBED

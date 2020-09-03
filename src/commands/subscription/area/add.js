@@ -21,7 +21,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
         let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
 
-        let areas = user[0].areas.split(",");
+        let areas;
+        if (areas.includes(",")) {
+          areas = user[0].areas.split(",");
+        } else {
+          areas = user[0].areas.split(";");
+        }
 
         let area_index = areas.indexOf(sub);
 
@@ -42,7 +47,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           }
         }
 
-        areas = areas.toString();
+        areas = areas.join(";");
 
         WDR.wdrDB.query(`
           UPDATE
