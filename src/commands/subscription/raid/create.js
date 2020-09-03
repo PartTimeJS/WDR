@@ -148,7 +148,6 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         }
 
         create.gym = create.gym.replace("'", "");
-        create.gym = create.gym.replace(/[\W]+/g, "");
 
         let query = `
           INSERT INTO
