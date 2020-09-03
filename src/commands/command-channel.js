@@ -14,12 +14,10 @@ module.exports = (WDR, Message) => {
 
       Message.discord = Server;
 
-      // DELETE THE MESSAGE
       //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
       Message.delete();
       //}
 
-      // FETCH THE GUILD MEMBER AND CHECK IF A DONOR
       if (Message.member.isAdmin || Message.member.isMod) {
         /* DO NOTHING */
       } else if (Server.donor_role && !Message.member.roles.cache.has(Server.donor_role)) {
@@ -41,7 +39,6 @@ module.exports = (WDR, Message) => {
         }
       }
 
-      // LOAD DATABASE RECORD BASED OFF OF ORIGIN SERVER_ID AND AUTHOR_ID
       WDR.wdrDB.query(`
           SELECT
               *
@@ -99,6 +96,11 @@ module.exports = (WDR, Message) => {
           //try {
           if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js")) {
             let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js");
+            if (Cmd) {
+              Cmd(WDR, Message);
+            }
+          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js")) {
+            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
             if (Cmd) {
               Cmd(WDR, Message);
             }
