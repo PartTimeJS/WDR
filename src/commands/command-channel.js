@@ -45,7 +45,9 @@ module.exports = (WDR, Message) => {
           FROM
               wdr_users
           WHERE
-              user_id = ${Message.member.id};`,
+              user_id = ${Message.member.id}
+                AND
+              guild_id = ${Message.guild.id};`,
         async function(error, user, fields) {
           if (!user || !user[0]) {
             Message.member.db = await WDR.Save_User(WDR, Message, Server);
@@ -70,7 +72,9 @@ module.exports = (WDR, Message) => {
                     guild_name = '${Message.discord.name}',
                     areas = '${Message.discord.name}'
                 WHERE
-                    user_id = ${Message.member.id};`);
+                    user_id = ${Message.member.id}
+                      AND
+                    guild_id = ${Message.guild.id};`);
           }
 
           let command = Message.content.split(" ")[0].slice(1);
