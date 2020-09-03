@@ -106,46 +106,39 @@ module.exports = async (WDR, Sighting) => {
                   let User = matching[m];
                   User.location = JSON.parse(User.location);
 
-                  let subGuild = await WDR.Bot.guilds.cache.get(discord.id);
-                  let subMember = await subGuild.members.cache.get(User.user_id);
-                  if (subMember) {
+                  let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
+                  if (authorized) {
 
-                    let subMemberRoles = await subMember.roles.cache.map(r => r.id);
-
-                    let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles, subMember);
-                    if (authorized) {
-
-                      if (User.geotype == "city") {
-                        if (User.guild_name == Sighting.area.default) {
-                          match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                          Send_Subscription(WDR, match, Sighting, User);
-                        }
-
-                      } else if (User.geotype == "areas") {
-                        let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
-                        let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
-                        let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
-                        if (defGeo || mainGeo || subGeo) {
-                          match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                          Send_Subscription(WDR, match, Sighting, User);
-                        }
-
-                      } else if (User.geotype == "location") {
-                        let distance = WDR.Distance.between({
-                          lat: Sighting.latitude,
-                          lon: Sighting.longitude
-                        }, {
-                          lat: User.location.coords.split(",")[0],
-                          lon: User.location.coords.split(",")[1]
-                        });
-                        let loc_dist = WDR.Distance(User.location.radius + " km");
-                        if (loc_dist > distance) {
-                          match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                          Send_Subscription(WDR, match, Sighting, User);
-                        }
+                    if (User.geotype == "city") {
+                      if (User.guild_name == Sighting.area.default) {
+                        match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                        Send_Subscription(WDR, match, Sighting, User);
                       }
-                      break;
+
+                    } else if (User.geotype == "areas") {
+                      let defGeo = (User.areas.indexOf(Sighting.area.default) >= 0);
+                      let mainGeo = (User.areas.indexOf(Sighting.area.main) >= 0);
+                      let subGeo = (User.areas.indexOf(Sighting.area.sub) >= 0);
+                      if (defGeo || mainGeo || subGeo) {
+                        match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                        Send_Subscription(WDR, match, Sighting, User);
+                      }
+
+                    } else if (User.geotype == "location") {
+                      let distance = WDR.Distance.between({
+                        lat: Sighting.latitude,
+                        lon: Sighting.longitude
+                      }, {
+                        lat: User.location.coords.split(",")[0],
+                        lon: User.location.coords.split(",")[1]
+                      });
+                      let loc_dist = WDR.Distance(User.location.radius + " km");
+                      if (loc_dist > distance) {
+                        match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
+                        Send_Subscription(WDR, match, Sighting, User);
+                      }
                     }
+                    break;
                   }
                 }
               }

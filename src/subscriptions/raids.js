@@ -51,63 +51,54 @@ module.exports = async (WDR, RAID) => {
           let allEggs = (User.pokemon_id === -2 && RAID.pokemon_id < 1);
           if (bossCheck || allRaids || allEggs) {
 
-            let subGuild = await WDR.Bot.guilds.cache.get(discord.id);
-            let subMember = await subGuild.members.cache.get(User.user_id);
-            if (subMember) {
+            let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
+            if (authorized) {
 
-              let subMemberRoles = await subMember.roles.cache.map(r => r.id);
-
-              let authorized = await WDR.Check_Roles(subMemberRoles, discord.allowed_roles, subMember);
-              if (authorized) {
-
-                if (User.geotype == "city") {
-                  if (User.guild_name == RAID.area.default) {
-                    if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                      WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent city sub to " + User.user_name + ".");
-                    }
-                    Send_Subscription(WDR, RAID, User);
-                  } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                    WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + RAID.area.default+"`")
+              if (User.geotype == "city") {
+                if (User.guild_name == RAID.area.default) {
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent city sub to " + User.user_name + ".");
                   }
-
-                } else if (User.geotype == "areas") {
-                  let defGeo = (User.areas.indexOf(RAID.area.default) >= 0);
-                  let mainGeo = (User.areas.indexOf(RAID.area.main) >= 0);
-                  let subGeo = (User.areas.indexOf(RAID.area.sub) >= 0);
-                  if (defGeo || mainGeo || subGeo) {
-                    if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                      WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent area sub to " + User.user_name + ".");
-                    }
-                    Send_Subscription(WDR, RAID, User);
-                  } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                    WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | User: " + User.user_name + " | Failed Area Geofence.")
-                  }
-
-                } else if (User.geotype == "location") {
-                  let distance = WDR.Distance.between({
-                    lat: RAID.latitude,
-                    lon: RAID.longitude
-                  }, {
-                    lat: User.location.coords.split(",")[0],
-                    lon: User.location.coords.split(",")[1]
-                  });
-                  let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
-                  if (loc_dist > distance) {
-                    if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                      WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent location sub to " + User.user_name + ".");
-                    }
-                    Send_Subscription(WDR, RAID, User);
-                  }
-                } else {
-                  WDR.Console.error(WDR, "[DEBUG] [src/subs/raids.js] User: " + User.user_name + " | User geotype has a bad value.", User);
+                  Send_Subscription(WDR, RAID, User);
+                } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + RAID.area.default+"`")
                 }
-              } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | " + User.user_name + " IS NOT an Authorized User in " + discord.name + " (" + discord.id + ").");
-                console.info("[DEBUG] [src/subs/raids.js] Allowed Roles: ", discord.allowed_roles);
-                console.info("[DEBUG] [src/subs/raids.js] User Roles: ", memberRoles);
+
+              } else if (User.geotype == "areas") {
+                let defGeo = (User.areas.indexOf(RAID.area.default) >= 0);
+                let mainGeo = (User.areas.indexOf(RAID.area.main) >= 0);
+                let subGeo = (User.areas.indexOf(RAID.area.sub) >= 0);
+                if (defGeo || mainGeo || subGeo) {
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent area sub to " + User.user_name + ".");
+                  }
+                  Send_Subscription(WDR, RAID, User);
+                } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | User: " + User.user_name + " | Failed Area Geofence.")
+                }
+
+              } else if (User.geotype == "location") {
+                let distance = WDR.Distance.between({
+                  lat: RAID.latitude,
+                  lon: RAID.longitude
+                }, {
+                  lat: User.location.coords.split(",")[0],
+                  lon: User.location.coords.split(",")[1]
+                });
+                let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+                if (loc_dist > distance) {
+                  if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                    WDR.Console.log(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | Sent location sub to " + User.user_name + ".");
+                  }
+                  Send_Subscription(WDR, RAID, User);
+                }
+              } else {
+                WDR.Console.error(WDR, "[DEBUG] [src/subs/raids.js] User: " + User.user_name + " | User geotype has a bad value.", User);
               }
             } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-              WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | " + User.user_name + " IS NOT a Member of " + discord.name + " (" + discord.id + ").", discord);
+              WDR.Console.info(WDR, "[DEBUG] [src/subs/raids.js] " + RAID.gym_id + " | " + User.user_name + " IS NOT an Authorized User in " + discord.name + " (" + discord.id + ").");
+              console.info("[DEBUG] [src/subs/raids.js] Allowed Roles: ", discord.allowed_roles);
+              console.info("[DEBUG] [src/subs/raids.js] User Roles: ", memberRoles);
             }
           }
         }
