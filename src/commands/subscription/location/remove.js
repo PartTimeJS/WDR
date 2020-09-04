@@ -12,7 +12,6 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
   WDR.wdrDB.query(
     query,
     async function(error, user, fields) {
-      user = user[0];
       if (error) {
         WDR.Console.error(WDR, "[sub/loc/view.js] Error Fetching User to View Locations.", [query, error]);
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
@@ -20,8 +19,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }));
       } else {
 
+        user = user[0];
+        user.location = JSON.parse(user.location);
+        user.locations = JSON.parse(user.locations);
+
         if (JSON.stringify(Member.db.locations) != JSON.stringify(user.locations)) {
-          Member.db.locations = JSON.parse(user.locations);
+          Member.db.locations = user.locations;
         }
 
         let location_list = "";

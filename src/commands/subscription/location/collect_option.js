@@ -1,5 +1,5 @@
 module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray) => {
-
+``
   let BotMsg = bMessage;
   let OriginalMsg = oMessage;
 
@@ -37,7 +37,7 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
   });
 
   // COLLECTOR HAS BEEN ENDED
-  collector.on("end", (collected, msg) => {
+  collector.on("end", (_collected, msg) => {
 
     if (BotMsg && BotMsg.channel.type != "dm") {
       try {
