@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
      FROM
         wdr_users
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'pvp'`,
     async function(error, user) {
@@ -37,8 +37,9 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
            SET
               pvp_status = ${change}
            WHERE
-              user_id = ${Member.id}
-              AND guild_id = ${Message.guild.id}`,
+              user_id = '${Member.id}'
+                AND 
+              guild_id = '${Message.guild.id}'`,
           async function(error, user, fields) {
             if (error) {
               WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Inserting Subscription.", [preset, error]);
@@ -52,8 +53,9 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                  SET
                     status = ${change}
                  WHERE
-                    user_id = ${Member.id}
-                    AND sub_type = 'pvp'`,
+                    user_id = '${Member.id}'
+                      AND 
+                    sub_type = 'pvp'`,
                 async function(error, user, fields) {
                   if (error) {
                     WDR.Console.error(WDR, "[cmd/pvp/remove.js] Error Inserting Subscription.", [preset, error]);

@@ -35,9 +35,12 @@ module.exports = async (WDR, RAID) => {
 
   WDR.wdrDB.query(
     query,
-    async function (error, matching, fields) {
-      if (error) {
-        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+    async function (error, matching) {
+      if(error){
+      WDR.Console.error(WDR, "[cmd/sub/raid/remove.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);
+      return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+        timeout: 10000
+      }));
       } else if (matching && matching[0]) {
 
         for (let m = 0, mlen = matching.length; m < mlen; m++) {

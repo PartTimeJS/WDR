@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member) => {
      FROM
         wdr_subscriptions
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'pvp'`,
     async function(error, subscriptions, fields) {
@@ -52,9 +52,9 @@ module.exports = (WDR, Functions, Message, Member) => {
           DELETE FROM
               wdr_subscriptions
           WHERE
-              user_id = ${Message.author.id}
+              user_id = '${Message.author.id}'
                 AND
-              guild_id = ${Message.guild.id}
+              guild_id = '${Message.guild.id}'
                 AND
               sub_type = 'pvp'
                 AND

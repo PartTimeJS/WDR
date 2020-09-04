@@ -41,9 +41,9 @@ module.exports = async (WDR, Functions, Message, Member) => {
       )
     VALUES
       (
-        ${Member.id},
+        '${Member.id}',
         '${Member.db.user_name}',
-        ${Message.guild.id},
+        '${Message.guild.id}',
         '${Member.db.guild_name}',
         ${Member.db.bot},
         ${Member.db.pvp_status},

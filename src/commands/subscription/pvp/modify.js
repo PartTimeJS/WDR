@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member) => {
      FROM
         wdr_subscriptions
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'pvp'`,
     async function(error, subscriptions, fields) {
@@ -110,15 +110,23 @@ module.exports = (WDR, Functions, Message, Member) => {
             league = '${modified.league}',
             min_rank = ${modified.min_rank}
         WHERE
-            user_id = ${Message.author.id}
-            AND areas = '${old.areas}'
-            AND geotype = '${old.geotype}'
-            AND pokemon_id = ${old.pokemon_id}
-            AND form = ${old.form}
-            AND areas = '${old.areas}'
-            AND geotype = '${old.geotype}'
-            AND league = '${old.league}'
-            AND min_rank = ${old.min_rank};
+            user_id = '${Member.id}'
+              AND 
+            areas = '${old.areas}'
+              AND 
+            geotype = '${old.geotype}'
+              AND 
+            pokemon_id = ${old.pokemon_id}
+              AND 
+            form = ${old.form}
+              AND 
+            areas = '${old.areas}'
+              AND 
+            geotype = '${old.geotype}'
+              AND 
+            league = '${old.league}'
+              AND 
+            min_rank = ${old.min_rank};
       `;
       WDR.wdrDB.query(
         query,

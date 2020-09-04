@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
      FROM
         wdr_subscriptions
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'raid';`,
     async function(error, subscriptions) {

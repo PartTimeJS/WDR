@@ -8,7 +8,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
        FROM
           wdr_subscriptions
        WHERE
-          user_id = ${Member.id}
+          user_id = '${Member.id}'
             AND
           sub_type = 'raid';`,
     async function(error, subs) {
@@ -170,9 +170,9 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 )
            VALUES
               (
-                ${Member.id},
+                '${Member.id}',
                 '${Member.db.user_name}',
-                ${Message.guild.id},
+                '${Message.guild.id}',
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pvp_status},

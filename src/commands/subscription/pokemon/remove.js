@@ -1,11 +1,11 @@
 module.exports = (WDR, Functions, Message, Member) => {
-  WDR.wdrDB.query(
-    `SELECT
+  WDR.wdrDB.query(`
+    SELECT
         *
-     FROM
+    FROM
         wdr_subscriptions
-     WHERE
-        user_id = ${Member.id}
+    WHERE
+        user_id = '${Member.id}'
           AND
         sub_type = 'pokemon';`,
     async function(error, subscriptions, fields) {
@@ -68,8 +68,9 @@ module.exports = (WDR, Functions, Message, Member) => {
           DELETE FROM
               wdr_subscriptions
           WHERE
-              user_id = ${Message.author.id}
-              AND sub_type = 'pokemon';
+              user_id = '${Member.id}'
+                AND 
+              sub_type = 'pokemon';
           `;
         } else {
           let remove = subscriptions[number];
@@ -96,17 +97,27 @@ module.exports = (WDR, Functions, Message, Member) => {
             DELETE FROM
                 wdr_subscriptions
             WHERE
-                user_id = ${Message.author.id}
-                AND sub_type = 'pokemon'
-                AND pokemon_id = ${remove.pokemon_id}
-                AND form = ${remove.form}
-                AND min_lvl = ${remove.min_lvl}
-                AND max_lvl = ${remove.max_lvl}
-                AND min_iv = ${remove.min_iv}
-                AND max_iv = ${remove.max_iv}
-                AND size = '${remove.size}'
-                AND gender = ${remove.gender}
-                AND generation = ${remove.generation};
+                user_id = '${Member.id}'
+                  AND 
+                sub_type = 'pokemon'
+                  AND 
+                pokemon_id = ${remove.pokemon_id}
+                  AND 
+                form = ${remove.form}
+                  AND 
+                min_lvl = ${remove.min_lvl}
+                  AND 
+                max_lvl = ${remove.max_lvl}
+                  AND 
+                min_iv = ${remove.min_iv}
+                  AND 
+                max_iv = ${remove.max_iv}
+                  AND 
+                size = '${remove.size}'
+                  AND 
+                gender = ${remove.gender}
+                  AND 
+                generation = ${remove.generation};
           `;
         }
         WDR.wdrDB.query(

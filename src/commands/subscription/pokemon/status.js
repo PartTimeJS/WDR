@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
      FROM
         wdr_users
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'pokemon';`,
     async function(error, user) {
@@ -37,7 +37,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
            SET
               pokemon_status = ${change}
            WHERE
-              user_id = ${Member.id}
+              user_id = '${Member.id}'
           ;`,
           async function(error, user, fields) {
             if (error) {
@@ -51,8 +51,9 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                  SET
                     status = ${change}
                  WHERE
-                    user_id = ${Member.id}
-                    AND sub_type = 'pokemon'`,
+                    user_id = '${Member.id}'
+                      AND 
+                    sub_type = 'pokemon'`,
                 async function(error, user, fields) {
                   if (error) {
                     return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({

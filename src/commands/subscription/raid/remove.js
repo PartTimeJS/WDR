@@ -6,7 +6,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
        FROM
           wdr_subscriptions
        WHERE
-          user_id = ${Member.id}
+          user_id = '${Member.id}'
             AND
           sub_type = 'raid';`,
     async function(error, subscriptions) {
@@ -15,7 +15,6 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
-
       } else {
         if (subscriptions.length < 1) {
 
@@ -59,7 +58,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
             DELETE FROM
                 wdr_subscriptions
             WHERE
-                user_id = ${Member.id}
+                user_id = '${Member.id}'
                   AND
                 sub_type = 'raid'
                   AND

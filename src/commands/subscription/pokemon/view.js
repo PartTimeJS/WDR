@@ -5,7 +5,7 @@ module.exports = (WDR, Functions, Message, Member) => {
      FROM
         wdr_subscriptions
      WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
         sub_type = 'pokemon';`,
     async function(error, subscriptions) {

@@ -6,7 +6,7 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
        FROM
           wdr_subscriptions
        WHERE
-          user_id = ${Member.id}
+          user_id = '${Member.id}'
             AND
           sub_type = 'pvp';`,
     async function(error, subs) {
@@ -97,9 +97,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
                 )
            VALUES
               (
-                ${Member.id},
+                '${Member.id}',
                 '${Member.db.user_name}',
-                ${Message.guild.id},
+                '${Message.guild.id}',
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
                 ${Member.db.pvp_status},

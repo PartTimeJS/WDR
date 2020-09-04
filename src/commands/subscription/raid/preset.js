@@ -47,9 +47,9 @@ module.exports = async (WDR, Functions, Message, Member, gym_name_array, gym_det
         )
     VALUES
       (
-        ${Message.author.id},
+        '${Message.author.id}',
         '${Member.db.user_name}',
-        ${Message.guild.id},
+        '${Message.guild.id}',
         '${Member.db.guild_name}',
         ${Member.db.bot},
         ${Member.db.pokemon_status},
