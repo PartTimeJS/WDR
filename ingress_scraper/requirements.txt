@@ -1,5 +1,0 @@
-requests[socks]
-lxml
-beautifulsoup4
-pymysql
-soupsieve

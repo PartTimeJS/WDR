@@ -1,0 +1,13 @@
+# 0 == ALL
+pokemon_id = 201
+form = 0
+size = 0
+gender = 0
+gen = 0
+
+min_lvl = 1
+max_lvl = 35
+min_iv = 1
+max_iv = 100
+min_cp = 1
+max_cp = 10000

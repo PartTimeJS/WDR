@@ -1,0 +1,24 @@
+CREATE TABLE `grafana_cities` (
+  `City` varchar(50) DEFAULT NULL,
+  `Pokemon / Hour` int(20) DEFAULT NULL,
+  `IVs / Hour` int(20) DEFAULT NULL,
+  `Quest Completion` decimal(12,8) DEFAULT NULL,
+  `Dead Workers` int(3) DEFAULT NULL,
+  `Workers` int(3) DEFAULT NULL,
+  `Geofence` longtext DEFAULT NULL
+);
+CREATE TABLE `grafana_accounts` (
+  `Levels` varchar(6) DEFAULT NULL,
+  `Count` int(25) DEFAULT NULL
+);
+INSERT INTO `grafana_accounts` (Levels) VALUES ('30+');
+INSERT INTO `grafana_accounts` (Levels) VALUES ('1 - 29');
+INSERT INTO `grafana_accounts` (Levels) VALUES ('0');
+
+CREATE TABLE `grafana_devices` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `timestamp` int(11) unsigned NOT NULL DEFAULT 0,
+  `uuid` varchar(40) NOT NULL,
+  `warning_level` int(3) unsigned DEFAULT 0,
+  PRIMARY KEY (`id`)
+);

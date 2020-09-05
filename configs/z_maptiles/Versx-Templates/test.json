@@ -1,0 +1,42 @@
+{
+    "style": "klokantech-basic",
+    "latitude": <%= lat %>,
+    "longitude": <%= lon %>,
+    "zoom": 15,
+    "width": 500,
+    "height": 250,
+    "scale": 1,
+    "markers": [
+        <% if (stops != null) { %>
+            <% stops.forEach(function(stop) { %>
+            {
+                "url": "https://raw.githubusercontent.com/whitewillem/PMSF/develop/static/forts/Pstop.png",
+                "latitude": <%= stop.lat %>,
+                "longitude": <%= stop.lon %>,
+                "width": 20,
+                "height": 20,
+                "y_offset": -8
+            },
+            <% }); %>
+        <% } %>
+        <% if (gyms != null) { %>
+            <% gyms.forEach(function(gym) { %>
+            {
+                "url": "https://raw.githubusercontent.com/whitewillem/PMSF/develop/static/forts/shield/<%= gym.team %>",
+                "latitude": <%= gym.lat %>,
+                "longitude": <%= gym.lon %>,
+                "width": 20,
+                "height": 20,
+                "y_offset": -8
+            },
+            <% }); %>
+        <% } %>
+        {
+            "url": "<%= url %>",
+            "latitude": <%= lat %>,
+            "longitude": <%= lon %>,
+            "width": 45,
+            "height": 45
+        }
+    ]
+}

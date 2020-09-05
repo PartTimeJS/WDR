@@ -1,0 +1,172 @@
+#===============================================================================
+# COMMAND PREFIX
+#===============================================================================
+
+PREFIX                = "."
+
+#===============================================================================
+# BETA AND HIDDEN FEATURES
+#===============================================================================
+
+Admin_Enabled         = YES
+
+#===============================================================================
+# DOWN ALERT DMs
+#===============================================================================
+
+DOWN_ALERT            = ENABLED
+DOWN_MINS             = 10
+DOWN_USER_ID          = 329584924573040645
+
+
+#===============================================================================
+# Emoji Servers separate by a comma
+#===============================================================================
+
+EMOJI_SERVERS         = 420902528641662976
+
+#===============================================================================
+# Enable or Disable Console Logs
+#===============================================================================
+
+VERBOSE_LOGS          = DISABLED
+
+#===============================================================================
+# CHECK FOR DONORS BEFORE SENDING DMS
+#===============================================================================
+
+DONOR_CHECK           = ENABLED
+
+#===============================================================================
+# LISTENING PORT
+# You will need to add http://bot_host_ip:3333/ in RDM.
+# You will need to port forward on your router if RDM does not reside in your local network.
+#===============================================================================
+
+LISTENING_PORT        = 4444
+
+#===============================================================================
+# SPRITES & MAP TILES (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
+#    ***REQUIRES VAPOR BRANCH***
+#===============================================================================
+
+POKEMON_PREGEN_TILES  = ENABLED
+PVP_PREGEN_TILES      = ENABLED
+RAID_PREGEN_TILES     = ENABLED
+QUEST_PREGEN_TILES    = ENABLED
+
+
+TILE_PROVIDER         = (flo or versx or none) // choose none if you will manually put a url in your embeds.
+STATIC_MAP_URL        = https://map.com/
+STATIC_SPRITE         = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
+STATIC_SPRITE_MINI    = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
+
+#===============================================================================
+# Optional URL for your front end for [Scan Map] embed link
+#===============================================================================
+
+FRONTEND_URL          =
+
+#===============================================================================
+# SPRITES
+#===============================================================================
+
+SPRITE_URL            = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/
+
+#===============================================================================
+# AUTO-DELETE MESSAGES IN COMMAND CHANNEL
+#===============================================================================
+
+TIDY_CHANNEL          = ENABLED
+
+#===============================================================================
+[wdrDB]
+# DATABASE CREDENTIALS
+#===============================================================================
+
+host                  = host
+username              = user
+password              = pass
+port                  = 3306
+db_name               = rdmdb
+
+#===============================================================================
+[scannerDB]
+# DATABASE CREDENTIALS
+#===============================================================================
+
+host                  = host
+username              = user
+password              = pass
+port                  = 3306
+db_name               = rdmdb
+
+#===============================================================================
+[pmsfDB]
+# DATABASE CREDENTIALS
+#===============================================================================
+
+host                  = host
+username              = users
+password              = pass
+port                  = 3306
+db_name               = manualdb
+
+#===============================================================================
+[TOKENS]
+# You can add up to 10 BOT_TOKENS[]. Delete any unused.
+# The WDR token cannot be in the BOT_TOKEN[] section.
+#===============================================================================
+
+Hide_Bot_Tokens = ENABLED
+
+WDR                   = NzIyNTQzOxfgfgxgxfgxfxdfghdfgsdgsdkQ83JxYSDRzg9Dj0
+
+BOT_TOKENS[]          = NDk1NDMzMjYsdgsdgdsgsdgergsdgsdgsdgsdgXstJuzfMLQvBLh8
+BOT_TOKENS[]          = NTA5MTcyMsdgsdgfhdbfxfgfdbbfzfbgfdbbgdfgBt0T4LecAHwr8
+BOT_TOKENS[]          = NTA5MTcyNDMdfbgdfbhhtregsvdgnrthegsdbthrZNEO8_mSuWciw
+BOT_TOKENS[]          = NTA5MTcysdfhjyrthegsdvbgnyjrthergsfdD3SKAPnEl9GvTAJt0
+BOT_TOKENS[]          = NTA5MTczNzIxNDU0Mfdgjfhrsgdbfnhmjrthegsefd0URvPKJbC10
+
+#===============================================================================
+[QUEST]
+#===============================================================================
+
+DEFAULT_DELIVERY = 09:00
+
+# These is the Reward List that dictates what users can subscribe to for DMs
+# To add a reward, add "Rewards[] = NEWREWARD" in whichever order you want it to appear in the embed.
+# The reward names must match the reward names found in /static/en.json
+# You can comment out old or unwanted rewards
+Rewards[]             = Unova Stone
+Rewards[]             = 1000 Stardust
+Rewards[]             = 1500 Stardust
+Rewards[]             = Charged TM
+Rewards[]             = Fast TM
+Rewards[]             = Golden Razz Berry
+# Rewards[]           = Hyper Potion
+Rewards[]             = Max Potion
+Rewards[]             = Max Revive
+Rewards[]             = Rare Candy
+Rewards[]             = Silver Pinap Berry
+# Rewards[]           = Star Piece
+Rewards[]             = Ultra Ball
+Rewards[]             = Bidoof
+Rewards[]             = Chansey
+Rewards[]             = Combusken
+Rewards[]             = Cubone
+Rewards[]             = Dratini
+Rewards[]             = Gastly
+# Rewards[]           = Misdreavus
+# Rewards[]           = Omanyte
+Rewards[]             = Lapras
+Rewards[]             = Larvitar
+Rewards[]             = Spinda
+
+#===============================================================================
+[DEBUG]
+Processing_Speed      = DISABLED
+Map_Tiles             = DISABLED
+Pokemon_Subs          = DISABLED
+PvP_Subs              = DISABLED
+Raid_Subs             = DISABLED
