@@ -52,7 +52,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
             create.gen = 0;
           }
 
-          create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- specify minimum Atk/Def/Sta (15/14/13) Values -OR- type 'All'. Type 'Cancel' to Stop.", create);
+          create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- type 'All'. Type 'Cancel' to Stop.", create);
 
           if (create.min_iv == 100) {
             create.max_iv = 100
@@ -84,11 +84,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.gen = 0;
           create.size = 0;
 
-          let min_iv_req = "Please respond with a IV number between 0 and 100 -OR- type 'All'. Type 'Cancel' to Stop.";
-          if (create.pokemon_id === 0) {
-            min_iv_req = "Please respond with a IV number between 90 and 100 -OR- type 'All'. Type 'Cancel' to Stop.";
-          }
-          create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, min_iv_req, create);
+          create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- type 'All'. Type 'Cancel' to Stop.", create);
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
         }
