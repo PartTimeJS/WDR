@@ -16,7 +16,7 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
     }
 
-    let input = CollectedMsg.content.split(" ")[0].toString().toLowerCase();
+    let input = CollectedMsg.content.split(" ").toString().toLowerCase();
 
     let adv_words = ["adv"],
       add_words = ["ad", "add", "create"],
@@ -26,7 +26,7 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
       view_words = ["view", "vw", "veiw", "viw", "vew"],
       pause_words = ["puase", "pasue", "pasue", "psaue", "paus", "pause"],
       resume_words = ["resum", "rseume", "reusme", "resuem", "resume"];
-
+      
     switch (true) {
       case adv_words.some(word => input.includes(word)):
         collector.stop("advanced");
