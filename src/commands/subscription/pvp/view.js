@@ -7,6 +7,8 @@ module.exports = (WDR, Functions, Message, Member) => {
      WHERE
         user_id = '${Member.id}'
           AND
+        guild_id = ${Message.guild.id}
+          AND
         sub_type = 'pvp'`,
     async function(error, subscriptions) {
       if (!subscriptions || subscriptions.length < 1) {
