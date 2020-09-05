@@ -154,6 +154,8 @@ module.exports = async (WDR, Sighting) => {
 
 async function Send_Subscription(WDR, match, Sighting, User, ) {
 
+  await WDR.Rate_Limit(WDR, User);
+
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
   match.typing = await WDR.Get_Typing(WDR, {

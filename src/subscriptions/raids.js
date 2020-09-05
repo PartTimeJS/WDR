@@ -113,6 +113,8 @@ module.exports = async (WDR, RAID) => {
 
 async function Send_Subscription(WDR, RAID, User) {
 
+  await WDR.Rate_Limit(WDR, User);
+
   let match = {};
 
   let Embed_Config;

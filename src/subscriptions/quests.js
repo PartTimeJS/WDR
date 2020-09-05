@@ -67,6 +67,8 @@ module.exports = async (WDR, Sighting) => {
 
 async function Send_Subscription(WDR, Quest, User) {
 
+  await WDR.Rate_Limit(WDR, User);
+
   let Embed_Config = require(WDR.Dir + "/configs/embeds/" + Quest.Embed);
 
   match.member = WDR.Bot.guilds.cache.get(Quest.discord.id).members.fetch(User.user_id);
