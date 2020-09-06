@@ -173,6 +173,9 @@ async function Send_Subscription(WDR, match, Sighting, User) {
   match.type_noemoji = match.typing.type_noemoji;
 
   match.color = match.typing.color;
+  
+  match.gender_wemoji = Sighting.gender_wemoji
+  match.gender_noemoji = Sighting.gender_noemoji
 
   match.name = Sighting.pokemon_name;
   match.id = Sighting.pokemon_id;
