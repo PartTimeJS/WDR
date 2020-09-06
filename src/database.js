@@ -470,7 +470,7 @@ async function create_tables(WDR) {
         league varchar(10) NOT NULL DEFAULT '0',
         quest_delivery varchar(10) DEFAULT '0',
         geotype varchar(10) NOT NULL,
-        PRIMARY KEY (user_id,sub_type,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
+        PRIMARY KEY (user_id,guild_id,sub_type,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
         KEY ix_lvl (min_lvl,max_lvl) USING BTREE,
         KEY ix_iv (min_iv,max_iv) USING BTREE,
         KEY ix_form (form) USING BTREE,
