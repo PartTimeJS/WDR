@@ -1,5 +1,5 @@
 CREATE TABLE wdr_subscriptions (
-  user_id bigint NOT NULL,
+  user_id varchar(25) NOT NULL,
   user_name varchar(40) DEFAULT NULL,
   guild_id bigint DEFAULT NULL,
   guild_name varchar(40) DEFAULT NULL,
