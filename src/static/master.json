@@ -41104,269 +41104,264 @@
 	},
 	"Items": {
 		"0": {
-			"name": "",
-			"proto": "UNKNOWN"
+			"name": "Unknown",
+			"proto": "ITEM_UNKNOWN"
 		},
 		"1": {
-			"name": "Ball",
-			"proto": "POKE_BALL"
+			"name": "Poke Ball",
+			"proto": "ITEM_POKE_BALL"
 		},
 		"2": {
-			"name": "Ball",
-			"proto": "GREAT_BALL"
+			"name": "Great Ball",
+			"proto": "ITEM_GREAT_BALL"
 		},
 		"3": {
-			"name": "Ball",
-			"proto": "ULTRA_BALL"
+			"name": "Ultra Ball",
+			"proto": "ITEM_ULTRA_BALL"
 		},
 		"4": {
-			"name": "Ball",
-			"proto": "MASTER_BALL"
+			"name": "Master Ball",
+			"proto": "ITEM_MASTER_BALL"
 		},
 		"5": {
-			"name": "Ball",
-			"proto": "PREMIER_BALL"
+			"name": "Premier Ball",
+			"proto": "ITEM_PREMIER_BALL"
 		},
 		"101": {
-			"name": "",
-			"proto": "POTION"
+			"name": "Potion",
+			"proto": "ITEM_POTION"
 		},
 		"102": {
-			"name": "Potion",
-			"proto": "SUPER_POTION"
+			"name": "Super Potion",
+			"proto": "ITEM_SUPER_POTION"
 		},
 		"103": {
-			"name": "Potion",
-			"proto": "HYPER_POTION"
+			"name": "Hyper Potion",
+			"proto": "ITEM_HYPER_POTION"
 		},
 		"104": {
-			"name": "Potion",
-			"proto": "MAX_POTION"
+			"name": "Max Potion",
+			"proto": "ITEM_MAX_POTION"
 		},
 		"201": {
-			"name": "",
-			"proto": "REVIVE"
+			"name": "Revive",
+			"proto": "ITEM_REVIVE"
 		},
 		"202": {
-			"name": "Revive",
-			"proto": "MAX_REVIVE"
+			"name": "Max Revive",
+			"proto": "ITEM_MAX_REVIVE"
 		},
 		"301": {
-			"name": "Egg",
-			"proto": "LUCKY_EGG"
+			"name": "Lucky Egg",
+			"proto": "ITEM_LUCKY_EGG"
 		},
 		"401": {
-			"name": "Ordinary",
-			"proto": "INCENSE_ORDINARY"
+			"name": "Incense Ordinary",
+			"proto": "ITEM_INCENSE_ORDINARY"
 		},
 		"402": {
-			"name": "Spicy",
-			"proto": "INCENSE_SPICY"
+			"name": "Incense Spicy",
+			"proto": "ITEM_INCENSE_SPICY"
 		},
 		"403": {
-			"name": "Cool",
-			"proto": "INCENSE_COOL"
+			"name": "Incense Cool",
+			"proto": "ITEM_INCENSE_COOL"
 		},
 		"404": {
-			"name": "Floral",
-			"proto": "INCENSE_FLORAL"
+			"name": "Incense Floral",
+			"proto": "ITEM_INCENSE_FLORAL"
 		},
 		"405": {
-			"name": "Beluga Box",
-			"proto": "INCENSE_BELUGA_BOX"
+			"name": "Incense Beluga Box",
+			"proto": "ITEM_INCENSE_BELUGA_BOX"
 		},
 		"501": {
-			"name": "Disk",
-			"proto": "TROY_DISK"
+			"name": "Troy Disk",
+			"proto": "ITEM_TROY_DISK"
 		},
 		"502": {
-			"name": "Disk Glacial",
-			"proto": "TROY_DISK_GLACIAL"
+			"name": "Troy Disk Glacial",
+			"proto": "ITEM_TROY_DISK_GLACIAL"
 		},
 		"503": {
-			"name": "Disk Mossy",
-			"proto": "TROY_DISK_MOSSY"
+			"name": "Troy Disk Mossy",
+			"proto": "ITEM_TROY_DISK_MOSSY"
 		},
 		"504": {
-			"name": "Disk Magnetic",
-			"proto": "TROY_DISK_MAGNETIC"
+			"name": "Troy Disk Magnetic",
+			"proto": "ITEM_TROY_DISK_MAGNETIC"
 		},
 		"602": {
-			"name": "Attack",
-			"proto": "X_ATTACK"
+			"name": "X Attack",
+			"proto": "ITEM_X_ATTACK"
 		},
 		"603": {
-			"name": "Defense",
-			"proto": "X_DEFENSE"
+			"name": "X Defense",
+			"proto": "ITEM_X_DEFENSE"
 		},
 		"604": {
-			"name": "Miracle",
-			"proto": "X_MIRACLE"
+			"name": "X Miracle",
+			"proto": "ITEM_X_MIRACLE"
 		},
 		"701": {
-			"name": "Berry",
-			"proto": "RAZZ_BERRY"
+			"name": "Razz Berry",
+			"proto": "ITEM_RAZZ_BERRY"
 		},
 		"702": {
-			"name": "Berry",
-			"proto": "BLUK_BERRY"
+			"name": "Bluk Berry",
+			"proto": "ITEM_BLUK_BERRY"
 		},
 		"703": {
-			"name": "Berry",
-			"proto": "NANAB_BERRY"
+			"name": "Nanab Berry",
+			"proto": "ITEM_NANAB_BERRY"
 		},
 		"704": {
-			"name": "Berry",
-			"proto": "WEPAR_BERRY"
+			"name": "Wepar Berry",
+			"proto": "ITEM_WEPAR_BERRY"
 		},
 		"705": {
-			"name": "Berry",
-			"proto": "PINAP_BERRY"
+			"name": "Pinap Berry",
+			"proto": "ITEM_PINAP_BERRY"
 		},
 		"706": {
-			"name": "Razz Berry",
-			"proto": "GOLDEN_RAZZ_BERRY"
+			"name": "Golden Razz Berry",
+			"proto": "ITEM_GOLDEN_RAZZ_BERRY"
 		},
 		"707": {
-			"name": "Nanab Berry",
-			"proto": "GOLDEN_NANAB_BERRY"
+			"name": "Golden Nanab Berry",
+			"proto": "ITEM_GOLDEN_NANAB_BERRY"
 		},
 		"708": {
-			"name": "Pinap Berry",
-			"proto": "GOLDEN_PINAP_BERRY"
+			"name": "Golden Pinap Berry",
+			"proto": "ITEM_GOLDEN_PINAP_BERRY"
 		},
 		"709": {
-			"name": "",
-			"proto": "POFFIN"
+			"name": "Poffin",
+			"proto": "ITEM_POFFIN"
 		},
 		"801": {
-			"name": "Camera",
-			"proto": "SPECIAL_CAMERA"
+			"name": "Special Camera",
+			"proto": "ITEM_SPECIAL_CAMERA"
 		},
 		"802": {
-			"name": "Inventory",
-			"proto": "STICKER_INVENTORY"
+			"name": "Sticker Inventory",
+			"proto": "ITEM_STICKER_INVENTORY"
 		},
 		"901": {
-			"name": "Basic Unlimited",
-			"proto": "INCUBATOR_BASIC_UNLIMITED"
+			"name": "Incubator Basic Unlimited",
+			"proto": "ITEM_INCUBATOR_BASIC_UNLIMITED"
 		},
 		"902": {
-			"name": "Basic",
-			"proto": "INCUBATOR_BASIC"
+			"name": "Incubator Basic",
+			"proto": "ITEM_INCUBATOR_BASIC"
 		},
 		"903": {
-			"name": "Super",
-			"proto": "INCUBATOR_SUPER"
+			"name": "Incubator Super",
+			"proto": "ITEM_INCUBATOR_SUPER"
 		},
 		"1001": {
-			"name": "Storage Upgrade",
-			"proto": "POKEMON_STORAGE_UPGRADE"
+			"name": "Pokemon Storage Upgrade",
+			"proto": "ITEM_POKEMON_STORAGE_UPGRADE"
 		},
 		"1002": {
-			"name": "Storage Upgrade",
-			"proto": "ITEM_STORAGE_UPGRADE"
+			"name": "Item Storage Upgrade",
+			"proto": "ITEM_ITEM_STORAGE_UPGRADE"
 		},
 		"1101": {
-			"name": "Stone",
-			"proto": "SUN_STONE"
+			"name": "Sun Stone",
+			"proto": "ITEM_SUN_STONE"
 		},
 		"1102": {
-			"name": "Rock",
-			"proto": "KINGS_ROCK"
+			"name": "Kings Rock",
+			"proto": "ITEM_KINGS_ROCK"
 		},
 		"1103": {
-			"name": "Coat",
-			"proto": "METAL_COAT"
+			"name": "Metal Coat",
+			"proto": "ITEM_METAL_COAT"
 		},
 		"1104": {
-			"name": "Scale",
-			"proto": "DRAGON_SCALE"
+			"name": "Dragon Scale",
+			"proto": "ITEM_DRAGON_SCALE"
 		},
 		"1105": {
-			"name": "Grade",
-			"proto": "UP_GRADE"
+			"name": "Up Grade",
+			"proto": "ITEM_UP_GRADE"
 		},
 		"1106": {
-			"name": "Evolution Stone",
-			"proto": "GEN4_EVOLUTION_STONE"
+			"name": "Gen4 Evolution Stone",
+			"proto": "ITEM_GEN4_EVOLUTION_STONE"
 		},
 		"1107": {
-			"name": "Evolution Stone",
-			"proto": "GEN5_EVOLUTION_STONE"
+			"name": "Gen5 Evolution Stone",
+			"proto": "ITEM_GEN5_EVOLUTION_STONE"
 		},
 		"1201": {
-			"name": "Reroll Fast Attack",
-			"proto": "MOVE_REROLL_FAST_ATTACK"
+			"name": "Move Reroll Fast Attack",
+			"proto": "ITEM_MOVE_REROLL_FAST_ATTACK"
 		},
 		"1202": {
-			"name": "Reroll Special Attack",
-			"proto": "MOVE_REROLL_SPECIAL_ATTACK"
+			"name": "Move Reroll Special Attack",
+			"proto": "ITEM_MOVE_REROLL_SPECIAL_ATTACK"
 		},
 		"1203": {
-			"name": "Reroll Elite Fast Attack",
-			"proto": "MOVE_REROLL_ELITE_FAST_ATTACK"
+			"name": "Move Reroll Elite Fast Attack",
+			"proto": "ITEM_MOVE_REROLL_ELITE_FAST_ATTACK"
 		},
 		"1204": {
-			"name": "Reroll Elite Special Attack",
-			"proto": "MOVE_REROLL_ELITE_SPECIAL_ATTACK"
+			"name": "Move Reroll Elite Special Attack",
+			"proto": "ITEM_MOVE_REROLL_ELITE_SPECIAL_ATTACK"
 		},
 		"1301": {
-			"name": "Candy",
-			"proto": "RARE_CANDY"
+			"name": "Rare Candy",
+			"proto": "ITEM_RARE_CANDY"
 		},
 		"1401": {
-			"name": "Raid Ticket",
-			"proto": "FREE_RAID_TICKET"
+			"name": "Free Raid Ticket",
+			"proto": "ITEM_FREE_RAID_TICKET"
 		},
 		"1402": {
-			"name": "Raid Ticket",
-			"proto": "PAID_RAID_TICKET"
+			"name": "Paid Raid Ticket",
+			"proto": "ITEM_PAID_RAID_TICKET"
 		},
 		"1403": {
-			"name": "Raid Ticket",
-			"proto": "LEGENDARY_RAID_TICKET"
+			"name": "Legendary Raid Ticket",
+			"proto": "ITEM_LEGENDARY_RAID_TICKET"
 		},
 		"1404": {
-			"name": "Piece",
-			"proto": "STAR_PIECE"
+			"name": "Star Piece",
+			"proto": "ITEM_STAR_PIECE"
 		},
 		"1405": {
-			"name": "Gift Box",
-			"proto": "FRIEND_GIFT_BOX"
+			"name": "Friend Gift Box",
+			"proto": "ITEM_FRIEND_GIFT_BOX"
 		},
 		"1406": {
-			"name": "Change",
-			"proto": "TEAM_CHANGE"
+			"name": "Team Change",
+			"proto": "ITEM_TEAM_CHANGE"
 		},
 		"1408": {
-			"name": "Raid Ticket",
-			"proto": "REMOTE_RAID_TICKET"
+			"name": "Remote Raid Ticket",
+			"proto": "ITEM_REMOTE_RAID_TICKET"
 		},
 		"1501": {
-			"name": "Map Fragment",
-			"proto": "LEADER_MAP_FRAGMENT"
+			"name": "Leader Map Fragment",
+			"proto": "ITEM_LEADER_MAP_FRAGMENT"
 		},
 		"1502": {
-			"name": "Map",
-			"proto": "LEADER_MAP"
+			"name": "Leader Map",
+			"proto": "ITEM_LEADER_MAP"
 		},
 		"1503": {
-			"name": "Map",
-			"proto": "GIOVANNI_MAP"
+			"name": "Giovanni Map",
+			"proto": "ITEM_GIOVANNI_MAP"
 		},
 		"1600": {
-			"name": "Event Ticket",
-			"proto": "GLOBAL_EVENT_TICKET"
+			"name": "Global Event Ticket",
+			"proto": "ITEM_GLOBAL_EVENT_TICKET"
 		},
 		"1601": {
-			"name": "Ticket Pink",
-			"proto": "EVENT_TICKET_PINK"
-		},
-		"undefined": {
-			"type": "Global Event Ticket",
-			"category": "Global Event Ticket",
-			"min_trainer_level": 10
+			"name": "Event Ticket Pink",
+			"proto": "ITEM_EVENT_TICKET_PINK"
 		}
 	},
 	"Pokemon_Types": [
