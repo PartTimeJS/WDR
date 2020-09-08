@@ -48,3 +48,4 @@ src/static/dbMigrate.js
 *.nonobfuscated.js
 *.ini
 *.obf
+node_modules
