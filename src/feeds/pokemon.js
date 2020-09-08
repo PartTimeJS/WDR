@@ -85,6 +85,9 @@ module.exports = (WDR, SIGHTING) => {
           match.type_noemoji = match.typing.type_noemoji;
 
           match.color = match.typing.color;
+          
+          match.gender_wemoji = SIGHTING.gender_wemoji
+          match.gender_noemoji = SIGHTING.gender_noemoji
 
           match.name = SIGHTING.pokemon_name;
           match.id = SIGHTING.pokemon_id;
