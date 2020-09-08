@@ -1,4 +1,4 @@
-module.exports = async (WDR, Sighting) => {
+module.exports = async (WDR, QUEST) => {
 
   let query = `
     SELECT
@@ -10,7 +10,7 @@ module.exports = async (WDR, Sighting) => {
       AND
         sub_type = 'quest'
       AND (
-        reward = '${Quest.pokemon_id}'
+        reward = '${WDR.Master.Pokemon[Quest.pokemon_id].name}'
           OR
         reward = '${Quest.simple_reward}'
           OR
@@ -22,39 +22,72 @@ module.exports = async (WDR, Sighting) => {
     query,
     async function(error, matching, fields) {
       if (error) {
-        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-      } else if (matching && matching[0]) {
+        WDR.Console.error(WDR, "[src/subs/quests.js] Error Querying Subscriptions.", [query, error]);
+      } else if (matching && matching.length > 0) {
 
-        Quest.sprite = WDR.Get_Sprite(WDR, Quest);
+        QUEST.sprite = WDR.Get_Sprite(WDR, QUEST);
 
         if (WDR.Config.QUEST_PREGEN_TILES != "DISABLED") {
-          Quest.body = await WDR.Generate_Tile(WDR, Quest, "pokemon", Quest.latitude, Quest.longitude, Quest.sprite);
-          Quest.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + Quest.body;
+          QUEST.body = await WDR.Generate_Tile(WDR, QUEST, "pokemon", QUEST.latitude, QUEST.longitude, QUEST.sprite);
+          QUEST.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + QUEST.body;
         }
 
         for (let m = 0, mlen = matching.length; m < mlen; m++) {
+
           let User = matching[m];
 
-          if (matching[0] == "areas" || matching[0].geotype == "city") {
-            let defGeo = (User.areas.indexOf(Quest.area.default) >= 0);
-            let mainGeo = (User.areas.indexOf(Quest.area.main) >= 0);
-            let subGeo = (User.areas.indexOf(Quest.area.sub) >= 0);
-            if (defGeo || mainGeo || subGeo) {
-              Send_Subscription(WDR, Quest, User);
-            }
+          User.location = JSON.parse(User.location);
 
-          } else if (User.geotype == "location") {
-            let distance = WDR.Distance.between({
-              lat: Sighting.latitude,
-              lon: Sighting.longitude
-            }, {
-              lat: User.location.coords.split(",")[0],
-              lon: User.location.coords.split(",")[1]
-            });
-            let loc_dist = WDR.Distance(User.location.radius + " km");
-            if (loc_dist > distance) {
-              Send_Subscription(WDR, Quest, User);
+          let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
+          if (authorized) {
+            let match = {};
+
+            if (User.geotype == "city") {
+              if (User.guild_name == QUEST.area.default) {
+                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.log(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | Sent city sub to " + User.user_name + ".");
+                }
+                Send_Subscription(WDR, match, QUEST, User);
+              } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                WDR.Console.info(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + QUEST.area.default+"`")
+              }
+
+            } else if (User.geotype == "areas") {
+              let defGeo = (User.areas.indexOf(QUEST.area.default) >= 0);
+              let mainGeo = (User.areas.indexOf(QUEST.area.main) >= 0);
+              let subGeo = (User.areas.indexOf(QUEST.area.sub) >= 0);
+              if (defGeo || mainGeo || subGeo) {
+                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.log(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | Sent area sub to " + User.user_name + ".");
+                }
+                Send_Subscription(WDR, match, QUEST, User);
+              } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                WDR.Console.info(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | User: " + User.user_name + " | Failed Area Geofence.")
+              }
+
+            } else if (User.geotype == "location") {
+              let distance = WDR.Distance.between({
+                lat: QUEST.latitude,
+                lon: QUEST.longitude
+              }, {
+                lat: User.location.coords.split(",")[0],
+                lon: User.location.coords.split(",")[1]
+              });
+              let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+              if (loc_dist > distance) {
+                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                  WDR.Console.log(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | Sent location sub to " + User.user_name + ".");
+                }
+                Send_Subscription(WDR, match, QUEST, User);
+              }
+            } else {
+              WDR.Console.error(WDR, "[DEBUG] [src/subs/quests.js] User: " + User.user_name + " | User geotype has a bad value.", User);
             }
+          } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+            WDR.Console.info(WDR, "[DEBUG] [src/subs/quests.js] " + QUEST.encounter_id + " | " + User.user_name + " did NOT pass authorization for " + discord.name + " (" + discord.id + ").");
           }
         }
       }
