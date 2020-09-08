@@ -130,12 +130,14 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           create.max_lvl = WDR.Max_Raid_Level;
         }
 
-        if (create.gym === 0) {
+        if (create.gym_id === 0) {
           create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create, gym_name_array, gym_detail_array, gym_collection);
           if (create.geotype == "location") {
             create.areas = Member.db.location.name;
           } else if (create.geotype == "areas") {
             create.areas = Member.db.areas;
+          } else {
+            create.areas = "All"
           }
         } else {
           create.geotype = "city";
