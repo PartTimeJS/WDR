@@ -2,6 +2,9 @@
   "requires": true,
   "version": "2.0.0b6",
   "lockfileVersion": 1,
+  "scripts": {
+    "start": "node wdr.js"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "cli-progress": "^3.8.2",
@@ -22,7 +25,6 @@
     "path": "^0.12.7",
     "point-in-geopolygon": "^1.0.1",
     "point-in-polygon": "^1.0.1",
-    "protobufjs": "^6.9.0",
-    "trim-image": "^1.0.3"
+    "protobufjs": "^6.9.0"
   }
 }
