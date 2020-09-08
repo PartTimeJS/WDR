@@ -22,6 +22,6 @@ module.exports = (WDR, name) => {
         return resolve(data);
       }
     }
-    return resolve();
+    return resolve(null);
   });
 }

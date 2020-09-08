@@ -175,9 +175,9 @@ function load_embeds() {
 async function wdr_intialization() {
   console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + WDR.Snarkiness.startup[randomNumber]).bold.brightGreen);
   WDR = await load("/src/startup/load_functions.js");
-  // if (WDR.Fs.existsSync(__dirname + "/src/functions/Generate_Master.js")) {
-  //   await WDR.Generate_Master(WDR);
-  // }
+  if (WDR.Fs.existsSync(__dirname + "/src/functions/Generate_Master.js")) {
+    await WDR.Generate_Master(WDR);
+  }
   WDR = await load("/src/startup/load_data.js");
   await mysql_connect("wdrDB");
   //await mysql_connect("pmsfDB");
