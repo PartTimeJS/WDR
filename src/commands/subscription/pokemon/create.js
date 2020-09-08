@@ -68,12 +68,13 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
             create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
           }
 
-          if (create.pokemon > 0) {
+          if (create.pokemon_id > 0) {
             create.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, null, "Please respond with 'Male' or 'Female' or type 'All'.", create);
             create.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, null, "Please respond with 'big', 'large', 'normal', 'small', 'tiny' or 'All'.", create);
             create.size = create.size.toLowerCase();
           } else {
             create.size = 0;
+            create.gender = 0;
           }
         } else {
 
@@ -88,6 +89,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
         }
+
         create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
         if (create.geotype == "location") {
           create.areas = Member.db.location.name;
@@ -99,11 +101,11 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
         if (create.confirm === false) {
-          Functions.Cancel(WDR, Functions, Message, Member);
-        }
+          return Functions.Cancel(WDR, Functions, Message, Member);
+        } else {
 
-        let query =
-          `INSERT INTO
+          let query = `
+            INSERT INTO
               wdr_subscriptions (
                   user_id,
                   user_name,
@@ -125,8 +127,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                   size,
                   gender,
                   generation
-              )
-           VALUES
+                )
+            VALUES
               (
                 '${Member.id}',
                 '${Member.db.user_name}',
@@ -149,38 +151,39 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                 ${create.gender},
                 ${create.gen}
               );`;
-        WDR.wdrDB.query(
-          query,
-          async function(error, result) {
-            if (error) {
-              if (error.toString().indexOf("Duplicate entry") >= 0) {
+          WDR.wdrDB.query(
+            query,
+            function(error) {
+              if (error) {
+                if (error.toString().indexOf("Duplicate entry") >= 0) {
+                  let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
+                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                    .setTitle("Existing Subscription Found!")
+                    .setDescription("Nothing Has Been Saved." + "\n" + +"\n" +
+                      "Use the view to see if your overall or pokemon status is Active if you are not receiving DMs.")
+                    .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
+                  Message.channel.send(subscription_success).then(BotMsg => {
+                    return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
+                  });
+                } else {
+                  WDR.Console.error(WDR, "[" + Functions.Dir + "] Error Inserting Subscription.", [query, error]);
+                  return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+                    timeout: 10000
+                  }));
+                }
+              } else {
                 let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                   .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                  .setTitle("Existing Subscription Found!")
-                  .setDescription("Nothing Has Been Saved." + "\n" + +"\n" +
-                    "Use the view to see if your overall or pokemon status is Active if you are not receiving DMs.")
+                  .setTitle(create.name + " Subscription Complete!")
+                  .setDescription("Saved to the subscription Database.")
                   .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
                 Message.channel.send(subscription_success).then(BotMsg => {
                   return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
                 });
-              } else {
-                WDR.Console.error(WDR, "[" + Functions.Dir + "] Error Inserting Subscription.", [query, error]);
-                return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
-                  timeout: 10000
-                }));
               }
-            } else {
-              let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-                .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                .setTitle(create.name + " Subscription Complete!")
-                .setDescription("Saved to the subscription Database.")
-                .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
-              Message.channel.send(subscription_success).then(BotMsg => {
-                return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
-              });
             }
-          }
-        );
+          );
+        }
       }
     }
   );
