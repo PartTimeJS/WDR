@@ -48,7 +48,7 @@ module.exports = async (WDR, Message) => {
     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
     .setTitle("What would you like to do with your Raid Subscriptions?")
     .setDescription("`presets`  »  View quick preset subscriptions." + "\n" +
-      "`view`  »  View your Subscritions.\n" +
+      "`view`  »  View your Subscriptions.\n" +
       "`add`  »  Create a Simple Subscription.\n" +
       "`remove`  »  Remove a Raid Subscription.\n" +
       "`pause` or `resume`  »  Pause/Resume Raid Subscriptions Only.")
