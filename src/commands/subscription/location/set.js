@@ -28,7 +28,16 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         }
 
         let locations;
-        if (user.locations) {
+        if (!user.locations){
+          let null_locations = new WDR.DiscordJS.MessageEmbed()
+            .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+            .setTitle("You do not have any Locations.")
+            .setFooter("You can type 'set', 'create', 'view', 'edit', or 'remove'.");
+          Message.channel.send(null_locations).catch(console.error).then(BotMsg => {
+            return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
+          });
+          
+        } else {
           locations = Object.keys(user.locations).map(i => user.locations[i]);
         }
 
