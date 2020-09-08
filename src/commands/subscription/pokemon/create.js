@@ -71,7 +71,9 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           if (create.pokemon_id > 0) {
             create.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, null, "Please respond with 'Male' or 'Female' or type 'All'.", create);
             create.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, null, "Please respond with 'big', 'large', 'normal', 'small', 'tiny' or 'All'.", create);
-            create.size = create.size.toLowerCase();
+            if(create.size !== 0){
+              create.size = create.size.toLowerCase();
+            }
           } else {
             create.size = 0;
             create.gender = 0;
