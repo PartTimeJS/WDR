@@ -144,13 +144,13 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create, gym_name_array, gym_detail_array, gym_collection);
         if (create.confirm === false) {
-          Functions.Cancel(WDR, Functions, Message, Member);
-        }
+          return Functions.Cancel(WDR, Functions, Message, Member);
+        } else {
 
-        create.gym = create.gym.replace("'", "");
+          create.gym = create.gym.replace("'", "");
 
-        let query = `
-          INSERT INTO
+          let query = `
+            INSERT INTO
               wdr_subscriptions (
                   user_id,
                   user_name,
@@ -168,14 +168,14 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                   min_lvl,
                   max_lvl
                 )
-           VALUES
+            VALUES
               (
                 '${Member.id}',
                 '${Member.db.user_name}',
                 '${Message.guild.id}',
                 '${Member.db.guild_name}',
                 ${Member.db.bot},
-                ${Member.db.pvp_status},
+                ${Member.db.raid_status},
                 '${create.geotype}',
                 '${Member.db.areas}',
                 '${JSON.stringify(Member.db.location)}',
@@ -186,38 +186,39 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 ${create.min_lvl},
                 '${create.max_lvl}'
               )
-          ;`;
-        WDR.wdrDB.query(
-          query,
-          async function(error, result) {
-            if (error) {
-              if (error.toString().indexOf("Duplicate entry") >= 0) {
-                let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
-                  .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                  .setTitle("Existing Subscription Found!")
-                  .setDescription("Nothing has been saved.")
-                  .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
-                Message.channel.send(subscription_success).then(BotMsg => {
-                  return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
-                });
+            ;`;
+          WDR.wdrDB.query(
+            query,
+            async function(error, result) {
+              if (error) {
+                if (error.toString().indexOf("Duplicate entry") >= 0) {
+                  let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
+                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                    .setTitle("Existing Subscription Found!")
+                    .setDescription("Nothing has been saved.")
+                    .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
+                  Message.channel.send(subscription_success).then(BotMsg => {
+                    return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
+                  });
+                } else {
+                  WDR.Console.error(WDR, "[cmd/sub/raid/create.js] Error Inserting Subscription.", [query, error]);
+                  return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+                    timeout: 10000
+                  }));
+                }
               } else {
-                WDR.Console.error(WDR, "[cmd/sub/raid/create.js] Error Inserting Subscription.", [query, error]);
-                return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
-                  timeout: 10000
-                }));
+                let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
+                  .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                  .setTitle(create.name + " Raid Subscription Complete!")
+                  .setDescription("Saved to the Database.")
+                  .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
+                Message.channel.send(subscription_success).then(msg => {
+                  return Functions.OptionCollect(WDR, Functions, "complete", Message, msg, Member);
+                });
               }
-            } else {
-              let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-                .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                .setTitle(create.name + " Raid Subscription Complete!")
-                .setDescription("Saved to the Database.")
-                .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
-              Message.channel.send(subscription_success).then(msg => {
-                return Functions.OptionCollect(WDR, Functions, "complete", Message, msg, Member);
-              });
             }
-          }
-        );
+          );
+        }
       }
     }
   );

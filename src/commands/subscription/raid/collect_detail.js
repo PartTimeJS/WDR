@@ -82,48 +82,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         break;
 
 
-      case type.indexOf("Form") >= 0:
-        switch (true) {
-          case (CollectedMsg.content.toLowerCase() == "same"):
-          case (CollectedMsg.content.toLowerCase() == "keep"):
-          case (CollectedMsg.content.toLowerCase() == "next"):
-            collector.stop(object);
-            break;
-          case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === '0'):
-            collector.stop(0);
-            break;
-          case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= sub.forms.length):
-            collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
-            break;
-          default:
-            return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
-              timeout: 5000
-            }));
-        }
-        break;
-
-
-      case type.indexOf("Form") >= 0:
-        switch (true) {
-          case (CollectedMsg.content.toLowerCase() == "same"):
-          case (CollectedMsg.content.toLowerCase() == "keep"):
-          case (CollectedMsg.content.toLowerCase() == "next"):
-            collector.stop(object);
-            break;
-          case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === '0'):
-            collector.stop(0);
-            break;
-          case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= sub.forms.length):
-            collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
-            break;
-          default:
-            return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
-              timeout: 5000
-            }));
-        }
-        break;
-
-
       case "Geofence":
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
