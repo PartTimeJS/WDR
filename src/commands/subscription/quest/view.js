@@ -46,13 +46,13 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         let o_status = Member.db.status === 1 ? "Enabled" : "Disabled";
         let r_status = Member.db.quest_status === 1 ? "Enabled" : "Disabled";
-        let raidSubs = new WDR.DiscordJS.MessageEmbed()
+        let questSubs = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Quest Subscriptions")
           .setDescription("Overall Status: `" + o_status + "`\n" +
             "Quest Status: `" + r_status + "`\n\n" + sub_list)
           .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
-        Message.channel.send(raidSubs).catch(console.error).then(BotMsg => {
+        Message.channel.send(questSubs).catch(console.error).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "complete", Message, BotMsg, Member);
         });
       }

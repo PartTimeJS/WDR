@@ -96,7 +96,7 @@ module.exports = (WDR, Functions, Message, Member) => {
                   });
 
                 } else {
-                  WDR.Console.error(WDR, "[cmd/sub/raid/create.js] Error Inserting Subscription.", [query, error]);
+                  WDR.Console.error(WDR, "[cmd/sub/quest/create.js] Error Inserting Subscription.", [query, error]);
                   return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                     timeout: 10000
                   }));
@@ -105,7 +105,7 @@ module.exports = (WDR, Functions, Message, Member) => {
               } else {
                 let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                   .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                  .setTitle(create.name + " Raid Subscription Complete!")
+                  .setTitle(create.reward + " Quest Subscription Complete!")
                   .setDescription("Saved to the Database.")
                   .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
                 Message.channel.send(subscription_success).then(msg => {
