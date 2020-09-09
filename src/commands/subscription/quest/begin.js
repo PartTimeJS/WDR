@@ -17,7 +17,7 @@ var Functions = {
   
     let request_action = new WDR.DiscordJS.MessageEmbed()
       .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-      .setTitle("What would you like to do with your qUEST Subscriptions?")
+      .setTitle("What would you like to do with your Quest Subscriptions?")
       .setDescription("`presets`  »  View quick preset subscriptions." + "\n" +
         "`view`  »  View your Subscriptions.\n" +
         "`add`  »  Create an Alert.\n" +
