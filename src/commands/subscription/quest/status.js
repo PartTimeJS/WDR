@@ -13,7 +13,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete(10000)).catch(console.error);
 
       } else if (!user || !user[0]) {
-        WDR.Console.error(WDR, "[COMMANDS] [" + WDR.Time(null, "stamp") + "] [raid.js/(subscription_status)] Could not retrieve user: " + Member.nickname + " entry from dB.");
+        WDR.Console.error(WDR, "[COMMANDS] [" + WDR.Time(null, "stamp") + "] [quest.js/(subscription_status)] Could not retrieve user: " + Member.nickname + " entry from dB.");
         return Message.reply("There has been an error retrieving your user data from the dB contact an Admin to fix.");
 
       } else if (user[0].quests_status === 1 && reason == "resume") {
