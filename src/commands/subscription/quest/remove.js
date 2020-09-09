@@ -31,16 +31,17 @@ module.exports = (WDR, Functions, Message, Member) => {
           for (let s = 0, slen = subscriptions.length; s < slen; s++) {
             let choice = s + 1;
             let sub_data = subscriptions[s];
-            sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : "All Raid Bosses";
-            sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
-            let data = "";
-            if (sub_data.gym_id !== 0) {
-              data += "　" + "Reward: " + "`" + sub_data.reward + "`" + "\n";
+            sub_list += "**" + choice + " - " + sub_data.reward + "**\n";
+            if(sub_data.geotype !== "city"){
+              if(sub_data.geotype === "location"){
+                sub_list += "　" +  "Area: " + "`" + JSON.parse(sub_data.location).name + "`";
+              } else {
+                sub_list += "　" +  "Area: " + "`" + sub_data.areas + "`" + "\n";
+              }
+            } else {
+              sub_list += "　" +  "Area: " + "`All`"+ "\n";
             }
-            if (!data) {
-              data = "　" + "`" + "All" + "`" + "\n";
-            }
-            sub_list += data + "\n";
+            sub_list += "\n";
           }
           sub_list = sub_list.slice(0, -1);
 
