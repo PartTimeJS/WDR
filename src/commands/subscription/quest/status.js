@@ -16,19 +16,19 @@ module.exports = (WDR, Functions, Message, Member) => {
         WDR.Console.error(WDR, "[COMMANDS] [" + WDR.Time(null, "stamp") + "] [raid.js/(subscription_status)] Could not retrieve user: " + Member.nickname + " entry from dB.");
         return Message.reply("There has been an error retrieving your user data from the dB contact an Admin to fix.");
 
-      } else if (user[0].raids_status === 1 && reason == "resume") {
+      } else if (user[0].quests_status === 1 && reason == "resume") {
         let already_active = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Your Raid subscriptions are already **Active**!")
+          .setTitle("Your Quest subscriptions are already **Active**!")
           .setFooter("You can type 'view', 'add', or 'remove'.");
         message.channel.send(already_active).catch(console.error).then(msg => {
           return initiate_collector(WDR, "view", message, msg, member, prefix);
         });
 
-      } else if (user[0].raids_status === 0 && reason == "pause") {
+      } else if (user[0].quests_status === 0 && reason == "pause") {
         let already_paused = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-          .setTitle("Your Raid subscriptions are already **Paused**!")
+          .setTitle("Your Quest subscriptions are already **Paused**!")
           .setFooter("You can type 'view', 'add', or 'remove'.");
         message.channel.send(already_paused).catch(console.error).then(msg => {
           return initiate_collector(WDR, "view", message, msg, member, prefix);
@@ -57,7 +57,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             } else {
               let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                 .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                .setTitle("Your Raid subscriptions have been set to `" + change + "`!")
+                .setTitle("Your Quest subscriptions have been set to `" + change + "`!")
                 .setFooter("Saved to the Database.");
               return message.channel.send(subscription_success).then(m => m.delete({
                 timeout: 5000
