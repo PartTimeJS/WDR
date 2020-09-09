@@ -105,7 +105,7 @@ module.exports = (WDR, Functions, Message, Member) => {
               } else {
                 let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                   .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                  .setTitle(create.name + " Raid Subscription Complete!")
+                  .setTitle(create.reward + " Raid Subscription Complete!")
                   .setDescription("Saved to the Database.")
                   .setFooter("You can type 'view', 'presets', 'add', or 'remove'.");
                 Message.channel.send(subscription_success).then(msg => {
