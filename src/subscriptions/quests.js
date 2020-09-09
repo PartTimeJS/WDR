@@ -150,24 +150,24 @@ async function Send_Subscription(WDR, Quest, User) {
     if (!match.sprite) {
       match.sprite = match.url;
     }
-    match.Embed = Embed_Config(WDR, Quest);
+    match.embed = Embed_Config(WDR, match);
 
     let DB_Date = moment(Quest.Time_Now).format("MM/DD/YYYY");
     DB_Date = moment(DB_Date + " " + User.quest_time, "MM/DD/YYYY H:mm").valueOf();
 
     let Quest_Object = JSON.stringify(Quest);
-    let Embed = JSON.stringify(match.Embed);
+    let Embed = JSON.stringify(match.embed);
 
     let query = `
       INSERT INTO
-        quest_alerts (
+        wdr_quest_queue (
             user_id,
             user_name,
             guild_id,
             bot,
             area,
             alert,
-            quest_time,
+            alert_time,
             embed
         )
       VALUES
