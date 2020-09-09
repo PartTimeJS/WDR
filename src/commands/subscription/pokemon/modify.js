@@ -129,11 +129,13 @@ module.exports = (WDR, Functions, Message, Member) => {
         modified.size = 0;
       }
 
-      modified.areas = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No', or 'Distance'", modified);
-      if (modified.areas == Message.discord.name) {
-        modified.geotype = "city";
+      modified.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, old.areas, "Please respond with 'Yes', 'No', or 'Distance'", modified);
+      if (modified.geotype == "location") {
+        modified.areas = Member.db.location.name;
+      } else if (modified.geotype == "areas") {
+        modified.areas = Member.db.areas;
       } else {
-        modified.geotype = Member.db.geotype;
+        modified.areas = "All";
       }
 
       modified.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, undefined, "Type 'Yes' or 'No'. Subscription will be saved.", modified);
@@ -142,7 +144,6 @@ module.exports = (WDR, Functions, Message, Member) => {
         UPDATE
             wdr_subscriptions
         SET
-            areas = '${modified.areas}',
             geotype = '${modified.geotype}',
             pokemon_id = ${modified.id},
             form = ${modified.form},
