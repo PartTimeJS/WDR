@@ -7,7 +7,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       WHERE
         user_id = '${Member.id}'
           AND
-        sub_type = 'raid';`,
+        sub_type = 'quest';`,
     async function(error, subscriptions) {
 
       if (error) {
@@ -54,9 +54,9 @@ module.exports = (WDR, Functions, Message, Member) => {
             WHERE
                 user_id = '${Member.id}'
                   AND
-                sub_type = 'raid'
+                sub_type = 'quest'
                   AND
-                gym_id = '${remove.reward}'
+                reward = '${remove.reward}'
             ;`;
             
           WDR.wdrDB.query(
