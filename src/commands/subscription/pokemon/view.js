@@ -53,9 +53,15 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.generation && sub_data.generation !== 0) {
             data += "　Gen: `" + sub_data.generation + "`\n";
           }
-          // if (sub_data.geotype == 'city') {
-          //   data += "　Area: `Entire Scan Area`";
-          // }
+          if(sub_data.geotype !== "city"){
+            if(sub_data.geotype === "location"){
+              data += "　" +  "Area: " + "`" + JSON.parse(sub_data.location).name + "`";
+            } else {
+              data += "　" +  "Area: " + "`" + sub_data.areas + "`" + "\n";
+            }
+          } else if(data){
+            data += "　" +  "Area: " + "`All`"+ "\n";
+          }
           if (!data) {
             data = "　`All" + "`\n";;
           }

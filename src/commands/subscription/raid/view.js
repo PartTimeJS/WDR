@@ -45,6 +45,15 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
           if (sub_data.max_lvl !== WDR.Max_Raid_Level) {
             data += "　" + "Max Lvl: " + "`" + sub_data.max_lvl + "`" + "\n";
           }
+          if(sub_data.geotype !== "city"){
+            if(sub_data.geotype === "location"){
+              data += "　" +  "Area: " + "`" + JSON.parse(sub_data.location).name + "`";
+            } else {
+              data += "　" +  "Area: " + "`" + sub_data.areas + "`" + "\n";
+            }
+          } else if(data){
+            data += "　" +  "Area: " + "`All`"+ "\n";
+          }
           if (!data) {
             data = "　" + "`" + "All" + "`" + "\n";
           }

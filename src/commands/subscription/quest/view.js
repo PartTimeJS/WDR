@@ -31,6 +31,15 @@ module.exports = (WDR, Functions, Message, Member) => {
           let choice = s + 1;
           let sub_data = subscriptions[s];
           sub_list += "**" + choice + " - " + sub_data.reward + "**\n";
+          if(sub_data.geotype !== "city"){
+            if(sub_data.geotype === "location"){
+              data += "　" +  "Area: " + "`" + JSON.parse(sub_data.location).name + "`";
+            } else {
+              data += "　" +  "Area: " + "`" + sub_data.areas + "`" + "\n";
+            }
+          } else {
+            data += "　" +  "Area: " + "`All`"+ "\n";
+          }
           sub_list += "\n";
         }
         sub_list = sub_list.slice(0, -1);

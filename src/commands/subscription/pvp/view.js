@@ -41,6 +41,15 @@ module.exports = (WDR, Functions, Message, Member) => {
           if (sub_data.generation != 0) {
             data += "　Gen: `" + sub_data.generation + "`\n";
           }
+          if(sub_data.geotype !== "city"){
+            if(sub_data.geotype === "location"){
+              data += "　" +  "Area: " + "`" + JSON.parse(sub_data.location).name + "`";
+            } else {
+              data += "　" +  "Area: " + "`" + sub_data.areas + "`" + "\n";
+            }
+          } else {
+            data += "　" +  "Area: " + "`All`"+ "\n";
+          }
           sub_list += data + "\n";
         }
         sub_list = sub_list.slice(0, -1);
