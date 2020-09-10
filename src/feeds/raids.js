@@ -130,7 +130,7 @@ module.exports = async (WDR, RAID) => {
           match.marker_latitude = RAID.latitude + .0004;
 
           if (RAID.Type == "Egg") {
-            match.sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/wdr/eggs/" + RAID.level + ".png";
+            match.sprite = "https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/master/pmsf_OS_128/eggs/" + RAID.level + ".png";
           } else {
             match.sprite = WDR.Get_Sprite(WDR, RAID);
             match.form = RAID.form_name ? RAID.form_name : "";
