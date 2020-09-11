@@ -489,7 +489,7 @@ async function create_tables(WDR) {
         bot smallint NOT NULL,
         area varchar(20),
         alert varchar(10) NOT NULL,
-        quest_delivery bigint NOT NULL
+        quest_delivery bigint NOT NULL,
         embed LONGTEXT NOT NULL,
         KEY ix_data (user_id,guild_id,bot,alert,quest_delivery) USING BTREE
       );`;
