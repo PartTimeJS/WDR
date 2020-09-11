@@ -445,7 +445,7 @@ async function create_tables(WDR) {
       CREATE TABLE IF NOT EXISTS wdr_subscriptions(
         user_id bigint NOT NULL,
         user_name varchar(40) DEFAULT NULL,
-        guild_id bigint DEFAULT NULL,
+        guild_id bigint NOT NULL DEFAULT '0',
         guild_name varchar(255) DEFAULT NULL,
         bot tinyint DEFAULT NULL,
         status tinyint DEFAULT '1',
@@ -483,13 +483,13 @@ async function create_tables(WDR) {
 
     let wdr_quest_queue = `
       CREATE TABLE IF NOT EXISTS wdr_quest_queue(
-        user_id bigint NOT NULL,
+        user_id varchar(40) NOT NULL,
         user_name varchar(40) NOT NULL,
-        guild_id bigint NOT NULL,
+        guild_id varchar(40) NOT NULL,
         bot smallint NOT NULL,
         area varchar(20),
-        alert varchar(10),
-        quest_delivery bigint,
+        alert varchar(10) NOT NULL,
+        quest_delivery bigint NOT NULL
         embed LONGTEXT NOT NULL,
         KEY ix_data (user_id,guild_id,bot,alert,quest_delivery) USING BTREE
       );`;
