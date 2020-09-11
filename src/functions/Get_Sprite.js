@@ -57,6 +57,13 @@ module.exports = (WDR, Object, type) => {
       case 6:
         sprite = null;
         break;
+      
+      case 12:
+        sprite = "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/PMSF_icons_large/rewards/reward_mega_energy.png";
+        break;
+      
+      default:
+        sprite = null;     
     }
   }
 
