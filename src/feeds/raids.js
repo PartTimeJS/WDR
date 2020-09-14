@@ -127,7 +127,7 @@ module.exports = async (WDR, RAID) => {
           match.hatch_mins = Math.floor((RAID.start - (RAID.Time_Now / 1000)) / 60);
           match.end_mins = Math.floor((RAID.end - (RAID.Time_Now / 1000)) / 60);
 
-          match.marker_latitude = RAID.latitude + .0005;
+          match.marker_latitude = RAID.latitude + .0006;
 
           if (RAID.Type == "Egg") {
             match.sprite = "https://raw.githubusercontent.com/PartTimeJS/Assets/master/wdr/eggs/" + RAID.level + ".png";
