@@ -52,7 +52,7 @@
        "longitude": #(lon),
        "width": 55,
        "height": 55,
-       "y_offset": -40
+       "y_offset": -42
     }
   ]
 }
