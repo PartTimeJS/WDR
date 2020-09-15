@@ -15,7 +15,7 @@ module.exports = {
       if (!P_Locale.costume_id) {
         P_Locale.costume_id = P_Locale.costume;
       }
-
+      
       // DETERMINE DISCORD LANGUAGE
       switch (P_Locale.discord.locale) {
         case undefined:
