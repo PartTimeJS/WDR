@@ -240,7 +240,7 @@ const DB = {
             query[1],
             function(error, data) {
               if (error) {
-                WDR.Console.error(WDR, "[src/database.js] QuarterHourly Ontime Query Failed.", query[1]);
+                WDR.Console.error(WDR, "[src/database.js] QuarterHourly Ontime Query Failed.", [query[1]]);
                 console.error(error)
               }
             }
