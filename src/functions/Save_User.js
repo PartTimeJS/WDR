@@ -16,15 +16,15 @@ module.exports = (WDR, message, server) => {
         } else {
           next_bot++;
         }
-        let quest_delivery = moment(),
+        let alert_time = moment(),
           timezone = GeoTz(server.geofence[0][0][1], server.geofence[0][0][0]);
-        quest_delivery = moment.tz(quest_delivery, timezone[0]).set({
+        alert_time = moment.tz(alert_time, timezone[0]).set({
           hour: split[0],
           minute: split[1],
           second: 0,
           millisecond: 0
         });
-        quest_delivery = moment.tz(quest_delivery, WDR.Config.TIMEZONE).format("HH:mm");
+        alert_time = moment.tz(alert_time, WDR.Config.TIMEZONE).format("HH:mm");
         user_name = message.member.user.username.replace(/[\W]+/g, "");
         WDR.wdrDB.query(
           `INSERT INTO
@@ -48,7 +48,7 @@ module.exports = (WDR, message, server) => {
               1,
               '${"areas"}',
               '${server.name}',
-              '${quest_delivery}'
+              '${alert_time}'
             );`,
           async function(error, user, fields) {
             if (error) {
