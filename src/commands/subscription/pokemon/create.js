@@ -26,6 +26,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
       } else {
         let create = {};
         create.pokemon = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Respond with 'All' or the Pokémon Name and Form if it has one. Names are not case-sensitive.", create);
+        if(!create.pokemon){ return; }
+        
         if (create.pokemon.name) {
           create.name = create.pokemon.name;
           create.pokemon_id = create.pokemon.id;
@@ -38,6 +40,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
         if (create.pokemon_id > 0 && create.forms.length > 1) {
           create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with the displayed number of the form -OR- type 'All'. Type 'Cancel' to Stop.", create);
+          if(!create.form){ return; }
+
         } else {
           create.form = 0;
         }
@@ -46,31 +50,48 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
           if (create.pokemon == 0) {
             create.pokemon_type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, null, "Please respond with 'All' or the Pokemon Type.", create);
+            if(!create.pokemon_type){ return; }
+
             create.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, null, "Please respond with the Generation number -OR- type 'All'. Type 'Cancel' to Stop.", create);
+            if(!create.gen){ return; }
           } else {
+
             create.pokemon_type = 0;
             create.gen = 0;
           }
 
           create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- type 'All'. Type 'Cancel' to Stop.", create);
+          if(!create.gen){ return; }
 
           if (create.min_iv == 100) {
             create.max_iv = 100
+
           } else {
             create.max_iv = await Functions.DetailCollect(WDR, Functions, "Maximum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- specify minimum Atk/Def/Sta (15/14/13) Values -OR- type 'All'. Type 'Cancel' to Stop.", create);
+            if(!create.gen){ return; }
+
           }
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
+          if(!create.gen){ return; }
 
           if (create.min_lvl == WDR.Max_Pokemon_Level) {
             create.max_lvl = WDR.Max_Pokemon_Level;
+
           } else {
+
             create.max_lvl = await Functions.DetailCollect(WDR, Functions, "Maximum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
+            if(!create.gen){ return; }
           }
 
           if (create.pokemon_id > 0) {
+
             create.gender = await Functions.DetailCollect(WDR, Functions, "Gender", Member, Message, null, "Please respond with 'Male' or 'Female' or type 'All'.", create);
+            if(!create.gen){ return; }
+
             create.size = await Functions.DetailCollect(WDR, Functions, "Size", Member, Message, null, "Please respond with 'big', 'large', 'normal', 'small', 'tiny' or 'All'.", create);
+            if(!create.size){ return; }
+
             if(create.size !== 0){
               create.size = create.size.toLowerCase();
             }
@@ -88,11 +109,15 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
           create.size = 0;
 
           create.min_iv = await Functions.DetailCollect(WDR, Functions, "Minimum IV", Member, Message, null, "Please respond with a IV number between 0 and 100 -OR- type 'All'. Type 'Cancel' to Stop.", create);
+          if(!create.min_iv){ return; }
 
           create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum Level", Member, Message, null, "Please respond with a value between 0 and " + WDR.Max_Pokemon_Level + " or type 'All'. Type 'Cancel' to Stop.", create);
+          if(!create.min_lvl){ return; }
         }
 
         create.geotype = await Functions.DetailCollect(WDR, Functions, "Geofence", Member, Message, null, "Please respond with 'Yes' or 'No'", create);
+        if(!create.geotype){ return; }
+
         if (create.geotype == "location") {
           create.areas = Member.db.location.name;
         } else if (create.geotype == "areas") {
@@ -102,7 +127,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
         }
 
         create.confirm = await Functions.DetailCollect(WDR, Functions, "Confirm-Add", Member, Message, null, "Type 'Yes' or 'No'. Subscription will be saved.", create);
-        if (create.confirm === false) {
+        if (!create.confirm || create.confirm === false) {
           return Functions.Cancel(WDR, Functions, Message, Member);
         } else {
 
