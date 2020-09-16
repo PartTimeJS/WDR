@@ -248,9 +248,11 @@ Server.use((err, req, res, next) => {
 });
 
 function start_intervals() {
+    
   setInterval(function() {
     WDR.DB_Interval(WDR);
   }, 1000 * 60);
+
   let down_mins = parseInt(WDR.Config.DOWN_MINS);
   if (WDR.Config.DOWN_ALERT == "ENABLED" && payload_count == 0) {
     setInterval(function() {
