@@ -367,11 +367,12 @@ const DB = {
                             WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
                         }, 2000 * index);
                     });
-                    WDR.wdrDB.query(
-                        `DELETE FROM
-                            wdr_queued
-                        WHERE
-                            alert_time < UNIX_TIMESTAMP()`,
+                    WDR.wdrDB.query(`
+                            DELETE FROM
+                                wdr_quest_queue
+                            WHERE
+                                alert_time < UNIX_TIMESTAMP()
+                        ;`,
                         function(error, alerts, fields) {
                             if (error) {
                                 console.error;
