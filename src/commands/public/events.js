@@ -7,15 +7,15 @@ module.exports = async (WDR, message) => {
         start: (json.start ? WDR.Moment(json.start, 'YYYY-MM-DD HH:mm').format('h:mma DD-MMM') : 'n/a'),
         end: (json.end ? WDR.Moment(json.end, 'YYYY-MM-DD HH:mm').format('h:mma D-MMM') : 'n/a'),
         bonuses: json.details.bonuses.join('\n'),
-        spawns: "**Spawns:**" + "\n",
+        spawns: '**Spawns:**' + '\n',
         raids: '',
-        quests: "**Quests:**" + "\n",
+        quests: '**Quests:**' + '\n',
         eggs: '',
-        bonuses: "**Bonuses:**" + "\n",
+        bonuses: '**Bonuses:**' + '\n',
     }
     if(json.details.spawns.length > 0){
         for(let s = 0, slen = json.details.bonuses.length; s < slen; s++){
-            event.bonuses += "　" + json.details.bonuses[s] + "\n";
+            event.bonuses += '　- ' + json.details.bonuses[s] + '\n';
         }
     }
     if(json.details.spawns.length > 0){
@@ -27,7 +27,7 @@ module.exports = async (WDR, message) => {
                 pokemon_id: parseInt(id), 
                 form: parseInt(form )
             });
-            event.spawns += "　- " + pokemon.pokemon_name + ' ' + pokemon.form_name + '\n';
+            event.spawns += '　- ' + pokemon.pokemon_name + ' ' + pokemon.form_name + '\n';
         }
     }
     for (var key in json.details.quests) {
@@ -48,7 +48,7 @@ module.exports = async (WDR, message) => {
             }
             reward = reward.slice(0,-4).replace(/\s\s+/g, ' ');;
         }
-        event.quests += "　- " + task + ' for ' + reward + '\n';
+        event.quests += '　- ' + task + ' for ' + reward + '\n';
 
     }
     for (var key in json.details.raids) {
@@ -58,12 +58,12 @@ module.exports = async (WDR, message) => {
         WDR.Console.error(WDR,'[commands/public/event.js] Saw eggs in the event json. Report this to the WDR Git repo as an Issue.', json.details.eggs)
     }
     let embed = new WDR.DiscordJS.MessageEmbed()
-        .setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
-        .setTitle("Current Active PoGo Event")
-        .setDescription("**Starts:　" + event.start + "**" + "\n" + 
-            "**Ends:　" + event.end + "**" + "\n" + 
-            event.bonuses + "\n" +
-            event.spawns + "\n" +
+        .setAuthor('Current Active PoGo Event:','https://pokemongolive.com/img/posts/nov2019-events.jpg')
+        .setTitle(event.name)
+        .setDescription('**Starts:**　`' + event.start + '`' + '\n' + '\n' + 
+            '**Ends:**　`' + event.end + '`' + '\n' + '\n' + 
+            event.bonuses + '\n' +
+            event.spawns + '\n' +
             event.quests);
     WDR.Send_Embed(WDR, embed, message.channel.id).then(m => m.delete({
         timeout: 60000
