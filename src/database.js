@@ -351,7 +351,6 @@ const DB = {
     },
 
     Interval: function(WDR) {
-        console.log('starting interval')
         WDR.wdrDB.query(`
                 SELECT
                     *
