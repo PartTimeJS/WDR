@@ -76,7 +76,6 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
 
       modified.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, old.league, "Please respond with 'Great', or 'Ultra'.", modified);
-      modified.league = modified.league.toLowerCase();
 
       modified.min_rank = await Functions.DetailCollect(WDR, Functions, "Rank", Member, Message, old.min_rank, "Please respond with a value between 0 and 4096 -OR- type 'All'. Type 'Cancel' to Stop.", modified);
 
