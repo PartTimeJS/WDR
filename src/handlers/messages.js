@@ -34,11 +34,12 @@ module.exports = async (WDR, message) => {
         return DM_Command(WDR, message);
 
     } else {
-        WDR.Discords.forEach(async (server) => {
+        for(let d = 0, dlen = WDR.Discords.length; d <dlen; d++){
+        //WDR.Discords.forEach(async (server) => {
 
             message.member.isBotAdmin = server.bot_admins.includes(message.member.id) ? true : false;
     
-            if (message.guild.id == server.id) {
+            if (message.guild.id === server.id) {
     
                 message.discord = server;
     
@@ -55,7 +56,7 @@ module.exports = async (WDR, message) => {
                     Public_Command(WDR, message);
                 }
             }
-        });
+        }//);
     }
 
     // END
