@@ -100,6 +100,13 @@ module.exports = (WDR, Quest) => {
           }
         }
         break;
+        
+        // Mega Energy REWARD
+      case 12:
+        Quest.reward_type = "mega energy";
+        Quest.quest_reward = Quest.rewards[0].info.amount + " " + Quest.rewards[0].info.pokemon_id + " mega energy";
+        Quest.simple_reward = "mega energy";
+        break;        
     }
 
     return resolve(Quest);
