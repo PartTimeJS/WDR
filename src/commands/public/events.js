@@ -46,10 +46,9 @@ module.exports = async (WDR, message) => {
             } else {
                 reward += rewards[rw] + ' or ';
             }
-            reward = reward.slice(0,-4).replace(/\s\s+/g, ' ');;
+            reward = reward.slice(0,-4).replace(/\s\s+/g, ' ');
         }
         event.quests += '　- ' + task + ' for ' + reward + '\n';
-
     }
     for (var key in json.details.raids) {
         WDR.Console.error(WDR,'[commands/public/event.js] Saw raids in the event json. Report this to the WDR Git repo as an Issue.', json.details.raids)
