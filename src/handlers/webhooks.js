@@ -81,17 +81,17 @@
 
                             WDR.Feeds.Pokemon(WDR, object);
 
-                            if (object.pvp_rankings_great_league) {
-                                object.great_league = object.pvp_rankings_great_league;
-                            } else {
+                            // if (object.pvp_rankings_great_league) {
+                            //     object.great_league = object.pvp_rankings_great_league;
+                            // } else {
                                 object.great_league = await WDR.PvP.CalculatePossibleCPs(WDR, object.pokemon_id, object.form_id, object.individual_attack, object.individual_defense, object.individual_stamina, object.pokemon_level, object.gender_name, "great", "webhook.js great");
-                            }
+                            // }
 
-                            if (object.pvp_rankings_ultra_league) {
-                                object.ultra_league = object.pvp_rankings_great_league;
-                            } else {
+                            // if (object.pvp_rankings_ultra_league) {
+                            //     object.ultra_league = object.pvp_rankings_great_league;
+                            // } else {
                                 object.ultra_league = await WDR.PvP.CalculatePossibleCPs(WDR, object.pokemon_id, object.form_id, object.individual_attack, object.individual_defense, object.individual_stamina, object.pokemon_level, object.gender_name, "ultra", "webhook.js ultra");
-                            }
+                            // }
 
                             WDR.Subscriptions.PvP(WDR, object);
 
