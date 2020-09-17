@@ -35,7 +35,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         areas.splice(area_index, 1);
       }
 
-      if (areas.length == 0) {
+      if (areas.length === 0) {
         areas = "None";
       } else {
         areas = areas.toString();

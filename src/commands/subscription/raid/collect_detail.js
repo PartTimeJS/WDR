@@ -140,7 +140,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 async function(error, gyms, fields) {
                   if (error) {
                     WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [gquery, error]);
-                  } else if (!gyms || gyms.length == 0) {
+                  } else if (!gyms || gyms.length === 0) {
                     collector.stop({
                       fuzzy: CollectedMsg.content
                     });
@@ -219,7 +219,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
               .setDescription(forms)
               .setFooter(requirements);
             if (object) {
-              if (object.form == 0) {
+              if (object.form === 0) {
                 instruction.setDescription("Current: `All Pokémon`" + "\n" +
                   "Available Forms:" + "\n　" + forms);
               } else {

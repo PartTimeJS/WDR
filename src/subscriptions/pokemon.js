@@ -4,7 +4,7 @@ module.exports = async (WDR, Sighting) => {
 
   Sighting.form_id = Sighting.form_id ? Sighting.form_id : 0;
 
-  let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
+  let size = Sighting.size === 0 ? Sighting.size : Sighting.size.toLowerCase();
 
   let typing = await WDR.Get_Typing(WDR, {
     pokemon_id: Sighting.pokemon_id,

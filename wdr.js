@@ -254,7 +254,7 @@ function start_intervals() {
   }, 1000 * 60);
 
   let down_mins = parseInt(WDR.Config.DOWN_MINS);
-  if (WDR.Config.DOWN_ALERT == "ENABLED" && payload_count == 0) {
+  if (WDR.Config.DOWN_ALERT == "ENABLED" && payload_count === 0) {
     setInterval(function() {
       if (payload_count < 1) {
         let Outage_Embed = new WDR.DiscordJS.MessageEmbed()

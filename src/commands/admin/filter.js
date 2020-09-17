@@ -109,7 +109,7 @@ function ListRaid(WDR, pokemon, channelID) {
 
 function AddRaid(WDR, pokemon, channelID) {
 
-  if (pokemon.length == 0) {
+  if (pokemon.length === 0) {
     return "Proper use is:\n```filter raid add <pokemon|boss#|egg#>```";
   }
   let filter = GetFilter(WDR, "Raid_Channels", channelID);
@@ -157,7 +157,7 @@ function AddRaid(WDR, pokemon, channelID) {
 
 function DeleteRaid(WDR, pokemon, channelID) {
 
-  if (pokemon.length == 0) {
+  if (pokemon.length === 0) {
     return "Proper use is:\n```filter raid delete <pokemon|boss#|egg#>```";
   }
 
@@ -243,7 +243,7 @@ function ListPokemon(WDR, pokemon, channelID) {
 }
 
 function AddPokemon(WDR, pokemon, channelID) {
-  if (pokemon.length == 0) {
+  if (pokemon.length === 0) {
     return "Proper use is:\n```filter pokemon add <pokemon>```";
   }
 
@@ -269,7 +269,7 @@ function AddPokemon(WDR, pokemon, channelID) {
 
 function DeletePokemon(WDR, pokemon, channelID) {
 
-  if (pokemon.length == 0) {
+  if (pokemon.length === 0) {
     return "Proper use is:\n```filter pokemon delete <pokemon>```";
   }
 
@@ -364,7 +364,7 @@ function ListLure(WDR, lure, channelID) {
 
 function AddLure(WDR, lure, channelID) {
 
-  if (lure.length == 0) {
+  if (lure.length === 0) {
     return "Proper use is:\n```filter lure add <lure>```";
   }
 
@@ -395,7 +395,7 @@ function AddLure(WDR, lure, channelID) {
 
 function DeleteLure(WDR, lure, channelID) {
 
-  if (lure.length == 0) {
+  if (lure.length === 0) {
     return "Proper use is:\n```filter lure delete <lure>```";
   }
 
@@ -452,7 +452,7 @@ function ListQuest(WDR, quest, channelID) {
 
 function AddQuest(WDR, quest, channelID) {
 
-  if (quest.length == 0) {
+  if (quest.length === 0) {
     return "Proper use is:\n```filter quest add <reward>```";
   }
 
@@ -480,7 +480,7 @@ function AddQuest(WDR, quest, channelID) {
 
 function DeleteQuest(WDR, quest, channelID) {
 
-  if (quest.length == 0) {
+  if (quest.length === 0) {
     return "Proper use is:\nfilter quest delete <reward>```";
   }
 
@@ -576,7 +576,7 @@ function AddInvasion(WDR, invasion, channelID) {
 
 function DeleteInvasion(WDR, invasion, channelID) {
 
-  if (invasion.length == 0) {
+  if (invasion.length === 0) {
     return "Proper use is:\n```filter invasion delete <lure>```";
   }
 

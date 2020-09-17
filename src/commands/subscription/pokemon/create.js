@@ -48,7 +48,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
         if (advanced == true) {
 
-          if (create.pokemon == 0) {
+          if (create.pokemon === 0) {
             create.pokemon_type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, null, "Please respond with 'All' or the Pokemon Type.", create);
             if(!create.pokemon_type){ return; }
 

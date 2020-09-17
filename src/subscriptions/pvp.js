@@ -7,7 +7,7 @@ module.exports = async (WDR, Sighting) => {
 
   Sighting.form_id = Sighting.form_id ? Sighting.form_id : 0;
 
-  let size = Sighting.size == 0 ? Sighting.size : Sighting.size.toLowerCase();
+  let size = Sighting.size === 0 ? Sighting.size : Sighting.size.toLowerCase();
 
   for (let lg = 0, lglen = Leagues.length; lg < lglen; lg++) {
     let league = Leagues[lg];

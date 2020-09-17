@@ -69,7 +69,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setDescription(forms)
           .setFooter(requirements);
         if (object) {
-          if (object.form == 0) {
+          if (object.form === 0) {
             instruction.setDescription("Current: `All Pokémon`" + "\n" +
               "Available Forms:" + "\n　" + forms);
           } else {
@@ -92,14 +92,14 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
 
         let size = "";
-        if (sub.size == 0) {
+        if (sub.size === 0) {
           size = "All";
         } else {
           size = await WDR.Capitalize(size);
         }
 
         let ptype = "";
-        if (sub.pokemon_type == 0) {
+        if (sub.pokemon_type === 0) {
           ptype = "All";
         } else {
           ptype = await WDR.Capitalize(sub.pokemon_type);
@@ -113,7 +113,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         }
 
         let gen = "";
-        if (sub.gen == 0) {
+        if (sub.gen === 0) {
           gen = "All";
         } else {
           gen = sub.gen;

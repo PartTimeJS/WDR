@@ -301,7 +301,7 @@ async function QueryPvPRank(WDR, pokemonID, formID, attack, defense, stamina, le
         if (error) {
           WDR.Console.error(WDR, "[src/pvp.js] Cannot Select from " + pvpLeague + " table.", [query, error]);
           return resolve(null);
-        } else if (results.length == 0) {
+        } else if (results.length === 0) {
           return resolve(null);
         } else {
           return resolve({

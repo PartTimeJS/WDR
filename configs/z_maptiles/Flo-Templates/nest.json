@@ -9,7 +9,7 @@
     "markers": [
 	#if(gyms != nil):
 	#for(pg in gyms):
-	#if(index(pg, 2) == 0):
+	#if(index(pg, 2) === 0):
 	{
 	    "url": "https://raw.githubusercontent.com/whitewillem/PMSF/develop/static/forts/shield/Uncontested.png",
 	    "latitude": #index(pg, 0),

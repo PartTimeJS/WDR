@@ -99,7 +99,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         modified.form = old.form;
       }
 
-      if (modified.pokemon == 0) {
+      if (modified.pokemon === 0) {
         modified.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, old.gen, "Please respond with 'Next', a Generation Number, -OR- type 'All'. Type 'Cancel' to Stop.", modified);
       } else {
         modified.gen = old.generation;

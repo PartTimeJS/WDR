@@ -17,7 +17,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         Message.channel.send(already_active).catch(console.error).then(msg => {
           return Functions.OptionCollect(WDR, Functions, "view", Message, nMessage, Member);
         });
-      } else if (Member.db.pokemon_status == 0 && reason == "pause") {
+      } else if (Member.db.pokemon_status === 0 && reason == "pause") {
         let already_paused = new WDR.DiscordJS.MessageEmbed().setColor("ff0000")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Your Pokemon subscriptions are already **Paused**!")

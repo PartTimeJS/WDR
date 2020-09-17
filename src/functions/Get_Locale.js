@@ -8,7 +8,7 @@ module.exports = {
 
       P_Locale.form_id = P_Locale.form;
 
-      if (P_Locale.pokemon_id == 0) {
+      if (P_Locale.pokemon_id === 0) {
         return resolve(P_Locale);
       }
 

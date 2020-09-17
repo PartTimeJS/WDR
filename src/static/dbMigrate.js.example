@@ -324,7 +324,7 @@ setTimeout(function() {
             new_quest.pokemon_id = new_quest.pokemon_id ? new_quest.pokemon_id : 0;
             new_quest.form = 0;
 
-            if (new_quest.pokemon_id == 0) {
+            if (new_quest.pokemon_id === 0) {
               new_quest.reward = quest;
             }
 
