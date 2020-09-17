@@ -64,7 +64,7 @@ module.exports = async (WDR, QUEST) => {
 
         match.sprite = WDR.Get_Sprite(WDR, QUEST);
 
-        match.marker_latitude = QUEST.latitude + .0004;
+        match.marker_latitude = QUEST.latitude + .0005;
 
         match.body = await WDR.Generate_Tile(WDR, QUEST, "quests", match.marker_latitude, match.lon, match.sprite);
         match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;

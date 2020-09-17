@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS wdr_info (
   quest_status tinyint(1) NOT NULL DEFAULT 1,
   lure_status tinyint(1) NOT NULL DEFAULT 1,
   invasion_status tinyint(1) NOT NULL DEFAULT 1,
-  quest_delivery varchar(5) NOT NULL DEFAULT '08:00',
+  alert_time varchar(5) NOT NULL DEFAULT '08:00',
   PRIMARY KEY (user_id,guild_id)
 );
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS wdr_queued (
   bot smallint(2) NOT NULL,
   area varchar(20),
   alert varchar(10),
-  quest_delivery int(40),
+  alert_time int(40),
   embed LONGTEXT NOT NULL
 );
 

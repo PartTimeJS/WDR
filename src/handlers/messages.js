@@ -34,19 +34,19 @@ module.exports = async (WDR, message) => {
         return DM_Command(WDR, message);
 
     } else {
-        WDR.Discords.forEach(async (server) => {
+        for(let d = 0, dlen = WDR.Discords.length; d <dlen; d++){
 
-            message.member.isBotAdmin = server.bot_admins.includes(message.member.id) ? true : false;
+            message.discord = WDR.Discords[d];
+
+            message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
     
-            if (message.guild.id == server.id) {
-    
-                message.discord = server;
+            if (message.guild.id === message.discord.id) {
     
                 //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
                 message.delete();
                 //}
     
-                if(server.command_channels.includes(message.channel.id)){
+                if(message.discord.command_channels.includes(message.channel.id)){
                     Channel_Command(WDR, message);
                 } else if (WDR.Config.Admin_Enabled == "YES" && (message.member.isAdmin || message.member.isBotAdmin)) {
                     Admin_Command(WDR, message);
@@ -55,7 +55,7 @@ module.exports = async (WDR, message) => {
                     Public_Command(WDR, message);
                 }
             }
-        });
+        }
     }
 
     // END

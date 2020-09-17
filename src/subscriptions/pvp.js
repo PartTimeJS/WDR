@@ -34,7 +34,7 @@ module.exports = async (WDR, Sighting) => {
           potential.gen = await WDR.Get_Gen(potential.pokemon_id);
           potential.typing = await WDR.Get_Typing(WDR, {
             pokemon_id: potential.pokemon_id,
-            form: potential.form_id,
+            form_id: (potential.form_id ? potential.form_id : potential.form),
             type: "type_array"
           });
 
@@ -68,7 +68,7 @@ module.exports = async (WDR, Sighting) => {
                   OR
                 form = ${Sighting.form_id}
                   OR
-                form = ${potential.form_id}
+                form = ${(potential.form_id ? potential.form_id : '0')}
               )
               AND (
                 league = '0'

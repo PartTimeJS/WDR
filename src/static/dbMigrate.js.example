@@ -39,7 +39,7 @@ setTimeout(function() {
               guild_name,
               bot,
               areas,
-              quest_delivery
+              alert_time
             )
             VALUES (
               ${user.user_id},
@@ -341,7 +341,7 @@ setTimeout(function() {
                       pokemon_id,
                       form,
                       reward,
-                      quest_delivery
+                      alert_time
                   )
                VALUES
                   (

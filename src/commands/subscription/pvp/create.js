@@ -39,13 +39,10 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
 
         if (create.pokemon_id > 0) {
           create.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, null, "Please respond with a Form Name of the specified Pokemon -OR- type 'All'. Type 'Cancel' to Stop.", create);
-          create.league = 0;
           create.pokemon_type = 0;
           create.gen = 0;
         } else {
           create.form = 0;
-          create.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, null, "Please respond with 'Great', 'Ultra'.", create);
-          create.league = create.league.toLowerCase();
           create.pokemon_type = await Functions.DetailCollect(WDR, Functions, "Type", Member, Message, null, "Please respond with 'All' or the Pokemon Type.", create);
           if (create.pokemon_type == 0) {
             create.gen = await Functions.DetailCollect(WDR, Functions, "Generation", Member, Message, null, "Please respond with the Generation number -OR- type 'All'. Type 'Cancel' to Stop.", create);
@@ -53,6 +50,9 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
             create.gen = 0;
           }
         }
+
+        create.league = await Functions.DetailCollect(WDR, Functions, "League", Member, Message, null, "Please respond with 'Great', 'Ultra'.", create);
+
         create.min_rank = await Functions.DetailCollect(WDR, Functions, "Minimum Rank", Member, Message, null, "Please respond with a value between 1 and 20. Type 'Cancel' to Stop.", create);
         // create.min_lvl = await Functions.DetailCollect(WDR, Functions, "Minimum CP", Member, Message, create.name, "Please respond with a number greater than 0 or 'All'. Type 'Cancel' to Stop.", create);
         // if (create.min_lvl != 0 && create.min_lvl != 1) {
