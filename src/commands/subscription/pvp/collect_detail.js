@@ -50,7 +50,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
           .setDescription(forms)
           .setFooter(requirements);
         if (object) {
-          if (object.form == 0) {
+          if (object.form === 0) {
             instruction.setDescription("Current: `All Pokémon`" + "\n" +
               "Available Forms:" + "\n　" + forms);
           } else {

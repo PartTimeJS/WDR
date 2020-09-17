@@ -28,7 +28,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         sub_list += "**" + choice + " - " + sub_data.pokemon_name + "**\n";
         let data = "";
         if (sub_data.form != 0) {
-          data += "　Form: `" + sub_data.form == 0 ? "All" : WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + "`\n";
+          data += "　Form: `" + sub_data.form === 0 ? "All" : WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + "`\n";
         }
         if (sub_data.league != "0") {
           data += "　League: `" + sub_data.league + "`\n";
@@ -70,7 +70,7 @@ module.exports = (WDR, Functions, Message, Member) => {
       }
 
       if (modified.pokemon_id > 0) {
-        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old.form, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", old);
+        modified.form = await Functions.DetailCollect(WDR, Functions, "Form", Member, Message, old, "Please respond with 'Next', a Form Name of the specified Pokemon, -OR- type 'All'. Type 'Cancel' to Stop.", old);
       } else {
         modified.form = 0;
       }
