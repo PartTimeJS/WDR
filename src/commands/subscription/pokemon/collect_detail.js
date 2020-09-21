@@ -485,9 +485,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
         switch (reason) {
           case "cancel":
-            return Functions.Cancel(WDR, Functions, Message, Member, "Pokemon");
+            Functions.Cancel(WDR, Functions, Message, Member, "Pokemon");
+            return null;
           case "time":
-            return Functions.TimedOut(WDR, Functions, Message, Member, "Pokemon");
+            Functions.TimedOut(WDR, Functions, Message, Member, "Pokemon");
+            return null;
           default:
             return resolve(reason);
         }
