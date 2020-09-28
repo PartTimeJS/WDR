@@ -22,12 +22,12 @@ module.exports = (WDR, Object, type) => {
     }
 
     if (Object.evolution > 0) {
-      mega_id = "_" + Object.evolution;
+        mega_id = "_" + Object.evolution;
     }
 
-    if (Object.costume && Object.costume > 0) {
-      costume_id = pad(Object.costume, 2);
-    }
+    // if (Object.costume && Object.costume > 0) {
+    //   costume_id = pad(Object.costume, 2);
+    // }
 
     sprite = WDR.Config.SPRITE_URL + "pokemon_icon_" + pokemon_id + form_id + mega_id + costume_id + ".png";
 

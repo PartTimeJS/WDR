@@ -37,7 +37,7 @@ exports.Load = function(WDR) {
         return new Promise(async resolve => {
           let channel = await Bot.channels.cache.get(channel_id);
           if (!channel) {
-            resolve(false);
+           return resolve(false);
             return WDR.Console.error(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Could not find a channel with ID: " + channel_id);
           }
           channel.fetchMessages({
@@ -46,15 +46,15 @@ exports.Load = function(WDR) {
             channel.bulkDelete(messages).then(deleted => {
               if (messages.size > 0) {
                 clear_channel(channel_id).then(result => {
-                  return resolve(true);
+                 return resolve(true);
                 });
               } else {
                 WDR.Console.info(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Purged all messages in " + channel.name + " (" + channel.id + ")");
-                return resolve(true);
+               return resolve(true);
               }
             }).catch(console.error);
           });
-          return resolve(true);
+         return resolve(true);
         });
       }
 
@@ -79,6 +79,6 @@ exports.Load = function(WDR) {
       });
       return;
     }
-    return resolve(WDR);
+   return resolve(WDR);
   });
 }

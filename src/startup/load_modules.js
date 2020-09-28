@@ -45,6 +45,6 @@ exports.Load = function(WDR) {
 
     WDR.Console.info(WDR, "[load_modules.js] Loaded all subscription filtering Modules.");
 
-    return resolve(Modules);
+   return resolve(Modules);
   });
 }

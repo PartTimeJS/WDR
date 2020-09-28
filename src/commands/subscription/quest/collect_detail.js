@@ -199,7 +199,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
       collector.on("end", (collected, reason) => {
         if (reason == null || reason == "time") {
-          return resolve(false)
+         return resolve(false)
         }
         if (msg && msg.channel.type != "dm") {
           try {
@@ -208,7 +208,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
           }
         }
-        return resolve(reason);
+       return resolve(reason);
       });
     });
   });

@@ -32,7 +32,7 @@ const DB = {
                         async function(error, row) {
                             if (error) {
                                 WDR.Console.error(WDR, "[src/database.js] Error connecting to wdrDB.", error);
-                                return resolve();
+                               return resolve();
                             } else if (row[0].pvp_tables_generated < 1) {
                                 WDR.Console.error(WDR, "[src/database.js] PvP Tables Not Found. Generating...");
                                 await WDR.PvP_Table_Generator(WDR);
@@ -43,7 +43,7 @@ const DB = {
                                     pvp_tables_generated = 1;`
                                 );
                                 WDR.Console.log(WDR, "[src/database.js] Generated PvP Tables.");
-                                return resolve(WDR);
+                               return resolve(WDR);
                             } else {
                                 WDR.Console.info(WDR, "[src/database.js] Successfully Connected to wdrDB.");
                                 // WDR.wdrDB.query(
@@ -70,7 +70,7 @@ const DB = {
                                 //     }
                                 //   }
                                 // );
-                                return resolve(WDR);
+                               return resolve(WDR);
                             }
                         }
                     );
@@ -85,10 +85,10 @@ const DB = {
                         function(error, row) {
                         if (error) {
                             WDR.Console.error(WDR, "[src/database.js] Error connecting to pmsfDB.", error);
-                            return resolve();
+                           return resolve();
                         } else {
                             WDR.Console.info(WDR, "[src/database.js] Successfully Connected to pmsfDB.");
-                            return resolve(WDR);
+                           return resolve(WDR);
                         }
                         }
                     );
@@ -103,7 +103,7 @@ const DB = {
                         async function(error, row) {
                             if (error) {
                                 WDR.Console.error(WDR, "[src/database.js] Error connecting to scannerDB.", error);
-                                return resolve();
+                               return resolve();
                             } else {
                                 WDR.Console.info(WDR, "[src/database.js] Successfully Connected to scannerDB.");
 
@@ -214,7 +214,7 @@ const DB = {
                                 }
 
                                 // END
-                                return resolve(WDR);
+                               return resolve(WDR);
                             }
                         }
                     );
@@ -620,7 +620,7 @@ async function create_tables(WDR) {
         WDR.wdrDB.query(wdr_pokedex);
 
         // END
-        return resolve(WDR);
+       return resolve(WDR);
     });
 }
 
@@ -643,7 +643,7 @@ function update_database(WDR) {
                 pvp_tables_generated
                 ) VALUES(1, 0, 0);
             `);
-            return resolve();
+           return resolve();
             
         } else if (row[0].db_version < WDR.db.LATEST) {
 
@@ -654,7 +654,7 @@ function update_database(WDR) {
           await update_each_version(WDR, row[0].db_version);
 
           // END
-          return resolve();
+         return resolve();
 
         } else if (row[0].db_version > WDR.db.LATEST) {
 
@@ -667,7 +667,7 @@ function update_database(WDR) {
         } else {
 
           // END
-          return resolve();
+         return resolve();
         }
       }
     );
@@ -687,7 +687,7 @@ async function update_each_version(WDR, v) {
         WDR.Console.log(WDR, "[src/database.js] Database is now Up-To-Date.");
 
         // END
-        return resolve();
+       return resolve();
 
       } else {
 

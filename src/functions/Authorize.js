@@ -27,20 +27,20 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
               break;
             }
           }
-          return resolve(foundRole);
+         return resolve(foundRole);
 
         } else {
-          return resolve(false);
+         return resolve(false);
         }
 
       } else {
         WDR.Console.error(WDR, '[src/services/discord.js] No Members returned for guild: ' + guild_id);
-        return resolve(false);
+       return resolve(false);
       }
 
     } catch (e) {
       WDR.Console.error(WDR, '[src/services/discord.js] Failed to fetch Member & Roles', [e]);
-      return resolve(false);
+     return resolve(false);
     }
   });
 }
@@ -53,12 +53,12 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
 //       console.log("hasrole", subMember.roles.cache.has("277658037982986240"))
 //       if (subMember.roles.cache.has(role => role.id === roleList[r])) {
 //         console.log(true);
-//         return resolve(true);
+//        return resolve(true);
 //       } else {
 //         console.log(false);
 //       }
 //     }
 //     console.log("------Geting here------")
-//     return resolve(false);
+//    return resolve(false);
 //   });
 // }

@@ -109,6 +109,6 @@ module.exports = (WDR, Quest) => {
         break;        
     }
 
-    return resolve(Quest);
+   return resolve(Quest);
   });
 }

@@ -24,7 +24,7 @@ exports.Load = function(WDR) {
       // LOG SUCCESS AND COUNTS
       WDR.Console.info(WDR, "[load_geofences.js] Loaded " + geofence_files.length + " Geofences.");
       // END
-      return resolve(Geofences);
+     return resolve(Geofences);
     });
   });
 }

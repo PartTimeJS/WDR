@@ -75,7 +75,7 @@ function load(location, type) {
   return new Promise(async resolve => {
     let Loader = require(WDR.Dir + location);
     let Loaded = await Loader.Load(WDR, type);
-    return resolve(Loaded);
+   return resolve(Loaded);
   });
 }
 
@@ -86,7 +86,7 @@ function load_modules() {
     let Loaded = await Loader.Load(WDR);
     WDR.Feeds = Loaded.Feeds;
     WDR.Subscriptions = Loaded.Subscriptions;
-    return resolve();
+   return resolve();
   });
 }
 
@@ -110,7 +110,7 @@ function load_presets(type) {
   return new Promise(async resolve => {
     let Presets = require(WDR.Dir + "/src/startup/load_presets.js");
     let Loaded = await Presets.Load(WDR, type);
-    return resolve(Loaded);
+   return resolve(Loaded);
   });
 }
 
@@ -120,7 +120,7 @@ function mysql_connect(db) {
     let Database = require(WDR.Dir + "/src/database.js");
     WDR.DB_Interval = Database.Interval;
     WDR = await Database.Load(WDR, db);
-    return resolve();
+   return resolve();
   });
 }
 
@@ -150,7 +150,7 @@ function load_commands() {
         WDR.Commands.Admin.set(f.slice(0, -3), command);
       });
     });
-    return resolve();
+   return resolve();
   });
 }
 
@@ -167,7 +167,7 @@ function load_embeds() {
         WDR.Create_Embed[type] = require(WDR.Dir + "/src/embeds/" + f);
       });
     });
-    return resolve();
+   return resolve();
   });
 }
 

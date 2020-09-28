@@ -220,7 +220,7 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
     let possibleCPs = [];
 
     if (isNaN(attack) || isNaN(defense) || isNaN(stamina) || isNaN(level)) {
-      return resolve(possibleCPs);
+     return resolve(possibleCPs);
     }
 
 
@@ -230,7 +230,7 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
     }
 
     if (pokemonID && WDR.Master.Pokemon[pokemonID].gender_requirement && WDR.Master.Pokemon[pokemonID].gender_requirement != gender) {
-      return resolve(possibleCPs);
+     return resolve(possibleCPs);
     }
 
     let pokemonPvPValue = await QueryPvPRank(WDR, pokemonID, formID, attack, defense, stamina, level, league);
@@ -269,7 +269,7 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
       possibleCPs = possibleCPs.concat(evolvedCPs);
     }
 
-    return resolve(possibleCPs);
+   return resolve(possibleCPs);
   });
 }
 
@@ -300,11 +300,11 @@ async function QueryPvPRank(WDR, pokemonID, formID, attack, defense, stamina, le
       function(error, results) {
         if (error) {
           WDR.Console.error(WDR, "[src/pvp.js] Cannot Select from " + pvpLeague + " table.", [query, error]);
-          return resolve(null);
+         return resolve(null);
         } else if (results.length === 0) {
-          return resolve(null);
+         return resolve(null);
         } else {
-          return resolve({
+         return resolve({
             pokemon_id: pokemonID,
             form_id: formID,
             attack: attack,

@@ -22,7 +22,7 @@ exports.Load = function(WDR) {
       // LOG SUCCESS AND COUNTS
       WDR.Console.info(WDR, "[load_discords.js] Loaded " + discord_count + " Discord files.");
       // END
-      return resolve(Discords);
+     return resolve(Discords);
     });
   });
 }

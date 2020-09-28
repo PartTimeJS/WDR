@@ -183,7 +183,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, l
           case "time":
             return Functions.TimedOut(WDR, Functions, Message, Member, "Location");
           default:
-            return resolve(arg);
+           return resolve(arg);
         }
       });
     });
@@ -221,7 +221,7 @@ async function generate_body(WDR, Message, location) {
 
       }
 
-      return resolve(body);
+     return resolve(body);
     });
   });
 }

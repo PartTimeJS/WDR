@@ -30,6 +30,6 @@ exports.Load = function(WDR) {
     WDR.cp_multiplier = require(WDR.Dir + "/src/static/data/cp_multiplier.json");
 
     // END
-    return resolve(WDR);
+   return resolve(WDR);
   });
 }

@@ -318,7 +318,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
           }
         }
-        return resolve(reason);
+       return resolve(reason);
       });
     });
   });

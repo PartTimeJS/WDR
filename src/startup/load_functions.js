@@ -22,7 +22,7 @@ exports.Load = function(WDR) {
       WDR.Console.info(WDR, "[load_functions.js] Loaded " + function_files.length + " functions.");
 
       // END
-      return resolve(WDR);
+     return resolve(WDR);
     });
   });
 }

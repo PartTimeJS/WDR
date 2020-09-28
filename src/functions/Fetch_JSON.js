@@ -5,7 +5,7 @@ module.exports = async (url) => {
     fetch(url)
       .then(res => res.json())
       .then(json => {
-        return resolve(json);
+       return resolve(json);
       });
   });
 }

@@ -45,6 +45,6 @@ module.exports = async (MAIN, object) => {
     // IF LURE NAME
     if(object.lure_id){ locale.lure_type = WDR.Get_Lure(MAIN, object.lure_id); }
 
-    return resolve(locale);
+   return resolve(locale);
   });
 }

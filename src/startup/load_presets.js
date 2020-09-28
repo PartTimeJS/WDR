@@ -66,7 +66,7 @@ exports.Load = function(WDR, type) {
       }
       type = await WDR.Capitalize(type);
       WDR.Console.info(WDR, "[load_presets.js] Loaded " + preset_count + " " + type + " Subscription Presets.");
-      return resolve(Presets);
+     return resolve(Presets);
     });
   });
 }

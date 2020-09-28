@@ -19,7 +19,7 @@ module.exports = (WDR, object) => {
           }
         }
       }
-      return resolve(object.area);
+     return resolve(object.area);
     }
   });
 }

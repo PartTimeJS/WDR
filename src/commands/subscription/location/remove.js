@@ -36,24 +36,15 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 "　Radius: `" + location.radius + "` km(s)\n";
             });
 
-            let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, location_list, "Type the corressponding # of the Alert you would like to remove -OR- type \'all\'");
-
-            if(user.location.name == user.locations[locations[number].name].name){
-                Message.reply("WARNING: You are deleting your active location. You will need to set a new location to receive location alerts.").then(m => m.delete({
-                    timeout: 10000
-                }));
-            }
+            let number = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
 
             delete user.locations[locations[number].name];
 
             if (user.location.toString() == user.locations[locations[number].name].toString()) {
 
-                if(user.locations.length < 1){
-                    Message.reply("WARNING: You have deleted all of your locations. You will need to set a new location or change to area-based to receive DM alerts.").then(m => m.delete({
-                        timeout: 10000
-                    }));
-                }
-
+              Message.reply("WARNING: You are deleting your actie location. You will need to set a new location to receive location alerts.").then(m => m.delete({
+                timeout: 10000
+              }));
 
               WDR.wdrDB.query(`
                 UPDATE
@@ -91,12 +82,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                     timeout: 10000
                   }));
                 } else {
-                  let Alert_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
+                  let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                     .setTitle("**" + locations[number].name + "** Custom Location Removed!")
                     .setDescription("Saved to the Database.")
                     .setFooter("You can type 'set', 'view', 'create', 'edit', 'remove', or 'cancel'.");
-                  Message.channel.send(Alert_success).then(BotMsg => {
+                  Message.channel.send(subscription_success).then(BotMsg => {
                     Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member, AreaArray);
                   });
                 }

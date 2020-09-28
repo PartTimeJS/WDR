@@ -9,6 +9,6 @@ module.exports = (WDR, coords) => {
       lon: coords.lon2
     }
     let spawn_distance = WDR.Distance.between(spawn_loc, user_loc);
-    return resolve(spawn_distance);
+   return resolve(spawn_distance);
   });
 }

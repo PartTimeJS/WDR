@@ -23,7 +23,7 @@ exports.Load = function(WDR, type) {
       // LOG SUCCESS AND COUNTS
       WDR.Console.info(WDR, "[load_feeds.js] Loaded " + FEEDS.length + " " + type.replace("_", " ") + " in " + file_count + " files.");
       // END
-      return resolve(FEEDS);
+     return resolve(FEEDS);
     });
   });
 }

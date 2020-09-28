@@ -70,7 +70,7 @@ function CalculateAllRanks(WDR) {
 
     WDR.Console.log(WDR,"[PvP_Ranks.js] All PvP Table data generation is Complete.");
 
-    return resolve();
+   return resolve();
   });
 }
 
@@ -276,7 +276,7 @@ async function WritePvPData(WDR, data, tableName, number) {
       progressbar.increment();
     }
     progressbar.stop();
-    return resolve(true);
+   return resolve(true);
   });
 }
 
@@ -295,7 +295,7 @@ async function CreateTable(WDR, tableName) {
           if (error) {
             throw error;
           }
-          return resolve(true);
+         return resolve(true);
         });
       }
     );
@@ -322,7 +322,7 @@ async function InsertCurrentPokemon(WDR, tableName, pokemonID, formID, pokemon) 
       if (error) {
         throw error;
       }
-      return resolve(true);
+     return resolve(true);
     });
   });
 }
@@ -330,6 +330,6 @@ async function InsertCurrentPokemon(WDR, tableName, pokemonID, formID, pokemon) 
 module.exports = (WDR) => {
   return new Promise(async resolve => {
     await CalculateAllRanks(WDR);
-    return resolve();
+   return resolve();
   });
 }

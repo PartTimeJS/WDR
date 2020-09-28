@@ -153,7 +153,7 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
           case "time":
             return Functions.TimedOut(WDR, Functions, Message, Member, "Area");
           default:
-            return resolve(reason);
+           return resolve(reason);
         }
       });
     });

@@ -62,7 +62,7 @@ function Array_Login(WDR) {
         await bots_available[i].login(token);
       }
     });
-    return resolve();
+   return resolve();
   });
 }
 
@@ -97,6 +97,6 @@ exports.Load = function(WDR) {
     Bot.Next_Bot = 0;
 
     // RETURN ALL BOTS
-    return resolve(Bot);
+   return resolve(Bot);
   });
 }

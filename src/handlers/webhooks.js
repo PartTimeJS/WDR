@@ -190,14 +190,14 @@
 
     switch (true) {
         case size < 1.5:
-        return resolve('Tiny');
+       return resolve('Tiny');
         case size <= 1.75:
-        return resolve('Small');
+       return resolve('Small');
         case size < 2.25:
-        return resolve('Normal');
+       return resolve('Normal');
         case size <= 2.5:
-        return resolve('Large');
+       return resolve('Large');
         default:
-        return resolve('Big');
+       return resolve('Big');
     }
     }

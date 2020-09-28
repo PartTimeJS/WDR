@@ -19,15 +19,15 @@ module.exports = (WDR, pokemon_id, form_id, pokemon_height, pokemon_weight) => {
 
     switch (true) {
       case size < 1.5:
-        return resolve('tiny');
+       return resolve('tiny');
       case size <= 1.75:
-        return resolve('small');
+       return resolve('small');
       case size < 2.25:
-        return resolve('normal');
+       return resolve('normal');
       case size <= 2.5:
-        return resolve('large');
+       return resolve('large');
       default:
-        return resolve('big');
+       return resolve('big');
     }
   });
 }

@@ -72,7 +72,7 @@ module.exports = (WDR, User) => {
       rateLimit[User.user_id].count++;
     }
 
-    return resolve();
+   return resolve();
 
   });
 }

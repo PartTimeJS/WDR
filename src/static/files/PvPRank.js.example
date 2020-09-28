@@ -242,7 +242,7 @@ async function WritePvPData(data, tableName) {
         connection.end(function(err) {
 
         });
-        return resolve(false);
+       return resolve(false);
 
       }
 
@@ -266,7 +266,7 @@ async function WritePvPData(data, tableName) {
       }
 
       connection.end(function(err) {
-        return resolve(true);
+       return resolve(true);
       });
 
 
@@ -293,7 +293,7 @@ async function CreateTable(connection, tableName) {
           throw error;
         }
         console.log("Table truncated: " + tableName);
-        return resolve(true);
+       return resolve(true);
       });
     });
 
@@ -321,7 +321,7 @@ async function InsertCurrentPokemon(connection, tableName, pokemonID, formID, po
       if (error) {
         throw error;
       }
-      return resolve(true);
+     return resolve(true);
     })
 
   });

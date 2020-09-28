@@ -9,7 +9,7 @@ module.exports = {
       P_Locale.form_id = P_Locale.form;
 
       if (P_Locale.pokemon_id === 0) {
-        return resolve(P_Locale);
+       return resolve(P_Locale);
       }
 
       if (!P_Locale.costume_id) {
@@ -39,7 +39,7 @@ module.exports = {
           } else if (P_Locale.form_id) {
             if (!WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id]) {
               WDR.Console.error(WDR, "[Get_P_Locale.js] No form found for Pokemon: " + WDR.Master.Pokemon[P_Locale.pokemon_id].name + " Form#: " + P_Locale.form_id);
-              return resolve(P_Locale);
+             return resolve(P_Locale);
             }
             P_Locale.form_name = WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].form ? "[" + WDR.Master.Pokemon[P_Locale.pokemon_id].forms[P_Locale.form_id].form + "]" : "";
           } else {
@@ -119,7 +119,7 @@ module.exports = {
       }
 
       // END
-      return resolve(P_Locale);
+     return resolve(P_Locale);
     });
   },
 
@@ -127,7 +127,7 @@ module.exports = {
   async Quest(Quest) {
     return new Promise(async resolve => {
       WDR.Console.log(WDR, "[LOCALE]", Quest);
-      return resolve(Quest);
+     return resolve(Quest);
     });
   },
 

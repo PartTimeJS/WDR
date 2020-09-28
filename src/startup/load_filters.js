@@ -23,7 +23,7 @@ exports.Load = function(WDR) {
       // LOG SUCCESS AND COUNTS
       WDR.Console.info(WDR, "[load_filters.js] Loaded " + filter_count + " filters.");
       // END
-      return resolve(Filters);
+     return resolve(Filters);
     });
   });
 }

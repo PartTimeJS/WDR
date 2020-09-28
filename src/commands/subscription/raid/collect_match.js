@@ -74,7 +74,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
       collector.on("end", (collected, reason) => {
         msg.delete();
-        return resolve(reason);
+       return resolve(reason);
       });
     });
   });
