@@ -16,12 +16,12 @@ module.exports = async (WDR, Functions, Message, Member, advanced) => {
           timeout: 10000
         }));
       } else if (subs.length >= 50) {
-        let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
+        let too_many_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Maximum Subscriptions Reached!")
           .setDescription("You are at the maximum of 50 subscriptions. Please remove one before adding another.")
           .setFooter("You can type 'view', 'presets', 'remove', or 'edit'.");
-        Message.channel.send(subscription_success).then(BotMsg => {
+        Message.channel.send(too_many_subscriptions).then(BotMsg => {
           return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
         });
       } else {

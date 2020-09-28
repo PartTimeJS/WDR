@@ -9,23 +9,33 @@ var Functions = {
     TimedOut: require(__dirname + "/../timedout.js"),
     View: require(__dirname + "/view.js"),
     Dir: __filename.split("/").slice(__dirname.split("/").length - 4).join("/")
-  }
-  
-  module.exports = async (WDR, Message) => {
-  
+}
+
+module.exports = async (WDR, Message) => {
+
     let Member = Message.member ? Message.member : Message.author;
-  
-    let request_action = new WDR.DiscordJS.MessageEmbed()
-      .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-      .setTitle("What would you like to do with your Quest Subscriptions?")
-      .setDescription("`presets`  »  View quick preset subscriptions." + "\n" +
-        "`view`  »  View your Subscriptions.\n" +
-        "`add`  »  Create an Alert.\n" +
-        "`remove`  »  Remove a Quest Subscription.\n" +
-        "`pause` or `resume`  »  Pause/Resume Quest Subscriptions Only.")
-      .setFooter("Type the action, no command prefix required.");
-  
-    Message.channel.send(request_action).catch(console.error).then(BotMsg => {
-      return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member);
-    });
-  }
+
+    if (!Member.db.location && Member.db.geotype === 'location') {
+        let alocation_error = new WDR.DiscordJS.MessageEmbed()
+            .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+            .setTitle("You Alerts are set to location-based but you have no location set.")
+            .setDescription("You need to set a location or change back to area-based using the area command before modifying alerts.");
+        return Message.channel.send(request_action).catch(console.error).then(m => m.delete({
+            timeout: 15000
+        }));
+
+    } else {
+        let request_action = new WDR.DiscordJS.MessageEmbed()
+            .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+            .setTitle("What would you like to do with your Quest Alerts?")
+            .setDescription("`presets`  »  View quick preset Alerts." + "\n" +
+                "`view`  »  View your Alerts.\n" +
+                "`add`  »  Create an Alert.\n" +
+                "`remove`  »  Remove a Quest Alert.\n" +
+                "`pause` or `resume`  »  Pause/Resume Quest Alerts Only.")
+            .setFooter("Type the action, no command prefix required.");
+        Message.channel.send(request_action).catch(console.error).then(BotMsg => {
+            return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member);
+        });
+    }
+}
