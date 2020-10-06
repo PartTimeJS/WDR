@@ -25,7 +25,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         instruction = new WDR.DiscordJS.MessageEmbed()
           .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
           .setTitle("Which would you like to Subscribe to?")
-          .setDescription("Choices:" +
+          .setDescription("Choices:" + "\n" +
             "　**Pokemon Name**　-　Only that Boss." + "\n" +
             "　'**Boss**'　-　All Raid Bosses only." + "\n" +
             "　'**Egg**'　-　All Eggs only." + "\n" +
