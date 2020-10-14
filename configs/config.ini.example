@@ -5,19 +5,12 @@
 PREFIX                = "."
 
 #===============================================================================
-# BETA AND HIDDEN FEATURES
-#===============================================================================
-
-Admin_Enabled         = YES
-
-#===============================================================================
 # DOWN ALERT DMs
 #===============================================================================
 
 DOWN_ALERT            = ENABLED
 DOWN_MINS             = 10
-DOWN_USER_ID          = 329584924573040645
-
+DOWN_USER_ID          = youruserid
 
 #===============================================================================
 # Emoji Servers separate by a comma
@@ -43,7 +36,7 @@ DONOR_CHECK           = ENABLED
 # You will need to port forward on your router if RDM does not reside in your local network.
 #===============================================================================
 
-LISTENING_PORT        = 4444
+LISTENING_PORT        = 3333
 
 #===============================================================================
 # SPRITES & MAP TILES (Flo's Repo https://github.com/123FLO321/SwiftTileserverCache)
@@ -55,10 +48,9 @@ PVP_PREGEN_TILES      = ENABLED
 RAID_PREGEN_TILES     = ENABLED
 QUEST_PREGEN_TILES    = ENABLED
 
-
-TILE_PROVIDER         = (flo or versx or none) // choose none if you will manually put a url in your embeds.
-STATIC_MAP_URL        = https://map.com/
-STATIC_SPRITE         = https://github.com/nileplumb/PkmnHomeIcons/tree/ICONS/ICONS_OS_128/pokemon/
+TILE_PROVIDER         = flo
+#TILE_PROVIDER         = versx
+STATIC_MAP_URL        = https://staticmap.org/
 
 #===============================================================================
 # Optional URL for your front end for [Scan Map] embed link
@@ -67,10 +59,11 @@ STATIC_SPRITE         = https://github.com/nileplumb/PkmnHomeIcons/tree/ICONS/IC
 FRONTEND_URL          =
 
 #===============================================================================
-# SPRITES
+# Icons (Must use ICONS standard) 
+# https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/ICONS/ICONS_OS_128/
 #===============================================================================
 
-SPRITE_URL            = https://github.com/nileplumb/PkmnHomeIcons/tree/ICONS/ICONS_OS_128/pokemon/
+ICONS_URL            = https://raw.githubusercontent.com/nileplumb/PkmnHomeIcons/ICONS/ICONS_OS_128
 
 #===============================================================================
 # AUTO-DELETE MESSAGES IN COMMAND CHANNEL
@@ -83,9 +76,9 @@ TIDY_CHANNEL          = ENABLED
 # DATABASE CREDENTIALS
 #===============================================================================
 
-host                  = host
-username              = user
-password              = pass
+host                  = 111.111.111.111
+username              = username
+password              = password
 port                  = 3306
 db_name               = rdmdb
 
@@ -94,9 +87,9 @@ db_name               = rdmdb
 # DATABASE CREDENTIALS
 #===============================================================================
 
-host                  = host
-username              = user
-password              = pass
+host                  = 111.111.111.111
+username              = username
+password              = password
 port                  = 3306
 db_name               = rdmdb
 
@@ -105,9 +98,9 @@ db_name               = rdmdb
 # DATABASE CREDENTIALS
 #===============================================================================
 
-host                  = host
-username              = users
-password              = pass
+host                  = 111.111.111.111
+username              = username
+password              = password
 port                  = 3306
 db_name               = manualdb
 
@@ -119,20 +112,17 @@ db_name               = manualdb
 
 Hide_Bot_Tokens = ENABLED
 
-WDR                   = NzIyNTQzOxfgfgxgxfgxfxdfghdfgsdgsdkQ83JxYSDRzg9Dj0
+WDR                   = NzIyNTQzODMdfty67jktyjdstryjhdtyfjhtdfyjtdyjtyjdfty3JxYSDRzg9Dj0
 
-BOT_TOKENS[]          = NDk1NDMzMjYsdgsdgdsgsdgergsdgsdgsdgsdgXstJuzfMLQvBLh8
-BOT_TOKENS[]          = NTA5MTcyMsdgsdgfhdbfxfgfdbbfzfbgfdbbgdfgBt0T4LecAHwr8
-BOT_TOKENS[]          = NTA5MTcyNDMdfbgdfbhhtregsvdgnrthegsdbthrZNEO8_mSuWciw
-BOT_TOKENS[]          = NTA5MTcysdfhjyrthegsdvbgnyjrthergsfdD3SKAPnEl9GvTAJt0
-BOT_TOKENS[]          = NTA5MTczNzIxNDU0Mfdgjfhrsgdbfnhmjrthegsefd0URvPKJbC10
+BOT_TOKENS[]          = NDk1NDMzMjYxNDrdgtjhfgjhhfdghfgdhfgdjkrytjusnteI1XstJuzfMLQvBLh8
+BOT_TOKENS[]          = NTA5MTcyMjg1ODrsdtjtdjdjjMzM2.Xuj7pg.u0ojRpLDHDAxfzZNEO8_mSuWciw
+BOT_TOKENS[]          = NTA5MTcyNTQwOTdrtjrtdjdrtjdtgfjtydkjitdjjyytdjhyjdtAPnEl9GvTAJt0
+BOT_TOKENS[]          = NTA5MTczNzIxdftykjytufkjyjrsthrthtrdhtydtryhtyjyjfjyJ0URvPKJbC10
 
 #===============================================================================
 [QUEST]
 #===============================================================================
-
 DEFAULT_DELIVERY = 09:00
-
 # These is the Reward List that dictates what users can subscribe to for DMs
 # To add a reward, add "Rewards[] = NEWREWARD" in whichever order you want it to appear in the embed.
 # The reward names must match the reward names found in /static/en.json
@@ -164,8 +154,16 @@ Rewards[]             = Spinda
 
 #===============================================================================
 [DEBUG]
-Processing_Speed      = DISABLED
+#===============================================================================
+Processing_Speed      = ENABLED
 Map_Tiles             = DISABLED
 Pokemon_Subs          = DISABLED
 PvP_Subs              = DISABLED
 Raid_Subs             = DISABLED
+
+
+#===============================================================================
+# BETA AND HIDDEN FEATURES
+#===============================================================================
+
+Admin_Enabled         = YES
