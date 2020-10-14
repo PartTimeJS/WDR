@@ -8,6 +8,12 @@ exports.Load = function(WDR) {
       WDR.Master = require(WDR.Dir + "/src/static/master.json");
     }
 
+    WDR.ICONS = {
+        pokemon: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/pokemon/index.json')
+        //rewards: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/rewards/index.json')
+    }
+
+
     // LOAD LANGUAGE LOCALES
     WDR.Locales = {};
     WDR.Locales.de = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/de.json");
