@@ -1,4 +1,4 @@
-const baseStats = require("./master.json");
+const baseStats = require("./data/master.json");
 const cpMultiplier = require("./data/cp_multiplier.json");
 
 let pokemon = {};
