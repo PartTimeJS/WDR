@@ -14,6 +14,8 @@ exports.Load = function(WDR) {
     }
 
 
+
+
     // LOAD LANGUAGE LOCALES
     WDR.Locales = {};
     WDR.Locales.de = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/de.json");
