@@ -155,11 +155,10 @@ module.exports = async (WDR, INVASION) => {
                 pokemon_id = "";
               if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first) {
                 WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first.forEach((id) => {
-                  pokemon_id = parseInt(id.split("_")[0]);
-                  if (WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name] != undefined) {
-                    name = WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]
+                  if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
+                    name = WDR.Emotes[WDR.Master.Pokemon[id].name]
                   } else {
-                    name = WDR.Master.Pokemon[pokemon_id].name
+                    name = WDR.Master.Pokemon[id].name
                   }
                   match.first += name + " ";
                 });
@@ -167,13 +166,12 @@ module.exports = async (WDR, INVASION) => {
 
               if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.second) {
                 WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.second.forEach((id) => {
-                  pokemon_id = parseInt(id.split("_")[0]);
-                  if (WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name] != undefined) {
-                    name = WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]
+                  if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
+                    name = WDR.Emotes[WDR.Master.Pokemon[id].name]
                   } else {
-                    name = WDR.Master.Pokemon[pokemon_id].name
+                    name = WDR.Master.Pokemon[id].name
                   }
-                  if (match.first.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]) < 0) {
+                  if (match.first.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0) {
                     match.second += name + " ";
                   }
                 });
@@ -181,13 +179,12 @@ module.exports = async (WDR, INVASION) => {
 
               if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.third) {
                 WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.third.forEach((id) => {
-                  pokemon_id = parseInt(id.split("_")[0]);
-                  if (WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name] != undefined) {
-                    name = WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]
+                  if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
+                    name = WDR.Emotes[WDR.Master.Pokemon[id].name]
                   } else {
-                    name = WDR.Master.Pokemon[pokemon_id].name
+                    name = WDR.Master.Pokemon[id].name
                   }
-                  if (match.first.indexOf(name) < 0 && match.second.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]) < 0 && match.second.indexOf(WDR.Emotes[WDR.Master.Pokemon[pokemon_id].name]) < 0) {
+                  if (match.first.indexOf(name) < 0 && match.second.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0 && match.second.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0) {
                     match.third += name + " ";
                   }
                 });
@@ -201,11 +198,10 @@ module.exports = async (WDR, INVASION) => {
             } else if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters) {
               match.encounters = "";
               match.encounters += "**100% Chance to Encounter**:\n " + match.first + "\n";
-              if (match.first.length <= 25) {
-                match.pokemon_id = parseInt(WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first[0].split("_")[0]);
-                match.form = parseInt(WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first[0].split("_")[1]);
-                match.sprite = WDR.Get_Sprite(WDR, INVASION);
-              }
+            //   if (match.first.length <= 25) {
+            //     match.pokemon_id = parseInt(WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first[0]);
+            //     match.sprite = WDR.Get_Sprite(WDR, INVASION);
+            //   }
             }
 
             match.grunt_gender = WDR.Master.Grunt_Types[INVASION.grunt_type].grunt;

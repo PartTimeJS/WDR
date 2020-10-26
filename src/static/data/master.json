@@ -42211,6 +42211,11 @@
 		"2": "female",
 		"3": "genderless"
 	},
+	"Mega_Forms": {
+		"1": "Mega",
+		"2": "X",
+		"3": "Y"
+	},
 	"Type_Effectiveness": {
 		"Types": [
 			"Normal",
