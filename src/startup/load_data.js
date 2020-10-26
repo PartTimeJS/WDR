@@ -2,7 +2,7 @@ exports.Load = function(WDR) {
   return new Promise(async resolve => {
 
     try {
-      WDR.Master = await WDR.Fetch_JSON("https://raw.githubusercontent.com/PartTimeJS/WDR/master/src/static/master.json");
+      WDR.Master = await WDR.Fetch_JSON("https://raw.githubusercontent.com/PartTimeJS/WDR/master/src/static/data/master.json");
     } catch (e) {
       WDR.Console.error(WDR, "[load_data.js] Cannot Fetch master.json. Referring to local file.", [e]);
       WDR.Master = require(WDR.Dir + "/src/static/master.json");
