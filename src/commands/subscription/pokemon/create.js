@@ -193,7 +193,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                     return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
                   });
                 } else {
-                  WDR.Console.error(WDR, "[" + Functions.Dir + "] Error Inserting Subscription.", [query, error]);
+                  WDR.Console.error(WDR, "[subs/pokemon/begin.js] Error Inserting Subscription.", [query, error]);
                   return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                     timeout: 10000
                   }));
