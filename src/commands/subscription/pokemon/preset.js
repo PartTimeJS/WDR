@@ -92,7 +92,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
           .setDescription("Saved to the subscription Database.")
           .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(subscription_success).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member);
+          return Functions.OptionCollect(WDR, Functions, "complete", Message, BotMsg, Member);
         });
       }
     }

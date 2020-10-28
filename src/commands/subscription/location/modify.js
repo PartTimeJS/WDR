@@ -37,16 +37,17 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             });
 
             let number = await Functions.DetailCollect(WDR, Functions, "Modify", Member, Message, location_list, "Type the corressponding # of the subscription you would like to remove -OR- type \'all\'");
-
+            if(mnumber === null){ return; }
             let modify = user.locations[locations[number].name];
 
             modify.radius = await Functions.DetailCollect(WDR, Functions, "Radius", Member, Message, null, "Please respond with 'Next' or a whole number from 1 to 5.", modify);
+            if(modify.radius === null){ return;}
             modify.radius = parseInt(modify.radius);
 
             let active = await Functions.DetailCollect(WDR, Functions, "Active", Member, Message, null, "Type 'Yes' or 'No.'", modify);
 
             let confirm = await Functions.DetailCollect(WDR, Functions, "Confirm", Member, Message, null, "Type 'Yes' to confirm or 'No' to cancel.", modify);
-            if (confirm == false) {
+            if (confirm === null) {
               return;
             }
 

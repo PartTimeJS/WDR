@@ -91,14 +91,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
             case "pause":
                 return Functions.Status(WDR, Functions, OriginalMsg, Member, arg);
 
-            case "time":
-                if (source != "complete") {
-                    Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
-                }
-                return false;
-            
             default: 
-                return;
+                return null;
         }
     });
 

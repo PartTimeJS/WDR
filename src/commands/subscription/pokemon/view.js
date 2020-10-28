@@ -78,7 +78,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             "Pokemon Status: `" + p_status + "`\n\n" + sub_list)
           .setFooter("You can type 'view', 'presets', 'add', 'add adv', 'remove', or 'edit'.");
         Message.channel.send(pokemonSubs).catch(console.error).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member);
+          return Functions.OptionCollect(WDR, Functions, "complete", Message, BotMsg, Member);
         });
       }
     }
