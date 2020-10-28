@@ -24,7 +24,7 @@ hs_err_pid*
 
 */*.ini
 
-*/*.json
+configs/*.json
 */*/*.ini
 */*/*.nonobfuscated
 configs/*.json
@@ -34,7 +34,7 @@ configs/filters/*.json
 */*/*/*.ini
 configs/embeds/*.js
 configs/db/*.js
-src/functions/Generate_Master.js
+#src/functions/Generate_Master.js
 
 package-lock.json
 
