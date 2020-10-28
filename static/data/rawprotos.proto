@@ -302,8 +302,8 @@ message InventoryItemProto {
 	//}
 
 	int64 modified_timestamp = 1;
-	bytes deleted_item_key = 2;
-	bytes item = 3;
+	LGCKNOFAHGA deleted_item_key = 2;
+	JBINBDCBEHN item = 3;
 }
 
 //----- End inventory -----
@@ -9228,10 +9228,10 @@ message ENCOFIJOKIG {
 	string aaomdciejlf = 2;
 	string eocnmalhhkn = 3;
 	bytes jkinpdllici = 4;
-	string cjakdpkgbao = 8;
-	NHIGPLIPPOC hflccmdcgnb = 9;
-	CGMBOHAGJNF bffebbbacmp = 10;
-	AIAGOLOBDFB cincoileljp = 11;
+	string cjakdpkgbao = 5;
+	NHIGPLIPPOC hflccmdcgnb = 6;
+	CGMBOHAGJNF bffebbbacmp = 7;
+	AIAGOLOBDFB cincoileljp = 8;
 }
 
 // ref: ENHPCKMLCOJ
@@ -10317,7 +10317,7 @@ message GEMONAEMHAL {
 	string hjoaecimlme = 8;
 	string gobcbpdgikm = 9;
 	DDBNJHAFMDK lbfhpfimpdm = 10;
-	int32 hifgmblifhp = 11;
+	int32 hifgmblifhp = 5;
 }
 
 // ref: GEPLGAHONGB
@@ -10878,29 +10878,29 @@ message HBNAPAHDJIJ {
 // ref: HBPNKJCEBKF
 message HBPNKJCEBKF {
 	int32 ldimhgalgfo = 8;
-	int32 paphmcipkha = 9;
-	int32 lcpphpbnkdf = 10;
-	int32 mifehkaajbf = 11;
-	int32 nnkhbelbocb = 12;
-	int32 mfdpggkpemk = 13;
-	int32 holccdgefjk = 14;
-	int32 efnjneihlao = 15;
-	int32 hdheodnnkib = 16;
-	string hbiggmhljin = 17;
-	string jhkmdoiibde = 18;
-	string maboefmlkpa = 19;
-	string pagldagghmo = 20;
-	string mapldfokgne = 21;
-	string pahlkoihlge = 22;
-	string ommfnajmpoe = 23;
-	string dmdgnaclbhh = 24;
-	string pahflhnjkjn = 25;
-	string moadhdjpiee = 26;
-	string dpodggdnhaf = 27;
-	string mdlcclmpmbp = 28;
-	string iakmmhgcgbn = 29;
-	string llljmbmibdi = 30;
-	string dchganmimhe = 31;
+	int32 paphmcipkha = 2;
+	int32 lcpphpbnkdf = 3;
+	int32 mifehkaajbf = 4;
+	int32 nnkhbelbocb = 5;
+	int32 mfdpggkpemk = 6;
+	int32 holccdgefjk = 7;
+	int32 efnjneihlao = 9;
+	int32 hdheodnnkib = 10;
+	string hbiggmhljin = 11;
+	string jhkmdoiibde = 12;
+	string maboefmlkpa = 13;
+	string pagldagghmo = 14;
+	string mapldfokgne = 15;
+	string pahlkoihlge = 16;
+	string ommfnajmpoe = 17;
+	string dmdgnaclbhh = 18;
+	string pahflhnjkjn = 19;
+	string moadhdjpiee = 20;
+	string dpodggdnhaf = 21;
+	string mdlcclmpmbp = 22;
+	string iakmmhgcgbn = 23;
+	string llljmbmibdi = 24;
+	string dchganmimhe = 25;
 }
 
 // ref: HCEJNLEBLJB

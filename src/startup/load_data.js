@@ -2,10 +2,10 @@ exports.Load = function(WDR) {
   return new Promise(async resolve => {
 
     try {
-      WDR.Master = await WDR.Fetch_JSON("https://raw.githubusercontent.com/PartTimeJS/WDR/master/src/static/data/master.json");
+      WDR.Master = await WDR.Fetch_JSON("https://raw.githubusercontent.com/PartTimeJS/WDR/master/static/data/master.json");
     } catch (e) {
       WDR.Console.error(WDR, "[load_data.js] Cannot Fetch master.json. Referring to local file.", [e]);
-      WDR.Master = require(WDR.Dir + "/src/static/master.json");
+      WDR.Master = require(WDR.Dir + "/static/master.json");
     }
 
     WDR.ICONS = {
@@ -34,8 +34,8 @@ exports.Load = function(WDR) {
     WDR.Console.info(WDR, "[load_data.js] Loaded Language files.");
 
     // LOAD CP MULTIPLIER
-    delete require.cache[require.resolve(WDR.Dir + "/src/static/data/cp_multiplier.json")];
-    WDR.cp_multiplier = require(WDR.Dir + "/src/static/data/cp_multiplier.json");
+    delete require.cache[require.resolve(WDR.Dir + "/static/data/cp_multiplier.json")];
+    WDR.cp_multiplier = require(WDR.Dir + "/static/data/cp_multiplier.json");
 
     // END
    return resolve(WDR);

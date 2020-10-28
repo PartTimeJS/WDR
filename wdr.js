@@ -41,15 +41,15 @@ WDR.Time = (time, type, timezone) => {
 }
 
 // LOAD SOME SNARK
-delete require.cache[require.resolve(WDR.Dir + "/src/static/files/snark.json")];
-WDR.Snarkiness = require(WDR.Dir + "/src/static/files/snark.json");
+delete require.cache[require.resolve(WDR.Dir + "/static/files/snark.json")];
+WDR.Snarkiness = require(WDR.Dir + "/static/files/snark.json");
 
 //  CONFIG
 var randomNumber = Math.floor(Math.random() * Math.floor(WDR.Snarkiness.startup.length));
 WDR.Config = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + "/configs/config.ini", "utf-8"));
 WDR.Version = require(WDR.Dir + "/package.json").version;
 WDR.Debug = WDR.Config.DEBUG;
-WDR.db = require(WDR.Dir + "/src/static/updates.json");
+WDR.db = require(WDR.Dir + "/static/updates.json");
 
 
 // LOAD DISCORD.JS
@@ -59,8 +59,8 @@ WDR.DiscordJS = require("discord.js");
 WDR.PvP = require(WDR.Dir + "/src/pvp.js");
 
 // LOAD PVP TABLE GENERATOR
-delete require.cache[require.resolve(WDR.Dir + "/src/static/PvP_Ranks.js")];
-WDR.PvP_Table_Generator = require(WDR.Dir + "/src/static/PvP_Ranks.js");
+delete require.cache[require.resolve(WDR.Dir + "/static/PvP_Ranks.js")];
+WDR.PvP_Table_Generator = require(WDR.Dir + "/static/PvP_Ranks.js");
 
 // LOAD COMMAND HANDLER
 delete require.cache[require.resolve(WDR.Dir + "/src/handlers/messages.js")];
