@@ -1,13 +1,13 @@
 exports.Load = function (WDR) {
     return new Promise(async resolve => {
 
-        WDR.Master = require(WDR.Dir + "/src/static/master.json");
+        WDR.Master = require(WDR.Dir + "/static/data/master.json");
 
         WDR.ICONS = {
             pokemon: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/pokemon/index.json')
             //rewards: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/rewards/index.json')
         }
-        
+
         // LOAD LANGUAGE LOCALES
         WDR.Locales = {};
         WDR.Locales.de = await WDR.Fetch_JSON("https://raw.githubusercontent.com/pmsf/PMSF/master/static/locales/de.json");
@@ -26,8 +26,8 @@ exports.Load = function (WDR) {
         WDR.Console.info(WDR, "[load_data.js] Loaded Language files.");
 
         // LOAD CP MULTIPLIER
-        delete require.cache[require.resolve(WDR.Dir + "/src/static/data/cp_multiplier.json")];
-        WDR.cp_multiplier = require(WDR.Dir + "/src/static/data/cp_multiplier.json");
+        delete require.cache[require.resolve(WDR.Dir + "/static/data/cp_multiplier.json")];
+        WDR.cp_multiplier = require(WDR.Dir + "/static/data/cp_multiplier.json");
 
         // END
         return resolve(WDR);

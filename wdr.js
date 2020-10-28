@@ -49,7 +49,7 @@ var randomNumber = Math.floor(Math.random() * Math.floor(WDR.Snarkiness.startup.
 WDR.Config = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + "/configs/config.ini", "utf-8"));
 WDR.Version = require(WDR.Dir + "/package.json").version;
 WDR.Debug = WDR.Config.DEBUG;
-WDR.db = require(WDR.Dir + "/static/updates.json");
+WDR.db = require(WDR.Dir + "/static/data/updates.json");
 
 
 // LOAD DISCORD.JS
