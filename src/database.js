@@ -490,7 +490,7 @@ async function create_tables(WDR) {
                 PRIMARY KEY (user_id,guild_id,pokemon_id,pokemon_type,form,min_lvl,max_lvl,generation,min_rank,league) USING BTREE,
                 KEY ix_lvl (min_lvl,max_lvl) USING BTREE,
                 KEY ix_form (form) USING BTREE,
-                KEY ix_char (pokemon_type) USING BTREE,
+                KEY ix_char (pokemon_type,generation) USING BTREE,
                 KEY ix_rank (min_rank) USING BTREE,
                 KEY ix_league (league) USING BTREE
             );`;
@@ -506,7 +506,6 @@ async function create_tables(WDR) {
                 status tinyint DEFAULT '1',
                 areas varchar(255) DEFAULT NULL,
                 location varchar(255) DEFAULT NULL,
-                sub_type varchar(10) NOT NULL,
                 pokemon_id smallint NOT NULL DEFAULT '0',
                 pokemon_type varchar(10) NOT NULL DEFAULT '0',
                 form smallint NOT NULL DEFAULT '0',
@@ -536,7 +535,6 @@ async function create_tables(WDR) {
                 status tinyint DEFAULT '1',
                 areas varchar(255) DEFAULT NULL,
                 location varchar(255) DEFAULT NULL,
-                sub_type varchar(10) NOT NULL,
                 pokemon_id smallint NOT NULL DEFAULT '0',
                 form smallint NOT NULL DEFAULT '0',
                 reward varchar(25) NOT NULL DEFAULT '0',
