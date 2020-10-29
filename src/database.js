@@ -48,7 +48,7 @@ const DB = {
             'wdr_quest_subs'
         ];
         subTables.forEach(table => {
-            let query = query.replace('%TABLE%', table);
+            query = query.replace('%TABLE%', table);
             WDR.wdrDB.query(
                 query,
                 function (error, user, fields) {
