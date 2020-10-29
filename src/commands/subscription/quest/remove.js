@@ -7,7 +7,8 @@ module.exports = (WDR, Functions, Message, Member) => {
       WHERE
         user_id = '${Member.id}'
           AND
-        sub_type = 'quest';`,
+          guild_id = '${Message.guild.id}'
+          ;`,
     async function(error, subscriptions) {
 
       if (error) {
@@ -54,8 +55,6 @@ module.exports = (WDR, Functions, Message, Member) => {
                 wdr_subscriptions
             WHERE
                 user_id = '${Member.id}'
-                  AND
-                sub_type = 'quest'
                   AND
                 reward = '${remove.reward}'
             ;`;

@@ -25,7 +25,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
 
   WDR.wdrDB.query(`
       INSERT INTO
-        wdr_subscriptions (
+        wdr_pokemon_subss (
           user_id,
           user_name,
           guild_id,
@@ -35,7 +35,6 @@ module.exports = async (WDR, Functions, Message, Member) => {
           geotype,
           areas,
           location,
-          sub_type,
           pokemon_id,
           form,
           min_lvl,
@@ -57,7 +56,6 @@ module.exports = async (WDR, Functions, Message, Member) => {
         '${preset.geotype}',
         '${preset.areas}',
         '${JSON.stringify(Member.db.location)}',
-        'pokemon',
         ${preset.id},
         ${preset.form},
         ${preset.min_lvl},

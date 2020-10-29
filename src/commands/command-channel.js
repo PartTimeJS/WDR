@@ -116,14 +116,7 @@ module.exports = (WDR, message) => {
                         WHERE
                             user_id = ${message.member.id};
                     `);
-                WDR.wdrDB.query(`
-                        UPDATE
-                            wdr_subscriptions
-                        SET
-                            user_name = '${message.member.user.username.replace(/[\W]+/g, "")}'
-                        WHERE
-                            user_id = ${message.member.id};
-                    `);
+                WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET user_name = '${message.member.user.username.replace(/[\W]+/g, "")}' WHERE user_id = ${message.member.id}`);
             }
 
             // END

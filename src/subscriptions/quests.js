@@ -15,11 +15,9 @@ module.exports = async (WDR, QUEST) => {
         SELECT
             *
         FROM
-            wdr_subscriptions
+            wdr_quest_subs
         WHERE
             status = 1
-        AND
-            sub_type = 'quest'
         AND (
             ${params}
         );

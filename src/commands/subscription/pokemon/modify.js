@@ -1,13 +1,14 @@
 module.exports = (WDR, Functions, Message, Member) => {
-    WDR.wdrDB.query(
-        `SELECT
-        *
-     FROM
-        wdr_subscriptions
-     WHERE
-        user_id = '${Member.id}'
-          AND
-        sub_type = 'pokemon';`,
+    WDR.wdrDB.query(`
+            SELECT
+                *
+            FROM
+                wdr_pokemon_subs
+            WHERE
+                user_id = '${Member.id}'
+                    AND
+                guild_id = ${Message.guild.id}
+        ;`,
         async function (error, subscriptions, fields) {
             if (!subscriptions || !subscriptions[0]) {
                 let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
@@ -176,7 +177,7 @@ module.exports = (WDR, Functions, Message, Member) => {
 
                 let modify = `
                     UPDATE
-                        wdr_subscriptions
+                        wdr_pokemon_subs
                     SET
                         geotype = '${modified.geotype}',
                         pokemon_id = ${modified.id},
@@ -192,8 +193,6 @@ module.exports = (WDR, Functions, Message, Member) => {
                         user_id = '${Member.id}'
                             AND 
                         guild_id = '${Message.guild.id}'
-                            AND 
-                        sub_type = 'pokemon'
                             AND 
                         pokemon_id = ${old.pokemon_id}
                             AND 

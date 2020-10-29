@@ -41,7 +41,7 @@ package-lock.json
 src/static/PvPRank.js
 src/static/data/*ini
 src/static/dbMigrate.js
-
+static/*.js
 *.old
 *.DS_Store
 *.conf

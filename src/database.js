@@ -4,6 +4,63 @@ const DB = {
 
     Queries: {},
 
+    
+    Interval: function(WDR) {
+        WDR.wdrDB.query(`
+                SELECT
+                    *
+                FROM
+                    wdr_quest_queue
+                WHERE
+                    alert_time < UNIX_TIMESTAMP()
+            ;`,
+            function(error, alerts, fields) {
+                if (alerts && alerts[0]) {
+                    alerts.forEach(async (alert, index) => {
+                        setTimeout(async function() {
+                            let quest_embed = JSON.parse(alert.embed);
+                            WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
+                        }, 2000 * index);
+                    });
+                    WDR.wdrDB.query(`
+                            DELETE FROM
+                                wdr_quest_queue
+                            WHERE
+                                alert_time < UNIX_TIMESTAMP()
+                        ;`,
+                        function(error, alerts, fields) {
+                            if (error) {
+                                console.error;
+                            }
+                        }
+                    );
+                }
+            }
+        );
+        return;
+    },
+
+    UpdateAllSubTables: function(WDR, query){
+        let subTables = [
+            'wdr_pokemon_subs',
+            'wdr_raid_subs',
+            'wdr_pvp_subs',
+            'wdr_quest_subs'
+        ];
+        subTables.forEach(table => {
+            let query = query.replace('%TABLE%', table);
+            WDR.wdrDB.query(
+                query,
+                function (error, user, fields) {
+                    if (error) {
+                        WDR.Console.error(WDR, "[src/database.js] Error Updating Sub Tables.", [query, error]);
+                    }
+                }
+            );
+        });
+        return;
+    },
+
     Load: function(WDR, database) {
         return new Promise(async resolve => {
             WDR[database] = WDR.MySQL.createPool({
@@ -348,41 +405,6 @@ const DB = {
         });
         WDR.Console.info(WDR, "[src/database.js] Loaded " + count + " scheduled queries.");
         return;
-    },
-
-    Interval: function(WDR) {
-        WDR.wdrDB.query(`
-                SELECT
-                    *
-                FROM
-                    wdr_quest_queue
-                WHERE
-                    alert_time < UNIX_TIMESTAMP()
-            ;`,
-            function(error, alerts, fields) {
-                if (alerts && alerts[0]) {
-                    alerts.forEach(async (alert, index) => {
-                        setTimeout(async function() {
-                            let quest_embed = JSON.parse(alert.embed);
-                            WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
-                        }, 2000 * index);
-                    });
-                    WDR.wdrDB.query(`
-                            DELETE FROM
-                                wdr_quest_queue
-                            WHERE
-                                alert_time < UNIX_TIMESTAMP()
-                        ;`,
-                        function(error, alerts, fields) {
-                            if (error) {
-                                console.error;
-                            }
-                        }
-                    );
-                }
-            }
-        );
-        return;
     }
 }
 
@@ -559,7 +581,6 @@ async function create_tables(WDR) {
         //     status tinyint DEFAULT '1',
         //     areas varchar(255) DEFAULT NULL,
         //     location varchar(255) DEFAULT NULL,
-        //     sub_type varchar(10) NOT NULL,
         //     pokemon_id smallint NOT NULL DEFAULT '0',
         //     pokemon_type varchar(10) NOT NULL DEFAULT '0',
         //     form smallint NOT NULL DEFAULT '0',
@@ -578,7 +599,7 @@ async function create_tables(WDR) {
         //     league varchar(10) NOT NULL DEFAULT '0',
         //     alert_time varchar(10) DEFAULT '0',
         //     geotype varchar(10) NOT NULL,
-        //     PRIMARY KEY (user_id,guild_id,sub_type,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
+        //     PRIMARY KEY (user_id,guild_id,pokemon_id,form,min_lvl,max_lvl,min_iv,max_iv,size,gender,generation,reward,gym_id,min_rank,league) USING BTREE,
         //     KEY ix_lvl (min_lvl,max_lvl) USING BTREE,
         //     KEY ix_iv (min_iv,max_iv) USING BTREE,
         //     KEY ix_form (form) USING BTREE,

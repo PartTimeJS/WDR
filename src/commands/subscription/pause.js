@@ -1,23 +1,18 @@
 module.exports = async (WDR, Message) => {
   let query = `
     UPDATE
-        wdr_users a
-    INNER JOIN
-        wdr_subscriptions b ON(a.user_id = b.user_id)
+        wdr_users
     SET
-        a.status = 0,
-        a.pokemon_status = 0,
-        a.pvp_status = 0,
-        a.quest_status = 0,
-        a.raid_status = 0,
-        a.lure_status = 0,
-        a.invasion_status = 0,
-        b.status = 0
+        pokemon_status = 0,
+        pvp_status = 0,
+        quest_status = 0,
+        raid_status = 0,
+        lure_status = 0,
+        invasion_status = 0
     WHERE
-        a.user_id = ${Message.member.id}
-          AND
-        b.user_id = ${Message.member.id}
-  ;`
+        user_id = ${Message.member.id}
+  ;`;
+  WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET status = 0 WHERE user_id = ${Message.member.id}`);
   WDR.wdrDB.query(
     query,
     function(error, user, fields) {

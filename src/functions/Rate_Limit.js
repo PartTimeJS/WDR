@@ -39,14 +39,7 @@ module.exports = (WDR, User) => {
             user_id = ${User.user_id}`;
       WDR.wdrDB.query(user_query);
 
-      let subs_query = `
-        UPDATE
-            wdr_subscriptions
-        SET
-            status = 0
-        WHERE
-            user_id = ${User.user_id}`;
-      WDR.wdrDB.query(subs_query);
+      WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET status = 0 WHERE user_id = ${User.user_id}`);
 
       setTimeout(function() {
         if (rateLimit[User.user_id].paused === false) {

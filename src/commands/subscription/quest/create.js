@@ -8,7 +8,8 @@ module.exports = (WDR, Functions, Message, Member) => {
        WHERE
           user_id = '${Member.id}'
             AND
-          sub_type = 'quest';`,
+            guild_id = '${Message.guild.id}'
+            ;`,
     async function(error, subs) {
       if (error) {
         WDR.Console.error(WDR, "[cmd/sub/quest/create.js] Error Fetching Subscriptions to Create Subscription.", [create, error]);
@@ -63,7 +64,6 @@ module.exports = (WDR, Functions, Message, Member) => {
                   geotype,
                   areas,
                   location,
-                  sub_type,
                   reward
                 )
             VALUES 
@@ -77,7 +77,6 @@ module.exports = (WDR, Functions, Message, Member) => {
                 '${create.geotype}',
                 '${Member.db.areas}',
                 '${JSON.stringify(Member.db.location)}',
-                'quest',
                 '${create.reward}'
               );`;
 

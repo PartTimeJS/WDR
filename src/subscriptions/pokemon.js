@@ -16,11 +16,9 @@ module.exports = async (WDR, Sighting) => {
     SELECT
         *
     FROM
-        wdr_subscriptions
+        wdr_pokemon_subs
     WHERE
         status = 1
-      AND
-        sub_type = 'pokemon'
       AND (
         pokemon_id = 0
           OR

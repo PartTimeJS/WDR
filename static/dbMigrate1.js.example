@@ -209,7 +209,6 @@ setTimeout(function() {
                       guild_name,
                       bot,
                       areas,
-                      sub_type,
                       pokemon_id,
                       form,
                       min_lvl,
@@ -271,7 +270,7 @@ setTimeout(function() {
 
             new_database.query(
               `INSERT IGNORE INTO
-                  wdr_subscriptions (
+                  wdr_pvp_subs (
                       user_id,
                       user_name,
                       guild_id,
@@ -331,7 +330,7 @@ setTimeout(function() {
 
             new_database.query(
               `INSERT IGNORE INTO
-                  wdr_subscriptions (
+                  wdr_quest_subs (
                       user_id,
                       user_name,
                       guild_id,

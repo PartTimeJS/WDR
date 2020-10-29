@@ -6,11 +6,9 @@ module.exports = async (WDR, RAID) => {
     SELECT
         *
     FROM
-        wdr_subscriptions
+        wdr_raid_subs
     WHERE
         status = 1
-      AND
-        sub_type = 'raid'
       AND (
         pokemon_id <= 0
           OR

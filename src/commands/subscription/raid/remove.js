@@ -8,7 +8,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
        WHERE
           user_id = '${Member.id}'
             AND
-          sub_type = 'raid';`,
+            guild_id = '${Message.guild.id}'
+            ;`,
     async function(error, subscriptions) {
       if (error) {
         WDR.Console.error(WDR, "[cmd/sub/raid/remove.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);
@@ -59,8 +60,6 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 wdr_subscriptions
             WHERE
                 user_id = '${Member.id}'
-                  AND
-                sub_type = 'raid'
                   AND
                 gym_id = '${remove.gym_id}'
                   AND

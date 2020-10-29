@@ -8,8 +8,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         user_id = '${Member.id}'
           AND
         guild_id = ${Message.guild.id}
-          AND
-        sub_type = 'quest';`,
+    ;`,
     async function(error, subscriptions) {
       if (error) {
         WDR.Console.error(WDR, "[src/sub/cmd/quest/create.js] Error Fetching Subscriptions to Create Subscription.", [sub, error]);

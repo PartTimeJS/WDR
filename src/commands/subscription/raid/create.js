@@ -10,7 +10,8 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
        WHERE
           user_id = '${Member.id}'
             AND
-          sub_type = 'raid';`,
+            guild_id = '${Message.guild.id}'
+    ;`,
     async function(error, subs) {
       if (error) {
         WDR.Console.error(WDR, "[cmd/sub/raid/create.js] Error Fetching Subscriptions to Create Subscription.", [create, error]);
@@ -163,7 +164,6 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                   geotype,
                   areas,
                   location,
-                  sub_type,
                   pokemon_id,
                   gym_id,
                   gym_name,
@@ -181,7 +181,6 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                 '${create.geotype}',
                 '${Member.db.areas}',
                 '${JSON.stringify(Member.db.location)}',
-                'raid',
                 ${create.pokemon_id},
                 '${create.gym_id}',
                 '${create.gym}',
