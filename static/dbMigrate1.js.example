@@ -147,7 +147,6 @@ setTimeout(function() {
                     'Migrated',
                     '${user.bot}',
                     '${user.geofence}',
-                    'pokemon',
                     '${new_poke.pokemon_id}',
                     '${new_poke.form}',
                     '${new_poke.min_lvl}',
