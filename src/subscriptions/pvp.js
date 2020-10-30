@@ -102,7 +102,13 @@ module.exports = async (WDR, Sighting) => {
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
                   let User = matching[m];
-                  User.location = JSON.parse(User.location);
+                  try{
+                    User.location = JSON.parse(User.location);
+                  } catch(e){
+                      console.error(e, User);
+                      console.error('Bad value for user.location', User.location);
+                  }
+                  
 
                   let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
                   if (authorized) {
