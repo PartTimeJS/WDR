@@ -10,6 +10,11 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
 
   // FILTER COLLECT EVENT
   collector.on("collect", CollectedMsg => {
+
+    if (BotMsg.channel.type != "dm") {
+        CollectedMsg.delete();
+      }
+
     switch (CollectedMsg.content.toLowerCase()) {
       case "add":
         collector.stop("add");
