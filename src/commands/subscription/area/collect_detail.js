@@ -1,11 +1,11 @@
-module.exports = async (WDR, Functions, type, Member, Message, object, requirements, sub, AreaArray) => {
+module.exports = async (WDR, Functions, type, Member, message, object, requirements, sub, AreaArray) => {
   return new Promise(resolve => {
 
     let huge_list = false,
       instruction = "";
 
-    const filter = cMessage => cMessage.author.id == Message.author.id;
-    const collector = Message.channel.createMessageCollector(filter, {
+    const filter = cMessage => cMessage.author.id == message.author.id;
+    const collector = message.channel.createMessageCollector(filter, {
       time: 60000
     });
 
@@ -66,7 +66,7 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
         break;
     }
 
-    Message.channel.send(instruction).catch(console.error).then(msg => {
+    message.channel.send(instruction).catch(console.error).then(msg => {
       let page = 1;
       if (AreaArray.length > 50) {
         msg.react("⬅️");
@@ -136,7 +136,7 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
             } else if (CollectedMsg.content.toLowerCase() == "no") {
               collector.stop(false);
             } else {
-              Message.reply(CollectedMsg.content + " is not a valid entry. " + requirements);
+              message.reply(CollectedMsg.content + " is not a valid entry. " + requirements);
             }
             break;
         }
@@ -149,9 +149,9 @@ module.exports = async (WDR, Functions, type, Member, Message, object, requireme
 
         switch (reason) {
           case "cancel":
-            return Functions.Cancel(WDR, Functions, Message, Member, "Area");
+            return Functions.Cancel(WDR, Functions, message, Member, "Area");
           case "time":
-            return Functions.TimedOut(WDR, Functions, Message, Member, "Area");
+            return Functions.TimedOut(WDR, Functions, message, Member, "Area");
           default:
            return resolve(reason);
         }

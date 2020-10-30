@@ -1,4 +1,4 @@
-module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
+module.exports = async (WDR, Functions, message, Member, AreaArray) => {
   let query = `
     SELECT
         *
@@ -7,19 +7,19 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     WHERE
         user_id = ${Member.id}
           AND
-        guild_id = ${Message.guild.id};
+        guild_id = ${message.guild.id};
   `;
   WDR.wdrDB.query(
     query,
     async function(error, user, fields) {
 
-      let sub = await Functions.DetailCollect(WDR, Functions, "Remove", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area. Type `reset` to revert to your areas to default.", user[0].areas, AreaArray);
+      let sub = await Functions.DetailCollect(WDR, Functions, "Remove", Member, message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area. Type `reset` to revert to your areas to default.", user[0].areas, AreaArray);
       if (sub.toLowerCase() == "cancel") {
-        return Message.reply("Subscription cancelled. Type `" + prefix + "area` to restart.").then(m => m.delete({
+        return message.reply("Subscription cancelled. Type `" + prefix + "area` to restart.").then(m => m.delete({
           timeout: 5000
         })).catch(console.error);
       } else if (sub == "time") {
-        return Message.reply("Your subscription has timed out.").then(m => m.delete({
+        return message.reply("Your subscription has timed out.").then(m => m.delete({
           timeout: 5000
         })).catch(console.error);
       }
@@ -30,7 +30,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
       if (sub == "all") {
         areas = [];
       } else if (sub == "reset") {
-        areas = Message.discord.name;
+        areas = message.discord.name;
       } else {
         areas.splice(area_index, 1);
       }
@@ -63,7 +63,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         function(error, user, fields) {
           if (error) {
             WDR.Console.error(WDR, "[subs/poke/create.js] Error Updating User Geofences.", [update, error]);
-            return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+            return message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
               timeout: 10000
             }));
           } else {
@@ -71,8 +71,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
               .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
               .setTitle("**" + sub + "** Area Removed!")
               .setFooter("Saved to the Database.");
-            return Message.channel.send(subscription_success).then(BotMsg => {
-              return Functions.OptionCollect(WDR, Functions, "remove", Message, BotMsg, Member, AreaArray);
+            return message.channel.send(subscription_success).then(BotMsg => {
+              return Functions.OptionCollect(WDR, Functions, "remove", message, BotMsg, Member, AreaArray);
             });
           }
         }

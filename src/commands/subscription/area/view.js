@@ -1,4 +1,4 @@
-module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
+module.exports = async (WDR, Functions, message, Member, AreaArray) => {
   let query = `
     SELECT
         *
@@ -7,14 +7,14 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     WHERE
       user_id = ${Member.id}
         AND
-      guild_id = ${Message.guild.id};
+      guild_id = ${message.guild.id};
   `;
   WDR.wdrDB.query(
     query,
     function(error, user, fields) {
       if (error) {
         WDR.Console.error(WDR, "[subs/poke/create.js] Error Fetching Subscriptions to Create Subscription.", [query, error]);
-        return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+        return message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
       } else if (!user || !user[0]) {
@@ -36,8 +36,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           .setFooter("You can type \'view\', \'add\', or \'remove\'.");
 
         // SEND THE EMBED
-        Message.channel.send(area_subs).catch(console.error).then(BotMsg => {
-          return Functions.OptionCollect(WDR, Functions, "view", Message, BotMsg, Member, AreaArray);
+        message.channel.send(area_subs).catch(console.error).then(BotMsg => {
+          return Functions.OptionCollect(WDR, Functions, "view", message, BotMsg, Member, AreaArray);
         });
       }
     }

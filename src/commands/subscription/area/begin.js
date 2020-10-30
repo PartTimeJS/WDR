@@ -9,14 +9,16 @@ var Functions = {
   Dir: __filename.split("/").slice(__dirname.split("/").length - 4).join("/")
 }
 
-module.exports = async (WDR, Message) => {
+module.exports = async (WDR, message) => {
 
-  var Member = Message.member ? Message.member : Message.author;
+  var Member = message.member ? message.member : message.author;
 
-  let geofence = await WDR.Geofences.get(Message.discord.geojson_file);
+  console.log('begin.js', message.discord);
+
+  let geofence = await WDR.Geofences.get(message.discord.geojson_file);
 
   if (!geofence) {
-    return Message.reply("No geofence file has been set for this server. Contact a server admin if you think this is incorrect.").then(m => m.delete({
+    return message.reply("No geofence file has been set for this server. Contact a server admin if you think this is incorrect.").then(m => m.delete({
       timeout: 5000
     })).catch(console.error);
   }
@@ -29,13 +31,13 @@ module.exports = async (WDR, Message) => {
   AreaArray.sort();
 
   if (Member.db.geotype != "areas") {
-    let keep_location = await Functions.DetailCollect(WDR, Functions, "Area", Member, Message, Member.db, "Type 'Yes' to override and continue or 'No' to cancel and keep area-based subscriptions.", null, AreaArray);
+    let keep_location = await Functions.DetailCollect(WDR, Functions, "Area", Member, message, Member.db, "Type 'Yes' to override and continue or 'No' to cancel and keep area-based subscriptions.", null, AreaArray);
     if (keep_location == false) {
       let kept_location = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-        .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
+        .setAuthor(message.member.db.user_name, message.member.user.displayAvatarURL())
         .setTitle("You have chose to keep **Location-Based** notifications.")
         .setFooter("You can modify your location-based settings by using the '" + WDR.Config.PREFIX + "location' command.");
-      return Message.reply(kept_location).then(m => m.delete({
+      return message.reply(kept_location).then(m => m.delete({
         timeout: 10000
       })).catch(console.error);
     } else {
@@ -47,12 +49,12 @@ module.exports = async (WDR, Message) => {
         WHERE
             user_id = ${Member.id}
               AND
-            guild_id = ${Message.guild.id}
+            guild_id = ${message.guild.id}
       ;`);
       let now_area = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
-        .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
+        .setAuthor(message.member.db.user_name, message.member.user.displayAvatarURL())
         .setTitle("You have changed to **Area-Based** notifications.");
-      return Message.reply(now_area).then(m => m.delete({
+      return message.reply(now_area).then(m => m.delete({
         timeout: 5000
       })).catch(console.error);
     }
@@ -66,7 +68,7 @@ module.exports = async (WDR, Message) => {
       "`remove`  »  Remove an Area.")
     .setFooter("Type the action, no command prefix required.");
 
-  Message.channel.send(requestAction).catch(console.error).then(BotMsg => {
-    return Functions.OptionCollect(WDR, Functions, "start", Message, BotMsg, Member, AreaArray);
+  message.channel.send(requestAction).catch(console.error).then(BotMsg => {
+    return Functions.OptionCollect(WDR, Functions, "start", message, BotMsg, Member, AreaArray);
   });
 }

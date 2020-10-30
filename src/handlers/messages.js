@@ -36,11 +36,13 @@ module.exports = async (WDR, message) => {
     } else {
         for(let d = 0, dlen = WDR.Discords.length; d <dlen; d++){
 
-            message.discord = WDR.Discords[d];
+            if (message.guild.id === WDR.Discords[d].id) {
 
-            message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
+                message.discord = WDR.Discords[d];
+
+                message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
     
-            if (message.guild.id === message.discord.id) {
+                console.log(message.discord);
     
                 //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
                 message.delete();

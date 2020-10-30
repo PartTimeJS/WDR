@@ -1,4 +1,4 @@
-module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
+module.exports = async (WDR, Functions, message, Member, AreaArray) => {
 
   let query = `
     SELECT
@@ -8,7 +8,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     WHERE
         user_id = ${Member.id}
           AND
-        guild_id = ${Message.guild.id};
+        guild_id = ${message.guild.id};
   `;
 
   WDR.wdrDB.query(
@@ -16,12 +16,12 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     async function(error, user, fields) {
       if (error) {
         WDR.Console.error(WDR, "[cmd/sub/area/add.js] Error Fetching Subscriptions to Create Subscription.", [query, error]);
-        return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+        return message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
           timeout: 10000
         }));
       } else {
 
-        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, Message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
+        let sub = await Functions.DetailCollect(WDR, Functions, "Name", Member, message, null, "Names are not case-sensitive. The Check denotes you are already subscribed to that Area.", user[0].areas, AreaArray);
 
         let areas;
         if (user[0].areas.includes(",")) {
@@ -33,13 +33,13 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         let area_index = areas.indexOf(sub);
 
         if (area_index >= 0) {
-          return Message.reply("You are already subscribed to this Area.").then(m => m.delete(10000)).catch(console.error);
+          return message.reply("You are already subscribed to this Area.").then(m => m.delete(10000)).catch(console.error);
         } else {
           switch (true) {
             case sub == "all":
               areas = Member.db.name;
               break;
-            case user[0].areas == Message.discord.name:
+            case user[0].areas == message.discord.name:
             case user[0].areas == "None":
               areas = [];
               areas.push(sub);
@@ -74,7 +74,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
           function(error, user, fields) {
             if (error) {
               WDR.Console.error(WDR, "[cmd/sub/area/add.js] Error Updating User Geofences.", [update, error]);
-              return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
+              return message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({
                 timeout: 10000
               }));
             } else {
@@ -83,8 +83,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 .setTitle("**" + sub + "** Area Added!")
                 .setDescription("Saved to the Database.")
                 .setFooter("You can type \'view\', \'add\', or \'remove\'.");
-              return Message.channel.send(subscription_success).then(BotMsg => {
-                return Functions.OptionCollect(WDR, Functions, "create", Message, BotMsg, Member, AreaArray);
+              return message.channel.send(subscription_success).then(BotMsg => {
+                return Functions.OptionCollect(WDR, Functions, "create", message, BotMsg, Member, AreaArray);
               });
             }
           }
