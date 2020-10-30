@@ -122,10 +122,10 @@ module.exports = async (WDR, RAID) => {
             match.color = "a53820";
           }
 
-          match.hatch_time = WDR.Time(RAID.start, "1", RAID.Timezone);
-          match.end_time = WDR.Time(RAID.end, "1", RAID.Timezone);
-          match.hatch_mins = Math.floor((RAID.start - (RAID.Time_Now / 1000)) / 60);
-          match.end_mins = Math.floor((RAID.end - (RAID.Time_Now / 1000)) / 60);
+          match.hatch_time = WDR.Time(RAID.start, "1", RAID.timezone);
+          match.end_time = WDR.Time(RAID.end, "1", RAID.timezone);
+          match.hatch_mins = Math.floor((RAID.start - (RAID.time_now / 1000)) / 60);
+          match.end_mins = Math.floor((RAID.end - (RAID.time_now / 1000)) / 60);
 
           match.marker_latitude = RAID.latitude + .0006;
 

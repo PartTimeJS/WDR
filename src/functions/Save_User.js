@@ -24,7 +24,7 @@ module.exports = (WDR, message, server) => {
           second: 0,
           millisecond: 0
         });
-        alert_time = moment.tz(alert_time, WDR.Config.TIMEZONE).format("HH:mm");
+        alert_time = moment.tz(alert_time, WDR.Config.timezone).format("HH:mm");
         user_name = message.member.user.username.replace(/[\W]+/g, "");
         WDR.wdrDB.query(
           `INSERT INTO

@@ -1,15 +1,11 @@
-var Reported_Raids = [],
-    Reported_Quests = [],
-    Reported_Lures = [],
-    Reported_Invasions = [];
+const data_types = ["pokemon", "raid", "quest", "pokestop", "invasion"];
 
-module.exports = async (WDR, Payload) => {
+class Webhook {
+    constructor(data){
+        console.log(data);
+    }
 
-    for (let p = 0, plen = Payload.length; p < plen; p++) {
-        let data = Payload[p];
-        //Payload.forEach(async data => {
-
-        let data_types = ["pokemon", "raid", "quest", "pokestop", "invasion"];
+    Parse(){
 
         if (data_types.includes(data.type)) {
 
@@ -160,44 +156,10 @@ module.exports = async (WDR, Payload) => {
                 }
             }
         }
-    } //);
-
-    // END
-    return;
-}
-
-setInterval(function () {
-    Reported_Raids = [];
-    Reported_Quests = [];
-    Reported_Lures = [];
-    Reported_Invasions = [];
-}, 60000 * 3);
-
-function Calculate_Size(pokemon_id) {
-    let weightRatio = 0,
-        heightRatio = 0;
-    if (form_id > 0) {
-        let form_weight = WDR.Master.Pokemon[pokemon_id].forms[form_id].weight ? WDR.Master.Pokemon[pokemon_id].forms[form_id].weight : WDR.Master.Pokemon[pokemon_id].weight;
-        let form_height = WDR.Master.Pokemon[pokemon_id].forms[form_id].height ? WDR.Master.Pokemon[pokemon_id].forms[form_id].height : WDR.Master.Pokemon[pokemon_id].height;
-        weightRatio = object.weight / form_weight;
-        heightRatio = object.height / form_height;
-    } else {
-        weightRatio = object.weight / WDR.Master.Pokemon[pokemon_id].weight;
-        heightRatio = object.height / WDR.Master.Pokemon[pokemon_id].height;
+        } //);
+    
+        // END
+        return;
     }
-
-    let size = heightRatio + weightRatio;
-
-    switch (true) {
-        case size < 1.5:
-            return resolve('Tiny');
-        case size <= 1.75:
-            return resolve('Small');
-        case size < 2.25:
-            return resolve('Normal');
-        case size <= 2.5:
-            return resolve('Large');
-        default:
-            return resolve('Big');
     }
 }

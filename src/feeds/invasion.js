@@ -70,9 +70,9 @@ module.exports = async (WDR, INVASION) => {
             match.resistances = "";
             //INVASION.type = WDR.Emotes[INVASION.grunt_type.toLowerCase()] ? WDR.Emotes[INVASION.grunt_type.toLowerCase()] : "";
             match.color = WDR.Get_Type_Color(WDR.Master.Grunt_Types[INVASION.grunt_type].type);
-            match.time = WDR.Time(INVASION.incident_expire_timestamp, "1", INVASION.Timezone);
-            match.mins = Math.floor((INVASION.incident_expire_timestamp - (INVASION.Time_Now / 1000)) / 60);
-            match.secs = Math.floor((INVASION.incident_expire_timestamp - (INVASION.Time_Now / 1000)) - ((Math.floor((INVASION.incident_expire_timestamp - (INVASION.Time_Now / 1000)) / 60)) * 60));
+            match.time = WDR.Time(INVASION.incident_expire_timestamp, "1", INVASION.timezone);
+            match.mins = Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) / 60);
+            match.secs = Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) - ((Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) / 60)) * 60));
             match.lat = INVASION.latitude;
             match.lon = INVASION.longitude;
             match.area = INVASION.area.embed;

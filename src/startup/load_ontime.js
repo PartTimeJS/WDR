@@ -12,7 +12,7 @@ exports.Load = function(WDR) {
         second: 0,
         millisecond: 0
       });
-      server_purge = WDR.Moment.tz(server_purge, WDR.Config.TIMEZONE).format("HH:mm:ss");
+      server_purge = WDR.Moment.tz(server_purge, WDR.Config.timezone).format("HH:mm:ss");
       ontime_times.push(server_purge);
       ontime_servers.push(server);
     });
@@ -69,7 +69,7 @@ exports.Load = function(WDR) {
             second: 0,
             millisecond: 0
           });
-          purge_time = WDR.Moment.tz(purge_time, WDR.Config.TIMEZONE).format("HH:mm:ss");
+          purge_time = WDR.Moment.tz(purge_time, WDR.Config.timezone).format("HH:mm:ss");
           if (now == purge_time || command == "purge") {
             for (var i = 0; i < server.channels_to_purge.length; i++) {
               clear_channel(server.channels_to_purge[i]);

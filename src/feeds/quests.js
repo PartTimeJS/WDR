@@ -69,7 +69,7 @@ module.exports = async (WDR, QUEST) => {
                 match.body = await WDR.Generate_Tile(WDR, QUEST, "quests", match.marker_latitude, match.lon, match.sprite);
                 match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
 
-                match.time = WDR.Time(null, "quest", QUEST.Timezone);
+                match.time = WDR.Time(null, "quest", QUEST.timezone);
 
                 switch (true) {
                     case QUEST.template.indexOf("easy") >= 0:

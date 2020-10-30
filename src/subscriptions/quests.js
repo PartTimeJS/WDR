@@ -126,7 +126,7 @@ async function Send_Subscription(WDR, QUEST, User) {
     match.body = await WDR.Generate_Tile(WDR, QUEST, "quests", match.marker_latitude, match.lon, match.sprite);
     match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
 
-    match.time = WDR.Time(null, "quest", QUEST.Timezone);
+    match.time = WDR.Time(null, "quest", QUEST.timezone);
 
     switch (true) {
       case QUEST.template.indexOf("easy") >= 0:
@@ -148,7 +148,7 @@ async function Send_Subscription(WDR, QUEST, User) {
 
     match.embed = Embed_Config(WDR, match);
 
-    let db_date = WDR.Moment(QUEST.Time_Now).format('MM/DD/YYYY');
+    let db_date = WDR.Moment(QUEST.time_now).format('MM/DD/YYYY');
     db_date = WDR.Moment(db_date + ' ' + User.quest_time, 'MM/DD/YYYY H:mm').unix();
     
     let quest_object = JSON.stringify(QUEST);

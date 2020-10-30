@@ -71,9 +71,9 @@ module.exports = async (WDR, LURE) => {
             match.name = LURE.name;
             match.url = LURE.url ? LURE.url : "https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png";
 
-            match.time = WDR.Time(LURE.lure_expiration, "1", LURE.Timezone);
-            match.mins = Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) / 60);
-            match.secs = Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) - ((Math.floor((LURE.lure_expiration - (LURE.Time_Now / 1000)) / 60)) * 60));
+            match.time = WDR.Time(LURE.lure_expiration, "1", LURE.timezone);
+            match.mins = Math.floor((LURE.lure_expiration - (LURE.time_now / 1000)) / 60);
+            match.secs = Math.floor((LURE.lure_expiration - (LURE.time_now / 1000)) - ((Math.floor((LURE.lure_expiration - (LURE.time_now / 1000)) / 60)) * 60));
 
             match.marker_latitude = LURE.latitude + .0004;
 

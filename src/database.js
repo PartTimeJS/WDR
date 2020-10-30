@@ -333,7 +333,7 @@ const DB = {
 
     Daily: function(WDR, Daily) {
         let daily_time = WDR.Moment();
-        daily_time = WDR.Moment.tz(daily_time, WDR.Config.Timezone).set({
+        daily_time = WDR.Moment.tz(daily_time, WDR.Config.timezone).set({
             hour: 23,
             minute: 45,
             second: 0,
@@ -374,7 +374,7 @@ const DB = {
                 let time = query[0].split(":");
                 let scheduled_time = WDR.Moment();
 
-                scheduled_time = WDR.Moment.tz(scheduled_time, WDR.Config.Timezone).set({
+                scheduled_time = WDR.Moment.tz(scheduled_time, WDR.Config.timezone).set({
                     hour: time[0],
                     minute: time[1],
                     second: time[2],

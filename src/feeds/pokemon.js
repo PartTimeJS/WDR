@@ -132,9 +132,9 @@ module.exports = (WDR, SIGHTING) => {
           match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + SIGHTING.latitude + "/" + SIGHTING.longitude + "/15)";
 
           match.verified = SIGHTING.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
-          match.time = WDR.Time(SIGHTING.disappear_time, "1", SIGHTING.Timezone);
-          match.mins = Math.floor((SIGHTING.disappear_time - (SIGHTING.Time_Now / 1000)) / 60);
-          match.secs = Math.floor((SIGHTING.disappear_time - (SIGHTING.Time_Now / 1000)) - (match.mins * 60));
+          match.time = WDR.Time(SIGHTING.disappear_time, "1", SIGHTING.timezone);
+          match.mins = Math.floor((SIGHTING.disappear_time - (SIGHTING.time_now / 1000)) / 60);
+          match.secs = Math.floor((SIGHTING.disappear_time - (SIGHTING.time_now / 1000)) - (match.mins * 60));
 
           if (match.mins >= 5) {
 

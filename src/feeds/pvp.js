@@ -160,9 +160,9 @@ module.exports = async (WDR, Sighting) => {
                     match.rdm = '[Scan Map](' + WDR.Config.FRONTEND_URL + '@/' + match.lat + '/' + match.lon + '/15)';
 
                     match.verified = Sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
-                    match.time = WDR.Time(Sighting.disappear_time, '1', Sighting.Timezone);
-                    match.mins = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) / 60);
-                    match.secs = Math.floor((Sighting.disappear_time - (Sighting.Time_Now / 1000)) - (match.mins * 60));
+                    match.time = WDR.Time(Sighting.disappear_time, '1', Sighting.timezone);
+                    match.mins = Math.floor((Sighting.disappear_time - (Sighting.time_now / 1000)) / 60);
+                    match.secs = Math.floor((Sighting.disappear_time - (Sighting.time_now / 1000)) - (match.mins * 60));
 
                     match.pvp_data = '';
 
