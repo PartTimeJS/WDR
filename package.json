@@ -26,6 +26,7 @@
     "path": "^0.12.7",
     "point-in-geopolygon": "^1.0.1",
     "point-in-polygon": "^1.0.1",
-    "protobufjs": "^6.9.0"
+    "protobufjs": "^6.9.0",
+    "purified-protos": "^0.189.0"
   }
 }
