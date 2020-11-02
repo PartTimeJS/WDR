@@ -125,7 +125,7 @@ module.exports = async (WDR, sighting) => {
                       let subGeo = (user.areas.indexOf(sighting.area.sub) >= 0);
                       if (defGeo || mainGeo || subGeo) {
                         match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                        Send_Subscription(WDR, match, sighting, User);
+                        Send_Subscription(WDR, match, sighting, user);
                       }
 
                     } else if (user.geotype == "location") {
@@ -139,7 +139,7 @@ module.exports = async (WDR, sighting) => {
                       let loc_dist = WDR.Distance(user.location.radius + " km");
                       if (loc_dist > distance) {
                         match.embed = matching[0].embed ? matching[0].embed : "pvp.js";
-                        Send_Subscription(WDR, match, sighting, User);
+                        Send_Subscription(WDR, match, sighting, user);
                       }
                     }
                     break;
