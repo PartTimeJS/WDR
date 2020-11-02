@@ -34,12 +34,12 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
                 }
 
             } else {
-                WDR.Console.error(WDR, '[src/discord.js] No Members returned for guild: ' + guild_id);
+                WDR.Console.error(WDR, '[Authorize.js] No Members returned for guild: ' + guild_id);
                 return resolve(false);
             }
 
         } catch (e) {
-            WDR.Console.error(WDR, '[src/discord.js] Failed to fetch Member & Roles', [e]);
+            WDR.Console.error(WDR, '[Authorize.js] Failed to fetch Member & Roles', [e]);
             return resolve(false);
         }
     });
