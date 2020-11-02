@@ -27,7 +27,9 @@
 
     "Starting Up...",
     "Checking files for your fuck-ups...",
-    "Don't Stop..."
+    "Don't Stop...",
+
+    "Question: What's dumber than Dr Kendall?"
 
   ],
   "initialized":[
@@ -58,6 +60,8 @@
 
     "WDR has Fully Initialized.",
     "So far so good. Now to see what else you screwed up...",
-    "Believin'!"
+    "Believin'!",
+
+    "Answer: Nothing. He's literally a potato."
   ]
 }
