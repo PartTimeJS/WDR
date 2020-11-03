@@ -1,42 +1,42 @@
 module.exports = {
-  error: function(WDR, err, object) {
-    console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + err).bold.brightRed);
-    if (object) {
-      if (object.length > 1) {
-        object.forEach(error => {
-          console.error(error);
-        });
-      } else {
-        console.error(object);
-      }
+    error: function (WDR, err, object) {
+        console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + err).bold.brightRed);
+        if (object) {
+            if (object.length > 1) {
+                object.forEach(error => {
+                    console.error(error);
+                });
+            } else {
+                console.error(object);
+            }
+        }
+        return;
+    },
+
+    log: function (WDR, log, object) {
+        console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + log).bold.brightGreen);
+        if (object) {
+            console.log(object);
+        }
+        return;
+    },
+
+    info: function (WDR, info, object) {
+        if (info.includes("[DEBUG]")) {
+            console.log((info).bold.yellow);
+            if (object) {
+                console.log(object);
+            }
+        } else {
+            console.info("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info);
+            if (object) {
+                console.info(object);
+            }
+        }
+        return;
+    },
+
+    custom: function (text, object, color) {
+
     }
-    return;
-  },
-
-  log: function(WDR, log, object) {
-    console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + log).bold.brightGreen);
-    if (object) {
-      console.log(object);
-    }
-    return;
-  },
-
-  info: function(WDR, info, object) {
-    if (info.includes("[DEBUG]")) {
-      console.log((info).bold.yellow);
-      if (object) {
-        console.log(object);
-      }
-    } else {
-      console.info("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info);
-      if (object) {
-        console.info(object);
-      }
-    }
-    return;
-  },
-
-  custom: function(text, object, color) {
-
-  }
 }

@@ -1,236 +1,236 @@
 module.exports = async (WDR, sighting) => {
 
-  let discord = sighting.discord;
+    let discord = sighting.discord;
 
-  sighting.form_id = sighting.form_id ? sighting.form_id : 0;
+    sighting.form_id = sighting.form_id ? sighting.form_id : 0;
 
-  let size = sighting.size === 0 ? sighting.size : sighting.size.toLowerCase();
+    let size = sighting.size === 0 ? sighting.size : sighting.size.toLowerCase();
 
-  let typing = await WDR.Get_Typing(WDR, {
-    pokemon_id: sighting.pokemon_id,
-    form: sighting.form,
-    type: "type_array"
-  });
+    let typing = await WDR.Get_Typing(WDR, {
+        pokemon_id: sighting.pokemon_id,
+        form: sighting.form,
+        type: "type_array"
+    });
 
-  let query = `
-    SELECT
-        *
-    FROM
-        wdr_pokemon_subs
-    WHERE
-        status = 1
-      AND (
-        pokemon_id = 0
-          OR
-        pokemon_id = ${sighting.pokemon_id}
-      )
-      AND (
-        pokemon_type = '0'
-          OR
-        pokemon_type = '${typing[0]}'
-          OR
-        pokemon_type = '${typing[1]}'
-      )
-      AND (
-        form = 0
-        OR form = ${sighting.form_id}
-      )
-      AND
-        min_iv <= ${sighting.internal_value}
-      AND
-        max_iv >= ${sighting.internal_value}
-      AND
-        min_lvl <= ${sighting.pokemon_level}
-      AND
-        max_lvl >= ${sighting.pokemon_level}
-      AND (
-        size = '0'
-          OR
-        size = '${size}'
-      )
-      AND (
-        gender = 0
-          OR
-        gender = ${sighting.gender_id}
-          OR
-        gender = 3
-      )
-      AND (
-        generation = 0
-          OR
-        generation = ${sighting.gen}
-      );
+    let query = `
+        SELECT
+            *
+        FROM
+            wdr_pokemon_subs
+        WHERE
+            status = 1
+        AND (
+            pokemon_id = 0
+            OR
+            pokemon_id = ${sighting.pokemon_id}
+        )
+        AND (
+            pokemon_type = '0'
+            OR
+            pokemon_type = '${typing[0]}'
+            OR
+            pokemon_type = '${typing[1]}'
+        )
+        AND (
+            form = 0
+            OR form = ${sighting.form_id}
+        )
+        AND
+            min_iv <= ${sighting.internal_value}
+        AND
+            max_iv >= ${sighting.internal_value}
+        AND
+            min_lvl <= ${sighting.pokemon_level}
+        AND
+            max_lvl >= ${sighting.pokemon_level}
+        AND (
+            size = '0'
+            OR
+            size = '${size}'
+        )
+        AND (
+            gender = 0
+            OR
+            gender = ${sighting.gender_id}
+            OR
+            gender = 3
+        )
+        AND (
+            generation = 0
+            OR
+            generation = ${sighting.gen}
+        );
     `;
 
-  // if (sighting.pokemon_id === 1) {
-  //   console.log(query)
-  // }
+    // if (sighting.pokemon_id === 1) {
+    //   console.log(query)
+    // }
 
-  WDR.wdrDB.query(
-    query,
-    async function(error, matching, fields) {
+    WDR.wdrDB.query(
+        query,
+        async function (error, matching, fields) {
 
-      // if (sighting.internal_value == 100) {
-      //   console.log(matching);
-      // }
+            // if (sighting.internal_value == 100) {
+            //   console.log(matching);
+            // }
 
-      if (error) {
-        WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
-      } else if (matching && matching.length > 0) {
+            if (error) {
+                WDR.Console.error(WDR, "[commands/pokemon.js] Error Querying Subscriptions.", [query, error]);
+            } else if (matching && matching.length > 0) {
 
-        sighting.sprite = WDR.Get_Sprite(WDR, sighting);
+                sighting.sprite = WDR.Get_Sprite(WDR, sighting);
 
-        if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
-          sighting.body = await WDR.Generate_Tile(WDR, sighting, "pokemon", sighting.latitude, sighting.longitude, sighting.sprite);
-          sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + sighting.body;
-        }
-
-        for (let m = 0, mlen = matching.length; m < mlen; m++) {
-
-          let User = matching[m];
-
-          User.location = JSON.parse(User.location);
-
-          let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
-          if (authorized) {
-            let match = {};
-
-            if (User.geotype == "city") {
-              if (User.guild_name == sighting.area.default) {
-                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                  WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent city sub to " + User.user_name + ".");
+                if (WDR.Config.POKEMON_PREGEN_TILES != "DISABLED") {
+                    sighting.body = await WDR.Generate_Tile(WDR, sighting, "pokemon", sighting.latitude, sighting.longitude, sighting.sprite);
+                    sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + sighting.body;
                 }
-                Send_Subscription(WDR, match, sighting, User);
-              } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + sighting.area.default+"`")
-              }
 
-            } else if (User.geotype == "areas") {
-              let defGeo = (User.areas.indexOf(sighting.area.default) >= 0);
-              let mainGeo = (User.areas.indexOf(sighting.area.main) >= 0);
-              let subGeo = (User.areas.indexOf(sighting.area.sub) >= 0);
-              if (defGeo || mainGeo || subGeo) {
-                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                  WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent area sub to " + User.user_name + ".");
-                }
-                Send_Subscription(WDR, match, sighting, User);
-              } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | User: " + User.user_name + " | Failed Area Geofence.")
-              }
+                for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
-            } else if (User.geotype == "location") {
-              let distance = WDR.Distance.between({
-                lat: sighting.latitude,
-                lon: sighting.longitude
-              }, {
-                lat: User.location.coords.split(",")[0],
-                lon: User.location.coords.split(",")[1]
-              });
-              let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
-              if (loc_dist > distance) {
-                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
-                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-                  WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent location sub to " + User.user_name + ".");
+                    let User = matching[m];
+
+                    User.location = JSON.parse(User.location);
+
+                    let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
+                    if (authorized) {
+                        let match = {};
+
+                        if (User.geotype == "city") {
+                            if (User.guild_name == sighting.area.default) {
+                                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                                    WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent city sub to " + User.user_name + ".");
+                                }
+                                Send_Subscription(WDR, match, sighting, User);
+                            } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                                WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | User: " + User.user_name + " | Failed City Geofence. Wanted: `" + User.guild_name + "` Saw: `" + sighting.area.default+"`")
+                            }
+
+                        } else if (User.geotype == "areas") {
+                            let defGeo = (User.areas.indexOf(sighting.area.default) >= 0);
+                            let mainGeo = (User.areas.indexOf(sighting.area.main) >= 0);
+                            let subGeo = (User.areas.indexOf(sighting.area.sub) >= 0);
+                            if (defGeo || mainGeo || subGeo) {
+                                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                                    WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent area sub to " + User.user_name + ".");
+                                }
+                                Send_Subscription(WDR, match, sighting, User);
+                            } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                                WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | User: " + User.user_name + " | Failed Area Geofence.")
+                            }
+
+                        } else if (User.geotype == "location") {
+                            let distance = WDR.Distance.between({
+                                lat: sighting.latitude,
+                                lon: sighting.longitude
+                            }, {
+                                lat: User.location.coords.split(",")[0],
+                                lon: User.location.coords.split(",")[1]
+                            });
+                            let loc_dist = WDR.Distance(parseInt(User.location.radius) + " km");
+                            if (loc_dist > distance) {
+                                match.embed = matching[0].embed ? matching[0].embed : "pokemon_iv.js";
+                                if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                                    WDR.Console.log(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | Sent location sub to " + User.user_name + ".");
+                                }
+                                Send_Subscription(WDR, match, sighting, User);
+                            }
+                        } else {
+                            WDR.Console.error(WDR, "[DEBUG] [src/subs/pokemon.js] User: " + User.user_name + " | User geotype has a bad value.", User);
+                        }
+                    } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
+                        WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | " + User.user_name + " did NOT pass authorization for " + discord.name + " (" + discord.id + ").");
+                    }
                 }
-                Send_Subscription(WDR, match, sighting, User);
-              }
-            } else {
-              WDR.Console.error(WDR, "[DEBUG] [src/subs/pokemon.js] User: " + User.user_name + " | User geotype has a bad value.", User);
             }
-          } else if (WDR.Config.DEBUG.Pokemon_Subs == "ENABLED") {
-            WDR.Console.info(WDR, "[DEBUG] [src/subs/pokemon.js] " + sighting.encounter_id + " | " + User.user_name + " did NOT pass authorization for " + discord.name + " (" + discord.id + ").");
-          }
         }
-      }
-    }
-  );
+    );
 
-  // END
-  return;
+    // END
+    return;
 }
 
 async function Send_Subscription(WDR, match, sighting, User) {
 
-  await WDR.Rate_Limit(WDR, User);
+    await WDR.Rate_Limit(WDR, User);
 
-  let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
+    let Embed_Config = require(WDR.Dir + "/configs/embeds/" + match.embed);
 
-  match.typing = await WDR.Get_Typing(WDR, {
-    pokemon_id: sighting.pokemon_id,
-    form: sighting.form
-  });
+    match.typing = await WDR.Get_Typing(WDR, {
+        pokemon_id: sighting.pokemon_id,
+        form: sighting.form
+    });
 
-  match.sprite = sighting.sprite;
+    match.sprite = sighting.sprite;
 
-  match.body = sighting.body;
-  match.static_map = sighting.static_map;
+    match.body = sighting.body;
+    match.static_map = sighting.static_map;
 
-  match.type = match.typing.type;
-  match.type_noemoji = match.typing.type_noemoji;
+    match.type = match.typing.type;
+    match.type_noemoji = match.typing.type_noemoji;
 
-  match.color = match.typing.color;
-  
-  match.gender_wemoji = sighting.gender_wemoji
-  match.gender_noemoji = sighting.gender_noemoji
+    match.color = match.typing.color;
 
-  match.name = sighting.pokemon_name;
-  match.id = sighting.pokemon_id;
-  match.form = sighting.form_name ? sighting.form_name : "";
-  match.form = sighting.form_name == "[Normal]" ? "" : sighting.form_name;
+    match.gender_wemoji = sighting.gender_wemoji
+    match.gender_noemoji = sighting.gender_noemoji
 
-  match.iv = sighting.internal_value;
-  match.cp = sighting.cp;
+    match.name = sighting.pokemon_name;
+    match.id = sighting.pokemon_id;
+    match.form = sighting.form_name ? sighting.form_name : "";
+    match.form = sighting.form_name == "[Normal]" ? "" : sighting.form_name;
 
-  match.lat = sighting.latitude;
-  match.lon = sighting.longitude;
+    match.iv = sighting.internal_value;
+    match.cp = sighting.cp;
 
-  match.weather_boost = sighting.weather_boost;
+    match.lat = sighting.latitude;
+    match.lon = sighting.longitude;
 
-  match.area = sighting.area.embed;
+    match.weather_boost = sighting.weather_boost;
 
-  match.map_url = WDR.Config.FRONTEND_URL;
+    match.area = sighting.area.embed;
 
-  match.atk = sighting.individual_attack;
-  match.def = sighting.individual_defense;
-  match.sta = sighting.individual_stamina;
+    match.map_url = WDR.Config.FRONTEND_URL;
 
-  match.lvl = sighting.pokemon_level;
-  match.gen = sighting.gen;
+    match.atk = sighting.individual_attack;
+    match.def = sighting.individual_defense;
+    match.sta = sighting.individual_stamina;
 
-  match.move_1_type = WDR.Emotes[WDR.Master.Moves[sighting.move_1].type.toLowerCase()];
-  match.move_2_type = WDR.Emotes[WDR.Master.Moves[sighting.move_2].type.toLowerCase()];
-  match.move_1_name = sighting.move_1_name;
-  match.move_2_name = sighting.move_2_name;
+    match.lvl = sighting.pokemon_level;
+    match.gen = sighting.gen;
 
-  match.height = Math.floor(sighting.height * 100) / 100;
-  match.weight = Math.floor(sighting.weight * 100) / 100;
-  match.size = await WDR.Capitalize(sighting.size);
+    match.move_1_type = WDR.Emotes[WDR.Master.Moves[sighting.move_1].type.toLowerCase()];
+    match.move_2_type = WDR.Emotes[WDR.Master.Moves[sighting.move_2].type.toLowerCase()];
+    match.move_1_name = sighting.move_1_name;
+    match.move_2_name = sighting.move_2_name;
 
-  match.google = "[Google Maps](https://www.google.com/maps?q=" + sighting.latitude + "," + sighting.longitude + ")";
-  match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + sighting.latitude + "," + sighting.longitude + "&z=10&t=s&dirflg=d)";
-  match.waze = "[Waze](https://www.waze.com/ul?ll=" + sighting.latitude + "," + sighting.longitude + "&navigate=yes)";
-  match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + sighting.latitude + "&lon=" + sighting.longitude + "&zoom=15)";
-  match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + sighting.latitude + "/" + sighting.longitude + "/15)";
+    match.height = Math.floor(sighting.height * 100) / 100;
+    match.weight = Math.floor(sighting.weight * 100) / 100;
+    match.size = await WDR.Capitalize(sighting.size);
 
-  match.verified = sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
-  match.time = WDR.Time(sighting.disappear_time, "1", sighting.timezone);
-  match.mins = Math.floor((sighting.disappear_time - (sighting.time_now / 1000)) / 60);
-  match.secs = Math.floor((sighting.disappear_time - (sighting.time_now / 1000)) - (match.mins * 60));
+    match.google = "[Google Maps](https://www.google.com/maps?q=" + sighting.latitude + "," + sighting.longitude + ")";
+    match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + sighting.latitude + "," + sighting.longitude + "&z=10&t=s&dirflg=d)";
+    match.waze = "[Waze](https://www.waze.com/ul?ll=" + sighting.latitude + "," + sighting.longitude + "&navigate=yes)";
+    match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + sighting.latitude + "&lon=" + sighting.longitude + "&zoom=15)";
+    match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + sighting.latitude + "/" + sighting.longitude + "/15)";
 
-  if (match.mins >= 5) {
+    match.verified = sighting.disappear_time_verified ? WDR.Emotes.checkYes : WDR.Emotes.yellowQuestion;
+    match.time = WDR.Time(sighting.disappear_time, "1", sighting.timezone);
+    match.mins = Math.floor((sighting.disappear_time - (sighting.time_now / 1000)) / 60);
+    match.secs = Math.floor((sighting.disappear_time - (sighting.time_now / 1000)) - (match.mins * 60));
 
-    if (WDR.Debug.Processing_Speed == "ENABLED") {
-      let difference = Math.round((new Date().getTime() - sighting.WDR_Received) / 10) / 100;
-      match.footer = "Latency: " + difference + "s";
+    if (match.mins >= 5) {
+
+        if (WDR.Debug.Processing_Speed == "ENABLED") {
+            let difference = Math.round((new Date().getTime() - sighting.WDR_Received) / 10) / 100;
+            match.footer = "Latency: " + difference + "s";
+        }
+
+        match.embed = Embed_Config(WDR, match);
+
+        WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
+
     }
-
-    match.embed = Embed_Config(WDR, match);
-
-    WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
-
-  }
 
 
 }

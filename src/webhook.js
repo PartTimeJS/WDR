@@ -1,11 +1,11 @@
 const data_types = ["pokemon", "raid", "quest", "pokestop", "invasion"];
 
 class Webhook {
-    constructor(data){
+    constructor(data) {
         console.log(data);
     }
 
-    Parse(){
+    Parse() {
 
         if (data_types.includes(data.type)) {
 
@@ -156,10 +156,8 @@ class Webhook {
                 }
             }
         }
-        } //);
-    
-        // END
-        return;
-    }
-    }
+    } //);
+
+    // END
+    return;
 }
