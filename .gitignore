@@ -49,3 +49,8 @@ static/*.js
 *.ini
 *.obf
 node_modules
+rawprotos.json
+baseprotos.json
+*.proto
+master.json
+pokemonId.json
