@@ -167,23 +167,20 @@ async function Send_Subscription(WDR, QUEST, User) {
                     embed
                 )
             VALUES
-                ( ?, ?, ?, ?, ?, ?, ?, ? )
+                ( 
+                    '${User.user_id}',
+                    '${User.user_name}',
+                    '${User.guild_id}',
+                    ${User.bot},
+                    '${match.area}',
+                    '${quest_object}', 
+                    '${db_date}',
+                    '${embed}'
+                )
         ;`;
-    
-    let values = [
-        User.user_id,
-        User.user_name,
-        User.guild_id,
-        User.bot,
-        match.area,
-        quest_object,
-        db_date,
-        embed
-    ];
 
     WDR.wdrDB.query(
         query,
-        values,
         function(error) {
             if (error) {
                 WDR.Console.error(WDR, '[' + WDR.Time(null, 'stamp') + '] UNABLE TO ADD ALERT TO quest_alerts', [query, error]);
