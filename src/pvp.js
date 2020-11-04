@@ -187,6 +187,9 @@ module.exports = {
 
     SearchTopRank: function (WDR, search, filter) {
         // RUN CALCULATIONS
+        if(!search.pokemon.pokemon_id){
+            console.error('search.pokemon', search.pokemon);
+        }
         let possible_cps = this.CalculatePossibleCPs(WDR, search.pokemon.pokemon_id, search.pokemon.form, search.stats.atk, search.stats.def, search.stats.sta, 1, 'Male', filter.min_cp_range, filter.max_cp_range, 'SearchTopRank');
         let unique_cps = {},
             ranks = {};
@@ -266,6 +269,10 @@ async function CalculatePossibleCPs(WDR, pokemonID, formID, attack, defense, sta
                 evolvedForm = WDR.Master.Pokemon[pokemonID].evolution_form;
             } else {
                 evolvedForm = formID;
+            }
+            if(!WDR.Master.Pokemon[pokemonID].evolutions[i].evolution_id){
+                console.error('WDR.Master.Pokemon[pokemonID]', WDR.Master.Pokemon[pokemonID]);
+                console.error('WDR.Master.Pokemon[pokemonID].evolutions[i]',WDR.Master.Pokemon[pokemonID].evolutions[i]);
             }
             let evolvedCPs = await CalculatePossibleCPs(WDR, WDR.Master.Pokemon[pokemonID].evolutions[i].evolution_id, evolvedForm, attack, defense, stamina, level, gender, league, 'evolvedCPs');
             possibleCPs = possibleCPs.concat(evolvedCPs);
