@@ -9,7 +9,7 @@ exports.Load = function (WDR) {
 
             let filter_files = filters.filter(f => f.split('.').pop() === 'json');
 
-            filter_files.forEach((f, i) => {
+            filter_files.forEach((f) => {
 
                 delete require.cache[require.resolve(WDR.Dir + '/configs/filters/' + f)];
 

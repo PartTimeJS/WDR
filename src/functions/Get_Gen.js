@@ -1,5 +1,5 @@
 module.exports = (ID) => {
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
         switch (true) {
             case ID <= 151:
                 return resolve(1);
@@ -19,4 +19,4 @@ module.exports = (ID) => {
                 return resolve(0);
         }
     });
-}
+};

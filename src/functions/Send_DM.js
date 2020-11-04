@@ -25,4 +25,4 @@ module.exports = (WDR, guild_id, user_id, embed, bot) => {
             });
         });
     }
-}
+};

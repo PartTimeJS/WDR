@@ -1,8 +1,9 @@
+/* eslint-disable no-async-promise-executor */
 module.exports = async (string) => {
     return new Promise(async resolve => {
         try {
             if (!string) {
-               return resolve('');
+                return resolve('');
             } else if (isNaN(string)) {
                 string = string.toLowerCase();
                 if (string.split(' ').length > 1) {
@@ -14,15 +15,15 @@ module.exports = async (string) => {
                             processed += ' ' + word;
                         }
                     });
-                   return resolve(processed.slice(1));
+                    return resolve(processed.slice(1));
                 } else {
-                   return resolve(string.charAt(0).toUpperCase() + string.slice(1));
+                    return resolve(string.charAt(0).toUpperCase() + string.slice(1));
                 }
             } else {
-               return resolve('');
+                return resolve('');
             }
         } catch (e) {
-            WDR.Console.error(WDR,'[functions/Capitalize.js] Error Capitalizing string `' + string + '`', e);
+            console.error('[functions/Capitalize.js] Error Capitalizing string `' + string + '`', e);
         }
     });
-}
+};

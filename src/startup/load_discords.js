@@ -9,7 +9,7 @@ exports.Load = function (WDR) {
 
             let discord_files = discords.filter(f => f.split('.').pop() === 'json');
 
-            discord_files.forEach((f, i) => {
+            discord_files.forEach((f) => {
 
                 discord_count++;
 

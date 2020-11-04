@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 module.exports = (WDR, guild_id, user_id, allowedRoles) => {
     return new Promise(async resolve => {
         try {
@@ -14,6 +15,7 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
                     let foundRole = false;
 
                     const roles = member.roles.cache
+                        // eslint-disable-next-line no-undef
                         .filter(x => BigInt(x.id).toString())
                         .keyArray();
 
@@ -43,7 +45,7 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
             return resolve(false);
         }
     });
-}
+};
 
 // module.exports = (member, roleList) => {
 //   return new Promise(resolve => {

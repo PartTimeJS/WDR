@@ -10,7 +10,7 @@ exports.Load = function (WDR, type) {
             // IDENTIFY EACH INI CHANNEL FILE
             let feed_files = functions.filter(f => f.split('.').pop() === 'ini');
             // GET FEEDS
-            await feed_files.forEach((file, i) => {
+            await feed_files.forEach((file) => {
                 // INCREMENT COUNT FOR EACH FILE
                 file_count++;
                 // READ THE DATA FROM EACH FILE

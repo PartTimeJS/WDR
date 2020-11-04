@@ -33,7 +33,7 @@ exports.Load = function (WDR) {
 
             function clear_channel(channel_id) {
                 return new Promise(async resolve => {
-                    let channel = await Bot.channels.cache.get(channel_id);
+                    let channel = await WDR.channels.cache.get(channel_id);
                     if (!channel) {
                         return resolve(false);
                         //return WDR.Console.error(WDR, '[load_ontime.js] [' + WDR.Time(null, 'log') + '] Could not find a channel with ID: ' + channel_id);

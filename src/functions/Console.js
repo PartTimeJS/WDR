@@ -1,6 +1,6 @@
 module.exports = {
     error: function (WDR, err, object) {
-        console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + err).bold.brightRed);
+        console.log(('[WDR ' + WDR.Version + '] [' + WDR.Time(null, 'log') + '] ' + err).bold.brightRed);
         if (object) {
             if (object.length > 1) {
                 object.forEach(error => {
@@ -14,7 +14,7 @@ module.exports = {
     },
 
     log: function (WDR, log, object) {
-        console.log(("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + log).bold.brightGreen);
+        console.log(('[WDR ' + WDR.Version + '] [' + WDR.Time(null, 'log') + '] ' + log).bold.brightGreen);
         if (object) {
             console.log(object);
         }
@@ -22,13 +22,13 @@ module.exports = {
     },
 
     info: function (WDR, info, object) {
-        if (info.includes("[DEBUG]")) {
+        if (info.includes('[DEBUG]')) {
             console.log((info).bold.yellow);
             if (object) {
                 console.log(object);
             }
         } else {
-            console.info("[WDR " + WDR.Version + "] [" + WDR.Time(null, "log") + "] " + info);
+            console.info('[WDR ' + WDR.Version + '] [' + WDR.Time(null, 'log') + '] ' + info);
             if (object) {
                 console.info(object);
             }
@@ -36,7 +36,7 @@ module.exports = {
         return;
     },
 
-    custom: function (text, object, color) {
+    // custom: function (text, object, color) {
 
-    }
-}
+    // }
+};

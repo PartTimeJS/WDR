@@ -1,5 +1,5 @@
 module.exports = async (WDR, Object) => {
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
         // GET WEATHER BOOST
         switch (Object.weather) {
             case 1:
@@ -17,7 +17,7 @@ module.exports = async (WDR, Object) => {
             case 7:
                 return resolve(WDR.Emotes.fog);
             default:
-                return resolve("");
+                return resolve('');
         }
     });
-}
+};

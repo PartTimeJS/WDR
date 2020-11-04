@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 exports.Load = function (WDR) {
     return new Promise(async resolve => {
 

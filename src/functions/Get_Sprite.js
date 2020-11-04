@@ -1,6 +1,5 @@
-module.exports = (WDR, Object, type) => {
+module.exports = (WDR, Object) => {
     let sprite = null;
-    let sprite_url = WDR.Config.ICONS_URL;
 
     if (Object.pokemon_id > 0) {
         let form_id = '',
@@ -80,10 +79,4 @@ module.exports = (WDR, Object, type) => {
     }
 
     return sprite;
-}
-
-function pad(num, size) {
-    var s = num + '';
-    while (s.length < size) s = '0' + s;
-    return s;
-}
+};
