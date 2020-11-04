@@ -1,6 +1,6 @@
 // Get Size of Pokemon BIG Karp/Tiny Rat
 module.exports = (WDR, pokemon_id, form_id, pokemon_height, pokemon_weight) => {
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
         let weightRatio = 0,
             heightRatio = 0;
         if (form_id > 0 && WDR.Master.Pokemon[pokemon_id].forms[form_id]) {

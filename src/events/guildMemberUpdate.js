@@ -38,7 +38,7 @@ module.exports = async (BOT, oldMember, newMember) => {
                                 }
                                 MessageEmbed = new Discord.MessageEmbed().setColor('ffff00')
                                     .setAuthor(uName + ' (' + newMember.id + ')', newMember.user.displayAvatarURL)
-                                    .setTitle('Nickname Changed to \"' + newNickname + '\"')
+                                    .setTitle('Nickname Changed to "' + newNickname + '"')
                                     .setFooter('By ' + executor + ' on ' + BOT.time(config.timezone));
                                 return BOT.channels.cache.get(config.log_user_channel).send(MessageEmbed).catch(error => {
                                     console.error('[GuildMemberUpdate]', error);
