@@ -18,20 +18,20 @@ module.exports = async (WDR, Message) => {
     ;`;
     WDR.wdrDB.query(
         query,
-        function (error, user) {
+        function (error) {
             if (error) {
-                WDR.Console.error(WDR, "[commands/subscriptions/resume.js] Error Resuming Subscriptions.", [query, error]);
+                WDR.Console.error(WDR, '[commands/subscriptions/resume.js] Error Resuming Subscriptions.', [query, error]);
                 return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
                     timeout: 5000
                 })).catch(console.error);
             } else {
-                let already_active = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
+                let already_active = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                     .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
-                    .setTitle("Your Subscriptions are all now **Active**.");
+                    .setTitle('Your Subscriptions are all now **Active**.');
                 return Message.reply(already_active).then(m => m.delete({
                     timeout: 5000
                 })).catch(console.error);
             }
         }
     );
-}
+};

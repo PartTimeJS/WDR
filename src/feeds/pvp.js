@@ -117,8 +117,8 @@ module.exports = async (WDR, Sighting) => {
 
                     match.color = match.typing.color;
 
-                    match.gender_wemoji = Sighting.gender_wemoji
-                    match.gender_noemoji = Sighting.gender_noemoji
+                    match.gender_wemoji = Sighting.gender_wemoji;
+                    match.gender_noemoji = Sighting.gender_noemoji;
 
                     match.name = Sighting.pokemon_name;
                     match.id = Sighting.pokemon_id;
@@ -201,4 +201,4 @@ module.exports = async (WDR, Sighting) => {
 
     // END
     return;
-}
+};
