@@ -1,8 +1,4 @@
 const fs = require('fs-extra');
-
-
-
-
 const availableLures = ['Normal', 'Glacial', 'Mossy', 'Magnetic'];
 
 const raid = {
@@ -62,7 +58,7 @@ module.exports = (WDR, message) => {
     let filterCommand = args.shift();
 
     if (!filterType || !filterCommand) {
-        return WDR.Bot.channels.cache.get(channelID).send('Proper use of filter is:\n```' + prefix + 'filter <pokemon|raid|quest|lure|invasion> <list|add|delete|edit(only pokemon)> <pokemon|raid|lure|reward|stat> <value(only with pokemon stat edit)>```').catch(console.error);
+        return WDR.Bot.channels.cache.get(channelID).send('Proper use of filter is:\n```' + WDR.Config.PREFIX + 'filter <pokemon|raid|quest|lure|invasion> <list|add|delete|edit(only pokemon)> <pokemon|raid|lure|reward|stat> <value(only with pokemon stat edit)>```').catch(console.error);
     }
 
     filterType = filterType.toLowerCase();
@@ -151,7 +147,7 @@ function AddRaid(WDR, pokemon, channelID) {
         filter.Boss_Levels.push(pokemon);
     }
 
-    SaveRaidFilter(filter);
+    SaveRaidFilter(WDR, filter);
     return 'Successfully modified your raid filter';
 }
 
@@ -192,6 +188,7 @@ function DeleteRaid(WDR, pokemon, channelID) {
             return 'In order to set a boss level I need a number from 1 to 5';
         }
         if (filter.Boss_Levels.find(contains => contains == pokemon)) {
+            // eslint-disable-next-line no-redeclare
             for (var i = filter.Boss_Levels.length - 1; i >= 0; i--) {
                 if (filter.Boss_Levels[i] == pokemon) {
                     filter.Boss_Levels.splice(i, 1);
@@ -206,6 +203,7 @@ function DeleteRaid(WDR, pokemon, channelID) {
             return 'That doesn\'t appear to be a valid Pokemon name';
         }
         if (filter.Boss_Levels.find(contains => contains == pokemon)) {
+            // eslint-disable-next-line no-redeclare
             for (var i = filter.Boss_Levels.length - 1; i >= 0; i--) {
                 if (filter.Boss_Levels[i] == pokemon) {
                     filter.Boss_Levels.splice(i, 1);
@@ -217,7 +215,7 @@ function DeleteRaid(WDR, pokemon, channelID) {
 
     }
 
-    SaveRaidFilter(filter);
+    SaveRaidFilter(WDR, filter);
     return 'Successfully modified your raid filter';
 }
 
@@ -261,7 +259,7 @@ function AddPokemon(WDR, pokemon, channelID) {
 
     filter[pokemon] = 'True';
 
-    SavePokemonFilter(filter);
+    SavePokemonFilter(WDR, filter);
 
     return 'Pokemon filter updated';
 
@@ -287,7 +285,7 @@ function DeletePokemon(WDR, pokemon, channelID) {
 
     filter[pokemon] = 'False';
 
-    SavePokemonFilter(filter);
+    SavePokemonFilter(WDR, filter);
 
     return 'Pokemon filter updated';
 
@@ -328,13 +326,14 @@ function EditPokemon(WDR, input, channelID) {
         value = parseInt(value, 10);
     }
 
+    // eslint-disable-next-line no-prototype-builtins
     if (!filter.hasOwnProperty(command)) {
         return 'I don\'t show a filter option with that name: ' + command;
     }
 
     filter[command] = value;
 
-    SavePokemonFilter(filter);
+    SavePokemonFilter(WDR, filter);
 
     return 'Pokemon filter updated';
 
@@ -388,7 +387,7 @@ function AddLure(WDR, lure, channelID) {
 
     filter.Lure_Type.push(lure);
 
-    SaveLureFilter(filter);
+    SaveLureFilter(WDR, filter);
 
     return 'Successfully modified your lure filter for this channel';
 }
@@ -419,7 +418,7 @@ function DeleteLure(WDR, lure, channelID) {
 
     filter.Lure_Type.splice(filter.Lure_Type.indexOf(lure), 1);
 
-    SaveLureFilter(filter);
+    SaveLureFilter(WDR, filter);
 
     return 'Successfully modified your lure filter for this channel';
 }
@@ -473,7 +472,7 @@ function AddQuest(WDR, quest, channelID) {
 
     filter.Rewards.push(quest);
 
-    SaveQuestFilter(filter);
+    SaveQuestFilter(WDR, filter);
 
     return 'Successfully modified your quest filter for this channel';
 }
@@ -501,7 +500,7 @@ function DeleteQuest(WDR, quest, channelID) {
 
     filter.Rewards.splice(filter.Rewards.indexOf(quest), 1);
 
-    SaveQuestFilter(filter);
+    SaveQuestFilter(WDR, filter);
 
     return 'Successfully modified your quest filter for this channel';
 
@@ -559,6 +558,7 @@ function AddInvasion(WDR, invasion, channelID) {
         invasion = 'Tier II';
     }
 
+    // eslint-disable-next-line no-prototype-builtins
     if (!WDR.types.hasOwnProperty(invasion) && invasion != 'Tier II') {
         return 'That isn\'t a valid invasion type';
     }
@@ -569,7 +569,7 @@ function AddInvasion(WDR, invasion, channelID) {
 
     filter[invasion] = gender;
 
-    SaveInvasionFilter(filter);
+    SaveInvasionFilter(WDR, filter);
 
     return 'Successfully modified your invasion filter for this channel';
 }
@@ -596,6 +596,7 @@ function DeleteInvasion(WDR, invasion, channelID) {
         invasion = 'Tier II';
     }
 
+    // eslint-disable-next-line no-prototype-builtins
     if (!WDR.types.hasOwnProperty(invasion) && invasion != 'Tier II') {
         return 'That isn\'t a valid invasion type';
     }
@@ -606,7 +607,7 @@ function DeleteInvasion(WDR, invasion, channelID) {
 
     delete filter[invasion];
 
-    SaveInvasionFilter(filter);
+    SaveInvasionFilter(WDR, filter);
 
     return 'Successfully modified your invasion filter for this channel';
 }
@@ -628,6 +629,7 @@ function GeneratePvPFilterEmbed(WDR, filter) {
         length += filterEmbed.fields[i].value.length;
     }
 
+    // eslint-disable-next-line no-redeclare
     for (var i = 0; i < activePokemon.length; i++) {
         let newFieldLength = activePokemon[i].length + 7;
         if (length + newFieldLength > 6000) {
@@ -667,6 +669,7 @@ function GeneratePokemonFilterEmbed(WDR, filter) {
         length += filterEmbed.fields[i].value.length;
     }
 
+    // eslint-disable-next-line no-redeclare
     for (var i = 0; i < activePokemon.length; i++) {
         let newFieldLength = activePokemon[i].length + 7;
         if (length + newFieldLength > 6000) {
@@ -710,7 +713,7 @@ function GetPokemonFromFilter(WDR, filter) {
     return activePokemon;
 }
 
-function SaveRaidFilter(filter) {
+function SaveRaidFilter(WDR, filter) {
     let saveFilter = {
         'Type': filter.Type,
         'Boss_Levels': filter.Boss_Levels,
@@ -723,7 +726,7 @@ function SaveRaidFilter(filter) {
     });
 }
 
-function SavePokemonFilter(filter) {
+function SavePokemonFilter(WDR, filter) {
     let saveFilter = {};
 
     for (var object in filter) {
@@ -738,7 +741,7 @@ function SavePokemonFilter(filter) {
     });
 }
 
-function SaveLureFilter(filter) {
+function SaveLureFilter(WDR, filter) {
     let saveFilter = {
         'Type': filter.Type,
         'Lure_Type': filter.Lure_Type
@@ -750,7 +753,7 @@ function SaveLureFilter(filter) {
     });
 }
 
-function SaveInvasionFilter(filter) {
+function SaveInvasionFilter(WDR, filter) {
     let saveFilter = {};
 
     for (let type in filter) {
@@ -765,7 +768,7 @@ function SaveInvasionFilter(filter) {
     });
 }
 
-function SaveQuestFilter(filter) {
+function SaveQuestFilter(WDR, filter) {
     let saveFilter = {
         'Type': filter.Type,
         'Rewards': filter.Rewards
