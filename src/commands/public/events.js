@@ -1,4 +1,4 @@
-let Embed_Config = require('../../../configs/embeds/events.js');
+//let Embed_Config = require('../../../configs/embeds/events.js');
 
 module.exports = async (WDR, message) => {
     let json = await WDR.Fetch_JSON('https://raw.githubusercontent.com/ccev/pogoinfo/info/events/active.json');
@@ -6,13 +6,12 @@ module.exports = async (WDR, message) => {
         name: json.name,
         start: (json.start ? WDR.Moment(json.start, 'YYYY-MM-DD HH:mm').format('h:mma DD-MMM') : 'n/a'),
         end: (json.end ? WDR.Moment(json.end, 'YYYY-MM-DD HH:mm').format('h:mma D-MMM') : 'n/a'),
-        bonuses: json.details.bonuses.join('\n'),
+        bonuses:  '**Bonuses:**' + '\n' + json.details.bonuses.join('\n'),
         spawns: '**Spawns:**' + '\n',
         raids: '',
         quests: '**Quests:**' + '\n',
-        eggs: '',
-        bonuses: '**Bonuses:**' + '\n',
-    }
+        eggs: ''
+    };
     if(json.details.spawns.length > 0){
         for(let s = 0, slen = json.details.bonuses.length; s < slen; s++){
             event.bonuses += '　- ' + json.details.bonuses[s] + '\n';
@@ -49,17 +48,13 @@ module.exports = async (WDR, message) => {
             reward = reward.slice(0,-4).replace(/\s\s+/g, ' ');
         }
         event.quests += '　- ' + task + ' for ' + reward + '\n';
-<<<<<<< HEAD
-
-=======
->>>>>>> 331473c2ecc02cb3c0594febabd56edd52163e52
     }
-    for (var key in json.details.raids) {
-        WDR.Console.error(WDR,'[commands/public/event.js] Saw raids in the event json. Report this to the WDR Git repo as an Issue.', json.details.raids)
-    }
-    for (var key in json.details.eggs) {
-        WDR.Console.error(WDR,'[commands/public/event.js] Saw eggs in the event json. Report this to the WDR Git repo as an Issue.', json.details.eggs)
-    }
+    // for (var rkey in json.details.raids) {
+    //     WDR.Console.error(WDR,'[commands/public/event.js] Saw raids in the event json. Report this to the WDR Git repo as an Issue.', json.details.raids);
+    // }
+    // for (var ekey in json.details.eggs) {
+    //     WDR.Console.error(WDR,'[commands/public/event.js] Saw eggs in the event json. Report this to the WDR Git repo as an Issue.', json.details.eggs);
+    // }
     let embed = new WDR.DiscordJS.MessageEmbed()
         .setAuthor('Current Active PoGo Event:','https://pokemongolive.com/img/posts/nov2019-events.jpg')
         .setTitle(event.name)
@@ -71,4 +66,4 @@ module.exports = async (WDR, message) => {
     WDR.Send_Embed(WDR, embed, message.channel.id).then(m => m.delete({
         timeout: 60000
     }));
-}
+};

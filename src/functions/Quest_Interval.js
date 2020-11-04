@@ -7,7 +7,7 @@ module.exports = (WDR, name) => {
             wdr_quest_queue 
             WHERE 
             alert_time < UNIX_TIMESTAMP()*1000;`,
-            function (error, alerts, fields) {
+            function (error, alerts) {
                 if (alerts && alerts[0]) {
                     alerts.forEach(async (alert, index) => {
                         setTimeout(async function () {
@@ -28,7 +28,7 @@ module.exports = (WDR, name) => {
                     if (MAIN.debug.Quests == 'ENABLED' && MAIN.debug.Subscriptions == 'ENABLED') {
                         console.log(MAIN.Color.pink + '[SUBSCRIPTIONS] [' + MAIN.Bot_Time(null, 'stamp') + '] [bot.js] [QUESTS] Sent ' + alerts.length + ' Quest Alerts out.' + MAIN.Color.reset);
                     }
-                    MAIN.pdb.query(`DELETE FROM quest_alerts WHERE alert_time < UNIX_TIMESTAMP()*1000`, function (error, alerts, fields) {
+                    MAIN.pdb.query(`DELETE FROM quest_alerts WHERE alert_time < UNIX_TIMESTAMP()*1000`, function (error, alerts) {
                         if (error) {
                             console.error;
                         }

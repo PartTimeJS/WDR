@@ -1,11 +1,12 @@
-const Discord = require("discord.js");
+/* eslint-disable no-async-promise-executor */
+const Discord = require('discord.js');
 
 //------------------------------------------------------------------------------
 //  INITIATE BOTS AND DISABLE UNNECESSARY EVENTS
 //------------------------------------------------------------------------------
 const botOptions = {
 
-    disabledEvents: ["PRESENCE_UPDATE", "VOICE_STATE_UPDATE", "TYPING_START", "VOICE_SERVER_UPDATE"],
+    disabledEvents: ['PRESENCE_UPDATE', 'VOICE_STATE_UPDATE', 'TYPING_START', 'VOICE_SERVER_UPDATE'],
     messageCacheMaxSize: 5,
     messageCacheLifetime: 120,
     messageSweepInterval: 60
@@ -40,23 +41,23 @@ function Array_Login(WDR) {
         await WDR.Config.TOKENS.BOT_TOKENS.forEach(async (token, i) => {
 
             // IGNORE IF NO TOKEN
-            if (token != "TOKEN") {
+            if (token != 'TOKEN') {
 
                 // PUSH A BOT TO THE ARRAY FOR EACH AVAILABLE TOKEN
                 Bot.Array.push(bots_available[i]);
 
                 // LOAD BOT READY EVENTS FOR EACH TOKEN
-                bots_available[i].on("ready", () => {
-                    if (WDR.Config.TOKENS.Hide_Bot_Tokens == "ENABLED") {
+                bots_available[i].on('ready', () => {
+                    if (WDR.Config.TOKENS.Hide_Bot_Tokens == 'ENABLED') {
 
                         // SET PRESCENCE TO INVISIBLE
-                        bots_available[i].user.setStatus("invisible");
+                        bots_available[i].user.setStatus('invisible');
                     }
                 });
 
                 // LOAD ERROR EVENTS FOR EACH TOKEN AVAILABLE
-                bots_available[i].on("error", (error) => {
-                    WDR.Console.error(WDR, "[src/bot.js] Discord client encountered an error:", [error]);
+                bots_available[i].on('error', (error) => {
+                    WDR.Console.error(WDR, '[src/bot.js] Discord client encountered an error:', [error]);
                 });
 
                 // LOGIN A BOT FOR EACH TOKEN
@@ -71,11 +72,11 @@ function Array_Login(WDR) {
 //------------------------------------------------------------------------------
 //  RESTART FUNCTION
 //------------------------------------------------------------------------------
-Bot.restart = (reason, code) => {
-    WDR.Console.error(WDR, "[src/bot.js] Restarting...");
+Bot.restart = (WDR, reason, code) => {
+    WDR.Console.error(WDR, '[src/bot.js] Restarting...');
     process.exit(code).catch(console.error);
     return;
-}
+};
 
 
 //------------------------------------------------------------------------------
@@ -84,12 +85,12 @@ Bot.restart = (reason, code) => {
 exports.Load = function (WDR) {
     return new Promise(async resolve => {
 
-        WDR.Console.info(WDR, "[src/bot.js] Logging in Main Bot...");
+        WDR.Console.info(WDR, '[src/bot.js] Logging in Main Bot...');
 
         // LOGIN WDR TOKEN
         await Bot.login(WDR.Config.TOKENS.WDR);
 
-        WDR.Console.info(WDR, "[src/bot.js] Logging in Worker Bots...");
+        WDR.Console.info(WDR, '[src/bot.js] Logging in Worker Bots...');
 
         // LOGIN IN ALL ACCESSORY BOTS
         await Array_Login(WDR);
@@ -100,4 +101,4 @@ exports.Load = function (WDR) {
         // RETURN ALL BOTS
         return resolve(Bot);
     });
-}
+};

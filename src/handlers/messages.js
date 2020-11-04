@@ -1,14 +1,14 @@
-delete require.cache[require.resolve(__dirname + "/../commands/command-admin.js")];
-const Admin_Command = require(__dirname + "/../commands/command-admin.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-admin.js')];
+const Admin_Command = require(__dirname + '/../commands/command-admin.js');
 
-delete require.cache[require.resolve(__dirname + "/../commands/command-channel.js")];
-const Channel_Command = require(__dirname + "/../commands/command-channel.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-channel.js')];
+const Channel_Command = require(__dirname + '/../commands/command-channel.js');
 
-delete require.cache[require.resolve(__dirname + "/../commands/command-dm.js")];
-const DM_Command = require(__dirname + "/../commands/command-dm.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-dm.js')];
+const DM_Command = require(__dirname + '/../commands/command-dm.js');
 
-delete require.cache[require.resolve(__dirname + "/../commands/command-public.js")];
-const Public_Command = require(__dirname + "/../commands/command-public.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-public.js')];
+const Public_Command = require(__dirname + '/../commands/command-public.js');
 
 
 
@@ -26,11 +26,11 @@ module.exports = async (WDR, message) => {
         return;
     }
 
-    message.member.isAdmin = message.member.hasPermission("ADMINISTRATOR") ? true : false;
+    message.member.isAdmin = message.member.hasPermission('ADMINISTRATOR') ? true : false;
 
-    message.member.isMod = message.member.hasPermission("MANAGE_ROLES") ? true : false;
+    message.member.isMod = message.member.hasPermission('MANAGE_ROLES') ? true : false;
 
-    if (message.channel.type == "dm") {
+    if (message.channel.type == 'dm') {
         return DM_Command(WDR, message);
 
     } else {
@@ -50,7 +50,7 @@ module.exports = async (WDR, message) => {
     
                 if(message.discord.command_channels.includes(message.channel.id)){
                     Channel_Command(WDR, message);
-                } else if (WDR.Config.Admin_Enabled == "YES" && (message.member.isAdmin || message.member.isBotAdmin)) {
+                } else if (WDR.Config.Admin_Enabled == 'YES' && (message.member.isAdmin || message.member.isBotAdmin)) {
                     Admin_Command(WDR, message);
                     Public_Command(WDR, message);
                 } else {
@@ -62,4 +62,4 @@ module.exports = async (WDR, message) => {
 
     // END
     return;
-}
+};

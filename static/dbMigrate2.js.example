@@ -24,25 +24,25 @@ const new_database = mysql2.createConnection({
 });
 
 setTimeout(function () {
-    console.log('starting migration...')
+    console.log('starting migration...');
     old_database.query(`
             SELECT
                 *
             FROM
                 wdr_subscriptions
         ;`,
-        async function (error, records) {
-            console.log(`retrieved ${records.length} records. processsing...`);
-            if(error){
-                console.error(error);
-            }
-            for (let r = 0, rlen = records.length; r < rlen; r++) {
-                console.log(`processing record ${r+1} of ${records.length}`);
-                let record = records[r];
+    async function (error, records) {
+        console.log(`retrieved ${records.length} records. processsing...`);
+        if(error){
+            console.error(error);
+        }
+        for (let r = 0, rlen = records.length; r < rlen; r++) {
+            console.log(`processing record ${r+1} of ${records.length}`);
+            let record = records[r];
 
-                if (record.sub_type == 'pokemon') {
-                    new_database.query(
-                        `INSERT IGNORE INTO
+            if (record.sub_type == 'pokemon') {
+                new_database.query(
+                    `INSERT IGNORE INTO
                             wdr_pokemon_subs (
                                 user_id,
                                 user_name,
@@ -85,22 +85,22 @@ setTimeout(function () {
                                 '${record.generation}',
                                 '${record.geotype}'
                             )`,
-                        async function (error, result) {
-                            if (error) {
-                                console.error(error);
-                                console.error(record);
-                            } else {
-                                console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
-                                if((r+1) == records.length){
-                                    console.log('migration complete.');
-                                    process.exit(1);
-                                }
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
                             }
                         }
-                    );
-                } else if (record.sub_type == 'raid') {
-                    new_database.query(
-                        `INSERT IGNORE INTO
+                    }
+                );
+            } else if (record.sub_type == 'raid') {
+                new_database.query(
+                    `INSERT IGNORE INTO
                             wdr_raid_subs (
                                 user_id,
                                 user_name,
@@ -137,22 +137,22 @@ setTimeout(function () {
                                 '${record.created_date}',
                                 '${record.created_timestamp}'
                             )`,
-                        async function (error, result) {
-                            if (error) {
-                                console.error(error);
-                                console.error(record);
-                            } else {
-                                console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Raid Sub Table.`);
-                                if((r+1) == records.length){
-                                    console.log('migration complete.');
-                                    process.exit(1);
-                                }
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Raid Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
                             }
                         }
-                    );
-                } else if (record.sub_type == 'quest') {
-                    new_database.query(
-                        `INSERT IGNORE INTO
+                    }
+                );
+            } else if (record.sub_type == 'quest') {
+                new_database.query(
+                    `INSERT IGNORE INTO
                             wdr_quest_subs (
                                 user_id,
                                 user_name,
@@ -187,22 +187,22 @@ setTimeout(function () {
                                 '${record.created_date}',
                                 '${record.created_timestamp}'
                             )`,
-                        async function (error, result) {
-                            if (error) {
-                                console.error(error);
-                                console.error(record);
-                            } else {
-                                console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
-                                if((r+1) == records.length){
-                                    console.log('migration complete.');
-                                    process.exit(1);
-                                }
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
                             }
                         }
-                    );
-                } else if (record.sub_type == 'pvp') {
-                    new_database.query(
-                        `INSERT IGNORE INTO
+                    }
+                );
+            } else if (record.sub_type == 'pvp') {
+                new_database.query(
+                    `INSERT IGNORE INTO
                             wdr_pvp_subs (
                                 user_id,
                                 user_name,
@@ -249,21 +249,21 @@ setTimeout(function () {
                                 '${record.created_date}',
                                 '${record.created_timestamp}'
                             )`,
-                        async function (error, result) {
-                            if (error) {
-                                console.error(error);
-                                console.error(record);
-                            } else {
-                                console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
-                                if((r+1) == records.length){
-                                    console.log('migration complete.');
-                                    process.exit(1);
-                                }
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
                             }
                         }
-                    );
-                }
+                    }
+                );
             }
         }
+    }
     );
 }, 3000);

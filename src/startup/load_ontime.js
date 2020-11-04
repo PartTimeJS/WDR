@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 exports.Load = function (WDR) {
     return new Promise(async resolve => {
         // SET ONTIME FUNCTIONS
@@ -12,7 +13,7 @@ exports.Load = function (WDR) {
                 second: 0,
                 millisecond: 0
             });
-            server_purge = WDR.Moment.tz(server_purge, WDR.Config.timezone).format("HH:mm:ss");
+            server_purge = WDR.Moment.tz(server_purge, WDR.Config.timezone).format('HH:mm:ss');
             ontime_times.push(server_purge);
             ontime_servers.push(server);
         });
@@ -26,10 +27,7 @@ exports.Load = function (WDR) {
             WDR.Purge_Channels();
             return ot.done();
         });
-
-        // CHECK DATABASE FOR UPGRADED OR REMOVED POKESTOPS
-        let check_time = WDR.Moment();
-
+        
         // GET CHANNELS FOR PURGING
         WDR.Purge_Channels = (command) => {
 
@@ -38,18 +36,20 @@ exports.Load = function (WDR) {
                     let channel = await Bot.channels.cache.get(channel_id);
                     if (!channel) {
                         return resolve(false);
-                        return WDR.Console.error(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Could not find a channel with ID: " + channel_id);
+                        //return WDR.Console.error(WDR, '[load_ontime.js] [' + WDR.Time(null, 'log') + '] Could not find a channel with ID: ' + channel_id);
                     }
                     channel.fetchMessages({
                         limit: 99
                     }).then(messages => {
+                        // eslint-disable-next-line no-unused-vars
                         channel.bulkDelete(messages).then(deleted => {
                             if (messages.size > 0) {
+                                // eslint-disable-next-line no-unused-vars
                                 clear_channel(channel_id).then(result => {
                                     return resolve(true);
                                 });
                             } else {
-                                WDR.Console.info(WDR, "[load_ontime.js] [" + WDR.Time(null, "log") + "] Purged all messages in " + channel.name + " (" + channel.id + ")");
+                                WDR.Console.info(WDR, '[load_ontime.js] [' + WDR.Time(null, 'log') + '] Purged all messages in ' + channel.name + ' (' + channel.id + ')');
                                 return resolve(true);
                             }
                         }).catch(console.error);
@@ -58,9 +58,9 @@ exports.Load = function (WDR) {
                 });
             }
 
-            let now = WDR.Moment().format("HH:mm") + ":00";
+            let now = WDR.Moment().format('HH:mm') + ':00';
             ontime_servers.forEach(function (server) {
-                if (server.purge_channels == "ENABLED") {
+                if (server.purge_channels == 'ENABLED') {
                     let purge_time = WDR.Moment(),
                         timezone = WDR.GeoTz(server.geofence[0][1][1], server.geofence[0][1][0]);
                     purge_time = WDR.Moment.tz(purge_time, timezone[0]).set({
@@ -69,8 +69,8 @@ exports.Load = function (WDR) {
                         second: 0,
                         millisecond: 0
                     });
-                    purge_time = WDR.Moment.tz(purge_time, WDR.Config.timezone).format("HH:mm:ss");
-                    if (now == purge_time || command == "purge") {
+                    purge_time = WDR.Moment.tz(purge_time, WDR.Config.timezone).format('HH:mm:ss');
+                    if (now == purge_time || command == 'purge') {
                         for (var i = 0; i < server.channels_to_purge.length; i++) {
                             clear_channel(server.channels_to_purge[i]);
                         }
@@ -78,7 +78,7 @@ exports.Load = function (WDR) {
                 }
             });
             return;
-        }
+        };
         return resolve(WDR);
     });
-}
+};

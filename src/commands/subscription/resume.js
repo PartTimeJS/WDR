@@ -18,7 +18,7 @@ module.exports = async (WDR, Message) => {
     ;`;
     WDR.wdrDB.query(
         query,
-        function (error, user, fields) {
+        function (error, user) {
             if (error) {
                 WDR.Console.error(WDR, "[commands/subscriptions/resume.js] Error Resuming Subscriptions.", [query, error]);
                 return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({

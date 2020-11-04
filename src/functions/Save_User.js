@@ -8,7 +8,7 @@ module.exports = (WDR, message, server) => {
           *
       FROM
           wdr_info`,
-            function (error, info, fields) {
+            function (error, info) {
                 let next_bot = info[0].next_bot,
                     split = WDR.Config.QUEST.DEFAULT_DELIVERY.split(":");
                 if (next_bot == WDR.Bot.Array.length - 1) {
@@ -50,7 +50,7 @@ module.exports = (WDR, message, server) => {
               '${server.name}',
               '${alert_time}'
             );`,
-                    async function (error, user, fields) {
+                    async function (error, user) {
                         if (error) {
                             return WDR.Console.error(WDR, "[Save_User] [" + WDR.Time(null, "stamp") + "] [bot.js] UNABLE TO ADD USER TO wdr_users TABLE", error);
                         } else {

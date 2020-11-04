@@ -1,5 +1,4 @@
 module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray) => {
-    ``
     let BotMsg = bMessage;
     let OriginalMsg = oMessage;
 
@@ -9,57 +8,59 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
     });
 
     // FILTER COLLECT EVENT
-    collector.on("collect", CollectedMsg => {
+    collector.on('collect', CollectedMsg => {
 
         try {
             CollectedMsg.delete();
+        // eslint-disable-next-line no-empty
         } catch (e) {
 
         }
 
         switch (CollectedMsg.content.toLowerCase()) {
-            case "create":
-                collector.stop("create");
+            case 'create':
+                collector.stop('create');
                 break;
-            case "remove":
-                collector.stop("remove");
+            case 'remove':
+                collector.stop('remove');
                 break;
-            case "edit":
-                collector.stop("edit");
+            case 'edit':
+                collector.stop('edit');
                 break;
-            case "set":
-                collector.stop("set");
+            case 'set':
+                collector.stop('set');
                 break;
-            case "view":
-                collector.stop("view");
+            case 'view':
+                collector.stop('view');
                 break;
         }
     });
 
     // COLLECTOR HAS BEEN ENDED
-    collector.on("end", (_collected, msg) => {
+    collector.on('end', (_collected, msg) => {
 
-        if (BotMsg && BotMsg.channel.type != "dm") {
+        if (BotMsg && BotMsg.channel.type != 'dm') {
             try {
                 BotMsg.delete();
+            // eslint-disable-next-line no-empty
             } catch (e) {
 
             }
         }
 
         switch (msg) {
-            case "create":
+            case 'create':
                 return Functions.Create(WDR, Functions, OriginalMsg, Member, AreaArray);
-            case "remove":
+            case 'remove':
                 return Functions.Remove(WDR, Functions, OriginalMsg, Member, AreaArray);
-            case "edit":
+            case 'edit':
                 return Functions.Modify(WDR, Functions, OriginalMsg, Member, AreaArray);
-            case "set":
+            case 'set':
                 return Functions.Set(WDR, Functions, OriginalMsg, Member, AreaArray);
-            case "view":
+            case 'view':
                 return Functions.View(WDR, Functions, OriginalMsg, Member, AreaArray);
-            case "end":
+            case 'end':
                 return;
         }
     });
-}
+};

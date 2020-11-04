@@ -4,7 +4,7 @@ module.exports = (WDR, message) => {
     /* DO NOTHING */
     } else if (message.discord.donor_role && !message.member.roles.cache.has(message.discord.donor_role)) {
         if (WDR.Config.log_channel) {
-            let nondonor_embed = new WDR.DiscordJS.messageEmbed()
+            let nondonor_embed = new WDR.DiscordJS.MessageEmbed()
             .setColor("ff0000")
             .addField("User attempted to use a subsciption command, not a donor. ", message.member.user.username);
             if (WDR.Config.donor_info) {
@@ -30,7 +30,7 @@ module.exports = (WDR, message) => {
             user_id = ${message.member.id}
                 AND
             guild_id = ${message.guild.id};`,
-        async function(error, user, fields) {
+        async function(error, user) {
             if (!user || !user[0]) {
                 message.member.db = await WDR.Save_User(WDR, message, message.discord);
                 message.reply("Created database record for you. Please repeat the previous command.").then(m => m.delete({

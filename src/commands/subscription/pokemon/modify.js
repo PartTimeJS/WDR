@@ -9,7 +9,7 @@ module.exports = (WDR, Functions, Message, Member) => {
                     AND
                 guild_id = ${Message.guild.id}
         ;`,
-        async function (error, subscriptions, fields) {
+        async function (error, subscriptions) {
             if (!subscriptions || !subscriptions[0]) {
                 let no_subscriptions = new WDR.DiscordJS.MessageEmbed().setColor("00ff00")
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())

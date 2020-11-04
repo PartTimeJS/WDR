@@ -9,7 +9,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
   `;
   WDR.wdrDB.query(
     query,
-    function(error, user, fields) {
+    function(error, user) {
       if (error) {
         WDR.Console.error(WDR, "[sub/loc/view.js] Error Fetching User to View Locations.", [query, error]);
         return Message.reply("There has been an error, please contact an Admin to fix.").then(m => m.delete({

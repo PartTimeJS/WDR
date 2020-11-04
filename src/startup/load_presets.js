@@ -1,19 +1,18 @@
 exports.Load = function (WDR, type) {
     return new Promise(resolve => {
-        let Preset_Array = [],
-            preset_count = 0;
-        WDR.Fs.readdir(WDR.Dir + "/configs/sub_presets/" + type.toLowerCase(), async (err, presets) => {
+        let preset_count = 0;
+        WDR.Fs.readdir(WDR.Dir + '/configs/sub_presets/' + type.toLowerCase(), async (err, presets) => {
             let Presets = new WDR.DiscordJS.Collection();
             if (presets) {
-                let preset_files = presets.filter(f => f.split(".").pop() === "ini");
-                preset_files.forEach((p, i) => {
-                    delete require.cache[require.resolve(WDR.Dir + "/configs/sub_presets/" + type + "/" + p)];
+                let preset_files = presets.filter(f => f.split('.').pop() === 'ini');
+                preset_files.forEach((p) => {
+                    delete require.cache[require.resolve(WDR.Dir + '/configs/sub_presets/' + type + '/' + p)];
                     preset_count++;
-                    let preset = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + "/configs/sub_presets/" + type + "/" + p, "utf-8"));
+                    let preset = WDR.Ini.parse(WDR.Fs.readFileSync(WDR.Dir + '/configs/sub_presets/' + type + '/' + p, 'utf-8'));
                     switch (type.toLowerCase()) {
 
-                        case "pokemon":
-                            preset.name = p.replace(/_/g, " ").split(".")[0];
+                        case 'pokemon':
+                            preset.name = p.replace(/_/g, ' ').split('.')[0];
                             preset.id = preset.pokemon_id ? parseInt(preset.pokemon_id) : 0;
                             preset.form = preset.form ? parseInt(preset.form) : 0;
                             preset.size = preset.size ? preset.size : 0;
@@ -27,8 +26,8 @@ exports.Load = function (WDR, type) {
                             preset.max_cp = preset.max_cp ? parseInt(preset.max_cp) : 10000;
                             break;
 
-                        case "pvp":
-                            preset.name = p.replace(/_/g, " ").split(".")[0];
+                        case 'pvp':
+                            preset.name = p.replace(/_/g, ' ').split('.')[0];
                             preset.id = preset.pokemon_id ? parseInt(preset.pokemon_id) : 0;
                             preset.form = preset.form ? parseInt(preset.form) : 0;
                             preset.type = preset.type ? preset.type : 0;
@@ -39,8 +38,8 @@ exports.Load = function (WDR, type) {
                             preset.gen = preset.gen ? parseInt(preset.gen) : 0;
                             break;
 
-                        case "raid":
-                            preset.name = p.replace(/_/g, " ").split(".")[0];
+                        case 'raid':
+                            preset.name = p.replace(/_/g, ' ').split('.')[0];
                             preset.id = preset.pokemon_id ? parseInt(preset.pokemon_id) : 0;
                             preset.form = preset.form ? parseInt(preset.form) : 0;
                             preset.gym_id = preset.gym_id ? preset.gym_id : 0;
@@ -49,15 +48,15 @@ exports.Load = function (WDR, type) {
                             preset.gen = preset.gen ? parseInt(preset.gen) : 0;
                             break;
 
-                        case "quest":
-                            preset.name = p.replace(/_/g, " ").split(".")[0];
+                        case 'quest':
+                            preset.name = p.replace(/_/g, ' ').split('.')[0];
                             preset.id = preset.pokemon_id ? parseInt(preset.pokemon_id) : 0;
                             preset.form = preset.form ? parseInt(preset.form) : 0;
                             preset.reward = preset.reward ? parseInt(preset.form) : 0;
                             preset.gen = preset.gen ? parseInt(preset.gen) : 0;
                             break;
 
-                        case "invasion":
+                        case 'invasion':
 
                             break;
                     }
@@ -65,8 +64,8 @@ exports.Load = function (WDR, type) {
                 });
             }
             type = await WDR.Capitalize(type);
-            WDR.Console.info(WDR, "[load_presets.js] Loaded " + preset_count + " " + type + " Subscription Presets.");
+            WDR.Console.info(WDR, '[load_presets.js] Loaded ' + preset_count + ' ' + type + ' Subscription Presets.');
             return resolve(Presets);
         });
     });
-}
+};

@@ -1,3 +1,3 @@
-class Alert {
+// class Alert {
 
-}
+// }

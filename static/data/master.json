@@ -1833,19 +1833,13 @@
 			"pokedex_id": 29,
 			"forms": {
 				"776": {
-					"form": "Normal",
-					"form_id": 776,
-					"proto": "NIDORAN_NORMAL"
+					"form": "Normal"
 				},
 				"777": {
-					"form": "Shadow",
-					"form_id": 777,
-					"proto": "NIDORAN_SHADOW"
+					"form": "Shadow"
 				},
 				"778": {
-					"form": "Purified",
-					"form_id": 778,
-					"proto": "NIDORAN_PURIFIED"
+					"form": "Purified"
 				}
 			},
 			"attack": 86,
@@ -2013,19 +2007,13 @@
 			"pokedex_id": 32,
 			"forms": {
 				"776": {
-					"form": "Normal",
-					"form_id": 776,
-					"proto": "NIDORAN_NORMAL"
+					"form": "Normal"
 				},
 				"777": {
-					"form": "Shadow",
-					"form_id": 777,
-					"proto": "NIDORAN_SHADOW"
+					"form": "Shadow"
 				},
 				"778": {
-					"form": "Purified",
-					"form_id": 778,
-					"proto": "NIDORAN_PURIFIED"
+					"form": "Purified"
 				}
 			},
 			"attack": 105,
@@ -7761,30 +7749,9 @@
 			"default_form": "Normal"
 		},
 		"122": {
-			"name": "Mr Mime",
+			"name": "",
 			"pokedex_id": 122,
-			"forms": {
-				"1080": {
-					"form": "Mime Normal",
-					"form_id": 1080,
-					"proto": "MR_MIME_NORMAL"
-				},
-				"1081": {
-					"form": "Mime Shadow",
-					"form_id": 1081,
-					"proto": "MR_MIME_SHADOW"
-				},
-				"1082": {
-					"form": "Mime Purified",
-					"form_id": 1082,
-					"proto": "MR_MIME_PURIFIED"
-				},
-				"2339": {
-					"form": "Mime Galarian",
-					"form_id": 2339,
-					"proto": "MR_MIME_GALARIAN"
-				}
-			},
+			"forms": {},
 			"attack": 192,
 			"defense": 205,
 			"stamina": 120,
@@ -7814,9 +7781,7 @@
 			"types": [
 				"Psychic",
 				"Fairy"
-			],
-			"default_form_id": "1080",
-			"default_form": "Mime Normal"
+			]
 		},
 		"123": {
 			"name": "Scyther",
@@ -14438,7 +14403,6 @@
 			"evolutions": [
 				{
 					"evolution": "Porygon Z",
-					"evolution_id": 474,
 					"candy_cost": 100,
 					"evolution_item": "Gen4 Evolution Stone"
 				}
@@ -15365,25 +15329,9 @@
 			"default_form": "Normal"
 		},
 		"250": {
-			"name": "Ho Oh",
+			"name": "",
 			"pokedex_id": 250,
-			"forms": {
-				"1343": {
-					"form": "Oh Normal",
-					"form_id": 1343,
-					"proto": "HO_OH_NORMAL"
-				},
-				"1344": {
-					"form": "Oh Shadow",
-					"form_id": 1344,
-					"proto": "HO_OH_SHADOW"
-				},
-				"1345": {
-					"form": "Oh Purified",
-					"form_id": 1345,
-					"proto": "HO_OH_PURIFIED"
-				}
-			},
+			"forms": {},
 			"attack": 239,
 			"defense": 244,
 			"stamina": 214,
@@ -15413,9 +15361,7 @@
 			"types": [
 				"Fire",
 				"Flying"
-			],
-			"default_form_id": "1343",
-			"default_form": "Oh Normal"
+			]
 		},
 		"251": {
 			"name": "Celebi",
@@ -18473,11 +18419,6 @@
 					"form": "Purified",
 					"form_id": 925,
 					"proto": "SABLEYE_PURIFIED"
-				},
-				"2668": {
-					"form": "2020",
-					"form_id": 2668,
-					"proto": "SABLEYE_COSTUME_2020"
 				}
 			},
 			"attack": 141,
@@ -26605,25 +26546,9 @@
 			"default_form": "Normal"
 		},
 		"439": {
-			"name": "Mime Jr",
+			"name": "",
 			"pokedex_id": 439,
-			"forms": {
-				"1775": {
-					"form": "Jr Normal",
-					"form_id": 1775,
-					"proto": "MIME_JR_NORMAL"
-				},
-				"1776": {
-					"form": "Jr Shadow",
-					"form_id": 1776,
-					"proto": "MIME_JR_SHADOW"
-				},
-				"1777": {
-					"form": "Jr Purified",
-					"form_id": 1777,
-					"proto": "MIME_JR_PURIFIED"
-				}
-			},
+			"forms": {},
 			"attack": 125,
 			"defense": 142,
 			"stamina": 85,
@@ -26649,7 +26574,6 @@
 			"evolutions": [
 				{
 					"evolution": "Mr Mime",
-					"evolution_id": 122,
 					"candy_cost": 50
 				}
 			],
@@ -26664,9 +26588,7 @@
 			"types": [
 				"Psychic",
 				"Fairy"
-			],
-			"default_form_id": "1775",
-			"default_form": "Jr Normal"
+			]
 		},
 		"440": {
 			"name": "Happiny",
@@ -28620,25 +28542,9 @@
 			"default_form": "Normal"
 		},
 		"474": {
-			"name": "Porygon Z",
+			"name": "",
 			"pokedex_id": 474,
-			"forms": {
-				"683": {
-					"form": "Z Normal",
-					"form_id": 683,
-					"proto": "PORYGON_Z_NORMAL"
-				},
-				"684": {
-					"form": "Z Shadow",
-					"form_id": 684,
-					"proto": "PORYGON_Z_SHADOW"
-				},
-				"685": {
-					"form": "Z Purified",
-					"form_id": 685,
-					"proto": "PORYGON_Z_PURIFIED"
-				}
-			},
+			"forms": {},
 			"attack": 264,
 			"defense": 150,
 			"stamina": 198,
@@ -28670,9 +28576,7 @@
 			"gym_defender_eligible": true,
 			"types": [
 				"Normal"
-			],
-			"default_form_id": "683",
-			"default_form": "Z Normal"
+			]
 		},
 		"475": {
 			"name": "Gallade",
@@ -39137,6 +39041,294 @@
 			"default_form_id": "593",
 			"default_form": "Normal"
 		},
+		"650": {
+			"name": "Chespin",
+			"pokedex_id": 650
+		},
+		"651": {
+			"name": "Quilladin",
+			"pokedex_id": 651
+		},
+		"652": {
+			"name": "Chesnaught",
+			"pokedex_id": 652
+		},
+		"653": {
+			"name": "Fennekin",
+			"pokedex_id": 653
+		},
+		"654": {
+			"name": "Braixen",
+			"pokedex_id": 654
+		},
+		"655": {
+			"name": "Delphox",
+			"pokedex_id": 655
+		},
+		"656": {
+			"name": "Froakie",
+			"pokedex_id": 656
+		},
+		"657": {
+			"name": "Frogadier",
+			"pokedex_id": 657
+		},
+		"658": {
+			"name": "Greninja",
+			"pokedex_id": 658
+		},
+		"659": {
+			"name": "Bunnelby",
+			"pokedex_id": 659
+		},
+		"660": {
+			"name": "Diggersby",
+			"pokedex_id": 660
+		},
+		"661": {
+			"name": "Fletchling",
+			"pokedex_id": 661
+		},
+		"662": {
+			"name": "Fletchinder",
+			"pokedex_id": 662
+		},
+		"663": {
+			"name": "Talonflame",
+			"pokedex_id": 663
+		},
+		"664": {
+			"name": "Scatterbug",
+			"pokedex_id": 664
+		},
+		"665": {
+			"name": "Spewpa",
+			"pokedex_id": 665
+		},
+		"666": {
+			"name": "Vivillon",
+			"pokedex_id": 666
+		},
+		"667": {
+			"name": "Litleo",
+			"pokedex_id": 667
+		},
+		"668": {
+			"name": "Pyroar",
+			"pokedex_id": 668
+		},
+		"669": {
+			"name": "Flabebe",
+			"pokedex_id": 669
+		},
+		"670": {
+			"name": "Floette",
+			"pokedex_id": 670
+		},
+		"671": {
+			"name": "Florges",
+			"pokedex_id": 671
+		},
+		"672": {
+			"name": "Skiddo",
+			"pokedex_id": 672
+		},
+		"673": {
+			"name": "Gogoat",
+			"pokedex_id": 673
+		},
+		"674": {
+			"name": "Pancham",
+			"pokedex_id": 674
+		},
+		"675": {
+			"name": "Pangoro",
+			"pokedex_id": 675
+		},
+		"676": {
+			"name": "Furfrou",
+			"pokedex_id": 676
+		},
+		"677": {
+			"name": "Espurr",
+			"pokedex_id": 677
+		},
+		"678": {
+			"name": "Meowstic",
+			"pokedex_id": 678
+		},
+		"679": {
+			"name": "Honedge",
+			"pokedex_id": 679
+		},
+		"680": {
+			"name": "Doublade",
+			"pokedex_id": 680
+		},
+		"681": {
+			"name": "Aegislash",
+			"pokedex_id": 681
+		},
+		"682": {
+			"name": "Spritzee",
+			"pokedex_id": 682
+		},
+		"683": {
+			"name": "Aromatisse",
+			"pokedex_id": 683
+		},
+		"684": {
+			"name": "Swirlix",
+			"pokedex_id": 684
+		},
+		"685": {
+			"name": "Slurpuff",
+			"pokedex_id": 685
+		},
+		"686": {
+			"name": "Inkay",
+			"pokedex_id": 686
+		},
+		"687": {
+			"name": "Malamar",
+			"pokedex_id": 687
+		},
+		"688": {
+			"name": "Binacle",
+			"pokedex_id": 688
+		},
+		"689": {
+			"name": "Barbaracle",
+			"pokedex_id": 689
+		},
+		"690": {
+			"name": "Skrelp",
+			"pokedex_id": 690
+		},
+		"691": {
+			"name": "Dragalge",
+			"pokedex_id": 691
+		},
+		"692": {
+			"name": "Clauncher",
+			"pokedex_id": 692
+		},
+		"693": {
+			"name": "Clawitzer",
+			"pokedex_id": 693
+		},
+		"694": {
+			"name": "Helioptile",
+			"pokedex_id": 694
+		},
+		"695": {
+			"name": "Heliolisk",
+			"pokedex_id": 695
+		},
+		"696": {
+			"name": "Tyrunt",
+			"pokedex_id": 696
+		},
+		"697": {
+			"name": "Tyrantrum",
+			"pokedex_id": 697
+		},
+		"698": {
+			"name": "Amaura",
+			"pokedex_id": 698
+		},
+		"699": {
+			"name": "Aurorus",
+			"pokedex_id": 699
+		},
+		"700": {
+			"name": "Sylveon",
+			"pokedex_id": 700
+		},
+		"701": {
+			"name": "Hawlucha",
+			"pokedex_id": 701
+		},
+		"702": {
+			"name": "Dedenne",
+			"pokedex_id": 702
+		},
+		"703": {
+			"name": "Carbink",
+			"pokedex_id": 703
+		},
+		"704": {
+			"name": "Goomy",
+			"pokedex_id": 704
+		},
+		"705": {
+			"name": "Sliggoo",
+			"pokedex_id": 705
+		},
+		"706": {
+			"name": "Goodra",
+			"pokedex_id": 706
+		},
+		"707": {
+			"name": "Klefki",
+			"pokedex_id": 707
+		},
+		"708": {
+			"name": "Phantump",
+			"pokedex_id": 708
+		},
+		"709": {
+			"name": "Trevenant",
+			"pokedex_id": 709
+		},
+		"710": {
+			"name": "Pumpkaboo",
+			"pokedex_id": 710
+		},
+		"711": {
+			"name": "Gourgeist",
+			"pokedex_id": 711
+		},
+		"712": {
+			"name": "Bergmite",
+			"pokedex_id": 712
+		},
+		"713": {
+			"name": "Avalugg",
+			"pokedex_id": 713
+		},
+		"714": {
+			"name": "Noibat",
+			"pokedex_id": 714
+		},
+		"715": {
+			"name": "Noivern",
+			"pokedex_id": 715
+		},
+		"716": {
+			"name": "Xerneas",
+			"pokedex_id": 716
+		},
+		"717": {
+			"name": "Yveltal",
+			"pokedex_id": 717
+		},
+		"718": {
+			"name": "Zygarde",
+			"pokedex_id": 718
+		},
+		"719": {
+			"name": "Diancie",
+			"pokedex_id": 719
+		},
+		"720": {
+			"name": "Hoopa",
+			"pokedex_id": 720
+		},
+		"721": {
+			"name": "Volcanion",
+			"pokedex_id": 721
+		},
 		"808": {
 			"name": "Meltan",
 			"pokedex_id": 808,
@@ -39413,23 +39605,7 @@
 		"867": {
 			"name": "Runerigus",
 			"pokedex_id": 867,
-			"forms": {
-				"2516": {
-					"form": "Normal",
-					"form_id": 2516,
-					"proto": "RUNERIGUS_NORMAL"
-				},
-				"2517": {
-					"form": "Shadow",
-					"form_id": 2517,
-					"proto": "RUNERIGUS_SHADOW"
-				},
-				"2518": {
-					"form": "Purified",
-					"form_id": 2518,
-					"proto": "RUNERIGUS_PURIFIED"
-				}
-			},
+			"forms": {},
 			"attack": 163,
 			"defense": 237,
 			"stamina": 151,
@@ -39458,15 +39634,13 @@
 			"types": [
 				"Ground",
 				"Ghost"
-			],
-			"default_form_id": "2516",
-			"default_form": "Normal"
+			]
 		}
 	},
 	"Forms": {},
 	"Moves": {
 		"0": {
-			"name": ""
+			"name": "Move Unset"
 		},
 		"1": {
 			"name": "Thunder Shock"
@@ -40951,7 +41125,10 @@
 			"power": 110
 		},
 		"335": {
-			"name": "Aeroblast"
+			"name": "Aeroblast",
+			"proto": "COMBAT_V0335_MOVE_AEROBLAST",
+			"type": "Flying",
+			"power": 180
 		},
 		"336": {
 			"name": "Techno Blast Normal"
@@ -41159,12 +41336,40 @@
 			"proto": "INCENSE",
 			"text": ""
 		},
+		"40": {
+			"proto": "FIND_SOUVENIR",
+			"text": ""
+		},
+		"41": {
+			"proto": "AS_REWARDS",
+			"text": "Collect {0} as rewards(s)"
+		},
+		"42": {
+			"proto": "",
+			"text": ""
+		},
 		"43": {
 			"proto": "EVOLVE_POKEMON",
 			"text": ""
 		},
+		"44": {
+			"proto": "STARDUST",
+			"text": ""
+		},
 		"46": {
 			"proto": "AR_SCAN",
+			"text": ""
+		},
+		"50": {
+			"proto": "EVOLUTION_WALK",
+			"text": ""
+		},
+		"51": {
+			"proto": "RANK",
+			"text": ""
+		},
+		"53": {
+			"proto": "ATTACK",
 			"text": ""
 		}
 	},
@@ -41292,10 +41497,6 @@
 		"30": {
 			"proto": "WITH_DAILY_BUDDY_AFFECTION",
 			"text": "Daily buddy affection"
-		},
-		"37": {
-			"proto": "WITH_TEMP_EVO_POKEMON",
-			"text": "Temp evo pokemon"
 		}
 	},
 	"Quest_Reward_Types": {
@@ -41338,10 +41539,6 @@
 		"11": {
 			"proto": "STICKER",
 			"text": "Sticker"
-		},
-		"12": {
-			"proto": "MEGA_RESOURCE",
-			"text": "Mega Resource"
 		}
 	},
 	"Items": {
@@ -41556,6 +41753,10 @@
 		"1301": {
 			"name": "Rare Candy",
 			"proto": "ITEM_RARE_CANDY"
+		},
+		"1302": {
+			"name": "Xl Rare Candy",
+			"proto": "ITEM_XL_RARE_CANDY"
 		},
 		"1401": {
 			"name": "Free Raid Ticket",

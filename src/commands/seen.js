@@ -62,7 +62,7 @@ if (valid) {
     WDR.scannerDB.query(
       query,
       [target.pokemon_id],
-      function(error, stats, fields) {
+      function(error, stats) {
         if (error) {
           console.error(query);
           console.error(error);

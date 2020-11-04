@@ -42,11 +42,11 @@ module.exports = async (WDR, QUEST) => {
                         if (User.geotype == 'city') {
                             if (User.guild_name == QUEST.area.default) {
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent city sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent city sub to ' + User.user_name + '.');
                                 }
                                 Send_Subscription(WDR, QUEST, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | User: ' + User.user_name + ' | Failed City Geofence. Wanted: `' + User.guild_name + '` Saw: `' + QUEST.area.default+'`')
+                                WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | User: ' + User.user_name + ' | Failed City Geofence. Wanted: `' + User.guild_name + '` Saw: `' + QUEST.area.default+'`');
                             }
 
                         } else if (User.geotype == 'areas') {
@@ -55,11 +55,11 @@ module.exports = async (WDR, QUEST) => {
                             let subGeo = (User.areas.indexOf(QUEST.area.sub) >= 0);
                             if (defGeo || mainGeo || subGeo) {
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent area sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent area sub to ' + User.user_name + '.');
                                 }
                                 Send_Subscription(WDR, QUEST, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | User: ' + User.user_name + ' | Failed Area Geofence.')
+                                WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | User: ' + User.user_name + ' | Failed Area Geofence.');
                             }
 
                         } else if (User.geotype == 'location') {
@@ -73,7 +73,7 @@ module.exports = async (WDR, QUEST) => {
                             let loc_dist = WDR.Distance(parseInt(User.location.radius) + ' km');
                             if (loc_dist > distance) {
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent location sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | Sent location sub to ' + User.user_name + '.');
                                 }
                                 Send_Subscription(WDR, QUEST, User);
                             }
@@ -81,7 +81,7 @@ module.exports = async (WDR, QUEST) => {
                             WDR.Console.error(WDR, '[DEBUG] [src/subs/quests.js] User: ' + User.user_name + ' | User geotype has a bad value.', User);
                         }
                     } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                            WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | ' + User.user_name + ' did NOT pass authorization for ' + discord.name + ' (' + discord.id + ').');
+                        WDR.Console.info(WDR, '[DEBUG] [src/subs/quests.js] ' + QUEST.encounter_id + ' | ' + User.user_name + ' did NOT pass authorization for ' + discord.name + ' (' + discord.id + ').');
                     }
                 }
             }
@@ -90,7 +90,7 @@ module.exports = async (WDR, QUEST) => {
 
     // END
     return;
-}
+};
 
 async function Send_Subscription(WDR, QUEST, User) {
 
@@ -112,38 +112,38 @@ async function Send_Subscription(WDR, QUEST, User) {
     match.url = QUEST.pokestop_url;
     match.map_url = WDR.Config.FRONTEND_URL;
 
-    match.google = "[Google Maps](https://www.google.com/maps?q=" + match.lat + "," + match.lon + ")";
-    match.apple = "[Apple Maps](http://maps.apple.com/maps?daddr=" + match.lat + "," + match.lon + "&z=10&t=s&dirflg=d)";
-    match.waze = "[Waze](https://www.waze.com/ul?ll=" + match.lat + "," + match.lon + "&navigate=yes)";
-    match.pmsf = "[Scan Map](" + WDR.Config.FRONTEND_URL + "?lat=" + match.lat + "&lon=" + match.lon + "&zoom=15)";
-    match.rdm = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + match.lat + "/" + match.lon + "/15)";
-    match.mapjs = "[Scan Map](" + WDR.Config.FRONTEND_URL + "@/" + match.lat + "/" + match.lon + "/15)";
+    match.google = '[Google Maps](https://www.google.com/maps?q=' + match.lat + ',' + match.lon + ')';
+    match.apple = '[Apple Maps](http://maps.apple.com/maps?daddr=' + match.lat + ',' + match.lon + '&z=10&t=s&dirflg=d)';
+    match.waze = '[Waze](https://www.waze.com/ul?ll=' + match.lat + ',' + match.lon + '&navigate=yes)';
+    match.pmsf = '[Scan Map](' + WDR.Config.FRONTEND_URL + '?lat=' + match.lat + '&lon=' + match.lon + '&zoom=15)';
+    match.rdm = '[Scan Map](' + WDR.Config.FRONTEND_URL + '@/' + match.lat + '/' + match.lon + '/15)';
+    match.mapjs = '[Scan Map](' + WDR.Config.FRONTEND_URL + '@/' + match.lat + '/' + match.lon + '/15)';
 
     match.sprite = WDR.Get_Sprite(WDR, QUEST);
 
     match.marker_latitude = QUEST.latitude + .0005;
 
-    match.body = await WDR.Generate_Tile(WDR, QUEST, "quests", match.marker_latitude, match.lon, match.sprite);
+    match.body = await WDR.Generate_Tile(WDR, QUEST, 'quests', match.marker_latitude, match.lon, match.sprite);
     match.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + match.body;
 
-    match.time = WDR.Time(null, "quest", QUEST.timezone);
+    match.time = WDR.Time(null, 'quest', QUEST.timezone);
 
     switch (true) {
-      case QUEST.template.indexOf("easy") >= 0:
-        match.color = "00ff00";
-        break;
-      case QUEST.template.indexOf("moderate") >= 0:
-        match.color = "ffff00";
-        break;
-      case QUEST.template.indexOf("hard") >= 0:
-        match.color = "ff0000";
-        break;
-      default:
-        match.color = "00ccff";
+        case QUEST.template.indexOf('easy') >= 0:
+            match.color = '00ff00';
+            break;
+        case QUEST.template.indexOf('moderate') >= 0:
+            match.color = 'ffff00';
+            break;
+        case QUEST.template.indexOf('hard') >= 0:
+            match.color = 'ff0000';
+            break;
+        default:
+            match.color = '00ccff';
     }
 
     if (!match.sprite) {
-      match.sprite = QUEST.url;
+        match.sprite = QUEST.url;
     }
 
     match.embed = Embed_Config(WDR, match);
