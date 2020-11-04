@@ -2,7 +2,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async resolve => {
 
-        let instruction, gym, input;
+        let instruction, gym;
 
         const filter = cMessage => cMessage.author.id == Message.author.id;
         const collector = Message.channel.createMessageCollector(filter, {

@@ -1,7 +1,7 @@
+/* eslint-disable no-async-promise-executor */
 module.exports = (WDR, Functions, type, Member, Message, object, requirements, sub) => {
     return new Promise(async resolve => {
-        let timeout = true,
-            instruction = "";
+        let instruction;
 
         const filter = cMessage => cMessage.author.id == Message.author.id;
         const collector = Message.channel.createMessageCollector(filter, {
@@ -11,110 +11,110 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         switch (type) {
 
 
-            case "Guild":
-                let list = "";
+            case 'Guild':
+                var list;
                 object.forEach((guild, i) => {
-                    list += (i + 1) + " - " + guild.name + "\n";
+                    list += (i + 1) + ' - ' + guild.name + '\n';
                 });
                 list = list.slice(0, -1);
 
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Choose a Discord:")
+                    .setTitle('Choose a Discord:')
                     .setDescription(list)
                     .setFooter(requirements);
                 break;
 
 
-            case "Preset":
+            case 'Preset':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Choose a Preset Subscription:")
+                    .setTitle('Choose a Preset Subscription:')
                     .setDescription(object)
                     .setFooter(requirements);
                 break;
 
 
-            case "Name":
+            case 'Name':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("What Pokémon would you like to Subscribe to?")
+                    .setTitle('What Pokémon would you like to Subscribe to?')
                     .setFooter(requirements);
                 if (object) {
-                    instruction.setDescription("Current: `" + object + "`");
+                    instruction.setDescription('Current: `' + object + '`');
                 }
                 break;
 
 
-            case "Type":
+            case 'Type':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("What Pokémon Type would you like to Subscribe to?")
+                    .setTitle('What Pokémon Type would you like to Subscribe to?')
                     .setFooter(requirements);
                 if (object) {
-                    instruction.setDescription("Current: `" + WDR.Capitalize(object) + "`");
+                    instruction.setDescription('Current: `' + WDR.Capitalize(object) + '`');
                 }
                 break;
 
 
-            case "Form":
-                let forms = "**0 - All**\n";
+            case 'Form':
+                var forms = '**0 - All**\n';
                 for (let f = 0, flen = sub.forms.length; f < flen; f++) {
-                    forms += "**" + (f + 1) + " - " + sub.forms[f] + "**\n"
+                    forms += '**' + (f + 1) + ' - ' + sub.forms[f] + '**\n';
                 }
                 forms = forms.slice(0, -1);
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("What Form of " + sub.name + " would you like to Subscribe to?")
+                    .setTitle('What Form of ' + sub.name + ' would you like to Subscribe to?')
                     .setDescription(forms)
                     .setFooter(requirements);
                 if (object) {
                     if (object.form === 0) {
-                        instruction.setDescription("Current: `All Pokémon`" + "\n" +
-                            "Available Forms:" + "\n　" + forms);
+                        instruction.setDescription('Current: `All Pokémon`' + '\n' +
+                            'Available Forms:' + '\n　' + forms);
                     } else {
-                        instruction.setDescription("Current: `" + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + "`" + "\n" +
-                            "Available Forms:" + "\n　" + forms);
+                        instruction.setDescription('Current: `' + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +
+                            'Available Forms:' + '\n　' + forms);
                     }
                 }
                 break;
 
 
-            case "Confirm-Add":
+            case 'Confirm-Add':
 
-                let gender = "";
+                var gender;
                 if (sub.gender == 1) {
-                    gender = "Male";
+                    gender = 'Male';
                 } else if (sub.gender == 2) {
-                    gender = "Female";
+                    gender = 'Female';
                 } else {
-                    gender = "All";
+                    gender = 'All';
                 }
 
-                let size = "";
+                var size;
                 if (sub.size === 0) {
-                    size = "All";
+                    size = 'All';
                 } else {
                     size = await WDR.Capitalize(size);
                 }
 
-                let ptype = "";
+                var ptype;
                 if (sub.pokemon_type === 0) {
-                    ptype = "All";
+                    ptype = 'All';
                 } else {
                     ptype = await WDR.Capitalize(sub.pokemon_type);
                 }
 
-                let form = "";
+                var form;
                 if (sub.form === 0) {
-                    form = "All";
+                    form = 'All';
                 } else {
                     form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
                 }
 
-                let gen = "";
+                var gen;
                 if (sub.gen === 0) {
-                    gen = "All";
+                    gen = 'All';
                 } else {
                     gen = sub.gen;
                 }
@@ -122,55 +122,54 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Does all of this look correct?")
-                    .setDescription("Name: `" + sub.name + "`\n" +
-                        "Form: `" + form + "`\n" +
-                        "Type: `" + ptype + "`\n" +
-                        "Min IV: `" + sub.min_iv + "`\n" +
-                        "Max IV: `" + sub.max_iv + "`\n" +
-                        "Min Lvl: `" + sub.min_lvl + "`\n" +
-                        "Max Lvl: `" + sub.max_lvl + "`\n" +
-                        "Gender: `" + gender + "`\n" +
-                        "Size: `" + size + "`\n" +
-                        "Generation: `" + gen + "`\n" +
-                        "Areas: `" + sub.areas + "`")
+                    .setTitle('Does all of this look correct?')
+                    .setDescription('Name: `' + sub.name + '`\n' +
+                        'Form: `' + form + '`\n' +
+                        'Type: `' + ptype + '`\n' +
+                        'Min IV: `' + sub.min_iv + '`\n' +
+                        'Max IV: `' + sub.max_iv + '`\n' +
+                        'Min Lvl: `' + sub.min_lvl + '`\n' +
+                        'Max Lvl: `' + sub.max_lvl + '`\n' +
+                        'Gender: `' + gender + '`\n' +
+                        'Size: `' + size + '`\n' +
+                        'Generation: `' + gen + '`\n' +
+                        'Areas: `' + sub.areas + '`')
                     .setFooter(requirements);
                 break;
 
 
-            case "Confirm-Remove":
+            case 'Confirm-Remove':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Are you sure you want to Remove ALL of your subscriptions?")
-                    .setDescription("If you wanted to remove an `ALL` pokemon filter, you need to specify the number associated with it. \`ALL-1\`, \`ALL-2\`, etc")
+                    .setTitle('Are you sure you want to Remove ALL of your subscriptions?')
                     .setFooter(requirements);
                 break;
 
 
-            case "Remove":
+            case 'Remove':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Which Subscription do you want to remove?")
+                    .setTitle('Which Subscription do you want to remove?')
                     .setDescription(sub)
                     .setFooter(requirements);
                 break;
 
 
-            case "Modify":
+            case 'Modify':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Which Subscription do you want to Modify?")
+                    .setTitle('Which Subscription do you want to Modify?')
                     .setDescription(sub)
                     .setFooter(requirements);
                 break;
 
 
-            case "Geofence":
+            case 'Geofence':
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("Do you want to get notifications for " + sub.name + " filtered by your set Areas/Location?")
-                    .setDescription("**Yes** - Your notifications for this Pokémon will be filtered based on your set areas/location.\n" +
-                        "**No** - You will get notifications for this pokemon in the entire city scan area.")
+                    .setTitle('Do you want to get notifications for ' + sub.name + ' filtered by your set Areas/Location?')
+                    .setDescription('**Yes** - Your notifications for this Pokémon will be filtered based on your set areas/location.\n' +
+                        '**No** - You will get notifications for this pokemon in the entire city scan area.')
                     .setFooter(requirements);
                 break;
 
@@ -178,21 +177,20 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             default:
                 instruction = new WDR.DiscordJS.MessageEmbed()
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle("What **" + type + "** would like you like to set for **" + sub.name + "** Notifications?")
+                    .setTitle('What **' + type + '** would like you like to set for **' + sub.name + '** Notifications?')
                     .setFooter(requirements);
                 if (object) {
-                    instruction.setDescription("Current: `" + object + "`");
+                    instruction.setDescription('Current: `' + object + '`');
                 }
         }
 
         Message.channel.send(instruction).then(msg => {
 
-            let input = "";
-
-            collector.on("collect", async CollectedMsg => {
+            collector.on('collect', async CollectedMsg => {
 
                 try {
                     CollectedMsg.delete();
+                // eslint-disable-next-line no-empty
                 } catch (e) {
 
                 }
@@ -200,89 +198,88 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 switch (true) {
 
 
-                    case CollectedMsg.content.toLowerCase() == "stop":
-                    case CollectedMsg.content.toLowerCase() == "cancel":
-                        collector.stop("cancel");
+                    case CollectedMsg.content.toLowerCase() == 'stop':
+                    case CollectedMsg.content.toLowerCase() == 'cancel':
+                        collector.stop('cancel');
                         break;
 
 
-                    case type.indexOf("Confirm-Add") >= 0:
-                    case type.indexOf("Confirm-Remove") >= 0:
+                    case type.indexOf('Confirm-Add') >= 0:
+                    case type.indexOf('Confirm-Remove') >= 0:
                         switch (CollectedMsg.content.toLowerCase()) {
-                            case "save":
-                            case "yes":
+                            case 'save':
+                            case 'yes':
                                 collector.stop(true);
                                 break;
-                            case "no":
-                            case "cancel":
+                            case 'no':
+                            case 'cancel':
                                 collector.stop(false);
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
 
-                    case type.indexOf("Geofence") >= 0:
+                    case type.indexOf('Geofence') >= 0:
                         switch (CollectedMsg.content.toLowerCase()) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case "yes":
+                            case 'yes':
                                 collector.stop(Member.db.geotype);
                                 break;
-                            case "all":
-                            case "no":
-                                collector.stop("city");
+                            case 'all':
+                            case 'no':
+                                collector.stop('city');
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
 
-                    case type.indexOf("Guild") >= 0:
-                    case type.indexOf("Preset") >= 0:
-                    case type.indexOf("Modify") >= 0:
-                    case type.indexOf("Remove") >= 0:
-                        let num = parseInt(CollectedMsg.content);
+                    case type.indexOf('Guild') >= 0:
+                    case type.indexOf('Preset') >= 0:
+                    case type.indexOf('Modify') >= 0:
+                    case type.indexOf('Remove') >= 0:
+                        var num = parseInt(CollectedMsg.content);
                         switch (true) {
                             case (isNaN(CollectedMsg.content)):
-                                return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a Number. " + requirements).then(m => m.delete({
+                                return CollectedMsg.reply('`' + CollectedMsg.content + '` is not a Number. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                             case (num > 0 && num <= object.length):
                                 return collector.stop((num - 1));
                             default:
-                                return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
+                                return CollectedMsg.reply('`' + CollectedMsg.content + '` is not a valid # selection. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
-                        break;
 
 
-                    case type.indexOf("Name") >= 0:
+                    case type.indexOf('Name') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
                                 collector.stop(0);
                                 break;
                             default:
-                                let valid = await WDR.Pokemon_ID_Search(WDR, CollectedMsg.content.split(" ")[0]);
+                                var valid = await WDR.Pokemon_ID_Search(WDR, CollectedMsg.content.split(' ')[0]);
                                 if (valid) {
                                     return collector.stop(valid);
                                 } else {
-                                    return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid Pokémon name. Please check the spelling and try again.").then(m => m.delete({
+                                    return CollectedMsg.reply('`' + CollectedMsg.content + '` doesn\'t appear to be a valid Pokémon name. Please check the spelling and try again.').then(m => m.delete({
                                         timeout: 5000
                                     }));
                                 }
@@ -290,18 +287,18 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf("Type") >= 0:
+                    case type.indexOf('Type') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
                                 collector.stop(0);
                                 break;
                             default:
-                                let match;
+                                var match;
                                 WDR.Master.Pokemon_Types.forEach(type => {
                                     if (type.toLowerCase() == CollectedMsg.content.toLowerCase()) {
                                         match = type.toLowerCase();
@@ -309,7 +306,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                     }
                                 });
                                 if (!match) {
-                                    return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid type. Please check the spelling and try again.").then(m => m.delete({
+                                    return CollectedMsg.reply('`' + CollectedMsg.content + '` doesn\'t appear to be a valid type. Please check the spelling and try again.').then(m => m.delete({
                                         timeout: 5000
                                     }));
                                 }
@@ -317,178 +314,179 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf("Form") >= 0:
+                    case type.indexOf('Form') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all" || CollectedMsg.content === '0'):
+                            case (CollectedMsg.content.toLowerCase() == 'all' || CollectedMsg.content === '0'):
                                 collector.stop(0);
                                 break;
                             case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= sub.forms.length):
                                 collector.stop(sub.form_ids[sub.forms.indexOf(sub.forms[CollectedMsg.content - 1])]);
                                 break;
                             default:
-                                return CollectedMsg.reply("`" + CollectedMsg.content + "` is not a valid # selection. " + requirements).then(m => m.delete({
+                                return CollectedMsg.reply('`' + CollectedMsg.content + '` is not a valid # selection. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
 
-                    case type.indexOf("Generation") >= 0:
+                    case type.indexOf('Generation') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
                                 collector.stop(0);
                                 break;
                             case (!isNaN(CollectedMsg.content) && CollectedMsg.content > 0):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
                             default:
-                                return CollectedMsg.reply("`" + CollectedMsg.content + "` doesn't appear to be a valid Generation number.").then(m => m.delete({
+                                return CollectedMsg.reply('`' + CollectedMsg.content + '` doesn\'t appear to be a valid Generation number.').then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
-                    case type.indexOf("IV") >= 0:
-                        CollectedMsg.content = CollectedMsg.content.replace("%", "");
+                    case type.indexOf('IV') >= 0:
+                        CollectedMsg.content = CollectedMsg.content.replace('%', '');
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
                             case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= 100):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
-                                if (type.indexOf("Minimum") >= 0) {
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
+                                if (type.indexOf('Minimum') >= 0) {
                                     collector.stop(0);
                                 } else {
                                     collector.stop(100);
                                 }
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
-                    case type.indexOf("Level") >= 0:
+                    case type.indexOf('Level') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
                             case (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
-                                if (type.indexOf("Minimum") >= 0) {
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
+                                if (type.indexOf('Minimum') >= 0) {
                                     collector.stop(1);
                                 } else {
                                     collector.stop(WDR.Max_Pokemon_Level);
                                 }
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
-                    case type.indexOf("Gender") >= 0:
+                    case type.indexOf('Gender') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "male"):
+                            case (CollectedMsg.content.toLowerCase() == 'male'):
                                 collector.stop(1);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "female"):
+                            case (CollectedMsg.content.toLowerCase() == 'female'):
                                 collector.stop(2);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
                                 collector.stop(0);
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
-                    case type.indexOf("Size") >= 0:
+                    case type.indexOf('Size') >= 0:
                         switch (true) {
-                            case (CollectedMsg.content.toLowerCase() == "same"):
-                            case (CollectedMsg.content.toLowerCase() == "keep"):
-                            case (CollectedMsg.content.toLowerCase() == "next"):
+                            case (CollectedMsg.content.toLowerCase() == 'same'):
+                            case (CollectedMsg.content.toLowerCase() == 'keep'):
+                            case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "big"):
-                                collector.stop("big");
+                            case (CollectedMsg.content.toLowerCase() == 'big'):
+                                collector.stop('big');
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "large"):
-                                collector.stop("large");
+                            case (CollectedMsg.content.toLowerCase() == 'large'):
+                                collector.stop('large');
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "normal"):
-                                collector.stop("normal");
+                            case (CollectedMsg.content.toLowerCase() == 'normal'):
+                                collector.stop('normal');
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "small"):
-                                collector.stop("small");
+                            case (CollectedMsg.content.toLowerCase() == 'small'):
+                                collector.stop('small');
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "tiny"):
-                                collector.stop("tiny");
+                            case (CollectedMsg.content.toLowerCase() == 'tiny'):
+                                collector.stop('tiny');
                                 break;
-                            case (CollectedMsg.content.toLowerCase() == "all"):
+                            case (CollectedMsg.content.toLowerCase() == 'all'):
                                 collector.stop(0);
                                 break;
                             default:
-                                CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. " + requirements).then(m => m.delete({
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                     timeout: 5000
                                 }));
                         }
                         break;
 
                     default:
-                        CollectedMsg.reply("`" + CollectedMsg.content + "` is an Invalid Input. Type cancel to quit. this subscription." + requirements).then(m => m.delete({
+                        CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. Type cancel to quit. this subscription.' + requirements).then(m => m.delete({
                             timeout: 5000
                         }));
                 }
             });
 
-            collector.on("end", (collected, reason) => {
+            collector.on('end', (collected, reason) => {
 
                 if (reason == null) {
                     return;
                 }
 
-                if (msg && msg.channel.type != "dm") {
+                if (msg && msg.channel.type != 'dm') {
                     try {
                         msg.delete();
+                    // eslint-disable-next-line no-empty
                     } catch (e) {
 
                     }
                 }
 
                 switch (reason) {
-                    case "cancel":
-                        Functions.Cancel(WDR, Functions, Message, Member, "Pokemon");
+                    case 'cancel':
+                        Functions.Cancel(WDR, Functions, Message, Member, 'Pokemon');
                         return null;
-                    case "time":
-                        Functions.TimedOut(WDR, Functions, Message, Member, "Pokemon");
+                    case 'time':
+                        Functions.TimedOut(WDR, Functions, Message, Member, 'Pokemon');
                         return null;
                     default:
                         return resolve(reason);
@@ -499,4 +497,4 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
         // END
         return;
     });
-}
+};

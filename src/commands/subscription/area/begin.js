@@ -13,8 +13,6 @@ module.exports = async (WDR, message) => {
 
     var Member = message.member ? message.member : message.author;
 
-    console.log('begin.js', message.discord);
-
     let geofence = await WDR.Geofences.get(message.discord.geojson_file);
 
     if (!geofence) {

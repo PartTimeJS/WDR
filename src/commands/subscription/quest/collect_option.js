@@ -65,31 +65,24 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
         switch (arg) {
             case 'cancel':
                 return Functions.Cancel(WDR, Functions, OriginalMsg, Member);
-
             case 'add':
                 return Functions.Create(WDR, Functions, OriginalMsg, Member);
-
             case 'preset':
                 return Functions.Preset(WDR, Functions, OriginalMsg, Member);
-
             case 'remove':
                 return Functions.Remove(WDR, Functions, OriginalMsg, Member);
-
             case 'view':
                 return Functions.View(WDR, Functions, OriginalMsg, Member);
-
             case 'resume':
             case 'pause':
                 return Functions.Status(WDR, Functions, OriginalMsg, Member, arg);
-
             case 'time':
                 if (source != 'complete') {
                     return Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
                 }
-                return false;
-
+                return null;
             default:
-                return;
+                return null;
         }
     });
 

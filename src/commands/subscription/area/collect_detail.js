@@ -1,4 +1,4 @@
-module.exports = async (WDR, Functions, type, Member, message, object, requirements, sub, AreaArray) => {
+module.exports = async (WDR, Functions, type, member, message, object, requirements, sub, AreaArray) => {
     return new Promise(resolve => {
 
         let instruction;
@@ -35,7 +35,7 @@ module.exports = async (WDR, Functions, type, Member, message, object, requireme
             // AREA NAME EMBED
             case 'Name':
                 instruction = new WDR.DiscordJS.MessageEmbed()
-                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                    .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                     .setTitle('What Area would you like to Subscribe to?')
                     .setDescription('**' + list_array[0] + '**' + '\n' + '\n' +
             'Page **1** of **' + list_array.length + '**')
@@ -45,7 +45,7 @@ module.exports = async (WDR, Functions, type, Member, message, object, requireme
                 // REMOVAL EMBED
             case 'Remove':
                 instruction = new WDR.DiscordJS.MessageEmbed()
-                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                    .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                     .setTitle('What Area do you want to remove?')
                     .setDescription('**' + list_array[0] + '**' + '\n' + '\n' +
             'Page **1** of **' + list_array.length + '**')
@@ -54,7 +54,7 @@ module.exports = async (WDR, Functions, type, Member, message, object, requireme
 
             case 'Area':
                 instruction = new WDR.DiscordJS.MessageEmbed()
-                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                    .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                     .setTitle('Do you want to change your DM Alert geofence type to Area-Based?')
                     .setDescription('**Yes** - Your Alert geofence type will be changed to area-based.' + '\n' +
             '\n' +
@@ -148,9 +148,9 @@ module.exports = async (WDR, Functions, type, Member, message, object, requireme
 
                 switch (reason) {
                     case 'cancel':
-                        return Functions.Cancel(WDR, Functions, message, Member, 'Area');
+                        return Functions.Cancel(WDR, Functions, message, member, 'Area');
                     case 'time':
-                        return Functions.TimedOut(WDR, Functions, message, Member, 'Area');
+                        return Functions.TimedOut(WDR, Functions, message, member, 'Area');
                     default:
                         return resolve(reason);
                 }

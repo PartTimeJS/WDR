@@ -61,6 +61,16 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
                 return Functions.View(WDR, Functions, OriginalMsg, Member, AreaArray);
             case 'end':
                 return;
+            case 'time':
+                if (source != 'complete') {
+                    return Functions.TimedOut(WDR, Functions, OriginalMsg, Member);
+                }
+                return null;
+            default:
+                return null;
         }
     });
+
+    // END
+    return;
 };
