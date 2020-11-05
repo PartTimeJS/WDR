@@ -41,23 +41,17 @@ module.exports = async (WDR, Functions, message, Member, AreaArray) => {
                 areas = areas.toString();
             }
 
-            WDR.wdrDB.query(`
-        UPDATE
-            wdr_subscriptions
-        SET
-            areas = '${areas}'
-        WHERE
-            user_id = ${Member.id}
-      ;`);
+            WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET areas = '${areas}' WHERE user_id = ${Member.id}; `);
+      
 
             let update = `
-        UPDATE
-            wdr_users
-        SET
-            areas = '${areas}'
-        WHERE
-            user_id = ${Member.id}
-        ;`;
+                UPDATE
+                    wdr_users
+                SET
+                    areas = '${areas}'
+                WHERE
+                    user_id = ${Member.id}
+            ;`;
             WDR.wdrDB.query(
                 update,
                 function(error) {
