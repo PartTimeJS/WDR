@@ -1,15 +1,15 @@
 module.exports = async (WDR, Functions, message, member) => {
 
     WDR.wdrDB.query(`
-            SELECT
-                *
-            FROM
-                wdr_subscriptions
-            WHERE
-                user_id = '${member.id}'
-                    AND
-                guild_id = '${member.guild.id}'
-        ;`,
+        SELECT
+            *
+        FROM
+            wdr_pvp_subs
+        WHERE
+            user_id = '${member.id}'
+                AND
+            guild_id = '${member.guild.id}'
+    ;`,
     async function (error, subs) {
         if (error) {
             WDR.Console.error(WDR, '[cmd/sub/pvp/create.js] Error Fetching Subscriptions to Create Subscription.', [error]);

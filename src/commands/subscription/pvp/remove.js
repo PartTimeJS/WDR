@@ -3,7 +3,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         SELECT
             *
         FROM
-            wdr_subscriptions
+            wdr_pvp_subs
         WHERE
             user_id = '${Member.id}'
                 AND
@@ -50,21 +50,21 @@ module.exports = (WDR, Functions, Message, Member) => {
             let remove = subscriptions[number];
 
             let query = `
-                    DELETE FROM
-                        wdr_subscriptions
-                    WHERE
-                        user_id = '${Message.author.id}'
-                            AND
-                        guild_id = '${Message.guild.id}'
-                            AND
-                        pokemon_id = ${remove.pokemon_id}
-                            AND
-                        form = ${remove.form}
-                            AND
-                        min_rank = ${remove.min_rank}
-                            AND
-                        league = '${remove.league}'
-                ;`;
+                DELETE FROM
+                    wdr_pvp_subs
+                WHERE
+                    user_id = '${Message.author.id}'
+                        AND
+                    guild_id = '${Message.guild.id}'
+                        AND
+                    pokemon_id = ${remove.pokemon_id}
+                        AND
+                    form = ${remove.form}
+                        AND
+                    min_rank = ${remove.min_rank}
+                        AND
+                    league = '${remove.league}'
+            ;`;
             WDR.wdrDB.query(
                 query,
                 async function (error) {

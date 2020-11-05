@@ -20,7 +20,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
 
     let query = `
     INSERT INTO
-      wdr_subscriptions (
+      wdr_pvp_subs (
         user_id,
         user_name,
         guild_id,
