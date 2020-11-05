@@ -38,15 +38,15 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                 }
                 WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET status = ${change} WHERE user_id = '${Member.id}' AND guild_id = '${Message.guild.id}';`);
                 WDR.wdrDB.query(`
-                UPDATE
-                    wdr_users
-                SET
-                    pokemon_status = ${change}
-                WHERE
-                    user_id = '${Member.id}
-                        AND
-                    guild_id = '${Message.guild.id}'
-            ;`,
+                    UPDATE
+                        wdr_users
+                    SET
+                        pokemon_status = ${change}
+                    WHERE
+                        user_id = '${Member.id}
+                            AND
+                        guild_id = '${Message.guild.id}'
+                ;`,
                 async function (error) {
                     if (error) {
                         return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
