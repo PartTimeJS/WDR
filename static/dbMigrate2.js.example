@@ -26,11 +26,11 @@ const new_database = mysql2.createConnection({
 setTimeout(function () {
     console.log('starting migration...');
     old_database.query(`
-            SELECT
-                *
-            FROM
-                wdr_subscriptions
-        ;`,
+        SELECT
+            *
+        FROM
+            wdr_subscriptions
+    ;`,
     async function (error, records) {
         console.log(`retrieved ${records.length} records. processsing...`);
         if(error){
