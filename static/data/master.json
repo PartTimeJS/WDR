@@ -51,7 +51,9 @@
 				{
 					"evolution": "Ivysaur",
 					"evolution_id": 2,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 166
 				}
 			],
 			"legendary": false,
@@ -115,7 +117,9 @@
 				{
 					"evolution": "Venusaur",
 					"evolution_id": 3,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 169
 				}
 			],
 			"legendary": false,
@@ -244,7 +248,9 @@
 				{
 					"evolution": "Charmeleon",
 					"evolution_id": 5,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 175
 				}
 			],
 			"legendary": false,
@@ -307,7 +313,9 @@
 				{
 					"evolution": "Charizard",
 					"evolution_id": 6,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 178
 				}
 			],
 			"legendary": false,
@@ -436,7 +444,9 @@
 				{
 					"evolution": "Wartortle",
 					"evolution_id": 8,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 184
 				}
 			],
 			"legendary": false,
@@ -499,7 +509,9 @@
 				{
 					"evolution": "Blastoise",
 					"evolution_id": 9,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 187
 				}
 			],
 			"legendary": false,
@@ -795,7 +807,9 @@
 				{
 					"evolution": "Kakuna",
 					"evolution_id": 14,
-					"candy_cost": 12
+					"candy_cost": 12,
+					"form": "Normal",
+					"form_id": 619
 				}
 			],
 			"legendary": false,
@@ -857,7 +871,9 @@
 				{
 					"evolution": "Beedrill",
 					"evolution_id": 15,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 622
 				}
 			],
 			"legendary": false,
@@ -1176,7 +1192,9 @@
 				{
 					"evolution": "Raticate",
 					"evolution_id": 20,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 47
 				}
 			],
 			"legendary": false,
@@ -1432,7 +1450,9 @@
 				{
 					"evolution": "Arbok",
 					"evolution_id": 24,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 700
 				}
 			],
 			"legendary": false,
@@ -1735,7 +1755,9 @@
 				{
 					"evolution": "Sandslash",
 					"evolution_id": 28,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 53
 				}
 			],
 			"legendary": false,
@@ -1868,7 +1890,9 @@
 				{
 					"evolution": "Nidorina",
 					"evolution_id": 30,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 779
 				}
 			],
 			"legendary": false,
@@ -1931,7 +1955,9 @@
 				{
 					"evolution": "Nidoqueen",
 					"evolution_id": 31,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 782
 				}
 			],
 			"legendary": false,
@@ -2042,7 +2068,9 @@
 				{
 					"evolution": "Nidorino",
 					"evolution_id": 33,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 785
 				}
 			],
 			"legendary": false,
@@ -2105,7 +2133,9 @@
 				{
 					"evolution": "Nidoking",
 					"evolution_id": 34,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 788
 				}
 			],
 			"legendary": false,
@@ -2356,7 +2386,9 @@
 				{
 					"evolution": "Ninetales",
 					"evolution_id": 38,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 57
 				}
 			],
 			"legendary": false,
@@ -2614,7 +2646,9 @@
 				{
 					"evolution": "Golbat",
 					"evolution_id": 42,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 160
 				}
 			],
 			"legendary": false,
@@ -2678,7 +2712,9 @@
 				{
 					"evolution": "Crobat",
 					"evolution_id": 169,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 202
 				}
 			],
 			"legendary": false,
@@ -2741,7 +2777,9 @@
 				{
 					"evolution": "Gloom",
 					"evolution_id": 44,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 268
 				}
 			],
 			"legendary": false,
@@ -2807,13 +2845,17 @@
 				{
 					"evolution": "Vileplume",
 					"evolution_id": 45,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 271
 				},
 				{
 					"evolution": "Bellossom",
 					"evolution_id": 182,
 					"candy_cost": 100,
-					"evolution_item": "Sun Stone"
+					"evolution_item": "Sun Stone",
+					"form": "Normal",
+					"form_id": 274
 				}
 			],
 			"legendary": false,
@@ -3048,7 +3090,9 @@
 				{
 					"evolution": "Venomoth",
 					"evolution_id": 49,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 262
 				}
 			],
 			"legendary": false,
@@ -3184,7 +3228,9 @@
 				{
 					"evolution": "Dugtrio",
 					"evolution_id": 51,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 61
 				}
 			],
 			"legendary": false,
@@ -3358,7 +3404,9 @@
 				{
 					"evolution": "Persian",
 					"evolution_id": 53,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 65
 				}
 			],
 			"legendary": false,
@@ -3491,7 +3539,9 @@
 				{
 					"evolution": "Golduck",
 					"evolution_id": 55,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 289
 				}
 			],
 			"legendary": false,
@@ -3724,7 +3774,9 @@
 				{
 					"evolution": "Arcanine",
 					"evolution_id": 59,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 283
 				}
 			],
 			"legendary": false,
@@ -3841,7 +3893,9 @@
 				{
 					"evolution": "Poliwhirl",
 					"evolution_id": 61,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 238
 				}
 			],
 			"legendary": false,
@@ -3906,13 +3960,17 @@
 				{
 					"evolution": "Poliwrath",
 					"evolution_id": 62,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 241
 				},
 				{
 					"evolution": "Politoed",
 					"evolution_id": 186,
 					"candy_cost": 100,
-					"evolution_item": "Kings Rock"
+					"evolution_item": "Kings Rock",
+					"form": "Normal",
+					"form_id": 244
 				}
 			],
 			"legendary": false,
@@ -4030,7 +4088,9 @@
 				{
 					"evolution": "Kadabra",
 					"evolution_id": 64,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 307
 				}
 			],
 			"legendary": false,
@@ -4093,7 +4153,9 @@
 				{
 					"evolution": "Alakazam",
 					"evolution_id": 65,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 310
 				}
 			],
 			"legendary": false,
@@ -4209,7 +4271,9 @@
 				{
 					"evolution": "Machoke",
 					"evolution_id": 67,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 812
 				}
 			],
 			"legendary": false,
@@ -4272,7 +4336,9 @@
 				{
 					"evolution": "Machamp",
 					"evolution_id": 68,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 815
 				}
 			],
 			"legendary": false,
@@ -4389,7 +4455,9 @@
 				{
 					"evolution": "Weepinbell",
 					"evolution_id": 70,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 667
 				}
 			],
 			"legendary": false,
@@ -4453,7 +4521,9 @@
 				{
 					"evolution": "Victreebel",
 					"evolution_id": 71,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 670
 				}
 			],
 			"legendary": false,
@@ -4710,7 +4780,9 @@
 				{
 					"evolution": "Graveler",
 					"evolution_id": 75,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 69
 				}
 			],
 			"legendary": false,
@@ -4794,7 +4866,9 @@
 				{
 					"evolution": "Golem",
 					"evolution_id": 76,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 71
 				}
 			],
 			"legendary": false,
@@ -4951,7 +5025,9 @@
 				{
 					"evolution": "Rapidash",
 					"evolution_id": 78,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 1014
 				}
 			],
 			"legendary": false,
@@ -5094,13 +5170,17 @@
 				{
 					"evolution": "Slowbro",
 					"evolution_id": 80,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 1020
 				},
 				{
 					"evolution": "Slowking",
 					"evolution_id": 199,
 					"candy_cost": 50,
-					"evolution_item": "Kings Rock"
+					"evolution_item": "Kings Rock",
+					"form": "Normal",
+					"form_id": 1238
 				}
 			],
 			"legendary": false,
@@ -5222,7 +5302,9 @@
 				{
 					"evolution": "Magneton",
 					"evolution_id": 82,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 658
 				}
 			],
 			"legendary": false,
@@ -5679,7 +5761,9 @@
 				{
 					"evolution": "Muk",
 					"evolution_id": 89,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 75
 				}
 			],
 			"legendary": false,
@@ -5818,7 +5902,9 @@
 				{
 					"evolution": "Cloyster",
 					"evolution_id": 91,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 879
 				}
 			],
 			"legendary": false,
@@ -6131,7 +6217,9 @@
 					"evolution": "Steelix",
 					"evolution_id": 208,
 					"candy_cost": 50,
-					"evolution_item": "Metal Coat"
+					"evolution_item": "Metal Coat",
+					"form": "Normal",
+					"form_id": 905
 				}
 			],
 			"legendary": false,
@@ -6194,7 +6282,9 @@
 				{
 					"evolution": "Hypno",
 					"evolution_id": 97,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 217
 				}
 			],
 			"legendary": false,
@@ -6313,7 +6403,9 @@
 				{
 					"evolution": "Kingler",
 					"evolution_id": 99,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 873
 				}
 			],
 			"legendary": false,
@@ -6545,7 +6637,9 @@
 				{
 					"evolution": "Exeggutor",
 					"evolution_id": 103,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 77
 				}
 			],
 			"legendary": false,
@@ -6686,7 +6780,9 @@
 				{
 					"evolution": "Marowak",
 					"evolution_id": 105,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 79
 				}
 			],
 			"legendary": false,
@@ -6992,7 +7088,9 @@
 				{
 					"evolution": "Weezing",
 					"evolution_id": 110,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 706
 				}
 			],
 			"legendary": false,
@@ -7129,7 +7227,9 @@
 				{
 					"evolution": "Rhydon",
 					"evolution_id": 112,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 849
 				}
 			],
 			"legendary": false,
@@ -7194,7 +7294,9 @@
 					"evolution": "Rhyperior",
 					"evolution_id": 464,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 852
 				}
 			],
 			"legendary": false,
@@ -7749,9 +7851,30 @@
 			"default_form": "Normal"
 		},
 		"122": {
-			"name": "",
+			"name": "Mr Mime",
 			"pokedex_id": 122,
-			"forms": {},
+			"forms": {
+				"1080": {
+					"form": "Normal",
+					"form_id": 1080,
+					"proto": "MR_MIME_NORMAL"
+				},
+				"1081": {
+					"form": "Shadow",
+					"form_id": 1081,
+					"proto": "MR_MIME_SHADOW"
+				},
+				"1082": {
+					"form": "Purified",
+					"form_id": 1082,
+					"proto": "MR_MIME_PURIFIED"
+				},
+				"2339": {
+					"form": "Galarian",
+					"form_id": 2339,
+					"proto": "MR_MIME_GALARIAN"
+				}
+			},
 			"attack": 192,
 			"defense": 205,
 			"stamina": 120,
@@ -7781,7 +7904,9 @@
 			"types": [
 				"Psychic",
 				"Fairy"
-			]
+			],
+			"default_form_id": "1080",
+			"default_form": "Normal"
 		},
 		"123": {
 			"name": "Scyther",
@@ -7830,7 +7955,9 @@
 					"evolution": "Scizor",
 					"evolution_id": 212,
 					"candy_cost": 50,
-					"evolution_item": "Metal Coat"
+					"evolution_item": "Metal Coat",
+					"form": "Normal",
+					"form_id": 250
 				}
 			],
 			"legendary": false,
@@ -7948,7 +8075,9 @@
 					"evolution": "Electivire",
 					"evolution_id": 466,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 643
 				}
 			],
 			"legendary": false,
@@ -8011,7 +8140,9 @@
 					"evolution": "Magmortar",
 					"evolution_id": 467,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 637
 				}
 			],
 			"legendary": false,
@@ -8176,7 +8307,9 @@
 				{
 					"evolution": "Gyarados",
 					"evolution_id": 130,
-					"candy_cost": 400
+					"candy_cost": 400,
+					"form": "Normal",
+					"form_id": 256
 				}
 			],
 			"legendary": false,
@@ -8662,7 +8795,9 @@
 					"evolution": "Porygon2",
 					"evolution_id": 233,
 					"candy_cost": 25,
-					"evolution_item": "Up Grade"
+					"evolution_item": "Up Grade",
+					"form": "Normal",
+					"form_id": 680
 				}
 			],
 			"legendary": false,
@@ -8724,7 +8859,9 @@
 				{
 					"evolution": "Omastar",
 					"evolution_id": 139,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 743
 				}
 			],
 			"legendary": false,
@@ -8841,7 +8978,9 @@
 				{
 					"evolution": "Kabutops",
 					"evolution_id": 141,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 1107
 				}
 			],
 			"legendary": false,
@@ -9230,7 +9369,9 @@
 				{
 					"evolution": "Dragonair",
 					"evolution_id": 148,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 193
 				}
 			],
 			"legendary": false,
@@ -9293,7 +9434,9 @@
 				{
 					"evolution": "Dragonite",
 					"evolution_id": 149,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 196
 				}
 			],
 			"legendary": false,
@@ -11172,7 +11315,9 @@
 				{
 					"evolution": "Flaaffy",
 					"evolution_id": 180,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 649
 				}
 			],
 			"legendary": false,
@@ -11235,7 +11380,9 @@
 				{
 					"evolution": "Ampharos",
 					"evolution_id": 181,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 652
 				}
 			],
 			"legendary": false,
@@ -11626,7 +11773,9 @@
 				{
 					"evolution": "Skiploom",
 					"evolution_id": 188,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 1208
 				}
 			],
 			"legendary": false,
@@ -11690,7 +11839,9 @@
 				{
 					"evolution": "Jumpluff",
 					"evolution_id": 189,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 1211
 				}
 			],
 			"legendary": false,
@@ -11809,7 +11960,9 @@
 					"evolution": "Ambipom",
 					"evolution_id": 424,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 1742
 				}
 			],
 			"legendary": false,
@@ -12273,7 +12426,9 @@
 					"evolution": "Honchkrow",
 					"evolution_id": 430,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 858
 				}
 			],
 			"legendary": false,
@@ -12735,7 +12890,9 @@
 				{
 					"evolution": "Forretress",
 					"evolution_id": 205,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 1247
 				}
 			],
 			"legendary": false,
@@ -12906,7 +13063,9 @@
 					"evolution": "Gliscor",
 					"evolution_id": 472,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 806
 				}
 			],
 			"legendary": false,
@@ -13354,7 +13513,9 @@
 					"evolution": "Weavile",
 					"evolution_id": 461,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 800
 				}
 			],
 			"legendary": false,
@@ -13417,7 +13578,9 @@
 				{
 					"evolution": "Ursaring",
 					"evolution_id": 217,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 1268
 				}
 			],
 			"legendary": false,
@@ -14112,7 +14275,9 @@
 				{
 					"evolution": "Houndoom",
 					"evolution_id": 229,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 232
 				}
 			],
 			"legendary": false,
@@ -14403,8 +14568,11 @@
 			"evolutions": [
 				{
 					"evolution": "Porygon Z",
+					"evolution_id": 474,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 683
 				}
 			],
 			"legendary": false,
@@ -15141,7 +15309,9 @@
 				{
 					"evolution": "Pupitar",
 					"evolution_id": 247,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 316
 				}
 			],
 			"legendary": false,
@@ -15205,7 +15375,9 @@
 				{
 					"evolution": "Tyranitar",
 					"evolution_id": 248,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 319
 				}
 			],
 			"legendary": false,
@@ -15329,9 +15501,25 @@
 			"default_form": "Normal"
 		},
 		"250": {
-			"name": "",
+			"name": "Ho Oh",
 			"pokedex_id": 250,
-			"forms": {},
+			"forms": {
+				"1343": {
+					"form": "Normal",
+					"form_id": 1343,
+					"proto": "HO_OH_NORMAL"
+				},
+				"1344": {
+					"form": "Shadow",
+					"form_id": 1344,
+					"proto": "HO_OH_SHADOW"
+				},
+				"1345": {
+					"form": "Purified",
+					"form_id": 1345,
+					"proto": "HO_OH_PURIFIED"
+				}
+			},
 			"attack": 239,
 			"defense": 244,
 			"stamina": 214,
@@ -15361,7 +15549,9 @@
 			"types": [
 				"Fire",
 				"Flying"
-			]
+			],
+			"default_form_id": "1343",
+			"default_form": "Normal"
 		},
 		"251": {
 			"name": "Celebi",
@@ -15817,7 +16007,9 @@
 				{
 					"evolution": "Marshtomp",
 					"evolution_id": 259,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 208
 				}
 			],
 			"legendary": false,
@@ -15879,7 +16071,9 @@
 				{
 					"evolution": "Swampert",
 					"evolution_id": 260,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 211
 				}
 			],
 			"legendary": false,
@@ -16130,7 +16324,9 @@
 				{
 					"evolution": "Linoone",
 					"evolution_id": 264,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 947
 				}
 			],
 			"legendary": false,
@@ -16740,7 +16936,9 @@
 				{
 					"evolution": "Nuzleaf",
 					"evolution_id": 274,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 628
 				}
 			],
 			"legendary": false,
@@ -16802,7 +17000,9 @@
 				{
 					"evolution": "Shiftry",
 					"evolution_id": 275,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 631
 				}
 			],
 			"legendary": false,
@@ -17151,7 +17351,9 @@
 				{
 					"evolution": "Kirlia",
 					"evolution_id": 281,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 295
 				}
 			],
 			"legendary": false,
@@ -17218,12 +17420,16 @@
 					"evolution_id": 475,
 					"candy_cost": 100,
 					"evolution_item": "Gen4 Evolution Stone",
-					"gender_requirement": "male"
+					"gender_requirement": "male",
+					"form": "Normal",
+					"form_id": 301
 				},
 				{
 					"evolution": "Gardevoir",
 					"evolution_id": 282,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 298
 				}
 			],
 			"legendary": false,
@@ -19356,7 +19562,9 @@
 				{
 					"evolution": "Sharpedo",
 					"evolution_id": 319,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 737
 				}
 			],
 			"legendary": false,
@@ -20006,7 +20214,9 @@
 				{
 					"evolution": "Vibrava",
 					"evolution_id": 329,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 749
 				}
 			],
 			"legendary": false,
@@ -20068,7 +20278,9 @@
 				{
 					"evolution": "Flygon",
 					"evolution_id": 330,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 752
 				}
 			],
 			"legendary": false,
@@ -20184,7 +20396,9 @@
 				{
 					"evolution": "Cacturne",
 					"evolution_id": 332,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 613
 				}
 			],
 			"legendary": false,
@@ -21472,7 +21686,9 @@
 				{
 					"evolution": "Banette",
 					"evolution_id": 354,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 911
 				}
 			],
 			"legendary": false,
@@ -21586,7 +21802,9 @@
 				{
 					"evolution": "Dusclops",
 					"evolution_id": 356,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 917
 				}
 			],
 			"legendary": false,
@@ -21649,7 +21867,9 @@
 					"evolution": "Dusknoir",
 					"evolution_id": 477,
 					"candy_cost": 100,
-					"evolution_item": "Gen4 Evolution Stone"
+					"evolution_item": "Gen4 Evolution Stone",
+					"form": "Normal",
+					"form_id": 920
 				}
 			],
 			"legendary": false,
@@ -22508,7 +22728,9 @@
 				{
 					"evolution": "Shelgon",
 					"evolution_id": 372,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 758
 				}
 			],
 			"legendary": false,
@@ -22570,7 +22792,9 @@
 				{
 					"evolution": "Salamence",
 					"evolution_id": 373,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 761
 				}
 			],
 			"legendary": false,
@@ -22746,7 +22970,9 @@
 				{
 					"evolution": "Metagross",
 					"evolution_id": 376,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 770
 				}
 			],
 			"legendary": false,
@@ -23421,7 +23647,9 @@
 				{
 					"evolution": "Grotle",
 					"evolution_id": 388,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 691
 				}
 			],
 			"legendary": false,
@@ -23484,7 +23712,9 @@
 				{
 					"evolution": "Torterra",
 					"evolution_id": 389,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 694
 				}
 			],
 			"legendary": false,
@@ -23602,7 +23832,9 @@
 				{
 					"evolution": "Monferno",
 					"evolution_id": 391,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 821
 				}
 			],
 			"legendary": false,
@@ -23665,7 +23897,9 @@
 				{
 					"evolution": "Infernape",
 					"evolution_id": 392,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 824
 				}
 			],
 			"legendary": false,
@@ -24924,7 +25158,9 @@
 					"evolution": "Wormadam",
 					"evolution_id": 413,
 					"candy_cost": 50,
-					"gender_requirement": "female"
+					"gender_requirement": "female",
+					"form": "Plant",
+					"form_id": 87
 				},
 				{
 					"evolution": "Mothim",
@@ -25443,12 +25679,16 @@
 				{
 					"evolution": "Cherrim",
 					"evolution_id": 421,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Overcast",
+					"form_id": 94
 				},
 				{
 					"evolution": "Cherrim",
 					"evolution_id": 421,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Sunny",
+					"form_id": 95
 				}
 			],
 			"legendary": false,
@@ -25590,7 +25830,9 @@
 				{
 					"evolution": "Gastrodon",
 					"evolution_id": 423,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Sea",
+					"form_id": 99
 				}
 			],
 			"legendary": false,
@@ -26290,7 +26532,9 @@
 				{
 					"evolution": "Skuntank",
 					"evolution_id": 435,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 794
 				}
 			],
 			"legendary": false,
@@ -26546,9 +26790,25 @@
 			"default_form": "Normal"
 		},
 		"439": {
-			"name": "",
+			"name": "Mime Jr",
 			"pokedex_id": 439,
-			"forms": {},
+			"forms": {
+				"1775": {
+					"form": "Normal",
+					"form_id": 1775,
+					"proto": "MIME_JR_NORMAL"
+				},
+				"1776": {
+					"form": "Shadow",
+					"form_id": 1776,
+					"proto": "MIME_JR_SHADOW"
+				},
+				"1777": {
+					"form": "Purified",
+					"form_id": 1777,
+					"proto": "MIME_JR_PURIFIED"
+				}
+			},
 			"attack": 125,
 			"defense": 142,
 			"stamina": 85,
@@ -26574,6 +26834,7 @@
 			"evolutions": [
 				{
 					"evolution": "Mr Mime",
+					"evolution_id": 122,
 					"candy_cost": 50
 				}
 			],
@@ -26588,7 +26849,9 @@
 			"types": [
 				"Psychic",
 				"Fairy"
-			]
+			],
+			"default_form_id": "1775",
+			"default_form": "Normal"
 		},
 		"440": {
 			"name": "Happiny",
@@ -26805,7 +27068,9 @@
 				{
 					"evolution": "Gabite",
 					"evolution_id": 444,
-					"candy_cost": 25
+					"candy_cost": 25,
+					"form": "Normal",
+					"form_id": 864
 				}
 			],
 			"legendary": false,
@@ -26869,7 +27134,9 @@
 				{
 					"evolution": "Garchomp",
 					"evolution_id": 445,
-					"candy_cost": 100
+					"candy_cost": 100,
+					"form": "Normal",
+					"form_id": 867
 				}
 			],
 			"legendary": false,
@@ -27169,7 +27436,9 @@
 				{
 					"evolution": "Hippowdon",
 					"evolution_id": 450,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 891
 				}
 			],
 			"legendary": false,
@@ -27760,7 +28029,9 @@
 				{
 					"evolution": "Abomasnow",
 					"evolution_id": 460,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 935
 				}
 			],
 			"legendary": false,
@@ -28542,9 +28813,25 @@
 			"default_form": "Normal"
 		},
 		"474": {
-			"name": "",
+			"name": "Porygon Z",
 			"pokedex_id": 474,
-			"forms": {},
+			"forms": {
+				"683": {
+					"form": "Normal",
+					"form_id": 683,
+					"proto": "PORYGON_Z_NORMAL"
+				},
+				"684": {
+					"form": "Shadow",
+					"form_id": 684,
+					"proto": "PORYGON_Z_SHADOW"
+				},
+				"685": {
+					"form": "Purified",
+					"form_id": 685,
+					"proto": "PORYGON_Z_PURIFIED"
+				}
+			},
 			"attack": 264,
 			"defense": 150,
 			"stamina": 198,
@@ -28576,7 +28863,9 @@
 			"gym_defender_eligible": true,
 			"types": [
 				"Normal"
-			]
+			],
+			"default_form_id": "683",
+			"default_form": "Normal"
 		},
 		"475": {
 			"name": "Gallade",
@@ -33409,7 +33698,9 @@
 				{
 					"evolution": "Darmanitan",
 					"evolution_id": 555,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Standard",
+					"form_id": 138
 				}
 			],
 			"legendary": false,
@@ -33898,7 +34189,9 @@
 				{
 					"evolution": "Cofagrigus",
 					"evolution_id": 563,
-					"candy_cost": 50
+					"candy_cost": 50,
+					"form": "Normal",
+					"form_id": 2087
 				}
 			],
 			"legendary": false,
@@ -41128,7 +41421,7 @@
 			"name": "Aeroblast",
 			"proto": "COMBAT_V0335_MOVE_AEROBLAST",
 			"type": "Flying",
-			"power": 180
+			"power": 170
 		},
 		"336": {
 			"name": "Techno Blast Normal"
