@@ -23,28 +23,27 @@ module.exports = async (WDR, Functions, Message, Member, gym_name_array, gym_det
 
     WDR.wdrDB.query(`
         INSERT INTO
-            wdr_subscriptions (
-            user_id,
-            user_name,
-            guild_id,
-            guild_name,
-            bot,
-            status,
-            geotype,
-            areas,
-            location,
-            pokemon_id,
-            form,
-            min_lvl,
-            max_lvl,
-            min_iv,
-            max_iv,
-            size,
-            gender,
-            generation
+            wdr_raid_subs (
+                user_id,
+                user_name,
+                guild_id,
+                guild_name,
+                bot,
+                status,
+                geotype,
+                areas,
+                location,
+                pokemon_id,
+                form,
+                min_lvl,
+                max_lvl,
+                min_iv,
+                max_iv,
+                size,
+                gender,
+                generation
             )
-        VALUES
-        (
+        VALUES (
             '${Message.author.id}',
             '${Member.db.user_name}',
             '${Message.guild.id}',

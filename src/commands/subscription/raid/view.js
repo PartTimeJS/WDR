@@ -3,7 +3,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         SELECT
             *
         FROM
-            wdr_subscriptions
+            wdr_raid_subs
         WHERE
             user_id = '${Member.id}'
                 AND
