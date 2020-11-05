@@ -24,7 +24,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
 
     WDR.wdrDB.query(`
         INSERT INTO
-            wdr_pokemon_subss (
+            wdr_pokemon_subs (
                 user_id,
                 user_name,
                 guild_id,
