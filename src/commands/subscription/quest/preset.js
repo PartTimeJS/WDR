@@ -22,48 +22,48 @@ module.exports = async (WDR, Functions, Message, Member) => {
     preset.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', Member, Message, undefined, 'Type \'Yes\' or \'No\'. Subscription will be saved.', preset);
 
     WDR.wdrDB.query(`
-      INSERT INTO
-        wdr_subscriptions (
-          user_id,
-          user_name,
-          guild_id,
-          guild_name,
-          bot,
-          status,
-          geotype,
-          areas,
-          location,
-          pokemon_id,
-          form,
-          min_lvl,
-          max_lvl,
-          min_iv,
-          max_iv,
-          size,
-          gender,
-          generation
+        INSERT INTO
+            wdr_quest_subs (
+                user_id,
+                user_name,
+                guild_id,
+                guild_name,
+                bot,
+                status,
+                geotype,
+                areas,
+                location,
+                pokemon_id,
+                form,
+                min_lvl,
+                max_lvl,
+                min_iv,
+                max_iv,
+                size,
+                gender,
+                generation
+            )
+        VALUES (
+            '${Message.author.id}',
+            '${Member.db.user_name}',
+            '${Message.guild.id}',
+            '${Member.db.guild_name}',
+            ${Member.db.bot},
+            ${Member.db.pokemon_status},
+            '${preset.geotype}',
+            '${preset.areas}',
+            '${JSON.stringify(Member.db.location)}',
+            ${preset.id},
+            ${preset.form},
+            ${preset.min_lvl},
+            ${preset.max_lvl},
+            ${preset.min_iv},
+            ${preset.max_iv},
+            '${preset.size}',
+            ${preset.gender},
+            ${preset.gen}
         )
-    VALUES
-      (
-        '${Message.author.id}',
-        '${Member.db.user_name}',
-        '${Message.guild.id}',
-        '${Member.db.guild_name}',
-        ${Member.db.bot},
-        ${Member.db.pokemon_status},
-        '${preset.geotype}',
-        '${preset.areas}',
-        '${JSON.stringify(Member.db.location)}',
-        ${preset.id},
-        ${preset.form},
-        ${preset.min_lvl},
-        ${preset.max_lvl},
-        ${preset.min_iv},
-        ${preset.max_iv},
-        '${preset.size}',
-        ${preset.gender},
-        ${preset.gen}
-      )`,
+    ;`,
     async function(error) {
         if (error) {
             if (error.toString().indexOf('Duplicate entry') >= 0) {

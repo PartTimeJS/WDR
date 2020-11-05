@@ -3,7 +3,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         SELECT
             *
         FROM
-            wdr_subscriptions
+            wdr_quest_subs
         WHERE
             user_id = '${Member.id}'
                 AND

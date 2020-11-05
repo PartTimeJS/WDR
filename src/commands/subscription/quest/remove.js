@@ -1,13 +1,13 @@
 module.exports = (WDR, Functions, Message, Member) => {
     WDR.wdrDB.query(`
-      SELECT
-        *
-      FROM
-        wdr_subscriptions
-      WHERE
-        user_id = '${Member.id}'
-          AND
-          guild_id = '${Message.guild.id}'
+        SELECT
+            *
+        FROM
+            wdr_quest_subs
+        WHERE
+            user_id = '${Member.id}'
+                AND
+            guild_id = '${Message.guild.id}'
     ;`,
     async function(error, subscriptions) {
 
@@ -51,13 +51,13 @@ module.exports = (WDR, Functions, Message, Member) => {
                 let remove = subscriptions[remove_id];
 
                 let query = `
-            DELETE FROM
-                wdr_subscriptions
-            WHERE
-                user_id = '${Member.id}'
-                  AND
-                reward = '${remove.reward}'
-            ;`;
+                    DELETE FROM
+                        wdr_quest_subs
+                    WHERE
+                        user_id = '${Member.id}'
+                            AND
+                        reward = '${remove.reward}'
+                ;`;
             
                 WDR.wdrDB.query(
                     query,

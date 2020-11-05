@@ -1,13 +1,13 @@
 module.exports = (WDR, Functions, Message, Member) => {
 
     WDR.wdrDB.query(`
-            SELECT
-                *
-            FROM
-                wdr_subscriptions
-            WHERE
-                user_id = '${Member.id}'
-                    AND
+        SELECT
+            *
+        FROM
+            wdr_quest_subs
+        WHERE
+            user_id = '${Member.id}'
+                AND
             guild_id = '${Message.guild.id}'
      ;`,
     async function (error, subs) {
@@ -53,32 +53,32 @@ module.exports = (WDR, Functions, Message, Member) => {
             } else {
 
                 let query = `
-            INSERT INTO
-              wdr_subscriptions (
-                  user_id,
-                  user_name,
-                  guild_id,
-                  guild_name,
-                  bot,
-                  status,
-                  geotype,
-                  areas,
-                  location,
-                  reward
-                )
-            VALUES 
-              (
-                '${Member.id}',
-                '${Member.db.user_name}',
-                '${Message.guild.id}',
-                '${Member.db.guild_name}',
-                ${Member.db.bot},
-                ${Member.db.quest_status},
-                '${create.geotype}',
-                '${Member.db.areas}',
-                '${JSON.stringify(Member.db.location)}',
-                '${create.reward}'
-              );`;
+                    INSERT INTO
+                        wdr_quest_subs (
+                            user_id,
+                            user_name,
+                            guild_id,
+                            guild_name,
+                            bot,
+                            status,
+                            geotype,
+                            areas,
+                            location,
+                            reward
+                        )
+                    VALUES (
+                        '${Member.id}',
+                        '${Member.db.user_name}',
+                        '${Message.guild.id}',
+                        '${Member.db.guild_name}',
+                        ${Member.db.bot},
+                        ${Member.db.quest_status},
+                        '${create.geotype}',
+                        '${Member.db.areas}',
+                        '${JSON.stringify(Member.db.location)}',
+                        '${create.reward}'
+                    )
+                ;`;
 
                 WDR.wdrDB.query(
                     query,
