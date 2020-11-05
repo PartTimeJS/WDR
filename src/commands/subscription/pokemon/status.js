@@ -7,7 +7,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
         WHERE
             user_id = '${Member.id}'
                 AND
-            guid_id = '${Message.guild.id}'
+            guild_id = '${Message.guild.id}'
     ;`,
     async function (error) {
         if(error){ 
