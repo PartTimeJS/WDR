@@ -58,37 +58,26 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                 }
 
                 if (active === true) {
-                    let subs_active = `
-            UPDATE
-                wdr_subscriptions
-            SET
-                geotype = 'location',
-                location = '${JSON.stringify(create)}'
-            WHERE
-                user_id = ${Member.id}
-                  AND
-                geotype != 'city'
-            ;`;
-                    WDR.wdrDB.query(
-                        subs_active,
-                        function(error) {
-                            if (error) {
-                                WDR.Console.error(WDR, '[cmd/sub/loc/create.js] Error Updating wdr_subscriptions Active Location.', [update, error]);
-                                return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
-                                    timeout: 10000
-                                }));
-                            }
-                        }
-                    );
+                    
+                    WDR.UpdateAllSubTables(WDR, `
+                        UPDATE %TABLE% SET
+                            geotype = 'location',
+                            location = '${JSON.stringify(create)}'
+                        WHERE
+                            user_id = ${Member.id}
+                                AND
+                            geotype != 'city'
+                    ;`);
+
                     let user_active = `
-            UPDATE
-                wdr_users
-            SET
-                geotype = 'location',
-                location = '${JSON.stringify(create)}'
-            WHERE
-                user_id = ${Member.id}
-          ;`;
+                        UPDATE
+                            wdr_users
+                        SET
+                            geotype = 'location',
+                            location = '${JSON.stringify(create)}'
+                        WHERE
+                            user_id = ${Member.id}
+                    ;`;
                     WDR.wdrDB.query(
                         user_active,
                         function(error) {

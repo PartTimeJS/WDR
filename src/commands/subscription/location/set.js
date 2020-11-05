@@ -45,30 +45,18 @@ module.exports = async (WDR, Functions, Message, Member) => {
                     let set = await Functions.DetailCollect(WDR, Functions, 'Set', Member, Message, user.locations, 'Please use one word to describe this location without punctuation.', null);
                     let active_location = locations[set];
 
-                    console.log(active_location);
-
-                    let sub_loc = `
+                    
+                    WDR.UpdateAllSubTables(WDR, `
                         UPDATE
-                            wdr_subscriptions
+                            %TABLE%
                         SET
                             geotype = 'location',
                             location = '${JSON.stringify(active_location)}'
                         WHERE
                             user_id = ${Member.id}
                             AND
-                            geotype != 'city';
-                    ;`;
-                    WDR.wdrDB.query(
-                        sub_loc,
-                        function(error) {
-                            if (error) {
-                                WDR.Console.error(WDR, '[subs/loc/set.js] Error Updating User Location.', [sub_loc, error]);
-                                return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
-                                    timeout: 10000
-                                }));
-                            }
-                        }
-                    );
+                            geotype != 'city'
+                    ;`);
 
                     let user_loc = `
                         UPDATE
