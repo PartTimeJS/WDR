@@ -42,8 +42,6 @@ module.exports = async (WDR, message) => {
 
                 message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
     
-                console.log(message.discord);
-    
                 //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
                 message.delete();
                 //}
