@@ -29,13 +29,15 @@ module.exports = (WDR, Message) => {
                 guild_id = ${Message.author.user_guilds[0]}
         ;`,
         async function(error, user) {
-            if (!user || !user[0]) {
+            
+            if (!user || user.length == 0) {
                 return Message.reply('Before you can create and modify subscriptions via DM, you must first use the subsciption channel in your scanner discord.');
             } else {
                 Message.author.db = user[0];
             }
 
-            let command = Message.content.split(' ')[0].slice(1);
+            let command = message.content.split(' ')[0].slice(1);
+
             switch (command) {
                 case 'p':
                     command = 'pokemon';
@@ -46,14 +48,33 @@ module.exports = (WDR, Message) => {
                 case 'q':
                     command = 'quest';
                     break;
+                case 'l':
+                    command = 'location';
+                    break;
+                case 'a':
+                    command = 'area';
+                    break;
             }
-
-            let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js');
-            if (Cmd) {
-                Cmd(WDR, Message);
+    
+            if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js')) {
+                let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js');
+                if (Cmd) {
+                    Cmd(WDR, message);
+                }
+            } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js')) {
+                let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js');
+                if (Cmd) {
+                    Cmd(WDR, message);
+                }
+            } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js')) {
+                let Cmd = require(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js');
+                if (Cmd) {
+                    Cmd(WDR, message);
+                }
+            } else {
+                WDR.Console.error(WDR, '[handlers/commands.js] ' + message.content + ' command does not exist.');
             }
-        }
-        );
+        });
     } else if (Message.author.user_guilds.length > 1) {
 
         let list = '';
@@ -117,7 +138,8 @@ module.exports = (WDR, Message) => {
                         }
                         Message.author.db = user[0];
 
-                        let command = Message.content.split(' ')[0].slice(1);
+                        let command = message.content.split(' ')[0].slice(1);
+
                         switch (command) {
                             case 'p':
                                 command = 'pokemon';
@@ -128,11 +150,32 @@ module.exports = (WDR, Message) => {
                             case 'q':
                                 command = 'quest';
                                 break;
+                            case 'l':
+                                command = 'location';
+                                break;
+                            case 'a':
+                                command = 'area';
+                                break;
                         }
-
-                        let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js');
-                        if (Cmd) {
-                            Cmd(WDR, Message);
+                
+                        //try {
+                        if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js')) {
+                            let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js');
+                            if (Cmd) {
+                                Cmd(WDR, message);
+                            }
+                        } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js')) {
+                            let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js');
+                            if (Cmd) {
+                                Cmd(WDR, message);
+                            }
+                        } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js')) {
+                            let Cmd = require(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js');
+                            if (Cmd) {
+                                Cmd(WDR, message);
+                            }
+                        } else {
+                            WDR.Console.error(WDR, '[handlers/commands.js] ' + message.content + ' command does not exist.');
                         }
                     }
                 );

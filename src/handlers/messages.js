@@ -34,6 +34,9 @@ module.exports = async (WDR, message) => {
         return DM_Command(WDR, message);
 
     } else {
+
+        message.delete();
+        
         for(let d = 0, dlen = WDR.Discords.length; d <dlen; d++){
 
             if (message.guild.id === WDR.Discords[d].id) {
@@ -43,7 +46,7 @@ module.exports = async (WDR, message) => {
                 message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
     
                 //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
-                message.delete();
+                
                 //}
     
                 if(message.discord.command_channels.includes(message.channel.id)){
