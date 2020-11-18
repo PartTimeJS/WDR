@@ -166,6 +166,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     case type.indexOf('Quantity') >= 0:
                         if (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) < 5000) {
                             collector.stop(parseInt(CollectedMsg.content));
+                        } else if (CollectedMsg.toLowerCase() === 'all'){
+                            collector.stop(0);
                         } else {
                             CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
                                 timeout: 5000
