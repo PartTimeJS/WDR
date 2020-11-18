@@ -1,15 +1,15 @@
-module.exports = (WDR, Message) => {
+module.exports = (WDR, message) => {
 
-    Message.author.user_guilds = [];
+    message.author.user_guilds = [];
 
     WDR.Discords.forEach(async (server) => {
         let guild = WDR.Bot.guilds.cache.get(server.id);
         if (!guild) {
             WDR.Console.error(WDR, '[handlers/commands.js] Guild ID `' + server.id + '` found in the database that does not match any guilds in the config.');
         } else {
-            let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(Message.author.id);
+            let member = WDR.Bot.guilds.cache.get(server.id).members.cache.get(message.author.id);
             if (member && member.roles.cache.has(server.donor_role)) {
-                Message.author.user_guilds.push({
+                message.author.user_guilds.push({
                     id: guild.id,
                     name: server.name
                 });
@@ -17,23 +17,23 @@ module.exports = (WDR, Message) => {
         }
     });
 
-    if (Message.author.user_guilds.length == 1) {
+    if (message.author.user_guilds.length == 1) {
         WDR.wdrDB.query(`
             SELECT
                 *
             FROM
                 users
             WHERE
-                user_id = ${Message.author.id}
+                user_id = ${message.author.id}
                     AND 
-                guild_id = ${Message.author.user_guilds[0]}
+                guild_id = ${message.author.user_guilds[0]}
         ;`,
         async function(error, user) {
             
             if (!user || user.length == 0) {
-                return Message.reply('Before you can create and modify subscriptions via DM, you must first use the subsciption channel in your scanner discord.');
+                return message.reply('Before you can create and modify subscriptions via DM, you must first use the subsciption channel in your scanner discord.');
             } else {
-                Message.author.db = user[0];
+                message.author.db = user[0];
             }
 
             let command = message.content.split(' ')[0].slice(1);
@@ -75,24 +75,24 @@ module.exports = (WDR, Message) => {
                 WDR.Console.error(WDR, '[handlers/commands.js] ' + message.content + ' command does not exist.');
             }
         });
-    } else if (Message.author.user_guilds.length > 1) {
+    } else if (message.author.user_guilds.length > 1) {
 
         let list = '';
-        Message.author.user_guilds.forEach((guild, i) => {
+        message.author.user_guilds.forEach((guild, i) => {
             list += (i + 1) + ' - ' + guild.name + '\n';
         });
         list = list.slice(0, -1);
 
-        let request_action = new WDR.DiscordJS.MessageEmbed()
-            .setAuthor(Message.author.username, Message.author.displayAvatarURL())
+        let request_action = new WDR.DiscordJS.messageEmbed()
+            .setAuthor(message.author.username, message.author.displayAvatarURL())
             .setTitle('Which Discord would you like to modify Subscriptions for?')
             .setDescription(list)
             .setFooter('Type the number of the discord.');
 
-        Message.channel.send(request_action).catch(console.error).then(BotMsg => {
+        message.channel.send(request_action).catch(console.error).then(BotMsg => {
 
-            const filter = CollectedMsg => CollectedMsg.author.id == Message.author.id;
-            const collector = Message.channel.createMessageCollector(filter, {
+            const filter = CollectedMsg => CollectedMsg.author.id == message.author.id;
+            const collector = message.channel.createmessageCollector(filter, {
                 time: 60000
             });
 
@@ -116,8 +116,8 @@ module.exports = (WDR, Message) => {
 
             collector.on('end', (collected, num) => {
 
-                console.log(Message.author.user_guilds);
-                console.log('num', Message.author.user_guilds[num]);
+                console.log(message.author.user_guilds);
+                console.log('num', message.author.user_guilds[num]);
 
                 BotMsg.delete();
                 let query = `
@@ -126,8 +126,8 @@ module.exports = (WDR, Message) => {
                         FROM
                             wdr_users
                         WHERE
-                            user_id = ${Message.author.id}
-                            AND guild_id = ${Message.author.user_guilds[num].id}
+                            user_id = ${message.author.id}
+                            AND guild_id = ${message.author.user_guilds[num].id}
                     ;`;
                 console.log(query);
                 WDR.wdrDB.query(
@@ -136,7 +136,7 @@ module.exports = (WDR, Message) => {
                         if (error) {
                             WDR.Console.error(WDR, '[src/handlers/commands.js] DM: Error Fetching User From DB', [query, error]);
                         }
-                        Message.author.db = user[0];
+                        message.author.db = user[0];
 
                         let command = message.content.split(' ')[0].slice(1);
 
@@ -182,6 +182,6 @@ module.exports = (WDR, Message) => {
             });
         });
     } else {
-        return Message.reply('I did not find any Discords in which you are a Donor. Please go to your discord\'s subscribe website before modifying subscriptions');
+        return message.reply('I did not find any Discords in which you are a Donor. Please go to your discord\'s subscribe website before modifying subscriptions');
     }
 };
