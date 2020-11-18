@@ -6,7 +6,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         SELECT
             *
         FROM
-            wdr_quest_subs
+            wdr_raid_subs
         WHERE
             user_id = '${Member.id}'
                 AND
@@ -146,7 +146,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
 
                 let query = `
                     INSERT INTO
-                        wdr_quest_subs (
+                        wdr_raid_subs (
                             user_id,
                             user_name,
                             guild_id,
