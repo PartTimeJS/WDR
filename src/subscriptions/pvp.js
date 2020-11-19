@@ -49,28 +49,28 @@ module.exports = async (WDR, sighting) => {
                             status = 1
                         AND (
                             pokemon_id  = 0
-                            OR
+                                OR
                             pokemon_id = ${sighting.pokemon_id}
-                            OR
+                                OR
                             pokemon_id = ${potential.pokemon_id}
                         )
                         AND (
                             pokemon_type  = '0'
-                            OR
+                                OR
                             pokemon_type = '${potential.typing[0]}'
-                            OR
+                                OR
                             pokemon_type = '${potential.typing[1]}'
                         )
                         AND (
                             form = 0
-                            OR
+                                OR
                             form = ${sighting.form_id}
-                            OR
+                                OR
                             form = ${(potential.form_id ? potential.form_id : '0')}
                         )
                         AND (
                             league = '0'
-                            OR
+                                OR
                             league = '${league}'
                         )
                         AND
@@ -79,9 +79,9 @@ module.exports = async (WDR, sighting) => {
                             min_lvl <= ${sighting.pokemon_level}
                         AND (
                             generation = 0
-                            OR
+                                OR
                             generation = ${sighting.gen}
-                            OR
+                                OR
                             generation = ${potential.gen}
                         )
                     ;`;

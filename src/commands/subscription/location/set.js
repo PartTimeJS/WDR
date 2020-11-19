@@ -54,7 +54,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
                             location = '${JSON.stringify(active_location)}'
                         WHERE
                             user_id = ${Member.id}
-                            AND
+                                AND
                             geotype != 'city'
                     ;`);
 

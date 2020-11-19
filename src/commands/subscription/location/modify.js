@@ -62,8 +62,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET location = '${JSON.stringify(modify)}' WHERE user_id = ${Member.id};`);
 
                             WDR.wdrDB.query(`
-                                    UPDATE wdr_users SET location = '${JSON.stringify(modify)}' WHERE user_id = ${Member.id};
-                                `,
+                                UPDATE wdr_users SET location = '${JSON.stringify(modify)}' WHERE user_id = ${Member.id};
+                            `,
                             function (error) {
                                 if (error) {
                                     WDR.Console.error(WDR, '[cmd/sub/loc/modify.js] Error Updating wdr_users Active Location.', [error]);
@@ -71,16 +71,15 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                                         timeout: 10000
                                     }));
                                 }
-                            }
-                            );
+                            });
                         }
 
                         let update = `
-                                                    UPDATE wdr_users SET locations = '${JSON.stringify(user.locations)}'
-                                                    WHERE user_id = $ {
-                                                        Member.id
-                                                    };
-                                                    `;
+                            UPDATE 
+                                wdr_users SET locations = '${JSON.stringify(user.locations)}'
+                            WHERE 
+                                user_id = ${Member.id};
+                        `;
 
                         WDR.wdrDB.query(
                             update,
