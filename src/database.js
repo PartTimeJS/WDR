@@ -50,8 +50,8 @@ const DB = {
             'wdr_pvp_subs',
             'wdr_quest_subs'
         ];
-        subTables.forEach(table => {
-            query = query.replace('%TABLE%', table);
+        for(let t = 0, tlen = subTables.length; t < tlen; t++){
+            query = query.replace('%TABLE%', subTables[t]);
             WDR.wdrDB.query(
                 query,
                 function (error) {
@@ -60,8 +60,10 @@ const DB = {
                     }
                 }
             );
-        });
-        return;
+            if((t + 1) == tlen){
+                return;
+            }
+        }
     },
 
     Load: function(WDR, database) {
