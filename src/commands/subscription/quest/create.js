@@ -30,16 +30,22 @@ module.exports = (WDR, Functions, Message, Member) => {
             let create = {};
 
             create.reward = await Functions.DetailCollect(WDR, Functions, 'Name', Member, Message, null, 'Please type a reward. This can be a pokemon name or item.', create);
-            if (create.reward.type === 'item') {
+            if (create.reward === null) {
+                return;
+            } else if (create.reward.type === 'item') {
                 create.reward = create.reward.item_name;
                 create.quantity = await Functions.DetailCollect(WDR, Functions, 'Quantity', Member, Message, null, 'Respond with a specific quantity or type \'all\'.', create);
-                if (create.quantity > 0) {
+                if (create.quantity === null) {
+                    return;
+                } else if (create.quantity > 0) {
                     create.reward = create.quantity + ' ' + create.reward;
                 }
             }
 
             create.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', Member, Message, null, 'Please respond with \'Yes\' or \'No\'', create);
-            if (create.geotype == 'location') {
+            if (create.geotype === null) {
+                return;
+            } else if (create.geotype == 'location') {
                 create.areas = Member.db.location.name;
             } else if (create.geotype == 'areas') {
                 create.areas = Member.db.areas;
@@ -48,7 +54,9 @@ module.exports = (WDR, Functions, Message, Member) => {
             }
 
             create.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', Member, Message, null, 'Type \'Yes\' or \'No\'. Subscription will be saved.', create);
-            if (create.confirm === false) {
+            if (create.confirm === null) {
+                return;
+            } else if (create.confirm === false) {
                 return Functions.Cancel(WDR, Functions, Message, Member);
             } else {
 
