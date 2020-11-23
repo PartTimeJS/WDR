@@ -141,10 +141,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         if (valid) {
                             collector.stop(valid.name);
                         } else {
-                            console.log(WDR.Master.Items);
                             let item_array = Object.keys(WDR.Master.Items).map(i => WDR.Master.Items[i].name);
                             for (let i = 0, ilen = item_array.length; i < ilen; i++) {
-                                console.log(item_array[i] + ' ' + CollectedMsg.content);
                                 if (item_array[i] && item_array[i].toLowerCase() === CollectedMsg.content.toLowerCase()) {
                                     valid = {
                                         type: 'item',
@@ -166,7 +164,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     case type.indexOf('Quantity') >= 0:
                         if (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) < 5000) {
                             collector.stop(parseInt(CollectedMsg.content));
-                        } else if (CollectedMsg.toLowerCase() === 'all'){
+                        } else if (CollectedMsg.content.toLowerCase() === 'all'){
                             collector.stop(0);
                         } else {
                             CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
