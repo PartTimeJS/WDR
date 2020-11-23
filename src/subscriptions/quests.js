@@ -6,9 +6,11 @@ module.exports = async (WDR, QUEST) => {
     if(QUEST.pokemon_id){
         params = `reward = '${WDR.Master.Pokemon[QUEST.pokemon_id].name}'`;
     } else {
-        params =   `reward = '${QUEST.simple_reward}'
-                        OR
-                    reward = '${QUEST.full_reward}'`;
+        params =   `(
+                        reward = '${QUEST.simple_reward}'
+                            OR
+                        reward = '${QUEST.full_reward}'
+                    )`;
     }
 
     let query = `
@@ -18,10 +20,13 @@ module.exports = async (WDR, QUEST) => {
             wdr_quest_subs
         WHERE
             status = 1
-        AND (
+        AND 
             ${params}
-        );
-    `;
+    ;`;
+
+    if(QUEST.simple_reward.toLowerCase() == 'rare candy'){
+        console.error(query);
+    }
 
     WDR.wdrDB.query(
         query,
@@ -29,6 +34,8 @@ module.exports = async (WDR, QUEST) => {
             if (error) {
                 WDR.Console.error(WDR, '[src/subs/quests.js] Error Querying Subscriptions.', [query, error]);
             } else if (matching && matching.length > 0) {
+
+                console.error('MATCHES FOUND!!!!!!!!!!!!!!!!!', matching);
 
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
