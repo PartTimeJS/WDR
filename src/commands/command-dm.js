@@ -83,7 +83,7 @@ module.exports = (WDR, message) => {
         });
         list = list.slice(0, -1);
 
-        let request_action = new WDR.DiscordJS.messageEmbed()
+        let request_action = new WDR.DiscordJS.MessageEmbed()
             .setAuthor(message.author.username, message.author.displayAvatarURL())
             .setTitle('Which Discord would you like to modify Subscriptions for?')
             .setDescription(list)

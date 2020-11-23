@@ -37,24 +37,24 @@ setTimeout(function() {
 
                 new_database.query(
                     `INSERT IGNORE INTO
-            wdr_users (
-              user_id,
-              user_name,
-              guild_id,
-              guild_name,
-              bot,
-              areas,
-              alert_time
-            )
-            VALUES (
-              ${user.user_id},
-              '${user.user_name.slice(0,-4)}',
-              '${user.discord_id}',
-              'Migrated',
-              ${user.bot},
-              '${user.geofence}',
-              '${user.quest_time}'
-            )`,
+                        wdr_users (
+                            user_id,
+                            user_name,
+                            guild_id,
+                            guild_name,
+                            bot,
+                            areas,
+                            alert_time
+                        )
+                        VALUES (
+                            ${user.user_id},
+                            '${user.user_name.slice(0,-4)}',
+                            '${user.discord_id}',
+                            'Migrated',
+                            ${user.bot},
+                            '${user.geofence}',
+                            '${user.quest_time}'
+                        )`,
                     async function(error) {
                         if (error) {
                             console.error(error);
