@@ -11,22 +11,22 @@ module.exports = async (WDR, RAID) => {
             status = 1
         AND (
             pokemon_id <= 0
-            OR
+                OR
             pokemon_id = ${RAID.pokemon_id}
         )
         AND (
             max_lvl = 0
-            OR
+                OR
             max_lvl >= ${RAID.level}
         )
         AND (
             min_lvl = 0
-            OR
+                OR
             min_lvl <= ${RAID.level}
         )
         AND (
             gym_id = '0'
-            OR
+                OR
             gym_id = '${RAID.gym_id}'
         );
     `;
