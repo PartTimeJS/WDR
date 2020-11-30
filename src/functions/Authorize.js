@@ -29,7 +29,7 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
                             break;
                         }
                     }
-                    if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                    if (foundRole == false && WDR.Config.DEBUG.Authorization == 'ENABLED') {
                         WDR.Console.log(WDR, '[DEBUG] [Authorize.js] User does not have require roles to receive a sub.', 'allowedRoles:', allowedRoles, 'userRoles:', roles);
                     }
                     return resolve(foundRole);
