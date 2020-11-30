@@ -50,7 +50,8 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
                 }
                 if (foundRole == false && WDR.Config.DEBUG.Authorization == 'ENABLED') {
                     WDR.Console.info(WDR, `[DEBUG] [Authorize.js] ${user.username} ${user_id} does not have require roles to receive a DM for ${guild.name} (${guild_id}).`);
-                    console.info('allowedRoles:', allowedRoles.toString(), 'userRoles:', userRoles.toString());
+                    console.info('allowedRoles:', allowedRoles.toString());
+                    console.info('userRoles:', userRoles.toString());
                 }
                 return resolve(false);
             }
