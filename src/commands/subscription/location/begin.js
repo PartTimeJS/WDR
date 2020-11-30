@@ -27,13 +27,13 @@ module.exports = async (WDR, Message) => {
             })).catch(console.error);
         } else {
             WDR.wdrDB.query(`
-        UPDATE
-            wdr_users
-        SET
-            geotype = 'location'
-        WHERE
-            user_id = ${Member.id}
-      ;`);
+                UPDATE
+                    wdr_users
+                SET
+                    geotype = 'location'
+                WHERE
+                    user_id = '${Member.id}'
+            ;`);
             let location_keep = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                 .setAuthor(Message.member.db.user_name, Message.member.user.displayAvatarURL())
                 .setTitle('DM Alerts are now set to location-based.')
