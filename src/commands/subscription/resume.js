@@ -1,5 +1,5 @@
 module.exports = async (WDR, Message) => {
-    WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET status = 1 WHERE user_id = ${Message.member.id} AND user_id = ${Message.member.id}`);
+    WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET status = 1 WHERE user_id = '${Message.member.id}' AND guild_id = '${Message.guild.id}'`);
     let query = `
         UPDATE
             wdr_users
@@ -12,9 +12,9 @@ module.exports = async (WDR, Message) => {
             lure_status = 1,
             invasion_status = 1
         WHERE
-            user_id = ${Message.member.id}
-            AND
-            user_id = ${Message.member.id}
+            user_id = '${Message.member.id}'
+                AND
+            guild_id = '${Message.guild.id}'
     ;`;
     WDR.wdrDB.query(
         query,

@@ -43,7 +43,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                     SET
                         pokemon_status = ${change}
                     WHERE
-                        user_id = '${Member.id}
+                        user_id = '${Member.id}'
                             AND
                         guild_id = '${Message.guild.id}'
                 ;`,
