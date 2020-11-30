@@ -24,18 +24,12 @@ module.exports = async (WDR, QUEST) => {
             ${params}
     ;`;
 
-    if(QUEST.simple_reward.toLowerCase() == 'rare candy'){
-        console.error(query);
-    }
-
     WDR.wdrDB.query(
         query,
         async function(error, matching) {
             if (error) {
                 WDR.Console.error(WDR, '[src/subs/quests.js] Error Querying Subscriptions.', [query, error]);
             } else if (matching && matching.length > 0) {
-
-                console.error('MATCHES FOUND!!!!!!!!!!!!!!!!!', matching);
 
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
