@@ -49,6 +49,7 @@ module.exports = (WDR, Functions, Message, Member, reason) => {
                 ;`,
                 async function (error) {
                     if (error) {
+                        console.error(error);
                         return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
                             timeout: 10000
                         }));
