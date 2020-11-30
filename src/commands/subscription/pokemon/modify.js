@@ -78,7 +78,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             modified.form_ids = old.pokemon.form_ids;
         }
 
-        modified.pokemon = await Functions.DetailCollect(WDR, Functions, 'Name', Member, Message, old.name, 'Respond with \'Next\', \'All\', or the Pokémon Name and Form if it has one. Names are not case-sensitive.', modified);
+        modified.pokemon = await Functions.DetailCollect(WDR, Functions, 'Name', Member, Message, old.name, 'Respond with \'Next\', \'All\', or the Pokémon Name. Names are not case-sensitive.', modified);
         if (modified.pokemon === null) {
             return;
         } else if (modified.pokemon == old.name) {
