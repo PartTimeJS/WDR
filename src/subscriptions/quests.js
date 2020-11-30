@@ -159,7 +159,8 @@ async function Send_Subscription(WDR, QUEST, User) {
     db_date = WDR.Moment(db_date + ' ' + User.quest_time, 'MM/DD/YYYY H:mm').unix();
     
     let quest_object = JSON.stringify(QUEST);
-    let embed = JSON.stringify(match.embed);
+    match.embed.description = match.embed.description.replace(/[\r\n]+/g,'<br>');
+    match.embed = JSON.stringify(match.embed).replace(/[\r\n]+/g,'<br>');
 
     let query = `
             INSERT INTO
@@ -173,8 +174,7 @@ async function Send_Subscription(WDR, QUEST, User) {
                     alert_time,
                     embed
                 )
-            VALUES
-                ( 
+            VALUES ( 
                     '${User.user_id}',
                     '${User.user_name}',
                     '${User.guild_id}',
@@ -182,7 +182,7 @@ async function Send_Subscription(WDR, QUEST, User) {
                     '${match.area}',
                     '${quest_object}', 
                     '${db_date}',
-                    '${embed}'
+                    '${match.embed}'
                 )
         ;`;
 

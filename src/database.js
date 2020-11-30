@@ -22,6 +22,7 @@ const DB = {
                 alerts.forEach(async (alert, index) => {
                     setTimeout(async function() {
                         let quest_embed = JSON.parse(alert.embed);
+                        quest_embed.description = quest_embed.description.replace(/<br>/g, '\n');
                         WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
                     }, 2000 * index);
                 });
@@ -38,8 +39,7 @@ const DB = {
                 }
                 );
             }
-        }
-        );
+        });
         return;
     },
 
