@@ -11,23 +11,25 @@ module.exports = (WDR, Quest) => {
             case 2:
                 Quest.reward_type = 'item';
                 Quest.simple_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
-                Quest.quest_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
+                Quest.full_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
                 Quest.amount = Quest.rewards[0].info.amount;
 
                 if (Quest.rewards[0].info.amount > 1) {
-                    if (Quest.quest_reward.indexOf('Berry') >= 0) {
-                        Quest.quest_reward = Quest.quest_reward.toString().slice(0, -1) + 'ies';
+                    if (Quest.simple_reward.indexOf('Berry') >= 0) {
+                        Quest.full_reward = Quest.simple_reward.toString().slice(0, -1) + 'ies';
                     } else {
-                        Quest.quest_reward = Quest.quest_reward + 's';
+                        Quest.full_reward = Quest.simple_reward + 's';
                     }
-                    Quest.quest_reward = Quest.amount + ' ' + Quest.quest_reward;
+                    Quest.full_reward = Quest.amount + ' ' + Quest.full_reward;
+                } else {
+                    Quest.full_reward = Quest.simple_reward;
                 }
                 break;
 
                 // STARDUST REWARD
             case 3:
                 Quest.reward_type = 'stardust';
-                Quest.quest_reward = Quest.rewards[0].info.amount + ' Stardust';
+                Quest.full_reward = Quest.rewards[0].info.amount + ' Stardust';
                 Quest.simple_reward = 'Stardust';
                 break;
 
@@ -84,7 +86,7 @@ module.exports = (WDR, Quest) => {
                 if (Quest.rewards[0].info.shiny) {
                     Quest.pokemon_name += ' (Shiny)';
                     Quest.simple_reward = 'Shiny ' + Quest.simple_reward;
-                    Quest.quest_reward = 'Shiny ' + Quest.quest_reward;
+                    Quest.full_reward = 'Shiny ' + Quest.quest_reward;
                 } else {
                     Quest.simple_reward = Quest.pokemon_name;
 
@@ -95,9 +97,9 @@ module.exports = (WDR, Quest) => {
                     }
 
                     if (Quest.form != '') {
-                        Quest.quest_reward = Quest.pokemon_name + ' ' + Quest.form + ' Encounter';
+                        Quest.full_reward = Quest.pokemon_name + ' ' + Quest.form + ' Encounter';
                     } else {
-                        Quest.quest_reward = Quest.pokemon_name + ' Encounter';
+                        Quest.full_reward = Quest.pokemon_name + ' Encounter';
                     }
                 }
                 break;
@@ -105,7 +107,7 @@ module.exports = (WDR, Quest) => {
                 // Mega Energy REWARD
             case 12:
                 Quest.reward_type = 'mega energy';
-                Quest.quest_reward = Quest.rewards[0].info.amount + ' ' + Quest.rewards[0].info.pokemon_id + ' mega energy';
+                Quest.full_reward = Quest.rewards[0].info.amount + ' ' + Quest.rewards[0].info.pokemon_id + ' mega energy';
                 Quest.simple_reward = 'mega energy';
                 break;
         }
