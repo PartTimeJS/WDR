@@ -84,7 +84,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                 }
 
                 create.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, null, 'Please respond with a value between 0 and ' + WDR.Max_Pokemon_Level + ' or type \'All\'. Type \'Cancel\' to Stop.', create);
-                if (!create.gen) {
+                if (create.min_lvl === null) {
                     return;
                 }
 
