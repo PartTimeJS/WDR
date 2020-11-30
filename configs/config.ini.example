@@ -160,6 +160,8 @@ Map_Tiles             = DISABLED
 Pokemon_Subs          = DISABLED
 PvP_Subs              = DISABLED
 Raid_Subs             = DISABLED
+Quest_Subs            = ENABLED
+Authorization         = ENABLED
 
 
 #===============================================================================

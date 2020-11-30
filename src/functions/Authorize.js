@@ -29,9 +29,15 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
                             break;
                         }
                     }
+                    if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                        WDR.Console.log(WDR, '[DEBUG] [Authorize.js] User does not have require roles to receive a sub.', 'allowedRoles:', allowedRoles, 'userRoles:', roles);
+                    }
                     return resolve(foundRole);
 
                 } else {
+                    if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                        WDR.Console.log(WDR, '[DEBUG] [Authorize.js] user ' + user_id + 'is not a member of guild ' + guild_id);
+                    }
                     return resolve(false);
                 }
 
