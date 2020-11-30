@@ -363,6 +363,10 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                             case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
+                            case (CollectedMsg.content.includes('/')):
+                                CollectedMsg.reply('`' + CollectedMsg.content + '` is an Invalid Input. ' + requirements).then(m => m.delete({
+                                    timeout: 5000
+                                })); break;
                             case (parseInt(CollectedMsg.content) >= 0 && parseInt(CollectedMsg.content) <= 100):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
@@ -387,11 +391,11 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                             case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
+                            case (parseInt(CollectedMsg.content) > 1 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
                             case (CollectedMsg.content.toLowerCase() == 'all'):
-                                if (type.indexOf('Minimum') >= 0) {
+                                if (type.indexOf('Minimum') >= 1) {
                                     collector.stop(1);
                                 } else {
                                     collector.stop(WDR.Max_Pokemon_Level);
