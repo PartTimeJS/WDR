@@ -1,46 +1,63 @@
 /* eslint-disable no-async-promise-executor */
 module.exports = (WDR, guild_id, user_id, allowedRoles) => {
     return new Promise(async resolve => {
+
+        const user = await WDR.Bot.users.fetch(user_id);
+        const guild = await WDR.Bot.guilds.cache.get(guild_id);
+
         async function getUserRoles() {
-            try {
-                const members = await WDR.Bot.guilds.cache
-                    .get(guild_id)
-                    .members
-                    .fetch();
+            const members = await guild.members.fetch();
+            if(members){
+
                 const member = members.get(user_id);
-                if(!member){
-                    if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
-                        WDR.Console.log(WDR, '[DEBUG] [Authorize.js] user ' + user_id + 'is not a member of guild ' + guild_id);
-                    }
-                    return [];
-                } else {
+                if(member){
+
                     const roles = member.roles.cache
-                        // eslint-disable-next-line no-undef
+                    // eslint-disable-next-line no-undef
                         .filter(x => BigInt(x.id).toString())
                         .keyArray();
                     return roles;
+
+                } else {
+                    if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                        WDR.Console.info(WDR, `[DEBUG] [Authorize.js] ${user.username} (${user_id}) is not a member of ${guild.name} (${guild_id})`);
+                    }
+                    return false;
+
                 }
-            } catch (e) {
-                console.error('Failed to get roles in guild', guild_id, 'for user', user_id);
-                console.error(e);
-            }
-            return [];
-        }
-
-        let foundRole = false;
-
-        const userRoles = await getUserRoles();
-        for (let r = 0, rlen = userRoles.length; r < rlen; r++) {
-            if (allowedRoles.includes(userRoles[r])) {
-                foundRole = true;
-                return resolve(true);
+            } else {
+                WDR.Console.error(WDR, `[Authorize.js] Failed to fetch members for ${guild.name} (${guild_id})`);
+                return false;
             }
         }
 
-        if (foundRole == false && WDR.Config.DEBUG.Authorization == 'ENABLED') {
-            WDR.Console.log(WDR, '[DEBUG] [Authorize.js] User does not have require roles to receive a sub.', 'allowedRoles:', allowedRoles, 'userRoles:', userRoles);
+        if(guild){
+
+            let foundRole = false;
+
+            const userRoles = await getUserRoles();
+            if(!userRoles){
+                return resolve(false);
+            } else {
+                for (let r = 0, rlen = userRoles.length; r < rlen; r++) {
+                    if (allowedRoles.includes(userRoles[r])) {
+                        if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                            WDR.Console.log(WDR, `[DEBUG] [Authorize.js] ${user.username} (${user_id}) is authorized for ${guild.name} (${guild_id})`);
+                        }
+                        foundRole = true;
+                        return resolve(true);
+                    }
+                }
+                if (foundRole == false && WDR.Config.DEBUG.Authorization == 'ENABLED') {
+                    WDR.Console.info(WDR, `[DEBUG] [Authorize.js] ${user.username} ${user_id} does not have require roles to receive a DM for ${guild.name} (${guild_id}).`);
+                    console.info('allowedRoles:', allowedRoles.toString(), 'userRoles:', userRoles.toString());
+                }
+                return resolve(false);
+            }
+        } else {
+            WDR.Console.error(WDR, `[Authorize.js] Failed to fetch guild ${guild_id}`);
+            return false;
         }
-        return resolve(false);
     });
 };
 
