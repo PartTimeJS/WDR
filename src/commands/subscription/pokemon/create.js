@@ -76,14 +76,14 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
                     create.max_iv = 100;
 
                 } else {
-                    create.max_iv = await Functions.DetailCollect(WDR, Functions, 'Maximum IV', Member, Message, null, 'Please respond with a IV number between 0 and 100 -OR- specify minimum Atk/Def/Sta (15/14/13) Values -OR- type \'All\'. Type \'Cancel\' to Stop.', create);
+                    create.max_iv = await Functions.DetailCollect(WDR, Functions, 'Maximum IV', Member, Message, null, 'Please respond with a IV number between 0 and 100 -OR- type \'All\'. Type \'Cancel\' to Stop.', create);
                     if (create.max_iv === null) {
                         return;
                     }
 
                 }
 
-                create.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, null, 'Please respond with a value between 0 and ' + WDR.Max_Pokemon_Level + ' or type \'All\'. Type \'Cancel\' to Stop.', create);
+                create.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, null, 'Please respond with a value between 1 and ' + WDR.Max_Pokemon_Level + ' or type \'All\'. Type \'Cancel\' to Stop.', create);
                 if (create.min_lvl === null) {
                     return;
                 }
@@ -93,7 +93,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
 
                 } else {
 
-                    create.max_lvl = await Functions.DetailCollect(WDR, Functions, 'Maximum Level', Member, Message, null, 'Please respond with a value between 0 and ' + WDR.Max_Pokemon_Level + ' or type \'All\'. Type \'Cancel\' to Stop.', create);
+                    create.max_lvl = await Functions.DetailCollect(WDR, Functions, 'Maximum Level', Member, Message, null, 'Please respond with a value between 1 and ' + WDR.Max_Pokemon_Level + ' or type \'All\'. Type \'Cancel\' to Stop.', create);
                     if (create.max_lvl === null) {
                         return;
                     }
