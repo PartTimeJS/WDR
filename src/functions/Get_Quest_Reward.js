@@ -86,7 +86,7 @@ module.exports = (WDR, Quest) => {
                 if (Quest.rewards[0].info.shiny) {
                     Quest.pokemon_name += ' (Shiny)';
                     Quest.simple_reward = 'Shiny ' + Quest.simple_reward;
-                    Quest.full_reward = 'Shiny ' + Quest.quest_reward;
+                    Quest.full_reward = 'Shiny ' + Quest.full_reward;
                 } else {
                     Quest.simple_reward = Quest.pokemon_name;
 
@@ -97,7 +97,7 @@ module.exports = (WDR, Quest) => {
                     }
 
                     if (Quest.form != '') {
-                        Quest.full_reward = Quest.pokemon_name + ' ' + Quest.form + ' Encounter';
+                        Quest.full_reward = Quest.pokemon_name + ' ' + Quest.form_name + ' Encounter';
                     } else {
                         Quest.full_reward = Quest.pokemon_name + ' Encounter';
                     }
