@@ -141,15 +141,25 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         if (valid) {
                             collector.stop(valid.name);
                         } else {
-                            let item_array = Object.keys(WDR.Master.Items).map(i => WDR.Master.Items[i].name);
-                            for (let i = 0, ilen = item_array.length; i < ilen; i++) {
-                                if (item_array[i] && item_array[i].toLowerCase() === CollectedMsg.content.toLowerCase()) {
+                            switch(true){
+                                case CollectedMsg.content.toLowerCase() == 'stardust':
                                     valid = {
                                         type: 'item',
                                         item_name: await WDR.Capitalize(CollectedMsg.content)
                                     };
-                                }
+                                    break;
+                                default:
+                                    var item_array = Object.keys(WDR.Master.Items).map(i => WDR.Master.Items[i].name);
+                                    for (let i = 0, ilen = item_array.length; i < ilen; i++) {
+                                        if (item_array[i] && item_array[i].toLowerCase() === CollectedMsg.content.toLowerCase()) {
+                                            valid = {
+                                                type: 'item',
+                                                item_name: await WDR.Capitalize(CollectedMsg.content)
+                                            };
+                                        }
+                                    }
                             }
+                            
                             if (valid) {
                                 collector.stop(valid);
                             } else {
