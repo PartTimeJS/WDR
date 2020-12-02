@@ -41,7 +41,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
                     locations = Object.keys(user.locations).map(i => user.locations[i]);
                 }
 
-                if (locations.length > 0) {
+                if (locations && locations.length > 0) {
                     let set = await Functions.DetailCollect(WDR, Functions, 'Set', Member, Message, user.locations, 'Please use one word to describe this location without punctuation.', null);
                     let active_location = locations[set];
 
