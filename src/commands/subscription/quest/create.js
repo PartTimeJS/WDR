@@ -72,7 +72,8 @@ module.exports = (WDR, Functions, Message, Member) => {
                             geotype,
                             areas,
                             location,
-                            reward
+                            reward,
+                            alert_time
                         )
                     VALUES (
                         '${Member.id}',
@@ -84,7 +85,8 @@ module.exports = (WDR, Functions, Message, Member) => {
                         '${create.geotype}',
                         '${Member.db.areas}',
                         '${JSON.stringify(Member.db.location)}',
-                        '${create.reward}'
+                        '${create.reward}',
+                        '${Member.db.quest_time}'
                     )
                 ;`;
 
