@@ -76,9 +76,9 @@ module.exports = async (WDR, raid) => {
                                 }
 
                             } else if (User.geotype == 'areas') {
-                                let defGeo = (User.areas.indexOf(raid.area.default) >= 0);
-                                let mainGeo = (User.areas.indexOf(raid.area.main) >= 0);
-                                let subGeo = (User.areas.indexOf(raid.area.sub) >= 0);
+                                let defGeo = (User.areas.split(',').indexOf(raid.area.default) >= 0);
+                                let mainGeo = (User.areas.split(',').indexOf(raid.area.main) >= 0);
+                                let subGeo = (User.areas.split(',').indexOf(raid.area.sub) >= 0);
                                 if (defGeo || mainGeo || subGeo) {
                                     if (WDR.Config.DEBUG.Raid_Subs == 'ENABLED') {
                                         WDR.Console.log(WDR, '[DEBUG] [src/subs/raids.js] ' + raid.gym_id + ' | Sent area sub to ' + User.user_name + '.');

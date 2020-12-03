@@ -120,9 +120,9 @@ module.exports = async (WDR, sighting) => {
                             }
 
                         } else if (User.geotype == 'areas') {
-                            let defGeo = (User.areas.indexOf(sighting.area.default) >= 0);
-                            let mainGeo = (User.areas.indexOf(sighting.area.main) >= 0);
-                            let subGeo = (User.areas.indexOf(sighting.area.sub) >= 0);
+                            let defGeo = (User.areas.split(',').indexOf(sighting.area.default) >= 0);
+                            let mainGeo = (User.areas.split(',').indexOf(sighting.area.main) >= 0);
+                            let subGeo = (User.areas.split(',').indexOf(sighting.area.sub) >= 0);
                             if (defGeo || mainGeo || subGeo) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {

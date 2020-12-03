@@ -133,9 +133,9 @@ module.exports = async (WDR, sighting) => {
                                             }
 
                                         } else if (user.geotype == 'areas') {
-                                            let defGeo = (user.areas.indexOf(sighting.area.default) >= 0);
-                                            let mainGeo = (user.areas.indexOf(sighting.area.main) >= 0);
-                                            let subGeo = (user.areas.indexOf(sighting.area.sub) >= 0);
+                                            let defGeo = (user.areas.split(',').indexOf(sighting.area.default) >= 0);
+                                            let mainGeo = (user.areas.split(',').indexOf(sighting.area.main) >= 0);
+                                            let subGeo = (user.areas.split(',').indexOf(sighting.area.sub) >= 0);
                                             if (defGeo || mainGeo || subGeo) {
                                                 match.embed = matching[0].embed ? matching[0].embed : 'pvp.js';
                                                 Send_Subscription(WDR, match, sighting, user);
