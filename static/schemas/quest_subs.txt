@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS wdr_quest_subs(
+    user_id varchar(40) NOT NULL,
+    user_name varchar(40) DEFAULT NULL,
+    guild_id varchar(40) NOT NULL DEFAULT '0',
+    guild_name varchar(255) DEFAULT NULL,
+    bot tinyint DEFAULT NULL,
+    status tinyint DEFAULT '1',
+    areas varchar(255) DEFAULT NULL,
+    location varchar(255) DEFAULT NULL,
+    pokemon_id smallint NOT NULL DEFAULT '0',
+    form smallint NOT NULL DEFAULT '0',
+    reward varchar(25) NOT NULL DEFAULT '0',
+    alert_time varchar(10) DEFAULT '0',
+    geotype varchar(10) NOT NULL,
+    created_date varchar(40) NOT NULL DEFAULT '0',
+    created_timestamp bigint NOT NULL DEFAULT '0',
+    PRIMARY KEY (user_id,guild_id,pokemon_id,form,reward) USING BTREE,
+    KEY ix_pokeid (pokemon_id) USING BTREE,
+    KEY ix_form (form) USING BTREE,
+    KEY ix_reward (reward) USING BTREE
+);

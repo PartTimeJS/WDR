@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS wdr_quest_queue(
+    user_id varchar(40) NOT NULL,
+    user_name varchar(40) NOT NULL,
+    guild_id varchar(40) NOT NULL,
+    bot smallint NOT NULL,
+    area varchar(20) DEFAULT NULL,
+    alert longtext,
+    alert_time bigint DEFAULT NULL,
+    embed longtext NOT NULL
+);

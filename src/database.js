@@ -426,10 +426,11 @@ async function create_tables(WDR) {
         WDR.wdrDB.query(wdr_info);
 
         let wdr_users = `
+        
             CREATE TABLE IF NOT EXISTS wdr_users (
-                user_id varchar(25) NOT NULL,
+                user_id varchar(40) NOT NULL,
                 user_name varchar(40) DEFAULT NULL,
-                guild_id varchar(25) NOT NULL,
+                guild_id varchar(40) NOT NULL,
                 guild_name varchar(40) NOT NULL,
                 bot tinyint NOT NULL DEFAULT '0',
                 areas varchar(255) NOT NULL DEFAULT 'all',
@@ -445,8 +446,6 @@ async function create_tables(WDR) {
                 locations longtext,
                 geotype varchar(10) NOT NULL DEFAULT 'areas',
                 PRIMARY KEY (user_id,guild_id),
-                created_date varchar(40) NOT NULL DEFAULT '0',
-                created_timestamp bigint NOT NULL DEFAULT '0',
                 KEY ix_status (status,pokemon_status,pvp_status,raid_status,quest_status,lure_status,invasion_status) USING BTREE,
                 KEY ix_location (location) USING BTREE,
                 KEY ix_areas (areas) USING BTREE,
@@ -525,9 +524,9 @@ async function create_tables(WDR) {
 
         let wdr_raid_subs = `
             CREATE TABLE IF NOT EXISTS wdr_raid_subs(
-                user_id bigint NOT NULL,
+                user_id varchar(40) NOT NULL,
                 user_name varchar(40) DEFAULT NULL,
-                guild_id bigint NOT NULL DEFAULT '0',
+                guild_id varchar(40) NOT NULL DEFAULT '0',
                 guild_name varchar(255) DEFAULT NULL,
                 bot tinyint DEFAULT NULL,
                 status tinyint DEFAULT '1',
@@ -554,9 +553,9 @@ async function create_tables(WDR) {
 
         let wdr_quest_subs = `
             CREATE TABLE IF NOT EXISTS wdr_quest_subs(
-                user_id bigint NOT NULL,
+                user_id varchar(40) NOT NULL,
                 user_name varchar(40) DEFAULT NULL,
-                guild_id bigint NOT NULL DEFAULT '0',
+                guild_id varchar(40) NOT NULL DEFAULT '0',
                 guild_name varchar(255) DEFAULT NULL,
                 bot tinyint DEFAULT NULL,
                 status tinyint DEFAULT '1',
@@ -621,11 +620,10 @@ async function create_tables(WDR) {
                 user_name varchar(40) NOT NULL,
                 guild_id varchar(40) NOT NULL,
                 bot smallint NOT NULL,
-                area varchar(20),
-                alert varchar(10) NOT NULL,
-                alert_time bigint NOT NULL,
-                embed LONGTEXT NOT NULL,
-                KEY ix_data (user_id,guild_id,bot,alert,alert_time) USING BTREE
+                area varchar(20) DEFAULT NULL,
+                alert longtext,
+                alert_time bigint DEFAULT NULL,
+                embed longtext NOT NULL
             );`;
         WDR.wdrDB.query(wdr_quest_queue);
 
