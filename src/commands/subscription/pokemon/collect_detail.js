@@ -383,7 +383,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                             case (CollectedMsg.content.toLowerCase() == 'next'):
                                 collector.stop(object);
                                 break;
-                            case (parseInt(CollectedMsg.content) > 1 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
+                            case (parseInt(CollectedMsg.content) > 0 && parseInt(CollectedMsg.content) <= WDR.Max_Pokemon_Level):
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
                             case (CollectedMsg.content.toLowerCase() == 'all'):
