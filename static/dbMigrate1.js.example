@@ -71,101 +71,106 @@ setTimeout(function() {
                         let pokemon = pokemons.subscriptions[p];
                         let new_poke = {};
 
-                        if (!pokemon.pokemon_id && (!pokemon.pokemon || !pokemon.pokemon.pokemon_id)) {
+                        try {
+                            if (!pokemon.pokemon_id && (!pokemon || !pokemon.pokemon_id)) {
                             for (let m = 0, mlen = Pokemon_Array.length; m < mlen; m++) {
-                                let arr_poke = Pokemon_Array[m];
-                                if (arr_poke.name.toLowerCase() == pokemon.name) {
-                                    new_poke.pokemon_id = arr_poke.pokedex_id;
+                                    let arr_poke = Pokemon_Array[m];
+                                    if (arr_poke.name.toLowerCase() == pokemon.name) {
+                                        new_poke.pokemon_id = arr_poke.pokedex_id;
+                                    }
+                                }
+                            } else {
+                                new_poke.pokemon_id = pokemon.pokemon_id ? pokemon.pokemon_id : 0;
+                                if (isNaN(new_poke.pokemon_id) && new_poke.pokemon_id.toLowerCase() == 'all') {
+                                    new_poke.pokemon_id = 0;
                                 }
                             }
-                        } else {
-                            new_poke.pokemon_id = pokemon.pokemon.pokemon_id ? pokemon.pokemon.pokemon_id : 0;
-                            if (isNaN(new_poke.pokemon_id) && new_poke.pokemon_id.toLowerCase() == 'all') {
-                                new_poke.pokemon_id = 0;
+                            new_poke.pokemon_id = new_poke.pokemon_id ? new_poke.pokemon_id : 0;
+
+                            new_poke.form = pokemon.form ? pokemon.form : 0;
+                            if (isNaN(new_poke.form) && new_poke.form.toLowerCase() == 'all') {
+                                new_poke.form = 0;
                             }
-                        }
-                        new_poke.pokemon_id = new_poke.pokemon_id ? new_poke.pokemon_id : 0;
 
-                        new_poke.form = pokemon.pokemon.form ? pokemon.pokemon.form : 0;
-                        if (isNaN(new_poke.form) && new_poke.form.toLowerCase() == 'all') {
-                            new_poke.form = 0;
-                        }
+                            new_poke.min_iv = pokemon.min_iv ? pokemon.min_iv : 0;
+                            if (new_poke.min_iv.toLowerCase() == 'all') {
+                                new_poke.min_iv = 0;
+                            }
 
-                        new_poke.min_iv = pokemon.min_iv ? pokemon.min_iv : 0;
-                        if (new_poke.min_iv.toLowerCase() == 'all') {
-                            new_poke.min_iv = 0;
-                        }
+                            new_poke.max_iv = pokemon.max_iv ? pokemon.max_iv : 100;
+                            if (new_poke.max_iv.toLowerCase() == 'all') {
+                                new_poke.max_iv = 100;
+                            }
 
-                        new_poke.max_iv = pokemon.max_iv ? pokemon.max_iv : 100;
-                        if (new_poke.max_iv.toLowerCase() == 'all') {
-                            new_poke.max_iv = 100;
-                        }
+                            new_poke.min_lvl = pokemon.min_lvl ? pokemon.min_lvl : 0;
+                            if (new_poke.min_lvl.toLowerCase() == 'all') {
+                                new_poke.min_lvl = 0;
+                            }
 
-                        new_poke.min_lvl = pokemon.min_lvl ? pokemon.min_lvl : 0;
-                        if (new_poke.min_lvl.toLowerCase() == 'all') {
-                            new_poke.min_lvl = 0;
-                        }
+                            new_poke.max_lvl = pokemon.max_lvl ? pokemon.max_lvl : 35;
+                            if (new_poke.max_lvl.toLowerCase() == 'all') {
+                                new_poke.max_lvl = 35;
+                            }
 
-                        new_poke.max_lvl = pokemon.max_lvl ? pokemon.max_lvl : 35;
-                        if (new_poke.max_lvl.toLowerCase() == 'all') {
-                            new_poke.max_lvl = 35;
-                        }
+                            new_poke.gender = pokemon.gender ? pokemon.gender : 0;
+                            if (new_poke.gender.toLowerCase() == 'all') {
+                                new_poke.gender = 0;
+                            }
 
-                        new_poke.gender = pokemon.gender ? pokemon.gender : 0;
-                        if (new_poke.gender.toLowerCase() == 'all') {
-                            new_poke.gender = 0;
-                        }
+                            new_poke.size = pokemon.size ? pokemon.size : 0;
+                            if (new_poke.size.toLowerCase() == 'all') {
+                                new_poke.size = 0;
+                            }
 
-                        new_poke.size = pokemon.size ? pokemon.size : 0;
-                        if (new_poke.size.toLowerCase() == 'all') {
-                            new_poke.size = 0;
-                        }
-
-                        new_database.query(
-                            `INSERT IGNORE INTO
-                            wdr_pokemon_subs (
-                                user_id,
-                                user_name,
-                                guild_id,
-                                guild_name,
-                                bot,
-                                areas,
-                                pokemon_id,
-                                form,
-                                min_lvl,
-                                max_lvl,
-                                min_iv,
-                                max_iv,
-                                size,
-                                gender
-                            )
-                        VALUES
-                            (
-                                '${user.user_id}',
-                                '${user.user_name}',
-                                '${user.discord_id}',
-                                'Migrated',
-                                '${user.bot}',
-                                '${user.geofence}',
-                                '${new_poke.pokemon_id}',
-                                '${new_poke.form}',
-                                '${new_poke.min_lvl}',
-                                '${new_poke.max_lvl}',
-                                '${new_poke.min_iv}',
-                                '${new_poke.max_iv}',
-                                '${new_poke.size}',
-                                '${new_poke.gender}'
-                            )`,
-                            async function(error) {
-                                if (error) {
-                                    console.error(user);
-                                    console.error(new_poke);
-                                    console.error('[dbMigrate] Error Inserting Pokemon Subscription.', error);
-                                } else {
-                                    console.log('[dbMigrate] Subscription for ' + user.user_name + ' Inserted into Subscription Table.');
+                            new_database.query(
+                                `INSERT IGNORE INTO
+                                wdr_pokemon_subs (
+                                    user_id,
+                                    user_name,
+                                    guild_id,
+                                    guild_name,
+                                    bot,
+                                    areas,
+                                    pokemon_id,
+                                    form,
+                                    min_lvl,
+                                    max_lvl,
+                                    min_iv,
+                                    max_iv,
+                                    size,
+                                    gender
+                                )
+                            VALUES
+                                (
+                                    '${user.user_id}',
+                                    '${user.user_name}',
+                                    '${user.discord_id}',
+                                    'Migrated',
+                                    '${user.bot}',
+                                    '${user.geofence}',
+                                    '${new_poke.pokemon_id}',
+                                    '${new_poke.form}',
+                                    '${new_poke.min_lvl}',
+                                    '${new_poke.max_lvl}',
+                                    '${new_poke.min_iv}',
+                                    '${new_poke.max_iv}',
+                                    '${new_poke.size}',
+                                    '${new_poke.gender}'
+                                )`,
+                                async function(error) {
+                                    if (error) {
+                                        console.error(user);
+                                        console.error(new_poke);
+                                        console.error('[dbMigrate] Error Inserting Pokemon Subscription.', error);
+                                    } else {
+                                        console.log('[dbMigrate] Subscription for ' + user.user_name + ' Inserted into Subscription Table.');
+                                    }
                                 }
-                            }
-                        );
+                            );
+                        } catch (e) {
+                            console.error(e);
+                            console.error(pokemon);
+                        }
                     }
                 }
 
