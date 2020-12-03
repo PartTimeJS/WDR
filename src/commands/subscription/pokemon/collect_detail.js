@@ -125,7 +125,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     .setTitle('Does all of this look correct?')
                     .setDescription('Name: `' + sub.name + '`\n' +
                         'Form: `' + form + '`\n' +
-                        'Type: `' + ptype + '`\n' +
                         'Min IV: `' + sub.min_iv + '`\n' +
                         'Max IV: `' + sub.max_iv + '`\n' +
                         'Min Lvl: `' + sub.min_lvl + '`\n' +
