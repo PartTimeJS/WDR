@@ -7,7 +7,8 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
         WHERE
             user_id = '${Member.id}'
                 AND
-            guild_id = ${Message.guild.id}
+            guild_id = '${Message.guild.id}'
+        LIMIT 31
     ;`,
     async function (error, subs) {
         if (error) {
@@ -15,7 +16,7 @@ module.exports = (WDR, Functions, Message, Member, advanced) => {
             return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
                 timeout: 10000
             }));
-        } else if (subs.length >= 50) {
+        } else if (subs.length >= 30) {
             let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                 .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                 .setTitle('Maximum Subscriptions Reached!')
