@@ -129,7 +129,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             modified.max_iv = await Functions.DetailCollect(WDR, Functions, 'Maximum IV', Member, Message, old.max_iv, 'Please respond with \'Next\', an Number between 1 and 100, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
         }
 
-        modified.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, old.min_lvl, 'Please respond with \'Next\', a Number between 0 and ' + WDR.Max_Pokemon_Level + ', or type \'All\'. Type \'Cancel\' to Stop.', modified);
+        modified.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, old.min_lvl, 'Please respond with \'Next\', a Number between 1 and ' + WDR.Max_Pokemon_Level + ', or type \'All\'. Type \'Cancel\' to Stop.', modified);
         if (modified.min_lvl === null) {
             return;
         }
@@ -137,7 +137,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         if (modified.min_lvl == WDR.Max_Pokemon_Level) {
             modified.max_lvl = WDR.Max_Pokemon_Level;
         } else {
-            modified.max_lvl = await Functions.DetailCollect(WDR, Functions, 'Maximum Level', Member, Message, old.max_lvl, 'Please respond with \'Next\', a Number between 0 and ' + WDR.Max_Pokemon_Level + ', or type \'All\'. Type \'Cancel\' to Stop.', modified);
+            modified.max_lvl = await Functions.DetailCollect(WDR, Functions, 'Maximum Level', Member, Message, old.max_lvl, 'Please respond with \'Next\', a Number between 1 and ' + WDR.Max_Pokemon_Level + ', or type \'All\'. Type \'Cancel\' to Stop.', modified);
             if (modified.max_lvl === null) {
                 return;
             }
