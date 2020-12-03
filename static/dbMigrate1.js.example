@@ -118,7 +118,7 @@ setTimeout(function() {
                             }
 
                             new_poke.size = pokemon.size ? pokemon.size : 0;
-                            if (new_poke.size.toLowerCase() == 'all') {
+                            if (new_poke.size !== 0 && new_poke.size.toLowerCase() == 'all') {
                                 new_poke.size = 0;
                             }
 
