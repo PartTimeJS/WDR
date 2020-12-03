@@ -44,7 +44,7 @@ module.exports = async (WDR, QUEST) => {
                 let match = {};
 
                 match.name = QUEST.pokestop_name;
-                match.reward = QUEST.quest_reward;
+                match.reward = QUEST.full_reward;
                 match.task = QUEST.task;
                 match.form = QUEST.form_name;
                 match.role_id = QUEST.role_id;
