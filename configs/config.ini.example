@@ -31,6 +31,12 @@ VERBOSE_LOGS          = DISABLED
 DONOR_CHECK           = ENABLED
 
 #===============================================================================
+# BLOCK DUPLICATES BEING SENT TO FEEDS OR DMS
+#===============================================================================
+
+BLOCK_DUPLICATES           = DISABLED
+
+#===============================================================================
 # LISTENING PORT
 # You will need to add http://bot_host_ip:3333/ in RDM.
 # You will need to port forward on your router if RDM does not reside in your local network.
