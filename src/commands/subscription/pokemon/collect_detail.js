@@ -98,13 +98,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     size = await WDR.Capitalize(size);
                 }
 
-                var ptype;
-                if (sub.pokemon_type === 0) {
-                    ptype = 'All';
-                } else {
-                    ptype = await WDR.Capitalize(sub.pokemon_type);
-                }
-
                 var form;
                 if (sub.form === 0) {
                     form = 'All';
