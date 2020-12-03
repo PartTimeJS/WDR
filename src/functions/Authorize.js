@@ -3,6 +3,10 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
     return new Promise(async resolve => {
 
         const user = await WDR.Bot.users.fetch(user_id);
+        if(!user){
+            WDR.Console.error(WDR, '[Authorize.js] Bad user ID found in the database.','user_id:', user_id, 'guild_id:', guild_id);
+        }
+
         const guild = await WDR.Bot.guilds.cache.get(guild_id);
 
         async function getUserRoles() {
