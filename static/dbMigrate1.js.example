@@ -179,7 +179,8 @@ setTimeout(function() {
                     for (let r = 0, rlen = raids.subscriptions.length; r < rlen; r++) {
                         let raid = raids.subscriptions[r];
                         let new_raid = {};
-                        new_raid.gym_id = raid.id ? raid.id : 0;
+                        try {
+                            new_raid.gym_id = raid.id ? raid.id : 0;
                         if (isNaN(new_raid.gym_id) && new_raid.gym_id.toLowerCase() == 'all') {
                             new_raid.gym_id = 0;
                         }
@@ -243,6 +244,10 @@ setTimeout(function() {
                                 }
                             }
                         );
+                        } catch (e) {
+                            console.error(e);
+                            console.error(raid);
+                        }
                     }
                 }
 
