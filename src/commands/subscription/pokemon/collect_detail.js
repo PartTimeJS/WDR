@@ -196,8 +196,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Confirm-Add') >= 0:
-                    case type.indexOf('Confirm-Remove') >= 0:
+                    case type.includes('Confirm-Add'):
+                    case type.includes('Confirm-Remove'):
                         switch (CollectedMsg.content.toLowerCase()) {
                             case 'save':
                             case 'yes':
@@ -215,7 +215,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Geofence') >= 0:
+                    case type.includes('Geofence'):
                         switch (CollectedMsg.content.toLowerCase()) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -237,10 +237,10 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Guild') >= 0:
-                    case type.indexOf('Preset') >= 0:
-                    case type.indexOf('Modify') >= 0:
-                    case type.indexOf('Remove') >= 0:
+                    case type.includes('Guild'):
+                    case type.includes('Preset'):
+                    case type.includes('Modify'):
+                    case type.includes('Remove'):
                         var num = parseInt(CollectedMsg.content);
                         switch (true) {
                             case (isNaN(CollectedMsg.content)):
@@ -256,7 +256,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
 
 
-                    case type.indexOf('Name') >= 0:
+                    case type.includes('Name'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -279,7 +279,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Type') >= 0:
+                    case type.includes('Type'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -306,7 +306,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Form') >= 0:
+                    case type.includes('Form'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -327,7 +327,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
 
 
-                    case type.indexOf('Generation') >= 0:
+                    case type.includes('Generation'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -347,7 +347,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
                         break;
 
-                    case type.indexOf('IV') >= 0:
+                    case type.includes('IV'):
                         CollectedMsg.content = CollectedMsg.content.replace('%', '');
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
@@ -363,7 +363,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
                             case (CollectedMsg.content.toLowerCase() == 'all'):
-                                if (type.indexOf('Minimum') >= 0) {
+                                if (type.includes('Minimum')) {
                                     collector.stop(0);
                                 } else {
                                     collector.stop(100);
@@ -376,7 +376,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
                         break;
 
-                    case type.indexOf('Level') >= 0:
+                    case type.includes('Level'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -387,7 +387,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 collector.stop(parseInt(CollectedMsg.content));
                                 break;
                             case (CollectedMsg.content.toLowerCase() == 'all'):
-                                if (type.indexOf('Minimum') >= 1) {
+                                if (type.includes('Minimum')) {
                                     collector.stop(1);
                                 } else {
                                     collector.stop(WDR.Max_Pokemon_Level);
@@ -400,7 +400,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
                         break;
 
-                    case type.indexOf('Gender') >= 0:
+                    case type.includes('Gender'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
@@ -423,7 +423,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
                         break;
 
-                    case type.indexOf('Size') >= 0:
+                    case type.includes('Size'):
                         switch (true) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
