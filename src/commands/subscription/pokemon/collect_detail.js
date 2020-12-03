@@ -319,7 +319,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):
                             case (CollectedMsg.content.toLowerCase() == 'next'):
-                                collector.stop(object);
+                                collector.stop(object.form);
                                 break;
                             case (CollectedMsg.content.toLowerCase() == 'all' || CollectedMsg.content === '0'):
                                 collector.stop(0);
