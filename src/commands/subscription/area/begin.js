@@ -45,9 +45,9 @@ module.exports = async (WDR, message) => {
         SET
             geotype = 'areas'
         WHERE
-            user_id = ${Member.id}
+            user_id = '${Member.id}'
               AND
-            guild_id = ${message.guild.id}
+            guild_id = '${message.guild.id}'
       ;`);
             let now_area = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                 .setAuthor(message.member.db.user_name, message.member.user.displayAvatarURL())

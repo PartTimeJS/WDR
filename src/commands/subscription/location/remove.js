@@ -52,9 +52,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                                 SET
                                     location = NULL
                                 WHERE
-                                    user_id = ${Member.id}
+                                    user_id = '${Member.id}'
                                         AND
-                                    guild_id = ${Message.guild.id}
+                                    guild_id = '${Message.guild.id}'
                             ;`);
                             WDR.UpdateAllSubTables(WDR, `
                                 UPDATE
@@ -62,9 +62,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                                 SET
                                     location = NULL
                                 WHERE
-                                    user_id = ${Member.id}
+                                    user_id = '${Member.id}'
                                         AND
-                                    guild_id = ${Message.guild.id}
+                                    guild_id = '${Message.guild.id}'
                             ;`);
                         }
 
@@ -74,9 +74,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             SET
                                 locations = '${JSON.stringify(user.locations)}'
                             WHERE
-                                user_id = ${Member.id}
+                                user_id = '${Member.id}'
                                     AND
-                                guild_id = ${Message.guild.id};
+                                guild_id = '${Message.guild.id}';
                         ;`;
 
                         WDR.wdrDB.query(

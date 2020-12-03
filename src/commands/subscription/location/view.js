@@ -5,7 +5,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
     FROM
         wdr_users
     WHERE
-        user_id = ${Member.id};
+        user_id = '${Member.id}';
   `;
     WDR.wdrDB.query(
         query,

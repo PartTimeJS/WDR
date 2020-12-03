@@ -7,7 +7,7 @@ module.exports = (WDR, Functions, message, member, reason) => {
         WHERE
             user_id = '${member.id}'
                 AND 
-            guild_id = '${message.guild.id}
+            guild_id = '${message.guild.id}'
     ;`,
     function (error, user) {
         if (error) {

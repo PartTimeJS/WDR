@@ -6,9 +6,9 @@ module.exports = async (WDR, Functions, message, Member, AreaArray) => {
         FROM
             wdr_users
         WHERE
-            user_id = ${Member.id}
+            user_id = '${Member.id}'
                 AND
-            guild_id = ${message.guild.id};
+            guild_id = '${message.guild.id}';
     `;
 
     WDR.wdrDB.query(
@@ -51,7 +51,7 @@ module.exports = async (WDR, Functions, message, Member, AreaArray) => {
 
                 areas = areas.join(';');
 
-                WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET areas = '${areas}' WHERE user_id = ${Member.id}; `);
+                WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET areas = '${areas}' WHERE user_id = '${Member.id}'; `);
 
                 let update = `
                     UPDATE
@@ -59,8 +59,8 @@ module.exports = async (WDR, Functions, message, Member, AreaArray) => {
                     SET
                         areas = '${areas}'
                     WHERE
-                        user_id = ${Member.id};
-                `;
+                        user_id = '${Member.id}'
+                ;`;
 
                 WDR.wdrDB.query(
                     update,

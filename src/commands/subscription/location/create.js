@@ -5,9 +5,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
         FROM
             wdr_users
         WHERE
-            user_id = ${Member.id}
+            user_id = '${Member.id}'
                 AND
-            guild_id = ${Message.guild.id};
+            guild_id = '${Message.guild.id}';
     `;
     WDR.wdrDB.query(
         query,
@@ -64,7 +64,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             geotype = 'location',
                             location = '${JSON.stringify(create)}'
                         WHERE
-                            user_id = ${Member.id}
+                            user_id = '${Member.id}'
                                 AND
                             geotype != 'city'
                     ;`);
@@ -76,7 +76,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             geotype = 'location',
                             location = '${JSON.stringify(create)}'
                         WHERE
-                            user_id = ${Member.id}
+                            user_id = '${Member.id}'
                     ;`;
                     WDR.wdrDB.query(
                         user_active,
@@ -99,7 +99,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
             WHERE
                 location is NULL
                   AND
-                user_id = ${Member.id}
+                user_id = '${Member.id}'
           ;`;
                     WDR.wdrDB.query(
                         user_active,
@@ -122,7 +122,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                     SET
                         locations = '${JSON.stringify(user.locations)}'
                     WHERE
-                        user_id = ${Member.id}
+                        user_id = '${Member.id}'
                 ;`;
                 WDR.wdrDB.query(
                     update,

@@ -7,7 +7,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         WHERE
             user_id = '${Member.id}'
                 AND
-            guild_id = ${Message.guild.id}
+            guild_id = '${Message.guild.id}'
     ;`,
     async function (error, subscriptions) {
         if (!subscriptions || !subscriptions[0]) {
@@ -176,42 +176,42 @@ module.exports = (WDR, Functions, Message, Member) => {
         } else {
 
             let modify = `
-                    UPDATE
-                        wdr_pokemon_subs
-                    SET
-                        geotype = '${modified.geotype}',
-                        pokemon_id = ${modified.id},
-                        form = ${modified.form},
-                        min_lvl = ${modified.min_lvl},
-                        max_lvl = ${modified.max_lvl},
-                        min_iv = ${modified.min_iv},
-                        max_iv = ${modified.max_iv},
-                        size = '${modified.size}',
-                        gender = ${modified.gender},
-                        generation = ${modified.gen}
-                    WHERE
-                        user_id = '${Member.id}'
-                            AND 
-                        guild_id = '${Message.guild.id}'
-                            AND 
-                        pokemon_id = ${old.pokemon_id}
-                            AND 
-                        form = ${old.form}
-                            AND 
-                        min_lvl = ${old.min_lvl}
-                            AND 
-                        max_lvl = ${old.max_lvl}
-                            AND 
-                        min_iv = ${old.min_iv}
-                            AND 
-                        max_iv = ${old.max_iv}
-                            AND 
-                        size = '${old.size}'
-                            AND 
-                        gender = ${old.gender}
-                            AND 
-                        generation = ${old.generation};
-                `;
+                UPDATE
+                    wdr_pokemon_subs
+                SET
+                    geotype = '${modified.geotype}',
+                    pokemon_id = ${modified.id},
+                    form = ${modified.form},
+                    min_lvl = ${modified.min_lvl},
+                    max_lvl = ${modified.max_lvl},
+                    min_iv = ${modified.min_iv},
+                    max_iv = ${modified.max_iv},
+                    size = '${modified.size}',
+                    gender = ${modified.gender},
+                    generation = ${modified.gen}
+                WHERE
+                    user_id = '${Member.id}'
+                        AND 
+                    guild_id = '${Message.guild.id}'
+                        AND 
+                    pokemon_id = ${old.pokemon_id}
+                        AND 
+                    form = ${old.form}
+                        AND 
+                    min_lvl = ${old.min_lvl}
+                        AND 
+                    max_lvl = ${old.max_lvl}
+                        AND 
+                    min_iv = ${old.min_iv}
+                        AND 
+                    max_iv = ${old.max_iv}
+                        AND 
+                    size = '${old.size}'
+                        AND 
+                    gender = ${old.gender}
+                        AND 
+                    generation = ${old.generation};
+            `;
             WDR.wdrDB.query(
                 modify,
                 async function (error) {

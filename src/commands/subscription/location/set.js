@@ -5,9 +5,9 @@ module.exports = async (WDR, Functions, Message, Member) => {
         FROM
             wdr_users
         WHERE
-            user_id = ${Member.id}
+            user_id = '${Member.id}'
                 AND
-            guild_id = ${Message.guild.id};
+            guild_id = '${Message.guild.id}';
     `;
     WDR.wdrDB.query(
         query,
@@ -53,7 +53,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
                             geotype = 'location',
                             location = '${JSON.stringify(active_location)}'
                         WHERE
-                            user_id = ${Member.id}
+                            user_id = '${Member.id}'
                                 AND
                             geotype != 'city'
                     ;`);
@@ -65,7 +65,7 @@ module.exports = async (WDR, Functions, Message, Member) => {
                             geotype = 'location',
                             location = '${JSON.stringify(active_location)}'
                         WHERE
-                            user_id = ${Member.id}
+                            user_id = '${Member.id}'
                                 AND
                             geotype != 'city';
                     ;`;

@@ -7,7 +7,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
         WHERE
             user_id = '${Member.id}'
                 AND
-            guild_id = ${Message.guild.id}
+            guild_id = '${Message.guild.id}'
     ;`,
     async function (error, subscriptions) {
         if (!subscriptions || subscriptions.length < 1) {

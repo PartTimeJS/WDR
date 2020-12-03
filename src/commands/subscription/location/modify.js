@@ -5,9 +5,9 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
     FROM
         wdr_users
     WHERE
-        user_id = ${Member.id}
+        user_id = '${Member.id}'
           AND
-        guild_id = ${Message.guild.id};
+        guild_id = '${Message.guild.id}';
   `;
     WDR.wdrDB.query(
         query,
@@ -78,7 +78,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             UPDATE 
                                 wdr_users SET locations = '${JSON.stringify(user.locations)}'
                             WHERE 
-                                user_id = ${Member.id};
+                                user_id = '${Member.id}';
                         `;
 
                         WDR.wdrDB.query(
