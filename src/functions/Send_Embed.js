@@ -30,14 +30,26 @@ module.exports = (WDR, Embed, channel_id) => {
         }
     }
 
-    return channel.send(Embed).catch(error => {
+    channel.send(Embed).catch(error => {
         errors++;
         if (errors >= 5) {
             WDR.Console.error(WDR, '[Send_Embed.js] 5 Channel Errors Seen, Restarting WDR...');
-            WDR.restart('Channel Send Errors', 1);
+            process.exit(1);
+        } else {
+            WDR.Console.error(WDR, '[Send_Embed.js] ' + channel.id, error.split('\n')[0]);
+            WDR.Console.info(WDR, '[Send_Embed.js] A re-attempt to send the Embed will be made in 10 seconds.', error.split('\n')[0]);
+            setTimeout(() => {
+                channel.send(Embed).catch(error => {
+                    if(error){
+                        WDR.Console.error(WDR, '[Send_Embed.js] Re-attempt Unsuccessful.', error.split('\n')[0]);
+                        console.error(Embed);
+                    } else {
+                        WDR.Console.log(WDR, '[Send_Embed.js] Re-attempt Successful.');
+                    }
+                });
+            }, 10000);
         }
-        WDR.Console.error(WDR, '[Send_Embed.js] ' + channel.id, error);
-        return console.error(Embed);
+        
     });
 };
 
