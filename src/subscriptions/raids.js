@@ -1,8 +1,3 @@
-var Sent_Subscriptions = [];
-setInterval(() => {
-    Sent_Subscriptions = [];
-}, 60000 * 60);
-
 module.exports = async (WDR, raid) => {
 
     let discord = raid.discord;
@@ -42,14 +37,6 @@ module.exports = async (WDR, raid) => {
             if (error) {
                 WDR.Console.error(WDR, '[cmd/sub/raid/remove.js] Error Fetching Subscriptions to Create Subscription.', [query, error]);
             } else if (matching && matching[0]) {
-
-                if(raid.hash){
-                    if(Sent_Subscriptions.includes(raid.hash)){
-                        return;
-                    } else {
-                        Sent_Subscriptions.push(raid.hash);
-                    }  
-                }
 
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 

@@ -1,26 +1,44 @@
 const hash = require('object-hash');
 
+var Seen_Pokemon = {};
+var Seen_Raids = {};
+setInterval(() => {
+    let limit = new Date().getTime() - 3600000;
+    for (const time in Seen_Pokemon) {
+        if(Seen_Pokemon[time] <= limit){
+            delete Seen_Pokemon[time];
+        }
+    }
+    for (const time in Seen_Raids) {
+        if(Seen_Raids[time] <= limit){
+            delete Seen_Raids[time];
+        }
+    }
+}, 60000 * 5);
+
 module.exports = async (WDR, Payload) => {
 
     for (let p = 0, plen = Payload.length; p < plen; p++) {
-        let data = Payload[p];
+        
+        let objectType = Payload[p].type;
+        
         //Payload.forEach(async data => {
 
-        let data_types = ['pokemon', 'raid', 'quest', 'pokestop', 'invasion'];
+        let dataTypes = ['pokemon', 'raid', 'quest', 'pokestop', 'invasion'];
 
-        if (data_types.includes(data.type)) {
+        if (dataTypes.includes(objectType)) {
 
             for (let d = 0, dlen = WDR.Discords.length; d < dlen; d++) {
 
-                let object = data.message;
+                if (WDR.PointInGeoJSON.polygon(WDR.Discords[d].geofence, [Payload[p].message.longitude, Payload[p].message.latitude])) {
 
-                if(WDR.Config.BLOCK_DUPLICATES == 'ENABLED'){
-                    object.hash = hash(object);
-                }
+                    let object = Payload[p].message;
 
-                object.discord = WDR.Discords[d];
+                    object.discord = WDR.Discords[d];
 
-                if (WDR.PointInGeoJSON.polygon(object.discord.geofence, [object.longitude, object.latitude])) {
+                    if(WDR.Config.BLOCK_DUPLICATES == 'ENABLED' && !object.hash){
+                        object.hash = hash(object);
+                    }
 
                     object.time_now = new Date().getTime();
 
@@ -45,7 +63,15 @@ module.exports = async (WDR, Payload) => {
                         object.WDR_Received = new Date().getTime();
                     }
 
-                    if (data.type == 'pokemon') {
+                    if (objectType === 'pokemon') {
+
+                        if(object.hash){
+                            if(Seen_Pokemon[object.hash] > 0){
+                                continue;
+                            } else {
+                                Seen_Pokemon[object.hash] = object.time_now;
+                            }  
+                        }
 
                         if (object.cp > 0) {
 
@@ -103,7 +129,15 @@ module.exports = async (WDR, Payload) => {
                             //WDR.Subscriptions.NoIVPokemon(WDR, object);
                         }
 
-                    } else if (data.type == 'raid') {
+                    } else if (objectType === 'raid') {
+
+                        if(object.hash){
+                            if(Seen_Raids[object.hash] > 0){
+                                continue;
+                            } else {
+                                Seen_Raids[object.hash] = object.time_now;
+                            }  
+                        }
 
                         object = await WDR.Get_Locale.Pokemon(WDR, object);
 
@@ -111,31 +145,31 @@ module.exports = async (WDR, Payload) => {
 
                         WDR.Subscriptions.Raids(WDR, object);
 
-                    } else if (data.type == 'quest') {
+                    } else if (objectType === 'quest') {
 
                         object = await WDR.Get_Quest_Reward(WDR, object);
 
                         if (!object) {
-                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Reward', data.message);
+                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Reward', Payload[p]);
                         }
 
                         object = await WDR.Get_Quest_Task(WDR, object);
 
                         if (!object) {
-                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Task', data.message);
+                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Task', Payload[p]);
                         }
 
                         WDR.Feeds.Quests(WDR, object);
 
                         WDR.Subscriptions.Quests(WDR, object);
 
-                    } else if (data.type == 'pokestop') {
+                    } else if (objectType === 'pokestop') {
 
                         WDR.Feeds.Lures(WDR, object);
 
                         //WDR.Subscriptions.Lures(WDR, object);
 
-                    } else if (data.type == 'invasion') {
+                    } else if (objectType === 'invasion') {
 
                         WDR.Feeds.Invasions(WDR, object);
 

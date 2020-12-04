@@ -1,8 +1,3 @@
-var Sent_Subscriptions = [];
-setInterval(() => {
-    Sent_Subscriptions = [];
-}, 60000 * 60);
-
 var Leagues = ['great', 'ultra'];
 var CPs = [1000, 2000];
 
@@ -13,14 +8,6 @@ module.exports = async (WDR, sighting) => {
     sighting.form_id = sighting.form_id ? sighting.form_id : 0;
 
     //let size = sighting.size === 0 ? sighting.size : sighting.size.toLowerCase();
-
-    if(sighting.hash){
-        if(Sent_Subscriptions.includes(sighting.hash)){
-            return;
-        } else {
-            Sent_Subscriptions.push(sighting.hash);
-        }  
-    }
 
     for (let lg = 0, lglen = Leagues.length; lg < lglen; lg++) {
         let league = Leagues[lg];

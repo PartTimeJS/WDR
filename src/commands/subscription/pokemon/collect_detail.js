@@ -46,17 +46,6 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 break;
 
 
-            case 'Type':
-                instruction = new WDR.DiscordJS.MessageEmbed()
-                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
-                    .setTitle('What Pokémon Type would you like to Subscribe to?')
-                    .setFooter(requirements);
-                if (object) {
-                    instruction.setDescription('Current: `' + WDR.Capitalize(object) + '`');
-                }
-                break;
-
-
             case 'Form':
                 var forms = '**0 - All**\n';
                 for (let f = 0, flen = sub.forms.length; f < flen; f++) {
@@ -70,7 +59,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     .setFooter(requirements);
                 if (object) {
                     if (object.form === 0) {
-                        instruction.setDescription('Current: `All Pokémon`' + '\n' +
+                        instruction.setDescription('Current: `All`' + '\n' +
                             'Available Forms:' + '\n　' + forms);
                     } else {
                         instruction.setDescription('Current: `' + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +

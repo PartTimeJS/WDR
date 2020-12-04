@@ -1,8 +1,3 @@
-var Sent_Subscriptions = [];
-setInterval(() => {
-    Sent_Subscriptions = [];
-}, 60000 * 60);
-
 module.exports = async (WDR, sighting) => {
 
     let discord = sighting.discord;
@@ -88,14 +83,6 @@ module.exports = async (WDR, sighting) => {
                 if (WDR.Config.POKEMON_PREGEN_TILES != 'DISABLED') {
                     sighting.body = await WDR.Generate_Tile(WDR, sighting, 'pokemon', sighting.latitude, sighting.longitude, sighting.sprite);
                     sighting.static_map = WDR.Config.STATIC_MAP_URL + 'staticmap/pregenerated/' + sighting.body;
-                }
-
-                if(sighting.hash){
-                    if(Sent_Subscriptions.includes(sighting.hash)){
-                        return;
-                    } else {
-                        Sent_Subscriptions.push(sighting.hash);
-                    }  
                 }
 
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {

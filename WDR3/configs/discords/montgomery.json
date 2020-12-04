@@ -1,0 +1,31 @@
+{
+  "name": "Alabama",
+
+  "id": "313858836580532225",
+
+  "geojson_file": "alabama.json",
+
+  "map_url": "https://mgm.pokemap.org/",
+
+  "subscribe_url": "https://mgm.pokemap.org/subscribe",
+
+  "allowed_roles": ["540354558103126033"],
+
+  "command_channels": ["751062564560961596"],
+
+  "purge_channels": "ENABLED",
+
+  "channels_to_purge": ["540354431712100373","540354458165444608"],
+
+  "bot_admins": [],
+
+  "geofence": [
+    [
+      [-86.580546,32.61903],
+      [-86.018315,32.626685],
+      [-86.016844,32.206632],
+      [-86.574583,32.194268],
+      [-86.580546,32.61903]
+    ]
+  ]
+}

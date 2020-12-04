@@ -78,6 +78,7 @@ module.exports = (WDR, Functions, Message, Member) => {
             modified.form_ids = old.pokemon.form_ids;
         }
 
+
         modified.pokemon = await Functions.DetailCollect(WDR, Functions, 'Name', Member, Message, old.name, 'Respond with \'Next\', \'All\', or the Pokémon Name. Names are not case-sensitive.', modified);
         if (modified.pokemon === null) {
             return;
@@ -91,37 +92,34 @@ module.exports = (WDR, Functions, Message, Member) => {
             modified.form_ids = modified.pokemon.form_ids;
         }
 
+
         old.form_name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form] : 'All';
         if (modified.pokemon_id > 0) {
             modified.form = await Functions.DetailCollect(WDR, Functions, 'Form', Member, Message, old, 'Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
             if (modified.form === null) {
                 return;
             }
-        } else {
-            modified.pokemon_type = await Functions.DetailCollect(WDR, Functions, 'Type', Member, Message, old.pokemon_type, 'Please respond with the Pokemon Type -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
-            if (modified.pokemon_type === null) {
-                return;
-            }
         }
-
         if (modified.form == old.form_name) {
             modified.form = old.form;
         }
+
 
         if (modified.pokemon === 0) {
             modified.gen = await Functions.DetailCollect(WDR, Functions, 'Generation', Member, Message, old.gen, 'Please respond with \'Next\', a Generation Number, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
             if (modified.gen === null) {
                 return;
             }
-
         } else {
             modified.gen = old.generation;
         }
+
 
         modified.min_iv = await Functions.DetailCollect(WDR, Functions, 'Minimum IV', Member, Message, old.min_iv, 'Please respond with \'Next\', an Number between 1 and 100, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
         if (modified.min_iv === null) {
             return;
         }
+
 
         if (modified.min_iv == 100) {
             modified.max_iv = 100;
@@ -129,10 +127,12 @@ module.exports = (WDR, Functions, Message, Member) => {
             modified.max_iv = await Functions.DetailCollect(WDR, Functions, 'Maximum IV', Member, Message, old.max_iv, 'Please respond with \'Next\', an Number between 1 and 100, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
         }
 
+
         modified.min_lvl = await Functions.DetailCollect(WDR, Functions, 'Minimum Level', Member, Message, old.min_lvl, 'Please respond with \'Next\', a Number between 1 and ' + WDR.Max_Pokemon_Level + ', or type \'All\'. Type \'Cancel\' to Stop.', modified);
         if (modified.min_lvl === null) {
             return;
         }
+
 
         if (modified.min_lvl == WDR.Max_Pokemon_Level) {
             modified.max_lvl = WDR.Max_Pokemon_Level;
@@ -143,12 +143,14 @@ module.exports = (WDR, Functions, Message, Member) => {
             }
         }
 
+
         if (modified.pokemon_id > 0) {
                 
             modified.gender = await Functions.DetailCollect(WDR, Functions, 'Gender', Member, Message, old.gender, 'Please respond with \'Next\', \'Male\', \'Female\', or type \'All\'.', modified);
             if (modified.gender === null) {
                 return;
             }
+
 
             modified.size = modified.size.toLowerCase();
             modified.size = await Functions.DetailCollect(WDR, Functions, 'Size', Member, Message, old.size, 'Please respond with \'Next\', \'Big\', \'Large\', \'Normal\', \'Small\', \'Tiny\' or \'All\'.', modified);
@@ -158,6 +160,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         } else {
             modified.size = 0;
         }
+
 
         modified.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', Member, Message, old.areas, 'Please respond with \'Yes\', \'No\', or \'Distance\'', modified);
         if (modified.geotype === null) {
@@ -169,6 +172,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         } else {
             modified.areas = 'All';
         }
+        
 
         modified.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', Member, Message, undefined, 'Type \'Yes\' or \'No\'. Subscription will be saved.', modified);
         if (modified.confirm === false) {
