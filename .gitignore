@@ -38,6 +38,9 @@ configs/db/*.js
 
 package-lock.json
 
+*/*/*/*.json
+*/*/*.json
+
 src/static/PvPRank.js
 src/static/data/*ini
 src/static/dbMigrate.js
@@ -46,10 +49,16 @@ static/*.js
 *.DS_Store
 *.conf
 *.nonobfuscated.js
-*.ini
+config/*.ini
 *.obf
 node_modules
 rawprotos.json
 baseprotos.json
 *.proto
 master.json
+
+WDR3/configs/geofences/*.json
+WDR3/configs/embeds/*.js
+WDR3/configs/db/*.js
+*/*/config.ini
+*/*/*/*/*.ini
