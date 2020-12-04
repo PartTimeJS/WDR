@@ -33,7 +33,9 @@ module.exports = async (WDR, Functions, message, Member, AreaArray) => {
                 let area_index = areas.indexOf(sub);
 
                 if (area_index >= 0) {
-                    return message.reply('You are already subscribed to this Area.').then(m => m.delete(10000)).catch(console.error);
+                    return message.reply('You are already subscribed to this Area.').then(m => m.delete({
+                        timeout: 10000
+                    }));
                 } else {
                     switch (true) {
                         case sub == 'all':
