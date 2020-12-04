@@ -116,13 +116,13 @@ module.exports = async (WDR, Payload) => {
                         object = await WDR.Get_Quest_Reward(WDR, object);
 
                         if (!object) {
-                            return WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Reward', data.message);
+                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Reward', data.message);
                         }
 
                         object = await WDR.Get_Quest_Task(WDR, object);
 
                         if (!object) {
-                            return WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Task', data.message);
+                            WDR.Cosole.error(WDR, '[webhooks.js] Quest object lost when trying to get Task', data.message);
                         }
 
                         WDR.Feeds.Quests(WDR, object);
@@ -145,7 +145,7 @@ module.exports = async (WDR, Payload) => {
             }
         }
             
-    } //);
+    }
 
     // END
     return;
