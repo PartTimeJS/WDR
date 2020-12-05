@@ -51,9 +51,9 @@ module.exports = async (WDR, QUEST) => {
                             }
 
                         } else if (User.geotype == 'areas') {
-                            let defGeo = (User.areas.split(',').indexOf(QUEST.area.default) >= 0);
-                            let mainGeo = (User.areas.split(',').indexOf(QUEST.area.main) >= 0);
-                            let subGeo = (User.areas.split(',').indexOf(QUEST.area.sub) >= 0);
+                            let defGeo = (User.areas.split(';').indexOf(QUEST.area.default) >= 0);
+                            let mainGeo = (User.areas.split(';').indexOf(QUEST.area.main) >= 0);
+                            let subGeo = (User.areas.split(';').indexOf(QUEST.area.sub) >= 0);
                             if (defGeo || mainGeo || subGeo) {
                                 if (WDR.Config.DEBUG.Quest_Subs == 'ENABLED') {
                                     WDR.Console.log(WDR, '[DEBUG] [src/subs/quest.js] ' + QUEST.simple_reward + ' | Sent area sub to ' + User.user_name + '.');
