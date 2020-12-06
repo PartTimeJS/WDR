@@ -40,7 +40,7 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
 
                         delete user.locations[locations[number].name];
 
-                        if (user.location && user.location.toString() == user.locations[locations[number].name].toString()) {
+                        if (user.location && user.location != undefined && user.location.toString() == user.locations[locations[number].name].toString()) {
 
                             Message.reply('WARNING: You are deleting your actie location. You will need to set a new location to receive location alerts.').then(m => m.delete({
                                 timeout: 10000
