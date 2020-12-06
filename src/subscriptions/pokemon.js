@@ -97,7 +97,7 @@ module.exports = async (WDR, sighting) => {
 
                         if (User.geotype == 'city') {
                             if(User.guild_name == 'Migrated'){
-                                WDR.Console.error(WDR, `[src/subs/pokemon.js] Invalid Guild Name found from migrated records. Please run a query to update your guild names based on guild ID.`, User);
+                                WDR.Console.error(WDR, '[src/subs/pokemon.js] Invalid Guild Name found from migrated records. Please run a query to update your guild names based on guild ID.', User);
                             }
                             if (User.guild_name == sighting.area.default) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
@@ -142,7 +142,7 @@ module.exports = async (WDR, sighting) => {
                                 WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed Location Geofence. Saw: ${distance}km. Wanted: <=${loc_dist}km`);
                             }
                         } else {
-                            WDR.Console.error(WDR, `[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.`, User);
+                            WDR.Console.error(WDR, '[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.', User);
                         }
                     }
                 }
