@@ -24,7 +24,7 @@ module.exports = (WDR, guild_id, user_id, allowedRoles) => {
 
                 } else {
                     if (WDR.Config.DEBUG.Authorization == 'ENABLED') {
-                        WDR.Console.info(WDR, `[DEBUG] [Authorize.js] ${user.username} (${user_id}) is not a member of ${guild.name} (${guild_id})`);
+                        WDR.Console.info(WDR, `[DEBUG] [Authorize.js] ${user.username} (${user_id}) is NOT a member of ${guild.name} (${guild_id})`);
                     }
                     return false;
 

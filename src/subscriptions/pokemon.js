@@ -96,14 +96,17 @@ module.exports = async (WDR, sighting) => {
                         let match = {};
 
                         if (User.geotype == 'city') {
+                            if(User.guild_name == 'Migrated'){
+                                WDR.Console.error(WDR, `[src/subs/pokemon.js] Invalid Guild Name found from migrated records. Please run a query to update your guild names based on guild ID.`, User);
+                            }
                             if (User.guild_name == sighting.area.default) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | Sent city sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] Sent City Geofenced Pokemon Sub to ${User.user_name}.`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | User: ' + User.user_name + ' | Failed City Geofence. Wanted: `' + User.guild_name + '` Saw: `' + sighting.area.default+'`');
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed City Geofence. Saw: ${User.guild_name}. Wanted: ${sighting.area.default}`);
                             }
 
                         } else if (User.geotype == 'areas') {
@@ -113,12 +116,12 @@ module.exports = async (WDR, sighting) => {
                             if (defGeo || mainGeo || subGeo) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | Sent area sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] Sent Area Geofenced Sighting Sub to ${User.user_name}.`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | User: ' + User.user_name + ' | Failed Area Geofence.');
-                            }
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed Area Geofence. Saw: ${User.areas}. Wanted: ${sighting.area.toString()}`);
+                            } 
 
                         } else if (User.geotype == 'location') {
                             let distance = WDR.Distance.between({
@@ -132,15 +135,17 @@ module.exports = async (WDR, sighting) => {
                             if (loc_dist > distance) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | Sent location sub to ' + User.user_name + '.');
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] Sent Location Geofenced Sub to ${User.user_name}.`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
+                            } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed Location Geofence. Saw: ${distance}km. Wanted: <=${loc_dist}km`);
                             }
                         } else {
-                            WDR.Console.error(WDR, '[DEBUG] [src/subs/pokemon.js] User: ' + User.user_name + ' | User geotype has a bad value.', User);
+                            WDR.Console.error(WDR, `[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.`, User);
                         }
                     } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                        WDR.Console.info(WDR, '[DEBUG] [src/subs/pokemon.js] ' + sighting.encounter_id + ' | ' + User.user_name + ' did NOT pass authorization for ' + discord.name + ' (' + discord.id + ').');
+                        WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} did NOT pass authorization for ${discord.name} (${discord.id}).`);
                     }
                 }
             }
