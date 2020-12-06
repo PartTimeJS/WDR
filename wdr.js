@@ -164,6 +164,10 @@ async function wdr_intialization() {
     //await mysql_connect("pmsfDB");
     await mysql_connect('scannerDB');
     WDR.Discords = await load('/src/startup/load_discords.js');
+    WDR.Discords.forEach(discord => {
+        WDR.wdrDB.query(`UPDATE wdr_users SET guild_name = '${discord.name}' WHERE guild_id = '${discord.id}';`);
+        WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET guild_name = '${discord.name}' WHERE guild_id = '${discord.id}';`);
+    });
     await load_modules();
     await load_commands();
     WDR.Filters = await load('/src/startup/load_filters.js');
