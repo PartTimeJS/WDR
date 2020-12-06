@@ -51,12 +51,12 @@ const DB = {
             'wdr_quest_subs'
         ];
         for(let t = 0, tlen = subTables.length; t < tlen; t++){
-            query = query.replace('%TABLE%', subTables[t]);
+            let tableQuery = query.replace('%TABLE%', subTables[t]);
             WDR.wdrDB.query(
-                query,
+                tableQuery,
                 function (error) {
                     if (error) {
-                        WDR.Console.error(WDR, '[src/database.js] Error Updating Sub Tables.', [query, error]);
+                        WDR.Console.error(WDR, '[src/database.js] Error Updating Sub Tables.', [tableQuery, error]);
                     }
                 }
             );
