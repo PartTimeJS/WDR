@@ -144,8 +144,6 @@ module.exports = async (WDR, sighting) => {
                         } else {
                             WDR.Console.error(WDR, `[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.`, User);
                         }
-                    } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                        WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} did NOT pass authorization for ${discord.name} (${discord.id}).`);
                     }
                 }
             }
