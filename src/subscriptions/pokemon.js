@@ -139,7 +139,7 @@ module.exports = async (WDR, sighting) => {
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed Location Geofence. Saw: ${distance}km. Wanted: <=${loc_dist}km`);
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} Failed Location Geofence. Saw: ${distance}. Wanted: <= ${loc_dist}`);
                             }
                         } else {
                             WDR.Console.error(WDR, '[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.', User);
