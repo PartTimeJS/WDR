@@ -22,7 +22,7 @@ module.exports = (WDR, User) => {
                 count: 0
             };
 
-        } else if (rateLimit[User.user_id].count > 8) {
+        } else if (rateLimit[User.user_id].count > 4) {
 
 
             let user_query = `
@@ -60,8 +60,8 @@ module.exports = (WDR, User) => {
 
 
         } else if (rateLimit[User.user_id].count >= 0) {
-            if (rateLimit[User.user_id].count > 3) {
-                WDR.Console.error(WDR, '[Rate_Limit.js] User ' + User.user_name + ' (' + User.user_id + ')\'s Subscription DM rate is exceeding 20/minute.');
+            if (rateLimit[User.user_id].count > 2) {
+                WDR.Console.error(WDR, '[Rate_Limit.js] User ' + User.user_name + ' (' + User.user_id + ')\'s Subscription DM rate is exceeding 10/minute.');
             }
             rateLimit[User.user_id].paused = false;
             rateLimit[User.user_id].count++;
