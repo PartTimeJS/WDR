@@ -99,7 +99,7 @@ module.exports = async (WDR, sighting) => {
                             if (User.guild_name == sighting.area.default) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent City Geofenced Pokemon DM. ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent City Geofenced Pokemon DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
@@ -113,7 +113,7 @@ module.exports = async (WDR, sighting) => {
                             if (defGeo || mainGeo || subGeo) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Area Geofenced Sighting DM. ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Area Geofenced Sighting DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
@@ -132,7 +132,7 @@ module.exports = async (WDR, sighting) => {
                             if (loc_dist > distance) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Location Geofenced DM. ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Location Geofenced DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
                                 Send_Subscription(WDR, match, sighting, User);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
