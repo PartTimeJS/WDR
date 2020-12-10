@@ -47,7 +47,6 @@ module.exports = async (WDR, sighting) => {
             }
         }
 
-
         let defGeo = (channel.geofences.indexOf(sighting.area.default) >= 0);
         let mainGeo = (channel.geofences.indexOf(sighting.area.main) >= 0);
         let subGeo = (channel.geofences.indexOf(sighting.area.sub) >= 0);
@@ -85,6 +84,8 @@ module.exports = async (WDR, sighting) => {
                 for (let l = 0, llen = sighting[match.league].length; l < llen; l++) {
 
                     let potential = sighting[match.league][l];
+                    potential.rank = parseInt(potential.rank);
+                    potential.cp = parseInt(potential.cp);
 
                     potential.typing = await WDR.Get_Typing(WDR, {
                         pokemon_id: potential.pokemon_id,
@@ -95,17 +96,16 @@ module.exports = async (WDR, sighting) => {
                     let rankMatch = potential.rank <= channel.filter.min_pvp_rank;
                     let cpMatch = potential.cp >= channel.filter.min_cp_range;
                     let typeMatch = (channel.filter.type == 'all' || channel.filter.type == undefined) ? true : potential.typing.some(type => channel.filter.type.includes(type));
-                    if (rankMatch && cpMatch && typeMatch) {
 
+                    if (rankMatch && cpMatch && typeMatch) {
                         let filtered = {};
                         filtered.types = potential.typing;
-                        filtered.pokemon_id = potential.pokemon_id;
+                        filtered.pokemon_id = potential.pokemon ? potential.pokemon : potential.pokemon_id;
                         filtered.rank = potential.rank;
-                        filtered.percent = potential.percentage;
+                        filtered.percent = (potential.percentage <= 1 ? (Math.round(potential.percentage * 10000) / 100) : potential.percentage);
                         filtered.level = potential.level;
                         filtered.cp = potential.cp;
-                        filtered.value = potential.pvp_value;
-                        filtered.form_id = potential.form_id;
+                        filtered.form_id = potential.form ? potential.form : potential.form_id;
                         match.possible_cps.push(filtered);
                     }
                 }
