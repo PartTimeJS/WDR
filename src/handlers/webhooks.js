@@ -115,7 +115,7 @@ module.exports = async (WDR, Payload) => {
                             }
 
                             if (object.pvp_rankings_ultra_league) {
-                                object.ultra_league = object.pvp_rankings_great_league;
+                                object.ultra_league = object.pvp_rankings_ultra_league;
                             } else {
                                 object.ultra_league = await WDR.PvP.CalculatePossibleCPs(WDR, object.pokemon_id, object.form_id, object.individual_attack, object.individual_defense, object.individual_stamina, object.pokemon_level, object.gender_name, 'ultra', 'webhook.js ultra');
                             }
