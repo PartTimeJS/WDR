@@ -172,8 +172,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         collector.stop('cancel');
                         break;
 
-                    case type.indexOf('Confirm-Add') >= 0:
-                    case type.indexOf('Confirm-Remove') >= 0:
+                    case type.includes('Confirm-Add'):
+                    case type.includes('Confirm-Remove'):
                         switch (CollectedMsg.content.toLowerCase()) {
                             case 'save':
                             case 'yes':
@@ -190,7 +190,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         }
                         break;
 
-                    case type.indexOf('Geofence') >= 0:
+                    case type.includes('Geofence'):
                         switch (CollectedMsg.content.toLowerCase()) {
                             case (CollectedMsg.content.toLowerCase() == 'same'):
                             case (CollectedMsg.content.toLowerCase() == 'keep'):

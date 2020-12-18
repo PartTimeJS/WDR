@@ -64,12 +64,8 @@ module.exports = async (WDR, Functions, message, member) => {
             // }
 
             create.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', member, message, null, 'Please respond with \'Yes\' or \'No\'', create);
-            if (create.geotype == 'location') {
-                create.areas = member.db.location.name;
-            } else if (create.geotype == 'areas') {
-                create.areas = member.db.areas;
-            } else {
-                create.areas = 'All';
+            if (create.geotype === null) {
+                return;
             }
 
             create.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', member, message, null, 'Type \'Yes\' or \'No\'. Subscription will be saved.', create);
@@ -78,42 +74,41 @@ module.exports = async (WDR, Functions, message, member) => {
             } else {
 
                 let query = `
-            INSERT INTO
-              wdr_pvp_subs (
-                  user_id,
-                  user_name,
-                  guild_id,
-                  guild_name,
-                  bot,
-                  status,
-                  geotype,
-                  areas,
-                  location,
-                  pokemon_id,
-                  pokemon_type,
-                  form,
-                  league,
-                  min_rank,
-                  generation
-                )
-            VALUES
-              (
-                '${member.id}',
-                '${member.db.user_name}',
-                '${message.guild.id}',
-                '${member.db.guild_name}',
-                ${member.db.bot},
-                ${member.db.pvp_status},
-                '${create.geotype}',
-                '${member.db.areas}',
-                '${JSON.stringify(member.db.location)}',
-                ${create.pokemon_id},
-                '${create.pokemon_type}',
-                ${create.form},
-                '${create.league}',
-                ${create.min_rank},
-                ${create.gen}
-              );`;
+                    INSERT INTO
+                        wdr_pvp_subs (
+                            user_id,
+                            user_name,
+                            guild_id,
+                            guild_name,
+                            bot,
+                            status,
+                            geotype,
+                            areas,
+                            location,
+                            pokemon_id,
+                            pokemon_type,
+                            form,
+                            league,
+                            min_rank,
+                            generation
+                        )
+                    VALUES (
+                        '${member.id}',
+                        '${member.db.user_name}',
+                        '${message.guild.id}',
+                        '${member.db.guild_name}',
+                        ${member.db.bot},
+                        ${member.db.pvp_status},
+                        '${create.geotype}',
+                        '${member.db.areas}',
+                        '${JSON.stringify(member.db.location)}',
+                        ${create.pokemon_id},
+                        '${create.pokemon_type}',
+                        ${create.form},
+                        '${create.league}',
+                        ${create.min_rank},
+                        ${create.gen}
+                    );`;
                 WDR.wdrDB.query(
                     query,
                     async function (error) {
