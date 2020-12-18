@@ -45,8 +45,10 @@ module.exports = (WDR, Functions, Message, Member) => {
             }
             sub_list = sub_list.slice(0, -1);
 
-            let number = await Functions.DetailCollect(WDR, Functions, 'Remove', Member, Message, subscriptions, 'Type the corressponding # of the subscription you would like to remove -OR- type \'all\'', sub_list);
-
+            let number = await Functions.DetailCollect(WDR, Functions, 'Remove', Member, Message, subscriptions, 'Type the corressponding # of the subscription you would like to remove.', sub_list);
+            if(number === null){
+                return;
+            }
             let remove = subscriptions[number];
 
             let query = `
