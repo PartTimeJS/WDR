@@ -87,59 +87,64 @@ module.exports = async (WDR, sighting) => {
 
                 for (let m = 0, mlen = matching.length; m < mlen; m++) {
 
-                    let User = matching[m];
+                    let user = matching[m];
 
-                    User.location = JSON.parse(User.location);
+                    try {
+                        user.location = JSON.parse(user.location);
+                    } catch (e) {
+                        console.error(e, user);
+                        console.error('Bad value for user.location', user.location);
+                    }
 
-                    let authorized = await WDR.Authorize(WDR, discord.id, User.user_id, discord.allowed_roles);
+                    let authorized = await WDR.Authorize(WDR, discord.id, user.user_id, discord.allowed_roles);
                     if (authorized) {
                         let match = {};
 
-                        if (User.geotype == 'city') {
-                            if (User.guild_name == sighting.area.default) {
+                        if (user.geotype == 'city') {
+                            if (user.guild_name == sighting.area.default) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent City Geofenced Pokemon DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Sent City Geofenced Pokemon DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
-                                Send_Subscription(WDR, match, sighting, User);
+                                Send_Subscription(WDR, match, sighting, user);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Failed City Geofence. Saw: ${User.guild_name}. Wanted: ${sighting.area.default}`);
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Failed City Geofence. Saw: ${user.guild_name}. Wanted: ${sighting.area.default}`);
                             }
 
-                        } else if (User.geotype == 'areas') {
-                            let defGeo = (User.areas.split(';').indexOf(sighting.area.default) >= 0);
-                            let mainGeo = (User.areas.split(';').indexOf(sighting.area.main) >= 0);
-                            let subGeo = (User.areas.split(';').indexOf(sighting.area.sub) >= 0);
+                        } else if (user.geotype == 'areas') {
+                            let defGeo = (user.areas.split(';').indexOf(sighting.area.default) >= 0);
+                            let mainGeo = (user.areas.split(';').indexOf(sighting.area.main) >= 0);
+                            let subGeo = (user.areas.split(';').indexOf(sighting.area.sub) >= 0);
                             if (defGeo || mainGeo || subGeo) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Area Geofenced Sighting DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Sent Area Geofenced Sighting DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
-                                Send_Subscription(WDR, match, sighting, User);
+                                Send_Subscription(WDR, match, sighting, user);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Failed Area Geofence. Saw: ${User.areas}. Wanted: ${JSON.stringify(sighting.area)}`);
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Failed Area Geofence. Saw: ${user.areas}. Wanted: ${JSON.stringify(sighting.area)}`);
                             } 
 
-                        } else if (User.geotype == 'location') {
+                        } else if (user.geotype == 'location') {
                             let distance = WDR.Distance.between({
                                 lat: sighting.latitude,
                                 lon: sighting.longitude
                             }, {
-                                lat: User.location.coords.split(',')[0],
-                                lon: User.location.coords.split(',')[1]
+                                lat: user.location.coords.split(',')[0],
+                                lon: user.location.coords.split(',')[1]
                             });
-                            let loc_dist = WDR.Distance(parseInt(User.location.radius) + ' km');
+                            let loc_dist = WDR.Distance(parseInt(user.location.radius) + ' km');
                             if (loc_dist > distance) {
                                 match.embed = matching[0].embed ? matching[0].embed : 'pokemon_iv.js';
                                 if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Sent Location Geofenced DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Sent Location Geofenced DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
                                 }
-                                Send_Subscription(WDR, match, sighting, User);
+                                Send_Subscription(WDR, match, sighting, user);
                             } else if (WDR.Config.DEBUG.Pokemon_Subs == 'ENABLED') {
-                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${User.user_name} - Failed Location Geofence. Saw: ${distance}. Wanted: <= ${loc_dist}`);
+                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pokemon.js] ${user.user_name} - Failed Location Geofence. Saw: ${distance}. Wanted: <= ${loc_dist}`);
                             }
                         } else {
-                            WDR.Console.error(WDR, '[DEBUG] [src/subs/pokemon.js] User geotype has a bad value.', User);
+                            WDR.Console.error(WDR, '[DEBUG] [src/subs/pokemon.js] user geotype has a bad value.', user);
                         }
                     }
                 }
@@ -151,9 +156,9 @@ module.exports = async (WDR, sighting) => {
     return;
 };
 
-async function Send_Subscription(WDR, match, sighting, User) {
+async function Send_Subscription(WDR, match, sighting, user) {
 
-    await WDR.Rate_Limit(WDR, User);
+    await WDR.Rate_Limit(WDR, user);
 
     let Embed_Config = require(WDR.Dir + '/configs/embeds/' + match.embed);
 
@@ -228,7 +233,7 @@ async function Send_Subscription(WDR, match, sighting, User) {
 
         match.embed = Embed_Config(WDR, match);
 
-        WDR.Send_DM(WDR, User.guild_id, User.user_id, match.embed, User.bot);
+        WDR.Send_DM(WDR, user.guild_id, user.user_id, match.embed, user.bot);
 
     }
 }
