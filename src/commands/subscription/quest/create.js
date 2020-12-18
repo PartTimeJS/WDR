@@ -1,4 +1,4 @@
-module.exports = (WDR, Functions, Message, Member) => {
+module.exports = (WDR, Functions, message, member) => {
 
     WDR.wdrDB.query(`
         SELECT
@@ -6,35 +6,35 @@ module.exports = (WDR, Functions, Message, Member) => {
         FROM
             wdr_quest_subs
         WHERE
-            user_id = '${Member.id}'
+            user_id = '${member.id}'
                 AND
-            guild_id = '${Message.guild.id}'
+            guild_id = '${message.guild.id}'
      ;`,
     async function (error, subs) {
         if (error) {
             WDR.Console.error(WDR, '[cmd/sub/quest/create.js] Error Fetching Subscriptions to Create Subscription.', [error]);
-            return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
+            return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
                 timeout: 10000
             }));
         } else if (subs.length >= 20) {
-            let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
-                .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+            let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('00ff00')
+                .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                 .setTitle('Maximum Subscriptions Reached!')
                 .setDescription('You are at the maximum of 20 subscriptions. Please remove one before adding another.')
                 .setFooter('You can type \'view\', \'presets\', \'remove\', or \'edit\'.');
-            Message.channel.send(subscription_success).then(BotMsg => {
-                return Functions.OptionCollect(WDR, Functions, 'create', Message, BotMsg, Member);
+            message.channel.send(subscription_success).then(BotMsg => {
+                return Functions.OptionCollect(WDR, Functions, 'create', message, BotMsg, member);
             });
         } else {
 
             let create = {};
 
-            create.reward = await Functions.DetailCollect(WDR, Functions, 'Name', Member, Message, null, 'Please type a reward. This can be a pokemon name or item.', create);
+            create.reward = await Functions.DetailCollect(WDR, Functions, 'Name', member, message, null, 'Please type a reward. This can be a pokemon name or item.', create);
             if (create.reward === null) {
                 return;
             } else if (create.reward.type === 'item') {
                 create.reward = create.reward.item_name;
-                create.quantity = await Functions.DetailCollect(WDR, Functions, 'Quantity', Member, Message, null, 'Respond with a specific quantity or type \'all\'.', create);
+                create.quantity = await Functions.DetailCollect(WDR, Functions, 'Quantity', member, message, null, 'Respond with a specific quantity or type \'all\'.', create);
                 if (create.quantity === null) {
                     return;
                 } else if (create.quantity > 0) {
@@ -42,22 +42,22 @@ module.exports = (WDR, Functions, Message, Member) => {
                 }
             }
 
-            create.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', Member, Message, null, 'Please respond with \'Yes\' or \'No\'', create);
-            if (create.geotype === null) {
+            create.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', member, message, null, 'Please respond with \'Yes\' or \'No\'', create);
+            if(create.geotype == null){
                 return;
             } else if (create.geotype == 'location') {
-                create.areas = Member.db.location.name;
+                create.areas = member.db.location.name;
             } else if (create.geotype == 'areas') {
-                create.areas = Member.db.areas;
+                create.areas = member.db.areas;
             } else {
                 create.areas = 'All';
             }
 
-            create.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', Member, Message, null, 'Type \'Yes\' or \'No\'. Subscription will be saved.', create);
+            create.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', member, message, null, 'Type \'Yes\' or \'No\'. Subscription will be saved.', create);
             if (create.confirm === null) {
                 return;
             } else if (create.confirm === false) {
-                return Functions.Cancel(WDR, Functions, Message, Member);
+                return Functions.Cancel(WDR, Functions, message, member);
             } else {
 
                 let query = `
@@ -76,17 +76,17 @@ module.exports = (WDR, Functions, Message, Member) => {
                             alert_time
                         )
                     VALUES (
-                        '${Member.id}',
-                        '${Member.db.user_name}',
-                        '${Message.guild.id}',
-                        '${Member.db.guild_name}',
-                        ${Member.db.bot},
-                        ${Member.db.quest_status},
+                        '${member.id}',
+                        '${member.db.user_name}',
+                        '${message.guild.id}',
+                        '${member.db.guild_name}',
+                        ${member.db.bot},
+                        ${member.db.quest_status},
                         '${create.geotype}',
-                        '${Member.db.areas}',
-                        '${JSON.stringify(Member.db.location)}',
+                        '${member.db.areas}',
+                        '${JSON.stringify(member.db.location)}',
                         '${create.reward}',
-                        '${Member.db.quest_time}'
+                        '${member.db.quest_time}'
                     )
                 ;`;
 
@@ -95,30 +95,30 @@ module.exports = (WDR, Functions, Message, Member) => {
                     async function (error) {
                         if (error) {
                             if (error.toString().indexOf('Duplicate entry') >= 0) {
-                                let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('ff0000')
-                                    .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                                let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('ff0000')
+                                    .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                                     .setTitle('Existing Subscription Found!')
                                     .setDescription('Nothing has been saved.')
                                     .setFooter('You can type \'view\', \'presets\', \'add\', \'add adv\', \'remove\', or \'edit\'.');
-                                Message.channel.send(subscription_success).then(BotMsg => {
-                                    return Functions.OptionCollect(WDR, Functions, 'create', Message, BotMsg, Member);
+                                message.channel.send(subscription_success).then(BotMsg => {
+                                    return Functions.OptionCollect(WDR, Functions, 'create', message, BotMsg, member);
                                 });
 
                             } else {
                                 WDR.Console.error(WDR, '[cmd/sub/quest/create.js] Error Inserting Subscription.', [query, error]);
-                                return Message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
+                                return message.reply('There has been an error, please contact an Admin to fix.').then(m => m.delete({
                                     timeout: 10000
                                 }));
                             }
 
                         } else {
-                            let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
-                                .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
+                            let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('00ff00')
+                                .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                                 .setTitle(create.reward + ' Quest Subscription Complete!')
                                 .setDescription('Saved to the Database.')
                                 .setFooter('You can type \'view\', \'presets\', \'add\', or \'remove\'.');
-                            Message.channel.send(subscription_success).then(msg => {
-                                return Functions.OptionCollect(WDR, Functions, 'complete', Message, msg, Member);
+                            message.channel.send(subscription_success).then(msg => {
+                                return Functions.OptionCollect(WDR, Functions, 'complete', message, msg, member);
                             });
                         }
                     }
