@@ -66,6 +66,12 @@ module.exports = async (WDR, Functions, message, member) => {
             create.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', member, message, null, 'Please respond with \'Yes\' or \'No\'', create);
             if (create.geotype === null) {
                 return;
+            } else if (create.geotype == 'location') {
+                create.areas = member.db.location.name;
+            } else if (create.geotype == 'areas') {
+                create.areas = member.db.areas;
+            } else {
+                create.areas = 'All';
             }
 
             create.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', member, message, null, 'Type \'Yes\' or \'No\'. Subscription will be saved.', create);
