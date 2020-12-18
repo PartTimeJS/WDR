@@ -10,12 +10,8 @@ module.exports = async (WDR, Functions, Message, Member) => {
     let preset_name = preset_names[preset];
     preset = WDR.Presets.PvP.get(preset_name);
 
-    preset.areas = await Functions.DetailCollect(WDR, Functions, 'Geofence', Member, Message, undefined, 'Please respond with \'Yes\' or \'No\'.', preset);
-    if (preset.areas == Message.discord.name) {
-        preset.geotype = 'city';
-    } else {
-        preset.geotype = Member.db.geotype;
-    }
+    preset.geotype = await Functions.DetailCollect(WDR, Functions, 'Geofence', Member, Message, undefined, 'Please respond with \'Yes\' or \'No\'.', preset);
+
     preset.confirm = await Functions.DetailCollect(WDR, Functions, 'Confirm-Add', Member, Message, undefined, 'Type \'Yes\' or \'No\'. Subscription will be saved.', preset);
 
     let query = `
@@ -45,8 +41,8 @@ module.exports = async (WDR, Functions, Message, Member) => {
         '${Member.db.guild_name}',
         ${Member.db.bot},
         ${Member.db.pvp_status},
-        '${Member.db.geotype}',
-        '${preset.areas}',
+        '${preset.geotype}',
+        '${Member.db.areas}',
         '${JSON.stringify(Member.db.location)}',
         ${preset.pokemon_id},
         '${preset.pokemon_type}',
