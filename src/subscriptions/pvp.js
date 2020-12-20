@@ -85,11 +85,17 @@ module.exports = async (WDR, sighting) => {
                             generation = ${potential.gen}
                         )
                     ;`;
+                    if(potential.rank == 1 || potential.rank == '1'){
+                        console.log(query);
+                    }
                     WDR.wdrDB.query(
                         query,
                         async function (error, matching) {
+                            if(potential.rank == 1 || potential.rank == '1'){
+                                console.log(matching);
+                            }
                             if (error) {
-                                WDR.Console.error(WDR, '[commands/pokemon.js] Error Querying Subscriptions.', [query, error]);
+                                WDR.Console.error(WDR, '[src/subs/pvp.js] Error Querying Subscriptions.', [query, error]);
                             } else if (matching && matching.length > 0) {
 
                                 sighting.sprite = WDR.Get_Sprite(WDR, sighting);
@@ -109,14 +115,17 @@ module.exports = async (WDR, sighting) => {
                                         console.error('Bad value for user.location', user.location);
                                     }
 
-
                                     let authorized = await WDR.Authorize(WDR, discord.id, user.user_id, discord.allowed_roles);
                                     if (authorized) {
+
+                                        console.log('--------------AUTHORIZED-----------------', user);
 
                                         if (user.geotype == 'city') {
                                             if (user.guild_name == sighting.area.default) {
                                                 match.embed = matching[0].embed ? matching[0].embed : 'pvp.js';
                                                 Send_Subscription(WDR, match, sighting, user);
+                                            } else if (WDR.Config.DEBUG.PvP_Subs == 'ENABLED') {
+                                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pvp.js] ${user.user_name} - Failed City Geofence. Saw: ${user.guild_name}. Wanted: ${sighting.area.default}`);
                                             }
 
                                         } else if (user.geotype == 'areas') {
@@ -125,8 +134,13 @@ module.exports = async (WDR, sighting) => {
                                             let subGeo = (user.areas.split(';').indexOf(sighting.area.sub) >= 0);
                                             if (defGeo || mainGeo || subGeo) {
                                                 match.embed = matching[0].embed ? matching[0].embed : 'pvp.js';
+                                                if (WDR.Config.DEBUG.PvP_Subs == 'ENABLED') {
+                                                    WDR.Console.log(WDR, `[DEBUG] [src/subs/pvp.js] ${user.user_name} - Sent Area Geofenced Sighting DM. ${sighting.area.default} ${sighting.internal_value}IV Lvl${sighting.pokemon_level} ${sighting.pokemon_name}`);
+                                                }
                                                 Send_Subscription(WDR, match, sighting, user);
-                                            }
+                                            } else if (WDR.Config.DEBUG.PvP_Subs == 'ENABLED') {
+                                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pvp.js] ${user.user_name} - Failed Area Geofence. Saw: ${user.areas}. Wanted: ${JSON.stringify(sighting.area)}`);
+                                            } 
 
                                         } else if (user.geotype == 'location') {
                                             let distance = WDR.Distance.between({
@@ -140,9 +154,12 @@ module.exports = async (WDR, sighting) => {
                                             if (loc_dist > distance) {
                                                 match.embed = matching[0].embed ? matching[0].embed : 'pvp.js';
                                                 Send_Subscription(WDR, match, sighting, user);
+                                            } else if (WDR.Config.DEBUG.PvP_Subs == 'ENABLED') {
+                                                WDR.Console.info(WDR, `[DEBUG] [src/subs/pvp.js] ${user.user_name} - Failed Location Geofence. Saw: ${distance}. Wanted: <= ${loc_dist}`);
                                             }
+                                        } else {
+                                            WDR.Console.error(WDR, '[DEBUG] [src/subs/pvp.js] user geotype has a bad value.', user);
                                         }
-                                        break;
                                     }
                                 }
                             }
