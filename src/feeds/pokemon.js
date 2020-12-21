@@ -48,7 +48,7 @@ module.exports = (WDR, sighting) => {
 
         let pobject = channel.filter[WDR.Master.Pokemon[sighting.pokemon_id].name];
         if (!pobject) {
-            return WDR.Console.error(WDR, '[feeds/pokemon.js] Missing filter data for ' + WDR.Master.Pokemon[sighting.pokemon_id].name + ' in configs/filters/' + feed_channel[1].filter);
+            return WDR.Console.error(WDR, `[feeds/pokemon.js] Missing filter data for ${WDR.Master.Pokemon[sighting.pokemon_id].name} (${sighting.pokemon_id}) in configs/filters/${feed_channel[1].filter}`);
         } else if (pobject != 'False') {
 
             let defGeo = (channel.geofences.indexOf(sighting.area.default) >= 0);
