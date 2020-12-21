@@ -85,15 +85,9 @@ module.exports = async (WDR, sighting) => {
                             generation = ${potential.gen}
                         )
                     ;`;
-                    if(potential.rank == 1 || potential.rank == '1'){
-                        console.log(query);
-                    }
                     WDR.wdrDB.query(
                         query,
                         async function (error, matching) {
-                            if(potential.rank == 1 || potential.rank == '1'){
-                                console.log(matching);
-                            }
                             if (error) {
                                 WDR.Console.error(WDR, '[src/subs/pvp.js] Error Querying Subscriptions.', [query, error]);
                             } else if (matching && matching.length > 0) {
@@ -117,8 +111,6 @@ module.exports = async (WDR, sighting) => {
 
                                     let authorized = await WDR.Authorize(WDR, discord.id, user.user_id, discord.allowed_roles);
                                     if (authorized) {
-
-                                        console.log('--------------AUTHORIZED-----------------', user);
 
                                         if (user.geotype == 'city') {
                                             if (user.guild_name == sighting.area.default) {
