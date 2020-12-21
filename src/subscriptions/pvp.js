@@ -30,7 +30,7 @@ module.exports = async (WDR, sighting) => {
                         potential.form_id = potential.form;
                     }
 
-                    potential.percent = potential.percentage;
+                    potential.percent = (potential.percentage <= 1 ? (Math.round(potential.percentage * 10000) / 100) : potential.percentage);
                     potential.gen = await WDR.Get_Gen(potential.pokemon_id);
                     potential.typing = await WDR.Get_Typing(WDR, {
                         pokemon_id: potential.pokemon_id,
