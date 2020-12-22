@@ -72,13 +72,23 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         if (modified.pokemon_id > 0) {
             modified.form = await Functions.DetailCollect(WDR, Functions, 'Form', Member, Message, old, 'Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.', old);
+            modified.pokemon_type = 0;
+            modified.gen = 0;
         } else {
             modified.form = 0;
+            modified.pokemon_type = await Functions.DetailCollect(WDR, Functions, 'Type', Member, Message, old, 'Please respond with \'All\' or the Pokemon Type.', modified);
+            if (modified.pokemon_type === 0) {
+                modified.gen = await Functions.DetailCollect(WDR, Functions, 'Generation', Member, Message, old, 'Please respond with the Generation number -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
+            } else {
+                modified.gen = 0;
+            }
         }
 
         modified.league = await Functions.DetailCollect(WDR, Functions, 'League', Member, Message, old.league, 'Please respond with \'Great\', or \'Ultra\'.', modified);
 
         modified.min_rank = await Functions.DetailCollect(WDR, Functions, 'Rank', Member, Message, old.min_rank, 'Please respond with a value between 0 and 4096 -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
+
+
 
         //modified.min_lvl = await Functions.DetailCollect(WDR, Functions, "Level", Message, olc.min_lvl, "Please respond with a number greater than 0 or 'All'. Type 'Cancel' to Stop.", modified);
 
@@ -105,6 +115,8 @@ module.exports = (WDR, Functions, Message, Member) => {
                     geotype = '${modified.geotype}',
                     pokemon_id = ${modified.pokemon_id},
                     form = ${modified.form},
+                    generation = ${modified.gen},
+                    pokemon_type = ${modified.pokemon_type},
                     areas = '${modified.areas}',
                     geotype = '${modified.geotype}',
                     league = '${modified.league}',
@@ -119,6 +131,10 @@ module.exports = (WDR, Functions, Message, Member) => {
                     pokemon_id = ${old.pokemon_id}
                         AND 
                     form = ${old.form}
+                        AND 
+                    generation = ${old.generation},
+                        AND 
+                    pokemon_type = ${old.pokemon_type},
                         AND 
                     league = '${old.league}'
                         AND 
