@@ -20,7 +20,7 @@ module.exports = (WDR, Functions, message, member, gym_name_array, gym_detail_ar
                 timeout: 10000
             }));
         } else if (subs.length >= 30) {
-            let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('00ff00')
+            let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                 .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                 .setTitle('Maximum Subscriptions Reached!')
                 .setDescription('You are at the maximum of 20 subscriptions. Please remove one before adding another.')
@@ -187,7 +187,7 @@ module.exports = (WDR, Functions, message, member, gym_name_array, gym_detail_ar
                     async function (error) {
                         if (error) {
                             if (error.toString().indexOf('Duplicate entry') >= 0) {
-                                let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('ff0000')
+                                let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('ff0000')
                                     .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                                     .setTitle('Existing Subscription Found!')
                                     .setDescription('Nothing has been saved.')
@@ -202,7 +202,7 @@ module.exports = (WDR, Functions, message, member, gym_name_array, gym_detail_ar
                                 }));
                             }
                         } else {
-                            let subscription_success = new WDR.DiscordJS.messageEmbed().setColor('00ff00')
+                            let subscription_success = new WDR.DiscordJS.MessageEmbed().setColor('00ff00')
                                 .setAuthor(member.db.user_name, member.user.displayAvatarURL())
                                 .setTitle(create.name + ' Raid Subscription Complete!')
                                 .setDescription('Saved to the Database.')
