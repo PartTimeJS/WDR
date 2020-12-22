@@ -79,6 +79,10 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     default:
                         ptype = await WDR.Capitalize(sub.pokemon_type);
                 }
+                if(!ptype){
+                    ptype = 'All';
+                    sub.pokemon_type = 0;
+                }
 
                 var league = '';
                 switch (sub.league) {
@@ -87,6 +91,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         break;
                     default:
                         league = await WDR.Capitalize(sub.league);
+                        
                 }
 
                 var gen = '';
@@ -102,13 +107,12 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                     .setTitle('Does all of this look correct?')
                     .setDescription('Name: `' + sub.name + '`\n' +
-            'League: `' + league + '`\n' +
-            'Type: `' + ptype + '`\n' +
-            'Form: `' + form + '`\n' +
-            'Min Rank: `' + sub.min_rank + '`\n' +
-            //"Min Lvl: `" + sub.min_lvl + "`\n" +
-            'Generation: `' + gen + '`\n' +
-            'Filter By Areas: `' + sub.areas + '`')
+                        'League: `' + league + '`\n' +
+                        'Type: `' + ptype + '`\n' +
+                        'Form: `' + form + '`\n' +
+                        'Min Rank: `' + sub.min_rank + '`\n' +
+                        'Generation: `' + gen + '`\n' +
+                        'Filter By Areas: `' + sub.areas + '`')
                     .setFooter(requirements);
                 break;
 
