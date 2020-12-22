@@ -120,10 +120,6 @@ module.exports = (WDR, Functions, Message, Member) => {
                         AND 
                     form = ${old.form}
                         AND 
-                    areas = '${old.areas}'
-                        AND 
-                    geotype = '${old.geotype}'
-                        AND 
                     league = '${old.league}'
                         AND 
                     min_rank = ${old.min_rank};
