@@ -56,7 +56,7 @@ module.exports = (WDR, Functions, Message, Member) => {
                     if (sub_data.geotype === 'location') {
                         data += '　' + 'Area: ' + '`' + JSON.parse(sub_data.location).name + '`';
                     } else {
-                        data += '　' + 'Area: ' + '`' + sub_data.areas + '`' + '\n';
+                        data += '　' + 'Area: ' + '`Personal Areas`' + '\n';
                     }
                 } else if (data) {
                     data += '　' + 'Area: ' + '`All`' + '\n';
