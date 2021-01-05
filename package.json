@@ -6,7 +6,7 @@
     "start": "node wdr.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cli-progress": "^3.8.2",
     "colors": "^1.4.0",
     "discord.js": "^12.2.0",
