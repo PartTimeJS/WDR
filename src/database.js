@@ -91,7 +91,7 @@ const DB = {
                             *
                         FROM
                             wdr_info`,
-                        async function(error, row) {
+                        async function(error) {
                             if (error) {
                                 WDR.Console.error(WDR, '[src/database.js] Error connecting to wdrDB.', error);
                                 return resolve();
