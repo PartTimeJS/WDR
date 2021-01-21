@@ -1,0 +1,269 @@
+const mysql2 = require("mysql2");
+
+// #########################################################
+// IF YOU ARE MIGRATING FROM WDR1 THIS WILL NOT WORK FOR YOU
+// YOU MUST USE dbMigrate1.js
+// #########################################################
+
+const old_database = mysql2.createConnection({
+    supportBigNumbers: true,
+    host: "",
+    user: "",
+    password: "",
+    port: 3306,
+    database: "rdmdb"
+});
+
+const new_database = mysql2.createConnection({
+    supportBigNumbers: true,
+    host: "",
+    user: "",
+    password: "",
+    port: 3306,
+    database: "rdmdb"
+});
+
+setTimeout(function () {
+    console.log('starting migration...');
+    old_database.query(`
+        SELECT
+            *
+        FROM
+            wdr_subscriptions
+    ;`,
+    async function (error, records) {
+        console.log(`retrieved ${records.length} records. processsing...`);
+        if(error){
+            console.error(error);
+        }
+        for (let r = 0, rlen = records.length; r < rlen; r++) {
+            console.log(`processing record ${r+1} of ${records.length}`);
+            let record = records[r];
+
+            if (record.sub_type == 'pokemon') {
+                new_database.query(
+                    `INSERT IGNORE INTO
+                            wdr_pokemon_subs (
+                                user_id,
+                                user_name,
+                                guild_id,
+                                guild_name,
+                                bot,
+                                status,
+                                areas,
+                                location,
+                                pokemon_id,
+                                pokemon_type,
+                                form,
+                                min_lvl,
+                                max_lvl,
+                                min_iv,
+                                max_iv,
+                                size,
+                                gender,
+                                generation,
+                                geotype
+                            )
+                            VALUES (
+                                '${record.user_id}',
+                                '${record.user_name}',
+                                '${record.guild_id}',
+                                '${record.guild_id}',
+                                '${record.bot}',
+                                '${record.status}',
+                                '${record.areas}',
+                                ${record.location},
+                                '${record.pokemon_id}',
+                                '${record.pokemon_type}',
+                                '${record.form}',
+                                '${record.min_lvl}',
+                                '${record.max_lvl}',
+                                '${record.min_iv}',
+                                '${record.max_iv}',
+                                '${record.size}',
+                                '${record.gender}',
+                                '${record.generation}',
+                                '${record.geotype}'
+                            )`,
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
+                            }
+                        }
+                    }
+                );
+            } else if (record.sub_type == 'raid') {
+                new_database.query(
+                    `INSERT IGNORE INTO
+                            wdr_raid_subs (
+                                user_id,
+                                user_name,
+                                guild_id,
+                                guild_name,
+                                bot,
+                                status,
+                                areas,
+                                location,
+                                pokemon_id,
+                                form,
+                                min_lvl,
+                                max_lvl,
+                                generation,
+                                geotype,
+                                created_date,
+                                created_timestamp
+                            )
+                            VALUES (
+                                '${record.user_id}',
+                                '${record.user_name}',
+                                '${record.guild_id}',
+                                '${record.guild_id}',
+                                '${record.bot}',
+                                '${record.status}',
+                                '${record.areas}',
+                                ${record.location},
+                                '${record.pokemon_id}',
+                                '${record.form}',
+                                '${record.min_lvl}',
+                                '${record.max_lvl}',
+                                '${record.generation}',
+                                '${record.geotype}',
+                                '${record.created_date}',
+                                '${record.created_timestamp}'
+                            )`,
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Raid Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
+                            }
+                        }
+                    }
+                );
+            } else if (record.sub_type == 'quest') {
+                new_database.query(
+                    `INSERT IGNORE INTO
+                            wdr_quest_subs (
+                                user_id,
+                                user_name,
+                                guild_id,
+                                guild_name,
+                                bot,
+                                status,
+                                areas,
+                                location,
+                                pokemon_id,
+                                form,
+                                reward,
+                                alert_time,
+                                geotype,
+                                created_date,
+                                created_timestamp
+                            )
+                            VALUES (
+                                '${record.user_id}',
+                                '${record.user_name}',
+                                '${record.guild_id}',
+                                '${record.guild_id}',
+                                '${record.bot}',
+                                '${record.status}',
+                                '${record.areas}',
+                                ${record.location},
+                                '${record.pokemon_id}',
+                                '${record.form}',
+                                '${record.reward}',
+                                '${record.alert_time}',
+                                '${record.geotype}',
+                                '${record.created_date}',
+                                '${record.created_timestamp}'
+                            )`,
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
+                            }
+                        }
+                    }
+                );
+            } else if (record.sub_type == 'pvp') {
+                new_database.query(
+                    `INSERT IGNORE INTO
+                            wdr_pvp_subs (
+                                user_id,
+                                user_name,
+                                guild_id,
+                                guild_name,
+                                bot,
+                                status,
+                                areas,
+                                location,
+                                pokemon_id,
+                                pokemon_type,
+                                form,
+                                min_lvl,
+                                max_lvl,
+                                min_cp,
+                                max_cp,
+                                generation,
+                                min_rank,
+                                league,
+                                geotype,
+                                created_date,
+                                created_timestamp
+                            )
+                            VALUES (
+                                '${record.user_id}',
+                                '${record.user_name}',
+                                '${record.guild_id}',
+                                '${record.guild_id}',
+                                '${record.bot}',
+                                '${record.status}',
+                                '${record.areas}',
+                                ${record.location},
+                                '${record.pokemon_id}',
+                                '${record.pokemon_type}',
+                                '${record.form}',
+                                '${record.min_lvl}',
+                                '${record.max_lvl}',
+                                '${record.min_cp}',
+                                '${record.max_cp}',
+                                '${record.generation}',
+                                '${record.min_rank}',
+                                '${record.league}',
+                                '${record.geotype}',
+                                '${record.created_date}',
+                                '${record.created_timestamp}'
+                            )`,
+                    async function (error) {
+                        if (error) {
+                            console.error(error);
+                            console.error(record);
+                        } else {
+                            console.log(`[dbMigrate] [${r+1} of ${records.length}] Record for ${record.user_name} Inserted into Pokemon Sub Table.`);
+                            if((r+1) == records.length){
+                                console.log('migration complete.');
+                                process.exit(1);
+                            }
+                        }
+                    }
+                );
+            }
+        }
+    }
+    );
+}, 3000);

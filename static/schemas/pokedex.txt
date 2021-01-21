@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS wdr_pokedex(
+    id smallint(4) NOT NULL,
+    name varchar(40) NOT NULL,
+    default_form bigint(25) NOT NULL,
+    default_form_id smallint(5) NOT NULL,
+    types varchar(20) NOT NULL,
+    attack smallint(4) NOT NULL,
+    defense smallint(4) NOT NULL,
+    stamina smallint(4) NOT NULL,
+    PRIMARY KEY(id, name)
+);

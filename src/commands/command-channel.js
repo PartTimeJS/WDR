@@ -1,153 +1,126 @@
-module.exports = (WDR, Message) => {
+module.exports = (WDR, message) => {
 
-  if (!Message.member) {
-    return;
-  }
-
-  Message.member.isAdmin = Message.member.hasPermission("ADMINISTRATOR") ? true : false;
-
-  Message.member.isMod = Message.member.hasPermission("MANAGE_ROLES") ? true : false;
-
-  WDR.Discords.forEach(async (Server, index) => {
-
-    if (Message.guild.id == Server.id && Server.command_channels.indexOf(Message.channel.id) >= 0) {
-
-      Message.discord = Server;
-
-      //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
-      Message.delete();
-      //}
-
-      if (Message.member.isAdmin || Message.member.isMod) {
-        /* DO NOTHING */
-      } else if (Server.donor_role && !Message.member.roles.cache.has(Server.donor_role)) {
+    if (message.member.isAdmin || message.member.isMod) {
+    /* DO NOTHING */
+    } else if (message.discord.donor_role && !message.member.roles.cache.has(message.discord.donor_role)) {
         if (WDR.Config.log_channel) {
-          let nondonor_embed = new WDR.DiscordJS.MessageEmbed()
-            .setColor("ff0000")
-            .addField("User attempted to use a subsciption command, not a donor. ", Message.member.user.username);
-          if (WDR.Config.donor_info) {
-            Message.donor_info = WDR.Config.donor_info;
-          } else {
-            Message.donor_info = "";
-          }
-          Message.guild.members.fetch(Message.author.id).then(TARGET => {
-            TARGET.send("This feature is only for donors. " + Message.donor_info).catch(console.error);
-          });
-          return WDR.Send_Embed(WDR, "member", 0, Server.id, "", nondonor_embed, WDR.Config.log_channel);
+            let nondonor_embed = new WDR.DiscordJS.MessageEmbed()
+                .setColor('ff0000')
+                .addField('User attempted to use a subsciption command, not a donor. ', message.member.user.username);
+            if (WDR.Config.donor_info) {
+                message.donor_info = WDR.Config.donor_info;
+            } else {
+                message.donor_info = '';
+            }
+            message.guild.members.fetch(message.author.id).then(TARGET => {
+                TARGET.send('This feature is only for donors. ' + message.donor_info).catch(console.error);
+            });
+            return WDR.Send_Embed(WDR, 'member', 0, message.discord.id, '', nondonor_embed, WDR.Config.log_channel);
         } else {
-          return console.log(WDR.Color.red + "User attempted to use DM command, not a donor. " + Message.member.user.username + WDR.Color.reset);
+            return console.log(WDR.Color.red + 'User attempted to use DM command, not a donor. ' + message.member.user.username + WDR.Color.reset);
         }
-      }
+    }
 
-      WDR.wdrDB.query(`
-          SELECT
-              *
-          FROM
-              wdr_users
-          WHERE
-              user_id = ${Message.member.id}
+    WDR.wdrDB.query(`
+        SELECT
+            *
+        FROM
+            wdr_users
+        WHERE
+            user_id = ${message.member.id}
                 AND
-              guild_id = ${Message.guild.id};`,
-        async function(error, user, fields) {
-          if (!user || !user[0]) {
-            Message.member.db = await WDR.Save_User(WDR, Message, Server);
-            Message.reply("Created database record for you. Please repeat the previous command.").then(m => m.delete({
-              timeout: 5000
+            guild_id = ${message.guild.id};`,
+    async function(error, user) {
+        if (!user || !user[0]) {
+            message.member.db = await WDR.Save_User(WDR, message, message.discord);
+            message.reply('Created database record for you. Please repeat the previous command.').then(m => m.delete({
+                timeout: 5000
             })).catch(console.error);
-          } else {
-            Message.member.db = user[0];
-            if (Message.member.db.location) {
-              Message.member.db.location = JSON.parse(Message.member.db.location);
+        } else {
+            message.member.db = user[0];
+            if (message.member.db.location) {
+                message.member.db.location = JSON.parse(message.member.db.location);
             }
-            if (Message.member.db.locations) {
-              Message.member.db.locations = JSON.parse(Message.member.db.locations);
+            if (message.member.db.locations) {
+                message.member.db.locations = JSON.parse(message.member.db.locations);
             }
-          }
+        }
 
-          if (Message.member.db.guild_name === 'Migrated' || Message.member.db.areas === 'undefined') {
+        if (message.member.db.guild_name === 'Migrated' || message.member.db.areas === 'undefined') {
             WDR.wdrDB.query(`
                 UPDATE
                     wdr_users
                 SET
-                    guild_name = '${Message.discord.name}',
-                    areas = '${Message.discord.name}'
+                    guild_name = '${message.discord.name}',
+                    areas = '${message.discord.name}'
                 WHERE
-                    user_id = ${Message.member.id}
-                      AND
-                    guild_id = ${Message.guild.id};`);
-          }
-
-          let command = Message.content.split(" ")[0].slice(1);
-
-          switch (command) {
-            case "p":
-              command = "pokemon";
-              break;
-            case "r":
-              command = "raid";
-              break;
-            case "q":
-              command = "quest";
-              break;
-            case "l":
-              command = "location";
-              break;
-            case "a":
-              command = "area";
-              break;
-          }
-
-          //try {
-          if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js")) {
-            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + "/begin.js");
-            if (Cmd) {
-              Cmd(WDR, Message);
-            }
-          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js")) {
-            let Cmd = require(WDR.Dir + "/src/commands/subscription/" + command.toLowerCase() + ".js");
-            if (Cmd) {
-              Cmd(WDR, Message);
-            }
-          } else if (WDR.Fs.existsSync(WDR.Dir + "/src/commands/" + command.toLowerCase() + ".js")) {
-            let Cmd = require(WDR.Dir + "/src/commands/" + command.toLowerCase() + ".js");
-            if (Cmd) {
-              Cmd(WDR, Message);
-            }
-          } else {
-            WDR.Console.error(WDR, "[handlers/commands.js] " + Message.content + " command does not exist.");
-          }
-          // } catch (error) {
-          //   try {
-
-          //     console.log("2", command.toLowerCase());
-          //   } catch (error) {
-          //     console.log("3", command.toLowerCase());
-          //     //WDR.Console.error("[handlers/commands.js] Error Initializing Command", [command, error]);
-          //   }
-          // }
-          if (user.user_name != Message.member.user.username) {
-            WDR.wdrDB.query(`
-                  UPDATE
-                      wdr_users
-                  SET
-                      user_name = '${Message.member.user.username.replace(/[\W]+/g, "")}'
-                  WHERE
-                      user_id = ${Message.member.id};
-                `);
-            WDR.wdrDB.query(`
-                  UPDATE
-                      wdr_subscriptions
-                  SET
-                      user_name = '${Message.member.user.username.replace(/[\W]+/g, "")}'
-                  WHERE
-                      user_id = ${Message.member.id};
-                `);
-          }
-
-          // END
-          return;
+                    user_id = ${message.member.id}
+                        AND
+                    guild_id = ${message.guild.id};`);
         }
-      );
+
+        let command = message.content.split(' ')[0].slice(1);
+
+        switch (command) {
+            case 'p':
+                command = 'pokemon';
+                break;
+            case 'r':
+                command = 'raid';
+                break;
+            case 'q':
+                command = 'quest';
+                break;
+            case 'l':
+                command = 'location';
+                break;
+            case 'a':
+                command = 'area';
+                break;
+        }
+
+        //try {
+        if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js')) {
+            let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '/begin.js');
+            if (Cmd) {
+                Cmd(WDR, message);
+            }
+        } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js')) {
+            let Cmd = require(WDR.Dir + '/src/commands/subscription/' + command.toLowerCase() + '.js');
+            if (Cmd) {
+                Cmd(WDR, message);
+            }
+        } else if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js')) {
+            let Cmd = require(WDR.Dir + '/src/commands/' + command.toLowerCase() + '.js');
+            if (Cmd) {
+                Cmd(WDR, message);
+            }
+        } else {
+            WDR.Console.error(WDR, '[handlers/commands.js] ' + message.content + ' command does not exist.');
+        }
+        // } catch (error) {
+        //   try {
+
+        //     console.log("2", command.toLowerCase());
+        //   } catch (error) {
+        //     console.log("3", command.toLowerCase());
+        //     //WDR.Console.error("[handlers/commands.js] Error Initializing Command", [command, error]);
+        //   }
+        // }
+        if (user.user_name != message.member.user.username) {
+            WDR.wdrDB.query(`
+                        UPDATE
+                            wdr_users
+                        SET
+                            user_name = '${message.member.user.username.replace(/[\W]+/g, '')}'
+                        WHERE
+                            user_id = ${message.member.id};
+                    `);
+            WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET user_name = '${message.member.user.username.replace(/[\W]+/g, '')}' WHERE user_id = ${message.member.id}`);
+        }
+
+        // END
+        return;
     }
-  });
-}
+    );
+};

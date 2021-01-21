@@ -1,0 +1,31 @@
+{
+  "name": "OklahomaCity",
+
+  "id": "704691026886918145",
+
+  "geojson_file": "oklahomacity.json",
+
+  "map_url": "https://okc.pokemap.org/",
+
+  "subscribe_url": "https://okc.pokemap.org/subscribe",
+
+  "allowed_roles": ["704691026886918149","704691026886918153"],
+
+  "command_channels": ["704691027361136683"],
+
+  "purge_channels": "ENABLED",
+
+  "channels_to_purge": ["704691028057129055","704691028057129054"],
+
+  "bot_admins": [],
+
+  "geofence": [
+    [
+      [-97.847672,35.7727],
+      [-97.12944,35.776043],
+      [-97.1315,35.122155],
+      [-97.88063,35.123278],
+      [-97.847672,35.7727]
+    ]
+  ]
+}

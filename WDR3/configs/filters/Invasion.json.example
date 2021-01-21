@@ -1,0 +1,22 @@
+{
+  "Type": "invasion",
+  "Tier II": "all",
+  "Bug": "None",
+  "Ghost": "all",
+  "Dark": "all",
+  "Dragon": "Female",
+  "Fairy": "all",
+  "Fighting": "None",
+  "Fire": "None",
+  "Flying": "None",
+  "Grass": "None",
+  "Ground": "None",
+  "Ice": "all",
+  "Metal": "None",
+  "Normal": "None",
+  "Poison": "None",
+  "Psychic": "None",
+  "Rock": "None",
+  "Water": "Male",
+  "Electric": "None"
+}

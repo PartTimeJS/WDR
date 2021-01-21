@@ -1,0 +1,31 @@
+{
+  "name": "Gainesville",
+
+  "id": "520254085148966912",
+
+  "geojson_file": "",
+
+  "map_url": "https://mgm.pokemap.org/",
+
+  "subscribe_url": "https://gvl.pokemap.org/subscribe",
+
+  "allowed_roles": ["520607689001271299","52280156966669516"],
+
+  "command_channels": ["751063043131048016"],
+
+  "purge_channels": "ENABLED",
+
+  "channels_to_purge": ["536673792529924106","536673820182839296"],
+
+  "bot_admins": [],
+
+  "geofence": [
+    [
+      [-82.673078,29.923063],
+      [-82.149629,29.929283],
+      [-82.159416,29.467345],
+      [-82.73336,29.467067],
+      [-82.673078,29.923063]
+    ]
+  ]
+}

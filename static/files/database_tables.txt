@@ -1,0 +1,70 @@
+CREATE TABLE IF NOT EXISTS wdr_info (
+  db_version int(10) NOT NULL,
+  next_bot int(10) NOT NULL,
+  tokens varchar(255)
+);
+
+ CREATE TABLE IF NOT EXISTS wdr_users (
+  user_id bigint(25) NOT NULL,
+  user_name varchar(40) NOT NULL,
+  guild_id bigint(25) NOT NULL,
+  guild_name varchar(40) NOT NULL,
+  bot tinyint(2) NOT NULL DEFAULT 0,
+  geofence varchar(50) NOT NULL DEFAULT 'all',
+  status tinyint(1) NOT NULL DEFAULT 1,
+  pokemon_status tinyint(1) NOT NULL DEFAULT 1,
+  raid_status tinyint(1) NOT NULL DEFAULT 1,
+  quest_status tinyint(1) NOT NULL DEFAULT 1,
+  lure_status tinyint(1) NOT NULL DEFAULT 1,
+  invasion_status tinyint(1) NOT NULL DEFAULT 1,
+  alert_time varchar(5) NOT NULL DEFAULT '08:00',
+  PRIMARY KEY (user_id,guild_id)
+);
+
+CREATE TABLE `wdr_subscriptions` (
+  `user_id` bigint NOT NULL,
+  `user_name` varchar(40) NOT NULL,
+  `guild_id` bigint NOT NULL,
+  `geofence` varchar(50) NOT NULL,
+  `bot` int NOT NULL,
+  `status` tinyint DEFAULT NULL,
+  `sub_type` varchar(10) NOT NULL,
+  `pokemon_id` smallint DEFAULT NULL,
+  `form` varchar(10) DEFAULT NULL,
+  `min_lvl` tinyint DEFAULT NULL,
+  `max_lvl` tinyint DEFAULT NULL,
+  `min_iv` varchar(8) DEFAULT NULL,
+  `max_iv` varchar(8) DEFAULT NULL,
+  `min_cp` smallint DEFAULT NULL,
+  `max_cp` smallint DEFAULT NULL,
+  `size` varchar(5) DEFAULT NULL,
+  `gender` tinyint(1) DEFAULT NULL,
+  `generation` smallint DEFAULT NULL,
+  `quest_reward` varchar(10) DEFAULT NULL,
+  `gym_id` varchar(35) DEFAULT NULL,
+  `guild_name` varchar(40) NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS wdr_queued (
+  user_id int(25) NOT NULL,
+  user_name varchar(40) NOT NULL,
+  guild_id int(25) NOT NULL,
+  bot smallint(2) NOT NULL,
+  area varchar(20),
+  alert varchar(10),
+  alert_time int(40),
+  embed LONGTEXT NOT NULL
+);
+
+ CREATE TABLE IF NOT EXISTS wdr_pokedex (
+  id smallint(4) NOT NULL,
+  name varchar(40) NOT NULL,
+  default_form bigint(25) NOT NULL,
+  default_form_id smallint(5) NOT NULL,
+  types varchar(20) NOT NULL,
+  attack smallint(4) NOT NULL,
+  defense smallint(4) NOT NULL,
+  stamina smallint(4) NOT NULL,
+  PRIMARY KEY (id)
+);

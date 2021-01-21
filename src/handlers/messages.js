@@ -1,36 +1,66 @@
-delete require.cache[require.resolve(__dirname + "/../commands/command-admin.js")];
-const Admin_Command = require(__dirname + "/../commands/command-admin.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-admin.js')];
+const Admin_Command = require(__dirname + '/../commands/command-admin.js');
 
-delete require.cache[require.resolve(__dirname + "/../commands/command-channel.js")];
-const Channel_Command = require(__dirname + "/../commands/command-channel.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-channel.js')];
+const Channel_Command = require(__dirname + '/../commands/command-channel.js');
 
-delete require.cache[require.resolve(__dirname + "/../commands/command-dm.js")];
-const DM_Command = require(__dirname + "/../commands/command-dm.js");
+delete require.cache[require.resolve(__dirname + '/../commands/command-dm.js')];
+const DM_Command = require(__dirname + '/../commands/command-dm.js');
+
+delete require.cache[require.resolve(__dirname + '/../commands/command-public.js')];
+const Public_Command = require(__dirname + '/../commands/command-public.js');
 
 
-module.exports = async (WDR, Message) => {
 
-  // DEFINE VARIABLES
-  Message.prefix = WDR.Config.PREFIX;
+module.exports = async (WDR, message) => {
 
-  if (!Message.content.startsWith(Message.prefix)) {
+    if (!message.content.startsWith(WDR.Config.PREFIX)) {
+        return;
+    }
+
+    if (message.author.bot == true) {
+        return;
+    }
+
+    if (!message.member) {
+        return;
+    }
+
+    message.member.isAdmin = message.member.hasPermission('ADMINISTRATOR') ? true : false;
+
+    message.member.isMod = message.member.hasPermission('MANAGE_ROLES') ? true : false;
+
+    if (message.channel.type == 'dm') {
+        return DM_Command(WDR, message);
+
+    } else {
+
+        message.delete();
+        
+        for(let d = 0, dlen = WDR.Discords.length; d <dlen; d++){
+
+            if (message.guild.id === WDR.Discords[d].id) {
+
+                message.discord = WDR.Discords[d];
+
+                message.member.isBotAdmin = message.discord.bot_admins.includes(message.member.id) ? true : false;
+    
+                //if (!WDR.Config.Tidy_Channel || WDR.Config.Tidy_Channel == "ENABLED") {
+                
+                //}
+    
+                if(message.discord.command_channels.includes(message.channel.id)){
+                    Channel_Command(WDR, message);
+                } else if (WDR.Config.Admin_Enabled == 'YES' && (message.member.isAdmin || message.member.isBotAdmin)) {
+                    Admin_Command(WDR, message);
+                    Public_Command(WDR, message);
+                } else {
+                    Public_Command(WDR, message);
+                }
+            }
+        }
+    }
+
+    // END
     return;
-  }
-
-  if (Message.author.bot == true) {
-    return;
-  }
-
-  if (Message.channel.type == "dm") {
-    return DM_Command(WDR, Message);
-  } else {
-    Channel_Command(WDR, Message);
-  }
-
-  if (Message.member && WDR.Config.Admin_Enabled == "YES" && Message.member.isAdmin) {
-    Admin_Command(WDR, Message);
-  }
-
-  // END
-  return;
-}
+};

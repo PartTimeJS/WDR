@@ -7,7 +7,7 @@
 
 ## This bot requires intermediate knowledge of discord and bots. You will need a minimun of TWO bot tokens, one for channels and one for subscriptions. This is **not** for a beginner user. You will not receive beginner level support for this.
 
-## As of Release 2.0 you will need to run the sub migration script. /src/static/dbMigrate.js.example. Add db info, and rename to .js
+## As of Release 2.0 you will need to run the sub migration script. /static/dbMigrate.js.example. Add db info, and rename to .js
 
 # Installation:
 ## 1: `git clone https://github.com/PartTimeJS/WDR.git` to desired location or download the zip and unzip.

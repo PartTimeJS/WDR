@@ -1,9 +1,7 @@
-const Discord = require('discord.js');
-
 module.exports = async (BOT, role) => {
-  let config = BOT.Configs.get(role.guild.id);
-  if (!config) {
+    let config = BOT.Configs.get(role.guild.id);
+    if (!config) {
+        return;
+    }
     return;
-  }
-  return;
-}
+};

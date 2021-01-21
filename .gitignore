@@ -24,7 +24,7 @@ hs_err_pid*
 
 */*.ini
 
-*/*.json
+configs/*.json
 */*/*.ini
 */*/*.nonobfuscated
 configs/*.json
@@ -34,18 +34,31 @@ configs/filters/*.json
 */*/*/*.ini
 configs/embeds/*.js
 configs/db/*.js
-src/functions/Generate_Master.js
+#src/functions/Generate_Master.js
 
 package-lock.json
+
+*/*/*/*.json
+*/*/*.json
 
 src/static/PvPRank.js
 src/static/data/*ini
 src/static/dbMigrate.js
-
+static/*.js
 *.old
 *.DS_Store
 *.conf
 *.nonobfuscated.js
-*.ini
+config/*.ini
 *.obf
 node_modules
+rawprotos.json
+baseprotos.json
+*.proto
+master.json
+
+WDR3/configs/geofences/*.json
+WDR3/configs/embeds/*.js
+WDR3/configs/db/*.js
+*/*/config.ini
+*/*/*/*/*.ini
