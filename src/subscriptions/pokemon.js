@@ -19,6 +19,8 @@ module.exports = async (WDR, sighting) => {
             wdr_pokemon_subs
         WHERE
             status = 1
+        AND
+            guild_id = '${sighting.discord.id}'
         AND (
             pokemon_id = 0
                 OR
@@ -33,7 +35,8 @@ module.exports = async (WDR, sighting) => {
         )
         AND (
             form = 0
-            OR form = ${sighting.form_id}
+                OR 
+            form = ${sighting.form_id}
         )
         AND
             min_iv <= ${sighting.internal_value}
