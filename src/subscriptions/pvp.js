@@ -47,6 +47,8 @@ module.exports = async (WDR, sighting) => {
                             wdr_pvp_subs
                         WHERE
                             status = 1
+                        AND
+                            guild_id = '${sighting.discord.id}'
                         AND (
                             pokemon_id  = 0
                                 OR
