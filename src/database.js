@@ -96,7 +96,7 @@ const DB = {
                                 WDR.Console.error(WDR, '[src/database.js] Error connecting to wdrDB.', error);
                                 return resolve();
                             } else {
-                                WDR.UpdateAllSubTables('UPDATE %TABLE% SET location = NULL where location = "";');
+                                WDR.UpdateAllSubTables(WDR, 'UPDATE %TABLE% SET location = NULL where location = "";');
                                 WDR.Console.info(WDR, '[src/database.js] Successfully Connected to wdrDB.');
                                 // WDR.wdrDB.query(
                                 //   `SELECT
