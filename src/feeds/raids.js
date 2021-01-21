@@ -145,10 +145,10 @@ module.exports = async (WDR, RAID) => {
                         match.move_2_type = WDR.Emotes[WDR.Master.Moves[RAID.move_2].type.toLowerCase()];
                         match.move_1_name = RAID.move_1_name;
                         match.move_2_name = RAID.move_2_name;
-                        match.minCP = WDR.PvP.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 10, 10, 10, 20);
-                        match.maxCP = WDR.PvP.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 15, 15, 15, 20);
-                        match.minCP_boosted = WDR.PvP.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 10, 10, 10, 25);
-                        match.maxCP_boosted = WDR.PvP.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 15, 15, 15, 25);
+                        match.minCP = WDR.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 10, 10, 10, 20);
+                        match.maxCP = WDR.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 15, 15, 15, 20);
+                        match.minCP_boosted = WDR.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 10, 10, 10, 25);
+                        match.maxCP_boosted = WDR.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 15, 15, 15, 25);
                     }
 
                     if (WDR.Debug.Processing_Speed == 'ENABLED') {
