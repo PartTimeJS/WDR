@@ -26,6 +26,7 @@ module.exports = async (WDR, Message) => {
                 timeout: 10000
             })).catch(console.error);
         } else {
+            WDR.UpdateAllSubTables(WDR, `UPDATE %TABLE% SET geotype = 'location' WHERE user_id = '${Member.id}' AND geotype = 'areas'; `);
             WDR.wdrDB.query(`
                 UPDATE
                     wdr_users
