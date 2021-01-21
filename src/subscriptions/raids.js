@@ -9,6 +9,8 @@ module.exports = async (WDR, raid) => {
             wdr_raid_subs
         WHERE
             status = 1
+        AND
+            guild_id = '${raid.discord.id}'
         AND (
             pokemon_id <= 0
                 OR
