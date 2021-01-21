@@ -95,17 +95,6 @@ const DB = {
                             if (error) {
                                 WDR.Console.error(WDR, '[src/database.js] Error connecting to wdrDB.', error);
                                 return resolve();
-                            } else if (row[0].pvp_tables_generated < 1) {
-                                WDR.Console.error(WDR, '[src/database.js] PvP Tables Not Found. Generating...');
-                                await WDR.PvP_Table_Generator(WDR);
-                                WDR.wdrDB.query(
-                                    `UPDATE
-                                    wdr_info
-                                SET
-                                    pvp_tables_generated = 1;`
-                                );
-                                WDR.Console.log(WDR, '[src/database.js] Generated PvP Tables.');
-                                return resolve(WDR);
                             } else {
                                 WDR.Console.info(WDR, '[src/database.js] Successfully Connected to wdrDB.');
                                 // WDR.wdrDB.query(
