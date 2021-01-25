@@ -198,10 +198,10 @@ async function Send_Subscription(WDR, raid, User) {
         match.move_2_type = WDR.Emotes[WDR.Master.Moves[raid.move_2].type.toLowerCase()];
         match.move_1_name = raid.move_1_name;
         match.move_2_name = raid.move_2_name;
-        match.minCP = WDR.PvP.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 10, 10, 10, 20);
-        match.maxCP = WDR.PvP.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 15, 15, 15, 20);
-        match.minCP_boosted = WDR.PvP.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 10, 10, 10, 25);
-        match.maxCP_boosted = WDR.PvP.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 15, 15, 15, 25);
+        match.minCP = WDR.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 10, 10, 10, 20);
+        match.maxCP = WDR.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 15, 15, 15, 20);
+        match.minCP_boosted = WDR.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 10, 10, 10, 25);
+        match.maxCP_boosted = WDR.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 15, 15, 15, 25);
     }
 
     if (WDR.Debug.Processing_Speed == 'ENABLED') {
