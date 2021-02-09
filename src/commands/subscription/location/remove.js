@@ -32,40 +32,41 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                     let locations = Object.keys(user.locations).map(i => user.locations[i]);
                     if (locations.length > 0) {
                         locations.forEach((location, i) => {
-                            location_list += '**' + (i + 1) + ' - ' + location.name + '**\n' +
-                '　Radius: `' + location.radius + '` km(s)\n';
+                            location_list += '**' + (i + 1) + ' - ' + location.name + '**\n　Radius: `' + location.radius + '` km(s)\n';
                         });
 
                         let number = await Functions.DetailCollect(WDR, Functions, 'Remove', Member, Message, location_list, 'Type the corressponding # of the subscription you would like to remove -OR- type \'all\'');
 
                         delete user.locations[locations[number].name];
 
-                        if (user.location && user.location != undefined && user.location.toString() == user.locations[locations[number].name].toString()) {
+                        if (user.location && user.location != undefined){
+                            if(user.location.toString() == user.locations[locations[number].name].toString()) {
 
-                            Message.reply('WARNING: You are deleting your actie location. You will need to set a new location to receive location alerts.').then(m => m.delete({
-                                timeout: 10000
-                            }));
+                                Message.reply('WARNING: You are deleting your active location. You will need to set a new location to receive location alerts.').then(m => m.delete({
+                                    timeout: 10000
+                                }));
 
-                            WDR.wdrDB.query(`
-                                UPDATE
-                                    wdr_users
-                                SET
-                                    location = NULL
-                                WHERE
-                                    user_id = '${Member.id}'
-                                        AND
-                                    guild_id = '${Message.guild.id}'
-                            ;`);
-                            WDR.UpdateAllSubTables(WDR, `
-                                UPDATE
-                                    %TABLE%
-                                SET
-                                    location = NULL
-                                WHERE
-                                    user_id = '${Member.id}'
-                                        AND
-                                    guild_id = '${Message.guild.id}'
-                            ;`);
+                                WDR.wdrDB.query(`
+                                    UPDATE
+                                        wdr_users
+                                    SET
+                                        location = NULL
+                                    WHERE
+                                        user_id = '${Member.id}'
+                                            AND
+                                        guild_id = '${Message.guild.id}'
+                                ;`);
+                                WDR.UpdateAllSubTables(WDR, `
+                                    UPDATE
+                                        %TABLE%
+                                    SET
+                                        location = NULL
+                                    WHERE
+                                        user_id = '${Member.id}'
+                                            AND
+                                        guild_id = '${Message.guild.id}'
+                                ;`);
+                            }
                         }
 
                         let update = `
