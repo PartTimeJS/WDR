@@ -169,16 +169,18 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
             collector.on('collect', async CollectedMsg => {
 
-                try {
-                    CollectedMsg.delete();
-                // eslint-disable-next-line no-empty
-                } catch (e) {
+                if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+                    try {
+                        CollectedMsg.delete();
+                    // eslint-disable-next-line no-empty
+                    } catch (e) {
 
+                    }
                 }
 
                 switch (true) {
 
-
+                    case CollectedMsg.content.startsWith(WDR.Config.PREFIX):
                     case CollectedMsg.content.toLowerCase() == 'stop':
                     case CollectedMsg.content.toLowerCase() == 'cancel':
                         collector.stop('cancel');

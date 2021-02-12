@@ -101,15 +101,17 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
             // FILTER COLLECT EVENT
             collector.on('collect', async CollectedMsg => {
 
-                try {
-                    CollectedMsg.delete();
-                // eslint-disable-next-line no-empty
-                } catch (e) {
+                if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+                    try {
+                        CollectedMsg.delete();
+                    // eslint-disable-next-line no-empty
+                    } catch (e) {
 
+                    }
                 }
 
                 switch (true) {
-
+                    case CollectedMsg.content.startsWith(WDR.Config.PREFIX):
                     case CollectedMsg.content.toLowerCase() == 'stop':
                     case CollectedMsg.content.toLowerCase() == 'cancel':
                         collector.stop('cancel');
@@ -316,7 +318,17 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
 
                     }
                 }
-                return resolve(reason);
+
+                switch (reason) {
+                    case 'cancel':
+                        Functions.Cancel(WDR, Functions, Message, Member, 'Raid');
+                        return null;
+                    case 'time':
+                        Functions.TimedOut(WDR, Functions, Message, Member, 'Raid');
+                        return null;
+                    default:
+                        return resolve(reason);
+                }
             });
         });
     });
