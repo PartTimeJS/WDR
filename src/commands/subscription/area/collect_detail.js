@@ -99,9 +99,17 @@ module.exports = async (WDR, Functions, type, member, message, object, requireme
             // FILTER COLLECT EVENT
             collector.on('collect', CollectedMsg => {
 
-                CollectedMsg.delete();
+                if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+                    try {
+                        CollectedMsg.delete();
+                    // eslint-disable-next-line no-empty
+                    } catch (e) {
+
+                    }
+                }
 
                 switch (true) {
+                    case CollectedMsg.content.startsWith(WDR.Config.PREFIX):
                     case CollectedMsg.content.toLowerCase() == 'cancel':
                         collector.stop('cancel');
                         break;

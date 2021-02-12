@@ -10,11 +10,13 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
 
     collector.on('collect', CollectedMsg => {
 
-        try {
-            CollectedMsg.delete();
-        // eslint-disable-next-line no-empty
-        } catch (e) {
+        if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+            try {
+                CollectedMsg.delete();
+            // eslint-disable-next-line no-empty
+            } catch (e) {
 
+            }
         }
 
         let input = CollectedMsg.content.split(' ')[0].toString().toLowerCase();
@@ -50,6 +52,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
             case resume_words.some(word => input.includes(word)):
                 collector.stop('resume');
                 break;
+            default:
+                collector.stop('cancel');
         }
     });
 

@@ -10,11 +10,13 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
     // FILTER COLLECT EVENT
     collector.on('collect', CollectedMsg => {
 
-        try {
-            CollectedMsg.delete();
-        // eslint-disable-next-line no-empty
-        } catch (e) {
+        if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+            try {
+                CollectedMsg.delete();
+            // eslint-disable-next-line no-empty
+            } catch (e) {
 
+            }
         }
 
         switch (CollectedMsg.content.toLowerCase()) {
@@ -33,6 +35,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
             case 'view':
                 collector.stop('view');
                 break;
+            default:
+                collector.stop('cancel');
         }
     });
 
@@ -49,6 +53,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
         }
 
         switch (msg) {
+            case 'cancel':
+                return Functions.Cancel(WDR, Functions, OriginalMsg, Member);
             case 'create':
                 return Functions.Create(WDR, Functions, OriginalMsg, Member, AreaArray);
             case 'remove':

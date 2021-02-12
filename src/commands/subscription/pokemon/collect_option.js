@@ -9,14 +9,14 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member) => {
     });
 
     collector.on('collect', CollectedMsg => {
+        if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX)) {
+            try {
+                CollectedMsg.delete();
+            // eslint-disable-next-line no-empty
+            } catch (e) {
 
-        try {
-            CollectedMsg.delete();
-        // eslint-disable-next-line no-empty
-        } catch (e) {
-
+            }
         }
-
         let input = CollectedMsg.content.split(' ').toString().toLowerCase();
 
         let adv_words = ['adv'],

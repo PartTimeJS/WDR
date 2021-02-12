@@ -11,9 +11,15 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
     // FILTER COLLECT EVENT
     collector.on('collect', CollectedMsg => {
 
-        if (BotMsg.channel.type != 'dm') {
-            CollectedMsg.delete();
+        if (!CollectedMsg.content.startsWith(WDR.Config.PREFIX && BotMsg.channel.type != 'dm')) {
+            try {
+                CollectedMsg.delete();
+            // eslint-disable-next-line no-empty
+            } catch (e) {
+
+            }
         }
+
 
         switch (CollectedMsg.content.toLowerCase()) {
             case 'add':
@@ -28,6 +34,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
             case 'cancel':
                 collector.stop('cancel');
                 break;
+            default:
+                collector.stop('cancel');
         }
     });
 
@@ -39,6 +47,8 @@ module.exports = (WDR, Functions, source, oMessage, bMessage, Member, AreaArray)
         }
 
         switch (msg) {
+            case 'cancel':
+                return Functions.Cancel(WDR, Functions, OriginalMsg, Member);
             case 'add':
                 return Functions.Add(WDR, Functions, OriginalMsg, Member, AreaArray);
             case 'distance':
