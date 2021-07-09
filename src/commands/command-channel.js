@@ -1,7 +1,15 @@
 module.exports = (WDR, message) => {
-
+    let command = message.content.split(' ')[0].slice(1);
     if (message.member.isAdmin || message.member.isMod) {
-    /* DO NOTHING */
+        try {
+            let Cmd = require(WDR.Dir + '/src/commands/admin/' + command.toLowerCase() + '.js');
+            if (Cmd) {
+                Cmd(WDR, message);
+            }
+        } catch (e) {
+            // do nothing
+        }
+
     } else if (message.discord.donor_role && !message.member.roles.cache.has(message.discord.donor_role)) {
         if (WDR.Config.log_channel) {
             let nondonor_embed = new WDR.DiscordJS.MessageEmbed()
@@ -59,8 +67,6 @@ module.exports = (WDR, message) => {
                     guild_id = ${message.guild.id};`);
         }
 
-        let command = message.content.split(' ')[0].slice(1);
-
         switch (command) {
             case 'p':
                 command = 'pokemon';
@@ -95,7 +101,7 @@ module.exports = (WDR, message) => {
             if (Cmd) {
                 Cmd(WDR, message);
             }
-        } else {
+        }  else {
             WDR.Console.error(WDR, '[handlers/commands.js] ' + message.content + ' command does not exist.');
         }
         // } catch (error) {

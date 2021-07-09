@@ -5,66 +5,66 @@ const Ontime = require('ontime');
 const MySQL = require('mysql2');
 const Config = ini.parse(fs.readFileSync(__dirname + '/../configs/config.ini', 'utf-8'));
 
-const wdrDB = MySQL.createPool({
-    supportBigNumbers: true,
-    connectionLimit: 100,
-    host: Config.wdrdb.host,
-    user: Config.wdrdb.username,
-    password: Config.wdrdb.password,
-    port: Config.wdrdb.port,
-    database: Config.wdrdb.db_name
-});
+const database = {
+    wdrDB: MySQL.createPool({
+        supportBigNumbers: true,
+        connectionLimit: 100,
+        host: Config.wdrdb.host,
+        user: Config.wdrdb.username,
+        password: Config.wdrdb.password,
+        port: Config.wdrdb.port,
+        database: Config.wdrdb.db_name
+    }),
+    rdmDB: MySQL.createPool({
+        supportBigNumbers: true,
+        connectionLimit: 100,
+        host: Config.rdmdb.host,
+        user: Config.rdmdb.username,
+        password: Config.rdmdb.password,
+        port: Config.rdmdb.port,
+        database: Config.rdmdb.db_name
+    })
+};
 
-const rdmDB = WDR.MySQL.createPool({
-    supportBigNumbers: true,
-    connectionLimit: 100,
-    host: Config.rdmdb.host,
-    user: Config.rdmdb.username,
-    password: Config.rdmdb.password,
-    port: Config.rdmdb.port,
-    database: Config.rdmdb.db_name
-});
+module.exports = database;
 
 setInterval(function(){
     wdrDB.query(`
-                SELECT
-                    *
-                FROM
+        SELECT
+            *
+        FROM
+            wdr_quest_queue
+        WHERE
+            alert_time < UNIX_TIMESTAMP()
+    ;`,
+    function(error, alerts) {
+        if (error) {
+            WDR.Console.error(WDR, '[src/database.js] Error Fetching Quest subs from queue.', [error]);
+        } else if (alerts && alerts[0]) {
+            alerts.forEach(async (alert, index) => {
+                setTimeout(async function() {
+                    let quest_embed = JSON.parse(alert.embed);
+                    WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
+                }, 2000 * index);
+            });
+            WDR.wdrDB.query(`
+                DELETE FROM
                     wdr_quest_queue
                 WHERE
                     alert_time < UNIX_TIMESTAMP()
             ;`,
-        function(error, alerts) {
-            if (error) {
-                WDR.Console.error(WDR, '[src/database.js] Error Fetching Quest subs from queue.', [error]);
-            } else if (alerts && alerts[0]) {
-                alerts.forEach(async (alert, index) => {
-                    setTimeout(async function() {
-                        let quest_embed = JSON.parse(alert.embed);
-                        WDR.Send_DM(WDR, alert.guild_id, alert.user_id, { embed: quest_embed }, alert.bot);
-                    }, 2000 * index);
-                });
-                WDR.wdrDB.query(`
-                            DELETE FROM
-                                wdr_quest_queue
-                            WHERE
-                                alert_time < UNIX_TIMESTAMP()
-                        ;`,
-                function(error) {
-                    if (error) {
-                        console.error;
-                    }
+            function(error) {
+                if (error) {
+                    console.error;
                 }
-                );
-            }
+            });
         }
-    );
+    });
 }, 60000);
 
 const DB = {
 
     Queries: {},
-
     
     Interval: function(WDR) {
         WDR.wdrDB.query(`
@@ -153,17 +153,6 @@ const DB = {
                             if (error) {
                                 WDR.Console.error(WDR, '[src/database.js] Error connecting to wdrDB.', error);
                                 return resolve();
-                            } else if (row[0].pvp_tables_generated < 1) {
-                                WDR.Console.error(WDR, '[src/database.js] PvP Tables Not Found. Generating...');
-                                await WDR.PvP_Table_Generator(WDR);
-                                WDR.wdrDB.query(
-                                    `UPDATE
-                                    wdr_info
-                                SET
-                                    pvp_tables_generated = 1;`
-                                );
-                                WDR.Console.log(WDR, '[src/database.js] Generated PvP Tables.');
-                                return resolve(WDR);
                             } else {
                                 WDR.Console.info(WDR, '[src/database.js] Successfully Connected to wdrDB.');
                                 // WDR.wdrDB.query(

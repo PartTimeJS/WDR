@@ -7,35 +7,6 @@
   "height": 275,
   "scale": 1,
   "markers": [
-    <% if (stops != null) { %>
-      <% stops.forEach(function(stop) { %>
-      {
-        "url": "<%= stop.marker %>",
-        "latitude": <%= stop.lat %>,
-        "longitude": <%= stop.lon %>,
-        "width": 18,
-        "height": 18
-      },
-      <% }); %>
-    <% } %>
-    <% if (gyms != null) { %>
-      <% gyms.forEach(function(gym) { %>
-      {
-        "url": "<%= gym.marker %>",
-        "latitude": <%= gym.lat %>,
-        "longitude": <%= gym.lon %>,
-        "height": 20,
-        "width": 20,
-      },
-      {
-        "url": "<%= gym.sprite %>",
-        "latitude": <%= gym.lat %>,
-        "longitude": <%= gym.lon %>,
-        "height": 20,
-        "width": 20,
-      },
-      <% }); %>
-    <% } %>
     {
       "url": "<%= url %>",
       "latitude": <%= lat %>,

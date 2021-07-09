@@ -4,9 +4,10 @@ module.exports = (WDR, Message) => {
         if (WDR.Fs.existsSync(WDR.Dir + '/src/commands/admin/' + command.toLowerCase() + '.js')) {
             let Cmd = require(WDR.Dir + '/src/commands/admin/' + command.toLowerCase() + '.js');
             Cmd(WDR, Message);
+        } else {
+            console.log(WDR.Dir + '/src/commands/admin/' + command.toLowerCase() + '.js does not exist');
         }
-    // eslint-disable-next-line no-empty
     } catch (error) {
-        
+        console.error(error);
     }
 };

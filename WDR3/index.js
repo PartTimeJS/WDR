@@ -102,13 +102,6 @@ WDR.db = require(WDR.Dir + '/static/data/updates.json');
 // LOAD DISCORD.JS
 WDR.DiscordJS = require('discord.js');
 
-// LOAD PVP FILE
-WDR.PvP = require(WDR.Dir + '/src/pvp.js');
-
-// LOAD PVP TABLE GENERATOR
-delete require.cache[require.resolve(WDR.Dir + '/static/PvP_Ranks.js')];
-WDR.PvP_Table_Generator = require(WDR.Dir + '/static/PvP_Ranks.js');
-
 // LOAD COMMAND HANDLER
 delete require.cache[require.resolve(WDR.Dir + '/src/handlers/messages.js')];
 WDR.Message_Handler = require(WDR.Dir + '/src/handlers/messages.js');
