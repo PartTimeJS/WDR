@@ -19,7 +19,7 @@ module.exports = async (BOT, member) => {
         if (rows) {
             reason = 'TRA,' + BOT.user.tag;
             for (let x = 0; x < rows.length; x++) {
-                let role = member.guild.roles.cache.find(role => role.name === rows[x].temporary_role);
+                let role = member.guild.donorRoles.cache.find(role => role.name === rows[x].temporary_role);
                 member.roles.add(role, reason).catch(error => {
                     console.error('[GuildMemberAdd]', error);
                 });
@@ -29,7 +29,7 @@ module.exports = async (BOT, member) => {
 
     // ASSIGN THE DEFAULT ROLE
     if (config.default_role) {
-        let role = member.guild.roles.cache.find(role => role.name === config.default_role);
+        let role = member.guild.donorRoles.cache.find(role => role.name === config.default_role);
         member.roles.add(role).catch(error => {
             console.error('[GuildMemberAdd]', error);
         });

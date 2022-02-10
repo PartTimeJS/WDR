@@ -56,7 +56,7 @@ module.exports = async (BOT, oldMember, newMember) => {
                         let roleState = log.changes[0].key.slice(1),
                             roleName = '',
                             embedColor = '',
-                            changedRole = oldMember.guild.roles.cache.find(role => role.name === log.changes[0].new[0].name);
+                            changedRole = oldMember.guild.donorRoles.cache.find(role => role.name === log.changes[0].new[0].name);
                         if (changedRole) {
                             embedColor = changedRole.color;
                             roleName = changedRole.name;

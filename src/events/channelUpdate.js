@@ -91,7 +91,7 @@ module.exports = async (BOT, oldChannel, newChannel) => {
                             for (let x = 0; x < newPerms.length; x++) {
                                 if (newPerms[x] && oldPerms[x]) {
                                     if (newPerms[x].deny != oldPerms[x].deny) {
-                                        //let role = newChannel.guild.roles.cache.find(ch => ch.id === newPerms[x].id);
+                                        //let role = newChannel.guild.donorRoles.cache.find(ch => ch.id === newPerms[x].id);
                                         let permChange = new Discord.MessageEmbed().setColor('ff7a00')
                                             .setTitle('**' + log.extra.name + ' Permissions Changed For #' + newChannel.name + '**')
                                             .setFooter('By ' + log.executor.tag + ' on ' + BOT.time(config.timezone));

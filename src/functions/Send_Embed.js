@@ -36,7 +36,7 @@ module.exports = (WDR, Embed, channel_id) => {
             WDR.Console.error(WDR, '[Send_Embed.js] 5 Channel Errors Seen, Restarting WDR...');
             process.exit(1);
         } else {
-            WDR.Console.error(WDR, '[Send_Embed.js] ' + channel.id, error.toString());
+            WDR.Console.error(WDR, '[Send_Embed.js] ' + channel.id, [error.toString()]);
             WDR.Console.info(WDR, '[Send_Embed.js] A re-attempt to send the Embed will be made in 10 seconds.', error.toString());
             setTimeout(() => {
                 channel.send(Embed).catch(error => {

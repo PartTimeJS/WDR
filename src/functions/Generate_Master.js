@@ -364,7 +364,7 @@ module.exports = (WDR) => {
                 MasterArray = await Fetch_Json('https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/latest.json');
 
                 GameMaster.Pokemon_Types = require(WDR.Dir + '/static/data/type_effectiveness.json').Types;
-                GameMaster.Grunt_Types = await Fetch_Json('https://raw.githubusercontent.com/WatWowMap/MapJS/master/static/data/grunttypes.json');
+                //GameMaster.Grunt_Types = await Fetch_Json('https://raw.githubusercontent.com/WatWowMap/MapJS/master/static/data/grunttypes.json');
                 GameMaster.Genders = {
                     0: 'all',
                     1: 'male',

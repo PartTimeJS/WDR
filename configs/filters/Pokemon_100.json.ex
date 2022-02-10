@@ -901,5 +901,6 @@
     "Regidrago": "True",
     "Glastrier": "True",
     "Spectrier": "True",
-    "Calyrex": "True"
+    "Calyrex": "True",
+    "Flabebe": "True"
 }
