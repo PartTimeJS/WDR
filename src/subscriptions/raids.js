@@ -194,8 +194,8 @@ async function Send_Subscription(WDR, raid, User) {
         match.weaknesses = match.typing.weaknesses;
         match.resistances = match.typing.resistances;
         match.reduced = match.typing.reduced;
-        match.move_1_type = WDR.Emotes[WDR.Master.Moves[raid.move_1].type.toLowerCase()];
-        match.move_2_type = WDR.Emotes[WDR.Master.Moves[raid.move_2].type.toLowerCase()];
+        match.move_1_type = WDR.Emotes[WDR.Master.moves[raid.move_1].type.toLowerCase()];
+        match.move_2_type = WDR.Emotes[WDR.Master.moves[raid.move_2].type.toLowerCase()];
         match.move_1_name = raid.move_1_name;
         match.move_2_name = raid.move_2_name;
         match.minCP = WDR.CalculateCP(WDR, raid.pokemon_id, raid.form_id, 10, 10, 10, 20);

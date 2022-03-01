@@ -1,9 +1,190 @@
-/* eslint-disable no-cond-assign */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-constant-condition */
 /* eslint-disable no-async-promise-executor */
-/* eslint-disable no-empty */
-/* eslint-disable no-inner-declarations */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-var _0x1463=['vhDTAKy=','zNjPzw5KCW==','ywn0Aw9U','zNvUy3rPB24GkLWOicPCkq==','CMvWBgfJzq==','vxnLigfUieL0zw0GDg8GrxzVBhzL','vw1VBfC=','DM1Xuwq=','C3rYAw5N','yvPXvKq=','yND5Bue=','BwLU','ug9RW6LZDg9WkhmPifLVDsbiyxzLBID0ifzPC2L0zwqGqMvMB3jL','w0DLDf9rDwvZDf9uyxnRlMPZxsboBYbuExbLieLUzM9YBwf0Aw9UigzVDw5KigzVCIb0ExbLia==','AxrLBv9Pza==','y2TZB3e=','y29UzgL0Aw9Ux3r5Cgu=','vgHYB3DFvhLWzxm=','A1rbsfG=','CMfPzcbIyxr0BguOCYK=','q2f0y2GGEZb9ierPzMzLCMvUDcbtCgvJAwvZig9M','vgLTzxm=','D0XbveO=','BxrdCw4=','ug9RW6LTB24Gq2f1z2H0ia==','khmPig9UifbVA8oPBw9U','C3rHDgvpyMPLy3q=','yxbWBhK=','u25HChnOB3qOCYKGB2yG','CNrZqKe=','z3P3vgG=','Cg9RW6LZDg9WkhmP','sxrLBxm=','xcTCkYaQkd86w2eTEKeTwL8KxvSWltLHlxPblvPFjf0Qkq==','yw4GrxHJzwXSzw50','DgfYz2v0','ysbfEgnLBgXLBNq=','Cu5UBu0=','Cg9RW6LTB24GD2L0AcbIzxjYAwuOCYK=','q2f0y2G=','q2DYyKu=','y2HHAw4=','uuDeqw0=','q3vYDMvIywXSifrOCM93khmP','swvXyKK=','y29UC3rYDwn0B3i=','v2LU','t3z1t2G=','wMPys1C=','z3LTigjHDhrSzsHZkq==','ug9Rzw1VBL9uExbLCW==','q29TCgXLDgu=','khmP','BMfTzq==','uvDlAuC=','rNjPzw5K','vxnL','y2fUzhK=','ug9Rzw1VBG==','tMXht2q=','qMf0DgXLigLUigeGuMfPza==','DgHYB3DFDhLWzv9Pza==','Aw5MBW==','rgvMzwf0','CLL1v0q=','Chjrvfq=','q29UC29Szq==','vgHYB3COCYKGAw4GysbYB3C=','AufoCKe=','DgvZDa==','q2fUzhKGv2fSA2LUzYb3AxrOifLVDxiGqNvKzhK=','ig9YieHPz2HLCIbsywLK','zgLZDgfUy2u=','z2DLCG==','igeGvgLTzxm=','qMvYCMLLkhmPig9UifbVA8oPBw9U','qNHztwS=','vxnLigeGu3vWzxiGrwzMzwn0AxzLienOyxjNzwqGqxr0ywnRigLU','zevby0m=','BgvUz3rO','Cg9RW6LTB24=','u25HChnOB3qOCYKGB2yGww91CIbcDwrKEq==','zM9YrwfJAa==','qMf0DgXLigfNywLUC3q=','Cg9Rzw1VBL9Pzhm=','y29UzgL0Aw9Ux2LUzM8=','s2jAyuS=','Cg9Rzw1VBL90ExbLx2LKCW==','z2D2yLG=','EZb9','ifrOCM93khmPigLUigeGuM93','uufhDg8=','s3zWyK4=','uxvLC3rFvhLWzxm=','rM91BMqGDw5MAw5PC2HLzcbXDwvZDcb0ExbL','rwfYBG==','A0Lvq1y=','zxjYB3i=','twfRzq==','Dgv4Da==','zgvIDq==','DhLWzq==','ifrOCM93khmP','ChzWigjHDhrSzsHZkq==','y29UzgL0Aw9UCW==','y291BNrLCG==','u25HChnOB3qOCYK=','vK9QrMG=','twfZDgvY','vgHYB3COCYK=','EZb9ihbVA8oPBw9U','ig9Yia==','lvr5CguGug9RW6LTB24=','r3j1BNrFvhLWzxm=','DgfZAW==','Aw5WDxq=','z1rOA0S=','zhjYwhu=','y2HHCMfJDgvYx2nHDgvNB3j5x2LKCW==','ten1B0O=','tgfUza==','EvH0t1C=','vgLdD2e=','DgHYB3COCYK=','ug9RW6LTB24GD2L0Acbxzwf0AgvYiejVB3n0','wgLRCK0=','Aw5PDa=='];(function(_0x1e3c30,_0x37b9ba){var _0x14634a=function(_0x597ca7){while(--_0x597ca7){_0x1e3c30['push'](_0x1e3c30['shift']());}};_0x14634a(++_0x37b9ba);}(_0x1463,0xcc));var _0x597c=function(_0x1e3c30,_0x37b9ba){_0x1e3c30=_0x1e3c30-0x14a;var _0x14634a=_0x1463[_0x1e3c30];if(_0x597c['ECBThV']===undefined){var _0x597ca7=function(_0x4164a6){var _0x25ac12='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=',_0x5de51f=String(_0x4164a6)['replace'](/=+$/,'');var _0x5decb5='';for(var _0x110e4b=0x0,_0x4a2d2f,_0x8b61f9,_0x5a6249=0x0;_0x8b61f9=_0x5de51f['charAt'](_0x5a6249++);~_0x8b61f9&&(_0x4a2d2f=_0x110e4b%0x4?_0x4a2d2f*0x40+_0x8b61f9:_0x8b61f9,_0x110e4b++%0x4)?_0x5decb5+=String['fromCharCode'](0xff&_0x4a2d2f>>(-0x2*_0x110e4b&0x6)):0x0){_0x8b61f9=_0x25ac12['indexOf'](_0x8b61f9);}return _0x5decb5;};_0x597c['tCExbC']=function(_0x3d5a2e){var _0x2859ea=_0x597ca7(_0x3d5a2e);var _0x51beb5=[];for(var _0x1d86af=0x0,_0xf996de=_0x2859ea['length'];_0x1d86af<_0xf996de;_0x1d86af++){_0x51beb5+='%'+('00'+_0x2859ea['charCodeAt'](_0x1d86af)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x51beb5);},_0x597c['xKRObI']={},_0x597c['ECBThV']=!![];}var _0x1174eb=_0x597c['xKRObI'][_0x1e3c30];return _0x1174eb===undefined?(_0x14634a=_0x597c['tCExbC'](_0x14634a),_0x597c['xKRObI'][_0x1e3c30]=_0x14634a):_0x14634a=_0x1174eb,_0x14634a;};var _0x25ac12=function(){var _0x258838=!![];return function(_0x42f74b,_0x170c19){var _0x1cffbb=_0x597c;if(_0x1cffbb(0x18b)===_0x1cffbb(0x18b)){var _0x58a157=_0x258838?function(){var _0x5cff28=_0x1cffbb;if(_0x5cff28(0x17c)!=='TwmjF'){function _0x31b53c(){var _0x5ab82f=_0x5cff28;_0x59c2c5+=_0x28c9cb[_0x5ab82f(0x169)]['Grunt_Types'][_0x3250b8][_0x5ab82f(0x162)]+',\x20';}}else{if(_0x170c19){if('wXFMB'!==_0x5cff28(0x1a1)){var _0x373c63=_0x170c19[_0x5cff28(0x197)](_0x42f74b,arguments);return _0x170c19=null,_0x373c63;}else{function _0x3e17b2(){var _0x3f7b83=_0x5cff28;_0x7bd0db[_0x3f7b83(0x16f)]=_0xf72666[_0x3f7b83(0x16f)][_0x3f7b83(0x180)](_0x3f7b83(0x178),_0x502cbb['Master'][_0x3f7b83(0x18d)][_0x1a9458[_0x3f7b83(0x152)]['throw_type_id']]+'\x20Throw(s)\x20in\x20a\x20Row');}}}}}:function(){};return _0x258838=![],_0x58a157;}else{function _0x84007c(){var _0x29b7c5=_0x1cffbb;_0x51bf7e+=_0xff42d4['Master'][_0x29b7c5(0x1ae)][_0x3c95ec]+'\x20or\x20';}}};}();(function(){_0x25ac12(this,function(){var _0x21faf2=_0x597c;if(_0x21faf2(0x192)==='wLATJ'){var _0x49353e=new RegExp(_0x21faf2(0x17f)),_0xfa1eab=new RegExp('\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','i'),_0x1108c9=_0x4164a6(_0x21faf2(0x17b));if(!_0x49353e[_0x21faf2(0x1c1)](_0x1108c9+'chain')||!_0xfa1eab['test'](_0x1108c9+_0x21faf2(0x170))){if('OGGbV'!=='OGGbV'){function _0x54cb6e(){var _0x17d2e0=_0x21faf2,_0x4fa3ab=new _0x55476f('function\x20*\x5c(\x20*\x5c)'),_0x5856f9=new _0x3248aa('\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','i'),_0x5319c3=_0x47499c(_0x17d2e0(0x17b));!_0x4fa3ab['test'](_0x5319c3+_0x17d2e0(0x1a5))||!_0x5856f9[_0x17d2e0(0x1c1)](_0x5319c3+'input')?_0x5319c3('0'):_0x3e41a0();}}else _0x1108c9('0');}else _0x4164a6();}else{function _0x157bf9(){var _0x66a6ca=_0x21faf2;_0x543b1e=_0x58ea17[_0x66a6ca(0x169)][_0x66a6ca(0x1b6)][_0x32cea0[_0x66a6ca(0x152)]['pokemon_ids'][0x0]]['name'];}}})();}(),module['exports']=async(_0x41c077,_0x53cd66)=>{return new Promise(async _0x1e7d9d=>{var _0x4398f7=_0x597c;if(_0x4398f7(0x1ab)!==_0x4398f7(0x159)){if(_0x53cd66[_0x4398f7(0x165)][0x0]){if(_0x4398f7(0x18e)==='TjHlT'){function _0xdec90(){return![];}}else _0x53cd66[_0x4398f7(0x18c)]=_0x53cd66[_0x4398f7(0x165)][0x0][_0x4398f7(0x162)],_0x53cd66[_0x4398f7(0x152)]=_0x53cd66[_0x4398f7(0x165)][0x0]['info'];}if(!_0x41c077[_0x4398f7(0x169)][_0x4398f7(0x15a)][_0x53cd66['type']]){if(_0x4398f7(0x1a8)!=='IeqbI'){function _0x10ec97(){var _0x3dad79=_0x4398f7;return _0x6b1f28[_0x3dad79(0x1be)][_0x3dad79(0x15e)](_0x513a26,_0x3dad79(0x189)+_0x472c65[_0x3dad79(0x162)]),_0x50856b();}}else return _0x41c077[_0x4398f7(0x1be)][_0x4398f7(0x15e)](_0x41c077,'[Get_Quest_Task.js]\x20No\x20Type\x20Information\x20found\x20for\x20type\x20'+_0x53cd66['type']),_0x1e7d9d();}else{if(_0x4398f7(0x1b2)===_0x4398f7(0x1b2)){_0x53cd66['task']=_0x41c077[_0x4398f7(0x169)]['Quest_Types'][_0x53cd66[_0x4398f7(0x162)]][_0x4398f7(0x160)];if(_0x53cd66['condition_type']>0x0)switch(_0x53cd66[_0x4398f7(0x18c)]){case 0x1:var _0x3381f4='';if(_0x53cd66[_0x4398f7(0x152)]['pokemon_type_ids'][_0x4398f7(0x14c)]>0x1){if('IWxym'===_0x4398f7(0x1bd)){function _0x37c4b7(){var _0x4cab0a=_0x361d45['apply'](_0x26692a,arguments);return _0x263468=null,_0x4cab0a;}}else _0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x154)][_0x4398f7(0x14f)]((_0x3bd7f1,_0x27ebf4)=>{var _0x2f01c2=_0x4398f7;if(_0x27ebf4===_0x53cd66[_0x2f01c2(0x152)][_0x2f01c2(0x154)]['length']-0x2){if(_0x2f01c2(0x174)==='GFKxP'){function _0x4cd6ae(){_0xccf563('0');}}else _0x3381f4+=_0x41c077['Master'][_0x2f01c2(0x1ae)][_0x3bd7f1]+_0x2f01c2(0x16c);}else{if(_0x27ebf4===_0x53cd66[_0x2f01c2(0x152)][_0x2f01c2(0x154)][_0x2f01c2(0x14c)]-0x1){if(_0x2f01c2(0x19a)!==_0x2f01c2(0x19a)){function _0x1b7bcd(){var _0x31a758=_0x2f01c2;_0x54e370+=_0x42e7ee['Master']['Pokemon'][_0x415a46]+_0x31a758(0x16c);}}else _0x3381f4+=_0x41c077[_0x2f01c2(0x169)]['Pokemon_Types'][_0x3bd7f1];}else{if(_0x2f01c2(0x1c8)!==_0x2f01c2(0x1c8)){function _0x3ab50f(){var _0x284178=_0x2f01c2;if(_0x514357===_0x51cb92[_0x284178(0x165)][0x0][_0x284178(0x1ba)][_0x284178(0x173)][_0x284178(0x14c)]-0x2)_0x13e479+=_0x1ae792['Master'][_0x284178(0x16e)][_0x2adc05][_0x284178(0x162)]+_0x284178(0x16c);else _0x208e3f===_0x426d21[_0x284178(0x165)][0x0][_0x284178(0x1ba)][_0x284178(0x173)][_0x284178(0x14c)]-0x1?_0x4e3e87+=_0x371289['Master'][_0x284178(0x16e)][_0x212bf6][_0x284178(0x162)]:_0x582ca3+=_0x411d19[_0x284178(0x169)][_0x284178(0x16e)][_0x2277f2][_0x284178(0x162)]+',\x20';}}else _0x3381f4+=_0x41c077['Master'][_0x2f01c2(0x1ae)][_0x3bd7f1]+',\x20';}}});}else{if(_0x4398f7(0x171)!==_0x4398f7(0x171)){function _0xea21cc(){var _0x5b842b=_0x4398f7;_0x2c734d[_0x5b842b(0x16f)]=_0x5f36b5[_0x5b842b(0x16f)][_0x5b842b(0x180)](_0x5b842b(0x18f),'Level\x20'+_0x160e6d+'\x20or\x20Higher\x20Raid');}}else _0x3381f4=_0x41c077[_0x4398f7(0x169)][_0x4398f7(0x1ae)][_0x53cd66[_0x4398f7(0x152)]['pokemon_type_ids']];}_0x53cd66[_0x4398f7(0x165)][0x1]&&_0x53cd66[_0x4398f7(0x165)][0x1][_0x4398f7(0x162)]===0x15&&(_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)]('Catch\x20{0}',_0x4398f7(0x190)));_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)](_0x4398f7(0x14d),_0x3381f4+'-type\x20Pokémon'),_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)]('Snapshot(s)',_0x4398f7(0x198)+_0x3381f4+_0x4398f7(0x16d));break;case 0x2:var _0x581000='';if(_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x151)][_0x4398f7(0x14c)]>0x1){if(_0x4398f7(0x177)!==_0x4398f7(0x177)){function _0x399bd1(){var _0x56a752=_0x4398f7;_0x54fa67[_0x56a752(0x16f)]=_0x51e48a[_0x56a752(0x16f)][_0x56a752(0x180)]('Catch\x20{0}','Catch\x20{0}\x20Different\x20Species\x20of');}}else _0x53cd66[_0x4398f7(0x152)]['pokemon_ids'][_0x4398f7(0x14f)]((_0x5443f9,_0x1f4298)=>{var _0x584fe1=_0x4398f7;if(_0x1f4298===_0x53cd66[_0x584fe1(0x152)][_0x584fe1(0x151)]['length']-0x2)_0x581000+=_0x41c077[_0x584fe1(0x169)][_0x584fe1(0x1b6)][_0x5443f9]+'\x20or\x20';else{if(_0x1f4298===_0x53cd66[_0x584fe1(0x152)][_0x584fe1(0x151)][_0x584fe1(0x14c)]-0x1)_0x581000+=_0x41c077[_0x584fe1(0x169)]['Pokemon'][_0x5443f9];else{if(_0x584fe1(0x176)===_0x584fe1(0x1a6)){function _0x43f66a(){var _0x3ed610=_0x584fe1;_0x5cf73c[_0x3ed610(0x16f)]=_0x40509f[_0x3ed610(0x16f)][_0x3ed610(0x180)](_0x3ed610(0x1b0),'')[_0x3ed610(0x180)]('1\x20','a\x20')[_0x3ed610(0x180)](_0x3ed610(0x1c6),'')[_0x3ed610(0x180)]('friends',_0x3ed610(0x1b3));}}else _0x581000+=_0x41c077[_0x584fe1(0x169)][_0x584fe1(0x1b6)][_0x5443f9]+',\x20';}}});}else _0x581000=_0x41c077[_0x4398f7(0x169)]['Pokemon'][_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x151)][0x0]][_0x4398f7(0x1b1)];_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x14d),_0x581000),_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x167),_0x4398f7(0x198)+_0x581000);break;case 0x3:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)](_0x4398f7(0x14d),_0x4398f7(0x179));break;case 0x6:_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)]('Complete',_0x4398f7(0x1aa));break;case 0x7:var _0x4e0dfb=Math[_0x4398f7(0x187)][_0x4398f7(0x197)](null,_0x53cd66[_0x4398f7(0x152)]['raid_levels']);_0x4e0dfb>0x1&&(_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x18f),'Level\x20'+_0x4e0dfb+_0x4398f7(0x1c3)));_0x53cd66[_0x4398f7(0x165)][0x1]&&_0x53cd66[_0x4398f7(0x165)][0x1]['type']===0x6&&(_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)]['replace'](_0x4398f7(0x1af),_0x4398f7(0x1aa)));break;case 0x8:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task']['replace']('Land',_0x4398f7(0x15f)),_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task']['replace'](_0x4398f7(0x178),_0x41c077['Master']['Throw_Types'][_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x1b9)]]+_0x4398f7(0x163));if(_0x53cd66[_0x4398f7(0x165)][0x1]&&_0x53cd66[_0x4398f7(0x165)][0x1]['type']===0xf){if(_0x4398f7(0x1bc)===_0x4398f7(0x199)){function _0x46f323(){var _0x227dff=_0x4398f7;_0x23bd77[_0x227dff(0x16f)]=_0x5210dc['task'][_0x227dff(0x180)](_0x227dff(0x1a2),_0x227dff(0x1c7));}}else _0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x16a),_0x4398f7(0x1a7));}_0x53cd66['task']['replace'](_0x4398f7(0x1a0),_0x4398f7(0x19e));break;case 0x9:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task']['replace']('Complete',_0x4398f7(0x1aa));break;case 0xa:_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)]('Complete',_0x4398f7(0x14a));break;case 0xb:if(!_0x53cd66['condition_info'])_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)]('Evolve',_0x4398f7(0x181));else{if(_0x53cd66[_0x4398f7(0x162)]===0xd)_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1a3),_0x4398f7(0x1b4)),_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x18a)]?_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)](_0x4398f7(0x1a2),_0x41c077[_0x4398f7(0x169)]['Items'][_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x18a)]]+_0x4398f7(0x195)):_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1a2),_0x4398f7(0x1c7));else{if(_0x4398f7(0x155)!==_0x4398f7(0x182))console[_0x4398f7(0x15e)](_0x4398f7(0x15b),_0x53cd66,_0x53cd66[_0x4398f7(0x152)]);else{function _0x217821(){var _0x2c4e21=_0x4398f7;_0x199794+=_0xc454eb[_0x2c4e21(0x169)][_0x2c4e21(0x1b6)][_0x5edf84]+',\x20';}}}}break;case 0xc:_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x19b),_0x4398f7(0x188));break;case 0xe:_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x175),'Make');typeof _0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x1b9)]==='undefined'?_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x178),_0x4398f7(0x1bf)):_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)]['replace'](_0x4398f7(0x178),_0x41c077[_0x4398f7(0x169)]['Throw_Types'][_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x1b9)]]+_0x4398f7(0x157));if(_0x53cd66[_0x4398f7(0x165)][0x1]&&_0x53cd66[_0x4398f7(0x165)][0x1][_0x4398f7(0x162)]===0xf){if(_0x4398f7(0x15d)===_0x4398f7(0x168)){function _0x47a369(){var _0x2c9c7a=_0x4398f7;_0x47121a[_0x2c9c7a(0x16f)]=_0x2f477c[_0x2c9c7a(0x16f)][_0x2c9c7a(0x180)]('Evolve',_0x2c9c7a(0x181));}}else _0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x16a),_0x4398f7(0x1a7));}break;case 0x16:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1aa),'Battle\x20a\x20Team\x20Leader')[_0x4398f7(0x180)](_0x4398f7(0x164),_0x4398f7(0x191));break;case 0x17:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1aa),'Battle\x20Another\x20Trainer')['replace'](_0x4398f7(0x164),_0x4398f7(0x191));break;case 0x19:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x16b),_0x4398f7(0x194)+_0x53cd66[_0x4398f7(0x152)][_0x4398f7(0x1c4)]+'km\x20Apart');break;case 0x1b:var _0x666fb8='';_0x53cd66[_0x4398f7(0x165)][0x0][_0x4398f7(0x1ba)][_0x4398f7(0x173)][_0x4398f7(0x14f)]((_0x5d3bbb,_0x5631fc)=>{var _0x121512=_0x4398f7;if(_0x5631fc===_0x53cd66[_0x121512(0x165)][0x0][_0x121512(0x1ba)][_0x121512(0x173)]['length']-0x2)_0x666fb8+=_0x41c077[_0x121512(0x169)][_0x121512(0x16e)][_0x5d3bbb][_0x121512(0x162)]+_0x121512(0x16c);else _0x5631fc===_0x53cd66['conditions'][0x0][_0x121512(0x1ba)][_0x121512(0x173)][_0x121512(0x14c)]-0x1?_0x666fb8+=_0x41c077[_0x121512(0x169)][_0x121512(0x16e)][_0x5d3bbb][_0x121512(0x162)]:_0x666fb8+=_0x41c077[_0x121512(0x169)][_0x121512(0x16e)][_0x5d3bbb][_0x121512(0x162)]+',\x20';}),_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)]['replace']('Team\x20GO\x20Rocket\x20Grunt(s)',_0x666fb8);_0x53cd66[_0x4398f7(0x165)][0x1]&&_0x53cd66[_0x4398f7(0x165)][0x1]['type']===0x12&&(_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)]('Battle\x20against',_0x4398f7(0x1bb)));break;case 0x1c:if(_0x53cd66['type']===0x1c){if('XikrM'===_0x4398f7(0x17a))_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x167),_0x4398f7(0x14e));else{function _0x3dd401(){var _0x386b20=_0x4398f7;_0x404418+=_0x1bf546[_0x386b20(0x169)][_0x386b20(0x1ae)][_0x26d6a2];}}}break;}else{if(_0x53cd66['type']>0x0){if(_0x4398f7(0x14b)===_0x4398f7(0x153)){function _0x1a2e14(){var _0x131788=_0x4398f7;_0xa06833=_0x34ade7[_0x131788(0x169)][_0x131788(0x1ae)][_0x2faf53[_0x131788(0x152)][_0x131788(0x154)]];}}else switch(_0x53cd66[_0x4398f7(0x162)]){case 0x7:_0x53cd66['task']=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1af),'Battle\x20in\x20a\x20Gym')[_0x4398f7(0x180)](_0x4398f7(0x1ad),_0x4398f7(0x191));break;case 0x8:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1af),_0x4398f7(0x1b8))[_0x4398f7(0x180)]('raid\x20battle(s)',_0x4398f7(0x191));break;case 0xd:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)](_0x4398f7(0x1a3),_0x4398f7(0x1b4))[_0x4398f7(0x180)](_0x4398f7(0x1a2),'Berries\x20to\x20Help\x20Catch\x20Pokémon');break;case 0x11:_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66['task'][_0x4398f7(0x180)]('Walk\x20your\x20buddy\x20to\x20earn',_0x4398f7(0x15c))['replace'](_0x4398f7(0x1b5),_0x4398f7(0x1c2));break;}}}_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x156),_0x53cd66[_0x4398f7(0x19f)]);if(_0x53cd66[_0x4398f7(0x19f)]===0x1)_0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1b0),'')[_0x4398f7(0x180)]('1\x20','a\x20')[_0x4398f7(0x180)](_0x4398f7(0x1c6),'')['replace'](_0x4398f7(0x17d),_0x4398f7(0x1b3));else{if(_0x4398f7(0x172)===_0x4398f7(0x185)){function _0x471bfd(){_0x6daa13(this,function(){var _0x15f842=_0x597c,_0x42d185=new _0x5da353(_0x15f842(0x17f)),_0x16e551=new _0x1e4dd9(_0x15f842(0x19d),'i'),_0x71a3de=_0xe0226e(_0x15f842(0x17b));!_0x42d185[_0x15f842(0x1c1)](_0x71a3de+_0x15f842(0x1a5))||!_0x16e551[_0x15f842(0x1c1)](_0x71a3de+_0x15f842(0x170))?_0x71a3de('0'):_0x2b3199();})();}}else _0x53cd66[_0x4398f7(0x16f)]=_0x53cd66[_0x4398f7(0x16f)][_0x4398f7(0x180)](_0x4398f7(0x1b0),'s');}return _0x53cd66['task']=await _0x41c077['Capitalize'](_0x53cd66[_0x4398f7(0x16f)]),_0x1e7d9d(_0x53cd66);}else{function _0x4c85db(){if(_0x562b64)return _0x344140;else _0x50d24f(0x0);}}}}else{function _0x35cd17(){var _0x4c524b=_0x4398f7;_0x368265[_0x4c524b(0x16f)]=_0x31b1d6[_0x4c524b(0x16f)][_0x4c524b(0x180)](_0x4c524b(0x1a3),'Use'),_0x36b256['condition_info'][_0x4c524b(0x18a)]?_0x17dd57['task']=_0x6722ab['task'][_0x4c524b(0x180)]('pokémon\x20with\x20berrie(s)',_0x5a4f37[_0x4c524b(0x169)][_0x4c524b(0x19c)][_0x54a776['condition_info'][_0x4c524b(0x18a)]]+'(s)\x20on\x20Pokémon'):_0x9fb8cc[_0x4c524b(0x16f)]=_0x9649e6[_0x4c524b(0x16f)]['replace']('pokémon\x20with\x20berrie(s)',_0x4c524b(0x1c7));}}});});function _0x4164a6(_0x1b66ce){var _0x3cb3c7=_0x597c;function _0x33040e(_0xc43ae4){var _0x548fff=_0x597c;if(_0x548fff(0x1b7)!==_0x548fff(0x1a4)){if(typeof _0xc43ae4===_0x548fff(0x184)){if(_0x548fff(0x1c0)===_0x548fff(0x1ac)){function _0x197465(){return _0x50348d;}}else return function(_0x46bb0a){}[_0x548fff(0x1a9)]('while\x20(true)\x20{}')[_0x548fff(0x197)](_0x548fff(0x166));}else{if((''+_0xc43ae4/_0xc43ae4)['length']!==0x1||_0xc43ae4%0x14===0x0){if(_0x548fff(0x183)===_0x548fff(0x193)){function _0x5e5179(){var _0x3827e6=_0x51beb5?function(){var _0x35361f=_0x597c;if(_0x2a235d){var _0x3f22cb=_0x6a077[_0x35361f(0x197)](_0x3bb621,arguments);return _0x4e8519=null,_0x3f22cb;}}:function(){};return _0x15552d=![],_0x3827e6;}}else(function(){var _0x59af05=_0x548fff;if('QAGto'!==_0x59af05(0x158)){function _0x2909cc(){_0x3a1f75(0x0);}}else return!![];}[_0x548fff(0x1a9)](_0x548fff(0x161)+_0x548fff(0x1c5))['call'](_0x548fff(0x17e)));}else(function(){return![];}[_0x548fff(0x1a9)](_0x548fff(0x161)+_0x548fff(0x1c5))[_0x548fff(0x197)](_0x548fff(0x196)));}_0x33040e(++_0xc43ae4);}else{function _0x1ec739(){var _0x3a1ccb=_0x548fff;_0x4abd42['task']=_0x345340[_0x3a1ccb(0x16f)]['replace'](_0x3a1ccb(0x150),'Defeat');}}}try{if(_0x1b66ce)return _0x33040e;else{if(_0x3cb3c7(0x186)==='bwymA')_0x33040e(0x0);else{function _0x4084fd(){var _0x122168=_0x3cb3c7;_0x13ff54+=_0x49cc25[_0x122168(0x169)]['Pokemon_Types'][_0x32d3c9]+',\x20';}}}}catch(_0x3a7e47){}}
+module.exports = async (WDR, Quest) => {
+    return new Promise(async resolve => {
+
+        if (Quest.conditions[0]) {
+            Quest.condition_type = Quest.conditions[0].type;
+            Quest.condition_info = Quest.conditions[0].info;
+        }
+
+        if (!WDR.Master.quest_types[Quest.type]) {
+            WDR.Console.error(WDR, '[Get_Quest_Task.js] No Type Information found for type ' + Quest.type);
+            return resolve();
+
+        } else {
+
+            Quest.task = WDR.Master.quest_types[Quest.type].text;
+
+            if (Quest.condition_type > 0) {
+                switch (Quest.condition_type) {
+                    case 1:
+                        var tstr = '';
+                        if (Quest.condition_info.pokemon_type_ids.length > 1) {
+                            Quest.condition_info.pokemon_type_ids.forEach((typeId, index) => {
+                                if (index === Quest.condition_info.pokemon_type_ids.length - 2) {
+                                    tstr += WDR.Master.type_ids[typeId] + ' or ';
+                                } else if (index === Quest.condition_info.pokemon_type_ids.length - 1) {
+                                    tstr += WDR.Master.type_ids[typeId];
+                                } else {
+                                    tstr += WDR.Master.type_ids[typeId] + ', ';
+                                }
+                            });
+                        } else {
+                            tstr = WDR.Master.type_ids[Quest.condition_info.pokemon_type_ids];
+                        }
+                        if (Quest.conditions[1] && Quest.conditions[1].type === 21) {
+                            Quest.task = Quest.task.replace('Catch {0}', 'Catch {0} Different Species of');
+                        }
+                        Quest.task = Quest.task.replace('pokémon', tstr + '-type Pokémon');
+                        Quest.task = Quest.task.replace('Snapshot(s)', 'Snapshot(s) of ' + tstr + '-Type Pokémon');
+                        break;
+
+                    case 2:
+                        var pstr = '';
+                        if (Quest.condition_info.pokemon_ids.length > 1) {
+                            Quest.condition_info.pokemon_ids.forEach((pokeId, index) => {
+                                if (index === Quest.condition_info.pokemon_ids.length - 2) {
+                                    pstr += WDR.Master.pokemon[pokeId] + ' or ';
+                                } else if (index === Quest.condition_info.pokemon_ids.length - 1) {
+                                    pstr += WDR.Master.pokemon[pokeId];
+                                } else {
+                                    pstr += WDR.Master.pokemon[pokeId] + ', ';
+                                }
+                            });
+                        } else {
+                            pstr = WDR.Master.pokemon[Quest.condition_info.pokemon_ids[0]].name;
+                        }
+                        Quest.task = Quest.task.replace('pokémon', pstr);
+                        Quest.task = Quest.task.replace('Snapshot(s)', 'Snapshot(s) of ' + pstr);
+                        break;
+
+                    case 3:
+                        Quest.task = Quest.task.replace('pokémon', 'Pokémon with Weather Boost');
+                        break;
+
+                    case 6:
+                        Quest.task = Quest.task.replace('Complete', 'Win');
+                        break;
+
+                    case 7:
+                        var raidLevel = Math.min.apply(null, Quest.condition_info.raid_levels);
+                        if (raidLevel > 1) {
+                            Quest.task = Quest.task.replace('raid battle(s)', 'Level ' + raidLevel + ' or Higher Raid');
+                        }
+                        if (Quest.conditions[1] && Quest.conditions[1].type === 6) {
+                            Quest.task = Quest.task.replace('Complete', 'Win');
+                        }
+                        break;
+
+                    case 8:
+                        Quest.task = Quest.task.replace('Land', 'Make');
+                        Quest.task = Quest.task.replace('throw(s)', WDR.Master.throw_types[Quest.condition_info.throw_type_id] + ' Throw(s)');
+                        if (Quest.conditions[1] && Quest.conditions[1].type === 15) {
+                            Quest.task = Quest.task.replace('Throw(s)', 'Curveball Throw(s)');
+                        }
+                        Quest.task.replace('a Excellent', 'an Excellent');
+                        break;
+                    case 9:
+                        Quest.task = Quest.task.replace('Complete', 'Win');
+                        break;
+
+                    case 10:
+                        Quest.task = Quest.task.replace('Complete', 'Use a Super Effective Charged Attack in');
+                        break;
+
+                    case 11:
+                        if (!Quest.condition_info) {
+                            Quest.task = Quest.task.replace('Evolve', 'Use an Item to Evolve');
+                        } else if (Quest.type === 13) {
+                            Quest.task = Quest.task.replace('Catch', 'Use');
+                            if(Quest.condition_info.item_id){
+                                Quest.task = Quest.task.replace('pokémon with berrie(s)', `${WDR.Master.items[Quest.condition_info.item_id]}(s) on Pokémon`);
+                            } else {
+                                Quest.task = Quest.task.replace('pokémon with berrie(s)', 'Berrie(s) on Pokémon');
+                            }
+                        } else {
+                            console.error('Found unfinished quest type', Quest, Quest.condition_info);
+                        } break;
+
+                    case 12:
+                        Quest.task = Quest.task.replace('pokéstop(s)', 'Pokéstop(s) You Haven\'t Visited Before'); break;
+
+                    case 14:
+                        Quest.task = Quest.task.replace('Land', 'Make');
+                        if (typeof Quest.condition_info.throw_type_id === 'undefined') {
+                            Quest.task = Quest.task.replace('throw(s)', 'Throw(s) in a row');
+                        } else {
+                            Quest.task = Quest.task.replace('throw(s)', WDR.Master.throw_types[Quest.condition_info.throw_type_id] + ' Throw(s) in a Row');
+                        }
+                        if (Quest.conditions[1] && Quest.conditions[1].type === 15) {
+                            Quest.task = Quest.task.replace('Throw(s)', 'Curveball Throw(s)');
+                        }
+                        break;
+
+                    case 22:
+                        Quest.task = Quest.task.replace('Win', 'Battle a Team Leader').replace('pvp battle(s)', 'Times');
+                        break;
+
+                    case 23:
+                        Quest.task = Quest.task.replace('Win', 'Battle Another Trainer').replace('pvp battle(s)', 'Times');
+                        break;
+
+                    case 25:
+                        Quest.task = Quest.task.replace('{0} pokémon', 'Pokémon Caught ' + Quest.condition_info['distance'] + 'km Apart');
+                        break;
+
+                    case 27:
+                        var gstr = '';
+                        Quest.conditions[0].info.character_category_ids.forEach((charId, index) => {
+                            if (index === (Quest.conditions[0].info.character_category_ids.length - 2)) {
+                                gstr += WDR.Master.invasions[charId].type + ' or ';
+                            } else if (index === (Quest.conditions[0].info.character_category_ids.length - 1)) {
+                                gstr += WDR.Master.invasions[charId].type;
+                            } else {
+                                gstr += WDR.Master.invasions[charId].type + ', ';
+                            }
+                        });
+                        Quest.task = Quest.task.replace('Team GO Rocket Grunt(s)', gstr);
+                        if (Quest.conditions[1] && Quest.conditions[1].type === 18) {
+                            Quest.task = Quest.task.replace('Battle against', 'Defeat');
+                        }
+                        break;
+
+                    case 28:
+                        if (Quest.type === 28) {
+                            Quest.task = Quest.task.replace('Snapshot(s)', 'Snapshot(s) of Your Buddy');
+                        }
+                        break;
+
+                }
+            } else if (Quest.type > 0) {
+                switch (Quest.type) {
+                    case 7:
+                        Quest.task = Quest.task.replace('Complete', 'Battle in a Gym').replace('gym battle(s)', 'Times');
+                        break;
+                    case 8:
+                        Quest.task = Quest.task.replace('Complete', 'Battle in a Raid').replace('raid battle(s)', 'Times');
+                        break;
+                    case 13:
+                        Quest.task = Quest.task.replace('Catch', 'Use').replace('pokémon with berrie(s)', 'Berries to Help Catch Pokémon');
+                        break;
+                    case 17:
+                        Quest.task = Quest.task.replace('Walk your buddy to earn', 'Earn').replace('candy', 'Candy Walking with Your Buddy');
+                        break;
+                }
+            }
+
+            Quest.task = Quest.task.replace('{0}', Quest.target);
+
+            if (Quest.target === 1) {
+                Quest.task = Quest.task.replace('(s)', '').replace('1 ', 'a ').replace(' a Times', '').replace('friends', 'Friend');
+            } else {
+                Quest.task = Quest.task.replace('(s)', 's');
+            }
+        
+            Quest.task = await WDR.Capitalize(Quest.task);
+
+            return resolve(Quest);
+        }
+    });
+};

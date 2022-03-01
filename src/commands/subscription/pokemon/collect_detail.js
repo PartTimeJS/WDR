@@ -62,7 +62,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                         instruction.setDescription('Current: `All`' + '\n' +
                             'Available Forms:' + '\n　' + forms);
                     } else {
-                        instruction.setDescription('Current: `' + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +
+                        instruction.setDescription('Current: `' + WDR.Master.pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +
                             'Available Forms:' + '\n　' + forms);
                     }
                 }
@@ -91,7 +91,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                 if (sub.form === 0) {
                     form = 'All';
                 } else {
-                    form = WDR.Master.Pokemon[sub.pokemon_id].forms[sub.form].form;
+                    form = WDR.Master.pokemon[sub.pokemon_id].forms[sub.form].form;
                 }
 
                 var gen;
@@ -280,7 +280,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 break;
                             default:
                                 var match;
-                                WDR.Master.Pokemon_Types.forEach(type => {
+                                Wdr.Master.type_ids.forEach(type => {
                                     if (type.toLowerCase() == CollectedMsg.content.toLowerCase()) {
                                         match = type.toLowerCase();
                                         collector.stop(match);

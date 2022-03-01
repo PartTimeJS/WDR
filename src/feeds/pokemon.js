@@ -46,9 +46,9 @@ module.exports = (WDR, sighting) => {
             }
         }
 
-        let pobject = channel.filter[WDR.Master.Pokemon[sighting.pokemon_id].name];
+        let pobject = channel.filter[WDR.Master.pokemon[sighting.pokemon_id].name];
         if (!pobject) {
-            return WDR.Console.error(WDR, `[feeds/pokemon.js] Missing filter data for ${WDR.Master.Pokemon[sighting.pokemon_id].name} (${sighting.pokemon_id}) in configs/filters/${feed_channel[1].filter}`);
+            return;
         } else if (pobject != 'False') {
 
             let defGeo = (channel.geofences.indexOf(sighting.area.default) >= 0);
@@ -129,8 +129,8 @@ module.exports = (WDR, sighting) => {
                     match.lvl = sighting.pokemon_level;
                     match.gen = sighting.gen;
 
-                    match.move_1_type = WDR.Emotes[WDR.Master.Moves[sighting.move_1].type.toLowerCase()];
-                    match.move_2_type = WDR.Emotes[WDR.Master.Moves[sighting.move_2].type.toLowerCase()];
+                    match.move_1_type = WDR.Emotes[WDR.Master.moves[sighting.move_1].type.toLowerCase()];
+                    match.move_2_type = WDR.Emotes[WDR.Master.moves[sighting.move_2].type.toLowerCase()];
                     match.move_1_name = sighting.move_1_name;
                     match.move_2_name = sighting.move_2_name;
 

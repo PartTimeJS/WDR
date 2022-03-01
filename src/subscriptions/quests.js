@@ -4,7 +4,7 @@ module.exports = async (WDR, QUEST) => {
     
     let params = '';
     if(QUEST.pokemon_id){
-        params = `reward = '${WDR.Master.Pokemon[QUEST.pokemon_id].name}'`;
+        params = `reward = '${WDR.Master.pokemon[QUEST.pokemon_id].name}'`;
     } else {
         params =   `(
                         reward = '${QUEST.simple_reward}'

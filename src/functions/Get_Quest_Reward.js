@@ -10,8 +10,8 @@ module.exports = (WDR, Quest) => {
                 // ITEM REWARDS (EXCEPT STARDUST)
             case 2:
                 Quest.reward_type = 'item';
-                Quest.simple_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
-                Quest.full_reward = WDR.Master.Items[Quest.rewards[0].info.item_id].name;
+                Quest.simple_reward = WDR.Master.items[Quest.rewards[0].info.item_id].name;
+                Quest.full_reward = WDR.Master.items[Quest.rewards[0].info.item_id].name;
                 Quest.amount = Quest.rewards[0].info.amount;
 
                 if (Quest.rewards[0].info.amount > 1) {

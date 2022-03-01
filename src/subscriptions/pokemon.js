@@ -207,8 +207,8 @@ async function Send_Subscription(WDR, match, sighting, user) {
     match.lvl = sighting.pokemon_level;
     match.gen = sighting.gen;
 
-    match.move_1_type = WDR.Emotes[WDR.Master.Moves[sighting.move_1].type.toLowerCase()];
-    match.move_2_type = WDR.Emotes[WDR.Master.Moves[sighting.move_2].type.toLowerCase()];
+    match.move_1_type = WDR.Emotes[WDR.Master.moves[sighting.move_1].type.toLowerCase()];
+    match.move_2_type = WDR.Emotes[WDR.Master.moves[sighting.move_2].type.toLowerCase()];
     match.move_1_name = sighting.move_1_name;
     match.move_2_name = sighting.move_2_name;
 

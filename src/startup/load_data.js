@@ -2,8 +2,9 @@
 exports.Load = function (WDR) {
     return new Promise(async resolve => {
 
-        WDR.Master = require(WDR.Dir + '/static/data/master.json');
-
+        //WDR.Master = require(WDR.Dir + '/static/data/master.json');
+        WDR.Master = await WDR.Fetch_JSON('https://raw.githubusercontent.com/WatWowMap/Masterfile-Generator/master/master-latest.json');
+        WDR.Master.type_effectiveness = require(WDR.Dir + '/static/data/type_effectiveness.json').Types;
         WDR.ICONS = {
             pokemon: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/pokemon/index.json')
             //rewards: await WDR.Fetch_JSON(WDR.Config.ICONS_URL + '/rewards/index.json')

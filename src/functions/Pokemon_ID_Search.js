@@ -1,8 +1,8 @@
 module.exports = (WDR, name) => {
     return new Promise(resolve => {
-        let PokemonArray = Object.keys(WDR.Master.Pokemon).map(i => WDR.Master.Pokemon[i].pokedex_id);
+        let PokemonArray = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i].pokedex_id);
         for (let p = 0, plen = PokemonArray.length; p < plen; p++) {
-            let pokemon = WDR.Master.Pokemon[PokemonArray[p]];
+            let pokemon = WDR.Master.pokemon[PokemonArray[p]];
             if (pokemon.name.toLowerCase() == name.toLowerCase()) {
                 let forms = Object.keys(pokemon.forms).map(f => pokemon.forms[f].form);
                 if (forms.indexOf('Purified') >= 0) {

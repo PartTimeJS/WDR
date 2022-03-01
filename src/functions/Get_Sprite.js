@@ -8,8 +8,8 @@ module.exports = (WDR, Object) => {
             gender_id = '';
 
         if (Object.form > 0) {
-            if (WDR.Master.Pokemon[Object.pokemon_id].forms[Object.form] && WDR.Master.Pokemon[Object.pokemon_id].forms[Object.form].form_id) {
-                form_id = '-f' + WDR.Master.Pokemon[Object.pokemon_id].forms[Object.form].form_id;
+            if (WDR.Master.pokemon[Object.pokemon_id].forms[Object.form] && WDR.Master.pokemon[Object.pokemon_id].forms[Object.form].form_id) {
+                form_id = '-f' + WDR.Master.pokemon[Object.pokemon_id].forms[Object.form].form_id;
             }
         }
 

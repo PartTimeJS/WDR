@@ -218,7 +218,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 instruction.setDescription('Current: `All Pokémon`' + '\n' +
                                     'Available Forms:' + '\n　' + forms);
                             } else {
-                                instruction.setDescription('Current: `' + WDR.Master.Pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +
+                                instruction.setDescription('Current: `' + WDR.Master.pokemon[object.pokemon_id].forms[object.form].form + '`' + '\n' +
                                     'Available Forms:' + '\n　' + forms);
                             }
                         }

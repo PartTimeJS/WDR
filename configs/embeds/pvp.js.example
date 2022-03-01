@@ -19,7 +19,7 @@ module.exports = function(WDR, p) {
 
   p.possible_cps.forEach(pvp => {
     let pipe = " | "; // SPACING
-    let Name = WDR.Master.Pokemon[pvp.pokemon_id].name;
+    let Name = WDR.Master.pokemon[pvp.pokemon_id].name;
     let Level = "Lvl " + pvp.level;
     let Cp = "CP " + pvp.cp;
     let Rank = "**Rank " + pvp.rank + "**";

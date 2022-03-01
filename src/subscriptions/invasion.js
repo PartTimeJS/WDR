@@ -1,7 +1,7 @@
 // module.exports = async (WDR, invasion, area, server, timezone) => {
 //     //if(!invasion.pokemon_id){ return; }
 
-//     //  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Invasion == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [invasion.js] Received '+WDR.Master.grunt_types[invasion.grunt_type].type+' invasion for '+server.name+'.'); }
+//     //  if(WDR.Debug.Subscriptions == 'ENABLED' && WDR.Debug.Invasion == 'ENABLED'){ console.log('[SUBSCRIPTIONS] ['+WDR.Time(null,'stamp')+'] [invasion.js] Received '+Wdr.Master.invasions[invasion.grunt_type].type+' invasion for '+server.name+'.'); }
 //     //
 //     //  // FETCH ALL USERS FROM THE USERS TABLE AND CHECK SUBSCRIPTIONS
 //     // WDR.wdrDB.query(`SELECT * FROM users WHERE guild_id = ? AND status = ?`, [server.id, 'ACTIVE'], function (error, users){
@@ -25,17 +25,17 @@
 //     //        if(user.invasion && user.invasion_status == 'ACTIVE'){
 //     //
 //     //          // CHECK FOR GRUNT TYPE
-//     //          if(!WDR.Master.grunt_types[invasion.grunt_type]){
+//     //          if(!Wdr.Master.invasions[invasion.grunt_type]){
 //     //              return //WDR.Console.error(WDR, "[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
 //     //          }
 //     //
 //     //          // CONVERT INVASION LIST TO AN ARRAY
 //     //          let invasion_subs = JSON.parse(user.invasion);
-//     //          let type = WDR.Master.grunt_types[invasion.grunt_type].type;
+//     //          let type = Wdr.Master.invasions[invasion.grunt_type].type;
 //     //          if(!type){
 //     //            return //WDR.Console.error(WDR, "[subs/invasion.js] ["+WDR.Time(null,'stamp')+"] No Grunt found for "+invasion.grunt_type+" in Grunts.json.");
 //     //          }
-//     //          let gender = WDR.Master.grunt_types[invasion.grunt_type].gender;
+//     //          let gender = Wdr.Master.invasions[invasion.grunt_type].gender;
 //     //
 //     //          // CHECK EACH USER SUBSCRIPTION
 //     //          invasion_subs.subscriptions.forEach((sub,index) => {

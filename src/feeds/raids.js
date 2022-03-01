@@ -141,8 +141,8 @@ module.exports = async (WDR, RAID) => {
                         match.weaknesses = match.typing.weaknesses;
                         match.resistances = match.typing.resistances;
                         match.reduced = match.typing.reduced;
-                        match.move_1_type = WDR.Emotes[WDR.Master.Moves[RAID.move_1].type.toLowerCase()];
-                        match.move_2_type = WDR.Emotes[WDR.Master.Moves[RAID.move_2].type.toLowerCase()];
+                        match.move_1_type = WDR.Emotes[WDR.Master.moves[RAID.move_1].type.toLowerCase()];
+                        match.move_2_type = WDR.Emotes[WDR.Master.moves[RAID.move_2].type.toLowerCase()];
                         match.move_1_name = RAID.move_1_name;
                         match.move_2_name = RAID.move_2_name;
                         match.minCP = WDR.CalculateCP(WDR, RAID.pokemon_id, RAID.form_id, 10, 10, 10, 20);

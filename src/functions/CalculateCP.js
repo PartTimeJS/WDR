@@ -5,20 +5,20 @@ module.exports = async (WDR, pokemonID, formID, attack, defense, stamina, level)
         pokemonStamina = 0;
     let CPMultiplier = WDR.cp_multiplier[level];
 
-    if (!WDR.Master.Pokemon[pokemonID]) {
+    if (!WDR.Master.pokemon[pokemonID]) {
         return WDR.Console.error('[src/pvp.js] Can\'t find Pokemon ID: ' + pokemonID + ' Form:' + formID);
     }
-    if (!WDR.Master.Pokemon[pokemonID].attack) {
-        if (!WDR.Master.Pokemon[pokemonID].forms[formID] || !WDR.Master.Pokemon[pokemonID].forms[formID].attack) {
+    if (!WDR.Master.pokemon[pokemonID].attack) {
+        if (!WDR.Master.pokemon[pokemonID].forms[formID] || !WDR.Master.pokemon[pokemonID].forms[formID].attack) {
             return WDR.Console.error('[src/pvp.js] Can\'t find attack of Pokemon ID: ' + pokemonID + ' Form:' + formID);
         }
-        pokemonAttack = WDR.Master.Pokemon[pokemonID].forms[formID].attack;
-        pokemonDefense = WDR.Master.Pokemon[pokemonID].forms[formID].defense;
-        pokemonStamina = WDR.Master.Pokemon[pokemonID].forms[formID].stamina;
+        pokemonAttack = WDR.Master.pokemon[pokemonID].forms[formID].attack;
+        pokemonDefense = WDR.Master.pokemon[pokemonID].forms[formID].defense;
+        pokemonStamina = WDR.Master.pokemon[pokemonID].forms[formID].stamina;
     } else {
-        pokemonAttack = WDR.Master.Pokemon[pokemonID].attack;
-        pokemonDefense = WDR.Master.Pokemon[pokemonID].defense;
-        pokemonStamina = WDR.Master.Pokemon[pokemonID].stamina;
+        pokemonAttack = WDR.Master.pokemon[pokemonID].attack;
+        pokemonDefense = WDR.Master.pokemon[pokemonID].defense;
+        pokemonStamina = WDR.Master.pokemon[pokemonID].stamina;
     }
 
     let attackMultiplier = pokemonAttack + parseInt(attack);

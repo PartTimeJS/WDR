@@ -578,11 +578,6 @@ function Compile_Data(GameMaster, MasterArray) {
                             Pokemon.quick_moves = await get_moves(object.data.pokemonSettings.quickMoves);
                             Pokemon.charged_moves = await get_moves(object.data.pokemonSettings.cinematicMoves);
 
-                            Pokemon.evolutions_names = await get_evolutions('names', object.data.pokemonSettings.evolutionBranch, pokemon_id);
-                            Pokemon.evolutions_ids = await get_evolutions('ids', object.data.pokemonSettings.evolutionBranch, pokemon_id);
-
-                            Pokemon.evolutions = await get_evolutions('objects', object.data.pokemonSettings.evolutionBranch, pokemon_id);
-
                             Pokemon.legendary = object.data.pokemonSettings.pokemonClass == 'POKEMON_CLASS_LEGENDARY' ? true : false;
                             Pokemon.mythic = object.data.pokemonSettings.pokemonClass == 'POKEMON_CLASS_MYTHIC' ? true : false;
 
@@ -640,8 +635,6 @@ function Compile_Data(GameMaster, MasterArray) {
                             //Form.capture_rate = object.data.pokemonSettings.encounter.baseCaptureRate;
                             //Form.quick_moves = await get_moves(object.data.pokemonSettings.quickMoves);
                             //Form.charged_moves = await get_moves(object.data.pokemonSettings.cinematicMoves);
-                            //Form.evolutions = await get_evolutions("names", object.data.pokemonSettings.evolution, pokemon_id);
-                            //Form.evolutions_ids = await get_evolutions("ids", object.data.pokemonSettings.evolution, pokemon_id);
                             //Form.evolution_branch = await get_evolutions("names", object.data.pokemonSettings.evolutionBranch, pokemon_id);
                             //Form.legendary = object.data.pokemonSettings.pokemonClass == "POKEMON_CLASS_LEGENDARY" ? true : false;
                             //Form.mythic = object.data.pokemonSettings.pokemonClass == "POKEMON_CLASS_MYTHIC" ? true : false;

@@ -149,7 +149,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                     };
                                     break;
                                 default:
-                                    var item_array = Object.keys(WDR.Master.Items).map(i => WDR.Master.Items[i].name);
+                                    var item_array = Object.keys(WDR.Master.items).map(i => WDR.Master.items[i].name);
                                     for (let i = 0, ilen = item_array.length; i < ilen; i++) {
                                         if (item_array[i] && item_array[i].toLowerCase() === CollectedMsg.content.toLowerCase()) {
                                             valid = {

@@ -25,11 +25,11 @@ module.exports = (WDR, Functions, Message, Member) => {
             let choice = s + 1;
             let sub_data = subscriptions[s];
             sub_data.id = sub_data.id ? sub_data.id : sub_data.pokemon_id;
-            sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.id] ? WDR.Master.Pokemon[sub_data.id].name : 'All Pokémon';
+            sub_data.pokemon_name = WDR.Master.pokemon[sub_data.id] ? WDR.Master.pokemon[sub_data.id].name : 'All Pokémon';
             sub_list += '**' + choice + ' - ' + sub_data.pokemon_name + '**\n';
             let data = '';
             if (sub_data.form > 0) {
-                data += '　Form: `' + WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + '`\n';
+                data += '　Form: `' + WDR.Master.pokemon[sub_data.id].forms[sub_data.form].form + '`\n';
             }
             if (sub_data.min_iv != 0) {
                 data += '　Min IV: `' + sub_data.min_iv + '`\n';
@@ -66,14 +66,14 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         let modified = subscriptions[number];
 
-        old.name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].name : 'All Pokémon';
+        old.name = WDR.Master.pokemon[old.pokemon_id] ? WDR.Master.pokemon[old.pokemon_id].name : 'All Pokémon';
         if (old.pokemon_id === 0) {
             old.name = 'All Pokémon';
             old.form_name = 'All';
         } else {
-            old.pokemon = await WDR.Pokemon_ID_Search(WDR, WDR.Master.Pokemon[old.pokemon_id].name);
+            old.pokemon = await WDR.Pokemon_ID_Search(WDR, WDR.Master.pokemon[old.pokemon_id].name);
             old.name = old.pokemon.name;
-            old.form_name = WDR.Master.Pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form].form : 'All';
+            old.form_name = WDR.Master.pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.pokemon[old.pokemon_id].forms[old.form].form : 'All';
             modified.forms = old.pokemon.forms;
             modified.form_ids = old.pokemon.form_ids;
         }
@@ -93,7 +93,7 @@ module.exports = (WDR, Functions, Message, Member) => {
         }
 
 
-        old.form_name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form] : 'All';
+        old.form_name = WDR.Master.pokemon[old.pokemon_id] ? WDR.Master.pokemon[old.pokemon_id].forms[old.form] : 'All';
         if (modified.pokemon_id > 0) {
             modified.form = await Functions.DetailCollect(WDR, Functions, 'Form', Member, Message, old, 'Please respond with \'Next\', a Form Name of the specified Pokemon, -OR- type \'All\'. Type \'Cancel\' to Stop.', modified);
             if (modified.form === null) {

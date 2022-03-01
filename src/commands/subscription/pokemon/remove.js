@@ -23,11 +23,11 @@ module.exports = (WDR, Functions, Message, Member) => {
             for (let s = 0, slen = subscriptions.length; s < slen; s++) {
                 let choice = s + 1;
                 let sub_data = subscriptions[s];
-                sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : 'All Pokémon';
+                sub_data.pokemon_name = WDR.Master.pokemon[sub_data.pokemon_id] ? WDR.Master.pokemon[sub_data.pokemon_id].name : 'All Pokémon';
                 sub_list += '**' + choice + ' - ' + sub_data.pokemon_name + '**\n';
                 let data = '';
                 if (sub_data.form > 0) {
-                    data += '　Form: `' + WDR.Master.Pokemon[sub_data.pokemon_id].forms[sub_data.form].form + '`\n';
+                    data += '　Form: `' + WDR.Master.pokemon[sub_data.pokemon_id].forms[sub_data.form].form + '`\n';
                 }
                 if (sub_data.min_iv !== 0) {
                     data += '　Min IV: `' + sub_data.min_iv + '`\n';
@@ -82,8 +82,8 @@ module.exports = (WDR, Functions, Message, Member) => {
                     ;`;
             } else {
                 let remove = subscriptions[number];
-                if (WDR.Master.Pokemon[remove.pokemon_id]) {
-                    name = WDR.Master.Pokemon[remove.pokemon_id].name;
+                if (WDR.Master.pokemon[remove.pokemon_id]) {
+                    name = WDR.Master.pokemon[remove.pokemon_id].name;
                 } else {
                     name = 'All ' + remove.min_iv + '+';
                     if (remove.min_lvl != 0 && remove.min_lvl != 1) {

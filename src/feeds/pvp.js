@@ -66,10 +66,10 @@ module.exports = async (WDR, sighting) => {
             }
             //let lvlRange = (sighting.pokemon_level >= channel.filter.min_level);
 
-            if (!channel.filter[WDR.Master.Pokemon[sighting.pokemon_id].name]) {
-                return WDR.Console.error(WDR, '[feeds/pvp.js] Missing `' + WDR.Master.Pokemon[sighting.pokemon_id].name + '` in ' + feed_channel[1].filter + '.');
+            if (!channel.filter[WDR.Master.pokemon[sighting.pokemon_id].name]) {
+                return WDR.Console.error(WDR, '[feeds/pvp.js] Missing `' + WDR.Master.pokemon[sighting.pokemon_id].name + '` in ' + feed_channel[1].filter + '.');
             }
-            let filterStatus = (channel.filter[WDR.Master.Pokemon[sighting.pokemon_id].name] == 'True');
+            let filterStatus = (channel.filter[WDR.Master.pokemon[sighting.pokemon_id].name] == 'True');
 
             if (filterStatus) {
                 //if (lvlRange && filterStatus) {
@@ -157,8 +157,8 @@ module.exports = async (WDR, sighting) => {
                     match.lvl = sighting.pokemon_level;
                     match.gen = sighting.gen;
 
-                    match.move_1_type = WDR.Emotes[WDR.Master.Moves[sighting.move_1].type.toLowerCase()];
-                    match.move_2_type = WDR.Emotes[WDR.Master.Moves[sighting.move_2].type.toLowerCase()];
+                    match.move_1_type = WDR.Emotes[WDR.Master.moves[sighting.move_1].type.toLowerCase()];
+                    match.move_2_type = WDR.Emotes[WDR.Master.moves[sighting.move_2].type.toLowerCase()];
                     match.move_1_name = sighting.move_1_name;
                     match.move_2_name = sighting.move_2_name;
 
@@ -181,7 +181,7 @@ module.exports = async (WDR, sighting) => {
 
                     match.ranks = '';
                     match.possible_cps.forEach(rank_cp => {
-                        match.ranks += 'Rank ' + rank_cp.rank + ' (' + WDR.Master.Pokemon[rank_cp.pokemon_id].name + ')\n';
+                        match.ranks += 'Rank ' + rank_cp.rank + ' (' + WDR.Master.pokemon[rank_cp.pokemon_id].name + ')\n';
                     });
 
                     if (match.mins >= 5) {

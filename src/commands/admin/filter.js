@@ -138,7 +138,7 @@ function AddRaid(WDR, pokemon, channelID) {
         filter.Boss_Levels.push(pokemon);
     } else {
         pokemon = CapitalizeString(pokemon);
-        if (WDR.Master.Pokemon_Array.indexOf(pokemon) == -1) {
+        if (WDR.Master.pokemon_Array.indexOf(pokemon) == -1) {
             return 'That doesn\'t appear to be a valid Pokemon name';
         }
         if (filter.Boss_Levels.find(contains => contains == pokemon)) {
@@ -199,7 +199,7 @@ function DeleteRaid(WDR, pokemon, channelID) {
         }
     } else {
         pokemon = CapitalizeString(pokemon);
-        if (WDR.Master.Pokemon_Array.indexOf(pokemon) == -1) {
+        if (WDR.Master.pokemon_Array.indexOf(pokemon) == -1) {
             return 'That doesn\'t appear to be a valid Pokemon name';
         }
         if (filter.Boss_Levels.find(contains => contains == pokemon)) {
@@ -253,7 +253,7 @@ function AddPokemon(WDR, pokemon, channelID) {
 
     pokemon = CapitalizeString(pokemon[0].toLowerCase());
 
-    if (WDR.Master.Pokemon_Array.indexOf(pokemon) == -1) {
+    if (WDR.Master.pokemon_Array.indexOf(pokemon) == -1) {
         return 'That doesn\'t appear to be a valid Pokemon name';
     }
 
@@ -279,7 +279,7 @@ function DeletePokemon(WDR, pokemon, channelID) {
 
     pokemon = CapitalizeString(pokemon[0].toLowerCase());
 
-    if (WDR.Master.Pokemon_Array.indexOf(pokemon) == -1) {
+    if (WDR.Master.pokemon_Array.indexOf(pokemon) == -1) {
         return 'That doesn\'t appear to be a valid Pokemon name';
     }
 
@@ -693,8 +693,8 @@ function GetPokemonFromFilter(WDR, filter) {
     let activePokemon = [];
     let currentString = '';
 
-    for (var i = 0; i < WDR.Master.Pokemon_Array.length; i++) {
-        let currentPokemon = WDR.Master.Pokemon_Array[i];
+    for (var i = 0; i < WDR.Master.pokemon_Array.length; i++) {
+        let currentPokemon = WDR.Master.pokemon_Array[i];
         if (filter[currentPokemon]) {
             if (filter[currentPokemon].toLowerCase() == 'true') {
                 if (currentString.length + currentPokemon.length > 1024) {

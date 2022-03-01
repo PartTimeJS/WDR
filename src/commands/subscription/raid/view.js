@@ -31,7 +31,7 @@ module.exports = (WDR, Functions, Message, Member, gym_name_array, gym_detail_ar
                         sub_data.pokemon_name = 'All Eggs';
                     }
                 } else {
-                    sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : 'All Raid Bosses';
+                    sub_data.pokemon_name = WDR.Master.pokemon[sub_data.pokemon_id] ? WDR.Master.pokemon[sub_data.pokemon_id].name : 'All Raid Bosses';
                 }
                 sub_list += '**' + choice + ' - ' + sub_data.pokemon_name + '**\n';
                 let data = '';

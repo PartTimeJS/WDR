@@ -25,11 +25,11 @@ module.exports = (WDR, Functions, Message, Member) => {
             let choice = s + 1;
             let sub_data = subscriptions[s];
             sub_data.id = sub_data.id ? sub_data.id : sub_data.pokemon_id;
-            sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.id] ? WDR.Master.Pokemon[sub_data.id].name : 'All Pokémon';
+            sub_data.pokemon_name = WDR.Master.pokemon[sub_data.id] ? WDR.Master.pokemon[sub_data.id].name : 'All Pokémon';
             sub_list += '**' + choice + ' - ' + sub_data.pokemon_name + '**\n';
             let data = '';
             if (sub_data.form != 0) {
-                data += '　Form: `' + sub_data.form === 0 ? 'All' : WDR.Master.Pokemon[sub_data.id].forms[sub_data.form].form + '`\n';
+                data += '　Form: `' + sub_data.form === 0 ? 'All' : WDR.Master.pokemon[sub_data.id].forms[sub_data.form].form + '`\n';
             }
             if (sub_data.league != '0') {
                 data += '　League: `' + sub_data.league + '`\n';
@@ -51,9 +51,9 @@ module.exports = (WDR, Functions, Message, Member) => {
 
         let modified = subscriptions[number];
 
-        old.name = WDR.Master.Pokemon[old.pokemon_id] ? WDR.Master.Pokemon[old.pokemon_id].name : 'All Pokémon';
-        if (WDR.Master.Pokemon[old.pokemon_id]) {
-            old.form_name = WDR.Master.Pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.Pokemon[old.pokemon_id].forms[old.form].form : 'All';
+        old.name = WDR.Master.pokemon[old.pokemon_id] ? WDR.Master.pokemon[old.pokemon_id].name : 'All Pokémon';
+        if (WDR.Master.pokemon[old.pokemon_id]) {
+            old.form_name = WDR.Master.pokemon[old.pokemon_id].forms[old.form] ? WDR.Master.pokemon[old.pokemon_id].forms[old.form].form : 'All';
         } else {
             old.form_name = 'All';
         }

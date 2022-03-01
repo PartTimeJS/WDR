@@ -26,12 +26,12 @@ module.exports = (WDR, Functions, Message, Member) => {
             for (let s = 0, slen = subscriptions.length; s < slen; s++) {
                 let choice = s + 1;
                 let sub_data = subscriptions[s];
-                sub_data.pokemon_name = WDR.Master.Pokemon[sub_data.pokemon_id] ? WDR.Master.Pokemon[sub_data.pokemon_id].name : 'All Pokémon';
+                sub_data.pokemon_name = WDR.Master.pokemon[sub_data.pokemon_id] ? WDR.Master.pokemon[sub_data.pokemon_id].name : 'All Pokémon';
                 sub_list += '**' + choice + ' - ' + sub_data.pokemon_name + '**\n';
                 let data = '';
                 data += '　Min Rank: `' + sub_data.min_rank + '`\n';
                 if (sub_data.form != 0) {
-                    data += '　Form: `' + WDR.Master.Pokemon[sub_data.pokemon_id].forms[sub_data.form].form + '`\n';
+                    data += '　Form: `' + WDR.Master.pokemon[sub_data.pokemon_id].forms[sub_data.form].form + '`\n';
                 }
                 if (sub_data.league != '0') {
                     data += '　League: `' + sub_data.league + '`\n';

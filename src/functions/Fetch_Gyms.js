@@ -1,9 +1,132 @@
-/* eslint-disable no-cond-assign */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-async-promise-executor */
-/* eslint-disable no-empty */
-/* eslint-disable no-inner-declarations */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-const _0x2133=['Aw5WDxq=','cIaGicaGicaGicaGicaGicaGicaGqu5ecIaGicaGicaGicaGicaGicbSB24Git0G','DxDzrMq=','CKv2uwC=','BgvUz3rO','q1jzsM4=','yxPzD3i=','C3rYAw5N','zMXV','q29UC29Szq==','xcTCkYaQkd86w2eTEKeTwL8KxvSWltLHlxPblvPFjf0Qkq==','ywn0Aw9U','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl3rLyw1Zl1nOAwvSzf9vBMnVBNrLC3rLzc5WBMC=','z2DLCG==','r2v0x1nWCML0zq==','rvzRt3i=','y291BNrLCG==','C3nOzuS=','D2HPBguGkhrYDwuPihT9','zNvUy3rPB24GkLWOicPCkq==','Bg9N','ic0GBg9UksaQienpuYHSyxqGlYa1nY4ZksWGmIKGqvmGzgLZDgfUy2ukicaGicaGicaGicaGrLjptqOGicaGicaGicaGicaGicaGz3LTcIaGicaGicaGicaGifDirvjfcIaGicaGicaGicaGicaGicbSyxqGit0G','rhDkv3e=','rMv0y2HFr3LTCW==','q29UzMLN','C2nHBM5LCKrc','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl3rLyw1Zl1nOAwvSzf9wywXVCI5WBMC=','CMfPzf9WB2TLBw9Ux2zVCM0=','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVuNvZC2vSBf9hEw1FvMfSB3iUCg5N','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl3rLyw1Zl1nOAwvSzf9jBNn0Aw5JDc5WBMC=','uNz4u0m=','v3fYr0y=','veLmrv9quK9wsurfuG==','ksWGmIKGkYbqt1COnJKUmsaQicG=','ugDyv3i=','cIaGicaGicaGicaGifnftevdvaOGicaGicaGicaGicaGicaGCMfPzf9SzxzLBcWkicaGicaGicaGicaGicaGihjHAwrFCg9Rzw1VBL9PzcWkicaGicaGicaGicaGicaGihjHAwrFCg9Rzw1VBL9MB3jTlaOGicaGicaGicaGicaGicaGBgf0laOGicaGicaGicaGicaGicaGBg9UlaOGicaGicaGicaGicaGicaGDgvHBv9PzcWkicaGicaGicaGicaGicaGifbpvYG2os4XicOGkgXHDcaTia==','w0DLDf9hEw1ZlMPZxq==','y2fSBa==','txj2tvG=','Bg9U','Bgf0','y29UC3rYDwn0B3i=','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl3rLyw1Zl1nOAwvSzf9nExn0AwmUCg5N','C3rHDgvpyMPLy3q=','CKTszee=','t2n3Ava=','zgvIDq==','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVrwDNx0XLBMDLBMrHCNLFvgLSzxmUCg5N','y2HHAw4=','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVuNvZC2vSBf9hEw1Fvw5JB250zxn0zwqUCg5N','ChvZAa==','wfrkCui=','icKPjWOGicaGicaGicaGicaGicaGicaGicKScIaGicaGicaGicaGicaGicaGicaGCg9PBNqOz3LTlMXHDcWGz3LTlMXVBIKkicaGicaGicaGicaGicaGicKkicaGicaGicaGicaGt1jerviGqLKGzgLZDgfUy2uGqvndieXjtuLuidiWcIaGicaGicaGoW==','tunNr2e=','DMHHzgq=','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVrwDNx1jHCMvFvgLSzxmUCg5N','DgvZDa==','Aw5PDa==','zMPgyNi=','DgvHBv9Pza==','z09cvuy=','wuziuum=','yxbWBhK=','CMfPzf9WB2TLBw9Ux2LK','y2jsB1K=','qKfNuKW=','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVuNvZC2vSBf9hEw1FtxLZDgLJlNbUzW==','Ahr0Chm6lY9YyxCUz2L0AhvIDxnLCMnVBNrLBNqUy29Tl1bHCNruAw1LsLmVqxnZzxrZl21HC3rLCI9WB2DVl2D5BxmVuNvZC2vSBf9hEw1Fsw5ZDgLUy3qUCg5N','cIaGicaGicaGicaGicaGicaGicaGqu5ecIaGicaGicaGicaGicaGicbtvf9dt05uquLouYGkicaGicaGicaGicaGicaGicaGicbtvf9hru9nrLjptvrfwfqOcIaGicaGicaGicaGicaGicaGicaGicaGicDqt0Xzr09okcGG'];(function(_0x2187e0,_0x213394){const _0x3a8fd0=function(_0xaabd83){while(--_0xaabd83){_0x2187e0['push'](_0x2187e0['shift']());}};_0x3a8fd0(++_0x213394);}(_0x2133,0x14c));const _0x3a8f=function(_0x2187e0,_0x213394){_0x2187e0=_0x2187e0-0x0;let _0x3a8fd0=_0x2133[_0x2187e0];if(_0x3a8f['uKameO']===undefined){var _0xaabd83=function(_0xc76f28){const _0x16c104='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=',_0x450d3a=String(_0xc76f28)['replace'](/=+$/,'');let _0x5a446f='';for(let _0x4f7ca4=0x0,_0x32bc12,_0x3b1e8a,_0x41ba69=0x0;_0x3b1e8a=_0x450d3a['charAt'](_0x41ba69++);~_0x3b1e8a&&(_0x32bc12=_0x4f7ca4%0x4?_0x32bc12*0x40+_0x3b1e8a:_0x3b1e8a,_0x4f7ca4++%0x4)?_0x5a446f+=String['fromCharCode'](0xff&_0x32bc12>>(-0x2*_0x4f7ca4&0x6)):0x0){_0x3b1e8a=_0x16c104['indexOf'](_0x3b1e8a);}return _0x5a446f;};_0x3a8f['WUcEvL']=function(_0x491c8e){const _0x4c555c=_0xaabd83(_0x491c8e);let _0x32a5e7=[];for(let _0x17f02c=0x0,_0x275c8a=_0x4c555c['length'];_0x17f02c<_0x275c8a;_0x17f02c++){_0x32a5e7+='%'+('00'+_0x4c555c['charCodeAt'](_0x17f02c)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x32a5e7);},_0x3a8f['thrKFn']={},_0x3a8f['uKameO']=!![];}const _0xaaa2f1=_0x3a8f['thrKFn'][_0x2187e0];return _0xaaa2f1===undefined?(_0x3a8fd0=_0x3a8f['WUcEvL'](_0x3a8fd0),_0x3a8f['thrKFn'][_0x2187e0]=_0x3a8fd0):_0x3a8fd0=_0xaaa2f1,_0x3a8fd0;};const _0xc76f28=function(){let _0x2ccecd=!![];return function(_0x2ad5dd,_0x44160c){const _0x131b9f=_0x3a8f;if(_0x131b9f('0x42')===_0x131b9f('0x42')){const _0x1f9fdc=_0x2ccecd?function(){const _0x1cd075=_0x131b9f;if(_0x44160c){if(_0x1cd075('0x3a')!==_0x1cd075('0x3a')){function _0x141fd0(){return![];}}else{const _0xccd19=_0x44160c[_0x1cd075('0x6')](_0x2ad5dd,arguments);return _0x44160c=null,_0xccd19;}}}:function(){};return _0x2ccecd=![],_0x1f9fdc;}else{function _0x29d7bb(){return _0x58b74d;}}};}();(function(){_0xc76f28(this,function(){const _0x3d9248=_0x3a8f,_0x29a150=new RegExp(_0x3d9248('0x20')),_0x184337=new RegExp('\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','i'),_0x3f3b7e=_0xaaa2f1(_0x3d9248('0x1'));if(!_0x29a150['test'](_0x3f3b7e+_0x3d9248('0x3d'))||!_0x184337[_0x3d9248('0x0')](_0x3f3b7e+_0x3d9248('0xd'))){if('BAgRL'!==_0x3d9248('0x9')){function _0x15e1bb(){_0xad20a9=[];}}else _0x3f3b7e('0');}else _0xaaa2f1();})();}(),module['exports']=(_0x574b1a,_0x3c2dc0,_0x5e4607)=>{return new Promise(_0x87d4d1=>{const _0x4dbab0=_0x3a8f;if(_0x4dbab0('0x33')===_0x4dbab0('0x33')){let _0x218e28=_0x3c2dc0+0.00489+'\x20'+(_0x5e4607-0.01038),_0x430d66=_0x3c2dc0+0.00489+'\x20'+(_0x5e4607+0.01038),_0x509200=_0x3c2dc0-0.00489+'\x20'+(_0x5e4607-0.01038),_0x3cf766=_0x3c2dc0-0.00489+'\x20'+(_0x5e4607+0.01038),_0x5337db=_0x4dbab0('0x30')+_0x3c2dc0+_0x4dbab0('0x2e')+_0x5e4607+_0x4dbab0('0x22')+_0x3c2dc0+_0x4dbab0('0xe')+_0x5e4607+_0x4dbab0('0xc')+_0x218e28+',\x20'+_0x430d66+',\x20'+_0x509200+',\x20'+_0x3cf766+',\x20'+_0x218e28+_0x4dbab0('0x41');_0x574b1a[_0x4dbab0('0x26')]['query'](_0x5337db,async function(_0x2e3729,_0x203e97){const _0x59d55b=_0x4dbab0;if(_0x2e3729)_0x574b1a['Console'][_0x59d55b('0x21')](_0x574b1a,_0x59d55b('0x31'),[_0x5337db,_0x2e3729]);else{if(_0x203e97[_0x59d55b('0x11')]<0x1){if(!_0x574b1a[_0x59d55b('0x25')]['TILE_PROVIDER']||_0x574b1a[_0x59d55b('0x25')]['TILE_PROVIDER']==_0x59d55b('0x15'))return _0x87d4d1('[]');else{if(_0x59d55b('0x8')!=='cbRoY'){function _0x59d2ff(){_0x172ee1+='['+_0x139a23['lat']+','+_0x1318c5['lon']+','+'\x22'+_0x5a800a+'\x22'+','+'\x22'+_0x342e16+'\x22'+']]';}}else return _0x87d4d1([]);}}else{if(_0x59d55b('0x13')==='azYwr'){let _0x173ea8;!_0x574b1a[_0x59d55b('0x25')][_0x59d55b('0x2d')]||_0x574b1a[_0x59d55b('0x25')][_0x59d55b('0x2d')]==_0x59d55b('0x15')?_0x173ea8='[':_0x173ea8=[];for(let _0x1c22e5=0x0,_0x371b90=_0x203e97[_0x59d55b('0x11')];_0x1c22e5<_0x371b90;_0x1c22e5++){if(_0x59d55b('0x1c')!==_0x59d55b('0x2f')){let _0x268050=_0x203e97[_0x1c22e5],_0x19d22b='',_0x4d372a='',_0x521e65=_0x268050[_0x59d55b('0x7')]?_0x268050[_0x59d55b('0x7')]:0x0,_0x5beaa7=_0x268050[_0x59d55b('0x28')]?_0x268050[_0x59d55b('0x28')]:0x0;switch(parseInt(_0x268050['team_id'])){case 0x1:_0x4d372a=_0x59d55b('0xa');break;case 0x2:_0x4d372a=_0x59d55b('0x29');break;case 0x3:_0x4d372a=_0x59d55b('0xb');break;default:_0x4d372a=_0x59d55b('0x3e');}if(_0x521e65>0x0){if(_0x59d55b('0x2c')===_0x59d55b('0x2c'))_0x19d22b=await _0x574b1a[_0x59d55b('0x1b')](_0x574b1a,{'type':_0x59d55b('0x24'),'pokemon_id':_0x521e65,'form':_0x5beaa7});else{function _0xf7edef(){return _0x1a8bae('[]');}}}else{if('YFHQC'!==_0x59d55b('0x5')){function _0xa669cd(){const _0x5519fa=_0x59d55b;(function(){return![];}[_0x5519fa('0x36')](_0x5519fa('0x3b')+_0x5519fa('0x1a'))['apply'](_0x5519fa('0x38')));}}else switch(parseInt(_0x268050['raid_level'])){case 0x1:case 0x2:_0x19d22b='https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Egg_Common_Tiles.png';break;case 0x3:case 0x4:_0x19d22b=_0x59d55b('0x44');break;case 0x5:_0x19d22b=_0x59d55b('0x3c');break;default:switch(parseInt(_0x268050[_0x59d55b('0x3')])){case 0x1:_0x19d22b=_0x59d55b('0x37');break;case 0x2:_0x19d22b=_0x59d55b('0x27');break;case 0x3:_0x19d22b=_0x59d55b('0x2a');break;default:_0x19d22b=_0x59d55b('0x19');}}}if(_0x268050['lat']!=_0x3c2dc0&&_0x268050[_0x59d55b('0x34')]!=_0x5e4607){if('KaXzj'!==_0x59d55b('0x4')){if(!_0x574b1a[_0x59d55b('0x25')][_0x59d55b('0x2d')]||_0x574b1a[_0x59d55b('0x25')][_0x59d55b('0x2d')]==_0x59d55b('0x15')){if(_0x59d55b('0x23')===_0x59d55b('0x23')){if(_0x1c22e5!=_0x203e97[_0x59d55b('0x11')]-0x1){if('JWKys'==='rMPIU'){function _0x4d0790(){const _0x153556=_0x59d55b;_0x1a792b[_0x153556('0x16')][_0x153556('0x21')](_0x2bda5c,'[Get_Gyms.js]',[_0x297cdb,_0x4eabc4]);}}else _0x173ea8+='['+_0x268050['lat']+','+_0x268050[_0x59d55b('0x34')]+','+'\x22'+_0x4d372a+'\x22'+','+'\x22'+_0x19d22b+'\x22'+']'+',';}else _0x173ea8+='['+_0x268050[_0x59d55b('0x35')]+','+_0x268050[_0x59d55b('0x34')]+','+'\x22'+_0x4d372a+'\x22'+','+'\x22'+_0x19d22b+'\x22'+']]';}else{function _0xa1d189(){const _0x25aea8=_0x59d55b;_0x403023+='['+_0x5160a0['lat']+','+_0x4942ef[_0x25aea8('0x34')]+','+'\x22'+_0x4b7410+'\x22'+','+'\x22'+_0x278c50+'\x22'+']'+',';}}}else{if('UviOl'===_0x59d55b('0x40')){function _0x2ae924(){_0x1cf337(0x0);}}else _0x173ea8[_0x59d55b('0x3f')]({'lat':_0x268050[_0x59d55b('0x35')],'lon':_0x268050[_0x59d55b('0x34')],'marker':_0x4d372a});}}else{function _0xd252a5(){const _0x2ff1ac=_0x59d55b;_0x5be640!=_0x51c392[_0x2ff1ac('0x11')]-0x1?_0x5cab1c+='['+_0xaa3b98[_0x2ff1ac('0x35')]+','+_0xae4d83[_0x2ff1ac('0x34')]+','+'\x22'+_0x3825f5+'\x22'+','+'\x22'+_0x335326+'\x22'+']'+',':_0x5aa9e0+='['+_0x14e777['lat']+','+_0x1037a4[_0x2ff1ac('0x34')]+','+'\x22'+_0x3ec3c4+'\x22'+','+'\x22'+_0x5758ba+'\x22'+']]';}}}}else{function _0x45d934(){const _0x202a03=_0x4c555c?function(){const _0x9a3f0d=_0x3a8f;if(_0x48f80f){const _0x8e53b3=_0x2ff254[_0x9a3f0d('0x6')](_0x161f2f,arguments);return _0x1afb07=null,_0x8e53b3;}}:function(){};return _0x16743c=![],_0x202a03;}}}return _0x87d4d1(_0x173ea8);}else{function _0x1c9103(){const _0x50a8d4=_0x59d55b;(function(){return!![];}[_0x50a8d4('0x36')](_0x50a8d4('0x3b')+'gger')[_0x50a8d4('0x32')]('action'));}}}}});}else{function _0x305b4a(){_0x4a5b6d('0');}}});});function _0xaaa2f1(_0xdfb666){const _0xda7c15=_0x3a8f;function _0x46298c(_0x518fbb){const _0x11b867=_0x3a8f;if(typeof _0x518fbb===_0x11b867('0x14')){if(_0x11b867('0x2')!==_0x11b867('0x2')){function _0xc61537(){return!![];}}else return function(_0x5a0165){}['constructor'](_0x11b867('0x1f'))[_0x11b867('0x6')](_0x11b867('0x1d'));}else{if('pHFRg'!==_0x11b867('0x1e')){if((''+_0x518fbb/_0x518fbb)[_0x11b867('0x11')]!==0x1||_0x518fbb%0x14===0x0)(function(){const _0x711afe=_0x11b867;if(_0x711afe('0x12')===_0x711afe('0x2b')){function _0x14d48d(){const _0x897431=_0x711afe,_0x3f1ed7=new _0x443790('function\x20*\x5c(\x20*\x5c)'),_0x32eb64=new _0x5c3610('\x5c+\x5c+\x20*(?:[a-zA-Z_$][0-9a-zA-Z_$]*)','i'),_0x1a7a9d=_0x17f6f7(_0x897431('0x1'));!_0x3f1ed7[_0x897431('0x0')](_0x1a7a9d+_0x897431('0x3d'))||!_0x32eb64['test'](_0x1a7a9d+'input')?_0x1a7a9d('0'):_0x2d3951();}}else return!![];}[_0x11b867('0x36')](_0x11b867('0x3b')+_0x11b867('0x1a'))['call'](_0x11b867('0x18')));else{if('vhadd'!==_0x11b867('0x43')){function _0x58c9b2(){_0x211377();}}else(function(){const _0x53fbbb=_0x11b867;if(_0x53fbbb('0x10')==='rEvQg')return![];else{function _0x342aca(){if(_0x32b62d){const _0x26e7a6=_0x35a35c['apply'](_0x34bd55,arguments);return _0x5047a7=null,_0x26e7a6;}}}}[_0x11b867('0x36')](_0x11b867('0x3b')+_0x11b867('0x1a'))['apply'](_0x11b867('0x38')));}}else{function _0x2e7db6(){const _0x2d7702=_0x11b867;return!_0x3291db[_0x2d7702('0x25')][_0x2d7702('0x2d')]||_0xd5f11b[_0x2d7702('0x25')]['TILE_PROVIDER']=='flo'?_0x22b996('[]'):_0x4f9cde([]);}}}_0x46298c(++_0x518fbb);}try{if(_0xdfb666){if(_0xda7c15('0xf')!==_0xda7c15('0x39'))return _0x46298c;else{function _0xcc72e9(){_0x4800cb(this,function(){const _0x42f33b=_0x3a8f,_0x38ce42=new _0x3e1ea2('function\x20*\x5c(\x20*\x5c)'),_0x22afd8=new _0x395a9b(_0x42f33b('0x17'),'i'),_0x4dbd21=_0x1a1dde('init');!_0x38ce42['test'](_0x4dbd21+_0x42f33b('0x3d'))||!_0x22afd8[_0x42f33b('0x0')](_0x4dbd21+'input')?_0x4dbd21('0'):_0x50d4a4();})();}}}else _0x46298c(0x0);}catch(_0x4e3608){}}
+module.exports = (WDR, lat, lon) => {
+    return new Promise(resolve => {
+
+        let top_left = (lat + 0.00489) + ' ' + (lon - 0.01038);
+        let top_right = (lat + 0.00489) + ' ' + (lon + 0.01038);
+        let bottom_right = (lat - 0.00489) + ' ' + (lon - 0.01038);
+        let bottom_left = (lat - 0.00489) + ' ' + (lon + 0.01038);
+
+        let query = `
+            SELECT
+                raid_level,
+                raid_pokemon_id,
+                raid_pokemon_form,
+                lat,
+                lon,
+                team_id,
+                POW(69.1 * (lat - ${lat}), 2) + POW(69.1 * (${lon} - lon) * COS(lat / 57.3), 2) AS distance
+            FROM
+                gym
+            WHERE
+                lat != ${lat}
+                    AND
+                lon != ${lon}
+                    AND
+                ST_CONTAINS(
+                    ST_GEOMFROMTEXT(
+                        'POLYGON(( ${top_left}, ${top_right}, ${bottom_right}, ${bottom_left}, ${top_left} ))'
+                    ),
+                    point(gym.lat, gym.lon)
+                )
+            ORDER BY distance ASC LIMIT 20
+        ;`;
+
+        WDR.scannerDB.query(
+            query,
+            async function(err, results) {
+                if (err) {
+                    WDR.Console.log(WDR, '[Get_Gyms.js]', [query, err]);
+                } else if (results.length < 1) {
+                    if (!WDR.Config.TILE_PROVIDER || WDR.Config.TILE_PROVIDER == 'flo') {
+                        return resolve('[]');
+                    } else {
+                        return resolve([]);
+                    }
+                } else {
+
+                    let gymarray;
+                    if (!WDR.Config.TILE_PROVIDER || WDR.Config.TILE_PROVIDER == 'flo') {
+                        gymarray = '[';
+                    } else {
+                        gymarray = [];
+                    }
+
+                    for (let g = 0, rlen = results.length; g < rlen; g++) {
+                        let result = results[g],
+                            boss_sprite = '',
+                            gym_sprite = '',
+                            raid_pokemon_id = result.raid_pokemon_id ? result.raid_pokemon_id : 0,
+                            raid_pokemon_form = result.raid_pokemon_form ? result.raid_pokemon_form : 0;
+
+                        switch (parseInt(result.team_id)) {
+                            case 1:
+                                gym_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Mystic.png';
+                                break;
+                            case 2:
+                                gym_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Valor.png';
+                                break;
+                            case 3:
+                                gym_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Instinct.png';
+                                break;
+                            default:
+                                gym_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Russell_Gym_Uncontested.png';
+                        }
+
+                        if (raid_pokemon_id > 0) {
+                            boss_sprite = await WDR.Get_Sprite(WDR, {
+                                type: 'Fetch_Gyms',
+                                pokemon_id: raid_pokemon_id,
+                                form: raid_pokemon_form
+                            });
+                        } else {
+                            switch (parseInt(result.raid_level)) {
+                                case 1:
+                                case 2:
+                                    boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Egg_Common_Tiles.png';
+                                    break;
+                                case 3:
+                                case 4:
+                                    boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Egg_Rare_Tiles.png';
+                                    break;
+                                case 5:
+                                    boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/gyms/Egg_Lengendary_Tiles.png';
+                                    break;
+                                default:
+
+                                    switch (parseInt(result.team_id)) {
+                                        case 1:
+                                            boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/teams/Shield_Mystic.png';
+                                            break;
+                                        case 2:
+                                            boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/teams/Shield_Valor.png';
+                                            break;
+                                        case 3:
+                                            boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/teams/Shield_Instinct.png';
+                                            break;
+                                        default:
+                                            boss_sprite = 'https://raw.githubusercontent.com/PartTimeJS/Assets/master/pogo/teams/Shield_Uncontested.png';
+                                    }
+                            }
+                        }
+                        if ((result.lat != lat) && (result.lon != lon)) {
+                            if (!WDR.Config.TILE_PROVIDER || WDR.Config.TILE_PROVIDER == 'flo') {
+                                if (g != (results.length - 1)) {
+                                    gymarray += '[' + result.lat + ',' + result.lon + ',' + '"' + gym_sprite + '"' + ',' + '"' + boss_sprite + '"' + ']' + ',';
+                                } else {
+                                    gymarray += '[' + result.lat + ',' + result.lon + ',' + '"' + gym_sprite + '"' + ',' + '"' + boss_sprite + '"' + ']]';
+                                }
+                            } else {
+                                gymarray.push({
+                                    lat: result.lat,
+                                    lon: result.lon,
+                                    marker: gym_sprite
+                                });
+                            }
+                        }
+                    }
+                    return resolve(gymarray);
+                }
+            }
+        );
+    });
+};

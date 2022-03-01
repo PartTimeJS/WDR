@@ -162,7 +162,7 @@ const DB = {
                                 //       wdr_pokedex;`,
                                 //   function(error, table) {
                                 //     if (table.length < 1) {
-                                //       let array = Object.keys(WDR.Master.Pokemon).map(i => WDR.Master.Pokemon[i]);
+                                //       let array = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i]);
                                 //       for (let a = 0, alen = array.length; a < alen; a++) {
                                 //         WDR.wdrDB.query(
                                 //           `INSERT INTO
@@ -223,7 +223,7 @@ const DB = {
                                 WDR.Park_Array = [];
 
                                 // LOAD POKEMON ARRAY
-                                WDR.Pokemon_Array = Object.keys(WDR.Master.Pokemon).map(i => WDR.Master.Pokemon[i].name);
+                                WDR.Pokemon_Array = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i].name);
 
                                 WDR.Console.info(WDR, '[src/database.js] Loaded ' + WDR.Pokemon_Array.length + ' Pokemon into the Pokemon Array.');
 

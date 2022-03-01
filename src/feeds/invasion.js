@@ -6,13 +6,13 @@ module.exports = async (WDR, INVASION) => {
     // }
 
     // // CHECK FOR GRUNT TYPE
-    // if (!WDR.Master.Grunt_Types[INVASION.grunt_type]) {
-    //     console.log(WDR.Master.Grunt_Types);
+    // if (!Wdr.Master.invasions[INVASION.grunt_type]) {
+    //     console.log(Wdr.Master.invasions);
     //     return WDR.Console.error(WDR, '[feeds/INVASION.js] No Grunt found for ' + INVASION.grunt_type + ' in Grunts.json.');
     // }
 
-    // INVASION.type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
-    // INVASION.gender = WDR.Master.Grunt_Types[INVASION.grunt_type].grunt;
+    // INVASION.type = Wdr.Master.invasions[INVASION.grunt_type].type;
+    // INVASION.gender = Wdr.Master.invasions[INVASION.grunt_type].grunt;
 
     // for (let c = 0, ch_len = WDR.Invasion_Channels.length; c < ch_len; c++) {
 
@@ -61,7 +61,7 @@ module.exports = async (WDR, INVASION) => {
 
     //                     var match = {};
             
-    //                     match.type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
+    //                     match.type = Wdr.Master.invasions[INVASION.grunt_type].type;
 
     //                     match.name = INVASION.name;
     //                     match.url = INVASION.url ? INVASION.url : 'https://raw.githubusercontent.com/shindekokoro/PogoAssets/master/static_assets/png/Badge_Pokestop_SILVER_01.png';
@@ -69,7 +69,7 @@ module.exports = async (WDR, INVASION) => {
     //                     match.weaknesses = '';
     //                     match.resistances = '';
     //                     //INVASION.type = WDR.Emotes[INVASION.grunt_type.toLowerCase()] ? WDR.Emotes[INVASION.grunt_type.toLowerCase()] : "";
-    //                     match.color = WDR.Get_Type_Color(WDR.Master.Grunt_Types[INVASION.grunt_type].type);
+    //                     match.color = WDR.Get_Type_Color(Wdr.Master.invasions[INVASION.grunt_type].type);
     //                     match.time = WDR.Time(INVASION.incident_expire_timestamp, '1', INVASION.timezone);
     //                     match.mins = Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) / 60);
     //                     match.secs = Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) - ((Math.floor((INVASION.incident_expire_timestamp - (INVASION.time_now / 1000)) / 60)) * 60));
@@ -90,7 +90,7 @@ module.exports = async (WDR, INVASION) => {
     //                     match.second = '';
     //                     match.third = '';
 
-    //                     // if(type == "Tier II" && WDR.Master.Grunt_Types[INVASION.grunt_type].encounters){ type = WDR.Master.Pokemon[parseInt(WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first[0].split("_")[0])].types[0] }
+    //                     // if(type == "Tier II" && Wdr.Master.invasions[INVASION.grunt_type].encounters){ type = WDR.Master.pokemon[parseInt(Wdr.Master.invasions[INVASION.grunt_type].encounters.first[0].split("_")[0])].types[0] }
     //                     // if(type != "Tier II" && WDR.types[type]){
     //                     //   WDR.types[type].resistances.forEach((resistance,index) => {
     //                     //     WDR.types[type].weaknesses.forEach((weakness,index) => {
@@ -112,7 +112,7 @@ module.exports = async (WDR, INVASION) => {
     //                         match.weaknesses = 'None';
     //                     }
 
-    //                     switch (WDR.Master.Grunt_Types[INVASION.grunt_type].grunt) {
+    //                     switch (Wdr.Master.invasions[INVASION.grunt_type].grunt) {
     //                         case 'Male':
     //                             match.sprite = 'https://cdn.discordapp.com/attachments/487387866394263552/605492063768936451/male_grunt_face_pink.png';
     //                             match.gender = ' ' + WDR.Emotes.male;
@@ -150,61 +150,61 @@ module.exports = async (WDR, INVASION) => {
     //                     //
     //                     // match.static_map = WDR.Config.STATIC_MAP_URL + "&latitude=" + match.marker_latitude + "&longitude=" + match.lon + "&zoom=" + WDR.Config.STATIC_ZOOM + "&width=" + WDR.Config.STATIC_WIDTH + "&height=" + WDR.Config.STATIC_HEIGHT + "&scale=2&markers=" + encodeURIComponent(JSON.stringify(match.static_marker));
 
-    //                     if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters) {
+    //                     if (Wdr.Master.invasions[INVASION.grunt_type].encounters) {
     //                         let name = '';
-    //                         if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first) {
-    //                             WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first.forEach((id) => {
-    //                                 if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
-    //                                     name = WDR.Emotes[WDR.Master.Pokemon[id].name];
+    //                         if (Wdr.Master.invasions[INVASION.grunt_type].encounters.first) {
+    //                             Wdr.Master.invasions[INVASION.grunt_type].encounters.first.forEach((id) => {
+    //                                 if (WDR.Emotes[WDR.Master.pokemon[id].name] != undefined) {
+    //                                     name = WDR.Emotes[WDR.Master.pokemon[id].name];
     //                                 } else {
-    //                                     name = WDR.Master.Pokemon[id].name;
+    //                                     name = WDR.Master.pokemon[id].name;
     //                                 }
     //                                 match.first += name + ' ';
     //                             });
     //                         }
 
-    //                         if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.second) {
-    //                             WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.second.forEach((id) => {
-    //                                 if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
-    //                                     name = WDR.Emotes[WDR.Master.Pokemon[id].name];
+    //                         if (Wdr.Master.invasions[INVASION.grunt_type].encounters.second) {
+    //                             Wdr.Master.invasions[INVASION.grunt_type].encounters.second.forEach((id) => {
+    //                                 if (WDR.Emotes[WDR.Master.pokemon[id].name] != undefined) {
+    //                                     name = WDR.Emotes[WDR.Master.pokemon[id].name];
     //                                 } else {
-    //                                     name = WDR.Master.Pokemon[id].name;
+    //                                     name = WDR.Master.pokemon[id].name;
     //                                 }
-    //                                 if (match.first.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0) {
+    //                                 if (match.first.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.pokemon[id].name]) < 0) {
     //                                     match.second += name + ' ';
     //                                 }
     //                             });
     //                         }
 
-    //                         if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.third) {
-    //                             WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.third.forEach((id) => {
-    //                                 if (WDR.Emotes[WDR.Master.Pokemon[id].name] != undefined) {
-    //                                     name = WDR.Emotes[WDR.Master.Pokemon[id].name];
+    //                         if (Wdr.Master.invasions[INVASION.grunt_type].encounters.third) {
+    //                             Wdr.Master.invasions[INVASION.grunt_type].encounters.third.forEach((id) => {
+    //                                 if (WDR.Emotes[WDR.Master.pokemon[id].name] != undefined) {
+    //                                     name = WDR.Emotes[WDR.Master.pokemon[id].name];
     //                                 } else {
-    //                                     name = WDR.Master.Pokemon[id].name;
+    //                                     name = WDR.Master.pokemon[id].name;
     //                                 }
-    //                                 if (match.first.indexOf(name) < 0 && match.second.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0 && match.second.indexOf(WDR.Emotes[WDR.Master.Pokemon[id].name]) < 0) {
+    //                                 if (match.first.indexOf(name) < 0 && match.second.indexOf(name) < 0 && match.first.indexOf(WDR.Emotes[WDR.Master.pokemon[id].name]) < 0 && match.second.indexOf(WDR.Emotes[WDR.Master.pokemon[id].name]) < 0) {
     //                                     match.third += name + ' ';
     //                                 }
     //                             });
     //                         }
     //                     }
 
-    //                     if (WDR.Master.Grunt_Types[INVASION.grunt_type].second_reward && WDR.Master.Grunt_Types[INVASION.grunt_type].second_reward == 'true') {
+    //                     if (Wdr.Master.invasions[INVASION.grunt_type].second_reward && Wdr.Master.invasions[INVASION.grunt_type].second_reward == 'true') {
     //                         match.encounters = '';
     //                         match.encounters += '**85% Chance to Encounter**:\n ' + match.first + '\n';
     //                         match.encounters += '**15% Chance to Encounter**:\n ' + match.second + '\n';
-    //                     } else if (WDR.Master.Grunt_Types[INVASION.grunt_type].encounters) {
+    //                     } else if (Wdr.Master.invasions[INVASION.grunt_type].encounters) {
     //                         match.encounters = '';
     //                         match.encounters += '**100% Chance to Encounter**:\n ' + match.first + '\n';
     //                         //   if (match.first.length <= 25) {
-    //                         //     match.pokemon_id = parseInt(WDR.Master.Grunt_Types[INVASION.grunt_type].encounters.first[0]);
+    //                         //     match.pokemon_id = parseInt(Wdr.Master.invasions[INVASION.grunt_type].encounters.first[0]);
     //                         //     match.sprite = WDR.Get_Sprite(WDR, INVASION);
     //                         //   }
     //                     }
 
-    //                     match.grunt_gender = WDR.Master.Grunt_Types[INVASION.grunt_type].grunt;
-    //                     match.grunt_type = WDR.Master.Grunt_Types[INVASION.grunt_type].type;
+    //                     match.grunt_gender = Wdr.Master.invasions[INVASION.grunt_type].grunt;
+    //                     match.grunt_type = Wdr.Master.invasions[INVASION.grunt_type].type;
 
 
     //                     if (match.mins > 5) {
