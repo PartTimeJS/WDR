@@ -280,7 +280,7 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 break;
                             default:
                                 var match;
-                                Wdr.Master.type_ids.forEach(type => {
+                                WDR.Master.type_ids.forEach(type => {
                                     if (type.toLowerCase() == CollectedMsg.content.toLowerCase()) {
                                         match = type.toLowerCase();
                                         collector.stop(match);

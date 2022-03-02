@@ -3,7 +3,7 @@ module.exports = (WDR, name) => {
         let PokemonArray = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i].pokedex_id);
         for (let p = 0, plen = PokemonArray.length; p < plen; p++) {
             let pokemon = WDR.Master.pokemon[PokemonArray[p]];
-            if (pokemon.name.toLowerCase() == name.toLowerCase()) {
+            if (pokemon.name.toLowerCase().replace(' ','-') == name.toLowerCase()) {
                 let forms = Object.keys(pokemon.forms).map(f => pokemon.forms[f].form);
                 if (forms.indexOf('Purified') >= 0) {
                     forms.splice(forms.indexOf('Purified'), 1);

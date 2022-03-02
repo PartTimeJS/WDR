@@ -7,7 +7,7 @@ module.exports = async (WDR, object) => {
                     type: '',
                     type_noemoji: ''
                 };
-
+ 
                 let types = [];
                 if (object.form > 0 && WDR.Master.pokemon[object.pokemon_id].forms[object.form] && WDR.Master.pokemon[object.pokemon_id].forms[object.form].types) {
                     types = WDR.Master.pokemon[object.pokemon_id].forms[object.form].types;
@@ -27,10 +27,8 @@ module.exports = async (WDR, object) => {
                 } else {
 
                     Typing.color = WDR.Get_Type_Color(types[0]);
-
                     let type1_array = WDR.Master.type_effectiveness[types[0]];
                     let type2_array = WDR.Master.type_effectiveness[types[1]];
-
                     if (types.length == 2) {
                         Typing.type = WDR.Emotes[types[0].toLowerCase()] + ' ' + types[0] + ' / ' + WDR.Emotes[types[1].toLowerCase()] + types[1];
                         Typing.type_noemoji = types[0] + ' / ' + types[1];
@@ -61,26 +59,31 @@ module.exports = async (WDR, object) => {
                                 }
                                 let type = WDR.Master.type_ids[t];
                                 if (!type || type == 'None') {
-                                    WDR.Console.error(WDR, '[Get_Typing.js] Error retrieving type.', object);
-                                }
-                                try {
-                                    switch (true) {
-                                        case (value > 1):
-                                            Typing.weaknesses_noemoji += ', ' + type;
-                                            Typing.weaknesses += ' ' + WDR.Emotes[type.toLowerCase()];
-                                            break;
-                                        case (value > 0 && value < 1):
-                                            Typing.resistances_noemoji += ', ' + type;
-                                            Typing.resistances += ' ' + WDR.Emotes[type.toLowerCase()];
-                                            break;
-                                        case (value == 0):
-                                            Typing.immune_noemoji += ', ' + type;
-                                            Typing.immune += ' ' + WDR.Emotes[type.toLowerCase()];
-                                            break;
+                                    //console.log('Type:',type);
+                                    //console.log('Types:',types);
+                                    //console.log('Type ID:',t);
+                                    //console.log('WDR.Types:',WDR.Master.type_ids);
+                                    //WDR.Console.error(WDR, '[Get_Typing.js] Error retrieving type.', object);
+                                } else {
+                                    try {
+                                        switch (true) {
+                                            case (value > 1):
+                                                Typing.weaknesses_noemoji += ', ' + type;
+                                                Typing.weaknesses += ' ' + WDR.Emotes[type.toLowerCase()];
+                                                break;
+                                            case (value > 0 && value < 1):
+                                                Typing.resistances_noemoji += ', ' + type;
+                                                Typing.resistances += ' ' + WDR.Emotes[type.toLowerCase()];
+                                                break;
+                                            case (value == 0):
+                                                Typing.immune_noemoji += ', ' + type;
+                                                Typing.immune += ' ' + WDR.Emotes[type.toLowerCase()];
+                                                break;
+                                        }
+                                    } catch (e) {
+                                        WDR.Console.error(WDR, '[functions/Get_Typing.js] Error Obtaining Typing.', object);
+                                        console.error(e);
                                     }
-                                } catch (e) {
-                                    WDR.Console.error(WDR, '[functions/Get_Typing.js] Error Obtaining Typing.', object);
-                                    console.error(e);
                                 }
                             }
                         }
