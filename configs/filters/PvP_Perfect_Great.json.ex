@@ -680,7 +680,7 @@
 	"Vivillon": "True",
 	"Litleo": "True",
 	"Pyroar": "True",
-	"Flabébé": "True",
+	"Flabebe": "True",
 	"Floette": "True",
 	"Florges": "True",
 	"Skiddo": "True",
