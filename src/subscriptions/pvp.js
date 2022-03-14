@@ -48,43 +48,47 @@ module.exports = async (WDR, sighting) => {
                         WHERE
                             status = 1
                         AND
-                            guild_id = '${sighting.discord.id}'
-                        AND (
-                            pokemon_id  = 0
-                                OR
-                            pokemon_id = ${sighting.pokemon_id}
-                                OR
-                            pokemon_id = ${potential.pokemon_id}
+                        (
+                                guild_id = '${sighting.discord.id}'
+                                    OR
+                                geotype = 'all'
                         )
                         AND (
-                            pokemon_type  = '0'
-                                OR
-                            pokemon_type = '${potential.typing[0]}'
-                                OR
-                            pokemon_type = '${potential.typing[1]}'
+                                pokemon_id  = 0
+                                    OR
+                                pokemon_id = ${sighting.pokemon_id}
+                                    OR
+                                pokemon_id = ${potential.pokemon_id}
                         )
                         AND (
-                            form = 0
-                                OR
-                            form = ${sighting.form_id}
-                                OR
-                            form = ${(potential.form_id ? potential.form_id : '0')}
+                                pokemon_type  = '0'
+                                    OR
+                                pokemon_type = '${potential.typing[0]}'
+                                    OR
+                                pokemon_type = '${potential.typing[1]}'
                         )
                         AND (
-                            league = '0'
-                                OR
-                            league = '${league}'
+                                form = 0
+                                    OR
+                                form = ${sighting.form_id}
+                                    OR
+                                form = ${(potential.form_id ? potential.form_id : '0')}
+                        )
+                        AND (
+                                league = '0'
+                                    OR
+                                league = '${league}'
                         )
                         AND
                             min_rank >= ${potential.rank}
                         AND
                             min_lvl <= ${sighting.pokemon_level}
                         AND (
-                            generation = 0
-                                OR
-                            generation = ${sighting.gen}
-                                OR
-                            generation = ${potential.gen}
+                                generation = 0
+                                    OR
+                                generation = ${sighting.gen}
+                                    OR
+                                generation = ${potential.gen}
                         )
                     ;`;
                     WDR.wdrDB.query(
@@ -114,7 +118,7 @@ module.exports = async (WDR, sighting) => {
                                     let authorized = await WDR.Authorize(WDR, discord.id, user.user_id, discord.allowed_roles);
                                     if (authorized) {
 
-                                        if (user.geotype == 'city') {
+                                        if (user.geotype == 'city' || user.geotype == 'all') {
                                             if (user.guild_name == sighting.area.default) {
                                                 match.embed = matching[0].embed ? matching[0].embed : 'pvp.js';
                                                 Send_Subscription(WDR, match, sighting, user);

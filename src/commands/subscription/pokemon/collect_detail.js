@@ -150,7 +150,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                     .setAuthor(Member.db.user_name, Member.user.displayAvatarURL())
                     .setTitle('Do you want to get notifications for ' + sub.name + ' filtered by your set Areas/Location?')
                     .setDescription('**Yes** - Your notifications for this Pokémon will be filtered based on your set areas/location.\n' +
-                        '**No** - You will get notifications for this pokemon in the entire city scan area.')
+                        '**No** - You will get notifications for this pokemon for your entire city.\n' +
+                        '**All** - You will get notifications for **all cities** that are scanned by this provider.')
                     .setFooter(requirements);
                 break;
 
@@ -215,6 +216,8 @@ module.exports = (WDR, Functions, type, Member, Message, object, requirements, s
                                 collector.stop(Member.db.geotype);
                                 break;
                             case 'all':
+                                collector.stop('all');
+                                break;
                             case 'no':
                                 collector.stop('city');
                                 break;

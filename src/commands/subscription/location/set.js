@@ -56,6 +56,8 @@ module.exports = async (WDR, Functions, Message, Member) => {
                             user_id = '${Member.id}'
                                 AND
                             geotype != 'city'
+                                AND
+                            geotype != 'all';
                     ;`);
 
                     let user_loc = `
@@ -67,7 +69,9 @@ module.exports = async (WDR, Functions, Message, Member) => {
                         WHERE
                             user_id = '${Member.id}'
                                 AND
-                            geotype != 'city';
+                            geotype != 'city'
+                                AND
+                            geotype != 'all';
                     ;`;
                     WDR.wdrDB.query(
                         user_loc,

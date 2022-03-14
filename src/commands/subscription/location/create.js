@@ -67,6 +67,8 @@ module.exports = async (WDR, Functions, Message, Member, AreaArray) => {
                             user_id = '${Member.id}'
                                 AND
                             geotype != 'city'
+                                AND
+                            geotype != 'all';
                     ;`);
 
                     let user_active = `

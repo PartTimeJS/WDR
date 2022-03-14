@@ -43,13 +43,15 @@ module.exports = (WDR, Functions, Message, Member) => {
                     data += '　Gen: `' + sub_data.generation + '`\n';
                 }
                 if(sub_data.geotype !== 'city'){
-                    if(sub_data.geotype === 'location'){
-                        data += '　' +  'Area: ' + '`' + JSON.parse(sub_data.location).name + '`';
+                    if (sub_data.geotype === 'all') {
+                        data += '　' + 'Area: ' + '`All Provider Cities`';
+                    } else if (sub_data.geotype === 'location') {
+                        data += '　' + 'Area: ' + '`' + JSON.parse(sub_data.location).name + '`';
                     } else {
-                        data += '　' +  'Area: ' + '`' + sub_data.areas + '`' + '\n';
+                        data += '　' + 'Area: ' + '`' + sub_data.areas + '`' + '\n';
                     }
-                } else {
-                    data += '　' +  'Area: ' + '`All`'+ '\n';
+                } else if (data) {
+                    data += '　' + 'Area: ' + '`Your Entire City`' + '\n';
                 }
                 sub_list += data + '\n';
             }

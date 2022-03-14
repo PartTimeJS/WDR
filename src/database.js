@@ -96,30 +96,30 @@ const DB = {
                             } else {
                                 WDR.UpdateAllSubTables(WDR, 'UPDATE %TABLE% SET location = NULL where location = "";');
                                 WDR.Console.info(WDR, '[src/database.js] Successfully Connected to wdrDB.');
-                                // WDR.wdrDB.query(
-                                //     `SELECT
-                                //       *
-                                //    FROM
-                                //       wdr_pokedex;`,
-                                //     function(error, table) {
-                                //         if (table.length < 1) {
-                                //             let array = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i]);
-                                //             for (let a = 0, alen = array.length; a < alen; a++) {
-                                //                 WDR.wdrDB.query(
-                                //                     `INSERT INTO
-                                //               wdr_pokedex (
-                                //                   id,
-                                //                   name
-                                //               )
-                                //            VALUES (
-                                //               ${array[a].pokedex_id},
-                                //               '${array[a].name}'
-                                //            );`
-                                //                 );
-                                //             }
-                                //         }
-                                //     }
-                                // );
+                                WDR.wdrDB.query(
+                                    `SELECT
+                                      *
+                                   FROM
+                                      wdr_pokedex;`,
+                                    function(error, table) {
+                                        if (table.length < 1) {
+                                            let array = Object.keys(WDR.Master.pokemon).map(i => WDR.Master.pokemon[i]);
+                                            for (let a = 0, alen = array.length; a < alen; a++) {
+                                                WDR.wdrDB.query(
+                                                    `INSERT INTO
+                                              wdr_pokedex (
+                                                  id,
+                                                  name
+                                              )
+                                           VALUES (
+                                              ${array[a].pokedex_id},
+                                              '${array[a].name}'
+                                           );`
+                                                );
+                                            }
+                                        }
+                                    }
+                                );
                                 return resolve(WDR);
                             }
                         }
