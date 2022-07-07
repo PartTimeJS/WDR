@@ -19,7 +19,7 @@
     "image-downloader": "^4.0.1",
     "image-stroke": "^0.1.1",
     "ini": "^1.3.6",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.28",
     "mysql2": "^2.1.0",
     "ontime": "0.0.6",
